@@ -1,0 +1,16 @@
+{
+  "name": "currencycloud-api-docs",
+  "version": "1.0.0",
+  "description": "Currencycloud API Documentation",
+  "engines": {
+    "node": ">=6.11.3"
+  },
+  "dependencies": {
+    "swagger-editor-live": "^2.1.7",
+    "swagger-ui-watcher": "^1.0.6"
+  },
+  "scripts": {
+    "swagger:edit": "swagger-editor-live ./src/reference.yaml --port=9000",
+    "swagger:preview": "swagger-ui-watcher ./src/reference.yaml ./src"
+  }
+}
