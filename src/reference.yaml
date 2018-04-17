@@ -17,14 +17,14 @@ externalDocs:
 tags:
   - name: Authenticate
     description: >-
-      Authenticate to gain access to the API. Provides the ability to log in
-      to your Currencycloud account using your API Key and log out by
-      terminating your session.
+      Authenticate to gain access to the API. Provides the ability to log in to
+      your Currencycloud account using your API Key and log out by terminating
+      your session.
   - name: Accounts
     description: >-
       Create, search and update your Currencycloud account and any associated
-      sub-accounts. Also provides you with the ability to use your own
-      reference IDs for easy reconciliation with your internal systems.
+      sub-accounts. Also provides you with the ability to use your own reference
+      IDs for easy reconciliation with your internal systems.
   - name: Balances
     description: >-
       Provides access to view balance information. View the balances that you
@@ -61,9 +61,9 @@ tags:
       Currencycloud platform.
   - name: Reference
     description: >-
-      Easy access to view implortant data relevant to your Currencycloud
-      account including beneficiary details, conversion dates, available
-      currencies, payer required details, payment dates and settlement details.
+      Easy access to view implortant data relevant to your Currencycloud account
+      including beneficiary details, conversion dates, available currencies,
+      payer required details, payment dates and settlement details.
   - name: Settlements
     description: >-
       Consolidate multiple currency conversions into a single group. Search,
@@ -71,17 +71,17 @@ tags:
   - name: Transactions
     description: >-
       View balances and all pending and completed transactions in your
-      Currencycloud account, as well as associated sub-account balances
-      and transactions.
+      Currencycloud account, as well as associated sub-account balances and
+      transactions.
   - name: Transfers
     description: >-
-      Search, retrieve and create a transfer of funds between your
-      Currencycloud account and associated sub-accounts.
+      Search, retrieve and create a transfer of funds between your Currencycloud
+      account and associated sub-accounts.
   - name: VANs
     description: >-
-      Create, search and manage Virtual Accounts (VANs)
-      assigned to your Currencycloud account balance or your sub-accounts'
-      balances. You can also retrieve and assign VANs to the the account.
+      Create, search and manage Virtual Accounts (VANs) assigned to your
+      Currencycloud account balance or your sub-accounts' balances. You can also
+      retrieve and assign VANs to the the account.
 schemes:
   - https
 host: devapi.currencycloud.com
@@ -104,15 +104,15 @@ paths:
         login, a temporary authentication token is returned.
 
         An authentication token is required to make requests to all other
-        endpoints in the Currencycloud API. Tokens expire after 30 minutes
-        of inactivity.
+        endpoints in the Currencycloud API. Tokens expire after 30 minutes of
+        inactivity.
 
         Token requests are limited to 10 calls per minute.
 
-        For security, Currencycloud accounts are disabled when four unsuccessful login
-        attempts are made within a short period. Account holders must
-        [contact support](https://developer.currencycloud.com/support)
-        to reactivate their account.
+        For security, Currencycloud accounts are disabled when four unsuccessful
+        login attempts are made within a short period. Account holders must
+        [contact support](https://developer.currencycloud.com/support) to
+        reactivate their account.
       operationId: Login
       consumes:
         - multipart/form-data
@@ -124,8 +124,8 @@ paths:
           required: true
           type: string
           description: >-
-            Login ID for a Currencycloud account.
-            This is usually an email address.
+            Login ID for a Currencycloud account. This is usually an email
+            address.
         - name: api_key
           in: formData
           required: true
@@ -295,8 +295,8 @@ paths:
       x-api-group: manage
       summary: Find Accounts
       description: >-
-        Get sub-accounts owned by the authenticating user.
-        Optionally filter by account status and other criteria.
+        Get sub-accounts owned by the authenticating user. Optionally filter by
+        account status and other criteria.
       operationId: FindAccounts
       produces:
         - application/json
@@ -316,7 +316,8 @@ paths:
           required: false
           type: string
           description: >-
-            The value of this field is used for white labeling the Currencycloud user interface.
+            The value of this field is used for white labeling the Currencycloud
+            user interface.
         - name: your_reference
           in: query
           required: false
@@ -515,8 +516,8 @@ paths:
       x-api-group: manage
       summary: Update Account
       description: >-
-        Update a sub-account owned by the authenticating user.
-        On success, returns the updated account entity.
+        Update a sub-account owned by the authenticating user. On success,
+        returns the updated account entity.
       operationId: UpdateAccount
       consumes:
         - multipart/form-data
@@ -551,7 +552,8 @@ paths:
           required: false
           type: string
           description: >-
-            The value of this field is used for white labeling the Currencycloud user interface.
+            The value of this field is used for white labeling the Currencycloud
+            user interface.
         - name: your_reference
           in: formData
           required: false
@@ -604,7 +606,8 @@ paths:
           type: boolean
           default: true
           description: >-
-            Whether trading via the Currencycloud API is to be enabled on the account.
+            Whether trading via the Currencycloud API is to be enabled on the
+            account.
         - name: online_trading
           in: formData
           required: false
@@ -645,7 +648,8 @@ paths:
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document, such as a passport number.
+            A unique reference code for the identification document, such as a
+            passport number.
       responses:
         '200':
           description: Success.
@@ -699,8 +703,7 @@ paths:
         - Accounts
       x-api-group: manage
       summary: Create Account
-      description: >-
-        Create a new sub-account. On success, returns the new account entity.
+      description: 'Create a new sub-account. On success, returns the new account entity.'
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -716,8 +719,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: >-
-            Account name.
+          description: Account name.
         - name: legal_entity_type
           in: formData
           required: true
@@ -751,7 +753,8 @@ paths:
           required: false
           type: string
           description: >-
-            The value of this field is used for white labeling the Currencycloud user interface.
+            The value of this field is used for white labeling the Currencycloud
+            user interface.
         - name: your_reference
           in: formData
           required: false
@@ -777,8 +780,7 @@ paths:
           required: false
           type: string
           default: no_markup
-          description: >-
-            The name of the spread table assigned to the account.
+          description: The name of the spread table assigned to the account.
         - name: api_trading
           in: formData
           required: false
@@ -822,8 +824,8 @@ paths:
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document, such as a passport number.
-            Required if ``identification_type`` is provided.
+            A unique reference code for the identification document, such as a
+            passport number. Required if ``identification_type`` is provided.
       responses:
         '200':
           description: Success.
@@ -876,7 +878,8 @@ paths:
       x-api-group: manage
       summary: Get Balance
       description: >-
-        Get the balance for a currency from the account of the authenticating user.
+        Get the balance for a currency from the account of the authenticating
+        user.
       operationId: GetBalance
       produces:
         - application/json
@@ -950,8 +953,8 @@ paths:
       x-api-group: manage
       summary: Find Balances
       description: >-
-        Search for currency balances in the main account or a sub-account
-        owned by the authenticating user.
+        Search for currency balances in the main account or a sub-account owned
+        by the authenticating user.
       operationId: FindBalances
       produces:
         - application/json
@@ -981,8 +984,7 @@ paths:
           required: false
           type: string
           format: date-time
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: scope
           in: query
           required: false
@@ -992,8 +994,7 @@ paths:
             - own
             - all
           default: own
-          description: >-
-            "Own" account, "clients" sub-accounts, or "all" accounts.
+          description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
           in: query
           required: false
@@ -1078,8 +1079,8 @@ paths:
       x-api-group: pay
       summary: Find Beneficiaries
       description: >-
-        Find beneficiaries attached to the account or any
-        sub-account owned by the authenticating user.
+        Find beneficiaries attached to the account or any sub-account owned by
+        the authenticating user.
       operationId: FindBeneficiaries
       produces:
         - application/json
@@ -1104,10 +1105,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company,
-            the country in which the company is registered.
-            If the beneficiary is an individual, a country
-            in which the beneficiary holds nationality.
+            Two-letter country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
         - name: currency
           in: query
           required: false
@@ -1154,8 +1154,8 @@ paths:
           required: false
           type: boolean
           description: >-
-            Payments are made automatically to default beneficiaries
-            when a beneficiary is not specified.
+            Payments are made automatically to default beneficiaries when a
+            beneficiary is not specified.
         - name: bank_name
           in: query
           required: false
@@ -1186,20 +1186,17 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "company".
+          description: Required if ``beneficiary_entity_type`` is "company".
         - name: beneficiary_first_name
           in: query
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_last_name
           in: query
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_city
           in: query
           required: false
@@ -1222,8 +1219,8 @@ paths:
           format: date
           description: >-
             If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD.
+            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            8601 format YYYY-MM-DD.
         - name: scope
           in: query
           required: false
@@ -1233,8 +1230,7 @@ paths:
             - clients
             - all
           default: own
-          description: >-
-            Search "own" account, "clients" sub-accounts, or "all" accounts.
+          description: 'Search "own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
           in: query
           required: false
@@ -1390,8 +1386,8 @@ paths:
       x-api-group: pay
       summary: Update Beneficiary
       description: >-
-        Update an existing beneficiary.
-        On success, returns the updated beneficiary entity.
+        Update an existing beneficiary. On success, returns the updated
+        beneficiary entity.
       operationId: UpdateBeneficiary
       consumes:
         - multipart/form-data
@@ -1423,8 +1419,8 @@ paths:
           required: true
           type: string
           description: >-
-            Country in which the beneficiary's bank account is held.
-            Two-letter country code.
+            Country in which the beneficiary's bank account is held. Two-letter
+            country code.
         - name: currency
           in: formData
           required: true
@@ -1447,10 +1443,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company,
-            the country in which the company is registered.
-            If the beneficiary is an individual, a country
-            in which the beneficiary holds nationality.
+            Two-letter country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
         - name: account_number
           in: formData
           required: false
@@ -1503,9 +1498,9 @@ paths:
             - regular
           default: regular
           description: >-
-            Currencycloud supports two types of payment: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
-            the local bank network.
+            Currencycloud supports two types of payment: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
         - name: bic_swift
           in: formData
           required: false
@@ -1522,8 +1517,8 @@ paths:
           type: boolean
           default: false
           description: >-
-            Payments are made automatically to default beneficiaries
-            when a beneficiary is not specified.
+            Payments are made automatically to default beneficiaries when a
+            beneficiary is not specified.
         - name: bank_address
           in: formData
           required: false
@@ -1554,20 +1549,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "company".
+          description: Required if ``beneficiary_entity_type`` is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -1590,8 +1582,8 @@ paths:
           type: string
           description: >-
             If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD.
+            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -1624,7 +1616,8 @@ paths:
             - incorporation_number
             - others
           description: >-
-            A unique reference code for the identification document, such as a passport number.
+            A unique reference code for the identification document, such as a
+            passport number.
         - name: on_behalf_of
           in: formData
           required: false
@@ -1682,8 +1675,8 @@ paths:
       x-api-group: pay
       summary: Create Beneficiary
       description: >-
-        Create a new beneficiary.
-        On success, returns the new beneficiary entity.
+        Create a new beneficiary. On success, returns the new beneficiary
+        entity.
       operationId: CreateBeneficiary
       consumes:
         - multipart/form-data
@@ -1710,8 +1703,8 @@ paths:
           required: true
           type: string
           description: >-
-            Two-letter code for the country in which the
-            beneficiary's bank account is held.
+            Two-letter code for the country in which the beneficiary's bank
+            account is held.
         - name: currency
           in: formData
           required: true
@@ -1734,10 +1727,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company,
-            the country in which the company is registered.
-            If the beneficiary is an individual, a country
-            in which the beneficiary holds nationality.
+            Two-letter country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
         - name: account_number
           in: formData
           required: false
@@ -1797,8 +1789,8 @@ paths:
           type: boolean
           default: false
           description: >-
-            Payments are made automatically to default beneficiaries
-            when a beneficiary is not specified.
+            Payments are made automatically to default beneficiaries when a
+            beneficiary is not specified.
         - name: bank_address
           in: formData
           required: false
@@ -1829,20 +1821,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "company".
+          description: Required if ``beneficiary_entity_type`` is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if ``beneficiary_entity_type`` is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -1864,8 +1853,8 @@ paths:
           type: string
           description: >-
             If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD.
+            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -1898,7 +1887,8 @@ paths:
             - incorporation_number
             - others
           description: >-
-            A unique reference code for the identification document, such as a passport number.
+            A unique reference code for the identification document, such as a
+            passport number.
         - name: payment_types
           in: formData
           required: false
@@ -1908,9 +1898,9 @@ paths:
             - regular
           default: regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
-            the local bank network.
+            Currencycloud supports two types of payments: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
         - name: on_behalf_of
           in: formData
           required: false
@@ -1968,8 +1958,8 @@ paths:
       x-api-group: pay
       summary: Delete Beneficiary
       description: >-
-        Delete a beneficiary associated with a sub-account.
-        If the deletion is successful, the beneficiary's final state is returned.
+        Delete a beneficiary associated with a sub-account. If the deletion is
+        successful, the beneficiary's final state is returned.
       operationId: DeleteBeneficiary
       consumes:
         - multipart/form-data
@@ -2064,8 +2054,8 @@ paths:
           required: true
           type: string
           description: >-
-            Two-letter code for the country in which the
-            beneficiary's bank account is held.
+            Two-letter code for the country in which the beneficiary's bank
+            account is held.
         - name: currency
           in: formData
           required: true
@@ -2078,10 +2068,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company,
-            the country in which the company is registered.
-            If the beneficiary is an individual, a country
-            in which the beneficiary holds nationality.
+            Two-letter country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
       responses:
         '200':
           description: Success.
@@ -2186,8 +2175,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Find Contacts
-      description: >-
-        Get contacts that match search parameters.
+      description: Get contacts that match search parameters.
       operationId: FindContacts
       produces:
         - application/json
@@ -2249,12 +2237,12 @@ paths:
           in: query
           required: false
           type: string
-          description: Locale code (``en``, ``en-US``, ``fr-FR``).
+          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
         - name: timezone
           in: query
           required: false
           type: string
-          description: Timezone (``Europe/London``, ``America/New_York``).
+          description: 'Timezone (``Europe/London``, ``America/New_York``).'
         - name: page
           in: query
           required: false
@@ -2317,7 +2305,6 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-
               description: A unique reference for the request.
         default:
           description: Unexpected error.
@@ -2399,8 +2386,8 @@ paths:
       x-api-group: manage
       summary: Update Contact
       description: >-
-        Update an existing contact.
-        On success, returns the updated contact entity.
+        Update an existing contact. On success, returns the updated contact
+        entity.
       operationId: UpdateContact
       consumes:
         - multipart/form-data
@@ -2464,12 +2451,12 @@ paths:
           in: query
           required: false
           type: string
-          description: Locale code (``en``, ``en-US``, ``fr-FR``).
+          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
         - name: timezone
           in: query
           required: false
           type: string
-          description: Timezone (``Europe/London``, ``America/New_York``).
+          description: 'Timezone (``Europe/London``, ``America/New_York``).'
         - name: date_of_birth
           in: query
           required: false
@@ -2528,8 +2515,8 @@ paths:
       x-api-group: manage
       summary: Create Contact
       description: >-
-        Create a new contact and attach to a sub-account.
-        On success, returns the new contact entity.
+        Create a new contact and attach to a sub-account. On success, returns
+        the new contact entity.
       operationId: CreateContact
       consumes:
         - multipart/form-data
@@ -2593,12 +2580,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Locale code (``en``, ``en-US``, ``fr-FR``).
+          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
         - name: timezone
           in: formData
           required: false
           type: string
-          description: Timezone (``Europe/London``, ``America/New_York``).
+          description: 'Timezone (``Europe/London``, ``America/New_York``).'
         - name: date_of_birth
           in: formData
           required: false
@@ -2696,7 +2683,7 @@ paths:
             - funds_arrived
             - trade_settled
             - closed
-          description: Conversion status, as displayed to contacts of the sub-account.
+          description: 'Conversion status, as displayed to contacts of the sub-account.'
         - name: buy_currency
           in: query
           required: false
@@ -2718,92 +2705,77 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: conversion_date_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: conversion_date_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: currency_pair
           in: query
           required: false
           type: string
-          description: >-
-            Concatenated string of the two currencies traded, eg. "USDEUR".
+          description: 'Concatenated string of the two currencies traded, eg. "USDEUR".'
         - name: partner_buy_amount_from
           in: query
           required: false
           type: string
-          description: >-
-            Minimum buy amount (sub-accounts).
+          description: Minimum buy amount (sub-accounts).
         - name: partner_buy_amount_to
           in: query
           required: false
           type: string
-          description: >-
-            Maximum buy amount (sub-accounts).
+          description: Maximum buy amount (sub-accounts).
         - name: partner_sell_amount_from
           in: query
           required: false
           type: string
-          description: >-
-            Minimum sell amount (sub-accounts).
+          description: Minimum sell amount (sub-accounts).
         - name: partner_sell_amount_to
           in: query
           required: false
           type: string
-          description: >-
-            Maximum sell amount (sub-accounts).
+          description: Maximum sell amount (sub-accounts).
         - name: buy_amount_from
           in: query
           required: false
           type: string
-          description: >-
-            Minimum buy amount.
+          description: Minimum buy amount.
         - name: buy_amount_to
           in: query
           required: false
           type: string
-          description: >-
-            Maximum buy amount.
+          description: Maximum buy amount.
         - name: sell_amount_from
           in: query
           required: false
           type: string
-          description: >-
-            Minimum sell amount.
+          description: Minimum sell amount.
         - name: sell_amount_to
           in: query
           required: false
           type: string
-          description: >-
-            Maximum sell amount.
+          description: Maximum sell amount.
         - name: scope
           in: query
           required: false
@@ -2813,28 +2785,26 @@ paths:
             - clients
             - own
           default: own
-          description: >-
-            "Own" account, "clients" sub-accounts, or "all" accounts.
+          description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: settlement_date_from
           in: query
           required: false
           type: string
           description: >-
-            Earliest date when sold currency debited.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Earliest date when sold currency debited. Any valid ISO 8601 format,
+            eg. "2017-12-31T23:59:59+00:00".
         - name: settlement_date_to
           in: query
           required: false
           type: string
           description: >-
-            Latest date when sold currency debited.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Latest date when sold currency debited. Any valid ISO 8601 format,
+            eg. "2017-12-31T23:59:59+00:00".
         - name: unique_request_id
           in: query
           required: false
           type: string
-          description: >-
-            User-generated idempotency key.
+          description: User-generated idempotency key.
         - name: bulk_upload_id
           in: query
           required: false
@@ -2995,9 +2965,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Create Conversion
-      description: >-
-        Create a new conversion.
-        On success, returns the new conversion entity.
+      description: 'Create a new conversion. On success, returns the new conversion entity.'
       operationId: CreateConversion
       consumes:
         - multipart/form-data
@@ -3013,14 +2981,12 @@ paths:
           in: formData
           required: true
           type: string
-          description: >-
-            Currency purchased. Three-digit code.
+          description: Currency purchased. Three-digit code.
         - name: sell_currency
           in: formData
           required: true
           type: string
-          description: >-
-            Currency sold. Three-digit code.
+          description: Currency sold. Three-digit code.
         - name: fixed_side
           in: formData
           required: true
@@ -3044,9 +3010,7 @@ paths:
           required: false
           type: string
           format: date
-          description: >-
-            Earliest delivery date.
-            ISO 8601 format YYYY-MM-DD.
+          description: Earliest delivery date. ISO 8601 format YYYY-MM-DD.
         - name: client_buy_amount
           in: formData
           required: false
@@ -3066,8 +3030,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            User-generated idempotency key.
+          description: User-generated idempotency key.
         - name: on_behalf_of
           in: formData
           required: false
@@ -3125,8 +3088,8 @@ paths:
       x-api-group: collect
       summary: Get IBANs
       description: >-
-        Get a list of International Bank Account Numbers attached to
-        the authenticating user's account.
+        Get a list of International Bank Account Numbers attached to the
+        authenticating user's account.
       operationId: GetIBANs
       produces:
         - application/json
@@ -3140,9 +3103,7 @@ paths:
           in: header
           required: false
           type: string
-          description: >-
-            Currency in which the balance is held.
-            Three-digit currency code.
+          description: Currency in which the balance is held. Three-digit currency code.
       responses:
         '200':
           description: Success.
@@ -3195,78 +3156,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /ibans/create:
-    post:
-      tags:
-        - IBANs
-      x-api-group: collect
-      summary: Create IBAN
-      description: >-
-        Add an IBAN to the authenticating user's account.
-        On success, returns the new IBAN entity.
-      operationId: CreateIBAN
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: currency
-          in: formData
-          required: true
-          type: string
-          description: >-
-            Currency in which the balance is held.
-            Three-digit currency code.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/IBAN'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          schema:
-            $ref: '#/definitions/CreateIBANError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
   /ibans/subaccounts/find:
     get:
       tags:
@@ -3274,8 +3163,8 @@ paths:
       x-api-group: collect
       summary: Get IBANs for Sub-Accounts
       description: >-
-        Get a list of IBANS for all sub-accounts owned by the authenticating user.
-        Optionally returns the IBANs of bank accounts that hold money in a
+        Get a list of IBANS for all sub-accounts owned by the authenticating
+        user. Optionally returns the IBANs of bank accounts that hold money in a
         specified currency.
       operationId: GetIBANsForSubAccounts
       produces:
@@ -3290,9 +3179,7 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Currency in which the balance is held.
-            Three-digit currency code.
+          description: Currency in which the balance is held. Three-digit currency code.
       responses:
         '200':
           description: Success.
@@ -3351,8 +3238,7 @@ paths:
         - IBANs
       x-api-group: collect
       summary: Get IBANs for Sub-Account
-      description: >-
-        Get a list of IBANs attached to a sub-account.
+      description: Get a list of IBANs attached to a sub-account.
       operationId: GetIBANsForSubAccount
       produces:
         - application/json
@@ -3524,9 +3410,7 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Currency in which payment made.
-            Three-digit currency code.
+          description: Currency in which payment made. Three-digit currency code.
         - name: amount
           in: query
           required: false
@@ -3567,60 +3451,56 @@ paths:
           type: string
           format: date
           description: >-
-            Earliest instructed payment date.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Earliest instructed payment date. Any valid ISO 8601 format, eg.
+            "2017-12-31T23:59:59+00:00".
         - name: payment_date_to
           in: query
           required: false
           type: string
           format: date
           description: >-
-            Latest instructed payment date.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Latest instructed payment date. Any valid ISO 8601 format, eg.
+            "2017-12-31T23:59:59+00:00".
         - name: transferred_at_from
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Earliest date of payment processing.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Earliest date of payment processing. Any valid ISO 8601 format, eg.
+            "2017-12-31T23:59:59+00:00".
         - name: transferred_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Latest date of payment processing.
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+            Latest date of payment processing. Any valid ISO 8601 format, eg.
+            "2017-12-31T23:59:59+00:00".
         - name: created_at_from
           in: query
           required: false
           type: string
           format: date-time
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date-time
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date-time
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date-time
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: beneficiary_id
           in: query
           required: false
@@ -3656,8 +3536,7 @@ paths:
             - own
             - clients
           default: own
-          description: >-
-            "Own" account, "clients" sub-accounts, or "all" accounts.
+          description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: bulk_upload_id
           in: query
           required: false
@@ -3895,8 +3774,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Update Payment
-      description: >-
-        Update a payment. On success, returns the updated payment entity.
+      description: 'Update a payment. On success, returns the updated payment entity.'
       operationId: UpdatePayment
       consumes:
         - multipart/form-data
@@ -3923,8 +3801,8 @@ paths:
           required: false
           type: string
           description: >-
-            Currency in which the payment is being made.
-            Three-digit currency code.
+            Currency in which the payment is being made. Three-digit currency
+            code.
         - name: beneficiary_id
           in: formData
           required: false
@@ -3934,15 +3812,14 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Payment amount.
+          description: Payment amount.
         - name: payment_date
           in: formData
           required: false
           type: string
           description: >-
-            Instructed date of payment.
-            Any valid ISO 8601 format, eg. "2017-12-31".
+            Instructed date of payment. Any valid ISO 8601 format, eg.
+            "2017-12-31".
         - name: reason
           in: formData
           required: false
@@ -3956,9 +3833,9 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
-            the local bank network.
+            Currencycloud supports two types of payments: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
         - name: reference
           in: formData
           required: false
@@ -3981,20 +3858,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``payer_entity_type`` is "company".
+          description: Required if ``payer_entity_type`` is "company".
         - name: payer_first_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``payer_entity_type`` is "individual".
+          description: Required if ``payer_entity_type`` is "individual".
         - name: payer_last_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if payer_entity_type is "individual".
+          description: Required if payer_entity_type is "individual".
         - name: payer_city
           in: formData
           required: false
@@ -4025,9 +3899,9 @@ paths:
           required: false
           type: string
           description: >-
-            If ``payer_entity_type`` is "company", company registration date.
-            If ``payer_entity_type`` is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD..
+            If ``payer_entity_type`` is "company", company registration date. If
+            ``payer_entity_type`` is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD..
         - name: payer_identification_type
           in: formData
           required: false
@@ -4051,16 +3925,16 @@ paths:
             - others
             - incorporation_number
           description: >-
-            A legal document that verifies the identity of the payer.
-            Required documentation will vary depending on the nationality
-            or registered address of the payer.
+            A legal document that verifies the identity of the payer. Required
+            documentation will vary depending on the nationality or registered
+            address of the payer.
         - name: payer_identification_value
           in: formData
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document,
-            such as a passport number.
+            A unique reference code for the identification document, such as a
+            passport number.
         - name: payer_details_source
           in: formData
           required: false
@@ -4068,14 +3942,12 @@ paths:
           enum:
             - account
             - payer
-          description: >-
-            Source for payer details: the "account" or "payer" record.
+          description: 'Source for payer details: the "account" or "payer" record.'
         - name: unique_request_id
           in: formData
           required: false
           type: string
-          description: >-
-            User-generated idempotency key.
+          description: User-generated idempotency key.
         - name: ultimate_beneficiary_name
           in: formData
           required: false
@@ -4137,8 +4009,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: >-
-        Make a payment. On success, returns the new payment record.
+      description: 'Make a payment. On success, returns the new payment record.'
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -4154,9 +4025,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: >-
-            Currency in which payment is made.
-            Three-digit currency code.
+          description: Currency in which payment is made. Three-digit currency code.
         - name: beneficiary_id
           in: formData
           required: true
@@ -4166,8 +4035,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: >-
-            Amount.
+          description: Amount.
         - name: reason
           in: formData
           required: true
@@ -4183,8 +4051,8 @@ paths:
           required: false
           type: string
           description: >-
-            Instructed date of payment.
-            Any valid ISO 8601 format, eg. "2017-12-31".
+            Instructed date of payment. Any valid ISO 8601 format, eg.
+            "2017-12-31".
         - name: payment_type
           in: formData
           required: false
@@ -4193,9 +4061,9 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
-            the local bank network.
+            Currencycloud supports two types of payments: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
         - name: conversion_id
           in: formData
           required: false
@@ -4213,20 +4081,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``payer_entity_type`` is "company".
+          description: Required if ``payer_entity_type`` is "company".
         - name: payer_first_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``payer_entity_type`` is "individual".
+          description: Required if ``payer_entity_type`` is "individual".
         - name: payer_last_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if ``payer_entity_type`` is "individual".
+          description: Required if ``payer_entity_type`` is "individual".
         - name: payer_city
           in: formData
           required: false
@@ -4257,9 +4122,9 @@ paths:
           required: false
           type: string
           description: >-
-            If ``payer_entity_type`` is "company", company registration date.
-            If ``payer_entity_type`` is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD.
+            If ``payer_entity_type`` is "company", company registration date. If
+            ``payer_entity_type`` is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
           required: false
@@ -4283,22 +4148,21 @@ paths:
             - others
             - incorporation_number
           description: >-
-            A legal document that verifies the identity of the payer.
-            Required documentation will vary depending on the nationality or
-            registered address of the payer.
+            A legal document that verifies the identity of the payer. Required
+            documentation will vary depending on the nationality or registered
+            address of the payer.
         - name: payer_identification_value
           in: formData
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document,
-            such as a passport number.
+            A unique reference code for the identification document, such as a
+            passport number.
         - name: unique_request_id
           in: formData
           required: false
           type: string
-          description: >-
-            User-generated idempotency key.
+          description: User-generated idempotency key.
         - name: ultimate_beneficiary_name
           in: formData
           required: false
@@ -4360,9 +4224,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Delete Payment
-      description: >-
-        Delete a payment.
-        On success, returns the final payment record state.
+      description: 'Delete a payment. On success, returns the final payment record state.'
       operationId: DeletePayment
       consumes:
         - multipart/form-data
@@ -4439,7 +4301,8 @@ paths:
       summary: Get Detailed Rates
       description: >-
         Get a detailed quotation to convert money from one currency to another.
-        The quotation will be based on the spread table of the authenticating user.
+        The quotation will be based on the spread table of the authenticating
+        user.
       operationId: GetDetailedRates
       produces:
         - application/json
@@ -4453,14 +4316,12 @@ paths:
           in: query
           required: true
           type: string
-          description: >-
-            Currency purchased. Three-digit code.
+          description: Currency purchased. Three-digit code.
         - name: sell_currency
           in: query
           required: true
           type: string
-          description: >-
-            Currency sold. Three-digit code.
+          description: Currency sold. Three-digit code.
         - name: fixed_side
           in: query
           required: true
@@ -4538,8 +4399,7 @@ paths:
         - Rates
       x-api-group: convert
       summary: Get Basic Rates
-      description: >-
-        Get basic foreign exchange rate information for multiple currency pairs.
+      description: Get basic foreign exchange rate information for multiple currency pairs.
       operationId: GetBasicRates
       produces:
         - application/json
@@ -4553,8 +4413,7 @@ paths:
           in: query
           required: true
           type: string
-          description: >-
-            Concatenated string of the two currencies traded, eg. "USDEUR".
+          description: 'Concatenated string of the two currencies traded, eg. "USDEUR".'
         - name: on_behalf_of
           in: query
           required: false
@@ -4645,10 +4504,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company,
-            the country in which the company is registered.
-            If the beneficiary is an individual, a country
-            in which the beneficiary holds nationality.
+            Two-letter country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
       responses:
         '200':
           description: Success.
@@ -4705,8 +4563,7 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Conversion Dates
-      description: >-
-        Get a list of future non-trading dates for specified currency pairs.
+      description: Get a list of future non-trading dates for specified currency pairs.
       operationId: GetConversionDates
       produces:
         - application/json
@@ -4720,16 +4577,13 @@ paths:
           in: query
           required: true
           type: string
-          description: >-
-            Concatenated string of the two currencies converted, eg. "USDEUR".
+          description: 'Concatenated string of the two currencies converted, eg. "USDEUR".'
         - name: start_date
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Start date of conversion.
-            ISO 8601 format YYYY-MM-DD.
+          description: Start date of conversion. ISO 8601 format YYYY-MM-DD.
       responses:
         '200':
           description: Success.
@@ -4782,8 +4636,8 @@ paths:
       x-api-group: manage
       summary: Get Available Currencies
       description: >-
-        Get a list of all currencies that can be traded
-        on the Currencycloud platform.
+        Get a list of all currencies that can be traded on the Currencycloud
+        platform.
       operationId: GetAvailableCurrencies
       produces:
         - application/json
@@ -4846,8 +4700,8 @@ paths:
       summary: Get Requirements for Payers
       description: >-
         Get information on the minimum details required to create a payer.
-        Requirements vary depending on the location of the payer, the type
-        of payment to be made (priority or regular), and other factors.
+        Requirements vary depending on the location of the payer, the type of
+        payment to be made (priority or regular), and other factors.
       operationId: GetPayerRequirements
       produces:
         - application/json
@@ -4878,9 +4732,9 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
-            the local bank network.
+            Currencycloud supports two types of payments: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
       responses:
         '200':
           description: Success.
@@ -4933,9 +4787,9 @@ paths:
       x-api-group: manage
       summary: Get Payment Dates
       description: >-
-        Get a list of invalid payment dates for a given currency.
-        A payment date is when a payment will be executed by Currencycloud.
-        Payments cannot be made on some days, for example when banks are closed.
+        Get a list of invalid payment dates for a given currency. A payment date
+        is when a payment will be executed by Currencycloud. Payments cannot be
+        made on some days, for example when banks are closed.
       operationId: GetPaymentDates
       produces:
         - application/json
@@ -4949,16 +4803,13 @@ paths:
           in: query
           required: true
           type: string
-          description: >-
-            Currency in which payment made.
-            Three-digit currency code.
+          description: Currency in which payment made. Three-digit currency code.
         - name: start_date
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Payment start date. ISO 8601 format YYYY-MM-DD.
+          description: Payment start date. ISO 8601 format YYYY-MM-DD.
       responses:
         '200':
           description: Success.
@@ -5026,8 +4877,7 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Three-digit currency code.
+          description: Three-digit currency code.
         - name: account_id
           in: query
           required: false
@@ -5119,43 +4969,37 @@ paths:
             - funds_arrived
             - part_paid
             - paid
-          description: Settlement status, as shown to sub-account contacts.
+          description: 'Settlement status, as shown to sub-account contacts.'
         - name: created_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: released_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: released_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
         - name: page
           in: query
           required: false
@@ -5318,8 +5162,7 @@ paths:
         - Settlements
       x-api-group: convert
       summary: Create Settlement
-      description: >-
-        Create a new settlement. On success, returns the new settlement entity.
+      description: 'Create a new settlement. On success, returns the new settlement entity.'
       operationId: CreateSettlement
       consumes:
         - multipart/form-data
@@ -5335,8 +5178,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Settlement type, eg. "bulk".
+          description: 'Settlement type, eg. "bulk".'
         - name: on_behalf_of
           in: formData
           required: false
@@ -5394,8 +5236,8 @@ paths:
       x-api-group: convert
       summary: Add Conversion to Settlement
       description: >-
-        Add a conversion to an open settlement.
-        On success, returns the updated settlement entity.
+        Add a conversion to an open settlement. On success, returns the updated
+        settlement entity.
       operationId: AddConversionToSettlement
       consumes:
         - multipart/form-data
@@ -5483,9 +5325,9 @@ paths:
       x-api-group: convert
       summary: Delete Settlement
       description: >-
-        Delete a settlement. Only open settlements can be deleted.
-        Any associated conversions will not be deleted, and may be added
-        to other settlements.
+        Delete a settlement. Only open settlements can be deleted. Any
+        associated conversions will not be deleted, and may be added to other
+        settlements.
       operationId: DeleteSettlement
       consumes:
         - multipart/form-data
@@ -5568,8 +5410,8 @@ paths:
       x-api-group: convert
       summary: Release Settlement
       description: >-
-        Move a settlemnent to “released” status. Released settlements
-        are ready for processing.
+        Move a settlemnent to “released” status. Released settlements are ready
+        for processing.
       operationId: ReleaseSettlement
       consumes:
         - multipart/form-data
@@ -5652,8 +5494,8 @@ paths:
       x-api-group: convert
       summary: Remove Conversion from Settlement
       description: >-
-        Remove a conversion from an open settlement.
-        On success, returns the updated settlement entity.
+        Remove a conversion from an open settlement. On success, returns the
+        updated settlement entity.
       operationId: RemoveConversionFromSettlement
       consumes:
         - multipart/form-data
@@ -5734,8 +5576,8 @@ paths:
       x-api-group: convert
       summary: Unrelease Settlement
       description: >-
-        Move a settlement status back to an “open” status,
-        allowing conversions to be added and removed.
+        Move a settlement status back to an “open” status, allowing conversions
+        to be added and removed.
       operationId: UnreleaseSettlement
       consumes:
         - multipart/form-data
@@ -5817,8 +5659,7 @@ paths:
         - Transactions
       x-api-group: manage
       summary: Find Transactions
-      description: >-
-        Search for transactions.
+      description: Search for transactions.
       operationId: FindTransactions
       produces:
         - application/json
@@ -5912,65 +5753,55 @@ paths:
           type: string
           format: date
           description: >-
-            Earliest processing date.
-            Any valid ISO 8601 format, eg. "2017-12-31".
+            Earliest processing date. Any valid ISO 8601 format, eg.
+            "2017-12-31".
         - name: settles_at_to
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Latest processing date.
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Latest processing date. Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: created_at_from
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: completed_at_from
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: completed_at_to
           in: query
           required: false
           type: string
           format: date
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
         - name: beneficiary_id
           in: query
           required: false
           type: string
-          description: >-
-            Beneficiary UUID.
-            Required if ``related_entity_type`` is "payment".
+          description: Beneficiary UUID. Required if ``related_entity_type`` is "payment".
         - name: currency_pair
           in: query
           required: false
@@ -5987,8 +5818,7 @@ paths:
             - own
             - clients
           default: own
-          description: >-
-            "Own" account, "clients" sub-accounts, or "all" accounts.
+          description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
           in: query
           required: false
@@ -6187,8 +6017,7 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Three-digit currency code.
+          description: Three-digit currency code.
         - name: amount_from
           in: query
           required: false
@@ -6203,32 +6032,27 @@ paths:
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: completed_at_from
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: completed_at_to
           in: query
           required: false
           type: string
-          description: >-
-            Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: creator_contact_id
           in: query
           required: false
@@ -6396,9 +6220,9 @@ paths:
       x-api-group: pay
       summary: Create Transfer
       description: >-
-        Transfer funds from one account to another account.
-        No currency conversion is performed, so the sending and receiving
-        accounts must hold money in the same currency.
+        Transfer funds from one account to another account. No currency
+        conversion is performed, so the sending and receiving accounts must hold
+        money in the same currency.
       operationId: CreateTransfer
       consumes:
         - multipart/form-data
@@ -6487,8 +6311,8 @@ paths:
       x-api-group: collect
       summary: Get VANs
       description: >-
-        Get a list of Virtual Account Numbers attached to
-        the authenticating user's account.
+        Get a list of Virtual Account Numbers attached to the authenticating
+        user's account.
       operationId: GetVANs
       produces:
         - application/json
@@ -6557,7 +6381,8 @@ paths:
       x-api-group: collect
       summary: Get VANs for Sub-Accounts
       description: >-
-        Get a list of VANS for all sub-accounts owned by the authenticating user.
+        Get a list of VANS for all sub-accounts owned by the authenticating
+        user.
       operationId: GetVANsForSubAccounts
       produces:
         - application/json
@@ -6625,8 +6450,7 @@ paths:
         - VANs
       x-api-group: collect
       summary: Get VANs for Sub-Account
-      description: >-
-        Get a list of VANs attached to a sub-account.
+      description: Get a list of VANs attached to a sub-account.
       operationId: GetVANsForSubAccount
       produces:
         - application/json
@@ -6695,7 +6519,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-
 definitions:
   Account:
     type: object
@@ -6709,7 +6532,8 @@ definitions:
       brand:
         type: string
         description: >-
-          The value of this field is used for white labeling the Currencycloud user interface.
+          The value of this field is used for white labeling the Currencycloud
+          user interface.
       your_reference:
         type: string
         description: User-generated reference code.
@@ -6737,8 +6561,7 @@ definitions:
         description: Postal code.
       spread_table:
         type: string
-        description: >-
-          The name of the spread table assigned to the account.
+        description: The name of the spread table assigned to the account.
       legal_entity_type:
         type: string
       created_at:
@@ -6752,13 +6575,15 @@ definitions:
         description: A legal document that verifies the identity of the account owner.
       identification_value:
         type: string
-        description: A unique reference code for the identification document, such as a passport number.
+        description: >-
+          A unique reference code for the identification document, such as a
+          passport number.
       short_reference:
         type: string
       api_trading:
         type: boolean
       online_trading:
-       type: boolean
+        type: boolean
       phone_trading:
         type: boolean
       process_third_party_funds:
@@ -6790,25 +6615,39 @@ definitions:
       settlement_type: bulk
   AddConversionToSettlementError:
     type: object
-    description: |
+    description: >
       Client error information for the Add Conversion to Settlement endpoint.
+
 
       **Error codes**
 
+
       ``conversion_does_not_belong_to_account``
+
       - Category: ``conversion_id``
+
       - Message: "Conversion cannot be added to this settlement"
 
+
       ``add_closed_conversion_failed``
+
       - Category: ``conversion_id``
-      - Message: "Cannot add conversion to a settlement as it does not have any open amounts"
+
+      - Message: "Cannot add conversion to a settlement as it does not have any
+      open amounts"
+
 
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -6891,8 +6730,7 @@ definitions:
         description: Account UUID.
       currency:
         type: string
-        description: >-
-          Currency code.
+        description: Currency code.
       amount:
         type: string
         description: Amount.
@@ -6931,8 +6769,7 @@ definitions:
         type: array
         items:
           type: string
-          description: >-
-            Line of address.
+          description: Line of address.
       beneficiary_country:
         type: string
         description: Two-letter country code.
@@ -6961,17 +6798,20 @@ definitions:
         description: State or province.
       beneficiary_date_of_birth:
         type: string
-        description: >-
-          For companies, this is the foundation date of the company.
+        description: 'For companies, this is the foundation date of the company.'
       beneficiary_identification_type:
         type: string
         description: A legal document that verifies the identity of the beneficiary.
       beneficiary_identification_value:
         type: string
-        description: A unique reference code for the identification document, such as a passport number.
+        description: >-
+          A unique reference code for the identification document, such as a
+          passport number.
       bank_country:
         type: string
-        description: Two-letter code for the country in which the beneficiary's bank account is held.
+        description: >-
+          Two-letter code for the country in which the beneficiary's bank
+          account is held.
       bank_name:
         type: string
       bank_account_type:
@@ -7289,124 +7129,216 @@ definitions:
       default_conversion_date: 2013-04-17T00:00:00.000Z
   CreateAccountError:
     type: object
-    description: |
+    description: >
       Client error information for the Create Account endpoint.
+
 
       **Error codes**
 
+
       ``account_name_is_too_short``
+
       - Category: ``account_name``
+
       - Message: "account_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_name_is_too_long``
+
       - Category: ``account_name``
+
       - Message: "account_name can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 150 }
+
 
       ``account_name_is_required``
+
       - Category: ``account_name``
+
       - Message: "account_name is required"
 
+
       ``brand_is_too_short``
+
       - Category: ``brand``
+
       - Message: "brand can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``brand_is_too_long``
+
       - Category: ``brand``
+
       - Message: "brand can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``brand_not_found``
+
       - Category: ``brand``
+
       - Message: "Brand non_existing_brand wasn't found"
+
       - Params: { "brand" => "non_existing_brand" }
 
+
       ``brand_account_not_broker``
+
       - Category: ``brand``
+
       - Message: "Account doesn't have broker permissions"
+
       - Params: { "brand" => "wrong_brand" }
 
+
       ``your_reference_is_too_long``
+
       - Category: ``your_reference``
+
       - Message: "your_reference can not be longer than 25 character(s)"
+
       - Params: { "maxlength" => 25 }
 
+
       ``status_not_in_range``
+
       - Category: ``status``
-      - Message: "status should be in range: enabled, disabled, enabled_no_trading"
+
+      - Message: "status should be in range: enabled, disabled,
+      enabled_no_trading"
+
       - Params: { "range" => "enabled, disabled, enabled_no_trading" }
 
+
       ``legal_entity_type_not_in_range``
+
       - Category: ``legal_entity_type``
+
       - Message: "legal_entity_type should be in range: individual, company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``street_is_too_long``
+
       - Category: ``street``
+
       - Message: "street can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 150 }
 
+
       ``street_is_required``
+
       - Category: ``street``
+
       - Message: "Street is required"
 
+
       ``city_is_too_long``
+
       - Category: ``city``
+
       - Message: "city can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``city_is_required``
+
       - Category: ``city``
+
       - Message: "City is required"
 
+
       ``postal_code_is_too_long``
+
       - Category: ``postal_code``
+
       - Message: "postal_code can not be longer than 20 character(s)"
+
       - Params: { "maxlength" => 20 }
 
+
       ``postal_code_is_required``
+
       - Category: ``postal_code``
+
       - Message: "Postal code is required"
 
+
       ``country_is_too_long``
+
       - Category: ``country``
+
       - Message: "country can not be longer than 2 character(s)"
+
       - Params: { "maxlength" => 2 }
 
+
       ``country_is_required``
+
       - Category: ``country``
+
       - Message: "Country is required"
 
+
       ``spread_table_is_too_long``
+
       - Category: ``spread_table``
+
       - Message: "country can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``identification_type_is_missing``
+
       - Category: ``identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``identification_value``
+
       - Message: "identification_value is invalid"
 
+
       ``state_or_province_is_required``
+
       - Category: ``state_or_province``
+
       - Message: "State or province is required for US, CA and MX"
 
+
       ``invalid_extra_parameters``
+
       - Category: ``base``
+
       - Message: "Invalid extra parameters extra_parameter"
+
       - Params: { "parameters" => "extra_parameter" }
     required:
       - error_code
@@ -7451,372 +7383,662 @@ definitions:
                   maxlength: 255
   CreateBeneficiaryError:
     type: object
-    description: |
+    description: >
       Client error information for the Create Beneficiary endpoint.
+
 
       **Error codes**
 
+
       ``bank_account_holder_name_is_required``
+
       - Category: ``bank_account_holder_name``
+
       - Message: "bank_account_holder_name is required"
 
+
       ``bank_account_holder_name_is_too_short``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be shorter than 1 character(s)"
+
+      - Message: "bank_account_holder_name can not be shorter than 1
+      character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_account_holder_name_is_too_long``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be longer than 255 character(s)"
+
+      - Message: "bank_account_holder_name can not be longer than 255
+      character(s)"
+
       - Params: { "maxlength" => 255 }
+
 
       ``email_is_too_short``
+
       - Category: ``email``
+
       - Message: "email can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``email_is_too_long``
+
       - Category: ``email``
+
       - Message: "email can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
+
 
       ``beneficiary_address_is_too_short``
+
       - Category: ``beneficiary_address``
+
       - Message: "beneficiary_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``beneficiary_address_is_too_long``
+
       - Category: ``beneficiary_address``
+
       - Message: "beneficiary_address can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``beneficiary_address_is_missing``
+
       - Category: ``beneficiary_address``
+
       - Message: "Beneficiary address is missing"
 
+
       ``account_number_is_too_short``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_number_is_too_long``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``account_number_is_missing``
+
       - Category: ``account_number``
+
       - Message: "Account number is missing"
 
+
       ``account_number_is_invalid``
+
       - Category: ``account_number``
+
       - Message: "Account number is in invalid format"
 
+
       ``routing_code_value_1_is_too_short``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_1_is_too_long``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``routing_code_value_2_is_too_short``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_2_is_too_long``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``iban_is_too_short``
+
       - Category: ``iban``
+
       - Message: "iban can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``iban_is_too_long``
+
       - Category: ``iban``
+
       - Message: "iban can not be longer than 34 character(s)"
+
       - Params: { "maxlength" => 34 }
 
+
       ``iban_is_missing``
+
       - Category: ``iban``
+
       - Message: "IBAN is missing"
 
+
       ``iban_is_invalid``
+
       - Category: ``iban``
+
       - Message: "IBAN is in invalid format"
 
+
       ``bic_swift_is_too_short``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bic_swift_is_too_long``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be longer than 11 character(s)"
+
       - Params: { "maxlength" => 11 }
 
+
       ``bic_swift_is_missing``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is missing"
 
+
       ``bic_swift_is_invalid``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is in invalid format"
 
+
       ``bank_address_is_missing``
+
       - Category: ``bank_address``
+
       - Message: "Bank address is missing"
 
+
       ``bank_address_is_too_short``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_address_is_too_long``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_name_is_too_short``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_name_is_too_long``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_name_is_missing``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is missing"
 
+
       ``bank_name_is_invalid``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is in invalid format"
 
+
       ``bank_account_type_not_in_range``
+
       - Category: ``bank_account_type``
+
       - Message: "bank_account_type should be in range: checking, savings"
+
       - Params: { "range" => "checking, savings" }
 
+
       ``bank_account_type_is_missing``
+
       - Category: ``bank_account_type``
+
       - Message: "Beneficiary bank account type is missing"
 
+
       ``name_is_too_short``
+
       - Category: ``name``
+
       - Message: "name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``name_is_too_long``
+
       - Category: ``name``
+
       - Message: "name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``default_beneficiary_type_is_wrong``
+
       - Category: ``default_beneficiary``
+
       - Message: "default_beneficiary should be of boolean type"
+
       - Params: { "type" => "boolean" }
 
+
       ``routing_code_type_1_not_in_range``
+
       - Category: ``routing_code_type_1``
-      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``routing_code_type_2_not_in_range``
+
       - Category: ``routing_code_type_2``
-      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``beneficiary_country_is_required``
+
       - Category: ``beneficiary_country is required``
+
       - Message: "beneficiary_country"
 
+
       ``beneficiary_country_is_in_invalid_format``
+
       - Category: ``beneficiary_country``
+
       - Message: "beneficiary_country is in invalid format"
 
+
       ``beneficiary_entity_type_not_in_range``
+
       - Category: ``beneficiary_entity_type``
-      - Message: "beneficiary_entity_type should be in range: individual, company"
+
+      - Message: "beneficiary_entity_type should be in range: individual,
+      company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``beneficiary_entity_type_is_missing``
+
       - Category: ``beneficiary_entity_type``
+
       - Message: "Beneficiary entity type is missing"
 
+
       ``beneficiary_company_name_is_missing``
+
       - Category: ``beneficiary_company_name``
+
       - Message: "Beneficiary company name is missing"
 
+
       ``beneficiary_first_name_is_missing``
+
       - Category: ``beneficiary_first_name``
+
       - Message: "Beneficiary first name is missing"
 
+
       ``beneficiary_last_name_is_missing``
+
       - Category: ``beneficiary_last_name``
+
       - Message: "Beneficiary last name is missing"
 
+
       ``beneficiary_city_is_missing``
+
       - Category: ``beneficiary_city``
+
       - Message: "Beneficiary city is missing"
 
+
       ``beneficiary_state_or_province_is_missing``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is missing"
 
+
       ``beneficiary_state_or_province_is_not_supported``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is not supported"
 
+
       ``beneficiary_postcode_is_missing``
+
       - Category: ``beneficiary_postcode``
+
       - Message: "Beneficiary postcode is missing"
 
+
       ``beneficiary_date_of_birth_type_is_wrong``
+
       - Category: ``beneficiary_date_of_birth``
+
       - Message: "beneficiary_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``identification_type_is_missing``
+
       - Category: ``beneficiary_identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``beneficiary_identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``beneficiary_identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``beneficiary_identification_value``
+
       - Message: "identification_value is invalid"
 
+
       ``bank_country_is_required``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is required"
 
+
       ``bank_country_is_in_invalid_format``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is in invalid format"
 
+
       ``bank_country_is_not_supported``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is not supported"
 
+
       ``currency_is_required``
+
       - Category: ``currency``
+
       - Message: "currency is required"
 
+
       ``currency_is_in_invalid_format``
+
       - Category: ``currency``
+
       - Message: "currency is in invalid format"
 
+
       ``currency_code_is_invalid``
+
       - Category: ``currency``
+
       - Message: "You can not use this currency with beneficiaries"
 
+
       ``unique_value_parameters``
+
       - Category: ``base``
-      - Message: "Following parameters should not have same values: routing_code_type_1, routing_code_type_2"
+
+      - Message: "Following parameters should not have same values:
+      routing_code_type_1, routing_code_type_2"
+
       - Params: { "parameters" => "routing_code_type_1, routing_code_type_2" }
 
+
       ``unsupported_beneficiary_country_code``
+
       - Category: ``base``
+
       - Message: "Beneficiary country is not supported"
 
+
       ``beneficiary_create_failed``
+
       - Category: ``beneficiary``
+
       - Message: "Beneficiary was not created"
 
+
       ``beneficiary_details_are_missing``
+
       - Category: ``beneficiary``
-      - Message: "Following beneficiary details are missing: beneficiary_company_name"
+
+      - Message: "Following beneficiary details are missing:
+      beneficiary_company_name"
+
       - Params: { "missing_details" => ["beneficiary_company_name"] }
 
+
       ``payment_types_not_in_range``
+
       - Category: ``payment_types``
+
       - Message: "payment_types should be in range: priority, regular"
+
       - Params: { "range" => "priority, regular" }
 
+
       ``sort_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is missing"
 
+
       ``sort_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is in invalid format"
 
+
       ``aba_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "ABA is missing"
 
+
       ``aba_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "ABA is in invalid format"
 
+
       ``bsb_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is missing"
 
+
       ``bsb_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is in invalid format"
 
+
       ``branch_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is missing"
 
+
       ``branch_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is in invalid format"
 
+
       ``institution_no_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is missing"
 
+
       ``institution_no_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is in invalid format"
 
+
       ``bank_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is missing"
 
+
       ``bank_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is in invalid format"
 
+
       ``clabe_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "CLABE is missing"
 
+
       ``clabe_is_invalid``
+
       - Category: ``CLABE is in invalid format``
+
       - Message: "routing_code"
+
 
       ``cnaps_is_missing``
+
       - Category: ``CNAPS number is missing``
+
       - Message: "routing_code"
 
+
       ``cnaps_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "CNAPS number is in invalid format"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -7861,115 +8083,200 @@ definitions:
                   maxlength: 255
   CreateContactError:
     type: object
-    description: |
+    description: >
       Client error information for the Create Contact endpoint.
+
 
       **Error codes**
 
+
       ``account_id_is_in_invalid_format``
+
       - Category: ``account_id``
+
       - Message: "account_id is in invalid format"
 
+
       ``first_name_is_too_short``
+
       - Category: ``first_name``
+
       - Message: "first_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``first_name_is_too_long``
+
       - Category: ``first_name``
+
       - Message: "first_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``last_name_is_too_short``
+
       - Category: ``last_name``
+
       - Message: "last_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``last_name_is_too_long``
+
       - Category: ``last_name``
+
       - Message: "last_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``email_address_is_too_short``
+
       - Category: ``email_address``
+
       - Message: "email_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``email_address_is_too_long``
+
       - Category: ``email_address``
+
       - Message: "email_address can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``email_address_is_in_invalid_format``
+
       - Category: ``email_address``
+
       - Message: "email_address is in invalid format"
 
+
       ``phone_number_is_too_short``
+
       - Category: ``phone_number``
+
       - Message: "phone_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``phone_number_is_too_long``
+
       - Category: ``phone_number``
+
       - Message: "phone_number can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``mobile_phone_number_is_too_short``
+
       - Category: ``mobile_phone_number``
+
       - Message: "mobile_phone_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``mobile_phone_number_is_too_long``
+
       - Category: ``mobile_phone_number``
+
       - Message: "mobile_phone_number can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``login_id_is_too_short``
+
       - Category: ``login_id``
+
       - Message: "login_id can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``login_id_in_use``
+
       - Category: ``login_id``
+
       - Message: "login_id already in use: 'john.smith@company.com'"
 
+
       ``login_id_is_too_long``
+
       - Category: ``login_id``
+
       - Message: "login_id can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``locale_is_too_short``
+
       - Category: ``locale``
+
       - Message: "locale can not be shorter than 2 character(s)"
+
       - Params: { "minlength" => 2 }
+
 
       ``locale_is_too_long``
+
       - Category: ``locale``
+
       - Message: "locale can not be longer than 5 character(s)"
+
       - Params: { "maxlength" => 5 }
+
 
       ``timezone_is_too_short``
+
       - Category: ``timezone``
+
       - Message: "timezone can not be shorter than 2 character(s)"
+
       - Params: { "minlength" => 2 }
 
+
       ``timezone_is_too_long``
+
       - Category: ``timezone``
+
       - Message: "timezone can not be longer than 5 character(s)"
+
       - Params: { "maxlength" => 5 }
 
+
       ``status_not_in_range``
+
       - Category: ``status``
+
       - Message: "status should be in range: enabled, not_enabled"
 
+
       ``date_of_birth_type_is_wrong``
+
       - Category: ``date_of_birth``
+
       - Message: "date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``date_of_birth_is_required``
+
       - Category: ``date_of_birth``
-      - Message: "Date of Birth is a required field. Please provide date of birth (YYYY-MM-DD)"
+
+      - Message: "Date of Birth is a required field. Please provide date of
+      birth (YYYY-MM-DD)"
     required:
       - error_code
       - error_messages
@@ -8013,279 +8320,398 @@ definitions:
                   maxlength: 255
   CreateConversionError:
     type: object
-    description: |
+    description: >
       Client error information for the Create Conversion endpoint.
 
+
       **Error codes**
+
 
       ``invalid_extra_parameters``
+
       - Category: ``base``
+
       - Message: "Invalid extra parameters"
+
       - Params: { "parameters" => { "extra_param" => "extra_value" } }
 
+
       ``buy_currency_is_in_invalid_format``
+
       - Category: ``buy_currency``
+
       - Message: "buy_currency is not a valid ISO 4217 currency code"
+
       - Params: { "type" => "currency" }
+
 
       ``buy_currency_is_required``
+
       - Category: ``buy_currency``
+
       - Message: "buy_currency is required"
 
+
       ``invalid_buy_currency``
+
       - Category: ``buy_currency``
+
       - Message: "buy_currency is invalid"
 
+
       ``sell_currency_is_required``
+
       - Category: ``sell_currency``
+
       - Message: "sell_currency is required"
 
+
       ``sell_currency_is_in_invalid_format``
+
       - Category: ``sell_currency``
+
       - Message: "sell_currency is not a valid ISO 4217 currency code"
+
       - Params: { "type" => "currency" }
+
 
       ``invalid_sell_currency``
+
       - Category: ``sell_currency``
+
       - Message: "sell_currency is invalid"
 
+
       ``amount_is_required``
+
       - Category: ``amount``
+
       - Message: "amount is required"
 
-      ``conversion_above_limit``
-      - Category: ``amount``
-      - Message: "Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00"
-      - Params: { "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }
 
       ``conversion_above_limit``
+
       - Category: ``amount``
-      - Message: "Trading is not enabled as your upper api trading limit has not been set - please contact us to set this for you"
+
+      - Message: "Conversion of GBP equivalent 30000.01 exceeds your limit of
+      30000.00"
+
+      - Params: { "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" =>
+      "GBP" }
+
+
+      ``conversion_above_limit``
+
+      - Category: ``amount``
+
+      - Message: "Trading is not enabled as your upper api trading limit has not
+      been set - please contact us to set this for you"
+
       - Params: { "channel" => "api" }
 
+
       ``conversion_above_limit``
+
       - Category: ``amount``
-      - Message: "Sorry - you are currently only setup to trade up to 3 months forward, with a limit of 20000.00 GBP. Please contact us on the phone if you want to change this."
+
+      - Message: "Sorry - you are currently only setup to trade up to 3 months
+      forward, with a limit of 20000.00 GBP. Please contact us on the phone if
+      you want to change this."
+
       - Params: { "months" => 3, "limit_amount" => "20000.00", "ccy" => "GBP" }
 
+
       ``conversion_above_limit``
+
       - Category: ``amount``
-      - Message: "Sorry - your maximum trading limit up to 3 months forward is 20000.00 GBP. Please contact us on the phone if you want to change this."
-      - Params: { "months" => 3, "limit_amount" => "20000.00", "ccy" => "GBP", "amount" => "20000.01" }
+
+      - Message: "Sorry - your maximum trading limit up to 3 months forward is
+      20000.00 GBP. Please contact us on the phone if you want to change this."
+
+      - Params: { "months" => 3, "limit_amount" => "20000.00", "ccy" => "GBP",
+      "amount" => "20000.01" }
+
 
       ``conversion_below_limit``
+
       - Category: ``amount``
-      - Message: "Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00"
-      - Params: { "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }
+
+      - Message: "Conversion of GBP equivalent 999.99 is less than your lower
+      limit of 1000.00"
+
+      - Params: { "amount" => "999.99", "limit_amount" => "1000.00", "ccy" =>
+      "GBP" }
+
 
       ``conversion_below_limit``
+
       - Category: ``amount``
-      - Message: "Trading is not enabled as your lower %{channel} trading limit has not been set - please contact us to set this for you."
+
+      - Message: "Trading is not enabled as your lower %{channel} trading limit
+      has not been set - please contact us to set this for you."
+
       - Params: { "channel" => "api" }
 
+
       ``amount_type_is_wrong``
+
       - Category: ``amount``
+
       - Message: "amount should be of numeric type"
+
       - Params: { "type" => "numeric" }
 
+
       ``reason_is_required``
+
       - Category: ``reason``
+
       - Message: "reason is required"
 
+
       ``reason_is_too_short``
+
       - Category: ``reason``
+
       - Message: "reason can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``client_rate_is_in_invalid_format``
+
       - Category: ``client_rate``
+
       - Message: "client_rate should be of numeric type with 4 dp"
+
       - Params: { "type" => "numeric_with_precision", "precision" => 4 }
 
+
       ``invalid_client_rate``
+
       - Category: ``client_rate``
+
       - Message: "client_rate is invalid"
+
       - Params: { "client_rate" => "1.455543..1.778997" }
 
+
       ``client_rate_is_required``
+
       - Category: ``client_rate``
+
       - Message: "The client_rate is required if you supply currency_pair"
+
 
       ``fixed_side_is_required``
+
       - Category: ``fixed_side``
+
       - Message: "fixed_side is required"
 
+
       ``fixed_side_not_in_range``
+
       - Category: ``fixed_side``
+
       - Message: "fixed_side should be in range: buy, sell"
+
       - Params: { "range" => "buy, sell" }
 
+
       ``term_agreement_is_required``
+
       - Category: ``term_agreement``
+
       - Message: "term_agreement is required"
 
+
       ``term_agreement_type_is_wrong``
+
       - Category: ``term_agreement``
+
       - Message: "term_agreement should be of boolean type"
+
       - Params: { "type" => "boolean" }
 
+
       ``conversion_create_failed``
+
       - Category: ``conversion_create_failed``
+
       - Message: "Conversion create failed"
 
+
       ``currency_pair_is_in_invalid_format``
+
       - Category: ``currency_pair``
+
       - Message: "currency_pair is not a valid ISO 4217 currency code"
+
       - Params: { "type" => "currency_pair" }
 
+
       ``invalid_currency_pair``
+
       - Category: ``invalid_currency_pair``
-      - Message: "The currency_pair should be the real market pair of the buy_currency and sell_currency"
+
+      - Message: "The currency_pair should be the real market pair of the
+      buy_currency and sell_currency"
+
 
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
+
 
       ``on_behalf_of_is_not_valid_uuid``
+
       - Category: ``on_behalf_of``
+
       - Message: "on_behalf_of should be in UUID format"
 
+
       ``on_behalf_of_is_required``
+
       - Category: ``on_behalf_of_is_required``
-      - Message: "You should do this conversion on behalf of someone if you supply client_rate"
+
+      - Message: "You should do this conversion on behalf of someone if you
+      supply client_rate"
+
 
       ``currency_pair_is_required``
+
       - Category: ``currency_pair_is_required``
+
       - Message: "The currency_pair is required if you supply client_rate"
 
+
       ``client_rate_is_required``
+
       - Category: ``client_rate_is_required``
+
       - Message: "The client_rate is required if you supply currency_pair"
 
+
       ``variable_value_dates_not_permitted``
+
       - Category: ``variable_value_dates_not_permitted``
-      - Message: "Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone."
+
+      - Message: "Sorry - you are not currently setup to trade with variable
+      value dates, please contact us on the phone if you want to change this or
+      wish to trade now on the phone."
+
 
       ``client_buy_amount_is_in_invalid_format``
+
       - Category: ``client_buy_amount``
+
       - Message: "client_buy_amount should be of numeric type with 2 dp"
+
       - Params: { "type" => "client_buy_amount" }
+
 
       ``client_sell_amount_is_in_invalid_format``
+
       - Category: ``client_sell_amount``
+
       - Message: "client_sell_amount should be of numeric type with 2 dp"
+
       - Params: { "type" => "client_sell_amount" }
+
 
       ``cannot_fix_client_sell_on_fixed_sell_side``
+
       - Category: ``cannot_fix_client_sell_on_fixed_sell_side``
-      - Message: "You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side"
+
+      - Message: "You cannot specify a fixed client_sell_amount when the fixed
+      side for a conversion is the sell side"
+
       - Params: { "type" => "client_sell_amount" }
+
 
       ``client_buy_amount_exceeds_partner_buy_amount``
+
       - Category: ``client_buy_amount_exceeds_partner_buy_amount``
-      - Message: "The client buy amount specified is greater than the amount that you would be buying and is thus invalid"
+
+      - Message: "The client buy amount specified is greater than the amount
+      that you would be buying and is thus invalid"
+
       - Params: { "type" => "client_buy_amount" }
 
+
       ``partner_sell_amount_exceeds_client_sell_amount``
+
       - Category: ``partner_sell_amount_exceeds_client_sell_amount``
-      - Message: "The client sell amount specified is less than the amount that you would be selling and is thus invalid"
+
+      - Message: "The client sell amount specified is less than the amount that
+      you would be selling and is thus invalid"
+
       - Params: { "type" => "client_sell_amount" }
 
+
       ``missing_partner_spread_table_data``
+
       - Category: ``missing_partner_spread_table_data``
-      - Message: "Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up"
+
+      - Message: "Sorry, the online partner pricing for the amount of the
+      currency pair you are trying to trade has not been set up"
+
 
       ``missing_client_spread_table_data``
+
       - Category: ``missing_client_spread_table_data``
-      - Message: "Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up"
+
+      - Message: "Sorry, the online client pricing for the amount of the
+      currency pair you are trying to trade has not been set up"
+
 
       ``fixed_amounts_not_permitted_for_this_user``
+
       - Category: ``fixed_amounts_not_permitted_for_this_user``
-      - Message: "You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer"
+
+      - Message: "You are not permitted to specify a fixed client_buy_amount or
+      client_sell_amount for this customer"
+
 
       ``invalid_client_rate_combination``
+
       - Category: ``invalid_client_rate_combination``
-      - Message: "You cannot specify a client rate and client currency pair alongside a client buy amount or client sell amount"
+
+      - Message: "You cannot specify a client rate and client currency pair
+      alongside a client buy amount or client sell amount"
+
 
       ``duplicate_request``
+
       - Category: ``duplicate_request``
-      - Message: "The unique_request_id provided for this conversion has already been used, please provide a new unique_request_id to successfully submit this conversion"
+
+      - Message: "The unique_request_id provided for this conversion has already
+      been used, please provide a new unique_request_id to successfully submit
+      this conversion"
+
 
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
-  CreateIBANError:
-    type: object
-    description: |
-      Client error information for the Create IBAN endpoint.
-
-      **Error codes**
-
-      ``iban_already_exists``
-      - Category: ``base``
-      - Message: "You already have an IBAN for the selected currency"
-
-      ``currency_is_in_invalid_format``
-      - Category: ``currency``
-      - Message: "currency is not a valid ISO 4217 currency code"
-      - Params: { "type" => "currency" }
-
-      ``currency_is_required``
-      - Category: ``currency``
-      - Message: "currency is required"
-
-      ``currency_is_unsupported``
-      - Category: ``currency``
-      - Message: "Currency is unsupported"
     required:
       - error_code
       - error_messages
@@ -8329,138 +8755,240 @@ definitions:
                   maxlength: 255
   CreatePaymentError:
     type: object
-    description: |
+    description: >
       Client error information for the Create Payment endpoint.
+
 
       **Error codes**
 
+
       ``invalid_type``
+
       - Category: ``type``
+
       - Message: "Invalid Payment type"
 
+
       ``currency_length_is_invalid``
+
       - Category: ``currency``
+
       - Message: "currency should be 3 character(s) long"
+
       - Params: { "length" => 3 }
 
+
       ``currency_is_required``
+
       - Category: ``currency``
+
       - Message: "currency is required"
 
+
       ``invalid_currency``
+
       - Category: ``currency``
+
       - Message: "You cannot make payments with this currency"
 
+
       ``beneficiary_id_is_not_valid_uuid``
+
       - Category: ``beneficiary_id``
+
       - Message: "beneficiary_id should be in UUID format"
 
+
       ``beneficiary_id_is_required``
+
       - Category: ``beneficiary_id``
+
       - Message: "beneficiary_id is required"
 
+
       ``invalid_beneficiary_id``
+
       - Category: ``beneficiary_id``
+
       - Message: "Unknown beneficiary_id"
 
+
       ``payment_above_limit``
+
       - Category: ``amount``
-      - Message: "3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment."
+
+      - Message: "3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a
+      local payment."
+
       - Params: { "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }
 
+
       ``payer_entity_type_not_in_range``
+
       - Category: ``payer_entity_type``
+
       - Message: "payer_entity_type should be in range: individual, company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``payer_entity_type_is_missing``
+
       - Category: ``payer_entity_type``
+
       - Message: "Payer entity type is missing"
 
+
       ``payer_company_name_is_missing``
+
       - Category: ``payer_company_name``
+
       - Message: "Payer company name is missing"
 
+
       ``payer_first_name_is_missing``
+
       - Category: ``payer_first_name``
+
       - Message: "Payer first name is missing"
 
+
       ``payer_last_name_is_missing``
+
       - Category: ``payer_last_name``
+
       - Message: "Payer last name is missing"
 
+
       ``payer_city_is_missing``
+
       - Category: ``payer_city``
+
       - Message: "Payer city is missing"
 
+
       ``unsupported_payer_country_code``
+
       - Category: ``payer_country_code``
+
       - Message: "Payer country is not supported"
 
+
       ``payer_state_or_province_is_missing``
+
       - Category: ``payer_state_or_province``
+
       - Message: "Payer state or province is missing"
 
+
       ``payer_postcode_is_missing``
+
       - Category: ``payer_postcode``
+
       - Message: "Payer postcode is missing"
 
+
       ``payer_date_of_birth_type_is_wrong``
+
       - Category: ``payer_date_of_birth``
+
       - Message: "payer_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``identification_type_is_missing``
+
       - Category: ``payer_identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``payer_identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``payer_identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``payer_identification_value``
+
       - Message: "identification_value is invalid"
 
+
       ``invalid_conversion_id``
+
       - Category: ``conversion_id``
+
       - Message: "Conversion could not be found
 
+
       ``conversion_is_already_settled``
+
       - Category: ``conversion_id``
+
       - Message: "The conversion is already settled"
 
+
       ``payment_date_is_too_early``
+
       - Category: ``payment_date``
+
       - Message: "The payment date cannot be sooner than the conversion date"
 
+
       ``reference_is_too_long``
+
       - Category: ``reference``
+
       - Message: "reference can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
+
 
       ``duplicate_request``
+
       - Category: ``duplicate_request``
-      - Message: "The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment"
+
+      - Message: "The unique_request_id provided for this payment has already
+      been used, please provide a new unique_request_id to successfully submit
+      this payment"
+
 
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
     required:
       - error_code
@@ -8560,8 +9088,7 @@ definitions:
                   maxlength: 255
   CreateTransferError:
     type: object
-    description: >-
-      Client error information for the Create Transfer endpoint.
+    description: Client error information for the Create Transfer endpoint.
     required:
       - error_code
       - error_messages
@@ -8794,79 +9321,137 @@ definitions:
                   maxlength: 255
   FindAccountsError:
     type: object
-    description: |
+    description: >
       Client error information for the Find Accounts endpoint.
+
 
       **Error codes**
 
+
       ``account_name_is_too_short``
+
       - Category: ``account_name``
+
       - Message: "account_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_name_is_too_long``
+
       - Category: ``account_name``
+
       - Message: "account_name can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 255 }
+
 
       ``brand_is_too_short``
+
       - Category: ``brand``
+
       - Message: "brand can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``brand_is_too_long``
+
       - Category: ``brand``
+
       - Message: "brand can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``your_reference_is_too_short``
+
       - Category: ``your_reference``
+
       - Message: "your_reference can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``your_reference_is_too_long``
+
       - Category: ``your_reference``
+
       - Message: "your_reference can not be longer than 25 character(s)"
+
       - Params: { "maxlength" => 25 }
 
+
       ``status_not_in_range``
+
       - Category: ``status``
-      - Message: "status should be in range: enabled, disabled, enabled_no_trading"
+
+      - Message: "status should be in range: enabled, disabled,
+      enabled_no_trading"
+
       - Params: { "range" => "enabled, disabled, enabled_no_trading" }
 
+
       ``legal_entity_type_not_in_range``
+
       - Category: ``legal_entity_type``
+
       - Message: "legal_entity_type should be in range: individual, company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``street_is_too_long``
+
       - Category: ``street``
+
       - Message: "street can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 150 }
 
+
       ``city_is_too_long``
+
       - Category: ``city``
+
       - Message: "city can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``postal_code_is_too_long``
+
       - Category: ``postal_code``
+
       - Message: "postal_code can not be longer than 20 character(s)"
+
       - Params: { "maxlength" => 20 }
 
+
       ``country_is_too_long``
+
       - Category: ``country``
+
       - Message: "country can not be longer than 2 character(s)"
+
       - Params: { "maxlength" => 2 }
 
+
       ``spread_table_is_too_short``
+
       - Category: ``spread_table``
+
       - Message: "country can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``spread_table_is_too_long``
+
       - Category: ``spread_table``
+
       - Message: "country can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
     required:
       - error_code
@@ -8966,154 +9551,278 @@ definitions:
                   maxlength: 255
   FindBeneficiariesError:
     type: object
-    description: |
+    description: >
       Client error information for the Find Beneficiaries endpoint.
+
 
       **Error codes**
 
+
       ``bank_account_holder_name_is_too_short``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be shorter than 1 character(s)"
+
+      - Message: "bank_account_holder_name can not be shorter than 1
+      character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_account_holder_name_is_too_long``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be longer than 255 character(s)"
+
+      - Message: "bank_account_holder_name can not be longer than 255
+      character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``beneficiary_country_is_in_invalid_format``
+
       - Category: ``beneficiary_country``
+
       - Message: "beneficiary_country is in invalid format"
 
+
       ``currency_is_in_invalid_format``
+
       - Category: ``currency``
+
       - Message: "currency is in invalid format"
 
+
       ``bank_name_is_too_short``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_name_is_too_long``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_account_type_not_in_range``
+
       - Category: ``bank_account_type``
+
       - Message: "bank_account_type should be in range: checking, savings"
+
       - Params: { "range" => "checking, savings" }
 
+
       ``account_number_is_too_short``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_number_is_too_long``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``incorrect_mapping``
+
       - Category: ``base``
+
       - Message: "Following parameters must have same keys"
+
       - Params: { "parameters" => "routing_code_value,routing_code_type" }
 
+
       ``routing_code_type_is_too_short``
+
       - Category: ``routing_code_type``
+
       - Message: "routing_code_type can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1, "indices" => ["0", "1"] }
+
 
       ``routing_code_type_is_too_long``
+
       - Category: ``routing_code_type``
+
       - Message: "routing_code_type can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50, "indices" => ["0", "1"] }
+
 
       ``routing_code_type_type_is_wrong``
+
       - Category: ``routing_code_type``
+
       - Message: "routing_code_type should be of hash type"
+
       - Params: { "type" => "hash" }
+
 
       ``routing_code_type_not_included_in_list``
+
       - Category: ``routing_code_type``
-      - Message: "One or more of routing_code_type items are not included in list"
-      - Params: { "list" => "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe }
+
+      - Message: "One or more of routing_code_type items are not included in
+      list"
+
+      - Params: { "list" =>
+      "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe }
+
 
       ``routing_code_type_too_many_items``
+
       - Category: ``routing_code_type``
+
       - Message: "routing_code_type should have less than 50 items"
+
       - Params: { "maxcount" => 50 }
+
 
       ``beneficiary_date_of_birth_type_is_wrong``
+
       - Category: ``beneficiary_date_of_birth``
+
       - Message: "beneficiary_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``routing_code_value_is_too_short``
+
       - Category: ``routing_code_value``
+
       - Message: "routing_code_value can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1, "indices" => ["0", "1"] }
 
+
       ``routing_code_value_is_too_long``
+
       - Category: ``routing_code_value``
+
       - Message: "routing_code_value can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50, "indices" => ["0", "1"] }
 
+
       ``routing_code_value_type_is_wrong``
+
       - Category: ``routing_code_value``
+
       - Message: "routing_code_value should be of hash type"
+
       - Params: { "type" => "hash" }
 
+
       ``routing_code_type_too_many_items``
+
       - Category: ``routing_code_value``
+
       - Message: "routing_code_type should have less than 50 items"
+
       - Params: { "maxcount" => 50 }
 
+
       ``bic_swift_is_in_invalid_format``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift is in invalid format"
 
+
       ``iban_is_too_long``
+
       - Category: ``iban``
+
       - Message: "iban can not be longer than 34 character(s)"
+
       - Params: { "maxlength" => 34 }
 
+
       ``iban_is_too_short``
+
       - Category: ``iban``
+
       - Message: "iban can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``default_beneficiary_type_is_wrong``
+
       - Category: ``default_beneficiary``
+
       - Message: "default_beneficiary should be of boolean type"
+
       - Params: { "type" => "boolean" }
 
+
       ``name_is_too_short``
+
       - Category: ``name``
+
       - Message: "name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``name_is_too_long``
+
       - Category: ``name``
+
       - Message: "name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``order_asc_desc_not_in_range``
+
       - Category: ``order_asc_desc``
+
       - Message: "order_asc_desc should be in range: asc, desc"
+
       - Params: { "range" => "asc, desc" }
 
+
       ``order_not_in_range``
+
       - Category: ``order``
-      - Message: "order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at"
-      - Params: { "range" => "order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at" }
+
+      - Message: "order should be in range: bank_account_holder_name,
+      beneficiary_country, currency, account_number, bic_swift, iban,
+      default_beneficiary, bank_address, name, created_at"
+
+      - Params: { "range" => "order should be in range:
+      bank_account_holder_name, beneficiary_country, currency, account_number,
+      bic_swift, iban, default_beneficiary, bank_address, name, created_at" }
+
 
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -9906,22 +10615,34 @@ definitions:
                   maxlength: 255
   GetBeneficiaryRequirementsError:
     type: object
-    description: |
+    description: >
       Client error information for the Get Beneficiary Requirements endpoint.
+
 
       **Error codes**
 
+
       ``bank_account_country_is_in_invalid_format``
+
       - Category: ``bank_account_country``
-      - Message: "Bank account country is not a valid ISO 3166-1 Alpha-2 country code"
+
+      - Message: "Bank account country is not a valid ISO 3166-1 Alpha-2 country
+      code"
+
 
       ``currency_is_in_invalid_format``
+
       - Category: ``currency``
+
       - Message: "Currency is not a valid ISO 4217 currency code"
 
+
       ``beneficiary_country_is_in_invalid_format``
+
       - Category: ``beneficiary_country``
-      - Message: "Beneficiary country is not a valid ISO 3166-1 Alpha-2 country code"
+
+      - Message: "Beneficiary country is not a valid ISO 3166-1 Alpha-2 country
+      code"
     required:
       - error_code
       - error_messages
@@ -10159,78 +10880,134 @@ definitions:
                   maxlength: 255
   GetDetailedRatesError:
     type: object
-    description: |
+    description: >
       Client error information for the Get Detailed Rates endpoint.
+
 
       **Error codes**
 
+
       ``unique_value_parameters``
+
       - Category: ``base``
-      - Message: "Following parameters should not have same values: sell_currency, buy_currency"
+
+      - Message: "Following parameters should not have same values:
+      sell_currency, buy_currency"
+
       - Params: { "parameters" => "sell_currency, buy_currency" }
 
+
       ``rate_could_not_be_retrieved``
+
       - Category: ``base``
+
       - Message: "Rate could not be retrieved"
 
+
       ``ccy_pair_is_not_tradeable``
+
       - Category: ``base``
+
       - Message: "Given currency pair is not tradeable"
 
+
       ``fixed_side_not_in_range``
+
       - Category: ``fixed_side``
+
       - Message: "fixed_side should be in range: sell, buy"
+
       - Params: { "range" => "sell, buy" }
 
+
       ``fixed_side_is_required``
+
       - Category: ``fixed_side``
+
       - Message: "fixed_side is required"
 
+
       ``conversion_date_type_is_wrong``
+
       - Category: ``conversion_date``
+
       - Message: "conversion_date should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``invalid_delivery_date``
+
       - Category: ``conversion_date``
-      - Message: "The delivery date you have requested cannot be met for this currency pair"
+
+      - Message: "The delivery date you have requested cannot be met for this
+      currency pair"
+
 
       ``sell_currency_is_in_invalid_format``
+
       - Category: ``sell_currency``
+
       - Message: "sell_currency is in invalid format"
 
+
       ``sell_currency_is_required``
+
       - Category: ``sell_currency``
+
       - Message: "sell_currency is required"
 
+
       ``amount_type_is_wrong``
+
       - Category: ``amount``
+
       - Message: "amount should be of numeric type"
+
       - Params: { "type" => "numeric" }
 
+
       ``amount_is_required``
+
       - Category: ``amount``
+
       - Message: "amount is required"
 
+
       ``amount_is_too_small``
+
       - Category: ``amount``
+
       - Message: "amount can not be smaller than 1"
+
       - Params: { "minvalue" => 1 }
 
+
       ``buy_currency_is_in_invalid_format``
+
       - Category: ``buy_currency``
+
       - Message: "buy_currency is in invalid format"
 
+
       ``buy_currency_is_required``
+
       - Category: ``buy_currency``
+
       - Message: "buy_currency is required"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -11014,7 +11791,6 @@ definitions:
       ``vans_not_found``
       - Category: ``base``
       - Message: "VANs were not found"
-
     required:
       - error_code
       - error_messages
@@ -11066,7 +11842,6 @@ definitions:
       ``vans_not_found``
       - Category: ``base``
       - Message: "VANs were not found"
-
     required:
       - error_code
       - error_messages
@@ -11163,7 +11938,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-
   IBAN:
     type: object
     description: IBAN.
@@ -11388,7 +12162,9 @@ definitions:
         description: A legal document that verifies the identity of the payer.
       identification_value:
         type: string
-        description: A unique reference code for the identification document, such as a passport number.
+        description: >-
+          A unique reference code for the identification document, such as a
+          passport number.
       postcode:
         type: string
       date_of_birth:
@@ -11529,9 +12305,8 @@ definitions:
         additionalProperties:
           type: string
           description: >-
-            Maps dates (eg. "2017-12-31") to string values that explains
-            why payments cannot be made on this date
-            (eg. "No trading on Sunday").
+            Maps dates (eg. "2017-12-31") to string values that explains why
+            payments cannot be made on this date (eg. "No trading on Sunday").
       first_payment_date:
         type: string
     example:
@@ -11571,12 +12346,11 @@ definitions:
     example:
       mt103: >-
         {1:F01TCCLGB20AXXX0090000004}{2:I103BARCGB22XXXXN}{4:
-        :20:20160617-ZSYWVY :23B:CRED :32A:160617GBP3000,0
-        :33B:GBP3000,0 :50K:/150618-00026 PCOMAPNY address New-York
-        Province 555222 GB :53B:/20060513071472 :57C://SC200605
-        :59:/200605000 First Name Last Name e03036bf6c325dd12c58 London
-        GB :70:test reference Test reason Payment group: 0160617-ZSYWVY
-        :71A:SHA -}
+        :20:20160617-ZSYWVY :23B:CRED :32A:160617GBP3000,0 :33B:GBP3000,0
+        :50K:/150618-00026 PCOMAPNY address New-York Province 555222 GB
+        :53B:/20060513071472 :57C://SC200605 :59:/200605000 First Name Last Name
+        e03036bf6c325dd12c58 London GB :70:test reference Test reason Payment
+        group: 0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
   RatesBasic:
@@ -11584,19 +12358,23 @@ definitions:
       rates:
         type: object
         description: >-
-            Maps currency pairs (eg. "EURUSD", "GBPZAR") to rates.
-            The first number is the bid amount, and the second is the
-            rate currently offered by Currencycloud.
+          Maps currency pairs (eg. "EURUSD", "GBPZAR") to rates. The first
+          number is the bid amount, and the second is the rate currently offered
+          by Currencycloud.
         additionalProperties:
           type: array
           items:
             type: string
             description: >-
-              A list of currency pairs that are not currently available
-              for exchange via the Currencycloud platform.
+              A list of currency pairs that are not currently available for
+              exchange via the Currencycloud platform.
         example:
-            EURUSD: ["1.3803", "1.3809"]
-            GBPZAR: ["17.5271", "17.5279"]
+          EURUSD:
+            - '1.3803'
+            - '1.3809'
+          GBPZAR:
+            - '17.5271'
+            - '17.5279'
   RateDetailed:
     type: object
     description: Detailed rate information.
@@ -11739,17 +12517,25 @@ definitions:
                   maxlength: 255
   RemoveConversionFromSettlementError:
     type: object
-    description: |
-      Client error information for the Remove Conversion from Settlement endpoint.
+    description: >
+      Client error information for the Remove Conversion from Settlement
+      endpoint.
+
 
       **Error codes**
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -11811,8 +12597,8 @@ definitions:
         additionalProperties:
           type: object
           description: >-
-            Maps currency codes (eg. "GBP", "USD") to an object
-            containing send and receive amounts.
+            Maps currency codes (eg. "GBP", "USD") to an object containing send
+            and receive amounts.
           properties:
             send_amount:
               type: string
@@ -12113,93 +12899,162 @@ definitions:
                   maxlength: 255
   UpdateAccountError:
     type: object
-    description: |
+    description: >
       Client error information for the Update Account endpoint.
+
 
       **Error codes**
 
+
       ``at_least_one_parameter``
+
       - Category: ``base``
-      - Message: "At least one parameter should be present: account_name, brand, your_reference, status, street, city, country, postal_code, spread_table"
+
+      - Message: "At least one parameter should be present: account_name, brand,
+      your_reference, status, street, city, country, postal_code, spread_table"
+
 
       ``id_is_not_valid_uuid``
+
       - Category: ``id``
+
       - Message: "id should be in UUID format"
 
+
       ``account_name_is_too_long``
+
       - Category: ``account_name``
+
       - Message: "account_name can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 150 }
+
 
       ``brand_is_too_long``
+
       - Category: ``brand``
+
       - Message: "brand can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``brand_not_found``
+
       - Category: ``brand``
+
       - Message: "Brand non_existing_brand wasn't found"
+
       - Params: { "brand" => ""non_existing_brand"" }
 
+
       ``brand_account_not_broker``
+
       - Category: ``brand``
+
       - Message: "Account doesn't have broker permissions"
+
       - Params: { "brand" => "wrong_brand" }
 
+
       ``your_reference_is_too_long``
+
       - Category: ``your_reference``
+
       - Message: "your_reference can not be longer than 25 character(s)"
+
       - Params: { "maxlength" => 25 }
 
+
       ``legal_entity_type_not_in_range``
+
       - Category: ``legal_entity_type``
+
       - Message: "legal_entity_type should be in range: individual, company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``status_not_in_range``
+
       - Category: ``status``
-      - Message: "status should be in range: enabled, disabled, enabled_no_trading"
+
+      - Message: "status should be in range: enabled, disabled,
+      enabled_no_trading"
+
       - Params: { "range" => "enabled, disabled, enabled_no_trading" }
 
+
       ``street_is_too_long``
+
       - Category: ``street``
+
       - Message: "street can not be longer than 150 character(s)"
+
       - Params: { "maxlength" => 150 }
 
+
       ``city_is_too_long``
+
       - Category: ``city``
+
       - Message: "city can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``postal_code_is_too_long``
+
       - Category: ``postal_code``
+
       - Message: "postal_code can not be longer than 20 character(s)"
+
       - Params: { "maxlength" => 20 }
 
+
       ``country_is_too_long``
+
       - Category: ``country``
+
       - Message: "country can not be longer than 2 character(s)"
+
       - Params: { "maxlength" => 2 }
 
+
       ``spread_table_is_too_long``
+
       - Category: ``spread_table``
+
       - Message: "spread_table can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``identification_type_is_missing``
+
       - Category: ``identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``identification_value``
+
       - Message: "identification_value is invalid"
     required:
       - error_code
@@ -12244,369 +13099,665 @@ definitions:
                   maxlength: 255
   UpdateBeneficiaryError:
     type: object
-    description: |
+    description: >
       Client error information for the Update Beneficiary endpoint.
+
 
       **Error codes**
 
+
       ``id_is_not_valid_uuid``
+
       - Category: ``id``
+
       - Message: "id should be in UUID format"
 
+
       ``beneficiary_not_found``
+
       - Category: ``id``
+
       - Message: "Beneficiary was not found for this id"
 
+
       ``bank_account_holder_name_is_too_short``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be shorter than 1 character(s)"
+
+      - Message: "bank_account_holder_name can not be shorter than 1
+      character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_account_holder_name_is_too_long``
+
       - Category: ``bank_account_holder_name``
-      - Message: "bank_account_holder_name can not be longer than 255 character(s)"
+
+      - Message: "bank_account_holder_name can not be longer than 255
+      character(s)"
+
       - Params: { "maxlength" => 255 }
+
 
       ``email_is_too_short``
+
       - Category: ``email``
+
       - Message: "email can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``email_is_too_long``
+
       - Category: ``email``
+
       - Message: "email can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
+
 
       ``beneficiary_address_is_too_short``
+
       - Category: ``beneficiary_address``
+
       - Message: "beneficiary_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``beneficiary_address_is_too_long``
+
       - Category: ``beneficiary_address``
+
       - Message: "beneficiary_address can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``beneficiary_address_is_missing``
+
       - Category: ``beneficiary_address``
+
       - Message: "Beneficiary address is missing"
 
+
       ``account_number_is_too_short``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_number_is_too_long``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``account_number_is_missing``
+
       - Category: ``account_number``
+
       - Message: "Account number is missing"
 
+
       ``account_number_is_invalid``
+
       - Category: ``account_number``
+
       - Message: "Account number is in invalid format"
 
+
       ``routing_code_value_1_is_too_short``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_1_is_too_long``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``routing_code_value_2_is_too_short``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_2_is_too_long``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``iban_is_too_short``
+
       - Category: ``iban``
+
       - Message: "iban can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``iban_is_too_long``
+
       - Category: ``iban``
+
       - Message: "iban can not be longer than 34 character(s)"
+
       - Params: { "maxlength" => 34 }
 
+
       ``iban_is_missing``
+
       - Category: ``iban``
+
       - Message: "IBAN is missing"
 
+
       ``iban_is_invalid``
+
       - Category: ``iban``
+
       - Message: "IBAN is in invalid format"
 
+
       ``bic_swift_is_too_short``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bic_swift_is_too_long``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be longer than 11 character(s)"
+
       - Params: { "maxlength" => 11 }
 
+
       ``bic_swift_is_missing``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is missing"
 
+
       ``bic_swift_is_invalid``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is in invalid format"
 
+
       ``bank_address_is_missing``
+
       - Category: ``bank_address``
+
       - Message: "Bank address is missing"
 
+
       ``bank_address_is_too_short``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_address_is_too_long``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_name_is_too_short``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_name_is_too_long``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_name_is_missing``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is missing"
 
+
       ``bank_name_is_invalid``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is in invalid format"
 
+
       ``bank_account_type_not_in_range``
+
       - Category: ``bank_account_type``
+
       - Message: "bank_account_type should be in range: checking, savings"
+
       - Params: { "range" => "checking, savings" }
 
+
       ``bank_account_type_is_missing``
+
       - Category: ``bank_account_type``
+
       - Message: "Beneficiary bank account type is missing"
 
+
       ``name_is_too_short``
+
       - Category: ``name``
+
       - Message: "name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``name_is_too_long``
+
       - Category: ``name``
+
       - Message: "name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``default_beneficiary_type_is_wrong``
+
       - Category: ``default_beneficiary``
+
       - Message: "default_beneficiary should be of boolean type"
+
       - Params: { "type" => "boolean" }
 
+
       ``routing_code_type_1_not_in_range``
+
       - Category: ``routing_code_type_1``
-      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``routing_code_type_2_not_in_range``
+
       - Category: ``routing_code_type_2``
-      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``beneficiary_country_is_required``
+
       - Category: ``beneficiary_country is required``
+
       - Message: "beneficiary_country"
 
+
       ``beneficiary_country_is_in_invalid_format``
+
       - Category: ``beneficiary_country``
+
       - Message: "beneficiary_country is in invalid format"
 
+
       ``beneficiary_entity_type_not_in_range``
+
       - Category: ``beneficiary_entity_type``
-      - Message: "beneficiary_entity_type should be in range: individual, company"
+
+      - Message: "beneficiary_entity_type should be in range: individual,
+      company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``beneficiary_entity_type_is_missing``
+
       - Category: ``beneficiary_entity_type``
+
       - Message: "Beneficiary entity type is missing"
 
+
       ``beneficiary_company_name_is_missing``
+
       - Category: ``beneficiary_company_name``
+
       - Message: "Beneficiary company name is missing"
 
+
       ``beneficiary_first_name_is_missing``
+
       - Category: ``beneficiary_first_name``
+
       - Message: "Beneficiary first name is missing"
 
+
       ``beneficiary_last_name_is_missing``
+
       - Category: ``beneficiary_last_name``
+
       - Message: "Beneficiary last name is missing"
 
+
       ``beneficiary_city_is_missing``
+
       - Category: ``beneficiary_city``
+
       - Message: "Beneficiary city is missing"
 
+
       ``beneficiary_state_or_province_is_missing``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is missing"
 
+
       ``beneficiary_state_or_province_is_not_supported``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is not supported"
 
+
       ``beneficiary_postcode_is_missing``
+
       - Category: ``beneficiary_postcode``
+
       - Message: "Beneficiary postcode is missing"
 
+
       ``beneficiary_date_of_birth_type_is_wrong``
+
       - Category: ``beneficiary_date_of_birth``
+
       - Message: "beneficiary_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``identification_type_is_missing``
+
       - Category: ``beneficiary_identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``beneficiary_identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``beneficiary_identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``beneficiary_identification_value``
+
       - Message: "identification_value is invalid"
 
+
       ``bank_country_is_in_invalid_format``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is in invalid format"
 
+
       ``bank_country_is_not_supported``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is not supported"
 
+
       ``currency_is_in_invalid_format``
+
       - Category: ``currency``
+
       - Message: "currency is in invalid format"
 
+
       ``currency_code_is_invalid``
+
       - Category: ``currency``
+
       - Message: "You can not use this currency with beneficiaries"
 
+
       ``unique_value_parameters``
+
       - Category: ``base``
-      - Message: "Following parameters should not have same values: routing_code_type_1, routing_code_type_2"
+
+      - Message: "Following parameters should not have same values:
+      routing_code_type_1, routing_code_type_2"
+
       - Params: { "parameters" => "routing_code_type_1, routing_code_type_2" }
 
+
       ``at_least_one_parameter``
+
       - Category: ``base``
-      - Message: "At least one parameter should be present: bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name"
-      - Params: { "parameters" => "bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name" }
+
+      - Message: "At least one parameter should be present:
+      bank_account_holder_name, beneficiary_country, bank_country, currency,
+      email, beneficiary_address, account_number, routing_code_type_1,
+      routing_code_type_2, routing_code_value_1, routing_code_value_2,
+      bic_swift, iban, default_beneficiary, bank_address, bank_name, name"
+
+      - Params: { "parameters" => "bank_account_holder_name,
+      beneficiary_country, bank_country, currency, email, beneficiary_address,
+      account_number, routing_code_type_1, routing_code_type_2,
+      routing_code_value_1, routing_code_value_2, bic_swift, iban,
+      default_beneficiary, bank_address, bank_name, name" }
+
 
       ``payment_types_not_in_range``
+
       - Category: ``payment_types``
+
       - Message: "payment_types should be in range: priority, regular"
+
       - Params: { "range" => "priority, regular" }
 
+
       ``sort_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is missing"
 
+
       ``sort_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is in invalid format"
 
+
       ``aba_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "ABA is missing"
 
+
       ``aba_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "ABA is in invalid format"
 
+
       ``bsb_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is missing"
 
+
       ``bsb_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is in invalid format"
 
+
       ``branch_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is missing"
 
+
       ``branch_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is in invalid format"
 
+
       ``institution_no_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is missing"
 
+
       ``institution_no_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is in invalid format"
 
+
       ``bank_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is missing"
 
+
       ``bank_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is in invalid format"
 
+
       ``clabe_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "CLABE is missing"
 
+
       ``clabe_is_invalid``
+
       - Category: ``CLABE is in invalid format``
+
       - Message: "routing_code"
 
+
       ``beneficiary_update_failed``
+
       - Category: ``beneficiary``
+
       - Message: "Beneficiary was not updated"
 
+
       ``beneficiary_details_are_missing``
+
       - Category: ``beneficiary``
-      - Message: "Following beneficiary details are missing: beneficiary_company_name"
+
+      - Message: "Following beneficiary details are missing:
+      beneficiary_company_name"
+
       - Params: { "missing_details" => ["beneficiary_company_name"] }
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -12651,113 +13802,198 @@ definitions:
                   maxlength: 255
   UpdateContactError:
     type: object
-    description: |
+    description: >
       Client error information for the Update Contact endpoint.
+
 
       **Error codes**
 
+
       ``at_least_one_parameter``
+
       - Category: ``base``
-      - Message: "At least one parameter should be present: first_name, last_name, email_address, phone_number, mobile_phone_number, login_id, locale, timezone, status"
+
+      - Message: "At least one parameter should be present: first_name,
+      last_name, email_address, phone_number, mobile_phone_number, login_id,
+      locale, timezone, status"
+
 
       ``id_is_not_valid_uuid``
+
       - Category: ``id``
+
       - Message: "id should be in UUID format"
 
+
       ``first_name_is_too_short``
+
       - Category: ``first_name``
+
       - Message: "first_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``first_name_is_too_long``
+
       - Category: ``first_name``
+
       - Message: "first_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``last_name_is_too_short``
+
       - Category: ``last_name``
+
       - Message: "last_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``last_name_is_too_long``
+
       - Category: ``last_name``
+
       - Message: "last_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``email_address_is_too_short``
+
       - Category: ``email_address``
+
       - Message: "email_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``email_address_is_too_long``
+
       - Category: ``email_address``
+
       - Message: "email_address can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``email_address_is_in_invalid_format``
+
       - Category: ``email_address``
+
       - Message: "email_address is in invalid format"
 
+
       ``phone_number_is_too_short``
+
       - Category: ``phone_number``
+
       - Message: "phone_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``phone_number_is_too_long``
+
       - Category: ``phone_number``
+
       - Message: "phone_number can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``mobile_phone_number_is_too_short``
+
       - Category: ``mobile_phone_number``
+
       - Message: "mobile_phone_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``mobile_phone_number_is_too_long``
+
       - Category: ``mobile_phone_number``
+
       - Message: "mobile_phone_number can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``login_id_in_use``
+
       - Category: ``login_id``
+
       - Message: "login_id already in use: 'john.smith@company.com'"
 
+
       ``login_id_is_too_long``
+
       - Category: ``login_id``
+
       - Message: "login_id can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``locale_is_too_short``
+
       - Category: ``locale``
+
       - Message: "locale can not be shorter than 2 character(s)"
+
       - Params: { "minlength" => 2 }
+
 
       ``locale_is_too_long``
+
       - Category: ``locale``
+
       - Message: "locale can not be longer than 5 character(s)"
+
       - Params: { "maxlength" => 5 }
+
 
       ``timezone_is_too_short``
+
       - Category: ``timezone``
+
       - Message: "timezone can not be shorter than 2 character(s)"
+
       - Params: { "minlength" => 2 }
 
+
       ``timezone_is_too_long``
+
       - Category: ``timezone``
+
       - Message: "timezone can not be longer than 5 character(s)"
+
       - Params: { "maxlength" => 5 }
 
+
       ``status_not_in_range``
+
       - Category: ``status``
+
       - Message: "status should be in range: enabled, not_enabled"
 
+
       ``date_of_birth_type_is_wrong``
+
       - Category: ``date_of_birth``
+
       - Message: "date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``contact_not_found``
+
       - Category: ``id``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -12802,150 +14038,265 @@ definitions:
                   maxlength: 255
   UpdatePaymentError:
     type: object
-    description: |
+    description: >
       Client error information for the Update Payment endpoint.
+
 
       **Error codes**
 
+
       ``currency_type_is_wrong``
+
       - Category: ``currency``
+
       - Message: "XYZ is not a valid ISO 4217 currency code"
 
+
       ``invalid_currency``
+
       - Category: ``currency``
+
       - Message: "You cannot make payments with this currency"
 
+
       ``id_is_not_valid_uuid``
+
       - Category: ``id``
+
       - Message: "id should be in UUID format"
 
+
       ``beneficiary_id_is_not_valid_uuid``
+
       - Category: ``beneficiary_id``
+
       - Message: "beneficiary_id should be in UUID format"
 
+
       ``invalid_beneficiary_id``
+
       - Category: ``beneficiary_id``
+
       - Message: "Unknown beneficiary_id"
 
+
       ``invalid_beneficiary_currency``
+
       - Category: ``beneficiary_currency``
-      - Message: "You cannot assign this Beneficiary to the Payment as it is the incorrect currency"
+
+      - Message: "You cannot assign this Beneficiary to the Payment as it is the
+      incorrect currency"
+
 
       ``amount_type_is_wrong``
+
       - Category: ``amount``
+
       - Message: "amount should be of numeric type"
+
       - Params: { "type" => "numeric" }
 
+
       ``payment_above_limit``
+
       - Category: ``amount``
-      - Message: "3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment."
+
+      - Message: "3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a
+      local payment."
+
       - Params: { "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }
 
+
       ``invalid_amount_for_order``
+
       - Category: ``amount_for_order``
+
       - Message: "The payment amount is more than the value of the order"
 
+
       ``payment_type_not_in_range``
+
       - Category: ``payment_type``
+
       - Message: "payment_type should be in range: priority, regular"
 
+
       ``invalid_conversion_id``
+
       - Category: ``conversion_id``
+
       - Message: "Conversion could not be found."
 
+
       ``conversion_id_is_not_valid_uuid``
+
       - Category: ``conversion_id``
+
       - Message: "conversion_id should be in UUID format"
 
+
       ``invalid_payment_date``
+
       - Category: ``payment_date``
+
       - Message: "The payment date is invalid"
 
+
       ``payment_date_is_in_invalid_format``
+
       - Category: ``payment_date``
+
       - Message: "payment_date should be in ISO 8601 format"
 
+
       ``payment_date_is_too_early``
+
       - Category: ``payment_date``
+
       - Message: "The payment date cannot be sooner than the conversion date"
 
+
       ``reference_is_too_long``
+
       - Category: ``reference``
+
       - Message: "reference can not be longer than 255 character(s)"
+
       - Params: { "maxlength" => 255 }
 
+
       ``payment_can_not_be_edited``
+
       - Category: ``can_not_be_edited``
-      - Message: "Sorry this Payment has already been processed and you are unable to Edit it"
+
+      - Message: "Sorry this Payment has already been processed and you are
+      unable to Edit it"
+
 
       ``extra_dependent_params``
+
       - Category: ``base``
-      - Message: "Parameters payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_address, payer_country, payer_postcode, payer_state_or_province, payer_date_of_birth, payer_identification_type, payer_identification_value can't be provided in the same request with 'payer_details_source' with value 'account'"
+
+      - Message: "Parameters payer_entity_type, payer_company_name,
+      payer_first_name, payer_last_name, payer_address, payer_country,
+      payer_postcode, payer_state_or_province, payer_date_of_birth,
+      payer_identification_type, payer_identification_value can't be provided in
+      the same request with 'payer_details_source' with value 'account'"
+
 
       ``payer_entity_type_not_in_range``
+
       - Category: ``payer_entity_type``
+
       - Message: "payer_entity_type should be in range: individual, company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``payer_entity_type_is_missing``
+
       - Category: ``payer_entity_type``
+
       - Message: "Payer entity type is missing"
 
+
       ``payer_company_name_is_missing``
+
       - Category: ``payer_company_name``
+
       - Message: "Payer company name is missing"
 
+
       ``payer_first_name_is_missing``
+
       - Category: ``payer_first_name``
+
       - Message: "Payer first name is missing"
 
+
       ``payer_last_name_is_missing``
+
       - Category: ``payer_last_name``
+
       - Message: "Payer last name is missing"
 
+
       ``payer_city_is_missing``
+
       - Category: ``payer_city``
+
       - Message: "Payer city is missing"
 
+
       ``payer_state_or_province_is_missing``
+
       - Category: ``payer_state_or_province``
+
       - Message: "Payer state or province is missing"
 
+
       ``payer_postcode_is_missing``
+
       - Category: ``payer_postcode``
+
       - Message: "Payer postcode is missing"
 
+
       ``payer_date_of_birth_type_is_wrong``
+
       - Category: ``payer_date_of_birth``
+
       - Message: "payer_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``identification_type_is_missing``
+
       - Category: ``payer_identification_type``
+
       - Message: "identification_type is missing"
 
+
       ``identification_type_is_invalid``
+
       - Category: ``payer_identification_type``
+
       - Message: "identification_type is invalid"
 
+
       ``identification_value_is_missing``
+
       - Category: ``payer_identification_value``
+
       - Message: "identification_value is missing"
 
+
       ``identification_value_is_invalid``
+
       - Category: ``payer_identification_value``
+
       - Message: "identification_value is invalid"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``payment_not_found``
+
       - Category: ``id``
+
       - Message: "Payment was not found for this id"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -12990,303 +14341,537 @@ definitions:
                   maxlength: 255
   ValidateBeneficiaryError:
     type: object
-    description: |
+    description: >
       Client error information for the Validate Beneficiary endpoint.
+
 
       **Error codes**
 
+
       ``beneficiary_country_is_required``
+
       - Category: ``beneficiary_country is required``
+
       - Message: "beneficiary_country"
 
+
       ``beneficiary_country_is_in_invalid_format``
+
       - Category: ``beneficiary_country``
+
       - Message: "beneficiary_country is in invalid format"
 
+
       ``beneficiary_entity_type_not_in_range``
+
       - Category: ``beneficiary_entity_type``
-      - Message: "beneficiary_entity_type should be in range: individual, company"
+
+      - Message: "beneficiary_entity_type should be in range: individual,
+      company"
+
       - Params: { "range" => "individual, company" }
 
+
       ``beneficiary_entity_type_is_missing``
+
       - Category: ``beneficiary_entity_type``
+
       - Message: "Beneficiary entity type is missing"
 
+
       ``beneficiary_company_name_is_missing``
+
       - Category: ``beneficiary_company_name``
+
       - Message: "Beneficiary company name is missing"
 
+
       ``beneficiary_first_name_is_missing``
+
       - Category: ``beneficiary_first_name``
+
       - Message: "Beneficiary first name is missing"
 
+
       ``beneficiary_last_name_is_missing``
+
       - Category: ``beneficiary_last_name``
+
       - Message: "Beneficiary last name is missing"
 
+
       ``beneficiary_city_is_missing``
+
       - Category: ``beneficiary_city``
+
       - Message: "Beneficiary city is missing"
 
+
       ``beneficiary_state_or_province_is_missing``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is missing"
 
+
       ``beneficiary_state_or_province_is_not_supported``
+
       - Category: ``beneficiary_state_or_province``
+
       - Message: "Beneficiary state or province is not supported"
 
+
       ``beneficiary_postcode_is_missing``
+
       - Category: ``beneficiary_postcode``
+
       - Message: "Beneficiary postcode is missing"
 
+
       ``beneficiary_date_of_birth_type_is_wrong``
+
       - Category: ``beneficiary_date_of_birth``
+
       - Message: "beneficiary_date_of_birth should be of date type"
+
       - Params: { "type" => "date" }
 
+
       ``account_number_is_too_short``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``account_number_is_too_long``
+
       - Category: ``account_number``
+
       - Message: "account_number can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``account_number_is_missing``
+
       - Category: ``account_number``
+
       - Message: "Account number is missing"
 
+
       ``account_number_is_invalid``
+
       - Category: ``account_number``
+
       - Message: "Account number is in invalid format"
 
+
       ``routing_code_value_1_is_too_short``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_1_is_too_long``
+
       - Category: ``routing_code_value_1``
+
       - Message: "routing_code_value_1 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
+
 
       ``routing_code_value_2_is_too_short``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``routing_code_value_2_is_too_long``
+
       - Category: ``routing_code_value_2``
+
       - Message: "routing_code_value_2 can not be longer than 50 character(s)"
+
       - Params: { "maxlength" => 50 }
 
+
       ``iban_is_too_short``
+
       - Category: ``iban``
+
       - Message: "iban can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``iban_is_too_long``
+
       - Category: ``iban``
+
       - Message: "iban can not be longer than 34 character(s)"
+
       - Params: { "maxlength" => 34 }
 
+
       ``iban_is_missing``
+
       - Category: ``iban``
+
       - Message: "IBAN is missing"
 
+
       ``iban_is_invalid``
+
       - Category: ``iban``
+
       - Message: "IBAN is in invalid format"
 
+
       ``bic_swift_is_too_short``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bic_swift_is_too_long``
+
       - Category: ``bic_swift``
+
       - Message: "bic_swift can not be longer than 11 character(s)"
+
       - Params: { "maxlength" => 11 }
 
+
       ``bic_swift_is_missing``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is missing"
 
+
       ``bic_swift_is_invalid``
+
       - Category: ``bic_swift``
+
       - Message: "BIC/SWIFT is in invalid format"
 
+
       ``bank_address_is_missing``
+
       - Category: ``bank_address``
+
       - Message: "Bank address is missing"
 
+
       ``bank_address_is_too_short``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
+
 
       ``bank_address_is_too_long``
+
       - Category: ``bank_address``
+
       - Message: "bank_address can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
+
 
       ``bank_name_is_too_short``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be shorter than 1 character(s)"
+
       - Params: { "minlength" => 1 }
 
+
       ``bank_name_is_too_long``
+
       - Category: ``bank_name``
+
       - Message: "bank_name can not be longer than 100 character(s)"
+
       - Params: { "maxlength" => 100 }
 
+
       ``bank_name_is_missing``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is missing"
 
+
       ``bank_name_is_invalid``
+
       - Category: ``bank_name``
+
       - Message: "Bank name is in invalid format"
 
+
       ``bank_account_type_not_in_range``
+
       - Category: ``bank_account_type``
+
       - Message: "bank_account_type should be in range: checking, savings"
+
       - Params: { "range" => "checking, savings" }
 
+
       ``bank_account_type_is_missing``
+
       - Category: ``bank_account_type``
+
       - Message: "Beneficiary bank account type is missing"
 
+
       ``routing_code_type_1_not_in_range``
+
       - Category: ``routing_code_type_1``
-      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_1 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range" => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``routing_code_type_2_not_in_range``
+
       - Category: ``routing_code_type_2``
-      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps"
-      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }
+
+      - Message: "routing_code_type_2 should be in range: sort_code, bsb_code,
+      institution_no, bank_code, branch_code, aba, clabe, cnaps"
+
+      - Params: { "range => "sort_code, bsb_code, institution_no, bank_code,
+      branch_code, aba, clabe, cnaps" }
+
 
       ``bank_country_is_required``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is required"
 
+
       ``bank_country_is_in_invalid_format``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is in invalid format"
 
+
       ``bank_country_is_not_supported``
+
       - Category: ``bank_country``
+
       - Message: "bank_country is not supported"
 
+
       ``currency_is_required``
+
       - Category: ``currency``
+
       - Message: "currency is required"
 
+
       ``currency_is_in_invalid_format``
+
       - Category: ``currency``
+
       - Message: "currency is in invalid format"
 
+
       ``currency_code_is_invalid``
+
       - Category: ``currency``
+
       - Message: "You can not use this currency with beneficiaries"
 
+
       ``unique_value_parameters``
+
       - Category: ``base``
-      - Message: "Following parameters should not have same values: routing_code_type_1, routing_code_type_2"
+
+      - Message: "Following parameters should not have same values:
+      routing_code_type_1, routing_code_type_2"
+
       - Params: { "parameters" => "routing_code_type_1, routing_code_type_2" }
 
+
       ``beneficiary_create_failed``
+
       - Category: ``beneficiary``
+
       - Message: "Beneficiary was not created"
 
+
       ``beneficiary_details_are_missing``
+
       - Category: ``beneficiary``
-      - Message: "Following beneficiary details are missing: beneficiary_company_name"
+
+      - Message: "Following beneficiary details are missing:
+      beneficiary_company_name"
+
       - Params: { "missing_details" => ["beneficiary_company_name"] }
 
+
       ``payment_types_not_in_range``
+
       - Category: ``payment_types``
+
       - Message: "payment_types should be in range: priority, regular"
+
       - Params: { "range" => "priority, regular" }
 
+
       ``sort_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is missing"
 
+
       ``sort_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Sort code is in invalid format"
 
+
       ``aba_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "ABA is missing"
 
+
       ``aba_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "ABA is in invalid format"
 
+
       ``bsb_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is missing"
 
+
       ``bsb_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "BSB code is in invalid format"
 
+
       ``branch_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is missing"
 
+
       ``branch_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Branch code is in invalid format"
 
+
       ``institution_no_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is missing"
 
+
       ``institution_no_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Institution no is in invalid format"
 
+
       ``bank_code_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is missing"
 
+
       ``bank_code_is_invalid``
+
       - Category: ``routing_code``
+
       - Message: "Bank code is in invalid format"
 
+
       ``clabe_is_missing``
+
       - Category: ``routing_code``
+
       - Message: "CLABE is missing"
 
+
       ``clabe_is_invalid``
+
       - Category: ``CLABE is in invalid format``
+
       - Message: "routing_code"
 
+
       ``beneficiary_update_failed``
+
       - Category: ``beneficiary``
+
       - Message: "Beneficiary was not updated"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
 
+
       ``on_behalf_of_self``
+
       - Category: ``on_behalf_of``
+
       - Message: "You cannot act on behalf of your own Contact"
 
+
       ``contact_not_found``
+
       - Category: ``on_behalf_of``
+
       - Message: "Contact was not found for this id"
     required:
       - error_code
@@ -13363,6 +14948,6 @@ definitions:
       bank_institution_name: Community Federal Savings Bank
       bank_institution_address: 'Seventh Avenue, New York, NY 10019, US'
       bank_institution_country: United States
-      routing_code: 026073150
-      created_at: 2014-01-12T00:00:00+00:00
-      updated_at: 2014-01-12T00:00:00+00:00
+      routing_code: 5797480
+      created_at: 2014-01-12T00:00:00.000Z
+      updated_at: 2014-01-12T00:00:00.000Z
