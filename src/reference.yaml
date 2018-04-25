@@ -2071,6 +2071,176 @@ paths:
             Two-letter country code. If the beneficiary is a company, the
             country in which the company is registered. If the beneficiary is an
             individual, a country in which the beneficiary holds nationality.
+        - name: account_number
+          in: formData
+          required: false
+          type: string
+          description: Bank account number.
+        - name: routing_code_type_1
+          in: formData
+          required: false
+          type: string
+          enum:
+            - sort_code
+            - aba
+            - bsb_code
+            - institution_no
+            - bank_code
+            - branch_code
+            - clabe
+            - cnaps
+          description: Local payment routing system.
+        - name: routing_code_value_1
+          in: formData
+          required: false
+          type: string
+          description: Routing code for ``routing_code_type_1``.
+        - name: routing_code_type_2
+          in: formData
+          required: false
+          type: string
+          enum:
+            - sort_code
+            - aba
+            - bsb_code
+            - institution_no
+            - bank_code
+            - branch_code
+            - clabe
+            - cnaps
+          description: Local payment routing system.
+        - name: routing_code_value_2
+          in: formData
+          required: false
+          type: string
+          description: Routing code for ``routing_code_type_2``.
+        - name: bic_swift
+          in: formData
+          required: false
+          type: string
+          description: BIC/SWIFT code.
+        - name: iban
+          in: formData
+          required: false
+          type: string
+          description: IBAN code.
+        - name: bank_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
+        - name: bank_name
+          in: formData
+          required: false
+          type: string
+          description: Bank name.
+        - name: bank_account_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - checkings
+            - savings
+          description: Bank account type.
+        - name: beneficiary_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - individual
+            - company
+          description: Legal entity.
+        - name: beneficiary_company_name
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Required if ``beneficiary_entity_type`` is "company".
+        - name: beneficiary_first_name
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Required if ``beneficiary_entity_type`` is "individual".
+        - name: beneficiary_last_name
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Required if ``beneficiary_entity_type`` is "individual".
+        - name: beneficiary_city
+          in: formData
+          required: false
+          type: string
+          description: City.
+        - name: beneficiary_postcode
+          in: formData
+          required: false
+          type: string
+          description: Postal code.
+        - name: beneficiary_state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province.
+        - name: beneficiary_date_of_birth
+          in: formData
+          required: false
+          type: string
+          description: >-
+            If ``beneficiary_entity_type`` is "company", date of registration.
+            If ``beneficiary_entity_type`` is "individual", date of birth.
+            ISO 8601 format YYYY-MM-DD.
+        - name: beneficiary_identification_type
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A legal document that verifies the identity of the beneficiary.
+            Required documentation will vary depending on the country in which
+            the beneficiary's bank account is held.
+        - name: beneficiary_identification_value
+          in: formData
+          required: false
+          type: string
+          enum:
+            - none
+            - drivers_license
+            - social_security_number
+            - green_card
+            - passport
+            - visa
+            - matricula_consular
+            - registro_federal_de_contribuyentes
+            - clave_unica_de_registro_de_poblacion
+            - credential_de_elector
+            - social_insurance_number
+            - citizenship_papers
+            - drivers_license_canadian
+            - existing_credit_card_details
+            - employer_identification_number
+            - national_id
+            - incorporation_number
+            - others
+          description: >-
+            A unique reference code for the identification document, such as a passport number.
+        - name: payment_types
+          in: formData
+          required: false
+          type: string
+          enum:
+            - priority
+            - regular
+          default: regular
+          description: >-
+            Currencycloud supports two types of payments: ``priority``,
+            made using the SWIFT network; and ``regular``, made using
+            the local bank network.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
