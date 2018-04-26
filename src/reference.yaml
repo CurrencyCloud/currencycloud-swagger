@@ -254,6 +254,7 @@ paths:
               description: A unique reference for the request.
         '400':
           description: Client error.
+          x-error-id_is_not_valid_uuid: 'id should be in UUID format'
           schema:
             $ref: '#/definitions/GetAuthenticatingAccountError'
           headers:
@@ -403,6 +404,20 @@ paths:
               description: A unique reference for the request.
         '400':
           description: Client error.
+          x-error-account_name_is_too_short:'account_name can not be shorter than 1 character(s)'
+          x-error-account_name_is_too_long: 'account_name can not be longer than 150 character(s)'
+          x-eror-brand_is_too_short: 'brand can not be shorter than 1 character(s)'
+          x-error-brand_is_too_long: 'brand can not be longer than 100 character(s)'
+          x-error-your_reference_is_too_short: 'your_reference can not be shorter than 1 character(s)'
+          x-error-your_reference_is_too_long: 'your_reference can not be longer than 25 character(s)'
+          x-error-status_not_in_range: 'status should be in range: enabled, disabled, enabled_no_trading'
+          x-error-legal_entity_type_not_in_range: 'legal_entity_type should be in range: individual, company'
+          x-error-street_is_too_long: 'street can not be longer than 150 character(s)'
+          x-error-city_is_too_long: 'city can not be longer than 100 character(s)'
+          x-error-postal_code_is_too_long: 'postal_code can not be longer than 20 character(s)'
+          x-error-country_is_too_long: 'country can not be longer than 2 character(s)'
+          x-error-spread_table_is_too_short: 'country can not be shorter than 1 character(s)'
+          x-error-spread_table_is_too_long: 'country can not be longer than 100 character(s)'
           schema:
             $ref: '#/definitions/FindAccountsError'
           headers:
