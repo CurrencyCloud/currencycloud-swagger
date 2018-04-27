@@ -3993,6 +3993,250 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  /payments/create:
+    post:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Create Payment
+      description: 'Make a payment. On success, returns the new payment record.'
+      operationId: CreatePayment
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: currency
+          in: formData
+          required: true
+          type: string
+          description: Currency in which payment is made. Three-digit currency code.
+        - name: beneficiary_id
+          in: formData
+          required: true
+          type: string
+          description: Beneficiary UUID.
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: Amount.
+        - name: reason
+          in: formData
+          required: true
+          type: string
+          description: User-generated reason for payment. Freeform text.
+        - name: reference
+          in: formData
+          required: true
+          type: string
+          description: User-generated reference code.
+        - name: payment_date
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Instructed date of payment. Any valid ISO 8601 format, eg.
+            "2017-12-31".
+        - name: payment_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - priority
+            - regular
+          description: >-
+            Currencycloud supports two types of payments: ``priority``, made
+            using the SWIFT network; and ``regular``, made using the local bank
+            network.
+        - name: conversion_id
+          in: formData
+          required: false
+          type: string
+          description: Conversion UUID.
+        - name: payer_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - company
+            - individual
+          description: Legal entity.
+        - name: payer_company_name
+          in: formData
+          required: false
+          type: string
+          description: Required if ``payer_entity_type`` is "company".
+        - name: payer_first_name
+          in: formData
+          required: false
+          type: string
+          description: Required if ``payer_entity_type`` is "individual".
+        - name: payer_last_name
+          in: formData
+          required: false
+          type: string
+          description: Required if ``payer_entity_type`` is "individual".
+        - name: payer_city
+          in: formData
+          required: false
+          type: string
+          description: City.
+        - name: payer_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
+        - name: payer_postcode
+          in: formData
+          required: false
+          type: string
+          description: Postal code.
+        - name: payer_state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province.
+        - name: payer_country
+          in: formData
+          required: false
+          type: string
+          description: Two-letter country code.
+        - name: payer_date_of_birth
+          in: formData
+          required: false
+          type: string
+          description: >-
+            If ``payer_entity_type`` is "company", company registration date. If
+            ``payer_entity_type`` is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
+        - name: payer_identification_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - none
+            - drivers_license
+            - social_security_number
+            - green_card
+            - passport
+            - visa
+            - matricula_consular
+            - registro_federal_de_contribuyentes
+            - credential_de_elector
+            - social_insurance_number
+            - citizenship_papers
+            - drivers_license_canadian
+            - existing_credit_card_details
+            - employer_identification_number
+            - national_id
+            - others
+            - incorporation_number
+          description: >-
+            A legal document that verifies the identity of the payer. Required
+            documentation will vary depending on the nationality or registered
+            address of the payer.
+        - name: payer_identification_value
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A unique reference code for the identification document, such as a
+            passport number.
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: User-generated idempotency key.
+        - name: ultimate_beneficiary_name
+          in: formData
+          required: false
+          type: string
+          description: The name of the ultimate beneficiary if different.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Payment'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-error-invalid_type: Invalid Payment type
+          x-error-currency_length_is_invalid: currency should be 3 character(s) long
+          x-error-currency_is_required: currency is required
+          x-error-invalid_currency: You cannot make payments with this currency
+          x-error-beneficiary_id_is_not_valid_uuid: beneficiary_id should be in UUID format
+          x-error-beneficiary_id_is_required: beneficiary_id is required
+          x-error-invalid_beneficiary_id: Unknown beneficiary_id
+          x-error-payment_above_limit: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
+          x-error-payer_entity_type_not_in_range: 'payer_entity_type should be in range: individual, company'
+          x-error-payer_entity_type_is_missing: Payer entity type is missing
+          x-error-payer_company_name_is_missing: Payer company name is missing
+          x-error-payer_first_name_is_missing: Payer first name is missing
+          x-error-payer_last_name_is_missing: Payer last name is missing
+          x-error-payer_city_is_missing: Payer city is missing
+          x-error-unsupported_payer_country_code: Payer country is not supported
+          x-error-payer_state_or_province_is_missing: Payer state or province is missing
+          x-error-payer_postcode_is_missing: Payer postcode is missing
+          x-error-payer_date_of_birth_type_is_wrong: payer_date_of_birth should be of date type
+          x-error-identification_type_is_missing: identification_type is missing
+          x-error-identification_type_is_invalid: identification_type is invalid
+          x-error-identification_value_is_missing: identification_value is missing
+          x-error-identification_value_is_invalid: identification_value is invalid
+          x-error-invalid_conversion_id: Conversion could not be found
+          x-error-conversion_is_already_settled: The conversion is already settled
+          x-error-payment_date_is_too_early: The payment date cannot be sooner than the conversion date
+          x-error-reference_is_too_long: reference can not be longer than 255 character(s)
+          x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
+          x-error-contact_not_found: Contact was not found for this id
+          x-error-duplicate_request: The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment
+          schema:
+            $ref: '#/definitions/CreatePaymentError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /payments/find:
     get:
       tags:
@@ -4629,250 +4873,6 @@ paths:
           x-error-contact_not_found: Contact was not found for this id
           schema:
             $ref: '#/definitions/UpdatePaymentError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-  /payments/create:
-    post:
-      tags:
-        - Payments
-      x-api-group: pay
-      summary: Create Payment
-      description: 'Make a payment. On success, returns the new payment record.'
-      operationId: CreatePayment
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: currency
-          in: formData
-          required: true
-          type: string
-          description: Currency in which payment is made. Three-digit currency code.
-        - name: beneficiary_id
-          in: formData
-          required: true
-          type: string
-          description: Beneficiary UUID.
-        - name: amount
-          in: formData
-          required: true
-          type: string
-          description: Amount.
-        - name: reason
-          in: formData
-          required: true
-          type: string
-          description: User-generated reason for payment. Freeform text.
-        - name: reference
-          in: formData
-          required: true
-          type: string
-          description: User-generated reference code.
-        - name: payment_date
-          in: formData
-          required: false
-          type: string
-          description: >-
-            Instructed date of payment. Any valid ISO 8601 format, eg.
-            "2017-12-31".
-        - name: payment_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - priority
-            - regular
-          description: >-
-            Currencycloud supports two types of payments: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
-            network.
-        - name: conversion_id
-          in: formData
-          required: false
-          type: string
-          description: Conversion UUID.
-        - name: payer_entity_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - company
-            - individual
-          description: Legal entity.
-        - name: payer_company_name
-          in: formData
-          required: false
-          type: string
-          description: Required if ``payer_entity_type`` is "company".
-        - name: payer_first_name
-          in: formData
-          required: false
-          type: string
-          description: Required if ``payer_entity_type`` is "individual".
-        - name: payer_last_name
-          in: formData
-          required: false
-          type: string
-          description: Required if ``payer_entity_type`` is "individual".
-        - name: payer_city
-          in: formData
-          required: false
-          type: string
-          description: City.
-        - name: payer_address
-          in: formData
-          required: false
-          type: string
-          description: First line of address.
-        - name: payer_postcode
-          in: formData
-          required: false
-          type: string
-          description: Postal code.
-        - name: payer_state_or_province
-          in: formData
-          required: false
-          type: string
-          description: State or province.
-        - name: payer_country
-          in: formData
-          required: false
-          type: string
-          description: Two-letter country code.
-        - name: payer_date_of_birth
-          in: formData
-          required: false
-          type: string
-          description: >-
-            If ``payer_entity_type`` is "company", company registration date. If
-            ``payer_entity_type`` is "individual", date of birth. ISO 8601
-            format YYYY-MM-DD.
-        - name: payer_identification_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
-            - citizenship_papers
-            - drivers_license_canadian
-            - existing_credit_card_details
-            - employer_identification_number
-            - national_id
-            - others
-            - incorporation_number
-          description: >-
-            A legal document that verifies the identity of the payer. Required
-            documentation will vary depending on the nationality or registered
-            address of the payer.
-        - name: payer_identification_value
-          in: formData
-          required: false
-          type: string
-          description: >-
-            A unique reference code for the identification document, such as a
-            passport number.
-        - name: unique_request_id
-          in: formData
-          required: false
-          type: string
-          description: User-generated idempotency key.
-        - name: ultimate_beneficiary_name
-          in: formData
-          required: false
-          type: string
-          description: The name of the ultimate beneficiary if different.
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Payment'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-error-invalid_type: Invalid Payment type
-          x-error-currency_length_is_invalid: currency should be 3 character(s) long
-          x-error-currency_is_required: currency is required
-          x-error-invalid_currency: You cannot make payments with this currency
-          x-error-beneficiary_id_is_not_valid_uuid: beneficiary_id should be in UUID format
-          x-error-beneficiary_id_is_required: beneficiary_id is required
-          x-error-invalid_beneficiary_id: Unknown beneficiary_id
-          x-error-payment_above_limit: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
-          x-error-payer_entity_type_not_in_range: 'payer_entity_type should be in range: individual, company'
-          x-error-payer_entity_type_is_missing: Payer entity type is missing
-          x-error-payer_company_name_is_missing: Payer company name is missing
-          x-error-payer_first_name_is_missing: Payer first name is missing
-          x-error-payer_last_name_is_missing: Payer last name is missing
-          x-error-payer_city_is_missing: Payer city is missing
-          x-error-unsupported_payer_country_code: Payer country is not supported
-          x-error-payer_state_or_province_is_missing: Payer state or province is missing
-          x-error-payer_postcode_is_missing: Payer postcode is missing
-          x-error-payer_date_of_birth_type_is_wrong: payer_date_of_birth should be of date type
-          x-error-identification_type_is_missing: identification_type is missing
-          x-error-identification_type_is_invalid: identification_type is invalid
-          x-error-identification_value_is_missing: identification_value is missing
-          x-error-identification_value_is_invalid: identification_value is invalid
-          x-error-invalid_conversion_id: Conversion could not be found
-          x-error-conversion_is_already_settled: The conversion is already settled
-          x-error-payment_date_is_too_early: The payment date cannot be sooner than the conversion date
-          x-error-reference_is_too_long: reference can not be longer than 255 character(s)
-          x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
-          x-error-contact_not_found: Contact was not found for this id
-          x-error-duplicate_request: The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment
-          schema:
-            $ref: '#/definitions/CreatePaymentError'
           headers:
             X-Request-Id:
               type: integer
