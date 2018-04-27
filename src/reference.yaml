@@ -3916,83 +3916,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  '/payers/{id}':
-    get:
-      tags:
-        - Payers
-      x-api-group: pay
-      summary: Get Payer
-      description: Get a payer record.
-      operationId: GetPayer
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Payer UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Payer'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-error-payer_not_found: Payer was not found for this id
-          x-error-contact_not_found: Contact was not found for this id
-          x-error-id_is_not_valid_uuid: id should be in UUID format
-          x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
-          schema:
-            $ref: '#/definitions/GetPayerError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
   /payments/create:
     post:
       tags:
@@ -4950,6 +4873,83 @@ paths:
           x-error-contact_not_found: Contact was not found for this id
           schema:
             $ref: '#/definitions/DeletePaymentError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/payers/{id}':
+    get:
+      tags:
+        - Payers
+      x-api-group: pay
+      summary: Get Payer
+      description: Get a payer record.
+      operationId: GetPayer
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payer UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Payer'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-error-payer_not_found: Payer was not found for this id
+          x-error-contact_not_found: Contact was not found for this id
+          x-error-id_is_not_valid_uuid: id should be in UUID format
+          x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
+          schema:
+            $ref: '#/definitions/GetPayerError'
           headers:
             X-Request-Id:
               type: integer
