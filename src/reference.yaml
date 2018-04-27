@@ -4087,7 +4087,7 @@ paths:
           description: Payment UUID.
         - name: on_behalf_of
           in: query
-          required: true
+          required: false
           type: string
           description: Contact UUID.
       responses:
