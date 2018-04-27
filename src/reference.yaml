@@ -411,7 +411,7 @@ paths:
           description: Client error.
           x-error-account_name_is_too_short: account_name can not be shorter than 1 character(s)
           x-error-account_name_is_too_long: account_name can not be longer than 150 character(s)
-          x-eror-brand_is_too_short: brand can not be shorter than 1 character(s)
+          x-error-brand_is_too_short: brand can not be shorter than 1 character(s)
           x-error-brand_is_too_long: brand can not be longer than 100 character(s)
           x-error-your_reference_is_too_short: your_reference can not be shorter than 1 character(s)
           x-error-your_reference_is_too_long: your_reference can not be longer than 25 character(s)
