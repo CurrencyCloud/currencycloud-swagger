@@ -144,9 +144,12 @@ paths:
           description: Client error.
           x-error-login_id_is_required: login_id is required
           x-error-login_id_is_too_short: login_id can not be shorter than 1 character(s)
+          x-error-param-login_id_is_too_short: '{ "minlength" => 1 }'
           x-error-login_id_is_too_long: login_id can not be longer than 255 character(s)
+          x-error-param-login_id_is_too_long: '{ "maxlength" => 255 }'
           x-error-api_key_is_required: api_key is required
           x-error-api_key_length_is_invalid: api_key should be 64 character(s) long
+          x-error-param-api_key_length_is_invalid: '{ "length" => 64 }'
           schema:
             $ref: '#/definitions/LoginError'
           headers:
@@ -410,19 +413,33 @@ paths:
         '400':
           description: Client error.
           x-error-account_name_is_too_short: account_name can not be shorter than 1 character(s)
+          x-error-param-account_name_is_too_short: '{ "minlength" => 1 }'
           x-error-account_name_is_too_long: account_name can not be longer than 150 character(s)
+          x-error-param-account_name_is_too_long: '{ "maxlength" => 255 }'
           x-eror-brand_is_too_short: brand can not be shorter than 1 character(s)
+          x-error-param-brand_is_too_short: '{ "minlength" => 1 }'
           x-error-brand_is_too_long: brand can not be longer than 100 character(s)
+          x-error-param-brand_is_too_long: '{ "maxlength" => 255 }'
           x-error-your_reference_is_too_short: your_reference can not be shorter than 1 character(s)
+          x-error-param-your_reference_is_too_short: '{ "minlength" => 1 }'
           x-error-your_reference_is_too_long: your_reference can not be longer than 25 character(s)
+          x-error-param-your_reference_is_too_long: '{ "maxlength" => 25 }'
           x-error-status_not_in_range: 'status should be in range: enabled, disabled, enabled_no_trading'
+          x-error-param-status_not_in_range: '{ "range" => "enabled, disabled, enabled_no_trading" }'
           x-error-legal_entity_type_not_in_range: 'legal_entity_type should be in range: individual, company'
+          x-error-param-legal_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-street_is_too_long: street can not be longer than 150 character(s)
+          x-error-param-street_is_too_long: '{ "maxlength" => 150 }'
           x-error-city_is_too_long: city can not be longer than 100 character(s)
+          x-error-param-city_is_too_long: '{ "maxlength" => 100 }'
           x-error-postal_code_is_too_long: postal_code can not be longer than 20 character(s)
+          x-error-param-postal_code_is_too_long: '{ "maxlength" => 20 }'
           x-error-country_is_too_long: country can not be longer than 2 character(s)
+          x-error-param-country_is_too_long: '{ "maxlength" => 2 }'
           x-error-spread_table_is_too_short: country can not be shorter than 1 character(s)
+          x-error-param-spread_table_is_too_short: '{ "minlength" => 1 }'
           x-error-spread_table_is_too_long: country can not be longer than 100 character(s)
+          x-error-param-spread_table_is_too_long: '{ "maxlength" => 100 }'
           schema:
             $ref: '#/definitions/FindAccountsError'
           headers:
@@ -688,17 +705,29 @@ paths:
           x-error-at_least_one_parameter: 'At least one parameter should be present: account_name, brand, your_reference, status, street, city, country, postal_code, spread_table'
           x-error-id_is_not_valid_uuid: id should be in UUID format
           x-error-account_name_is_too_long: account_name can not be longer than 150 character(s)
+          x-error-param-account_name_is_too_long: '{ "maxlength" => 150 }'
           x-error-brand_is_too_long: brand can not be longer than 100 character(s)
+          x-error-param-brand_is_too_long: '{ "maxlength" => 255 }'
           x-error-brand_not_found: Brand non_existing_brand wasn't found
+          x-error-param-brand_not_found: '{ "brand" => "non_existing_brand" }'
           x-error-brand_account_not_broker: Account doesn't have broker permissions
+          x-error-param-brand_account_not_broker: '{ "brand" => "wrong_brand" }'
           x-error-your_reference_is_too_long: your_reference can not be longer than 25 character(s)
+          x-error-param-your_reference_is_too_long: '{ "maxlength" => 25 }'
           x-error-legal_entity_type_not_in_range: 'legal_entity_type should be in range: individual, company'
+          x-error-param-legal_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-status_not_in_range: 'status should be in range: enabled, disabled, enabled_no_trading'
+          x-error-param-status_not_in_range: '{ "range" => "enabled, disabled, enabled_no_trading" }'
           x-error-street_is_too_long: street can not be longer than 150 character(s)
+          x-error-param-street_is_too_long: '{ "maxlength" => 150 }'
           x-error-city_is_too_long: city can not be longer than 100 character(s)
+          x-error-param-city_is_too_long: '{ "maxlength" => 100 }'
           x-error-postal_code_is_too_long: postal_code can not be longer than 20 character(s)
+          x-error-param-postal_code_is_too_long: '{ "maxlength" => 20 }'
           x-error-country_is_too_long: country can not be longer than 2 character(s)
+          x-error-param-country_is_too_long: '{ "maxlength" => 2 }'
           x-error-spread_table_is_too_long: spread_table can not be longer than 100 character(s)
+          x-error-param-spread_table_is_too_long: '{ "maxlength" => 100 }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
@@ -880,30 +909,45 @@ paths:
         '400':
           description: Client error.
           x-error-account_name_is_too_short: account_name can not be shorter than 1 character(s)
+          x-error-param-account_name_is_too_short: '{ "minlength" => 1 }'
           x-error-account_name_is_too_long: account_name can not be longer than 150 character(s)
+          x-error-param-account_name_is_too_long: '{ "maxlength" => 150 }'
           x-error-account_name_is_required: account_name is required
           x-error-brand_is_too_short: brand can not be shorter than 1 character(s)
+          x-error-param-brand_is_too_short: '{ "minlength" => 1 }'
           x-error-brand_is_too_long: brand can not be longer than 100 character(s)
+          x-error-param-brand_is_too_long: '{ "maxlength" => 255 }'
           x-error-brand_not_found: Brand non_existing_brand wasn't found
+          x-error-param-brand_not_found: '{ "brand" => "non_existing_brand" }'
           x-error-brand_account_not_broker: Account doesn't have broker permissions
+          x-error-param-brand_account_not_broker: '{ "brand" => "wrong_brand" }'
           x-error-your_reference_is_too_long: your_reference can not be longer than 25 character(s)
+          x-error-param-your_reference_is_too_long: '{ "maxlength" => 25 }'
           x-error-status_not_in_range: 'status should be in range: enabled, disabled, enabled_no_trading'
+          x-error-param-status_not_in_range: '{ "range" => "enabled, disabled, enabled_no_trading" }'
           x-error-legal_entity_type_not_in_range: 'legal_entity_type should be in range: individual, company'
+          x-error-param-legal_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-street_is_too_long: street can not be longer than 150 character(s)
+          x-error-param-street_is_too_long: '{ "maxlength" => 150 }'
           x-error-street_is_required: Street is required
           x-error-city_is_too_long: city can not be longer than 100 character(s)
+          x-error-param-city_is_too_long: '{ "maxlength" => 100 }'
           x-error-city_is_required: City is required
           x-error-postal_code_is_too_long: postal_code can not be longer than 20 character(s)
+          x-error-param-postal_code_is_too_long: '{ "maxlength" => 20 }'
           x-error-postal_code_is_required: Postal code is required
           x-error-country_is_too_long: country can not be longer than 2 character(s)
+          x-error-param-country_is_too_long: '{ "maxlength" => 2 }'
           x-error-country_is_required: Country is required
           x-error-spread_table_is_too_long: country can not be longer than 100 character(s)
+          x-error-param-spread_table_is_too_long: '{ "maxlength" => 100 }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
           x-error-identification_value_is_invalid: identification_value is invalid
           x-error-state_or_province_is_required: State or province is required for US, CA and MX
           x-error-invalid_extra_parameters: Invalid extra parameters extra_parameter
+          x-error-param-invalid_extra_parameters: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/CreateAccountError'
           headers:
@@ -979,6 +1023,7 @@ paths:
           description: Client error.
           x-error-invalid_currency: XYZ is not a valid ISO 4217 currency code
           x-error-currency_is_in_invalid_format: currency is not a valid ISO 4217 currency code
+          x-error-param-currency_is_in_invalid_format: '{ "type" => "currency" }'
           x-error-on_behalf_of_is_not_valid_uuid: on_behalf_of should be in UUID format
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
@@ -1349,32 +1394,56 @@ paths:
         '400':
           description: Client error.
           x-error-bank_account_holder_name_is_too_short: bank_account_holder_name can not be shorter than 1 character(s)
+          x-error-param-bank_account_holder_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_account_holder_name_is_too_long: bank_account_holder_name can not be longer than 255 character(s)
+          x-error-param-bank_account_holder_name_is_too_long: '{ "maxlength" => 255 }'
           x-error-beneficiary_country_is_in_invalid_format: beneficiary_country is in invalid format
           x-error-currency_is_in_invalid_format: currency is in invalid format
           x-error-bank_name_is_too_short: bank_name can not be shorter than 1 character(s)
+          x-error-param-bank_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_name_is_too_long: bank_name can not be longer than 100 character(s)
+          x-error-param-bank_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_account_type_not_in_range: 'bank_account_type should be in range: checking, savings'
+          x-error-param-bank_account_type_not_in_range: '{ "range" => "checking, savings" }'
           x-error-account_number_is_too_short: account_number can not be shorter than 1 character(s)
+          x-error-param-account_number_is_too_short: '{ "minlength" => 1 }'
           x-error-account_number_is_too_long: account_number can not be longer than 50 character(s)
+          x-error-param-account_number_is_too_long: '{ "maxlength" => 50 }'
           x-error-incorrect_mapping: Following parameters must have same keys
+          x-error-param-incorrect_mapping: '{ "parameters" => "routing_code_value,routing_code_type" }'
           x-error-routing_code_type_is_too_short: routing_code_type can not be shorter than 1 character(s)
+          x-error-param-routing_code_type_is_too_short: '{ "minlength" => 1, "indices" => ["0", "1"] }'
           x-error-routing_code_type_is_too_long: routing_code_type can not be longer than 50 character(s)
+          x-error-param-routing_code_type_is_too_long: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
           x-error-routing_code_type_type_is_wrong: routing_code_type should be of hash type
+          x-error-param-routing_code_type_type_is_wrong: '{ "type" => "hash" }'
           x-error-routing_code_type_not_included_in_list: One or more of routing_code_type items are not included in list
+          x-error-param-routing_code_type_not_included_in_list: '{ "list" => "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe }'
           x-error-routing_code_type_too_many_items: routing_code_type should have less than 50 items
+          x-error-param-routing_code_type_too_many_items: '{ "maxcount" => 50 }'
           x-error-beneficiary_date_of_birth_type_is_wrong: beneficiary_date_of_birth should be of date type
+          x-error-param-beneficiary_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-routing_code_value_is_too_short: routing_code_value can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_is_too_short: '{ "minlength" => 1, "indices" => ["0", "1"] }'
           x-error-routing_code_value_is_too_long: routing_code_value can not be longer than 50 character(s)
+          x-error-param-routing_code_value_is_too_long: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
           x-error-routing_code_value_type_is_wrong: routing_code_value should be of hash type
+          x-error-param-routing_code_value_type_is_wrong: '{ "type" => "hash" }'
           x-error-bic_swift_is_in_invalid_format: bic_swift is in invalid format
           x-error-iban_is_too_long: iban can not be longer than 34 character(s)
+          x-error-param-iban_is_too_long: '{ "maxlength" => 34 }'
           x-error-iban_is_too_short: iban can not be shorter than 1 character(s)
+          x-error-param-iban_is_too_short: '{ "minlength" => 1 }'
           x-error-default_beneficiary_type_is_wrong: default_beneficiary should be of boolean type
+          x-error-param-default_beneficiary_type_is_wrong: '{ "type" => "boolean" }'
           x-error-name_is_too_short: name can not be shorter than 1 character(s)
+          x-error-param-name_is_too_short: '{ "minlength" => 1 }'
           x-error-name_is_too_long: name can not be longer than 100 character(s)
+          x-error-param-name_is_too_long: '{ "maxlength" => 100 }'
           x-error-order_asc_desc_not_in_range: 'order_asc_desc should be in range: asc, desc'
+          x-error-param-order_asc_desc_not_in_range: '{ "range" => "asc, desc" }'
           x-error-order_not_in_range: 'order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at'
+          x-error-param-order_not_in_range: '{ "range" => "order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at" }'
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
           schema:
@@ -1744,45 +1813,72 @@ paths:
           x-error-id_is_not_valid_uuid: id should be in UUID format
           x-error-beneficiary_not_found: Beneficiary was not found for this id
           x-error-bank_account_holder_name_is_too_short: bank_account_holder_name can not be shorter than 1 character(s)
+          x-error-param-bank_account_holder_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_account_holder_name_is_too_long: bank_account_holder_name can not be longer than 255 character(s)
+          x-error-param-bank_account_holder_name_is_too_long: '{ "maxlength" => 255 }'
           x-error-email_is_too_short: email can not be shorter than 1 character(s)
+          x-error-param-email_is_too_short: '{ "minlength" => 1 }'
           x-error-email_is_too_long: email can not be longer than 255 character(s)
+          x-error-param-email_is_too_long: '{ "maxlength" => 255 }'
           x-error-beneficiary_address_is_too_short: beneficiary_address can not be shorter than 1 character(s)
+          x-error-param-beneficiary_address_is_too_short: '{ "minlength" => 1 }'
           x-error-beneficiary_address_is_too_long: beneficiary_address can not be longer than 255 character(s)
+          x-error-param-beneficiary_address_is_too_long: '{ "maxlength" => 255 }'
           x-error-beneficiary_address_is_missing: Beneficiary address is missing
           x-error-account_number_is_too_short: account_number can not be shorter than 1 character(s)
+          x-error-param-account_number_is_too_short: '{ "minlength" => 1 }'
           x-error-account_number_is_too_long: account_number can not be longer than 50 character(s)
+          x-error-param-account_number_is_too_long: '{ "maxlength" => 50 }'
           x-error-account_number_is_missing: Account number is missing
           x-error-account_number_is_invalid: Account number is in invalid format
           x-error-routing_code_value_1_is_too_short: routing_code_value_1 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_1_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_1_is_too_long: routing_code_value_1 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_1_is_too_long: '{ "maxlength" => 50 }'
           x-error-routing_code_value_2_is_too_short: routing_code_value_2 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_2_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_2_is_too_long: routing_code_value_2 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_2_is_too_long: '{ "maxlength" => 50 }'
           x-error-iban_is_too_short: iban can not be shorter than 1 character(s)
+          x-error-param-iban_is_too_short: '{ "minlength" => 1 }'
           x-error-iban_is_too_long: iban can not be longer than 34 character(s)
+          x-error-param-iban_is_too_long: '{ "maxlength" => 34 }'
           x-error-iban_is_missing: IBAN is missing
           x-error-iban_is_invalid: IBAN is in invalid format
           x-error-bic_swift_is_too_short: bic_swift can not be shorter than 1 character(s)
+          x-error-param-bic_swift_is_too_short: '{ "minlength" => 1 }'
           x-error-bic_swift_is_too_long: bic_swift can not be longer than 11 character(s)
+          x-error-param-bic_swift_is_too_long: '{ "maxlength" => 11 }'
           x-error-bic_swift_is_missing: BIC/SWIFT is missing
           x-error-bic_swift_is_invalid: BIC/SWIFT is in invalid format
           x-error-bank_address_is_missing: Bank address is missing
           x-error-bank_address_is_too_short: bank_address can not be shorter than 1 character(s)
+          x-error-param-bank_address_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_address_is_too_long: bank_address can not be longer than 100 character(s)
+          x-error-param-bank_address_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_too_short: bank_name can not be shorter than 1 character(s)
+          x-error-param-bank_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_name_is_too_long: bank_name can not be longer than 100 character(s)
+          x-error-param-bank_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_missing: Bank name is missing
           x-error-bank_name_is_invalid: Bank name is in invalid format
           x-error-bank_account_type_not_in_range: 'bank_account_type should be in range: checking, savings'
+          x-error-param-bank_account_type_not_in_range: '{ "range" => "checking, savings" }'
           x-error-bank_account_type_is_missing: Beneficiary bank account type is missing
           x-error-name_is_too_short: name can not be shorter than 1 character(s)
+          x-error-param-name_is_too_short: '{ "minlength" => 1 }'
           x-error-name_is_too_long: name can not be longer than 100 character(s)
+          x-error-param-name_is_too_long: '{ "maxlength" => 100 }'
           x-error-default_beneficiary_type_is_wrong: default_beneficiary should be of boolean type
+          x-error-param-default_beneficiary_type_is_wrong: '{ "type" => "boolean" }'
           x-error-routing_code_type_1_not_in_range: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_1_not_in_range: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-routing_code_type_2_not_in_range: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_2_not_in_range: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-beneficiary_country_is_required: beneficiary_country is required
           x-error-beneficiary_country_is_in_invalid_format: beneficiary_country is in invalid format
           x-error-beneficiary_entity_type_not_in_range: 'beneficiary_entity_type should be in range: individual, company'
+          x-error-param-beneficiary_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-beneficiary_entity_type_is_missing: Beneficiary entity type is missing
           x-error-beneficiary_company_name_is_missing: Beneficiary company name is missing
           x-error-beneficiary_first_name_is_missing: Beneficiary first name is missing
@@ -1792,6 +1888,7 @@ paths:
           x-error-beneficiary_state_or_province_is_not_supported: Beneficiary state or province is not supported
           x-error-beneficiary_postcode_is_missing: Beneficiary postcode is missing
           x-error-beneficiary_date_of_birth_type_is_wrong: beneficiary_date_of_birth should be of date type
+          x-error-param-beneficiary_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
@@ -1801,8 +1898,11 @@ paths:
           x-error-currency_is_in_invalid_format: currency is in invalid format
           x-error-currency_code_is_invalid: You can not use this currency with beneficiaries
           x-error-unique_value_parameters: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+          x-error-param-unique_value_parameters: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
           x-error-at_least_one_parameter: 'At least one parameter should be present: bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name'
+          x-error-param-at_least_one_parameter: '{ "parameters" => "bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name" }'
           x-error-payment_types_not_in_range: 'payment_types should be in range: priority, regular'
+          x-error-param-payment_types_not_in_range: '{ "range" => "priority, regular" }'
           x-error-sort_code_is_missing: Sort code is missing
           x-error-sort_code_is_invalid: Sort code is in invalid format
           x-error-aba_is_missing: ABA is missing
@@ -1819,6 +1919,7 @@ paths:
           x-error-clabe_is_invalid: CLABE is in invalid format
           x-error-beneficiary_update_failed: Beneficiary was not updated
           x-error-beneficiary_details_are_missing: 'Following beneficiary details are missing: beneficiary_company_name'
+          x-error-param-beneficiary_details_are_missing: '{ "missing_details" => ["beneficiary_company_name"] }'
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
           schema:
@@ -2106,45 +2207,72 @@ paths:
           description: Client error.
           x-error-bank_account_holder_name_is_required: bank_account_holder_name is required
           x-error-bank_account_holder_name_is_too_short: bank_account_holder_name can not be shorter than 1 character(s)
+          x-error-param-bank_account_holder_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_account_holder_name_is_too_long: bank_account_holder_name can not be longer than 255 character(s)
+          x-error-param-bank_account_holder_name_is_too_long: '{ "maxlength" => 255 }'
           x-error-email_is_too_short: email can not be shorter than 1 character(s)
+          x-error-param-email_is_too_short: '{ "minlength" => 1 }'
           x-error-email_is_too_long: email can not be longer than 255 character(s)
+          x-error-param-email_is_too_long: '{ "maxlength" => 255 }'
           x-error-beneficiary_address_is_too_short: beneficiary_address can not be shorter than 1 character(s)
+          x-error-param-beneficiary_address_is_too_short: '{ "minlength" => 1 }'
           x-error-beneficiary_address_is_too_long: beneficiary_address can not be longer than 255 character(s)
+          x-error-param-beneficiary_address_is_too_long: '{ "maxlength" => 255 }'
           x-error-beneficiary_address_is_missing: Beneficiary address is missing
           x-error-account_number_is_too_short: account_number can not be shorter than 1 character(s)
+          x-error-param-account_number_is_too_short: '{ "minlength" => 1 }'
           x-error-account_number_is_too_long: account_number can not be longer than 50 character(s)
+          x-error-param-account_number_is_too_long: '{ "maxlength" => 50 }'
           x-error-account_number_is_missing: Account number is missing
           x-error-account_number_is_invalid: Account number is in invalid format
           x-error-routing_code_value_1_is_too_short: routing_code_value_1 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_1_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_1_is_too_long: routing_code_value_1 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_1_is_too_long: '{ "maxlength" => 50 }'
           x-error-routing_code_value_2_is_too_short: routing_code_value_2 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_2_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_2_is_too_long: routing_code_value_2 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_2_is_too_long: '{ "maxlength" => 50 }'
           x-error-iban_is_too_short: iban can not be shorter than 1 character(s)
+          x-error-param-iban_is_too_short: '{ "minlength" => 1 }'
           x-error-iban_is_too_long: iban can not be longer than 34 character(s)
+          x-error-param-iban_is_too_long: '{ "maxlength" => 34 }'
           x-error-iban_is_missing: IBAN is missing
           x-error-iban_is_invalid: IBAN is in invalid format
           x-error-bic_swift_is_too_short: bic_swift can not be shorter than 1 character(s)
+          x-error-param-bic_swift_is_too_short: '{ "minlength" => 1 }'
           x-error-bic_swift_is_too_long: bic_swift can not be longer than 11 character(s)
+          x-error-param-bic_swift_is_too_long: '{ "maxlength" => 11 }'
           x-error-bic_swift_is_missing: BIC/SWIFT is missing
           x-error-bic_swift_is_invalid: BIC/SWIFT is in invalid format
           x-error-bank_address_is_missing: Bank address is missing
           x-error-bank_address_is_too_short: bank_address can not be shorter than 1 character(s)
+          x-error-param-bank_address_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_address_is_too_long: bank_address can not be longer than 100 character(s)
+          x-error-param-bank_address_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_too_short: bank_name can not be shorter than 1 character(s)
+          x-error-param-bank_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_name_is_too_long: bank_name can not be longer than 100 character(s)
+          x-error-param-bank_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_missing: Bank name is missing
           x-error-bank_name_is_invalid: Bank name is in invalid format
           x-error-bank_account_type_not_in_range: 'bank_account_type should be in range: checking, savings'
+          x-error-param-bank_account_type_not_in_range: '{ "range" => "checking, savings" }'
           x-error-bank_account_type_is_missing: Beneficiary bank account type is missing
           x-error-name_is_too_short: name can not be shorter than 1 character(s)
+          x-error-param-name_is_too_short: '{ "minlength" => 1 }'
           x-error-name_is_too_long: name can not be longer than 100 character(s)
+          x-error-param-name_is_too_long: '{ "maxlength" => 100  }'
           x-error-default_beneficiary_type_is_wrong: default_beneficiary should be of boolean type
+          x-error-param-default_beneficiary_type_is_wrong: '{ "type" => "boolean"  }'
           x-error-routing_code_type_1_not_in_range: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_1_not_in_range: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-routing_code_type_2_not_in_range: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_2_not_in_range: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-beneficiary_country_is_required: beneficiary_country is required
           x-error-beneficiary_country_is_in_invalid_format: beneficiary_country is in invalid format
           x-error-beneficiary_entity_type_not_in_range: 'beneficiary_entity_type should be in range: individual, company'
+          x-error-param-beneficiary_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-beneficiary_entity_type_is_missing: Beneficiary entity type is missing
           x-error-beneficiary_company_name_is_missing: Beneficiary company name is missing
           x-error-beneficiary_first_name_is_missing: Beneficiary first name is missing
@@ -2154,6 +2282,7 @@ paths:
           x-error-beneficiary_state_or_province_is_not_supported: Beneficiary state or province is not supported
           x-error-beneficiary_postcode_is_missing: Beneficiary postcode is missing
           x-error-beneficiary_date_of_birth_type_is_wrong: beneficiary_date_of_birth should be of date type
+          x-error-param-beneficiary_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
@@ -2165,10 +2294,13 @@ paths:
           x-error-currency_is_in_invalid_format: currency is in invalid format
           x-error-currency_code_is_invalid: You can not use this currency with beneficiaries
           x-error-unique_value_parameters: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+          x-error-param-unique_value_parameters: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
           x-error-unsupported_beneficiary_country_code: Beneficiary country is not supported
           x-error-beneficiary_create_failed: Beneficiary was not created
           x-error-beneficiary_details_are_missing: 'Following beneficiary details are missing: beneficiary_company_name'
+          x-error-param-beneficiary_details_are_missing: '{ "missing_details" => ["beneficiary_company_name"] }'
           x-error-payment_types_not_in_range: 'payment_types should be in range: priority, regular'
+          x-error-param-payment_types_not_in_range: '{ "range" => "priority, regular" }'
           x-error-sort_code_is_missing: Sort code is missing
           x-error-sort_code_is_invalid: Sort code is in invalid format
           x-error-aba_is_missing: ABA is missing
@@ -2359,6 +2491,7 @@ paths:
           x-error-beneficiary_country_is_required: beneficiary_country is required
           x-error-beneficiary_country_is_in_invalid_format: beneficiary_country is in invalid format
           x-error-beneficiary_entity_type_not_in_range: 'beneficiary_entity_type should be in range: individual, company'
+          x-error-param-beneficiary_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-beneficiary_entity_type_is_missing: Beneficiary entity type is missing
           x-error-beneficiary_company_name_is_missing: Beneficiary company name is missing
           x-error-beneficiary_first_name_is_missing: Beneficiary first name is missing
@@ -2368,33 +2501,51 @@ paths:
           x-error-beneficiary_state_or_province_is_not_supported: Beneficiary state or province is not supported
           x-error-beneficiary_postcode_is_missing: Beneficiary postcode is missing
           x-error-beneficiary_date_of_birth_type_is_wrong: beneficiary_date_of_birth should be of date type
+          x-error-param-beneficiary_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-account_number_is_too_short: account_number can not be shorter than 1 character(s)
+          x-error-param-account_number_is_too_short: '{ "minlength" => 1 }'
           x-error-account_number_is_too_long: account_number can not be longer than 50 character(s)
+          x-error-param-account_number_is_too_long: '{ "maxlength" => 50 }'
           x-error-account_number_is_missing: Account number is missing
           x-error-account_number_is_invalid: Account number is in invalid format
           x-error-routing_code_value_1_is_too_short: routing_code_value_1 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_1_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_1_is_too_long: routing_code_value_1 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_1_is_too_long: '{ "maxlength" => 50 }'
           x-error-routing_code_value_2_is_too_short: routing_code_value_2 can not be shorter than 1 character(s)
+          x-error-param-routing_code_value_2_is_too_short: '{ "minlength" => 1 }'
           x-error-routing_code_value_2_is_too_long: routing_code_value_2 can not be longer than 50 character(s)
+          x-error-param-routing_code_value_2_is_too_long: '{ "maxlength" => 50 }'
           x-error-iban_is_too_short: iban can not be shorter than 1 character(s)
+          x-error-param-iban_is_too_short: '{ "minlength" => 1 }'
           x-error-iban_is_too_long: iban can not be longer than 34 character(s)
+          x-error-param-iban_is_too_long: '{ "maxlength" => 34 }'
           x-error-iban_is_missing: IBAN is missing
           x-error-iban_is_invalid: IBAN is in invalid format
           x-error-bic_swift_is_too_short: bic_swift can not be shorter than 1 character(s)
+          x-error-param-bic_swift_is_too_short: '{ "minlength" => 1 }'
           x-error-bic_swift_is_too_long: bic_swift can not be longer than 11 character(s)
+          x-error-param-bic_swift_is_too_long: '{ "maxlength" => 11 }'
           x-error-bic_swift_is_missing: BIC/SWIFT is missing
           x-error-bic_swift_is_invalid: BIC/SWIFT is in invalid format
           x-error-bank_address_is_missing: Bank address is missing
           x-error-bank_address_is_too_short: bank_address can not be shorter than 1 character(s)
+          x-error-param-bank_address_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_address_is_too_long: bank_address can not be longer than 100 character(s)
+          x-error-param-bank_address_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_too_short: bank_name can not be shorter than 1 character(s)
+          x-error-param-bank_name_is_too_short: '{ "minlength" => 1 }'
           x-error-bank_name_is_too_long: bank_name can not be longer than 100 character(s)
+          x-error-param-bank_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-bank_name_is_missing: Bank name is missing
           x-error-bank_name_is_invalid: Bank name is in invalid format
           x-error-bank_account_type_not_in_range: 'bank_account_type should be in range: checking, savings'
+          x-error-param-bank_account_type_not_in_range: '{ "range" => "checking, savings" }'
           x-error-bank_account_type_is_missing: Beneficiary bank account type is missing
           x-error-routing_code_type_1_not_in_range: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_1_not_in_range: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-routing_code_type_2_not_in_range: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
+          x-error-param-routing_code_type_2_not_in_range: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
           x-error-bank_country_is_required: bank_country is required
           x-error-bank_country_is_in_invalid_format: bank_country is in invalid format
           x-error-bank_country_is_not_supported: bank_country is not supported
@@ -2402,9 +2553,12 @@ paths:
           x-error-currency_is_in_invalid_format: currency is in invalid format
           x-error-currency_code_is_invalid: You can not use this currency with beneficiaries
           x-error-unique_value_parameters: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+          x-error-param-unique_value_parameters: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
           x-error-beneficiary_create_failed: Beneficiary was not created
           x-error-beneficiary_details_are_missing: 'Following beneficiary details are missing: beneficiary_company_name'
+          x-error-param-beneficiary_details_are_missing: '{ "missing_details" => ["beneficiary_company_name"] }'
           x-error-payment_types_not_in_range: 'payment_types should be in range: priority, regular'
+          x-error-param-payment_types_not_in_range: '{ "range" => "priority, regular" }'
           x-error-sort_code_is_missing: Sort code is missing
           x-error-sort_code_is_invalid: Sort code is in invalid format
           x-error-aba_is_missing: ABA is missing
@@ -2819,24 +2973,40 @@ paths:
           x-error-at_least_one_parameter: 'At least one parameter should be present: first_name, last_name, email_address, phone_number, mobile_phone_number, login_id, locale, timezone, status'
           x-error-id_is_not_valid_uuid: id should be in UUID format
           x-error-first_name_is_too_short: first_name can not be shorter than 1 character(s)
+          x-error-param-first_name_is_too_short: '{ "minlength" => 1 }'
           x-error-first_name_is_too_long: first_name can not be longer than 100 character(s)
+          x-error-param-first_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-last_name_is_too_short: last_name can not be shorter than 1 character(s)
+          x-error-param-last_name_is_too_short: '{ "minlength" => 1 }'
           x-error-last_name_is_too_long: last_name can not be longer than 100 character(s)
+          x-error-param-last_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-email_address_is_too_short: email_address can not be shorter than 1 character(s)
+          x-error-param-email_address_is_too_short: '{ "minlength" => 1 }'
           x-error-email_address_is_too_long: email_address can not be longer than 255 character(s)
+          x-error-param-email_address_is_too_long: '{ "maxlength" => 255 }'
           x-error-email_address_is_in_invalid_format: email_address is in invalid format
           x-error-phone_number_is_too_short: phone_number can not be shorter than 1 character(s)
+          x-error-param-phone_number_is_too_short: '{ "minlength" => 1 }'
           x-error-phone_number_is_too_long: phone_number can not be longer than 100 character(s)
+          x-error-param-phone_number_is_too_long: '{ "maxlength" => 100 }'
           x-error-mobile_phone_number_is_too_short: mobile_phone_number can not be shorter than 1 character(s)
+          x-error-param-mobile_phone_number_is_too_short: '{ "minlength" => 1 }'
           x-error-mobile_phone_number_is_too_long: mobile_phone_number can not be longer than 100 character(s)
+          x-error-param-mobile_phone_number_is_too_long: '{ "maxlength" => 100 }'
           x-error-login_id_in_use: 'login_id already in use: john.smith@company.com'
+          x-error-param-login_id_is_too_long: '{ "maxlength" => 50 }'
           x-error-login_id_is_too_long: login_id can not be longer than 50 character(s)
           x-error-locale_is_too_short: locale can not be shorter than 2 character(s)
+          x-error-param-locale_is_too_short: '{ "minlength" => 2 }'
           x-error-locale_is_too_long: locale can not be longer than 5 character(s)
+          x-error-param-locale_is_too_long: '{ "maxlength" => 5 }'
           x-error-timezone_is_too_short: timezone can not be shorter than 2 character(s)
+          x-error-param-timezone_is_too_short: '{ "minlength" => 2 }'
           x-error-timezone_is_too_long: timezone can not be longer than 5 character(s)
+          x-error-param-timezone_is_too_long: '{ "maxlength" => 5 }'
           x-error-status_not_in_range: 'status should be in range: enabled, not_enabled'
           x-error-date_of_birth_type_is_wrong: date_of_birth should be of date type
+          x-error-param-date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-contact_not_found: Contact was not found for this id
           schema:
             $ref: '#/definitions/UpdateContactError'
@@ -2968,25 +3138,42 @@ paths:
           description: Client error.
           x-error-account_id_is_in_invalid_format: account_id is in invalid format
           x-error-first_name_is_too_short: first_name can not be shorter than 1 character(s)
+          x-error-param-first_name_is_too_short: '{ "minlength" => 1 }'
           x-error-first_name_is_too_long: first_name can not be longer than 100 character(s)
+          x-error-param-first_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-last_name_is_too_short: last_name can not be shorter than 1 character(s)
+          x-error-param-last_name_is_too_short: '{ "minlength" => 1 }'
           x-error-last_name_is_too_long: last_name can not be longer than 100 character(s)
+          x-error-param-last_name_is_too_long: '{ "maxlength" => 100 }'
           x-error-email_address_is_too_short: email_address can not be shorter than 1 character(s)
+          x-error-param-email_address_is_too_short: '{ "minlength" => 1 }'
           x-error-email_address_is_too_long: email_address can not be longer than 255 character(s)
+          x-error-param-email_address_is_too_long: '{ "maxlength" => 255 }'
           x-error-email_address_is_in_invalid_format: email_address is in invalid format
           x-error-phone_number_is_too_short: phone_number can not be shorter than 1 character(s)
+          x-error-param-phone_number_is_too_short: '{ "minlength" => 1 }'
           x-error-phone_number_is_too_long: phone_number can not be longer than 100 character(s)
+          x-error-param-phone_number_is_too_long: '{ "maxlength" => 100 }'
           x-error-mobile_phone_number_is_too_short: mobile_phone_number can not be shorter than 1 character(s)
+          x-error-param-mobile_phone_number_is_too_short: '{ "minlength" => 1 }'
           x-error-mobile_phone_number_is_too_long: mobile_phone_number can not be longer than 100 character(s)
+          x-error-param-mobile_phone_number_is_too_long: '{ "maxlength" => 100 }'
           x-error-login_id_is_too_short: login_id can not be shorter than 1 character(s)
+          x-error-param-login_id_is_too_short: '{ "minlength" => 1 }'
           x-error-login_id_in_use: login_id already in use
           x-error-login_id_is_too_long: login_id can not be longer than 50 character(s)
+          x-error-param-login_id_is_too_long: '{ "maxlength" => 50 }'
           x-error-locale_is_too_short: locale can not be shorter than 2 character(s)
+          x-error-param-locale_is_too_short: '{ "minlength" => 2 }'
           x-error-locale_is_too_long: locale can not be longer than 5 character(s)
+          x-error-param-locale_is_too_long: '{ "maxlength" => 5 }'
           x-error-timezone_is_too_short: timezone can not be shorter than 2 character(s)
+          x-error-param-timezone_is_too_short: '{ "minlength" => 2 }'
           x-error-timezone_is_too_long: timezone can not be longer than 5 character(s)
+          x-error-param-timezone_is_too_long: '{ "maxlength" => 5 }'
           x-error-status_not_in_range: 'status should be in range: enabled, not_enabled'
           x-error-date_of_birth_type_is_wrong: date_of_birth should be of date type
+          x-error-param-date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-date_of_birth_is_required: Date of Birth is a required field. Please provide date of birth (YYYY-MM-DD)
           schema:
             $ref: '#/definitions/CreateContactError'
@@ -3439,27 +3626,39 @@ paths:
         '400':
           description: Client error.
           x-error-invalid_extra_parameters: Invalid extra parameters
+          x-error-param-invalid_extra_parameters: '{ "parameters" => { "extra_param" => "extra_value" } }'
           x-error-buy_currency_is_in_invalid_format: buy_currency is not a valid ISO 4217 currency code
+          x-error-param-buy_currency_is_in_invalid_format: '{ "type" => "currency" }'
           x-error-buy_currency_is_required: buy_currency is required
           x-error-invalid_buy_currency: buy_currency is invalid
           x-error-sell_currency_is_required: sell_currency is required
           x-error-sell_currency_is_in_invalid_format: sell_currency is not a valid ISO 4217 currency code
+          x-error-param-sell_currency_is_in_invalid_format: '{ "type" => "currency" }'
           x-error-invalid_sell_currency: sell_currency is invalid
           x-error-amount_is_required: amount is required
           x-error-conversion_above_limit: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
+          x-error-param-conversion_above_limit: '{ "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }'
           x-error-conversion_below_limit: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
+          x-error-param-conversion_below_limit: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
           x-error-amount_type_is_wrong: amount should be of numeric type
+          x-error-param-amount_type_is_wrong: '{ "type" => "numeric" }'
           x-error-reason_is_required: reason is required
           x-error-reason_is_too_short: reason can not be shorter than 1 character(s)
+          x-error-param-reason_is_too_short: '{ "minlength" => 1 }'
           x-error-client_rate_is_in_invalid_format: client_rate should be of numeric type with 4 dp
+          x-error-param-client_rate_is_in_invalid_format: '{ "type" => "numeric_with_precision", "precision" => 4 }'
           x-error-invalid_client_rate: client_rate is invalid
+          x-error-param-invalid_client_rate: '{ "client_rate" => "1.455543..1.778997" }'
           x-error-client_rate_is_required: The client_rate is required if you supply currency_pair
           x-error-fixed_side_is_required: fixed_side is required
+          x-error-param-fixed_side_not_in_range: '{ "range" => "buy, sell" }'
           x-error-fixed_side_not_in_range: 'fixed_side should be in range: buy, sell'
           x-error-term_agreement_is_required: term_agreement is required
           x-error-term_agreement_type_is_wrong: term_agreement should be of boolean type
+          x-error-param-term_agreement_type_is_wrong: '{ "type" => "boolean" }'
           x-error-conversion_create_failed: Conversion create failed
           x-error-currency_pair_is_in_invalid_format: currency_pair is not a valid ISO 4217 currency code
+          x-error-param-currency_pair_is_in_invalid_format: '{ "type" => "currency_pair" }'
           x-error-invalid_currency_pair: The currency_pair should be the real market pair of the buy_currency and sell_currency
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
@@ -3468,10 +3667,15 @@ paths:
           x-error-currency_pair_is_required: The currency_pair is required if you supply client_rate
           x-error-variable_value_dates_not_permitted: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
           x-error-client_buy_amount_is_in_invalid_format: client_buy_amount should be of numeric type with 2 dp
+          x-error-param-client_buy_amount_is_in_invalid_format: '{ "type" => "client_buy_amount" }'
           x-error-client_sell_amount_is_in_invalid_format: client_sell_amount should be of numeric type with 2 dp
+          x-error-param-client_sell_amount_is_in_invalid_format: '{ "type" => "client_sell_amount" }'
           x-error-cannot_fix_client_sell_on_fixed_sell_side: You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side
+          x-error-param-cannot_fix_client_sell_on_fixed_sell_side: '{ "type" => "client_sell_amount" }'
           x-error-client_buy_amount_exceeds_partner_buy_amount: The client buy amount specified is greater than the amount that you would be buying and is thus invalid
+          x-error-param-client_buy_amount_exceeds_partner_buy_amount: '{ "type" => "client_buy_amount" }'
           x-error-partner_sell_amount_exceeds_client_sell_amount: The client sell amount specified is less than the amount that you would be selling and is thus invalid
+          x-error-param-partner_sell_amount_exceeds_client_sell_amount: '{ "type" => "client_sell_amount" }'
           x-error-missing_partner_spread_table_data: Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up
           x-error-missing_client_spread_table_data: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up
           x-error-fixed_amounts_not_permitted_for_this_user: You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer
@@ -3555,6 +3759,7 @@ paths:
           x-error-ibans_not_found: IBANs were not found
           x-error-iban_not_found_for_currency: IBAN was not found for the selected currency
           x-error-currency_is_in_invalid_format: currency is not a valid ISO 4217 currency code
+          x-error-param-currency_is_in_invalid_format: '{ "type" => "currency" }'
           x-error-currency_is_not_supported: currency is not supported
           schema:
             $ref: '#/definitions/GetIBANsError'
@@ -3634,6 +3839,7 @@ paths:
           description: Client error.
           x-error-ibans_not_found: IBANs were not found
           x-error-currency_is_in_invalid_format: currency is not a valid ISO 4217 currency code
+          x-error-param-currency_is_in_invalid_format: '{ "type" => "currency" }'
           x-error-currency_is_not_supported: currency is not supported
           schema:
             $ref: '#/definitions/GetIBANsForSubAccountsError'
@@ -4430,7 +4636,9 @@ paths:
           x-error-invalid_beneficiary_id: Unknown beneficiary_id
           x-error-invalid_beneficiary_currency: You cannot assign this Beneficiary to the Payment as it is the incorrect currency
           x-error-amount_type_is_wrong: amount should be of numeric type
+          x-error-param-amount_type_is_wrong: '{ "type" => "numeric" }'
           x-error-payment_above_limit: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
+          x-error-param-payment_above_limit: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
           x-error-invalid_amount_for_order: The payment amount is more than the value of the order
           x-error-payment_type_not_in_range: 'payment_type should be in range: priority, regular'
           x-error-invalid_conversion_id: Conversion could not be found.
@@ -4439,9 +4647,11 @@ paths:
           x-error-payment_date_is_in_invalid_format: payment_date should be in ISO 8601 format
           x-error-payment_date_is_too_early: The payment date cannot be sooner than the conversion date
           x-error-reference_is_too_long: reference can not be longer than 255 character(s)
+          x-error-param-reference_is_too_long: '{ "maxlength" => 255 }'
           x-error-payment_can_not_be_edited: Sorry this Payment has already been processed and you are unable to Edit it
           x-error-extra_dependent_params: Parameters payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_address, payer_country, payer_postcode, payer_state_or_province, payer_date_of_birth, payer_identification_type, payer_identification_value can't be provided in the same request with 'payer_details_source' with value 'account'
           x-error-payer_entity_type_not_in_range: 'payer_entity_type should be in range: individual, company'
+          x-error-param-payer_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-payer_entity_type_is_missing: Payer entity type is missing
           x-error-payer_company_name_is_missing: Payer company name is missing
           x-error-payer_first_name_is_missing: Payer first name is missing
@@ -4450,6 +4660,7 @@ paths:
           x-error-payer_state_or_province_is_missing: Payer state or province is missing
           x-error-payer_postcode_is_missing: Payer postcode is missing
           x-error-payer_date_of_birth_type_is_wrong: payer_date_of_birth should be of date type
+          x-error-param-payer_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
@@ -4674,13 +4885,16 @@ paths:
           description: Client error.
           x-error-invalid_type: Invalid Payment type
           x-error-currency_length_is_invalid: currency should be 3 character(s) long
+          x-error-param-currency_length_is_invalid: '{ "length" => 3 }'
           x-error-currency_is_required: currency is required
           x-error-invalid_currency: You cannot make payments with this currency
           x-error-beneficiary_id_is_not_valid_uuid: beneficiary_id should be in UUID format
           x-error-beneficiary_id_is_required: beneficiary_id is required
           x-error-invalid_beneficiary_id: Unknown beneficiary_id
           x-error-payment_above_limit: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
+          x-error-param-payment_above_limit: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
           x-error-payer_entity_type_not_in_range: 'payer_entity_type should be in range: individual, company'
+          x-error-param-payer_entity_type_not_in_range: '{ "range" => "individual, company" }'
           x-error-payer_entity_type_is_missing: Payer entity type is missing
           x-error-payer_company_name_is_missing: Payer company name is missing
           x-error-payer_first_name_is_missing: Payer first name is missing
@@ -4690,6 +4904,7 @@ paths:
           x-error-payer_state_or_province_is_missing: Payer state or province is missing
           x-error-payer_postcode_is_missing: Payer postcode is missing
           x-error-payer_date_of_birth_type_is_wrong: payer_date_of_birth should be of date type
+          x-error-param-payer_date_of_birth_type_is_wrong: '{ "type" => "date" }'
           x-error-identification_type_is_missing: identification_type is missing
           x-error-identification_type_is_invalid: identification_type is invalid
           x-error-identification_value_is_missing: identification_value is missing
@@ -4698,6 +4913,7 @@ paths:
           x-error-conversion_is_already_settled: The conversion is already settled
           x-error-payment_date_is_too_early: The payment date cannot be sooner than the conversion date
           x-error-reference_is_too_long: reference can not be longer than 255 character(s)
+          x-error-param-reference_is_too_long: '{ "maxlength" => 255 }'
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
           x-error-duplicate_request: The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment
@@ -4881,17 +5097,22 @@ paths:
         '400':
           description: Client error.
           x-error-unique_value_parameters: 'Following parameters should not have same values: sell_currency, buy_currency'
+          x-error-param-unique_value_parameters: '{ "parameters" => "sell_currency, buy_currency" }'
           x-error-rate_could_not_be_retrieved: Rate could not be retrieved
           x-error-ccy_pair_is_not_tradeable: Given currency pair is not tradeable
           x-error-fixed_side_not_in_range: 'fixed_side should be in range: sell, buy'
+          x-error-param-fixed_side_not_in_range: '{ "range" => "sell, buy" }'
           x-error-fixed_side_is_required: fixed_side is required
           x-error-conversion_date_type_is_wrong: conversion_date should be of date type
+          x-error-param-conversion_date_type_is_wrong: '{ "type" => "date" }'
           x-error-invalid_delivery_date: The delivery date you have requested cannot be met for this currency pair
           x-error-sell_currency_is_in_invalid_format: sell_currency is in invalid format
           x-error-sell_currency_is_required: sell_currency is required
           x-error-amount_type_is_wrong: amount should be of numeric type
+          x-error-param-amount_type_is_wrong: '{ "type" => "numeric" }'
           x-error-amount_is_required: amount is required
           x-error-amount_is_too_small: amount can not be smaller than 1
+          x-error-param-amount_is_too_small: '{ "minvalue" => 1 }'
           x-error-buy_currency_is_in_invalid_format: buy_currency is in invalid format
           x-error-buy_currency_is_required: buy_currency is required
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
@@ -4973,8 +5194,10 @@ paths:
         '400':
           description: Client error.
           x-error-currency_pair_is_too_short: currency_pair can not be shorter than 6 letter(s)
+          x-error-param-currency_pair_is_too_short: '{ "minlength" => 6 }'
           x-error-currency_pair_is_required: currency_pair is required
           x-error-invalid_currency_pair: Invalid currency pair
+          x-error-param-invalid_currency_pair: '{ "currency_pair" => ["AAABBB"] }'
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
           x-error-contact_not_found: Contact was not found for this id
           schema:
@@ -5143,9 +5366,13 @@ paths:
           x-error-conversion_pair_is_required: conversion_pair is required
           x-error-invalid_conversion_pair: The conversion pair specified was invalid
           x-error-conversion_pair_is_too_short: conversion_pair can not be shorter than 6 character(s)
+          x-error-param-conversion_pair_is_too_short: '{ "minlength" => 6 }'
           x-error-conversion_pair_is_too_long: conversion_pair can not be longer than 6 character(s)
+          x-error-param-conversion_pair_is_too_long: '{ "maxlength" => 6 }'
           x-error-start_date_is_too_far_in_future: Date is too far in the future (more than 1 year)
+          x-error-param-start_date_is_too_far_in_future: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
           x-error-start_date_is_in_invalid_format: start_date should be in ISO 8601 format
+          x-error-param-start_date_is_in_invalid_format: '{ "type" => "date" }'
           schema:
             $ref: '#/definitions/GetConversionDatesError'
           headers:
@@ -5299,8 +5526,11 @@ paths:
           description: Client error.
           x-error-payer_country_is_required: payer_country is required
           x-error-payer_country_is_in_invalid_format: payer_country is not a valid ISO 3166-1 Alpha-2 country code
+          x-error-param-payer_country_is_in_invalid_format: '{ "type" => "country_code" }'
           x-error-payment_type_not_in_range: 'payment_type should be in range: priority, regular'
+          x-error-param-payment_type_not_in_range: '{ "range" => "priority, regular" }'
           x-error-payer_entity_type_not_in_range: 'payer_entity_type should be in range: company, individual'
+          x-error-param-payer_entity_type_not_in_range: '{ "range" => "company, individual" }'
           schema:
             $ref: '#/definitions/GetPayerRequirementsError'
           headers:
@@ -5379,9 +5609,13 @@ paths:
           x-error-currency_is_required: currency is required
           x-error-invalid_currency: The currency specified was invalid
           x-error-currency_is_too_short: currency can not be shorter than 3 character(s)
+          x-error-param-currency_is_too_short: '{ "minlength" => 3 }'
           x-error-currency_is_too_long: currency can not be longer than 3 character(s)
+          x-error-param-currency_is_too_long: '{ "maxlength" => 3 }'
           x-error-start_date_is_too_far_in_future: Date is too far in the future (more than 1 year)
+          x-error-param-start_date_is_too_far_in_future: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
           x-error-start_date_is_in_invalid_format: Date is too far in the future (more than 1 year)
+          x-error-param-start_date_is_in_invalid_format: '{ "type" => "date" }'
           schema:
             $ref: '#/definitions/GetPaymentDatesError'
           headers:
@@ -6696,14 +6930,23 @@ paths:
           x-error-source_account_id_is_not_valid_uuid: source_account_id should be in UUID format
           x-error-destination_account_id_is_not_valid_uuid: destination_account_id should be in UUID format
           x-error-amount_from_type_is_wrong: amount_from should be of numeric type
+          x-error-param-amount_from_type_is_wrong: '{ "type" => "numeric" }'
           x-error-amount_to_type_is_wrong: amount_to should be of numeric type
+          x-error-param-amount_to_type_is_wrong: '{ "type" => "numeric" }'
           x-error-status_not_in_range: 'status should be in range: pending, completed'
+          x-error-param-status_not_in_range: '{ "range" => "pending, completed" }'
           x-error-created_at_from_is_in_invalid_format: created_at_from should be in ISO 8601 format
+          x-error-param-created_at_from_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-created_at_to_is_in_invalid_format: created_at_to should be in ISO 8601 format
+          x-error-param-created_at_to_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-updated_at_from_is_in_invalid_format: updated_at_from should be in ISO 8601 format
+          x-error-param-updated_at_from_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-updated_at_to_is_in_invalid_format: updated_at_to should be in ISO 8601 format
+          x-error-param-updated_at_to_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-completed_at_from_is_in_invalid_format: completed_at_from should be in ISO 8601 format
+          x-error-param-completed_at_from_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-completed_at_to_is_in_invalid_format: completed_at_to should be in ISO 8601 format
+          x-error-param-completed_at_to_is_in_invalid_format: '{ "type" => "datetime" }'
           x-error-creator_contact_id_is_not_valid_uuid: creator_contact_id should be in UUID format
           x-error-creator_account_id_is_not_valid_uuid: creator_account_id should be in UUID format
           x-error-on_behalf_of_self: You cannot act on behalf of your own Contact
