@@ -3447,6 +3447,7 @@ paths:
           x-error-invalid_sell_currency: sell_currency is invalid
           x-error-amount_is_required: amount is required
           x-error-conversion_above_limit: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
+          x-error-conversion_below_limit: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
           x-error-amount_type_is_wrong: amount should be of numeric type
           x-error-reason_is_required: reason is required
           x-error-reason_is_too_short: reason can not be shorter than 1 character(s)
