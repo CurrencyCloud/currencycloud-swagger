@@ -144,23 +144,23 @@ paths:
           description: Client error.
           x-errors:
             - code: login_id_is_required
-              category: ''
+              category: 'login_id'
               message: login_id is required
               params: ''
             - code: login_id_is_too_short
-              category: ''
+              category: 'login_id'
               message: login_id can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: login_id_is_too_long
-              category: ''
+              category: 'login_id'
               message: login_id can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: api_key_is_required
-              category: ''
+              category: 'api_key'
               message: api_key is required
               params: ''
             - code: api_key_length_is_invalid
-              category: ''
+              category: 'api_key'
               message: api_key should be 64 character(s) long
               params: '{ "length" => 64 }'
           schema:
@@ -277,7 +277,7 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
           schema:
@@ -431,59 +431,59 @@ paths:
           description: Client error.
           x-errors:
             - code: account_name_is_too_short
-              category: ''
+              category: 'account_name'
               message: account_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_name_is_too_long
-              category: ''
+              category: 'account_name'
               message: account_name can not be longer than 150 character(s)
               params: '{ "maxlength" => 255 }'
             - code: brand_is_too_short
-              category: ''
+              category: 'brand'
               message: brand can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: brand_is_too_long
-              category: ''
+              category: 'brand'
               message: brand can not be longer than 100 character(s)
               params: '{ "maxlength" => 255 }'
             - code: your_reference_is_too_short
-              category: ''
+              category: 'your_reference'
               message: your_reference can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: your_reference_is_too_long
-              category: ''
+              category: 'your_reference'
               message: your_reference can not be longer than 25 character(s)
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: enabled, disabled, enabled_no_trading'
               params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
             - code: legal_entity_type_not_in_range
-              category: ''
+              category: 'legal_entity_type'
               message: 'legal_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: street_is_too_long
-              category: ''
+              category: 'street'
               message: street can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: city_is_too_long
-              category: ''
+              category: 'city'
               message: city can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: postal_code_is_too_long
-              category: ''
+              category: 'postal_code'
               message: postal_code can not be longer than 20 character(s)
               params: '{ "maxlength" => 20 }'
             - code: country_is_too_long
-              category: ''
+              category: 'country'
               message: country can not be longer than 2 character(s)
               params: '{ "maxlength" => 2 }'
             - code: spread_table_is_too_short
-              category: ''
+              category: 'spread_table'
               message: country can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: spread_table_is_too_long
-              category: ''
+              category: 'spread_table'
               message: country can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
           schema:
@@ -559,19 +559,19 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: account_not_found
-              category: ''
+              category: 'id'
               message: Account was not found for this id
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -763,75 +763,75 @@ paths:
           description: Client error.
           x-errors:
             - code: at_least_one_parameter
-              category: ''
+              category: 'base'
               message: 'At least one parameter should be present: account_name, brand, your_reference, status, street, city, country, postal_code, spread_table'
               params: ''
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: account_name_is_too_long
-              category: ''
+              category: 'account_name'
               message: account_name can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: brand_is_too_long
-              category: ''
+              category: 'brand'
               message: brand can not be longer than 100 character(s)
               params: '{ "maxlength" => 255 }'
             - code: brand_not_found
-              category: ''
+              category: 'brand'
               message: Brand non_existing_brand wasn't found
               params: '{ "brand" => "non_existing_brand" }'
             - code: brand_account_not_broker
-              category: ''
+              category: 'brand'
               message: Account doesn't have broker permissions
               params: '{ "brand" => "wrong_brand" }'
             - code: your_reference_is_too_long
-              category: ''
+              category: 'your_reference'
               message: your_reference can not be longer than 25 character(s)
               params: '{ "maxlength" => 25 }'
             - code: legal_entity_type_not_in_range
-              category: ''
+              category: 'legal_entity_type'
               message: 'legal_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: enabled, disabled, enabled_no_trading'
               params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
             - code: street_is_too_long
-              category: ''
+              category: 'street'
               message: street can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: city_is_too_long
-              category: ''
+              category: 'city'
               message: city can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: postal_code_is_too_long
-              category: ''
+              category: 'postal_code'
               message: postal_code can not be longer than 20 character(s)
               params: '{ "maxlength" => 20 }'
             - code: country_is_too_long
-              category: ''
+              category: 'country'
               message: country can not be longer than 2 character(s)
               params: '{ "maxlength" => 2 }'
             - code: spread_table_is_too_long
-              category: ''
+              category: 'spread_table'
               message: spread_table can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
               message: identification_value is missing
+              category: 'identification_value'
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'identification_value'
               message: identification_value is invalid
               params: ''
           schema:
@@ -1012,103 +1012,103 @@ paths:
           description: Client error.
           x-errors:
             - code: account_name_is_too_short
-              category: ''
+              category: 'account_name'
               message: account_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_name_is_too_long
-              category: ''
+              category: 'account_name'
               message: account_name can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: account_name_is_required
-              category: ''
+              category: 'account_name'
               message: account_name is required
               params: ''
             - code: brand_is_too_short
-              category: ''
+              category: 'brand'
               message: brand can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: brand_is_too_long
-              category: ''
+              category: 'brand'
               message: brand can not be longer than 100 character(s)
               params: '{ "maxlength" => 255 }'
             - code: brand_not_found
-              category: ''
+              category: 'brand'
               message: Brand non_existing_brand wasn't found
               params: '{ "brand" => "non_existing_brand" }'
             - code: brand_account_not_broker
-              category: ''
+              category: 'brand'
               message: Account doesn't have broker permissions
               params: '{ "brand" => "wrong_brand" }'
             - code: your_reference_is_too_long
-              category: ''
+              category: 'your_reference'
               message: your_reference can not be longer than 25 character(s)
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: enabled, disabled, enabled_no_trading'
               params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
             - code: legal_entity_type_not_in_range
-              category: ''
+              category: 'legal_entity_type'
               message: 'legal_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: street_is_too_long
-              category: ''
+              category: 'street'
               message: street can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: street_is_required
-              category: ''
+              category: 'street'
               message: Street is required
               params: ''
             - code: city_is_too_long
-              category: ''
+              category: 'city'
               message: city can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: city_is_required
-              category: ''
+              category: 'city'
               message: City is required
               params: ''
             - code: postal_code_is_too_long
-              category: ''
+              category: 'postal_code'
               message: postal_code can not be longer than 20 character(s)
               params: '{ "maxlength" => 20 }'
             - code: postal_code_is_required
-              category: ''
+              category: 'postal_code'
               message: Postal code is required
               params: ''
             - code: country_is_too_long
-              category: ''
+              category: 'country'
               message: country can not be longer than 2 character(s)
               params: '{ "maxlength" => 2 }'
             - code: country_is_required
-              category: ''
+              category: 'country'
               message: Country is required
               params: ''
             - code: spread_table_is_too_long
-              category: ''
+              category: 'spread_table'
               message: spread_table can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'identification_value'
               message: identification_value is invalid
               params: ''
             - code: state_or_province_is_required
-              category: ''
+              category: 'state_or_province'
               message: State or province is required for US, CA and MX
               params: ''
             - code: invalid_extra_parameters
-              category: ''
+              category: 'base'
               message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
           schema:
@@ -1186,27 +1186,27 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_currency
-              category: ''
+              category: 'currency'
               message: XYZ is not a valid ISO 4217 currency code
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
             - code: on_behalf_of_is_not_valid_uuid
-              category: ''
+              category: 'on_behalf_of'
               message: on_behalf_of should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: unsupported_currency
-              category: ''
+              category: 'currency'
               message: Unsupported currency XYZ
               params: ''
           schema:
@@ -1339,11 +1339,11 @@ paths:
           description: Client error.
           x-errors:
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
           schema:
@@ -1583,119 +1583,119 @@ paths:
           description: Client error.
           x-errors:
             - code: bank_account_holder_name_is_too_short
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_account_holder_name_is_too_long
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: beneficiary_country_is_in_invalid_format
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is in invalid format
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is in invalid format
               params: ''
             - code: bank_name_is_too_short
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_name_is_too_long
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_account_type_not_in_range
-              category: ''
+              category: 'bank_account_type'
               message: 'bank_account_type should be in range: checking, savings'
               params: '{ "range" => "checking, savings" }'
             - code: account_number_is_too_short
-              category: ''
+              category: 'account_number'
               message: account_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_number_is_too_long
-              category: ''
+              category: 'account_number'
               message: account_number can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: incorrect_mapping
-              category: ''
+              category: 'base'
               message: Following parameters must have same keys
               params: '{ "parameters" => "routing_code_value,routing_code_type" }'
             - code: routing_code_type_is_too_short
-              category: ''
+              category: 'routing_code_type'
               message: routing_code_type can not be shorter than 1 character(s)
               params: '{ "minlength" => 1, "indices" => ["0", "1"] }'
             - code: routing_code_type_is_too_long
-              category: ''
+              category: 'routing_code_type'
               message: routing_code_type can not be longer than 50 character(s)
               params: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
             - code: routing_code_type_type_is_wrong
-              category: ''
+              category: 'routing_code_type'
               message: routing_code_type should be of hash type
               params: '{ "type" => "hash" }'
             - code: routing_code_type_not_included_in_list
-              category: ''
+              category: 'routing_code_type'
               message: One or more of routing_code_type items are not included in list
               params: '{ "list" => "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe }'
             - code: routing_code_type_too_many_items
-              category: ''
+              category: 'routing_code_type'
               message: routing_code_type should have less than 50 items
               params: '{ "maxcount" => 50 }'
             - code: beneficiary_date_of_birth_type_is_wrong
-              category: ''
+              category: 'beneficiary_date_of_birth'
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: routing_code_value_is_too_short
-              category: ''
+              category: 'routing_code_value'
               message: routing_code_value can not be shorter than 1 character(s)
               params: '{ "minlength" => 1, "indices" => ["0", "1"] }'
             - code: routing_code_value_is_too_long
-              category: ''
+              category: 'routing_code_value'
               message: routing_code_value can not be longer than 50 character(s)
               params: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
             - code: routing_code_value_type_is_wrong
-              category: ''
+              category: 'routing_code_value'
               message: routing_code_value should be of hash type
               params: '{ "type" => "hash" }'
             - code: bic_swift_is_in_invalid_format
-              category: ''
+              category: 'bic_swift'
               message: bic_swift is in invalid format
               params: ''
             - code: iban_is_too_long
-              category: ''
+              category: 'iban'
               message: iban can not be longer than 34 character(s)
               params: '{ "maxlength" => 34 }'
             - code: iban_is_too_short
-              category: ''
+              category: 'iban'
               message: iban can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: default_beneficiary_type_is_wrong
-              category: ''
+              category: 'default_beneficiary'
               message: default_beneficiary should be of boolean type
               params: '{ "type" => "boolean" }'
             - code: name_is_too_short
-              category: ''
+              category: 'name'
               message: name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: name_is_too_long
-              category: ''
+              category: 'name'
               message: name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: order_asc_desc_not_in_range
-              category: ''
+              category: 'order_asc_desc'
               message: 'order_asc_desc should be in range: asc, desc'
               params: '{ "range" => "asc, desc" }'
             - code: order_not_in_range
-              category: ''
+              category: 'order'
               message: 'order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at'
               params: '{ "range" => "order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at" }'
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -1771,15 +1771,15 @@ paths:
           description: Client error.
           x-errors:
             - code: beneficiary_not_found
-              category: ''
+              category: 'id'
               message: Beneficiary was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
           schema:
@@ -2074,323 +2074,323 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: beneficiary_not_found
-              category: ''
+              category: 'id'
               message: Beneficiary was not found for this id
               params: ''
             - code: bank_account_holder_name_is_too_short
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_account_holder_name_is_too_long
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: email_is_too_short
-              category: ''
+              category: 'email'
               message: email can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: email_is_too_long
-              category: ''
+              category: 'email'
               message: email can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: beneficiary_address_is_too_short
-              category: ''
+              category: 'beneficiary_address'
               message: beneficiary_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: beneficiary_address_is_too_long
-              category: ''
+              category: 'beneficiary_address'
               message: beneficiary_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: beneficiary_address_is_missing
-              category: ''
+              category: 'beneficiary_address'
               message: Beneficiary address is missing
               params: ''
             - code: account_number_is_too_short
-              category: ''
+              category: 'account_number'
               message: account_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_number_is_too_long
-              category: ''
+              category: 'account_number'
               message: account_number can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: account_number_is_missing
-              category: ''
+              category: 'account_number'
               message: Account number is missing
               params: ''
             - code: account_number_is_invalid
-              category: ''
+              category: 'account_number'
               message: Account number is in invalid format
               params: ''
             - code: routing_code_value_1_is_too_short
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_1_is_too_long
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: routing_code_value_2_is_too_short
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_2_is_too_long
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: iban_is_too_short
-              category: ''
+              category: 'iban'
               message: iban can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: iban_is_too_long
-              category: ''
+              category: 'iban'
               message: iban can not be longer than 34 character(s)
               params: '{ "maxlength" => 34 }'
             - code: iban_is_missing
-              category: ''
+              category: 'iban'
               message: IBAN is missing
               params: ''
             - code: iban_is_invalid
-              category: ''
+              category: 'iban'
               message: IBAN is in invalid format
               params: ''
             - code: bic_swift_is_too_short
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bic_swift_is_too_long
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be longer than 11 character(s)
               params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is missing
               params: ''
             - code: bic_swift_is_invalid
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is in invalid format
               params: ''
             - code: bank_address_is_missing
-              category: ''
+              category: 'bank_address'
               message: Bank address is missing
               params: ''
             - code: bank_address_is_too_short
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_address_is_too_long
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_too_short
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_name_is_too_long
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
-              category: ''
+              category: 'bank_name'
               message: Bank name is missing
               params: ''
             - code: bank_name_is_invalid
-              category: ''
+              category: 'bank_name'
               message: Bank name is in invalid format
               params: ''
             - code: bank_account_type_not_in_range
-              category: ''
+              category: 'bank_account_type'
               message: 'bank_account_type should be in range: checking, savings'
               params: '{ "range" => "checking, savings" }'
             - code: bank_account_type_is_missing
-              category: ''
+              category: 'bank_account_type'
               message: Beneficiary bank account type is missing
               params: ''
             - code: name_is_too_short
-              category: ''
+              category: 'name'
               message: name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: name_is_too_long
-              category: ''
+              category: 'name'
               message: name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: default_beneficiary_type_is_wrong
-              category: ''
+              category: 'default_beneficiary'
               message: default_beneficiary should be of boolean type
               params: '{ "type" => "boolean" }'
             - code: routing_code_type_1_not_in_range
-              category: ''
+              category: 'routing_code_type_1'
               message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: routing_code_type_2_not_in_range
-              category: ''
+              category: 'routing_code_type_2'
               message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: beneficiary_country_is_required
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is required
               params: ''
             - code: beneficiary_country_is_in_invalid_format
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is in invalid format
               params: ''
             - code: beneficiary_entity_type_not_in_range
-              category: ''
+              category: 'beneficiary_entity_type'
               message: 'beneficiary_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: beneficiary_entity_type_is_missing
-              category: ''
+              category: 'beneficiary_entity_type'
               message: Beneficiary entity type is missing
               params: ''
             - code: beneficiary_company_name_is_missing
-              category: ''
+              category: 'beneficiary_company_name'
               message: Beneficiary company name is missing
               params: ''
             - code: beneficiary_first_name_is_missing
-              category: ''
+              category: 'beneficiary_first_name'
               message: Beneficiary first name is missing
               params: ''
             - code: beneficiary_last_name_is_missing
-              category: ''
+              category: 'beneficiary_last_name'
               message: Beneficiary last name is missing
               params: ''
             - code: beneficiary_city_is_missing
-              category: ''
+              category: 'beneficiary_city'
               message: Beneficiary city is missing
               params: ''
             - code: beneficiary_state_or_province_is_missing
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is missing
               params: ''
             - code: beneficiary_state_or_province_is_not_supported
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is not supported
               params: ''
             - code: beneficiary_postcode_is_missing
-              category: ''
+              category: 'beneficiary_postcode'
               message: Beneficiary postcode is missing
               params: ''
             - code: beneficiary_date_of_birth_type_is_wrong
-              category: ''
+              category: 'beneficiary_date_of_birth'
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'beneficiary_identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'beneficiary_identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'beneficiary_identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'beneficiary_identification_value'
               message: identification_value is invalid
               params: ''
             - code: bank_country_is_in_invalid_format
-              category: ''
+              category: 'bank_country'
               message: bank_country is in invalid format
               params: ''
             - code: bank_country_is_not_supported
-              category: ''
+              category: 'bank_country'
               message: bank_country is not supported
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is in invalid format
               params: ''
             - code: currency_code_is_invalid
-              category: ''
+              category: 'currency'
               message: You can not use this currency with beneficiaries
               params: ''
             - code: unique_value_parameters
-              category: ''
+              category: 'base'
               message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: at_least_one_parameter
-              category: ''
+              category: 'base'
               message: 'At least one parameter should be present: bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name'
               params: '{ "parameters" => "bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name" }'
             - code: payment_types_not_in_range
-              category: ''
+              category: 'payment_types'
               message: 'payment_types should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
             - code: sort_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Sort code is missing
               params: ''
             - code: sort_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Sort code is in invalid format
               params: ''
             - code: aba_is_missing
-              category: ''
+              category: 'routing_code'
               message: ABA is missing
               params: ''
             - code: aba_is_invalid
-              category: ''
+              category: 'routing_code'
               message: ABA is in invalid format
               params: ''
             - code: bsb_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: BSB code is missing
               params: ''
             - code: bsb_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: BSB code is in invalid format
               params: ''
             - code: branch_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Branch code is missing
               params: ''
             - code: branch_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Branch code is in invalid format
               params: ''
             - code: institution_no_is_missing
-              category: ''
+              category: 'routing_code'
               message: Institution no is missing
               params: ''
             - code: institution_no_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Institution no is in invalid format
               params: ''
             - code: bank_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Bank code is missing
               params: ''
             - code: bank_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Bank code is in invalid format
               params: ''
             - code: clabe_is_missing
-              category: ''
+              category: 'routing_code'
               message: CLABE is missing
               params: ''
             - code: clabe_is_invalid
-              category: ''
+              category: 'routing_code'
               message: CLABE is in invalid format
               params: ''
             - code: beneficiary_update_failed
-              category: ''
+              category: 'beneficiary'
               message: Beneficiary was not updated
               params: ''
             - code: beneficiary_details_are_missing
-              category: ''
+              category: 'beneficiary'
               message: 'Following beneficiary details are missing: beneficiary_company_name'
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -2678,335 +2678,335 @@ paths:
           description: Client error.
           x-errors:
             - code: bank_account_holder_name_is_required
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name is required
               params: ''
             - code: bank_account_holder_name_is_too_short
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_account_holder_name_is_too_long
-              category: ''
+              category: 'bank_account_holder_name'
               message: bank_account_holder_name can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: email_is_too_short
-              category: ''
+              category: 'email'
               message: email can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: email_is_too_long
-              category: ''
+              category: 'email'
               message: email can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: beneficiary_address_is_too_short
-              category: ''
+              category: 'beneficiary_address'
               message: beneficiary_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: beneficiary_address_is_too_long
-              category: ''
+              category: 'beneficiary_address'
               message: beneficiary_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: beneficiary_address_is_missing
-              category: ''
+              category: 'beneficiary_address'
               message: Beneficiary address is missing
               params: ''
             - code: account_number_is_too_short
-              category: ''
+              category: 'account_number'
               message: account_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_number_is_too_long
-              category: ''
+              category: 'account_number'
               message: account_number can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: account_number_is_missing
-              category: ''
+              category: 'account_number'
               message: Account number is missing
               params: ''
             - code: account_number_is_invalid
-              category: ''
+              category: 'account_number'
               message: Account number is in invalid format
               params: ''
             - code: routing_code_value_1_is_too_short
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_1_is_too_long
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: routing_code_value_2_is_too_short
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_2_is_too_long
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: iban_is_too_short
-              category: ''
+              category: 'iban'
               message: iban can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: iban_is_too_long
-              category: ''
+              category: 'iban'
               message: iban can not be longer than 34 character(s)
               params: '{ "maxlength" => 34 }'
             - code: iban_is_missing
-              category: ''
+              category: 'iban'
               message: IBAN is missing
               params: ''
             - code: iban_is_invalid
-              category: ''
+              category: 'iban'
               message: IBAN is in invalid format
               params: ''
             - code: bic_swift_is_too_short
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bic_swift_is_too_long
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be longer than 11 character(s)
               params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is missing
               params: ''
             - code: bic_swift_is_invalid
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is in invalid format
               params: ''
             - code: bank_address_is_missing
-              category: ''
+              category: 'bank_address'
               message: Bank address is missing
               params: ''
             - code: bank_address_is_too_short
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_address_is_too_long
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_too_short
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_name_is_too_long
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
-              category: ''
+              category: 'bank_name'
               message: Bank name is missing
               params: ''
             - code: bank_name_is_invalid
-              category: ''
+              category: 'bank_name'
               message: Bank name is in invalid format
               params: ''
             - code: bank_account_type_not_in_range
-              category: ''
+              category: 'bank_account_type'
               message: 'bank_account_type should be in range: checking, savings'
               params: '{ "range" => "checking, savings" }'
             - code: bank_account_type_is_missing
-              category: ''
+              category: 'bank_account_type'
               message: Beneficiary bank account type is missing
               params: ''
             - code: name_is_too_short
-              category: ''
+              category: 'name'
               message: name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: name_is_too_long
-              category: ''
+              category: 'name'
               message: name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100  }'
             - code: default_beneficiary_type_is_wrong
-              category: ''
+              category: 'default_beneficiary'
               message: default_beneficiary should be of boolean type
               params: '{ "type" => "boolean"  }'
             - code: routing_code_type_1_not_in_range
-              category: ''
+              category: 'routing_code_type_1'
               message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: routing_code_type_2_not_in_range
-              category: ''
+              category: 'routing_code_type_2'
               message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: beneficiary_country_is_required
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is required
               params: ''
             - code: beneficiary_country_is_in_invalid_format
-              category: ''
+              category: 'beneficiary_country '
               message: beneficiary_country is in invalid format
               params: ''
             - code: beneficiary_entity_type_not_in_range
-              category: ''
+              category: 'beneficiary_entity_type'
               message: 'beneficiary_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: beneficiary_entity_type_is_missing
-              category: ''
+              category: 'beneficiary_entity_type'
               message: Beneficiary entity type is missing
               params: ''
             - code: beneficiary_company_name_is_missing
-              category: ''
+              category: 'beneficiary_company_name'
               message: Beneficiary company name is missing
               params: ''
             - code: beneficiary_first_name_is_missing
-              category: ''
+              category: 'beneficiary_first_name'
               message: Beneficiary first name is missing
               params: ''
             - code: beneficiary_last_name_is_missing
-              category: ''
+              category: 'beneficiary_last_name'
               message: Beneficiary last name is missing
               params: ''
             - code: beneficiary_city_is_missing
-              category: ''
+              category: 'beneficiary_city'
               message: Beneficiary city is missing
               params: ''
             - code: beneficiary_state_or_province_is_missing
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is missing
               params: ''
             - code: beneficiary_state_or_province_is_not_supported
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is not supported
               params: ''
             - code: beneficiary_postcode_is_missing
-              category: ''
+              category: 'beneficiary_postcode'
               message: Beneficiary postcode is missing
               params: ''
             - code: beneficiary_date_of_birth_type_is_wrong
-              category: ''
+              category: 'beneficiary_date_of_birth'
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'beneficiary_identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'beneficiary_identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'beneficiary_identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'beneficiary_identification_value'
               message: identification_value is invalid
               params: ''
             - code: bank_country_is_required
-              category: ''
+              category: 'bank_country'
               message: bank_country is required
               params: ''
             - code: bank_country_is_in_invalid_format
-              category: ''
+              category: 'bank_country'
               message: bank_country is in invalid format
               params: ''
             - code: bank_country_is_not_supported
-              category: ''
+              category: 'bank_country'
               message: bank_country is not supported
               params: ''
             - code: currency_is_required
-              category: ''
+              category: 'currency'
               message: currency is required
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is in invalid format
               params: ''
             - code: currency_code_is_invalid
-              category: ''
+              category: 'currency'
               message: You can not use this currency with beneficiaries
               params: ''
             - code: unique_value_parameters
-              category: ''
+              category: 'base'
               message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: unsupported_beneficiary_country_code
-              category: ''
+              category: 'base'
               message: Beneficiary country is not supported
               params: ''
             - code: beneficiary_create_failed
-              category: ''
+              category: 'beneficiary'
               message: Beneficiary was not created
               params: ''
             - code: beneficiary_details_are_missing
-              category: ''
+              category: 'beneficiary'
               message: 'Following beneficiary details are missing: beneficiary_company_name'
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: payment_types_not_in_range
-              category: ''
+              category: 'payment_types'
               message: 'payment_types should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
             - code: sort_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Sort code is missing
               params: ''
             - code: sort_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Sort code is in invalid format
               params: ''
             - code: aba_is_missing
-              category: ''
+              category: 'routing_code'
               message: ABA is missing
               params: ''
             - code: aba_is_invalid
-              category: ''
+              category: 'routing_code'
               message: ABA is in invalid format
               params: ''
             - code: bsb_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: BSB code is missing
               params: ''
             - code: bsb_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: BSB code is in invalid format
               params: ''
             - code: branch_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Branch code is missing
               params: ''
             - code: branch_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Branch code is in invalid format
               params: ''
             - code: institution_no_is_missing
-              category: ''
+              category: 'routing_code'
               message: Institution no is missing
               params: ''
             - code: institution_no_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Institution no is in invalid format
               params: ''
             - code: bank_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Bank code is missing
               params: ''
             - code: bank_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Bank code is in invalid format
               params: ''
             - code: clabe_is_missing
-              category: ''
+              category: 'routing_code'
               message: CLABE is missing
               params: ''
             - code: clabe_is_invalid
-              category: ''
+              category: 'routing_code'
               message: CLABE is in invalid format
               params: ''
             - code: cnaps_is_missing
-              category: ''
+              category: 'routing_code'
               message: CNAPS number is missing
               params: ''
             - code: cnaps_is_invalid
-              category: ''
+              category: 'routing_code'
               message: CNAPS number is in invalid format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -3086,19 +3086,19 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: beneficiary_not_found
-              category: ''
+              category: 'id'
               message: Beneficiary was not found for this id
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -3363,267 +3363,267 @@ paths:
           description: Client error.
           x-errors:
             - code: beneficiary_country_is_required
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is required
               params: ''
             - code: beneficiary_country_is_in_invalid_format
-              category: ''
+              category: 'beneficiary_country'
               message: beneficiary_country is in invalid format
               params: ''
             - code: beneficiary_entity_type_not_in_range
-              category: ''
+              category: 'beneficiary_entity_type'
               message: 'beneficiary_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: beneficiary_entity_type_is_missing
-              category: ''
+              category: 'beneficiary_entity_type'
               message: Beneficiary entity type is missing
               params: ''
             - code: beneficiary_company_name_is_missing
-              category: ''
+              category: 'beneficiary_company_name'
               message: Beneficiary company name is missing
               params: ''
             - code: beneficiary_first_name_is_missing
-              category: ''
+              category: 'beneficiary_first_name'
               message: Beneficiary first name is missing
               params: ''
             - code: beneficiary_last_name_is_missing
-              category: ''
+              category: 'beneficiary_last_name'
               message: Beneficiary last name is missing
               params: ''
             - code: beneficiary_city_is_missing
-              category: ''
+              category: 'beneficiary_city'
               message: Beneficiary city is missing
               params: ''
             - code: beneficiary_state_or_province_is_missing
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is missing
               params: ''
             - code: beneficiary_state_or_province_is_not_supported
-              category: ''
+              category: 'beneficiary_state_or_province'
               message: Beneficiary state or province is not supported
               params: ''
             - code: beneficiary_postcode_is_missing
-              category: ''
+              category: 'beneficiary_postcode'
               message: Beneficiary postcode is missing
               params: ''
             - code: beneficiary_date_of_birth_type_is_wrong
-              category: ''
+              category: 'beneficiary_date_of_birth'
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: account_number_is_too_short
-              category: ''
+              category: 'account_number'
               message: account_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: account_number_is_too_long
-              category: ''
+              category: 'account_number'
               message: account_number can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: account_number_is_missing
-              category: ''
+              category: 'account_number'
               message: Account number is missing
               params: ''
             - code: account_number_is_invalid
-              category: ''
+              category: 'account_number'
               message: Account number is in invalid format
               params: ''
             - code: routing_code_value_1_is_too_short
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_1_is_too_long
-              category: ''
+              category: 'routing_code_value_1'
               message: routing_code_value_1 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: routing_code_value_2_is_too_short
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: routing_code_value_2_is_too_long
-              category: ''
+              category: 'routing_code_value_2'
               message: routing_code_value_2 can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: iban_is_too_short
-              category: ''
+              category: 'iban'
               message: iban can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: iban_is_too_long
-              category: ''
+              category: 'iban'
               message: iban can not be longer than 34 character(s)
               params: '{ "maxlength" => 34 }'
             - code: iban_is_missing
-              category: ''
+              category: 'iban'
               message: IBAN is missing
               params: ''
             - code: iban_is_invalid
-              category: ''
+              category: 'iban'
               message: IBAN is in invalid format
               params: ''
             - code: bic_swift_is_too_short
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bic_swift_is_too_long
-              category: ''
+              category: 'bic_swift'
               message: bic_swift can not be longer than 11 character(s)
               params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is missing
               params: ''
             - code: bic_swift_is_invalid
-              category: ''
+              category: 'bic_swift'
               message: BIC/SWIFT is in invalid format
               params: ''
             - code: bank_address_is_missing
-              category: ''
+              category: 'bank_address'
               message: Bank address is missing
               params: ''
             - code: bank_address_is_too_short
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_address_is_too_long
-              category: ''
+              category: 'bank_address'
               message: bank_address can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_too_short
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: bank_name_is_too_long
-              category: ''
+              category: 'bank_name'
               message: bank_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
-              category: ''
+              category: 'bank_name'
               message: Bank name is missing
               params: ''
             - code: bank_name_is_invalid
-              category: ''
+              category: 'bank_name'
               message: Bank name is in invalid format
               params: ''
             - code: bank_account_type_not_in_range
-              category: ''
+              category: 'bank_account_type'
               message: 'bank_account_type should be in range: checking, savings'
               params: '{ "range" => "checking, savings" }'
             - code: bank_account_type_is_missing
-              category: ''
+              category: 'bank_account_type'
               message: Beneficiary bank account type is missing
               params: ''
             - code: routing_code_type_1_not_in_range
-              category: ''
+              category: 'routing_code_type_1'
               message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: routing_code_type_2_not_in_range
-              category: ''
+              category: 'routing_code_type_2'
               message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
               params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
             - code: bank_country_is_required
-              category: ''
+              category: 'bank_country'
               message: bank_country is required
               params: ''
             - code: bank_country_is_in_invalid_format
-              category: ''
+              category: 'bank_country'
               message: bank_country is in invalid format
               params: ''
             - code: bank_country_is_not_supported
-              category: ''
+              category: 'bank_country'
               message: bank_country is not supported
               params: ''
             - code: currency_is_required
-              category: ''
+              category: 'currency'
               message: currency is required
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is in invalid format
               params: ''
             - code: currency_code_is_invalid
-              category: ''
+              category: 'currency'
               message: You can not use this currency with beneficiaries
               params: ''
             - code: unique_value_parameters
-              category: ''
+              category: 'base'
               message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: beneficiary_create_failed
-              category: ''
+              category: 'beneficiary'
               message: Beneficiary was not created
               params: ''
             - code: beneficiary_details_are_missing
-              category: ''
+              category: 'beneficiary'
               message: 'Following beneficiary details are missing: beneficiary_company_name'
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: payment_types_not_in_range
-              category: ''
+              category: 'payment_types'
               message: 'payment_types should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
             - code: sort_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Sort code is missing
               params: ''
             - code: sort_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Sort code is in invalid format
               params: ''
             - code: aba_is_missing
-              category: ''
+              category: 'routing_code'
               message: ABA is missing
               params: ''
             - code: aba_is_invalid
-              category: ''
+              category: 'routing_code'
               message: ABA is in invalid format
               params: ''
             - code: bsb_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: BSB code is missing
               params: ''
             - code: bsb_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: BSB code is in invalid format
               params: ''
             - code: branch_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Branch code is missing
               params: ''
             - code: branch_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Branch code is in invalid format
               params: ''
             - code: institution_no_is_missing
-              category: ''
+              category: 'routing_code'
               message: Institution no is missing
               params: ''
             - code: institution_no_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Institution no is in invalid format
               params: ''
             - code: bank_code_is_missing
-              category: ''
+              category: 'routing_code'
               message: Bank code is missing
               params: ''
             - code: bank_code_is_invalid
-              category: ''
+              category: 'routing_code'
               message: Bank code is in invalid format
               params: ''
             - code: clabe_is_missing
-              category: ''
+              category: 'routing_code'
               message: CLABE is missing
               params: ''
             - code: clabe_is_invalid
-              category: ''
+              category: 'routing_code'
               message: CLABE is in invalid format
               params: ''
             - code: beneficiary_update_failed
-              category: ''
+              category: 'beneficiary'
               message: Beneficiary was not updated
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -3890,11 +3890,11 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'id'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -4029,91 +4029,91 @@ paths:
           description: Client error.
           x-errors:
             - code: at_least_one_parameter
-              category: ''
+              category: 'base'
               message: 'At least one parameter should be present: first_name, last_name, email_address, phone_number, mobile_phone_number, login_id, locale, timezone, status'
               params: ''
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: first_name_is_too_short
-              category: ''
+              category: 'first_name'
               message: first_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: first_name_is_too_long
-              category: ''
+              category: 'first_name'
               message: first_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: last_name_is_too_short
-              category: ''
+              category: 'last_name'
               message: last_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: last_name_is_too_long
-              category: ''
+              category: 'last_name'
               message: last_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: email_address_is_too_short
-              category: ''
+              category: 'email_address'
               message: email_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: email_address_is_too_long
-              category: ''
+              category: 'email_address'
               message: email_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: email_address_is_in_invalid_format
-              category: ''
+              category: 'email_address'
               message: email_address is in invalid format
               params: ''
             - code: phone_number_is_too_short
-              category: ''
+              category: 'phone_number'
               message: phone_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: phone_number_is_too_long
-              category: ''
+              category: 'phone_number'
               message: phone_number can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: mobile_phone_number_is_too_short
-              category: ''
+              category: 'mobile_phone_number'
               message: mobile_phone_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: mobile_phone_number_is_too_long
-              category: ''
+              category: 'mobile_phone_number'
               message: mobile_phone_number can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: login_id_in_use
-              category: ''
+              category: 'login_id'
               message: 'login_id already in use: john.smith@company.com'
               params: ''
             - code: login_id_is_too_long
-              category: ''
+              category: 'login_id'
               message: login_id can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: locale_is_too_short
-              category: ''
+              category: 'locale'
               message: locale can not be shorter than 2 character(s)
               params: '{ "minlength" => 2 }'
             - code: locale_is_too_long
-              category: ''
+              category: 'locale'
               message: locale can not be longer than 5 character(s)
               params: '{ "maxlength" => 5 }'
             - code: timezone_is_too_short
-              category: ''
+              category: 'timezone'
               message: timezone can not be shorter than 2 character(s)
               params: '{ "minlength" => 2 }'
             - code: timezone_is_too_long
-              category: ''
+              category: 'timezone'
               message: timezone can not be longer than 5 character(s)
               params: '{ "maxlength" => 5 }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: enabled, not_enabled'
               params: ''
             - code: date_of_birth_type_is_wrong
-              category: ''
+              category: 'date_of_birth'
               message: date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: contact_not_found
-              category: ''
+              category: 'id'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -4246,91 +4246,91 @@ paths:
           description: Client error.
           x-errors:
             - code: account_id_is_in_invalid_format
-              category: ''
+              category: 'account_id'
               message: account_id is in invalid format
               params: ''
             - code: first_name_is_too_short
-              category: ''
+              category: 'first_name'
               message: first_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: first_name_is_too_long
-              category: ''
+              category: 'first_name'
               message: first_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: last_name_is_too_short
-              category: ''
+              category: 'last_name'
               message: last_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: last_name_is_too_long
-              category: ''
+              category: 'last_name'
               message: last_name can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: email_address_is_too_short
-              category: ''
+              category: 'email_address'
               message: email_address can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: email_address_is_too_long
-              category: ''
+              category: 'email_address'
               message: email_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: email_address_is_in_invalid_format
-              category: ''
+              category: 'email_address'
               message: email_address is in invalid format
               params: ''
             - code: phone_number_is_too_short
-              category: ''
+              category: 'phone_number'
               message: phone_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: phone_number_is_too_long
-              category: ''
+              category: 'phone_number'
               message: phone_number can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: mobile_phone_number_is_too_short
-              category: ''
+              category: 'mobile_phone_number'
               message: mobile_phone_number can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: mobile_phone_number_is_too_long
-              category: ''
+              category: 'mobile_phone_number'
               message: mobile_phone_number can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
             - code: login_id_is_too_short
-              category: ''
+              category: 'login_id'
               message: login_id can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: login_id_in_use
-              category: ''
+              category: 'login_id'
               message: login_id already in use
               params: ''
             - code: login_id_is_too_long
-              category: ''
+              category: 'login_id'
               message: login_id can not be longer than 50 character(s)
               params: '{ "maxlength" => 50 }'
             - code: locale_is_too_short
-              category: ''
+              category: 'locale'
               message: locale can not be shorter than 2 character(s)
               params: '{ "minlength" => 2 }'
             - code: locale_is_too_long
-              category: ''
+              category: 'locale'
               message: locale can not be longer than 5 character(s)
               params: '{ "maxlength" => 5 }'
             - code: timezone_is_too_short
-              category: ''
+              category: 'timezone'
               message: timezone can not be shorter than 2 character(s)
               params: '{ "minlength" => 2 }'
             - code: timezone_is_too_long
-              category: ''
+              category: 'timezone'
               message: timezone can not be longer than 5 character(s)
               params: '{ "maxlength" => 5 }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: enabled, not_enabled'
               params: ''
             - code: date_of_birth_type_is_wrong
-              category: ''
+              category: 'date_of_birth'
               message: date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: date_of_birth_is_required
-              category: ''
+              category: 'date_of_birth'
               message: Date of Birth is a required field. Please provide date of birth (YYYY-MM-DD)
               params: ''
           schema:
@@ -4585,11 +4585,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -4665,15 +4665,15 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -4802,159 +4802,159 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_extra_parameters
-              category: ''
+              category: 'base'
               message: Invalid extra parameters
               params: '{ "parameters" => { "extra_param" => "extra_value" } }'
             - code: buy_currency_is_in_invalid_format
-              category: ''
+              category: 'buy_currency'
               message: buy_currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
             - code: buy_currency_is_required
-              category: ''
+              category: 'buy_currency'
               message: buy_currency is required
               params: ''
             - code: invalid_buy_currency
-              category: ''
+              category: 'buy_currency'
               message: buy_currency is invalid
               params: ''
             - code: sell_currency_is_required
-              category: ''
+              category: 'sell_currency'
               message: sell_currency is required
               params: ''
             - code: sell_currency_is_in_invalid_format
-              category: ''
+              category: 'sell_currency'
               message: sell_currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
             - code: invalid_sell_currency
-              category: ''
+              category: 'sell_currency'
               message: sell_currency is invalid
               params: ''
             - code: amount_is_required
-              category: ''
+              category: 'amount'
               message: amount is required
               params: ''
             - code: conversion_above_limit
-              category: ''
+              category: 'amount'
               message: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
               params: '{ "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }'
             - code: conversion_below_limit
-              category: ''
+              category: 'amount'
               message: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
               params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
             - code: amount_type_is_wrong
-              category: ''
+              category: 'amount'
               message: amount should be of numeric type
               params: '{ "type" => "numeric" }'
             - code: reason_is_required
-              category: ''
+              category: 'reason'
               message: reason is required
               params: ''
             - code: reason_is_too_short
-              category: ''
+              category: 'reason'
               message: reason can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
             - code: client_rate_is_in_invalid_format
-              category: ''
+              category: 'client_rate'
               message: client_rate should be of numeric type with 4 dp
               params: '{ "type" => "numeric_with_precision", "precision" => 4 }'
             - code: invalid_client_rate
-              category: ''
+              category: 'client_rate'
               message: client_rate is invalid
               params: '{ "client_rate" => "1.455543..1.778997" }'
             - code: client_rate_is_required
-              category: ''
+              category: 'client_rate'
               message: The client_rate is required if you supply currency_pair
               params: ''
             - code: fixed_side_is_required
-              category: ''
+              category: 'fixed_side'
               message: fixed_side is required
               params: ''
             - code: fixed_side_not_in_range
-              category: ''
+              category: 'fixed_side'
               message: 'fixed_side should be in range: buy, sell'
               params: '{ "range" => "buy, sell" }'
             - code: term_agreement_is_required
-              category: ''
+              category: 'term_agreement'
               message: term_agreement is required
               params: ''
             - code: term_agreement_type_is_wrong
-              category: ''
+              category: 'term_agreement'
               message: term_agreement should be of boolean type
               params: '{ "type" => "boolean" }'
             - code: conversion_create_failed
-              category: ''
+              category: 'conversion_create_failed'
               message: Conversion create failed
               params: ''
             - code: currency_pair_is_in_invalid_format
-              category: ''
+              category: 'currency_pair'
               message: currency_pair is not a valid ISO 4217 currency code
               params: '{ "type" => "currency_pair" }'
             - code: invalid_currency_pair
-              category: ''
+              category: 'invalid_currency_pair'
               message: The currency_pair should be the real market pair of the buy_currency and sell_currency
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: on_behalf_of_is_not_valid_uuid
-              category: ''
+              category: 'on_behalf_of'
               message: on_behalf_of should be in UUID format
               params: ''
             - code: on_behalf_of_is_required
-              category: ''
+              category: 'on_behalf_of'
               message: You should do this conversion on behalf of someone if you supply client_rate
               params: ''
             - code: currency_pair_is_required
-              category: ''
+              category: 'currency_pair_is_required'
               message: The currency_pair is required if you supply client_rate
               params: ''
             - code: variable_value_dates_not_permitted
-              category: ''
+              category: 'variable_value_dates_not_permitted'
               message: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
               params: ''
             - code: client_buy_amount_is_in_invalid_format
-              category: ''
+              category: 'client_buy_amount'
               message: client_buy_amount should be of numeric type with 2 dp
               params: '{ "type" => "client_buy_amount" }'
             - code: client_sell_amount_is_in_invalid_format
-              category: ''
+              category: 'client_sell_amount'
               message: client_sell_amount should be of numeric type with 2 dp
               params: '{ "type" => "client_sell_amount" }'
             - code: cannot_fix_client_sell_on_fixed_sell_side
-              category: ''
+              category: 'cannot_fix_client_sell_on_fixed_sell_side'
               message: You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side
               params: '{ "type" => "client_sell_amount" }'
             - code: client_buy_amount_exceeds_partner_buy_amount
-              category: ''
+              category: 'client_buy_amount_exceeds_partner_buy_amount'
               message: The client buy amount specified is greater than the amount that you would be buying and is thus invalid
               params: '{ "type" => "client_buy_amount" }'
             - code: partner_sell_amount_exceeds_client_sell_amount
-              category: ''
+              category: 'partner_sell_amount_exceeds_client_sell_amount'
               message: The client sell amount specified is less than the amount that you would be selling and is thus invalid
               params: '{ "type" => "client_sell_amount" }'
             - code: missing_partner_spread_table_data
-              category: ''
+              category: 'missing_partner_spread_table_data'
               message: Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up
               params: ''
             - code: missing_client_spread_table_data
-              category: ''
+              category: 'missing_client_spread_table_data'
               message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up
               params: ''
             - code: fixed_amounts_not_permitted_for_this_user
-              category: ''
+              category: 'fixed_amounts_not_permitted_for_this_user'
               message: You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer
               params: ''
             - code: invalid_client_rate_combination
-              category: ''
+              category: 'invalid_client_rate_combination'
               message: You cannot specify a client rate and client currency pair alongside a client buy amount or client sell amount
               params: ''
             - code: duplicate_request
-              category: ''
+              category: 'duplicate_request'
               message: The unique_request_id provided for this conversion has already been used, please provide a new unique_request_id to successfully submit this conversion
               params: ''
           schema:
@@ -5034,19 +5034,19 @@ paths:
           description: Client error.
           x-errors:
             - code: ibans_not_found
-              category: ''
+              category: 'base'
               message: IBANs were not found
               params: ''
             - code: iban_not_found_for_currency
-              category: ''
+              category: 'base'
               message: IBAN was not found for the selected currency
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
             - code: currency_is_not_supported
-              category: ''
+              category: 'currency'
               message: currency is not supported
               params: ''
           schema:
@@ -5127,15 +5127,15 @@ paths:
           description: Client error.
           x-errors:
             - code: ibans_not_found
-              category: ''
+              category: 'base'
               message: IBANs were not found
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
             - code: currency_is_not_supported
-              category: ''
+              category: 'currency'
               message: currency is not supported
               params: ''
           schema:
@@ -5213,11 +5213,11 @@ paths:
           description: Client error.
           x-errors:
             - code: ibans_not_found
-              category: ''
+              category: 'base'
               message: IBANs were not found
               params: ''
             - code: account_not_found
-              category: ''
+              category: 'base'
               message: Account was not found for this id
               params: ''
           schema:
@@ -5439,119 +5439,119 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_type
-              category: ''
+              category: 'type'
               message: Invalid Payment type
               params: ''
             - code: currency_length_is_invalid
-              category: ''
+              category: 'currency'
               message: currency should be 3 character(s) long
               params: ''
             - code: currency_is_required
-              category: ''
+              category: 'currency'
               message: currency is required
               params: ''
             - code: invalid_currency
-              category: ''
+              category: 'currency'
               message: You cannot make payments with this currency
               params: ''
             - code: beneficiary_id_is_not_valid_uuid
-              category: ''
+              category: 'beneficiary_id'
               message: beneficiary_id should be in UUID format
               params: ''
             - code: beneficiary_id_is_required
-              category: ''
+              category: 'beneficiary_id'
               message: beneficiary_id is required
               params: ''
             - code: invalid_beneficiary_id
-              category: ''
+              category: 'beneficiary_id'
               message: Unknown beneficiary_id
               params: ''
             - code: payment_above_limit
-              category: ''
+              category: 'amount'
               message: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
               params: ''
             - code: payer_entity_type_not_in_range
-              category: ''
+              category: 'payer_entity_type'
               message: 'payer_entity_type should be in range: individual, company'
               params: ''
             - code: payer_entity_type_is_missing
-              category: ''
+              category: 'payer_entity_type'
               message: Payer entity type is missing
               params: ''
             - code: payer_company_name_is_missing
-              category: ''
+              category: 'payer_company_name'
               message: Payer company name is missing
               params: ''
             - code: payer_first_name_is_missing
-              category: ''
+              category: 'payer_first_name'
               message: Payer first name is missing
               params: ''
             - code: payer_last_name_is_missing
-              category: ''
+              category: 'payer_last_name'
               message: Payer last name is missing
               params: ''
             - code: payer_city_is_missing
-              category: ''
+              category: 'payer_city'
               message: Payer city is missing
               params: ''
             - code: unsupported_payer_country_code
-              category: ''
+              category: 'payer_country_code'
               message: Payer country is not supported
               params: ''
             - code: payer_state_or_province_is_missing
-              category: ''
+              category: 'payer_state_or_province'
               message: Payer state or province is missing
               params: ''
             - code: payer_postcode_is_missing
-              category: ''
+              category: 'payer_postcode'
               message: Payer postcode is missing
               params: ''
             - code: payer_date_of_birth_type_is_wrong
-              category: ''
+              category: 'payer_date_of_birth'
               message: payer_date_of_birth should be of date type
               params: ''
             - code: identification_type_is_missing
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is invalid
               params: ''
             - code: invalid_conversion_id
-              category: ''
+              category: 'conversion_id'
               message: Conversion could not be found
               params: ''
             - code: conversion_is_already_settled
-              category: ''
+              category: 'conversion_id'
               message: The conversion is already settled
               params: ''
             - code: payment_date_is_too_early
-              category: ''
+              category: 'payment_date'
               message: The payment date cannot be sooner than the conversion date
               params: ''
             - code: reference_is_too_long
-              category: ''
+              category: 'reference'
               message: reference can not be longer than 255 character(s)
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: duplicate_request
-              category: ''
+              category: 'duplicate_request'
               message: The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment
               params: ''
           schema:
@@ -5794,15 +5794,15 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_currency
-              category: ''
+              category: 'id'
               message: currency has invalid format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -5878,19 +5878,19 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_id
-              category: ''
+              category: 'id'
               message: ID has invalid format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: payment_not_found
-              category: ''
+              category: 'id'
               message: Payment was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -5973,19 +5973,19 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_id
-              category: ''
+              category: 'id'
               message: ID has invalid format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: payment_not_found
-              category: ''
+              category: 'id'
               message: Payment was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -6226,139 +6226,139 @@ paths:
           description: Client error.
           x-errors:
             - code: currency_type_is_wrong
-              category: ''
+              category: 'currency'
               message: XYZ is not a valid ISO 4217 currency code
               params: ''
             - code: invalid_currency
-              category: ''
+              category: 'currency'
               message: You cannot make payments with this currency
               params: ''
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: beneficiary_id_is_not_valid_uuid
-              category: ''
+              category: 'beneficiary_id'
               message: beneficiary_id should be in UUID format
               params: ''
             - code: invalid_beneficiary_id
-              category: ''
+              category: 'beneficiary_id'
               message: Unknown beneficiary_id
               params: ''
             - code: invalid_beneficiary_currency
-              category: ''
+              category: 'beneficiary_currency'
               message: You cannot assign this Beneficiary to the Payment as it is the incorrect currency
               params: ''
             - code: amount_type_is_wrong
-              category: ''
+              category: 'amount'
               message: amount should be of numeric type
               params: '{ "type" => "numeric" }'
             - code: payment_above_limit
-              category: ''
+              category: 'amount'
               message: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
               params: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
             - code: invalid_amount_for_order
-              category: ''
+              category: 'amount_for_order'
               message: The payment amount is more than the value of the order
               params: ''
             - code: payment_type_not_in_range
-              category: ''
+              category: 'payment_type'
               message: 'payment_type should be in range: priority, regular'
               params: ''
             - code: invalid_conversion_id
-              category: ''
+              category: 'conversion_id'
               message: Conversion could not be found.
               params: ''
             - code: conversion_id_is_not_valid_uuid
-              category: ''
+              category: 'conversion_id'
               message: conversion_id should be in UUID format
               params: ''
             - code: invalid_payment_date
-              category: ''
+              category: 'payment_date'
               message: The payment date is invalid
               params: ''
             - code: payment_date_is_in_invalid_format
-              category: ''
+              category: 'payment_date'
               message: payment_date should be in ISO 8601 format
               params: ''
             - code: payment_date_is_too_early
-              category: ''
+              category: 'payment_date'
               message: The payment date cannot be sooner than the conversion date
               params: ''
             - code: reference_is_too_long
-              category: ''
+              category: 'reference'
               message: reference can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: payment_can_not_be_edited
-              category: ''
+              category: 'can_not_be_edited'
               message: Sorry this Payment has already been processed and you are unable to Edit it
               params: ''
             - code: extra_dependent_params
-              category: ''
+              category: 'base'
               message: Parameters payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_address, payer_country, payer_postcode, payer_state_or_province, payer_date_of_birth, payer_identification_type, payer_identification_value can't be provided in the same request with 'payer_details_source' with value 'account'
               params: ''
             - code: payer_entity_type_not_in_range
-              category: ''
+              category: 'payer_entity_type'
               message: 'payer_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: payer_entity_type_is_missing
-              category: ''
+              category: 'payer_entity_type'
               message: Payer entity type is missing
               params: ''
             - code: payer_company_name_is_missing
-              category: ''
+              category: 'payer_company_name'
               message: Payer company name is missing
               params: ''
             - code: payer_first_name_is_missing
-              category: ''
+              category: 'payer_first_name'
               message: Payer first name is missing
               params: ''
             - code: payer_last_name_is_missing
-              category: ''
+              category: 'payer_last_name'
               message: Payer last name is missing
               params: ''
             - code: payer_city_is_missing
-              category: ''
+              category: 'payer_city'
               message: Payer city is missing
               params: ''
             - code: payer_state_or_province_is_missing
-              category: ''
+              category: 'payer_state_or_province'
               message: Payer state or province is missing
               params: ''
             - code: payer_postcode_is_missing
-              category: ''
+              category: 'payer_postcode'
               message: Payer postcode is missing
               params: ''
             - code: payer_date_of_birth_type_is_wrong
-              category: ''
+              category: 'payer_date_of_birth'
               message: payer_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is invalid
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: payment_not_found
-              category: ''
+              category: 'id'
               message: Payment was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -6436,119 +6436,119 @@ paths:
           description: Client error.
           x-errors:
             - code: invalid_type
-              category: ''
+              category: 'type'
               message: Invalid Payment type
               params: ''
             - code: currency_length_is_invalid
-              category: ''
+              category: 'currency'
               message: currency should be 3 character(s) long
               params: '{ "length" => 3 }'
             - code: currency_is_required
-              category: ''
+              category: 'currency'
               message: currency is required
               params: ''
             - code: invalid_currency
-              category: ''
+              category: 'currency'
               message: You cannot make payments with this currency
               params: ''
             - code: beneficiary_id_is_not_valid_uuid
-              category: ''
+              category: 'beneficiary_id'
               message: beneficiary_id should be in UUID format
               params: ''
             - code: beneficiary_id_is_required
-              category: ''
+              category: 'beneficiary_id'
               message: beneficiary_id is required
               params: ''
             - code: invalid_beneficiary_id
-              category: ''
+              category: 'beneficiary_id'
               message: Unknown beneficiary_id
               params: ''
             - code: payment_above_limit
-              category: ''
+              category: 'amount'
               message: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
               params: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
             - code: payer_entity_type_not_in_range
-              category: ''
+              category: 'payer_entity_type'
               message: 'payer_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
             - code: payer_entity_type_is_missing
-              category: ''
+              category: 'payer_entity_type'
               message: Payer entity type is missing
               params: ''
             - code: payer_company_name_is_missing
-              category: ''
+              category: 'payer_company_name'
               message: Payer company name is missing
               params: ''
             - code: payer_first_name_is_missing
-              category: ''
+              category: 'payer_first_name'
               message: Payer first name is missing
               params: ''
             - code: payer_last_name_is_missing
-              category: ''
+              category: 'payer_last_name'
               message: Payer last name is missing
               params: ''
             - code: payer_city_is_missing
-              category: ''
+              category: 'payer_city'
               message: Payer city is missing
               params: ''
             - code: unsupported_payer_country_code
-              category: ''
+              category: 'payer_country_code'
               message: Payer country is not supported
               params: ''
             - code: payer_state_or_province_is_missing
-              category: ''
+              category: 'payer_state_or_province'
               message: Payer state or province is missing
               params: ''
             - code: payer_postcode_is_missing
-              category: ''
+              category: 'payer_postcode'
               message: Payer postcode is missing
               params: ''
             - code: payer_date_of_birth_type_is_wrong
-              category: ''
+              category: 'payer_date_of_birth'
               message: payer_date_of_birth should be of date type
               params: '{ "type" => "date" }'
             - code: identification_type_is_missing
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
-              category: ''
+              category: 'payer_identification_type'
               message: identification_type is invalid
               params: ''
             - code: identification_value_is_missing
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is missing
               params: ''
             - code: identification_value_is_invalid
-              category: ''
+              category: 'payer_identification_value'
               message: identification_value is invalid
               params: ''
             - code: invalid_conversion_id
-              category: ''
+              category: 'conversion_id'
               message: Conversion could not be found
               params: ''
             - code: conversion_is_already_settled
-              category: ''
+              category: 'conversion_id'
               message: The conversion is already settled
               params: ''
             - code: payment_date_is_too_early
-              category: ''
+              category: 'payment_date'
               message: The payment date cannot be sooner than the conversion date
               params: ''
             - code: reference_is_too_long
-              category: ''
+              category: 'reference'
               message: reference can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: payment_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Payment was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -6626,19 +6626,19 @@ paths:
           description: Client error.
           x-errors:
             - code: payer_not_found
-              category: ''
+              category: 'id'
               message: Payer was not found for this id
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
           schema:
@@ -6745,67 +6745,67 @@ paths:
           description: Client error.
           x-errors:
             - code: unique_value_parameters
-              category: ''
+              category: 'base'
               message: 'Following parameters should not have same values: sell_currency, buy_currency'
               params: '{ "parameters" => "sell_currency, buy_currency" }'
             - code: rate_could_not_be_retrieved
-              category: ''
+              category: 'base'
               message: Rate could not be retrieved
               params: ''
             - code: ccy_pair_is_not_tradeable
-              category: ''
+              category: 'base'
               message: Given currency pair is not tradeable
               params: ''
             - code: fixed_side_not_in_range
-              category: ''
+              category: 'fixed_side'
               message: 'fixed_side should be in range: sell, buy'
               params: '{ "range" => "sell, buy" }'
             - code: fixed_side_is_required
-              category: ''
+              category: 'fixed_side'
               message: fixed_side is required
               params: ''
             - code: conversion_date_type_is_wrong
-              category: ''
+              category: 'conversion_date'
               message: conversion_date should be of date type
               params: '{ "type" => "date" }'
             - code: invalid_delivery_date
-              category: ''
+              category: 'conversion_date'
               message: The delivery date you have requested cannot be met for this currency pair
               params: ''
             - code: sell_currency_is_in_invalid_format
-              category: ''
+              category: 'sell_currency'
               message: sell_currency is in invalid format
               params: ''
             - code: sell_currency_is_required
-              category: ''
+              category: 'sell_currency'
               message: sell_currency is required
               params: ''
             - code: amount_type_is_wrong
-              category: ''
+              category: 'amount'
               message: amount should be of numeric type
               params: '{ "type" => "numeric" }'
             - code: amount_is_required
-              category: ''
+              category: 'amount'
               message: amount is required
               params: ''
             - code: amount_is_too_small
-              category: ''
+              category: 'amount'
               message: amount can not be smaller than 1
               params: '{ "minvalue" => 1 }'
             - code: buy_currency_is_in_invalid_format
-              category: ''
+              category: 'buy_currency'
               message: buy_currency is in invalid format
               params: ''
             - code: buy_currency_is_required
-              category: ''
+              category: 'buy_currency'
               message: buy_currency is required
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -6886,23 +6886,23 @@ paths:
           description: Client error.
           x-errors:
             - code: currency_pair_is_too_short
-              category: ''
+              category: 'currency_pair'
               message: currency_pair can not be shorter than 6 letter(s)
               params: '{ "minlength" => 6 }'
             - code: currency_pair_is_required
-              category: ''
+              category: 'currency_pair'
               message: currency_pair is required
               params: ''
             - code: invalid_currency_pair
-              category: ''
+              category: 'currency_pair'
               message: Invalid currency pair
               params: '{ "currency_pair" => ["AAABBB"] }'
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -6995,15 +6995,15 @@ paths:
           description: Client error.
           x-errors:
             - code: bank_account_country_is_in_invalid_format
-              category: ''
+              category: 'bank_account_country'
               message: Bank account country is not a valid ISO 3166-1 Alpha-2 country code
               params: ''
             - code: currency_is_in_invalid_format
-              category: ''
+              category: 'currency'
               message: Currency is not a valid ISO 4217 currency code
               params: ''
             - code: beneficiary_country_is_in_invalid_format
-              category: ''
+              category: 'beneficiary_country'
               message: Beneficiary country is not a valid ISO 3166-1 Alpha-2 country code
               params: ''
           schema:
@@ -7080,27 +7080,27 @@ paths:
           description: Client error.
           x-errors:
             - code: conversion_pair_is_required
-              category: ''
+              category: 'conversion_pair'
               message: conversion_pair is required
               params: ''
             - code: invalid_conversion_pair
-              category: ''
+              category: 'conversion_pair'
               message: The conversion pair specified was invalid
               params: ''
             - code: conversion_pair_is_too_short
-              category: ''
+              category: 'conversion_pair'
               message: conversion_pair can not be shorter than 6 character(s)
               params: '{ "minlength" => 6 }'
             - code: conversion_pair_is_too_long
-              category: ''
+              category: 'conversion_pair'
               message: conversion_pair can not be longer than 6 character(s)
               params: '{ "maxlength" => 6 }'
             - code: start_date_is_too_far_in_future
-              category: ''
+              category: 'start_date'
               message: Date is too far in the future (more than 1 year)
               params: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
             - code: start_date_is_in_invalid_format
-              category: ''
+              category: 'start_date'
               message: start_date should be in ISO 8601 format
               params: '{ "type" => "date" }'
           schema:
@@ -7256,19 +7256,19 @@ paths:
           description: Client error.
           x-errors:
             - code: payer_country_is_required
-              category: ''
+              category: 'payer_country'
               message: payer_country is required
               params: ''
             - code: payer_country_is_in_invalid_format
-              category: ''
+              category: 'payer_country'
               message: payer_country is not a valid ISO 3166-1 Alpha-2 country code
               params: '{ "type" => "country_code" }'
             - code: payment_type_not_in_range
-              category: ''
+              category: 'payment_type'
               message: 'payment_type should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
             - code: payer_entity_type_not_in_range
-              category: ''
+              category: 'payer_entity_type'
               message: 'payer_entity_type should be in range: company, individual'
               params: '{ "range" => "company, individual" }'
           schema:
@@ -7348,27 +7348,27 @@ paths:
           description: Client error.
           x-errors:
             - code: currency_is_required
-              category: ''
+              category: 'currency'
               message: currency is required
               params: ''
             - code: invalid_currency
-              category: ''
+              category: 'currency'
               message: The currency specified was invalid
               params: ''
             - code: currency_is_too_short
-              category: ''
+              category: 'currency'
               message: currency can not be shorter than 3 character(s)
               params: '{ "minlength" => 3 }'
             - code: currency_is_too_long
-              category: ''
+              category: 'currency'
               message: currency can not be longer than 3 character(s)
               params: '{ "maxlength" => 3 }'
             - code: start_date_is_too_far_in_future
-              category: ''
+              category: 'start_date'
               message: Date is too far in the future (more than 1 year)
               params: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
             - code: start_date_is_in_invalid_format
-              category: ''
+              category: 'start_date'
               message: Date is too far in the future (more than 1 year)
               params: '{ "type" => "date" }'
           schema:
@@ -7451,7 +7451,7 @@ paths:
           description: Client error.
           x-errors:
             - code: account_not_found
-              category: ''
+              category: 'id'
               message: Account was not found for this id
               params: ''
           schema:
@@ -7599,11 +7599,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -7686,19 +7686,19 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: settlement_not_found
-              category: ''
+              category: 'id'
               message: Settlement was not found for this id
               params: ''
           schema:
@@ -7778,11 +7778,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -7874,19 +7874,19 @@ paths:
           description: Client error.
           x-errors:
             - code: conversion_does_not_belong_to_account
-              category: ''
+              category: 'conversion_id'
               message: Conversion cannot be added to this settlement
               params: ''
             - code: add_closed_conversion_failed
-              category: ''
+              category: 'conversion_id'
               message: Cannot add conversion to a settlement as it does not have any open amounts
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -7976,19 +7976,19 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: settlement_not_found
-              category: ''
+              category: 'id'
               message: Settlement was not found for this id
               params: ''
           schema:
@@ -8077,11 +8077,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -8168,11 +8168,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -8261,11 +8261,11 @@ paths:
           description: Client error.
           x-errors:
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -8515,15 +8515,15 @@ paths:
           description: Client error.
           x-errors:
             - code: transaction_not_found
-              category: ''
+              category: 'id'
               message: No Transaction found for 21b552e0-d97c-612d-2335-34203ab3f267
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
           schema:
@@ -8772,63 +8772,63 @@ paths:
           description: Client error.
           x-errors:
             - code: source_account_id_is_not_valid_uuid
-              category: ''
+              category: 'source_account_id'
               message: source_account_id should be in UUID format
               params: ''
             - code: destination_account_id_is_not_valid_uuid
-              category: ''
+              category: 'destination_account_id'
               message: destination_account_id should be in UUID format
               params: ''
             - code: amount_from_type_is_wrong
-              category: ''
+              category: 'amount_from'
               message: amount_from should be of numeric type
               params: '{ "type" => "numeric" }'
             - code: amount_to_type_is_wrong
-              category: ''
+              category: 'amount_to'
               message: amount_to should be of numeric type
               params: '{ "type" => "numeric" }'
             - code: status_not_in_range
-              category: ''
+              category: 'status'
               message: 'status should be in range: pending, completed'
               params: '{ "range" => "pending, completed" }'
             - code: created_at_from_is_in_invalid_format
-              category: ''
+              category: 'created_at_from'
               message: created_at_from should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: created_at_to_is_in_invalid_format
-              category: ''
+              category: 'created_at_to'
               message: created_at_to should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: updated_at_from_is_in_invalid_format
-              category: ''
+              category: 'updated_at_from'
               message: updated_at_from should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: updated_at_to_is_in_invalid_format
-              category: ''
+              category: 'updated_at_to'
               message: updated_at_to should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: completed_at_from_is_in_invalid_format
-              category: ''
+              category: 'completed_at_from'
               message: completed_at_from should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: completed_at_to_is_in_invalid_format
-              category: ''
+              category: 'completed_at_to'
               message: completed_at_to should be in ISO 8601 format
               params: '{ "type" => "datetime" }'
             - code: creator_contact_id_is_not_valid_uuid
-              category: ''
+              category: 'creator_contact_id'
               message: creator_contact_id should be in UUID format
               params: ''
             - code: creator_account_id_is_not_valid_uuid
-              category: ''
+              category: 'creator_account_id'
               message: creator_account_id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -8904,19 +8904,19 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: ''
+              category: 'id'
               message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
-              category: ''
+              category: 'on_behalf_of'
               message: You cannot act on behalf of your own Contact
               params: ''
             - code: transfer_not_found
-              category: ''
+              category: 'id'
               message: Transfer was not found for this ID
               params: ''
             - code: contact_not_found
-              category: ''
+              category: 'on_behalf_of'
               message: Contact was not found for this id
               params: ''
           schema:
@@ -9084,7 +9084,7 @@ paths:
           description: Client error.
           x-errors:
             - code: vans_not_found
-              category: ''
+              category: 'base'
               message: VANs were not found
               params: ''
           schema:
@@ -9159,7 +9159,7 @@ paths:
           description: Client error.
           x-errors:
             - code: vans_not_found
-              category: ''
+              category: 'base'
               message: VANs were not found
               params: ''
           schema:
@@ -9237,11 +9237,11 @@ paths:
           description: Client error.
           x-errors:
             - code: vans_not_found
-              category: ''
+              category: 'base'
               message: VANs were not found
               params: ''
             - code: account_not_found
-              category: ''
+              category: 'base'
               message: Account was not found for this id
               params: ''
           schema:
