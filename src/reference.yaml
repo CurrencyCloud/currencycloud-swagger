@@ -13,7 +13,7 @@ info:
     email: support@currencycloud.com
 externalDocs:
   description: API overview
-  url: 'https://developer.currencycloud.com/overview/'
+  url: 'https://www.currencycloud.com/developers/'
 tags:
   - name: Authenticate
     description: >-
