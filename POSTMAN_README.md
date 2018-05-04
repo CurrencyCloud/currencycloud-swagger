@@ -19,31 +19,25 @@ Postman and setup
 Installation
 ------------
 
-Postman is a Google Chrome App that allows you to quickly use and test
+Postman is a Application that allows you to quickly use and test
 API calls with our system, with features that help to streamline and
 efficiate your calls.
 
 To download Postman, simply follow [this
-link](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
-and click on “Add to Chrome”.
+link](https://www.getpostman.com/postman)
+and download the version of Postman for your operating system.
 
-[![](media/image1.png)](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+[![](media/image1.png)](https://www.getpostman.com/postman)
 
-To launch Postman, open your chrome apps by clicking on the button to
-the left of the browser.
+To launch Postman, click on the Postman icon to launch the app.
 
 ![](media/image2.png)
 
-If the button isn’t there, you can use the ‘cmd-shift-B’ shortcut on
-Mac, and the ‘ctrl-shift-B’ shortcut on windows.
-
-Then, click on the Postman icon to launch the app.
-
 ![](media/image3.png)
 
-![](media/image4.png)
-
 Postman will then open in a new window, ready to set up an environment.
+
+![](media/image4.png)
 
 Environments
 ------------
