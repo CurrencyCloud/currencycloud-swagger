@@ -11,7 +11,7 @@ Our API is built by developers for developers, making it straightforward
 to integrate with our systems.
 
 In order to use the API demo, you must register for an API key at
-<https://developer.currencycloud.com/api-register/>.
+<https://www.currencycloud.com/developers/register-for-an-api-key/>.
 
 Postman and setup
 =================
