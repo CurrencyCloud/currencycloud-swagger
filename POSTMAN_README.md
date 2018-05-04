@@ -31,8 +31,6 @@ and download the version of Postman for your operating system.
 
 To launch Postman, click on the Postman icon to launch the app.
 
-![](media/image2.png)
-
 ![](media/image3.png)
 
 Postman will then open in a new window, ready to set up an environment.
