@@ -1045,12 +1045,12 @@ paths:
         - name: amount_from
           in: query
           required: false
-          type: integer
+          type: number
           description: Minimum balance amount.
         - name: amount_to
           in: query
           required: false
-          type: integer
+          type: number
           description: Maximum balance amount.
         - name: as_at_date
           in: query
