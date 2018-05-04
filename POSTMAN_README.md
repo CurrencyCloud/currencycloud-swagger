@@ -86,7 +86,7 @@ collection tab on the left, and click ‘Import collection’
 
 After that, select ‘Download from link’ and paste
 the following URL into the box:
-<https://raw.githubusercontent.com/ccycloud/currencycloud-swagger/master/src/reference.yaml>.
+<https://raw.githubusercontent.com/currencycloud/swagger/master/src/reference.yaml>.
 
 ![](media/image9.png)
 
