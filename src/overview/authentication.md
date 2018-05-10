@@ -1,7 +1,7 @@
 # Authentication
-All endpoints in the Currencycloud API require authentication to access. Rather than providing your username and [API key](/overview/api-key) with every request, you sign in once to get a temporary authentication token.
+All endpoints in the Currencycloud API require authentication to access. Rather than providing your username and [API key](api-keys.md) with every request, you sign in once to get a temporary authentication token.
 
-To get an authentication token, submit your email address and API key to the [Login](/reference/authenticate/api) endpoint.
+To get an authentication token, submit your email address and API key to the **Login** endpoint.
 
 ``POST /v2/authenticate/api`` \
 ``Content-Type: multipart/form-data``
@@ -50,6 +50,6 @@ Content-Type: application/json
 }
 ```
 
-If authentication fails, clients must request a fresh authentication token by calling the [Login](/reference/authenticate/api) endpoint.
+If authentication fails, clients must request a fresh authentication token by calling the **Login** endpoint.
 
-It is good security practice to retire authentication tokens when they are no longer needed, rather than let them expire. Send a request to the [Logout](/reference/authenticate/logout) endpoint to terminate an authentication token.
+It is good security practice to retire authentication tokens when they are no longer needed, rather than let them expire. Send a request to the **Logout** endpoint to terminate an authentication token.

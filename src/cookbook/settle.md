@@ -4,7 +4,7 @@ Before conversions can be processed, you must create a settlement.
 
 ## Authenticate
 
-[Start a new API session](/cookbook/authenticate) and grab the ``auth_token`` from the response payload. You will pass the authentication token to all other endpoints via the ``X-Auth-Token`` header.
+[Start a new API session](authenticate.md) and grab the ``auth_token`` from the response payload. You will pass the authentication token to all other endpoints via the ``X-Auth-Token`` header.
 
 
 ## Create Settlement
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ## Add Conversion to Settlement
-In a [previous step](/cookbook/convert) you created a conversion of GBP 8,059.00 to 10,000.00 Euros. The unique ID of the conversion record was "4c52215f-ca4b-4dcb-a7ae-36edc4f5db16". We want to settle that conversion now, so we add the conversion to the settlement using the [Add Conversion to Settlement](/reference/add-conversion-to-settlement) endpoint.
+In a [previous step](convert.md) you created a conversion of GBP 8,059.00 to 10,000.00 Euros. The unique ID of the conversion record was "4c52215f-ca4b-4dcb-a7ae-36edc4f5db16". We want to settle that conversion now, so we add the conversion to the settlement using the **Add Conversion to Settlement** endpoint.
 
 ``POST /v2/settlements/a937f05e-e9fd-442e-a46f-11e84ba37806/add_conversion`` \
 ``Content-Type: multipart/form-data``
@@ -70,11 +70,11 @@ Example response:
 }
 ```
 
-If you wish to settle multiple conversions in bulk, go ahead and make additional calls to the [Add Conversion to Settlement](/reference/add-conversion-to-settlement) endpoint, passing in different conversion IDs.
+If you wish to settle multiple conversions in bulk, go ahead and make additional calls to the **Add Conversion to Settlement** endpoint, passing in different conversion IDs.
 
 
 ## Release Settlement
-Finally, call the [Release Settlement](/reference/release-settlement) endpoint. This queues the conversions for processing. No further conversions can be added to a settlement while it is in a released status.
+Finally, call the **Release Settlement** endpoint. This queues the conversions for processing. No further conversions can be added to a settlement while it is in a released status.
 
 
 ``POST /v2/settlements/a937f05e-e9fd-442e-a46f-11e84ba37806/release`` \

@@ -4,12 +4,12 @@ Check your Euros balance.
 
 ## Authenticate
 
-[Start a new API session](/cookbook/authenticate) and grab the ``auth_token`` from the response payload. You will pass the authentication token to all other endpoints via the ``X-Auth-Token`` header.
+[Start a new API session](authenticate.md) and grab the ``auth_token`` from the response payload. You will pass the authentication token to all other endpoints via the ``X-Auth-Token`` header.
 
 
 ## Check Balances
 
-To find out how many Euros you have, call the [Get Balance](/reference/get-balance) endpoint, passing "EUR" as the third URI path parameter.
+To find out how many Euros you have, call the **Get Balance** endpoint, passing "EUR" as the third URI path parameter.
 
 ``GET /v2/balances/EUR``
 
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 ```
 
-Alternatively, you can check the balances for all currencies held in your Currencycloud account, or any sub-account, by calling the [Find Balances](/reference/find-balances) endpoint.
+Alternatively, you can check the balances for all currencies held in your Currencycloud account, or any sub-account, by calling the **Find Balances** endpoint.
 
 ``GET /v2/balances/find``
 
@@ -88,4 +88,4 @@ Example response:
 
 ## Next Step
 
-[Buy more Euros using funds from your Pound Sterling balance.](/cookbook/convert)
+[Buy more Euros using funds from your Pound Sterling balance.](convert.md)

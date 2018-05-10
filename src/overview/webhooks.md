@@ -61,4 +61,4 @@ The ``header`` object contains meta data about the payload including the message
 | payment_failed_notification    | payment       |
 | trade_notification             | conversion    |
 
-Although the webhooks are your own, hosted on your own servers, we have strict requirements about the endpoints that we can transmit financial information to. For example, we require your webhook service to be secured by one of preferred Certificate Authorities. Before you get started coding your webhook endpoints, we recommend that you first [contact our support team](/support) to discuss the requirements.
+Although the webhooks are your own, hosted on your own servers, we have strict requirements about the endpoints that we can transmit financial information to. For example, we require your webhook service to be secured by one of preferred Certificate Authorities. Before you get started coding your webhook endpoints, we recommend that you first [contact our support team](../support.md) to discuss the requirements.

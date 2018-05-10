@@ -13,4 +13,4 @@ The base URI for all endpoints in the production environment is:
 https://api.currencycloud.com/v2
 ```
 
-[API keys](/overview/api-keys) are environment-specific. You cannot use a test API key to access the production environment, and vice versa.
+[API keys](api-keys.md) are environment-specific. You cannot use a test API key to access the production environment, and vice versa.

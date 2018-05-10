@@ -24,4 +24,4 @@ Query string keys and their values must be URL encoded as per [RFC 3986](https:/
 
 In general, query string parameters are optional. But this is not always the case. There are some resources in the Currencycloud API that can be retrieved only using the ``GET`` HTTP method and mandatory query string parameters.
 
-See also [Pagination](/overview/pagination).
+See also [Pagination](pagination.md).

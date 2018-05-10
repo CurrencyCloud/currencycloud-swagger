@@ -4,29 +4,29 @@ The Currencycloud API is a robust, predictable, easy-to-use web service that sim
 The Currencycloud Developer Center has everything you need to integrate our API into your own payments service.
 
 
-## [Get an API Key](/register)
+## [Get an API Key](./register)
 Register to get an API key and start testing the Currencycloud API today.
 
-## [API Overview](/overview)
+## [API Overview](./overview)
 Learn how the Currencycloud API is organized and how to use it.
 
-## [API Reference](/reference)
+## [API Reference](reference.yaml)
 Comprehensive documentation on request parameters and response payloads for every endpoint.
 
-## [Test](/test)
+## [Test](test.md)
 Try the Currencycloud API for free using popular API clients such as Postman.
 
-## [Cookbook](/cookbook)
+## [Cookbook](./cookbook)
 Recipes for things that our customers like to do the most with the Currencycloud API.
 
-## [SDKs](/sdks)
+## [SDKs](sdks.md)
 We've got open source libraries to help you quickly integrate the Currencycloud API.
 
-## [Support](/support)
+## [Support](support.md)
 Get in touch by phone or email if you need help with anything.
 
-## [FAQs](/faqs)
+## [FAQs](faqs.md)
 A searchable list of questions we get asked the most.
 
-## [Glossary](/glossary)
+## [Glossary](glossary.md)
 Definitions for financial terms used throughout the Currencycloud API documentation.
