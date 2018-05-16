@@ -2191,24 +2191,24 @@ paths:
           description: Beneficiary UUID.
         - name: name
           in: formData
-          required: true
+          required: false
           type: string
           description: Beneficiary name.
         - name: bank_account_holder_name
           in: formData
-          required: true
+          required: false
           type: string
           description: Bank account holder's name.
         - name: bank_country
           in: formData
-          required: true
+          required: false
           type: string
           description: >-
             Country in which the beneficiary's bank account is held. Two-letter
             country code.
         - name: currency
           in: formData
-          required: true
+          required: false
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
@@ -5074,7 +5074,7 @@ paths:
           required: false
           type: string
           description: The currency sold. Three-digit code.
-        - name: conversion_ids
+        - name: conversion_ids[]
           in: query
           required: false
           type: array
