@@ -1927,14 +1927,17 @@ paths:
           required: false
           type: string
           description: Routing code for ``routing_code_type_2``.
-        - name: payment_types
-          in: formData
-          required: false
-          type: string
-          enum:
-            - priority
-            - regular
-          default: regular
+        - name: payment_types[]
+           in: formData
+           required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - priority
+              - regular
+          default:
+             - regular
           description: >-
             Currencycloud supports two types of payment: ``priority``, made
             using the SWIFT network; and ``regular``, made using the local bank
@@ -3336,14 +3339,17 @@ paths:
             - others
           description: >-
             A unique reference code for the identification document, such as a passport number.
-        - name: payment_types
-          in: formData
-          required: false
-          type: string
-          enum:
-            - priority
-            - regular
-          default: regular
+        - name: payment_types[]
+           in: formData
+           required: false
+          type: array
+          items:
+            type: string
+            enum:
+              - priority
+              - regular
+          default:
+             - regular
           description: >-
             Currencycloud supports two types of payments: ``priority``,
             made using the SWIFT network; and ``regular``, made using
