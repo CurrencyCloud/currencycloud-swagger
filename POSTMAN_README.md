@@ -11,7 +11,7 @@ Our API is built by developers for developers, making it straightforward
 to integrate with our systems.
 
 In order to use the API demo, you must register for an API key at
-<https://www.currencycloud.com/developers/register-for-an-api-key/>.
+<https://developer.currencycloud.com/api-register/>.
 
 Postman and setup
 =================
@@ -86,7 +86,7 @@ collection tab on the left, and click ‘Import collection’
 
 After that, select ‘Download from link’ and paste
 the following URL into the box:
-<https://raw.githubusercontent.com/currencycloud/swagger/master/src/reference.yaml>.
+<https://raw.githubusercontent.com/currencycloud/currencycloud-swagger/master/src/reference.yaml>.
 
 ![](media/image9.png)
 
