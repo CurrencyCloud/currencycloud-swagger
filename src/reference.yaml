@@ -198,7 +198,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -209,7 +209,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -289,7 +289,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -300,7 +300,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -387,7 +387,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -398,7 +398,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -625,7 +625,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -636,7 +636,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -747,7 +747,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -758,7 +758,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -1039,7 +1039,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -1050,7 +1050,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -1346,7 +1346,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -1357,7 +1357,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -1478,7 +1478,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -1489,7 +1489,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -1645,7 +1645,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -1656,7 +1656,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -2029,7 +2029,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -2040,7 +2040,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -2147,7 +2147,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -2158,7 +2158,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -2275,8 +2275,8 @@ paths:
           type: string
           description: Routing code for ``routing_code_type_2``.
         - name: payment_types[]
-           in: formData
-           required: false
+          in: formData
+          required: false
           type: array
           items:
             type: string
@@ -2284,7 +2284,7 @@ paths:
               - priority
               - regular
           default:
-             - regular
+            - regular
           description: >-
             Currencycloud supports two types of payment: ``priority``, made
             using the SWIFT network; and ``regular``, made using the local bank
@@ -2791,7 +2791,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -2802,7 +2802,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -3442,7 +3442,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -3453,7 +3453,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -3568,7 +3568,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -3579,7 +3579,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -3783,8 +3783,8 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a passport number.
         - name: payment_types[]
-           in: formData
-           required: false
+          in: formData
+          required: false
           type: array
           items:
             type: string
@@ -3792,7 +3792,7 @@ paths:
               - priority
               - regular
           default:
-             - regular
+            - regular
           description: >-
             Currencycloud supports two types of payments: ``priority``,
             made using the SWIFT network; and ``regular``, made using
@@ -4126,7 +4126,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -4137,7 +4137,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -4211,7 +4211,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -4222,7 +4222,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -4386,7 +4386,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -4397,7 +4397,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -4495,7 +4495,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -4506,7 +4506,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -4744,7 +4744,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -4755,7 +4755,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -4993,7 +4993,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5004,7 +5004,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -5284,7 +5284,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5295,7 +5295,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -5402,7 +5402,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5413,7 +5413,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -5713,7 +5713,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5724,7 +5724,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -5837,7 +5837,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5848,7 +5848,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -5947,7 +5947,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.   
+              description: A unique reference for the request.
         '500':
           description: Internal server error
           x-errors:
@@ -5958,7 +5958,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -5969,7 +5969,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -6074,7 +6074,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -6085,7 +6085,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -6438,7 +6438,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -6449,7 +6449,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -6721,7 +6721,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -6732,7 +6732,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -6843,7 +6843,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -6854,7 +6854,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -6970,7 +6970,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -6981,7 +6981,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -7373,7 +7373,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -7384,7 +7384,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -7497,7 +7497,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -7508,7 +7508,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -7619,7 +7619,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -7630,7 +7630,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -7816,7 +7816,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -7827,7 +7827,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -7945,7 +7945,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -7956,7 +7956,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8078,7 +8078,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8089,7 +8089,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8207,7 +8207,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8218,7 +8218,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8302,7 +8302,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8313,7 +8313,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8439,7 +8439,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8450,7 +8450,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8571,7 +8571,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8582,7 +8582,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8686,7 +8686,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8697,7 +8697,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8870,7 +8870,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -8881,7 +8881,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -8999,7 +8999,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9010,7 +9010,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9113,7 +9113,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9124,7 +9124,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9251,7 +9251,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9262,7 +9262,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9385,7 +9385,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9396,7 +9396,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9510,7 +9510,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9521,7 +9521,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9633,7 +9633,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9644,7 +9644,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -9758,7 +9758,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -9769,7 +9769,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10046,7 +10046,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10057,7 +10057,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10151,7 +10151,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10162,7 +10162,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10415,7 +10415,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10426,7 +10426,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10537,7 +10537,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10548,7 +10548,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10660,7 +10660,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10671,7 +10671,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10767,7 +10767,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10778,7 +10778,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10874,7 +10874,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -10885,7 +10885,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
@@ -10990,7 +10990,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request. 
+              description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
           x-errors:
@@ -11001,7 +11001,7 @@ paths:
           headers:
             X-Request-Id:
               type: integer
-              description: A unique reference for the request.    
+              description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
