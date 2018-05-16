@@ -5010,7 +5010,7 @@ paths:
           type: string
           description: Authentication token.
         - name: currency
-          in: header
+          in: query
           required: false
           type: string
           description: Currency in which the balance is held. Three-digit currency code.
@@ -8603,6 +8603,11 @@ paths:
           type: string
           description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
         - name: updated_at_from
+          in: query
+          required: false
+          type: string
+          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+        - name: updated_at_to
           in: query
           required: false
           type: string
