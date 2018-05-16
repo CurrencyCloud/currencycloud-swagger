@@ -24,7 +24,7 @@ The rest of the documentation is more informal and conversational in tone. First
 
 ## Technical Terminology
 
-Our published [glossary](/glossary) provides definitions for financial terms, but not technical terms that our target audience (software engineers) will already be familiar with. Nevertheless, it is important to use technical terms consistently throughout the documentation.
+Our published [glossary](./src/glossary.md) provides definitions for financial terms, but not technical terms that our target audience (software engineers) will already be familiar with. Nevertheless, it is important to use technical terms consistently throughout the documentation.
 
 An **endpoint** is a single resource identified by a unique combination of HTTP method and URI path.
 

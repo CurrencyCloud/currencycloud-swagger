@@ -2,7 +2,7 @@
 Start a new API session.
 
 
-Call the [Login](/reference/login) endpoint, passing in your Currencycloud login ID (usually your email address) and API key.
+Call the **Login** endpoint, passing in your Currencycloud login ID (usually your email address) and API key.
 
 ``POST /v2/authenticate/api`` \
 ``Content-Type: multipart/form-data``
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 ```
 
-Authentication tokens expire after 30 minutes of inactivity, after which time you will need to login again. If you don't need a token that long, [Logout](/reference/logout) to retire the token early.
+Authentication tokens expire after 30 minutes of inactivity, after which time you will need to login again. If you don't need a token that long, **Logout** to retire the token early.
 
 ``POST /v2/authenticate/close_session`` \
 ``Content-Type: multipart/form-data``
@@ -35,4 +35,4 @@ Authentication tokens expire after 30 minutes of inactivity, after which time yo
 
 ## Next Step
 
-[Check your Euros balance.](/cookbook/check-balance)
+[Check your Euros balance.](check-balance.md)

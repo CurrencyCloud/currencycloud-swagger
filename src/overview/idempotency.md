@@ -3,8 +3,8 @@ Idempotency keys are unique tokens, created and submitted by client applications
 
 Two endpoints in the Currencycloud API support optional idempotency keys:
 
-- [Create Conversion](/reference/create-conversion)
-- [Create Payment](/reference/create-payment)
+- **Create Conversion**
+- **Create Payment**
 
 It is recommended that you submit a unique idempotency key with every discrete request to these endpoints. Use the optional ``unique_request_id`` field to submit your keys. Should you receive an error response, such as a 500 Internal Server Error, you can safely retry the request without running the risk of creating duplicate conversions or payments.
 

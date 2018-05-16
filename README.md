@@ -6,7 +6,7 @@ The Currencycloud API documentation is maintained in two document formats:
 - Markdown
 - OpenAPI Specification (v2) written in YAML
 
-The content of the ``./src/`` directory mirrors the information architecture of the Currencycloud Developer Center.
+The content of the ``./src`` directory mirrors the information architecture of the Currencycloud Developer Center.
 
 For example, ``./src/overview.md`` maps to ``https://developer.currencycloud.com/overview``, and ``./src/overview/api-keys.md`` maps to ``https://developer.currencycloud.com/overview/api-keys``. The Developer Center homepage is generated from ``./src/index.md``.
 
@@ -28,7 +28,7 @@ The OpenAPI definition file describes individual endpoints in the Currencycloud 
 
 All source files are UTF-8 encoded with Unix line-endings (``LF``, ``\n``). They can be edited with any good text editor program. However, it is recommended to use [Swagger Editor](http://editor.swagger.io/) to make changes to ``./src/reference.yaml``. As you type, Swagger Editor will validate the document against the OpenAPI v2 specification. Swagger Editor also has a built-in Postman-like interface for interacting with API endpoints, though it is not as good as Postman. You can serve your own local instance of Swagger Editor by following the instructions in the "Tools" section, below.
 
-We maintain a style guide for the Currencycloud API documentation. See STYLE_GUIDE.md.
+We maintain a style guide for the Currencycloud API documentation. See [STYLE_GUIDE.md](STYLE_GUIDE.md).
 
 
 ## Tools
@@ -69,16 +69,13 @@ This will serve the default [Swagger UI](https://swagger.io/swagger-ui/) from ht
 
 To stop the server, in the console type ``Ctrl+C`` to terminate the running Node.js batch job.
 
-
 ### Postman
 
-The ``./src/reference.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular Chrome-based app that makes it easy to manually test API endpoints.
+The ``./src/reference.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular app that makes it easy to manually test API endpoints.
 
-**Installation**
+For a step-by-step guideline on how to configure Postman, please see [this guide](POSTMAN_README.md)
 
-From Google Chrome, [click here](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en), then press "Add to Chrome".
-
-Open Postman. It is not necessary to configure a Postman environment, since the OpenAPI file contains all the information Postman needs to generate client interfaces for the Currencycloud API. But it is still useful to configure environment variables to prepopulate API input parameters while testing. The following environment variables are particularly useful:
+Once Postman is installed and configured it is not mandatory to configure a Postman environment, since the OpenAPI file contains all the information required to generate client interfaces for the Currencycloud API, but it is still useful to setup some environment variables to prepopulate API input parameters while testing. The following environment variables are recommended:
 
 - ``login_id``: The email address that you use to login to your Currencycloud account.
 - ``api_key``: Your unique Currencycloud API key that you retrieved from your Currencycloud account.

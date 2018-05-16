@@ -1,10 +1,10 @@
 # Test the Currencycloud API
 
-## Step 1: [Register](/register)
+## Step 1: [Register](./register)
 Create a Currencycloud account. It's free and painless.
 
 
-## Step 2: [Get your API key](/account/api-key)
+## Step 2: [Get your API key](./overview/api-keys.md)
 Login to your Currencycloud account to get your unique API key.
 
 
@@ -31,6 +31,6 @@ If everything is setup correctly, you'll get a response containing an ``auth_tok
 
 You can now test any of the other endpoints in the Currencycloud API collection. Your authentication token will expire after half an hour of inactivity, in which case you will need to hit the "Login" endpoint again to get a fresh token.
 
-You will be connected to our test infrastructure rather than our live environment. The test API returns real time data, but executes trades in a fictional marketplace, so no real payments are made. When you are ready to transfer real money around the world, just [get in touch with our support team](/support) to upgrade your Currencycloud account.
+You will be connected to our test infrastructure rather than our live environment. The test API returns real time data, but executes trades in a fictional marketplace, so no real payments are made. When you are ready to transfer real money around the world, just [get in touch with our support team](./support.md) to upgrade your Currencycloud account.
 
 For convenience, you may add additional default input parameters to your Currencycloud Sandbox environment. For example, to test a client sub-account, you can have the ``{{on_behalf_of}}`` placeholder prepopulated with the sub-account UUID.

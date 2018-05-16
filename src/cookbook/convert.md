@@ -4,12 +4,12 @@ Buy more Euros using funds from your Pound Sterling balance.
 
 ## First Steps
 
-1. [Authenticate](/cookbook/authenticate)
-2. [Check your currency balances](/cookbook/check-balance)
+1. [Authenticate](authenticate.md)
+2. [Check your currency balances](check-balance.md)
 
 
 ## Get a Quote
-Check how much it will cost to buy 10,000 Euros using funds from your Pound Sterling balance, by making a call to the [Get Detailed Rates](/reference/get-detailed-rates) endpoint.
+Check how much it will cost to buy 10,000 Euros using funds from your Pound Sterling balance, by making a call to the **Get Detailed Rates** endpoint.
 
 ``GET /v2/rates/detailed``
 
@@ -47,7 +47,7 @@ Content-Type: application/json
 
 
 ## Convert
-If you are happy with the quote, you may authorize the conversion by calling the [Create Conversion](/reference/create-conversion) endpoint.
+If you are happy with the quote, you may authorize the conversion by calling the **Create Conversion** endpoint.
 
 ``POST /v2/conversions/create`` \
 ``Content-Type: multipart/form-data``
@@ -62,7 +62,7 @@ If you are happy with the quote, you may authorize the conversion by calling the
 | ``term_agreement`` | Payload        | ``true``                             |
 | ``X-Auth-Token``   | Header         | ``ea6d13c7bc50feb46cf978d137bc01a2`` |
 
-On success, the payload of the response message will contain full details of the conversion as recorded against your Currencycloud account. Note, this does not mean that the conversion has taken place. For that to happen, you will need to [add the conversion to a settlement](/cookbook/settle), and have enough funds in your GBP balance on the settlement date. Conversions will be processed asynchronously, and the additional funds will be available in the purchase currency after the settlement date.
+On success, the payload of the response message will contain full details of the conversion as recorded against your Currencycloud account. Note, this does not mean that the conversion has taken place. For that to happen, you will need to [add the conversion to a settlement](settle.md), and have enough funds in your GBP balance on the settlement date. Conversions will be processed asynchronously, and the additional funds will be available in the purchase currency after the settlement date.
 
 ```
 HTTP/1.1 200 OK
@@ -105,4 +105,4 @@ Content-Type: application/json
 
 ## Next Steps
 
-[Make a payment to Germany from your Euros balance](/cookbook/pay). And remember, before conversions can be processed, you must [create a settlement](/cookbook/settle).
+[Make a payment to Germany from your Euros balance](pay.md). And remember, before conversions can be processed, you must [create a settlement](settle.md).

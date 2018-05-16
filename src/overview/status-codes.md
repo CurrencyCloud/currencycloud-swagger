@@ -25,9 +25,9 @@ Appropriate client error codes are returned for malformed API calls or where inp
 
 ``415 Unsupported Media Type`` is returned if a request's MIME type or character encoding (as declared in the ``Content-Type`` header) or the compression format (as declared in the ``Content-Encoding`` header) are not supported by the server.
 
-``429 Too Many Requests`` will be returned when a client reaches its request quota (see [Rate Limits](/overview/rate-limits)).
+``429 Too Many Requests`` will be returned when a client reaches its request quota (see [Rate Limits](rate-limits.md)).
 
-In the future, ``410 Gone`` will be returned from all endpoints in the current version of the Currencycloud API, when [this version is finally retired](/overview/versioning).
+In the future, ``410 Gone`` will be returned from all endpoints in the current version of the Currencycloud API, when [this version is finally retired](versioning.md).
 
 Client applications should log 4xx errors to facilitate debugging. Applications should not retry client errors. Applications should address the issue before submitting the request again.
 

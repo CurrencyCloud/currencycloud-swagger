@@ -1,13 +1,13 @@
 # Rate Limits
-To ensure a stable service for all users, the number of requests you can make to the Currencycloud API — both the test and live [environments](/overview/environments) — is restricted.
+To ensure a stable service for all users, the number of requests you can make to the Currencycloud API — both the test and live [environments](environments.md) — is restricted.
 
 Rate limiting is applied on a per-user basis in one minute intervals.
 
-Requests to the [authentication endpoints](/reference/authenticate) are limited to 10 per minute.
+Requests to the **authentication** endpoint are limited to 10 per minute.
 
-Other endpoints have higher rate limits. Requests for [foreign exchange rates](/reference/rates) are limited to 75 per minute, while every other resource is capped at 100.
+Other endpoints have higher rate limits. Requests for foreign exchange **rates** are limited to 75 per minute, while every other resource is capped at 100.
 
-If you make too many requests, you will receive a status code of ``429 Too Many Requests``. Client applications should be programmed to handle this scenario gracefully.
+If you make too many requests, you will receive a status code of ``429 Too Many Requests``. Client applications should be programmed to handle this scenario gracefully. We recommend to implement an [exponential backoff with random jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/).
 
 All endpoints return information about the rate limitations on the requested resource. The following headers are provided:
 

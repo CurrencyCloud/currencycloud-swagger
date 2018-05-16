@@ -4,13 +4,13 @@ Make a payment to Germany from your Euros balance.
 
 ## First Steps
 
-1. [Authenticate](/cookbook/authenticate)
-2. [Check your currency balances](/cookbook/check-balance)
-3. [Buy more Euros using funds from your Pound Sterling balance](/cookbook/convert)
+1. [Authenticate](authenticate.md)
+2. [Check your currency balances](check-balance.md)
+3. [Buy more Euros using funds from your Pound Sterling balance](convert.md)
 
 
 ## Check Requirements
-You want to make a priority payment to a supplier based in Germany. First, check what details are required to make a priority payment in Euros to a beneficiary with a bank account in Germany. Call the [Get Beneficiary Requirements](/reference/get-beneficiary-requirements) endpoint.
+You want to make a priority payment to a supplier based in Germany. First, check what details are required to make a priority payment in Euros to a beneficiary with a bank account in Germany. Call the **Get Beneficiary Requirements** endpoint.
 
 ``GET /v2/reference/beneficiary_required_details`` \
 ``Content-Type: multipart/form-data``
@@ -70,7 +70,7 @@ The response tells us that, to make a regular payment to a German bank account i
 
 
 ## Create Beneficiary
-If you know the required details, you can go ahead and create a record for the beneficiary via the [Create Beneficiary](/reference/create-beneficiary) endpoint.
+If you know the required details, you can go ahead and create a record for the beneficiary via the **Create Beneficiary** endpoint.
 
 ``POST /v2/beneficiaries/create`` \
 ``Content-Type: multipart/form-data``
@@ -134,7 +134,7 @@ Content-Type: application/json
 
 
 ## Make a Payment
-Authorize a payment by calling the [Create Payment](/reference/create-payment) endpoint. It is recommended that you provide an [idempotency key](/overview/idempotency) to prevent duplicate payments.
+Authorize a payment by calling the **Create Payment** endpoint. It is strongly recommended that you provide an [idempotency key](../overview/idempotency.md) to prevent duplicate payments.
 
 ``POST /v2/payments/create`` \
 ``Content-Type: multipart/form-data``
@@ -189,4 +189,4 @@ Content-Type: application/json
 
 ## Next Step
 
-So far in this cookbook you have [converted money from GBP to Euros](/cookbook/convert) and made a payment to Germany from your topped-up Euros balance. But, before the payment can be processed, the conversion from GBP to Euros needs to be completed, so you have enough money in Euros when the payment goes through. To complete the conversion, you must [settle](/cookbook/settle).
+So far in this cookbook you have [converted money from GBP to Euros](convert.md) and made a payment to Germany from your topped-up Euros balance. But, before the payment can be processed, the conversion from GBP to Euros needs to be completed, so you have enough money in Euros when the payment goes through. To complete the conversion, you must **settle**.

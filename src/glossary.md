@@ -3,7 +3,7 @@ Definitions for financial and proprietary terms used throughout the Currencyclou
 
 
 ## Accounts and Sub-Accounts
-A Currencycloud account can be opened via [the website](/register). Initially, new Currencycloud accounts are given access to the [Currencycloud test API](/overview/environments). Account owners can [request an upgrade](/support) to get access to our production environment, which enables the transfer of real money around the world.
+A Currencycloud account can be opened via [the website](./register). Initially, new Currencycloud accounts are given access to the [Currencycloud test API](./overview/environments.md). Account owners can [request an upgrade](./support.md) to get access to our production environment, which enables the transfer of real money around the world.
 
 An account is a multi-currency digital wallet, capable of holding money in multiple currencies simultaneously.
 
