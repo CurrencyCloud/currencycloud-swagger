@@ -2191,24 +2191,24 @@ paths:
           description: Beneficiary UUID.
         - name: name
           in: formData
-          required: true
+          required: false
           type: string
           description: Beneficiary name.
         - name: bank_account_holder_name
           in: formData
-          required: true
+          required: false
           type: string
           description: Bank account holder's name.
         - name: bank_country
           in: formData
-          required: true
+          required: false
           type: string
           description: >-
             Country in which the beneficiary's bank account is held. Two-letter
             country code.
         - name: currency
           in: formData
-          required: true
+          required: false
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
@@ -3621,6 +3621,11 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-digit currency code.
+        - name: beneficiary_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
         - name: beneficiary_country
           in: formData
           required: false
@@ -5069,7 +5074,7 @@ paths:
           required: false
           type: string
           description: The currency sold. Three-digit code.
-        - name: conversion_ids
+        - name: conversion_ids[]
           in: query
           required: false
           type: array
@@ -5754,6 +5759,35 @@ paths:
           required: false
           type: string
           description: Currency in which the balance is held. Three-digit currency code.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
@@ -5879,6 +5913,30 @@ paths:
           required: false
           type: string
           description: Currency in which the balance is held. Three-digit currency code.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
@@ -5997,6 +6055,30 @@ paths:
           required: true
           type: string
           description: Sub-account UUID.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
@@ -10701,6 +10783,30 @@ paths:
           required: true
           type: string
           description: Authentication token.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
@@ -10808,6 +10914,30 @@ paths:
           required: true
           type: string
           description: Authentication token.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
@@ -10918,6 +11048,30 @@ paths:
           required: true
           type: string
           description: Sub-account ID.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+          description: Sort records in ascending or descending order.
       responses:
         '200':
           description: Success.
