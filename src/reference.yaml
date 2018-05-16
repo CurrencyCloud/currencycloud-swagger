@@ -177,6 +177,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -222,6 +227,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -236,6 +246,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -288,6 +303,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -302,6 +322,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -494,6 +519,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -508,6 +538,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -582,6 +617,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -598,6 +638,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -842,6 +887,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -858,6 +908,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1119,6 +1174,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1133,6 +1193,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1217,6 +1282,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1233,6 +1303,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1354,6 +1429,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1368,6 +1448,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1706,6 +1791,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1720,6 +1810,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1790,6 +1885,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1806,6 +1906,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -2401,6 +2506,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -2415,6 +2525,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3017,6 +3132,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3031,6 +3151,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3109,6 +3234,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3125,6 +3255,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3634,6 +3769,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3648,6 +3788,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3687,6 +3832,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3701,6 +3851,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3830,6 +3985,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3844,6 +4004,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -3905,6 +4070,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -3921,6 +4091,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -4124,6 +4299,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -4138,6 +4318,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -4341,6 +4526,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -4355,6 +4545,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -4600,6 +4795,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -4614,6 +4814,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -4684,6 +4889,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -4700,6 +4910,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -4965,6 +5180,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -4979,6 +5199,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5057,6 +5282,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5071,6 +5301,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5088,7 +5323,7 @@ paths:
       tags:
         - IBANs
       x-api-group: collect
-      summary: Get IBANs for Sub-Accounts
+      summary: Find IBANs for Sub-Accounts
       description: >-
         Get a list of IBANS for all sub-accounts owned by the authenticating
         user. Optionally returns the IBANs of bank accounts that hold money in a
@@ -5146,6 +5381,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5160,6 +5400,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5228,6 +5473,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5244,6 +5494,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5562,6 +5817,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5576,6 +5836,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5813,6 +6078,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5827,6 +6097,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5901,6 +6176,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -5917,6 +6197,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -5996,6 +6281,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6012,6 +6302,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6369,6 +6664,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6383,6 +6683,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6459,6 +6764,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6475,6 +6785,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6549,6 +6864,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6565,6 +6885,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6716,6 +7041,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6730,6 +7060,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6813,6 +7148,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6827,6 +7167,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -6914,6 +7259,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -6928,6 +7278,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7011,6 +7366,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7025,6 +7385,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7074,6 +7439,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7088,6 +7458,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7179,6 +7554,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7193,6 +7573,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7279,6 +7664,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7293,6 +7683,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7362,6 +7757,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7376,6 +7776,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7514,6 +7919,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7528,6 +7938,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7609,6 +8024,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7625,6 +8045,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7693,6 +8118,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7707,6 +8137,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7797,6 +8232,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7813,6 +8253,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7899,6 +8344,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -7915,6 +8365,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -7992,6 +8447,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8008,6 +8468,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8083,6 +8548,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8099,6 +8569,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8176,6 +8651,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8192,6 +8672,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8434,6 +8919,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8448,6 +8938,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8505,6 +9000,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8521,6 +9021,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8739,6 +9244,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8753,6 +9263,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8827,6 +9342,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8843,6 +9363,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8920,6 +9445,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8934,6 +9464,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8995,6 +9530,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -9009,6 +9549,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -9026,7 +9571,7 @@ paths:
       tags:
         - VANs
       x-api-group: collect
-      summary: Get VANs for Sub-Accounts
+      summary: Find VANs for Sub-Accounts
       description: >-
         Get a list of VANS for all sub-accounts owned by the authenticating
         user.
@@ -9070,6 +9615,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -9084,6 +9634,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -9152,6 +9707,11 @@ paths:
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+          - category: username
+          - message: Authentication failed with the supplied credentials
+          - params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -9168,6 +9728,11 @@ paths:
               description: A unique reference for the request.
         '429':
           description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+          - category: base
+          - message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+          - params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
