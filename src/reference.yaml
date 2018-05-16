@@ -2648,14 +2648,17 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
-        - name: payment_types
+        - name: payment_types[]
           in: formData
           required: false
-          type: string
-          enum:
-            - priority
+          type: array
+          items:
+            type: string
+            enum:
+              - priority
+              - regular
+          default:
             - regular
-          default: regular
           description: >-
             Currencycloud supports two types of payments: ``priority``, made
             using the SWIFT network; and ``regular``, made using the local bank
