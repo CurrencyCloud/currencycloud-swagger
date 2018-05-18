@@ -26,7 +26,7 @@ Most of the source documentation is written in [GitHub Flavoured Markdown](https
 
 The OpenAPI definition file describes individual endpoints in the Currencycloud API. OpenAPI definitions can be written in JSON or YAML. We've chosen YAML as it is the most readable of the two formats.
 
-All source files are UTF-8 encoded with Unix line-endings (``LF``, ``\n``). They can be edited with any good text editor program. However, it is recommended to use [Swagger Editor](http://editor.swagger.io/) to make changes to ``./src/reference.yaml``. As you type, Swagger Editor will validate the document against the OpenAPI v2 specification. Swagger Editor also has a built-in Postman-like interface for interacting with API endpoints, though it is not as good as Postman. You can serve your own local instance of Swagger Editor by following the instructions in the "Tools" section, below.
+All source files are UTF-8 encoded with Unix line-endings (``LF``, ``\n``). They can be edited with any good text editor program. However, it is recommended to use [Swagger Editor](http://editor2.swagger.io) to make changes to ``./src/reference.yaml``. As you type, Swagger Editor will validate the document against the OpenAPI v2 specification. Swagger Editor also has a built-in Postman-like interface for interacting with API endpoints, though it is not as good as Postman. You can serve your own local instance of Swagger Editor by following the instructions in the "Tools" section, below.
 
 We maintain a style guide for the Currencycloud API documentation. See [STYLE_GUIDE.md](STYLE_GUIDE.md).
 
@@ -57,7 +57,7 @@ When the installation is complete, run the following command to launch a local i
 npm run swagger:editor
 ```
 
-This command will serve Swagger Editor in your default web browser from http://127.0.0.1:9000/. The file ``./src/reference.yaml`` will be loaded by default. Any changes you make to the API definition file will be saved automatically as you type; there is no need to use the editor's file import/export commands. Alternatively you can use the online version of Swagger Editor at https://editor.swagger.com/.
+This command will serve Swagger Editor in your default web browser from http://127.0.0.1:9000/. The file ``./src/reference.yaml`` will be loaded by default. Any changes you make to the API definition file will be saved automatically as you type; there is no need to use the editor's file import/export commands. Alternatively you can use the online version of Swagger Editor at http://editor2.swagger.io.
 
 If you prefer to edit the API definition file from your IDE, you can still preview your changes using the following command:
 
