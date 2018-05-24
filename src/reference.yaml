@@ -1185,7 +1185,7 @@ paths:
           type: string
           description: >-
             A unique reference code for the identification document, such as a
-            passport number. Required if ``identification_type`` is provided.
+            passport number. Required if "identification_type" is provided.
       responses:
         '200':
           description: Success.
@@ -1777,17 +1777,17 @@ paths:
           in: query
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "company".
+          description: Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: query
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: query
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_city
           in: query
           required: false
@@ -1809,8 +1809,8 @@ paths:
           type: string
           format: date
           description: >-
-            If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            If "beneficiary_entity_type" is "company", date of registration.
+            If "beneficiary_entity_type" is "individual", date of birth. ISO
             8601 format YYYY-MM-DD.
         - name: scope
           in: query
@@ -2254,7 +2254,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_1``.
+          description: Routing code for "routing_code_type_1".
         - name: routing_code_type_2
           in: formData
           required: false
@@ -2273,7 +2273,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_2``.
+          description: Routing code for "routing_code_type_2".
         - name: payment_types[]
           in: formData
           required: false
@@ -2286,8 +2286,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payment: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
+            Currencycloud supports two types of payment: "priority", made
+            using the SWIFT network; and "regular", made using the local bank
             network.
         - name: bic_swift
           in: formData
@@ -2337,17 +2337,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "company".
+          description: Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -2369,8 +2369,8 @@ paths:
           required: false
           type: string
           description: >-
-            If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            If "beneficiary_entity_type" is "company", date of registration.
+            If "beneficiary_entity_type" is "individual", date of birth. ISO
             8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
@@ -2894,7 +2894,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_1``.
+          description: Routing code for "routing_code_type_1".
         - name: routing_code_type_2
           in: formData
           required: false
@@ -2913,7 +2913,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_2``.
+          description: Routing code for "routing_code_type_2".
         - name: bic_swift
           in: formData
           required: false
@@ -2962,17 +2962,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "company".
+          description: Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: Required if ``beneficiary_entity_type`` is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -2993,8 +2993,8 @@ paths:
           required: false
           type: string
           description: >-
-            If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth. ISO
+            If "beneficiary_entity_type" is "company", date of registration.
+            If "beneficiary_entity_type" is "individual", date of birth. ISO
             8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
@@ -3042,8 +3042,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
+            Currencycloud supports two types of payments: "priority", made
+            using the SWIFT network; and "regular", made using the local bank
             network.
         - name: on_behalf_of
           in: formData
@@ -3657,7 +3657,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_1``.
+          description: Routing code for "routing_code_type_1".
         - name: routing_code_type_2
           in: formData
           required: false
@@ -3676,7 +3676,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing code for ``routing_code_type_2``.
+          description: Routing code for "routing_code_type_2".
         - name: bic_swift
           in: formData
           required: false
@@ -3718,19 +3718,19 @@ paths:
           required: false
           type: string
           description: >-
-            Required if ``beneficiary_entity_type`` is "company".
+            Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
           description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+            Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
           description: >-
-            Required if ``beneficiary_entity_type`` is "individual".
+            Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -3751,8 +3751,8 @@ paths:
           required: false
           type: string
           description: >-
-            If ``beneficiary_entity_type`` is "company", date of registration.
-            If ``beneficiary_entity_type`` is "individual", date of birth.
+            If "beneficiary_entity_type" is "company", date of registration.
+            If "beneficiary_entity_type" is "individual", date of birth.
             ISO 8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
@@ -3799,8 +3799,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``,
-            made using the SWIFT network; and ``regular``, made using
+            Currencycloud supports two types of payments: "priority",
+            made using the SWIFT network; and "regular", made using
             the local bank network.
         - name: on_behalf_of
           in: formData
@@ -4302,12 +4302,12 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
+          description: 'Locale code ("en", "en-US", "fr-FR").'
         - name: timezone
           in: query
           required: false
           type: string
-          description: 'Timezone (``Europe/London``, ``America/New_York``).'
+          description: 'Timezone ("Europe/London", "America/New_York").'
         - name: page
           in: query
           required: false
@@ -4589,12 +4589,12 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
+          description: 'Locale code ("en", "en-US", "fr-FR").'
         - name: timezone
           in: query
           required: false
           type: string
-          description: 'Timezone (``Europe/London``, ``America/New_York``).'
+          description: 'Timezone ("Europe/London", "America/New_York").'
         - name: date_of_birth
           in: query
           required: false
@@ -4839,12 +4839,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: 'Locale code (``en``, ``en-US``, ``fr-FR``).'
+          description: 'Locale code ("en", "en-US", "fr-FR").'
         - name: timezone
           in: formData
           required: false
           type: string
-          description: 'Timezone (``Europe/London``, ``America/New_York``).'
+          description: 'Timezone ("Europe/London", "America/New_York").'
         - name: date_of_birth
           in: formData
           required: false
@@ -6232,8 +6232,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
+            Currencycloud supports two types of payments: "priority", made
+            using the SWIFT network; and "regular", made using the local bank
             network.
         - name: conversion_id
           in: formData
@@ -6252,17 +6252,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if ``payer_entity_type`` is "company".
+          description: Required if "payer_entity_type" is "company".
         - name: payer_first_name
           in: formData
           required: false
           type: string
-          description: Required if ``payer_entity_type`` is "individual".
+          description: Required if "payer_entity_type" is "individual".
         - name: payer_last_name
           in: formData
           required: false
           type: string
-          description: Required if ``payer_entity_type`` is "individual".
+          description: Required if "payer_entity_type" is "individual".
         - name: payer_city
           in: formData
           required: false
@@ -6293,8 +6293,8 @@ paths:
           required: false
           type: string
           description: >-
-            If ``payer_entity_type`` is "company", company registration date. If
-            ``payer_entity_type`` is "individual", date of birth. ISO 8601
+            If "payer_entity_type" is "company", company registration date. If
+            "payer_entity_type" is "individual", date of birth. ISO 8601
             format YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
@@ -7134,8 +7134,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
+            Currencycloud supports two types of payments: "priority", made
+            using the SWIFT network; and "regular", made using the local bank
             network.
         - name: reference
           in: formData
@@ -7159,12 +7159,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if ``payer_entity_type`` is "company".
+          description: Required if "payer_entity_type" is "company".
         - name: payer_first_name
           in: formData
           required: false
           type: string
-          description: Required if ``payer_entity_type`` is "individual".
+          description: Required if "payer_entity_type" is "individual".
         - name: payer_last_name
           in: formData
           required: false
@@ -7200,8 +7200,8 @@ paths:
           required: false
           type: string
           description: >-
-            If ``payer_entity_type`` is "company", company registration date. If
-            ``payer_entity_type`` is "individual", date of birth. ISO 8601
+            If "payer_entity_type" is "company", company registration date. If
+            "payer_entity_type" is "individual", date of birth. ISO 8601
             format YYYY-MM-DD..
         - name: payer_identification_type
           in: formData
@@ -8442,8 +8442,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: ``priority``, made
-            using the SWIFT network; and ``regular``, made using the local bank
+            Currencycloud supports two types of payments: "priority", made
+            using the SWIFT network; and "regular", made using the local bank
             network.
       responses:
         '200':
@@ -10006,14 +10006,14 @@ paths:
           in: query
           required: false
           type: string
-          description: Beneficiary UUID. Required if ``related_entity_type`` is "payment".
+          description: Beneficiary UUID. Required if "related_entity_type" is "payment".
         - name: currency_pair
           in: query
           required: false
           type: string
           description: >-
             Concatenated string of the two currencies traded, eg. "USDEUR".
-            Required if ``related_entity_type`` is "conversion".
+            Required if "related_entity_type" is "conversion".
         - name: scope
           in: query
           required: false
