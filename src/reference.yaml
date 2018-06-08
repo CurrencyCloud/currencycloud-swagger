@@ -5736,6 +5736,970 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  '/conversions/{id}/cancellation_quote':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Get Conversion Cancellation quote
+      description: Get a quote for the projected cost to cancel an existing conversion.
+      operationId: GetConversionCanceQuote
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionCancellationQuote'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /conversions/{id}/cancel:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Cancel Conversion
+      description: 'Cancel a conversion, incurring a profit or loss.'
+      operationId: CreateConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ID of the conversion that is being cancelled
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: notes
+          required: false
+          type: string
+          in: formData
+          description: Notes describing the reason for cancellation.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionProfitAndLoss'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/date_change_quote':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Get Conversion Cancellation quote
+      description: Get a quote for the projected cost to cancel an existing conversion.
+      operationId: GetConversionCanceQuote
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: new_settlement_date
+          in: query
+          required: true
+          type: string
+          description: Desired new settlement date of conversion
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionDateChange'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/date_change/details':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Get Conversion date change details for a conversion
+      description: Show al changes made to the settlement date of an existing conversion
+      operationId: GetConversionDateChangeDetails
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/DateChangeInformation'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /conversions/{id}/date_change:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Cancel Conversion
+      description: 'Change the settlement date of a conversion'
+      operationId: ConversionDateChange
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ID of the conversion that is being changed
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: new_settlement_date
+          required: false
+          type: string
+          in: formData
+          description: New conversion settlement date
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionDateChange'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/split_preview':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Preview the result of a conversion split operation
+      description: Dry run a conversion split operation without persisting the changes
+      operationId: GetConversionSplitPreview
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionSplit'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/split_history':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Preview the result of a conversion split operation
+      description: Dry run a conversion split operation without persisting the changes
+      operationId: GetConversionSplitPreview
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionSplitHistory'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /conversions/{id}/split:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Cancel Conversion
+      description: 'Split a conversion into two conversions.'
+      operationId: SplitConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ID of the conversion that is being cancelled
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: amount
+          required: true
+          type: string
+          in: formData
+          description: The amount at which to split this conversion.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionSplit'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /ibans:
     get:
       tags:
@@ -11699,6 +12663,69 @@ definitions:
       unique_request_id: 1234567890abc
       created_at: 2017-12-31T23:59:59.000Z
       updated_at: 2017-12-31T23:59:59.000Z
+  ConversionCancellationQuote:
+    type: object
+    descrition: Projected cost to cancel a conversion.
+    properties:
+      amount:
+        type: string
+      currency:
+        type: string
+      event_date_time:
+        type: string
+        format: date-time
+    example:
+      amount: 100.00
+      currency: GBP
+      event_date_time: 2018-07-14T17:03:11.000Z
+  ConversionProfitAndLoss:
+    type: object
+    description:  Recognised profit / loss on a conversion
+    properties:
+      account_id:
+        type: string
+      contact_id:
+        type: string
+      event_account_id:
+        type: string
+      event_contact_id:
+        type: string
+      conversion_id:
+        type: string
+      event_type:
+        type: string
+      external_amount:
+        type: string
+      currency:
+        type: string
+      notes:
+        type: string
+      event_date_time:
+        type: string
+        format: date-time
+  ConversionDateChange:
+    type: object
+    description:  Conversion Date change record
+    properties:
+      profit_loss:
+        type: string
+      profit_loss_currency:
+        type: string
+      new_delivery_date:
+        type: string
+        format: date-time
+      new_settlement_date:
+        type: string
+        format: date-time
+      old_delivery_date:
+        type: string
+        format: date-time
+      old_settlement_date:
+        type: string
+        format: date-time
+      event_date_time:
+        type: string
+        format: date-time
   ConversionDates:
     type: object
     description: Conversion dates.
@@ -11743,6 +12770,47 @@ definitions:
         '2013-06-14': No trading on Saturday
       first_conversion_date: 2013-04-15T00:00:00.000Z
       default_conversion_date: 2013-04-17T00:00:00.000Z
+  ConversionSplitDetails:
+    property: id
+      type: string
+    property: short_reference
+      type: string
+    property: sell_currency
+      type: string
+    property: buy_currency
+      type: string
+    property: buy_amount
+      type: string
+    property: sell_amount
+      type: string
+    property: settles_at
+      type: string
+      format: date-time
+    property: delivery_at
+      type: string
+      format: date-time
+    property: status
+      type: string
+  ConversionSplit:
+    type: object
+    property: parent_conversion
+      type:
+        $ref: '#/definitions/ConversionSplitDetails'
+    property: child_conversion
+      type:
+        $ref: '#/definitions/ConversionSplitDetails'
+  ConversionSplitHistory:
+    type: object
+    property: origin_conversion
+      type:
+        $ref: '#/definitions/ConversionSplitDetails'
+    property: parent_conversion
+      type:
+        $ref: '#/definitions/ConversionSplitDetails'
+    property: child_conversions
+      type: array
+      items:
+        $ref: '#/definitions/ConversionSplitDetails'
   CreateAccountError:
     type: object
     description: >
@@ -12057,6 +13125,27 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  DateChangeInformation:
+    type: object
+    description: Details of conversion date changes
+    properties:
+        current_value_date:
+          type: string
+          format: date-time
+        initial_delivery_date:
+          type: string
+          format: date-time
+        current_delivery_date:
+          type: string
+          format: date-time
+        total_profit_and_loss:
+          type: string
+        floating_ccy:
+          type: string
+        changes:
+          type: array
+          items:
+            $ref: '#/definitions/ConversionDateChange'
   DeleteBeneficiaryError:
     type: object
     description: |
