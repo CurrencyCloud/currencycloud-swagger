@@ -12665,7 +12665,7 @@ definitions:
       updated_at: 2017-12-31T23:59:59.000Z
   ConversionCancellationQuote:
     type: object
-    descrition: Projected cost to cancel a conversion.
+    description: Projected cost to cancel a conversion.
     properties:
       amount:
         type: string
@@ -12771,46 +12771,49 @@ definitions:
       first_conversion_date: 2013-04-15T00:00:00.000Z
       default_conversion_date: 2013-04-17T00:00:00.000Z
   ConversionSplitDetails:
-    property: id
-      type: string
-    property: short_reference
-      type: string
-    property: sell_currency
-      type: string
-    property: buy_currency
-      type: string
-    property: buy_amount
-      type: string
-    property: sell_amount
-      type: string
-    property: settles_at
-      type: string
-      format: date-time
-    property: delivery_at
-      type: string
-      format: date-time
-    property: status
-      type: string
+    properties:
+      id:
+        type: string
+      short_reference:
+        type: string
+      sell_currency:
+        type: string
+      buy_currency:
+        type: string
+      buy_amount:
+        type: string
+      sell_amount:
+        type: string
+      settles_at:
+        type: string
+        format: date-time
+      delivery_at:
+        type: string
+        format: date-time
+      status:
+        type: string
   ConversionSplit:
     type: object
-    property: parent_conversion
-      type:
+    properties:
+      parent_conversion:
+        type: object
         $ref: '#/definitions/ConversionSplitDetails'
-    property: child_conversion
-      type:
+      child_conversion:
+        type: object
         $ref: '#/definitions/ConversionSplitDetails'
   ConversionSplitHistory:
     type: object
-    property: origin_conversion
-      type:
+    properties:
+      origin_conversion:
+        type: object
         $ref: '#/definitions/ConversionSplitDetails'
-    property: parent_conversion
-      type:
+      parent_conversion:
+        type: object
         $ref: '#/definitions/ConversionSplitDetails'
-    property: child_conversions
-      type: array
-      items:
-        $ref: '#/definitions/ConversionSplitDetails'
+      child_conversions:
+        type: array
+        items:
+          $ref: '#/definitions/ConversionSplitDetails'
   CreateAccountError:
     type: object
     description: >
