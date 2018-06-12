@@ -5861,7 +5861,7 @@ paths:
       x-api-group: convert
       summary: Cancel Conversion
       description: 'Cancel a conversion, incurring a profit or loss.'
-      operationId: CreateConversion
+      operationId: CancelConversion
       consumes:
         - multipart/form-data
       produces:
@@ -5984,7 +5984,7 @@ paths:
       x-api-group: convert
       summary: Get Conversion Cancellation quote
       description: Get a quote for the projected cost to cancel an existing conversion.
-      operationId: GetConversionCanceQuote
+      operationId: ConversionDateChangeQuote
       produces:
         - application/json
       parameters:
@@ -6466,7 +6466,7 @@ paths:
       x-api-group: convert
       summary: Preview the result of a conversion split operation
       description: Dry run a conversion split operation without persisting the changes
-      operationId: GetConversionSplitPreview
+      operationId: GetConversionSplitHistory
       produces:
         - application/json
       parameters:
@@ -12796,19 +12796,15 @@ definitions:
     type: object
     properties:
       parent_conversion:
-        type: object
         $ref: '#/definitions/ConversionSplitDetails'
       child_conversion:
-        type: object
         $ref: '#/definitions/ConversionSplitDetails'
   ConversionSplitHistory:
     type: object
     properties:
       origin_conversion:
-        type: object
         $ref: '#/definitions/ConversionSplitDetails'
       parent_conversion:
-        type: object
         $ref: '#/definitions/ConversionSplitDetails'
       child_conversions:
         type: array
