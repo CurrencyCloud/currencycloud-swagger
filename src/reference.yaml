@@ -5736,6 +5736,339 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  '/conversions/{id}/cancel':
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Cancel Conversion
+      description: Conversion cancellation is a feature driven by permissions and is only available for House Account-level users. Users with this permission can cancel conversions both on their own account as well as any of their sub-accounts. The feature is available both for users that are enabled or disabled for Currencycloud Account Balances. Note that only conversions that are in status ‘Awaiting Funds’ can be cancelled.
+      operationId: CancelConversion
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: note
+          in: formData
+          required: false
+          type: string
+          description: The note, that will be stored with conversion cancellation (e.g. reason of cancellation).
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/CancelledConversion'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/CancelConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/date_change':
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Conversion Date Change
+      description: Conversion date change is a feature driven by permissions and is only available for House Account-level users. Users with this permission can change the date of conversions both on their own account as well as any of their sub-accounts. The feature is available both for users that are enabled or disabled for Currencycloud Account Balances. Note that only conversions that are in status ‘Awaiting Funds’ can have their date changed through the API.
+      operationId: ConversionDateChange
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: new_settlement_date
+          in: formData
+          required: true
+          type: string
+          format: Date
+          description: New settlement date in ISO 8601 format.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionDateChanged'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: new_settlement_date_invalid_in_past
+              category: base
+              message: New settlement date has to be today or greater than today's date
+              params: ''
+            - code: new_settlement_date_invalid
+              category: base
+              message: Invalid new settlement date, next valid date time is - YYYY-MM-DDT15:30:00Z
+              params: ''
+          schema:
+            $ref: '#/definitions/ConversionDateChangedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/conversions/{id}/split':
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Conversion Split
+      description: Conversion split is a feature driven by permissions and is only available for House Account-level users. Users with this permission can split a conversion into smaller amounts both on their own account as well as any of their sub-accounts. The feature is available both for users that are enabled or disabled for Currencycloud Account Balances. Note that only conversions that are in status ‘Awaiting Funds’ can be split. By combining the split functionality with the cancellation and date change features, the user can complete more complex actions like partial cancellations, partial rolls or partial drawdowns.
+      operationId: ConversionSplit
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: Amount to be split from original conversion. The amount is specified for .
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionSplit'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/ConversionSplitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /ibans:
     get:
       tags:
@@ -11699,6 +12032,177 @@ definitions:
       unique_request_id: 1234567890abc
       created_at: 2017-12-31T23:59:59.000Z
       updated_at: 2017-12-31T23:59:59.000Z
+  CancelledConversion:
+    type: object
+    description: Cancelled Conversion.
+    properties:
+      conversion_id:
+        type: string
+      account_id:
+        type: string
+      contact_id:
+        type: string
+      event_account_id:
+        type: string
+      event_contact_id:
+        type: string
+      amount:
+        type: string
+        description: >-
+          Amount in profit/loss currency
+      currency:
+        type: string
+      notes:
+        type: string
+      event_date_time:
+        type: string
+        format: date
+    example:
+      conversion_id: c9b6b851-10f9-4bbf-881e-1d8a49adf7d8
+      account_id: 67e1b252-40a7-454d-a097-8f77d385889d
+      contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
+      event_account_id: 67e1b252-40a7-454d-a097-8f77d385889d
+      event_contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
+      event_type: self_service_cancellation
+      amount: '-0.28'
+      currency: GBP
+      notes: comment/reason provided by user
+      event_date_time: 2017-12-31T23:59:59.000Z
+  ConversionDateChanged:
+    type: object
+    description: Date Changed for Conversion.
+    properties:
+      conversion_id:
+        type: string
+      amount:
+        type: string
+        description: >-
+          Amount in profit/loss currency
+      currency:
+        type: string
+        description: >-
+          ISO-4217 three letter currency
+      old_conversion_date:
+        type: string
+        format: DateTime
+      old_settlement_date:
+        type: string
+        format: DateTime
+      new_conversion_date:
+        type: string
+        format: DateTime
+      new_settlement_date:
+        type: string
+        format: DateTime
+      event_date_time:
+        type: string
+        format: date
+        description: >-
+          Datetime of the conversion date change request event in ISO 8601 format
+    example:
+      conversion_id: 7ab066eb-300a-4e67-9a0b-6afa335a4ddf
+      amount: -1.51
+      currency: GBP
+      new_conversion_date: 2018-06-13T00:00:00+00:00
+      new_settlement_date: 2018-06-13T15:30:00+00:00
+      old_conversion_date: 2018-06-14T00:00:00+00:00
+      old_settlement_date: 2018-06-14T15:30:00+00:00
+      event_date_time: 2018-06-12T15:27:13+00:00
+  ConversionSplitComponent:
+    type: object
+    properties:
+      conversion_id:
+        type: string
+      short_reference:
+        type: string
+      sell_amount:
+        type: string
+      sell_currency:
+        type: string
+      buy_amount:
+        type: string
+      buy_currency:
+        type: string
+      settlement_date:
+        type: string
+      conversion_date:
+        type: string
+      status:
+        type: string
+  ConversionSplit:
+    type: object
+    description: Split for Conversion. Contains both a Parent and Child split component.
+    properties:
+      parent_conversion:
+        $ref: '#/definitions/ConversionSplitComponent'
+      child_conversion:
+        $ref: '#/definitions/ConversionSplitComponent'
+    example:
+      parent_conversion:
+        id: 84a0d9ff-e86d-4d2e-9ade-72a696b02742
+        short_reference: 20140507-VRTNFC
+        sell_amount: 1587.80
+        sell_currency: USD
+        buy_amount: 1000.00
+        buy_currency: GBP
+        settlement_date: 2014-05-21T14:00:00Z
+        conversion_date: 2014-05-21T14:00:00Z
+        status: awaiting_funds
+      child_conversion:
+        id: null,
+        short_reference: 20170508-ARBNFZ
+        sell_amount: 158.78
+        sell_currency: USD
+        buy_amount: 100.00
+        buy_currency: GBP
+        settlement_date: 2014-05-21T14:00:00Z
+        conversion_date: 2014-05-21T14:00:00Z
+        status: awaiting_funds
+  ConversionSplitError:
+    type: object
+    description: >
+      Client error information for the Conversion Split endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   ConversionDates:
     type: object
     description: Conversion dates.
@@ -11882,6 +12386,96 @@ definitions:
     type: object
     description: >
       Client error information for the Create Conversion endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  CancelConversionError:
+    type: object
+    description: >
+      Client error information for the Cancel Conversion endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  ConversionDateChangedError:
+    type: object
+    description: >
+      Client error information for the Conversion Date Change endpoint.
     required:
       - error_code
       - error_messages
