@@ -5981,6 +5981,199 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  /conversions/profit_and_loss:
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Retrieve Profit / Loss
+      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount 
+      operationId: ConversionProfitAndLoss
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_id
+          in: formData
+          required: false
+          type: string
+          description: ID of the Account that the Conversion belongs to.
+        - name: contact_id
+          in: formData
+          required: false
+          type: string
+          description: ID of the Contact that did the cancellation.
+        - name: conversion_id
+          in: formData
+          required: false
+          type: string
+          description: ID of the cancelled conversion.
+        - name: event_type
+          in: formData
+          required: false
+          type: string
+          description: Event type, in this case 'self_service_cancellation'
+        - name: event_date_time_from
+          in: formData
+          required: false
+          type: string
+          description: Allows you to return profit and losses will be done from on or after a defined date/time. ISO 8601 standard.
+        - name: event_date_time_to
+          in: formData
+          required: false
+          type: string
+          description: Allows you to return profit and losses will be done from on or before a defined date/time. ISO 8601 standard.
+        - name: amount_from
+          in: formData
+          required: false
+          type: string
+          description: Allows you to return profit and losses based on a minimum profit or loss amount.
+        - name: amount_to
+          in: formData
+          required: false
+          type: string
+          description: Allows you to return profit and losses based on a maximum profit or loss amount.
+        - name: currency
+          in: formData
+          required: false
+          type: string
+          description: The currency of the profit and loss. ISO 4217 standard.
+        - name: scope
+          in: formData
+          required: false
+          type: string
+          description: Scope allows contacts to search all profit and losses at all account levels. Defaults to own.
+            own - allows to search profit and losses on the main account
+            clients - allows to search profit and losses of account sub accounts
+            all - allows to search balances profit and losses account and subaccounts
+        - name: page
+          in: formData
+          required: false
+          type: string
+          description: Returns a specific page within the results of a search.
+        - name: per_page
+          in: formData
+          required: false
+          type: string
+          description: Maximum number of entries to return per page of results.
+        - name: order
+          in: formData
+          required: false
+          type: string
+          description: The field to order entries by.
+        - name: order_asc_desc
+          in: formData
+          required: false
+          type: string
+          description: Whether the order is ascending (asc) or descending (desc).
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: UUID of account to act on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              conversion_profit_and_losses:
+                type: array
+                items:
+                  $ref: '#/definitions/ConversionCancellation'
+              pagination:
+                $ref: '#/definitions/Pagination'
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   '/conversions/{id}/date_change_quote':
     get:
       tags:
@@ -12702,6 +12895,49 @@ definitions:
     type: object
     description:  Recognised profit / loss on a conversion
     properties:
+      conversion_profit_and_losses:
+        type: array
+        items:
+          $ref: '#/definitions/ConversionCancellation'
+      pagination:
+        $ref: '#/definitions/Pagination'
+    example:
+      conversion_profit_and_losses:
+        -
+          account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
+          contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
+          event_account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
+          event_contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
+          conversion_id: 648945d7-1cff-4dae-a432-7d5501c77a8a
+          amount: '-0.28'
+          currency: GBP
+          notes: Cancel the conversion due to personal issues
+          event_type: self_service_cancellation
+          event_date_time: 2017-11-10T12:18:56+00:00
+        -
+          account_id: 67e1b252-40a7-454d-a097-8f77d385889d
+          contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
+          event_account_id: 67e1b252-40a7-454d-a097-8f77d385889d
+          event_contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
+          conversion_id: 540c2ea3-9916-4efb-9cd9-0f8ce63a5c04
+          amount: '-0.83'
+          currency: USD
+          notes: Cancel due to very important reason
+          event_type: self_service_cancellation
+          event_date_time: 2017-11-10T12:18:56+00:00
+      pagination:
+        total_entries: 2
+        total_pages: 1
+        current_page: 1
+        per_page: 25
+        previous_page: -1
+        next_page: 2
+        order: created_at
+        order_asc_desc: asc
+  ConversionCancellation:
+    type: object
+    description: Cancelled Conversion
+    properties:
       account_id:
         type: string
       contact_id:
@@ -12712,17 +12948,28 @@ definitions:
         type: string
       conversion_id:
         type: string
-      event_type:
-        type: string
-      external_amount:
+      amount:
         type: string
       currency:
         type: string
       notes:
         type: string
+      event_type:
+        type: string
       event_date_time:
         type: string
         format: date-time
+    example:
+      account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
+      contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
+      event_account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
+      event_contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
+      conversion_id: 648945d7-1cff-4dae-a432-7d5501c77a8a
+      amount: '-0.28'
+      currency: GBP
+      notes: Cancel the conversion due to personal issues
+      event_type: self_service_cancellation
+      event_date_time: 2017-11-10T12:18:56+00:00
   ConversionDateChange:
     type: object
     description:  Conversion Date change record
