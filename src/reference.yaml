@@ -5741,9 +5741,9 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Get Conversion Cancellation quote
-      description: Get a quote for the projected cost to cancel an existing conversion.
-      operationId: GetConversionCanceQuote
+      summary: Quote Conversion Cancellation
+      description: Returns a JSON structure containing the quote for cancelling the specified conversion.
+      operationId: ConversionCancellationQuote
       produces:
         - application/json
       parameters:
@@ -5859,8 +5859,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Cancel Conversion
-      description: 'Cancel a conversion, incurring a profit or loss.'
+      summary: Cancel a Conversion
+      description: Cancels the conversion identified by the provided unique id {id}
       operationId: CancelConversion
       consumes:
         - multipart/form-data
@@ -5911,6 +5911,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/GetConversionError'
           headers:
@@ -5982,8 +5986,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Get Conversion Cancellation quote
-      description: Get a quote for the projected cost to cancel an existing conversion.
+      summary: Quote Conversion Date Change
+      description: Returns a JSON structure containing the quote for changing the date of thespecified conversion.
       operationId: ConversionDateChangeQuote
       produces:
         - application/json
@@ -6223,8 +6227,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Cancel Conversion
-      description: 'Change the settlement date of a conversion'
+      summary: Conversion Date Change
+      description: Changes the date ofthe conversion identified by the provided unique id {id}
       operationId: ConversionDateChange
       consumes:
         - multipart/form-data
@@ -6247,7 +6251,7 @@ paths:
           type: string
           description: Contact UUID.
         - name: new_settlement_date
-          required: false
+          required: true
           type: string
           in: formData
           description: New conversion settlement date
@@ -6274,6 +6278,18 @@ paths:
             - code: contact_not_found
               category: on_behalf_of
               message: Contact was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: new_settlement_date_invalid_in_past
+              category: new_settlement_date
+              message: New settlement date has to be today or greater than today's date
+              params: ''
+            - code: new_settlement_date_invalid
+              category: new_settlement_date
+              message: Invalid new settlement date, next valid date time is - YYYY-MM-DDT15:30:00Z
               params: ''
           schema:
             $ref: '#/definitions/GetConversionError'
@@ -6346,8 +6362,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Preview the result of a conversion split operation
-      description: Dry run a conversion split operation without persisting the changes
+      summary: Split Preview
+      description: Returns a JSON structure of conversion split preview details.
       operationId: GetConversionSplitPreview
       produces:
         - application/json
@@ -6464,8 +6480,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Preview the result of a conversion split operation
-      description: Dry run a conversion split operation without persisting the changes
+      summary: Conversion Split History
+      description: Returns a JSON structure of conversion split history details.
       operationId: GetConversionSplitHistory
       produces:
         - application/json
@@ -6582,8 +6598,8 @@ paths:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Cancel Conversion
-      description: 'Split a conversion into two conversions.'
+      summary: Conversion Split
+      description: Returns a JSON structure of conversion split execute details.
       operationId: SplitConversion
       consumes:
         - multipart/form-data
@@ -6634,6 +6650,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/GetConversionError'
           headers:
