@@ -5016,6 +5016,317 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  /conversions/create:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Create Conversion
+      description: 'Create a new conversion. On success, returns the new conversion entity.'
+      operationId: CreateConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: buy_currency
+          in: formData
+          required: true
+          type: string
+          description: Currency purchased. Three-digit code.
+        - name: sell_currency
+          in: formData
+          required: true
+          type: string
+          description: Currency sold. Three-digit code.
+        - name: fixed_side
+          in: formData
+          required: true
+          type: string
+          enum:
+            - buy
+            - sell
+          description: Fix the buy or sell currency.
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: Amount of the fixed buy or sell currency.
+        - name: term_agreement
+          in: formData
+          required: true
+          type: boolean
+          description: Indicates agreement to terms and conditions.
+        - name: conversion_date
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: Earliest delivery date. ISO 8601 format YYYY-MM-DD.
+        - name: client_buy_amount
+          in: formData
+          required: false
+          type: string
+          description: Client buy amount.
+        - name: client_sell_amount
+          in: formData
+          required: false
+          type: string
+          description: Client sell amount.
+        - name: reason
+          in: formData
+          required: false
+          type: string
+          description: User-generated reason for payment. Freeform text.
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: User-generated idempotency key.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Conversion'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters
+              params: '{ "parameters" => { "extra_param" => "extra_value" } }'
+            - code: buy_currency_is_in_invalid_format
+              category: buy_currency
+              message: buy_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: buy_currency_is_required
+              category: buy_currency
+              message: buy_currency is required
+              params: ''
+            - code: invalid_buy_currency
+              category: buy_currency
+              message: buy_currency is invalid
+              params: ''
+            - code: sell_currency_is_required
+              category: sell_currency
+              message: sell_currency is required
+              params: ''
+            - code: sell_currency_is_in_invalid_format
+              category: sell_currency
+              message: sell_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: invalid_sell_currency
+              category: sell_currency
+              message: sell_currency is invalid
+              params: ''
+            - code: amount_is_required
+              category: amount
+              message: amount is required
+              params: ''
+            - code: conversion_above_limit
+              category: amount
+              message: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
+              params: '{ "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }'
+            - code: conversion_below_limit
+              category: amount
+              message: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
+              params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
+            - code: amount_type_is_wrong
+              category: amount
+              message: amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: reason_is_required
+              category: reason
+              message: reason is required
+              params: ''
+            - code: reason_is_too_short
+              category: reason
+              message: reason can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: client_rate_is_in_invalid_format
+              category: client_rate
+              message: client_rate should be of numeric type with 4 dp
+              params: '{ "type" => "numeric_with_precision", "precision" => 4 }'
+            - code: invalid_client_rate
+              category: client_rate
+              message: client_rate is invalid
+              params: '{ "client_rate" => "1.455543..1.778997" }'
+            - code: client_rate_is_required
+              category: client_rate
+              message: The client_rate is required if you supply currency_pair
+              params: ''
+            - code: fixed_side_is_required
+              category: fixed_side
+              message: fixed_side is required
+              params: ''
+            - code: fixed_side_not_in_range
+              category: fixed_side
+              message: 'fixed_side should be in range: buy, sell'
+              params: '{ "range" => "buy, sell" }'
+            - code: term_agreement_is_required
+              category: term_agreement
+              message: term_agreement is required
+              params: ''
+            - code: term_agreement_type_is_wrong
+              category: term_agreement
+              message: term_agreement should be of boolean type
+              params: '{ "type" => "boolean" }'
+            - code: conversion_create_failed
+              category: conversion_create_failed
+              message: Conversion create failed
+              params: ''
+            - code: currency_pair_is_in_invalid_format
+              category: currency_pair
+              message: currency_pair is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency_pair" }'
+            - code: invalid_currency_pair
+              category: invalid_currency_pair
+              message: The currency_pair should be the real market pair of the buy_currency and sell_currency
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
+              params: ''
+            - code: on_behalf_of_is_required
+              category: on_behalf_of
+              message: You should do this conversion on behalf of someone if you supply client_rate
+              params: ''
+            - code: currency_pair_is_required
+              category: currency_pair_is_required
+              message: The currency_pair is required if you supply client_rate
+              params: ''
+            - code: variable_value_dates_not_permitted
+              category: variable_value_dates_not_permitted
+              message: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
+              params: ''
+            - code: client_buy_amount_is_in_invalid_format
+              category: client_buy_amount
+              message: client_buy_amount should be of numeric type with 2 dp
+              params: '{ "type" => "client_buy_amount" }'
+            - code: client_sell_amount_is_in_invalid_format
+              category: client_sell_amount
+              message: client_sell_amount should be of numeric type with 2 dp
+              params: '{ "type" => "client_sell_amount" }'
+            - code: cannot_fix_client_sell_on_fixed_sell_side
+              category: cannot_fix_client_sell_on_fixed_sell_side
+              message: You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side
+              params: '{ "type" => "client_sell_amount" }'
+            - code: client_buy_amount_exceeds_partner_buy_amount
+              category: client_buy_amount_exceeds_partner_buy_amount
+              message: The client buy amount specified is greater than the amount that you would be buying and is thus invalid
+              params: '{ "type" => "client_buy_amount" }'
+            - code: partner_sell_amount_exceeds_client_sell_amount
+              category: partner_sell_amount_exceeds_client_sell_amount
+              message: The client sell amount specified is less than the amount that you would be selling and is thus invalid
+              params: '{ "type" => "client_sell_amount" }'
+            - code: missing_partner_spread_table_data
+              category: missing_partner_spread_table_data
+              message: Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up
+              params: ''
+            - code: missing_client_spread_table_data
+              category: missing_client_spread_table_data
+              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up
+              params: ''
+            - code: fixed_amounts_not_permitted_for_this_user
+              category: fixed_amounts_not_permitted_for_this_user
+              message: You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer
+              params: ''
+            - code: invalid_client_rate_combination
+              category: invalid_client_rate_combination
+              message: You cannot specify a client rate and client currency pair alongside a client buy amount or client sell amount
+              params: ''
+            - code: duplicate_request
+              category: duplicate_request
+              message: The unique_request_id provided for this conversion has already been used, please provide a new unique_request_id to successfully submit this conversion
+              params: ''
+          schema:
+            $ref: '#/definitions/CreateConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /conversions/find:
     get:
       tags:
@@ -5425,562 +5736,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /conversions/create:
-    post:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Create Conversion
-      description: 'Create a new conversion. On success, returns the new conversion entity.'
-      operationId: CreateConversion
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: buy_currency
-          in: formData
-          required: true
-          type: string
-          description: Currency purchased. Three-digit code.
-        - name: sell_currency
-          in: formData
-          required: true
-          type: string
-          description: Currency sold. Three-digit code.
-        - name: fixed_side
-          in: formData
-          required: true
-          type: string
-          enum:
-            - buy
-            - sell
-          description: Fix the buy or sell currency.
-        - name: amount
-          in: formData
-          required: true
-          type: string
-          description: Amount of the fixed buy or sell currency.
-        - name: term_agreement
-          in: formData
-          required: true
-          type: boolean
-          description: Indicates agreement to terms and conditions.
-        - name: conversion_date
-          in: formData
-          required: false
-          type: string
-          format: date
-          description: Earliest delivery date. ISO 8601 format YYYY-MM-DD.
-        - name: client_buy_amount
-          in: formData
-          required: false
-          type: string
-          description: Client buy amount.
-        - name: client_sell_amount
-          in: formData
-          required: false
-          type: string
-          description: Client sell amount.
-        - name: reason
-          in: formData
-          required: false
-          type: string
-          description: User-generated reason for payment. Freeform text.
-        - name: unique_request_id
-          in: formData
-          required: false
-          type: string
-          description: User-generated idempotency key.
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Conversion'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: invalid_extra_parameters
-              category: base
-              message: Invalid extra parameters
-              params: '{ "parameters" => { "extra_param" => "extra_value" } }'
-            - code: buy_currency_is_in_invalid_format
-              category: buy_currency
-              message: buy_currency is not a valid ISO 4217 currency code
-              params: '{ "type" => "currency" }'
-            - code: buy_currency_is_required
-              category: buy_currency
-              message: buy_currency is required
-              params: ''
-            - code: invalid_buy_currency
-              category: buy_currency
-              message: buy_currency is invalid
-              params: ''
-            - code: sell_currency_is_required
-              category: sell_currency
-              message: sell_currency is required
-              params: ''
-            - code: sell_currency_is_in_invalid_format
-              category: sell_currency
-              message: sell_currency is not a valid ISO 4217 currency code
-              params: '{ "type" => "currency" }'
-            - code: invalid_sell_currency
-              category: sell_currency
-              message: sell_currency is invalid
-              params: ''
-            - code: amount_is_required
-              category: amount
-              message: amount is required
-              params: ''
-            - code: conversion_above_limit
-              category: amount
-              message: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
-              params: '{ "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }'
-            - code: conversion_below_limit
-              category: amount
-              message: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
-              params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
-            - code: amount_type_is_wrong
-              category: amount
-              message: amount should be of numeric type
-              params: '{ "type" => "numeric" }'
-            - code: reason_is_required
-              category: reason
-              message: reason is required
-              params: ''
-            - code: reason_is_too_short
-              category: reason
-              message: reason can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: client_rate_is_in_invalid_format
-              category: client_rate
-              message: client_rate should be of numeric type with 4 dp
-              params: '{ "type" => "numeric_with_precision", "precision" => 4 }'
-            - code: invalid_client_rate
-              category: client_rate
-              message: client_rate is invalid
-              params: '{ "client_rate" => "1.455543..1.778997" }'
-            - code: client_rate_is_required
-              category: client_rate
-              message: The client_rate is required if you supply currency_pair
-              params: ''
-            - code: fixed_side_is_required
-              category: fixed_side
-              message: fixed_side is required
-              params: ''
-            - code: fixed_side_not_in_range
-              category: fixed_side
-              message: 'fixed_side should be in range: buy, sell'
-              params: '{ "range" => "buy, sell" }'
-            - code: term_agreement_is_required
-              category: term_agreement
-              message: term_agreement is required
-              params: ''
-            - code: term_agreement_type_is_wrong
-              category: term_agreement
-              message: term_agreement should be of boolean type
-              params: '{ "type" => "boolean" }'
-            - code: conversion_create_failed
-              category: conversion_create_failed
-              message: Conversion create failed
-              params: ''
-            - code: currency_pair_is_in_invalid_format
-              category: currency_pair
-              message: currency_pair is not a valid ISO 4217 currency code
-              params: '{ "type" => "currency_pair" }'
-            - code: invalid_currency_pair
-              category: invalid_currency_pair
-              message: The currency_pair should be the real market pair of the buy_currency and sell_currency
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-            - code: on_behalf_of_is_not_valid_uuid
-              category: on_behalf_of
-              message: on_behalf_of should be in UUID format
-              params: ''
-            - code: on_behalf_of_is_required
-              category: on_behalf_of
-              message: You should do this conversion on behalf of someone if you supply client_rate
-              params: ''
-            - code: currency_pair_is_required
-              category: currency_pair_is_required
-              message: The currency_pair is required if you supply client_rate
-              params: ''
-            - code: variable_value_dates_not_permitted
-              category: variable_value_dates_not_permitted
-              message: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
-              params: ''
-            - code: client_buy_amount_is_in_invalid_format
-              category: client_buy_amount
-              message: client_buy_amount should be of numeric type with 2 dp
-              params: '{ "type" => "client_buy_amount" }'
-            - code: client_sell_amount_is_in_invalid_format
-              category: client_sell_amount
-              message: client_sell_amount should be of numeric type with 2 dp
-              params: '{ "type" => "client_sell_amount" }'
-            - code: cannot_fix_client_sell_on_fixed_sell_side
-              category: cannot_fix_client_sell_on_fixed_sell_side
-              message: You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side
-              params: '{ "type" => "client_sell_amount" }'
-            - code: client_buy_amount_exceeds_partner_buy_amount
-              category: client_buy_amount_exceeds_partner_buy_amount
-              message: The client buy amount specified is greater than the amount that you would be buying and is thus invalid
-              params: '{ "type" => "client_buy_amount" }'
-            - code: partner_sell_amount_exceeds_client_sell_amount
-              category: partner_sell_amount_exceeds_client_sell_amount
-              message: The client sell amount specified is less than the amount that you would be selling and is thus invalid
-              params: '{ "type" => "client_sell_amount" }'
-            - code: missing_partner_spread_table_data
-              category: missing_partner_spread_table_data
-              message: Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up
-              params: ''
-            - code: missing_client_spread_table_data
-              category: missing_client_spread_table_data
-              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up
-              params: ''
-            - code: fixed_amounts_not_permitted_for_this_user
-              category: fixed_amounts_not_permitted_for_this_user
-              message: You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer
-              params: ''
-            - code: invalid_client_rate_combination
-              category: invalid_client_rate_combination
-              message: You cannot specify a client rate and client currency pair alongside a client buy amount or client sell amount
-              params: ''
-            - code: duplicate_request
-              category: duplicate_request
-              message: The unique_request_id provided for this conversion has already been used, please provide a new unique_request_id to successfully submit this conversion
-              params: ''
-          schema:
-            $ref: '#/definitions/CreateConversionError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-  '/conversions/{id}/cancellation_quote':
-    get:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Quote Conversion Cancellation
-      description: Returns a JSON structure containing the quote for cancelling the specified conversion.
-      operationId: ConversionCancellationQuote
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Conversion UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionCancellationQuote'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-  /conversions/{id}/cancel:
-    post:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Cancel a Conversion
-      description: Cancels the conversion identified by the provided unique id {id}
-      operationId: CancelConversion
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: ID of the conversion that is being cancelled
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
-        - name: notes
-          required: false
-          type: string
-          in: formData
-          description: Notes describing the reason for cancellation.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionProfitAndLoss'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-            - code: invalid_extra_parameters
-              category: base
-              message: Invalid extra parameters extra_parameter
-              params: '{ "parameters" => "extra_parameter" }'
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
   /conversions/profit_and_loss:
     get:
       tags:
@@ -6297,124 +6052,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  '/conversions/{id}/date_change/details':
-    get:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Get Conversion date change details for a conversion
-      description: Show al changes made to the settlement date of an existing conversion
-      operationId: GetConversionDateChangeDetails
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Conversion UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/DateChangeInformation'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: integer
-              description: A unique reference for the request.
   /conversions/{id}/date_change:
     post:
       tags:
@@ -6550,6 +6187,124 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  '/conversions/{id}/date_change/details':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Get Conversion date change details for a conversion
+      description: Show al changes made to the settlement date of an existing conversion
+      operationId: GetConversionDateChangeDetails
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/DateChangeInformation'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   '/conversions/{id}/split_preview':
     get:
       tags:
@@ -6576,6 +6331,11 @@ paths:
           required: false
           type: string
           description: Contact UUID.
+        - name: amount
+          required: true
+          type: string
+          in: formData
+          description: The amount at which to split this conversion.
       responses:
         '200':
           description: Success.
@@ -6623,6 +6383,133 @@ paths:
           description: Resource not found.
           schema:
             $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /conversions/{id}/split:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Conversion Split
+      description: Returns a JSON structure of conversion split execute details.
+      operationId: SplitConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: ID of the conversion that is being cancelled
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: amount
+          required: true
+          type: string
+          in: formData
+          description: The amount at which to split this conversion.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionSplit'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
           headers:
             X-Request-Id:
               type: integer
@@ -6786,14 +6673,132 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /conversions/{id}/split:
+  '/conversions/{id}/cancellation_quote':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Quote Conversion Cancellation
+      description: Returns a JSON structure containing the quote for cancelling the specified conversion.
+      operationId: ConversionCancellationQuote
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionCancellationQuote'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /conversions/{id}/cancel:
     post:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Conversion Split
-      description: Returns a JSON structure of conversion split execute details.
-      operationId: SplitConversion
+      summary: Cancel a Conversion
+      description: Cancels the conversion identified by the provided unique id {id}
+      operationId: CancelConversion
       consumes:
         - multipart/form-data
       produces:
@@ -6814,16 +6819,16 @@ paths:
           required: false
           type: string
           description: Contact UUID.
-        - name: amount
-          required: true
+        - name: notes
+          required: false
           type: string
           in: formData
-          description: The amount at which to split this conversion.
+          description: Notes describing the reason for cancellation.
       responses:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/ConversionSplit'
+            $ref: '#/definitions/ConversionProfitAndLoss'
           headers:
             X-Request-Id:
               type: integer
