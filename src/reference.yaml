@@ -5742,7 +5742,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Retrieve Profit / Loss
-      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount 
+      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount
       operationId: ConversionProfitAndLoss
       consumes:
         - multipart/form-data
@@ -8610,6 +8610,128 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /payments/authorise:
+    post:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Authorise Payment
+      description: 'Authorises a payment pending authorisation.'
+      operationId: AuthorisePayment
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: payment_ids[]
+          in: query
+          required: true
+          type: array
+          items:
+            type: string
+          description: One or more payment UUID identifiers to be authorised.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentAuthorisations'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: payment_ids_is_required
+              category: id
+              message: payment_ids is required
+              params: ''
+            - code: payment_ids_type_is_wrong
+              category: id
+              message: payment_ids should be of array type
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+          schema:
+            $ref: '#/definitions/CreatePaymentAuthorisationError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
               type: integer
@@ -13262,6 +13384,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  CreatePaymentAuthorisationError:
+    type: object
+    description: >
+      Client error information for the Create Payment Authorise endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   CreatePaymentError:
     type: object
     description: >
@@ -15460,6 +15627,32 @@ definitions:
       unique_request_id: 1234567890abc
       failure_returned_amount: ''
       ultimate_beneficiary_name: Some beneficiary name
+  PaymentAuthorisations:
+    type: object
+    description: Payment Authorisations.
+    properties:
+      authorisations:
+        type: array
+        items:
+          $ref: '#/definitions/PaymentAuthorisation'
+  PaymentAuthorisation:
+    type: object
+    description: Payment Authorisation.
+    properties:
+      payment_id:
+        type: string
+      transfer_id:
+        type: string
+      payment_status:
+        type: string
+      updated:
+        type: string
+      error:
+        type: string
+      auth_steps_taken:
+        type: string
+      auth_steps_required:
+        type: string
   PaymentDates:
     type: object
     description: Payment dates.
