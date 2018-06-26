@@ -15656,11 +15656,11 @@ definitions:
     example:
       payment_id: 27966e22-5bdc-4675-923d-041c6be5b239
       transfer_id: 7f243981-ef2d-406e-8921-15677fd4a7c3
-      payment_status: 'WIP *** WHAT SHOULD THIS BE PLEASE?'
+      payment_status: ready_to_send
       updated: true
       error: ''
-      auth_steps_taken: 'WIP *** some NUMBER or 0?'
-      auth_steps_required: 'WIP *** some NUMBER or 0?'
+      auth_steps_taken: 3
+      auth_steps_required: 0
   PaymentDates:
     type: object
     description: Payment dates.
