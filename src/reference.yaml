@@ -61,9 +61,12 @@ tags:
       Currencycloud platform.
   - name: Reference
     description: >-
-      Easy access to view implortant data relevant to your Currencycloud account
+      Easy access to view important data relevant to your Currencycloud account
       including beneficiary details, conversion dates, available currencies,
       payer required details, payment dates and settlement details.
+  - name: Sender
+    description: >-
+      Some description here to describe at a high level waht this is about WIP *** NEED TO CONFIRM
   - name: Settlements
     description: >-
       Consolidate multiple currency conversions into a single group. Search,
@@ -5742,7 +5745,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Retrieve Profit / Loss
-      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount 
+      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount
       operationId: ConversionProfitAndLoss
       consumes:
         - multipart/form-data
@@ -9923,6 +9926,116 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  '/sender/{id}':
+    get:
+      tags:
+        - Sender
+      x-api-group: collect
+      summary: Get Sender Details
+      description: >-
+        Returns a JSON structure with details of the sender of funds
+      operationId: GetSenderDetails
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: UUID of the sender details entity.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Sender'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: sender_not_found
+              category: id
+              message: Sender was not found for this id
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+          schema:
+            $ref: '#/definitions/GetSenderError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
               type: integer
@@ -14812,6 +14925,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetSenderError:
+    type: object
+    description: |
+      Client error information for the Get Sender endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetSettlementAccountsError:
     type: object
     description: |
@@ -15715,6 +15873,49 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  Sender:
+    type: object
+    description: Sender
+    properties:
+      id:
+        type: string
+      amount:
+        type: string
+      currency_code:
+        type: string
+      free_text:
+        type: string
+      value_date:
+        type: string
+        format: date-time
+      sender:
+        type: string
+      source_account_number:
+        type: string
+        description: this is the receiving VAN
+      source_account_iban:
+        type: string
+        description: this is the receiving IBAN
+      credit_debit:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+    example:
+      id: 21a7edce-fff8-486a-ac28-0dd143375081
+      amount: '158.00'
+      currency_code: GBP
+      free_text: Some free text
+      value_date: 2018-06-27T18:50:59.000Z
+      sender: TBC
+      source_account_number: TBC is it a UUID or A/C number? WIP ****
+      source_account_iban: TBC is it a UUID or A/C number? WIP ****
+      credit_debit: debit ??? WIP ****
+      created_at: 2018-06-27T18:50:59.000Z
+      updated_at: 2018-06-27T18:50:59.000Z
   Settlement:
     type: object
     description: Settlement.
