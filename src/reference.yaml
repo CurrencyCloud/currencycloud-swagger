@@ -81,7 +81,7 @@ tags:
     description: >-
       Create, search and manage Virtual Accounts (VANs) assigned to your
       Currencycloud account balance or your sub-accounts' balances. You can also
-      retrieve and assign VANs to the the account.
+      retrieve and assign VANs to the account.
 schemes:
   - https
 host: devapi.currencycloud.com
@@ -5935,7 +5935,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Quote Conversion Date Change
-      description: Returns a JSON structure containing the quote for changing the date of thespecified conversion.
+      description: Returns a JSON structure containing the quote for changing the date of the specified conversion.
       operationId: ConversionDateChangeQuote
       produces:
         - application/json
@@ -6193,7 +6193,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Get Conversion date change details for a conversion
-      description: Show al changes made to the settlement date of an existing conversion
+      description: Show all changes made to the settlement date of an existing conversion
       operationId: GetConversionDateChangeDetails
       produces:
         - application/json
