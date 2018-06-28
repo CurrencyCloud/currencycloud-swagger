@@ -15641,8 +15641,6 @@ definitions:
     properties:
       payment_id:
         type: string
-      transfer_id:
-        type: string
       payment_status:
         type: string
       updated:
@@ -15653,14 +15651,16 @@ definitions:
         type: string
       auth_steps_required:
         type: string
+      short_reference:
+        type: string
     example:
       payment_id: 27966e22-5bdc-4675-923d-041c6be5b239
-      transfer_id: 7f243981-ef2d-406e-8921-15677fd4a7c3
       payment_status: ready_to_send
       updated: true
-      error: ''
+      error: null
       auth_steps_taken: 3
       auth_steps_required: 0
+      short_reference: "180628-FGVXPX001"
   PaymentDates:
     type: object
     description: Payment dates.
