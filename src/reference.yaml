@@ -8680,11 +8680,6 @@ paths:
           items:
             type: string
           description: One or more payment UUID identifiers to be authorised.
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
       responses:
         '200':
           description: Success.
