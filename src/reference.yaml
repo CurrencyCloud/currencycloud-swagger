@@ -66,7 +66,7 @@ tags:
       payer required details, payment dates and settlement details.
   - name: Sender
     description: >-
-      Some description here to describe at a high level waht this is about WIP *** NEED TO CONFIRM
+      Sender of funds.
   - name: Settlements
     description: >-
       Consolidate multiple currency conversions into a single group. Search,
@@ -15906,16 +15906,16 @@ definitions:
         format: date-time
     example:
       id: 21a7edce-fff8-486a-ac28-0dd143375081
-      amount: '158.00'
+      amount: '450.00'
       currency_code: GBP
-      free_text: Some free text
-      value_date: 2018-06-27T18:50:59.000Z
-      sender: TBC
-      source_account_number: TBC is it a UUID or A/C number? WIP ****
-      source_account_iban: TBC is it a UUID or A/C number? WIP ****
-      credit_debit: debit ??? WIP ****
-      created_at: 2018-06-27T18:50:59.000Z
-      updated_at: 2018-06-27T18:50:59.000Z
+      free_text: 6320260731508339645906       0000045000TEST NAME      THE CURRENCY CLOUD    S 0063106146268242
+      value_date: 2018-03-27T00:00:00+00:00
+      sender: CITIBANK XFER, POPMONEY
+      source_account_number: 8119645406
+      source_account_iban: null
+      credit_debit: debit
+      created_at: 2018-03-27T10:51:32+00:00
+      updated_at: 2018-03-27T10:51:34+00:00
   Settlement:
     type: object
     description: Settlement.
