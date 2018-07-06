@@ -61,9 +61,12 @@ tags:
       Currencycloud platform.
   - name: Reference
     description: >-
-      Easy access to view implortant data relevant to your Currencycloud account
+      Easy access to view important data relevant to your Currencycloud account
       including beneficiary details, conversion dates, available currencies,
       payer required details, payment dates and settlement details.
+  - name: Sender
+    description: >-
+      Sender of funds.
   - name: Settlements
     description: >-
       Consolidate multiple currency conversions into a single group. Search,
@@ -10085,6 +10088,116 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  '/sender/{id}':
+    get:
+      tags:
+        - Sender
+      x-api-group: collect
+      summary: Get Sender Details
+      description: >-
+        Returns a JSON structure with details of the sender of funds
+      operationId: GetSenderDetails
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: UUID of the sender details entity.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Sender'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: sender_not_found
+              category: id
+              message: Sender was not found for this id
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+          schema:
+            $ref: '#/definitions/GetSenderError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /settlements/find:
     get:
       tags:
@@ -14974,6 +15087,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetSenderError:
+    type: object
+    description: |
+      Client error information for the Get Sender endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetSettlementAccountsError:
     type: object
     description: |
@@ -15911,6 +16069,49 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  Sender:
+    type: object
+    description: Sender
+    properties:
+      id:
+        type: string
+      amount:
+        type: string
+      currency_code:
+        type: string
+      free_text:
+        type: string
+      value_date:
+        type: string
+        format: date-time
+      sender:
+        type: string
+      source_account_number:
+        type: string
+        description: this is the receiving VAN
+      source_account_iban:
+        type: string
+        description: this is the receiving IBAN
+      credit_debit:
+        type: string
+      created_at:
+        type: string
+        format: date-time
+      updated_at:
+        type: string
+        format: date-time
+    example:
+      id: 21a7edce-fff8-486a-ac28-0dd143375081
+      amount: '450.00'
+      currency_code: GBP
+      free_text: 6320260731508339645906       0000045000TEST NAME      THE CURRENCY CLOUD    S 0063106146268242
+      value_date: 2018-03-27T00:00:00+00:00
+      sender: CITIBANK XFER, POPMONEY
+      source_account_number: 8119645406
+      source_account_iban: null
+      credit_debit: debit
+      created_at: 2018-03-27T10:51:32+00:00
+      updated_at: 2018-03-27T10:51:34+00:00
   Settlement:
     type: object
     description: Settlement.
