@@ -9876,7 +9876,7 @@ paths:
           required: true
           type: string
           description: Currency in which payment made. Three-digit currency code.
-        - name: beneficiary_entity_type
+        - name: entity_type
           in: query
           required: false
           type: string
@@ -9888,7 +9888,12 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/PaymentPurposeCodes'
+            type: object
+            properties:
+              purpose_codes:
+                type: array
+                items:
+                  $ref: '#/definitions/PaymentPurposeCodes'
           headers:
             X-Request-Id:
               type: integer
@@ -15673,31 +15678,19 @@ definitions:
     type: object
     description: Payment purpose codes.
     properties:
-      id:
-        type: string
-      provider:
-        type: string
       currency:
         type: string
       entity_type:
         type: string
-      internal_purpose_code:
+      purpose_code:
         type: string
-      internal_purpose_description:
-        type: string
-      provider_purpose_code:
-        type: string
-      provider_purpose_description:
+      purpose_description:
         type: string
     example:
-      id: 36335fd1-96d6-4ea5-82fa-dabacb8e7a7f
-      provider: 'WIP *** TBC'
-      currency: GBP
-      entity_type: Individual
-      internal_purpose_code: 'WIP *** TBC'
-      internal_purpose_description: 'WIP *** TBC'
-      provider_purpose_code: 'WIP *** TBC'
-      provider_purpose_description: 'WIP *** TBC'
+      currency: INR
+      entity_type: Company
+      purpose_code: 'delivery'
+      purpose_description: 'Delivery fees for goods'
 
   PaymentSubmission:
     type: object
