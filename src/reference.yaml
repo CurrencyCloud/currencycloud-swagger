@@ -1727,6 +1727,7 @@ paths:
             - aba
             - clabe
             - cnaps
+            - ifsc
           description: Local payment routing system.
         - name: routing_code_value
           in: query
@@ -2252,6 +2253,7 @@ paths:
             - branch_code
             - clabe
             - cnaps
+            - ifsc
           description: Local payment routing system.
         - name: routing_code_value_1
           in: formData
@@ -2892,6 +2894,7 @@ paths:
             - branch_code
             - clabe
             - cnaps
+            - ifsc
           description: Local payment routing system.
         - name: routing_code_value_1
           in: formData
