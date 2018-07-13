@@ -9973,6 +9973,138 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+
+  /reference/payment_purpose_codes:
+    get:
+      tags:
+        - Reference
+      x-api-group: manage
+      summary: Get Payment Purpose Codes
+      description: >-
+        Get a list of payment purpose codes for a given currency and entity type. When initiating cross-border payments, the central bank of the country may require a purpose to be included with your transaction in order for your payment to be accepted and processed. If a payment purpose code is required but not provided, your payment may be delayed or rejected by the beneficiary bank.
+      operationId: GetPaymentPurposeCodes
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: currency
+          in: query
+          required: true
+          type: string
+          description: Currency in which payment made. Three-digit currency code.
+        - name: entity_type
+          in: query
+          required: false
+          type: string
+          enum:
+            - company
+            - individual
+          description: "Legal entity type. Can be either 'company' or 'individual'."
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              purpose_codes:
+                type: array
+                items:
+                  $ref: '#/definitions/PaymentPurposeCodes'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: currency_is_required
+              category: currency
+              message: currency is required
+              params: ''
+            - code: invalid_currency
+              category: currency
+              message: The currency specified was invalid
+              params: ''
+            - code: currency_is_too_short
+              category: currency
+              message: currency can not be shorter than 3 character(s)
+              params: '{ "minlength" => 3 }'
+            - code: currency_is_too_long
+              category: currency
+              message: currency can not be longer than 3 character(s)
+              params: '{ "maxlength" => 3 }'
+          schema:
+            $ref: '#/definitions/GetPaymentPurposeCodesError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+
+
   /reference/settlement_accounts:
     get:
       tags:
@@ -14997,6 +15129,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetPaymentPurposeCodesError:
+    type: object
+    description: |
+      Client error information for the Get Payment Purpose Codes endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetPaymentError:
     type: object
     description: |
@@ -15851,6 +16028,24 @@ definitions:
         '2013-06-08': No trading on Sunday
         '2013-06-14': No trading on Saturday
       first_payment_date: 2013-04-15T00:00:00.000Z
+  PaymentPurposeCodes:
+    type: object
+    description: Payment purpose codes.
+    properties:
+      currency:
+        type: string
+      entity_type:
+        type: string
+      purpose_code:
+        type: string
+      purpose_description:
+        type: string
+    example:
+      currency: INR
+      entity_type: Company
+      purpose_code: 'delivery'
+      purpose_description: 'Delivery fees for goods'
+
   PaymentSubmission:
     type: object
     description: Payment submission.
