@@ -9883,7 +9883,7 @@ paths:
           enum:
             - company
             - individual
-          description: "Legal entity type. Two options: 'company' and 'individual'."
+          description: "Legal entity type. Can be either 'company' or 'individual'."
       responses:
         '200':
           description: Success.
