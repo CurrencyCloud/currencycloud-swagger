@@ -8009,6 +8009,128 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  '/payments/{id}/confirmation':
+    get:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Get a Payment Confirmation
+      description: Get confirmation for a payment.
+      operationId: GetPaymentConfirmation
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentConfirmation'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_id
+              category: id
+              message: ID has invalid format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentSubmissionError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   '/payments/{id}/submission':
     get:
       tags:
@@ -16048,6 +16170,49 @@ definitions:
       entity_type: Company
       purpose_code: 'delivery'
       purpose_description: 'Delivery fees for goods'
+
+  PaymentConfirmation:
+    type: object
+    description: Payment confirmation.
+    properties:
+      id:
+        type: string
+        description: Unique ID of the Payment Confirmation
+      payment_id:
+        type: string
+      account_id:
+        type: string
+      short_reference:
+        type: string
+        description: Short reference of the Payment Confirmation
+      status:
+        type: string
+        description: Status of the Payment Confirmation processing
+      confirmation_url:
+        type: string
+        description: URL to download Payment Confirmation file
+      created_at:
+        type: string
+        format: date-time
+        description: Datetime of when the Payment Confirmation was created
+      updated_at:
+        type: string
+        format: date-time
+        description: Datetime of when the Payment Confirmation was last updated
+      expires_at:
+        type: string
+        format: date-time
+        description: Datetime of when the Payment Confirmation will expire
+    example:
+      id: "123123121-91de-012f-e284-1e0030c7f3111"
+      payment_id: "543477161-91de-012f-e284-1e0030c7f3123"
+      account_id: "543477161-91de-012f-e284-1e0030c7f352"
+      short_reference: "140416-GGJBNQ001"
+      status: "completed"
+      confirmation_url: "https://s3.com/140416-GGJBNQ001.pdf"
+      created_at: "2014-01-12T00:00:00+00:00"
+      updated_at: "2014-01-12T00:00:00+00:00"
+      expires_at: "2014-02-12T00:00:00+00:00"
 
   PaymentSubmission:
     type: object
