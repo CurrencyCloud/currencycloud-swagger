@@ -9979,7 +9979,6 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-
   /reference/payment_purpose_codes:
     get:
       tags:
@@ -10332,41 +10331,49 @@ paths:
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when buy currency was delivered.
         - name: conversion_date_to
           in: formData
           required: false
+          format: date
           type: string
           description: ISO 8601 Datetime when buy currency was delivered.
         - name: settlement_date_from
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the sell_currency was debited.
         - name: settlement_date_to
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the sell_currency was debited.
         - name: created_at_from
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the conversion was created.
         - name: created_at_to
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the conversion was created.
         - name: updated_at_from
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the conversion was updated.
         - name: updated_at_to
           in: formData
           required: false
           type: string
+          format: date
           description: ISO 8601 Datetime when the conversion was updated.
         - name: unique_request_id
           in: formData
@@ -10400,6 +10407,218 @@ paths:
               params: ''
           schema:
             $ref: '#/definitions/GenerateConversionReportError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+  /customer_reporting/payments/create:
+    post:
+      tags:
+        - Reporting
+      x-api-group: manage
+      summary: Generate Payment Report
+      description: 'Returns a JSON structure with details of the payments report requested.'
+      operationId: GeneratePaymentReport
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: UUID of contact to act on behalf of.
+        - name: description
+          in: formData
+          required: false
+          type: string
+          description: Description that will be applied to report.
+        - name: currency
+          in: formData
+          required: false
+          type: string
+          description: 3 character ISO 4217 currency code.
+        - name: amount_from
+          in: formData
+          required: false
+          type: string
+          description: Amount of Payment to 2dp.
+        - name: amount_to
+          in: formData
+          required: false
+          type: string
+          description: Amount of Payment to 2dp.
+        - name: status
+          in: formData
+          required: false
+          type: string
+          description: Status of the payment.
+        - name: payment_date_from
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment should be paid.
+        - name: payment_date_to
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment should be paid.
+        - name: transferred_at_from
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment should be transfered.
+        - name: transferred_at_to
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment should be transfered.
+        - name: created_at_from
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment was created.
+        - name: created_at_to
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment was created.
+        - name: updated_at_from
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment was updated.
+        - name: updated_at_to
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: ISO 8601 Datetime when the payment was updated.
+        - name: beneficiary_id
+          in: formData
+          required: false
+          type: string
+          description: ID of the beneficiary
+        - name: conversion_id
+          in: formData
+          required: false
+          type: string
+          description: Conversion unique ID
+        - name: with_deleted
+          in: formData
+          required: false
+          type: string
+          description: Allow to search within deleted payments too
+        - name: payment_group_id
+          in: formData
+          required: false
+          type: string
+          description: ID of the payment group
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: Unique request ID of conversion
+        - name: scope
+          in: formData
+          required: false
+          type: string
+          description: Specify which account level will be used; 'own' is a default value.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentReport'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GeneratePaymentReportError'
           headers:
             X-Request-Id:
               type: integer
@@ -14711,6 +14930,96 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GenerateConversionReportError:
+    type: object
+    description: >
+      Client error information for the Generate Conversion Report endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  GeneratePaymentReportError:
+    type: object
+    description: >
+      Client error information for the Generate Payment Report endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetAccountError:
     type: object
     description: |
@@ -16392,7 +16701,59 @@ definitions:
       entity_type: Company
       purpose_code: 'delivery'
       purpose_description: 'Delivery fees for goods'
-
+  PaymentReport:
+    type: object
+    description:  Payment Report record
+    properties:
+      id:
+        type: string
+        description: Report unique ID
+      short_reference:
+        type: string
+        description: Human readable unique ID
+      search_params:
+        type: object
+        default: {}
+        description: Parameters to select specific range of items, that we want to see in
+          report
+      report_type:
+        type: string
+      status:
+        type: string
+      expiration_date:
+        type: string
+        format: date
+        description: ISO 8601 Date of report expiration
+      report_url:
+        type: string
+        description: URL to download CSV report
+      account_id:
+        type: string
+        description: ID of the account
+      contact_id:
+        type: string
+        description: ID of the contact
+      created_at:
+        type: string
+        format: date
+        description: ISO 8601 Date when the Report was created
+      updated_at:
+        type: string
+        format: date
+        description: ISO 8601 Date when the Report was last updated
+    example:
+      id: 960dac21-b4af-5a6c-ca29-355760abe2c1
+      iban_code: RP-56750642-ADTNFC
+      description: Description, which was provided during the report creation process
+      search_params: {"description":"This report is generated in purpose of collecting statistic and further investigation of market","currency":"GBP","amount_from":"1.00","amount_to":"1000.00","status":"authorized","payment_date_from":"2017-03-12","payment_date_to":"2017-03-15"}
+      report_type: payment
+      status: processing
+      expiration_date: 2017-03-23T00:00:00.000Z
+      report_url: https://tcc.s3.amazonaws.com/reports/payment_reports/000/000/011/payment_report_23_03_2017.csv?1471682433
+      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
+      contact_id: 543477161-91de-012f-e284-1e0030c7f352
+      created_at: 2017-03-16T23:59:59.000Z
+      updated_at: 2017-03-16T23:59:59.000Z
   PaymentSubmission:
     type: object
     description: Payment submission.
