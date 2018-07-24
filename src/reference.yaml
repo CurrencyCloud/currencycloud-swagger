@@ -66,7 +66,7 @@ tags:
       payer required details, payment dates and settlement details.
   - name: Reporting
     description: >-
-      Ability to create and retreive reports.
+      Ability to create and retrieve reports.
   - name: Sender
     description: >-
       Sender of funds.
@@ -10683,6 +10683,191 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  /customer_reporting/report_requests/find:
+    get:
+      tags:
+        - Reporting
+      x-api-group: manage
+      summary: Find Report Requests
+      description: >-
+        Returns a JSON structure with details of report requests.
+      operationId: Find Report Requests
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: short_reference
+          in: query
+          required: false
+          type: string
+          description: Your unique short reference.
+        - name: description
+          in: query
+          required: false
+          type: string
+          description: Description, which was provided during the report creation process.
+        - name: account_id
+          in: query
+          required: false
+          type: string
+          description: ID of account.
+        - name: contact_id
+          in: query
+          required: false
+          type: string
+          description: ID of contact.
+        - name: created_at_from
+          in: query
+          required: false
+          type: string
+          format: date
+          description: Start date (for range) when the reports were created.
+        - name: created_at_to
+          in: query
+          required: false
+          type: string
+          format: date
+          description: End date (for range) when the reports were created.
+        - name: expiration_date_from
+          in: query
+          required: false
+          type: string
+          format: date
+          description: Start date (for range) when the report will be (was) expired.
+        - name: expiration_date_to
+          in: query
+          required: false
+          type: string
+          format: date
+          description: End date (for range) when the report will be (was) expired.
+        - name: status
+          in: query
+          required: false
+          type: string
+          description: Status of the report.
+        - name: report_type
+          in: query
+          required: false
+          type: string
+          description: Type of reports, that we expect to receive in search results.
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          default: created_at
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              report_requests:
+                type: array
+                items:
+                  $ref: '#/definitions/ReportRequest'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: account_not_found
+              category: id
+              message: Account was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetReportRequestError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   '/customer_reporting/report_requests/{id}':
     get:
       tags:
@@ -14121,7 +14306,7 @@ definitions:
                   maxlength: 255
   ReportRequest:
     type: object
-    description:  Conversion Report record
+    description: Conversion Report record
     properties:
       id:
         type: string
