@@ -10223,7 +10223,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /customer_reporting/conversions/create:
+  /reports/conversions/create:
     post:
       tags:
         - Reporting
@@ -10471,7 +10471,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /customer_reporting/payments/create:
+  /reports/payments/create:
     post:
       tags:
         - Reporting
@@ -10683,7 +10683,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  /customer_reporting/report_requests/find:
+  /reports/report_requests/find:
     get:
       tags:
         - Reporting
@@ -10868,7 +10868,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  '/customer_reporting/report_requests/{id}':
+  '/reports/report_requests/{id}':
     get:
       tags:
         - Reporting
