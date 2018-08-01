@@ -9355,7 +9355,7 @@ paths:
       tags:
         - Reference
       x-api-group: manage
-      summary: Get Beneficiary Requirements
+      summary: Get Requirements for Beneficiaries
       description: >-
         Find out what information is required to make payments to beneficiaries
         in specified currencies and countries.
