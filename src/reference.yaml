@@ -16280,23 +16280,21 @@ definitions:
         type: string
       amount:
         type: string
-      currency_code:
+      currency:
         type: string
-      free_text:
+      additional_information:
         type: string
       value_date:
         type: string
         format: date-time
       sender:
         type: string
-      source_account_number:
+      receiving_account_number:
         type: string
         description: this is the receiving VAN
-      source_account_iban:
+      receiving_account_iban:
         type: string
         description: this is the receiving IBAN
-      credit_debit:
-        type: string
       created_at:
         type: string
         format: date-time
