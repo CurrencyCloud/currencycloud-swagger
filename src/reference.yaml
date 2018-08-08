@@ -10223,7 +10223,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  '/sender/{id}':
+  '/transactions/sender/{id}':
     get:
       tags:
         - Sender
@@ -10245,6 +10245,11 @@ paths:
           required: true
           type: string
           description: UUID of the sender details entity.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
