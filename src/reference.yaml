@@ -14262,51 +14262,6 @@ definitions:
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
       created_at: 2017-12-31T23:59:59.000Z
       updated_at: 2017-12-31T23:59:59.000Z
-  GenerateConversionReportError:
-    type: object
-    description: >
-      Client error information for the Generate Conversion Report endpoint.
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
   ReportRequest:
     type: object
     description: Report record
