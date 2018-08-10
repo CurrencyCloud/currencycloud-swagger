@@ -10977,7 +10977,7 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
-  '/sender/{id}':
+  '/transactions/sender/{id}':
     get:
       tags:
         - Sender
@@ -10999,6 +10999,11 @@ paths:
           required: true
           type: string
           description: UUID of the sender details entity.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -14255,8 +14260,53 @@ definitions:
       report_url: https://tcc.s3.amazonaws.com/reports/conversion_reports/000/000/011/conversion_report_23_03_2017.csv?1471682433
       account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
-      created_at: 2017-03-16T23:59:59.000Z
-      updated_at: 2017-03-16T23:59:59.000Z
+      created_at: 2017-12-31T23:59:59.000Z
+      updated_at: 2017-12-31T23:59:59.000Z
+  GenerateConversionReportError:
+    type: object
+    description: >
+      Client error information for the Generate Conversion Report endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   ReportRequest:
     type: object
     description: Report record
@@ -17227,23 +17277,21 @@ definitions:
         type: string
       amount:
         type: string
-      currency_code:
+      currency:
         type: string
-      free_text:
+      additional_information:
         type: string
       value_date:
         type: string
         format: date-time
       sender:
         type: string
-      source_account_number:
+      receiving_account_number:
         type: string
         description: this is the receiving VAN
-      source_account_iban:
+      receiving_account_iban:
         type: string
         description: this is the receiving IBAN
-      credit_debit:
-        type: string
       created_at:
         type: string
         format: date-time
