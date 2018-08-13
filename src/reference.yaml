@@ -10511,7 +10511,7 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Report'
+            $ref: '#/definitions/ReportRequest'
           headers:
             X-Request-Id:
               type: integer
@@ -10723,7 +10723,7 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Report'
+            $ref: '#/definitions/ReportRequest'
           headers:
             X-Request-Id:
               type: integer
@@ -14328,62 +14328,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ConversionSplitDetails'
-  Report:
-    type: object
-    description:  Report record
-    properties:
-      id:
-        type: string
-        description: Report unique ID
-      short_reference:
-        type: string
-        description: Human readable unique ID
-      search_params:
-        type: object
-        default: {}
-        description: Parameters to select specific range of items, that we want to see in
-          report
-      report_type:
-        type: string
-        enum:
-          - conversion
-          - payment
-      status:
-        type: string
-      expiration_date:
-        type: string
-        format: date
-        description: ISO 8601 Date of report expiration
-      report_url:
-        type: string
-        description: URL to download CSV report
-      account_id:
-        type: string
-        description: ID of the account
-      contact_id:
-        type: string
-        description: ID of the contact
-      created_at:
-        type: string
-        format: date
-        description: ISO 8601 Date when the Report was created
-      updated_at:
-        type: string
-        format: date
-        description: ISO 8601 Date when the Report was last updated
-    example:
-      id: 01d8c0bc-7f0c-4cdd-bc7e-ef81f68500fe
-      short_reference: RP-35650607-ADTMFB
-      description: Description, which was provided during the report creation process
-      search_params: {"buy_currency":"GBP","sell_currency":"EUR","status":"closed","scope":"clients","created_at_from":"2017-03-12T23:59:59+00:00","created_at_to":"2017-03-22T23:59:59+00:00"}
-      report_type: conversion
-      status: processing
-      expiration_date: 2017-03-23T00:00:00.000Z
-      report_url: https://tcc.s3.amazonaws.com/reports/conversion_reports/000/000/011/conversion_report_23_03_2017.csv?1471682433
-      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
-      contact_id: 543477161-91de-012f-e284-1e0030c7f352
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
   ReportRequest:
     type: object
     description: Report record
