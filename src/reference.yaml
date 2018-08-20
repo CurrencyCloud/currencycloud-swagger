@@ -971,6 +971,10 @@ paths:
               category: postal_code
               message: postal_code can not be longer than 20 character(s)
               params: '{ "maxlength" => 20 }'
+            - code: state_or_province_invalid_format
+              category: state_or_province
+              message: state or province should be a two-letter ISO 3166 code
+              params: '{ "maxlength" => 2 }'
             - code: country_is_too_long
               category: country
               message: country can not be longer than 2 character(s)
@@ -1268,6 +1272,10 @@ paths:
               category: postal_code
               message: Postal code is required
               params: ''
+            - code: state_or_province_invalid_format
+              category: state_or_province
+              message: state or province should be a two-letter ISO 3166 code
+              params: '{ "maxlength" => 2 }'
             - code: country_is_too_long
               category: country
               message: country can not be longer than 2 character(s)
