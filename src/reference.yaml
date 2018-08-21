@@ -6926,6 +6926,7 @@ paths:
               description: A unique reference for the request.
   /ibans:
     get:
+      deprecated: true
       tags:
         - IBANs
       x-api-group: collect
@@ -7240,6 +7241,7 @@ paths:
               description: A unique reference for the request.
   /ibans/subaccounts/find:
     get:
+      deprecated: true
       tags:
         - IBANs
       x-api-group: collect
@@ -7385,6 +7387,7 @@ paths:
               description: A unique reference for the request.
   '/ibans/subaccounts/{id}':
     get:
+      deprecated: true
       tags:
         - IBANs
       x-api-group: collect
