@@ -13765,11 +13765,17 @@ definitions:
         type: string
       online_trading:
         type: boolean
+      can_buy:
+        type: boolean
+      can_sell:
+        type: boolean
     example:
       code: AED
       decimal_places: 2
       name: United Arab Emirates Dirham
       online_trading: true
+      can_buy: true
+      can_sell: true
   Balance:
     type: object
     description: Balance.
