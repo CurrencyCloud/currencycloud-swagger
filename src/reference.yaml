@@ -7109,10 +7109,10 @@ paths:
           type: string
           description: Currency in which the balance is held. Three-digit currency code.
         - name: account_id
-            in: query
-            required: false
-            type: string
-            description: UUID of a specific account you want to see the IBAN for
+          in: query
+          required: false
+          type: string
+          description: UUID of a specific account you want to see the IBAN for
         - name: page
           in: query
           required: false
