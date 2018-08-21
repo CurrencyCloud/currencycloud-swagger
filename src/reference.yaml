@@ -13641,6 +13641,7 @@ paths:
               description: A unique reference for the request.                
   /virtual_accounts/subaccounts/find:
     get:
+      deprecated: true
       tags:
         - VANs
       x-api-group: collect
@@ -13772,6 +13773,7 @@ paths:
               description: A unique reference for the request.
   '/virtual_accounts/subaccounts/{id}':
     get:
+      deprecated: true
       tags:
         - VANs
       x-api-group: collect
