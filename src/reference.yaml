@@ -7088,6 +7088,167 @@ paths:
             X-Request-Id:
               type: integer
               description: A unique reference for the request.
+  /ibans/find:
+    get:
+      tags:
+        - IBANs
+      x-api-group: collect
+      summary: Find IBANs
+      description: Returns a JSON structure with details of the IBANs for the specified accounts.
+      operationId: FindIBANs
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: scope
+          in: query
+          required: false
+          type: string
+          description: >-
+            Scope allows the logged in account to search all IBANs at all account levels.
+            Defaults to all.
+            own: search for IBANs on the main account
+            clients: search for IBANs of account sub accounts
+            all: search for IBANs of account and sub-accounts
+        - name: currency
+          in: query
+          required: false
+          type: string
+          description: Currency in which the balance is held. Three-digit currency code.
+        - name: account_id
+          in: query
+          required: false
+          type: string
+          description: UUID of a specific account you want to see the IBAN for
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              ibans:
+                type: array
+                items:
+                  $ref: '#/definitions/IBAN'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: ibans_not_found
+              category: base
+              message: IBANs were not found
+              params: ''
+            - code: iban_not_found_for_currency
+              category: base
+              message: IBAN was not found for the selected currency
+              params: ''
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: currency_is_not_supported
+              category: currency
+              message: currency is not supported
+              params: ''
+          schema:
+            $ref: '#/definitions/GetIBANsError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: integer
+              description: A unique reference for the request.
   /ibans/subaccounts/find:
     get:
       tags:
