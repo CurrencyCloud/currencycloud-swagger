@@ -1944,6 +1944,18 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
             - code: routing_code_value_is_too_short
               category: routing_code_value
               message: routing_code_value can not be shorter than 1 character(s)
@@ -2643,6 +2655,18 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
             - code: identification_type_is_missing
               category: beneficiary_identification_type
               message: identification_type is missing
@@ -3279,6 +3303,18 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
             - code: identification_type_is_missing
               category: beneficiary_identification_type
               message: identification_type is missing
@@ -3884,6 +3920,18 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
             - code: account_number_is_too_short
               category: account_number
               message: account_number can not be shorter than 1 character(s)
@@ -7743,6 +7791,22 @@ paths:
               category: beneficiary_id
               message: beneficiary_id is required
               params: ''
+            - code: beneficiary_date_of_birth_type_is_wrong
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
             - code: invalid_beneficiary_id
               category: beneficiary_id
               message: Unknown beneficiary_id
@@ -7790,6 +7854,18 @@ paths:
             - code: payer_date_of_birth_type_is_wrong
               category: payer_date_of_birth
               message: payer_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: payer_date_of_birth_is_incorrect
+              category: payer_date_of_birth
+              message: payer_date_of_birth is incorrect
+              params: ''
+            - code: payer_date_of_birth_is_earlier
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be later
+              params: ''
+            - code: payer_date_of_birth_is_after
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be earlier
               params: ''
             - code: identification_type_is_missing
               category: payer_identification_type
@@ -8620,6 +8696,18 @@ paths:
             category: payer_date_of_birth
             message: payer_date_of_birth should be of date type
             params: '{ "type" => "date" }'
+          - code: payer_date_of_birth_is_incorrect
+            category: payer_date_of_birth
+            message: payer_date_of_birth is incorrect
+            params: ''
+          - code: payer_date_of_birth_is_earlier
+            category: payer_date_of_birth
+            message: payer_date_of_birth should be later
+            params: ''
+          - code: payer_date_of_birth_is_after
+            category: payer_date_of_birth
+            message: payer_date_of_birth should be earlier
+            params: ''
           - code: identification_type_is_missing
             category: payer_identification_type
             message: identification_type is missing
