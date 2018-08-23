@@ -8321,11 +8321,6 @@ paths:
         - account
         - payer
         description: 'Source for payer details: the "account" or "payer" record.'
-      - name: unique_request_id
-        in: formData
-        required: false
-        type: string
-        description: User-generated idempotency key.
       - name: ultimate_beneficiary_name
         in: formData
         required: false
