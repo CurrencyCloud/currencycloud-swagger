@@ -7750,6 +7750,11 @@ paths:
           required: false
           type: string
           description: The name of the ultimate beneficiary if different.
+        - name: payment_purpose_code
+          in: formData
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: on_behalf_of
           in: formData
           required: false
@@ -8139,6 +8144,11 @@ paths:
           required: false
           type: string
           description: Bulk upload reference code.
+        - name: payment_purpose_code
+          in: query
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: page
           in: query
           required: false
@@ -8286,6 +8296,11 @@ paths:
         required: false
         type: boolean
         description: Include deleted payments.
+      - name: payment_purpose_code
+        in: query
+        required: false
+        type: string
+        description: Payment Purpose Code (Mandatory for all INR payments).
       - name: on_behalf_of
         in: query
         required: false
@@ -8566,6 +8581,11 @@ paths:
         required: false
         type: string
         description: The name of the ultimate beneficiary if different.
+      - name: payment_purpose_code
+        in: formData
+        required: false
+        type: string
+        description: Payment Purpose Code (Mandatory for all INR payments).
       - name: on_behalf_of
         in: formData
         required: false
@@ -9181,6 +9201,11 @@ paths:
           required: true
           type: string
           description: Payment UUID.
+        - name: payment_purpose_code
+          in: formData
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: on_behalf_of
           in: formData
           required: false
@@ -17371,6 +17396,8 @@ definitions:
         type: string
       ultimate_beneficiary_name:
         type: string
+      payment_purpose_code:
+        type: string
     example:
       id: 543477161-91de-012f-e284-1e0030c7f3123
       short_reference: 140416-GGJBNQ001
@@ -17395,6 +17422,7 @@ definitions:
       unique_request_id: 1234567890abc
       failure_returned_amount: ''
       ultimate_beneficiary_name: Some beneficiary name
+      payment_purpose_code: ''
   PaymentAuthorisations:
     type: object
     description: Payment Authorisations.
