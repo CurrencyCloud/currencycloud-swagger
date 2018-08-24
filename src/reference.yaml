@@ -10398,16 +10398,11 @@ paths:
           required: true
           type: string
           description: Authentication token.
-        - name: bank_account_country
-          in: query
-          required: true
-          type: string
-          description: Two-letter country code of the bank account.
         - name: currency
           in: query
           required: true
           type: string
-          description: Currency in which payment made. Three-digit currency code OR 'default'.
+          description: Currency in which payment made. Three-digit currency code.
         - name: entity_type
           in: query
           required: false
@@ -10416,6 +10411,11 @@ paths:
             - company
             - individual
           description: "Legal entity type. Can be either 'company' or 'individual'."
+        - name: bank_account_country
+          in: query
+          required: false
+          type: string
+          description: Two-letter country code of the bank account.
       responses:
         '200':
           description: Success.
@@ -17498,8 +17498,6 @@ definitions:
     type: object
     description: Payment purpose codes.
     properties:
-      bank_account_country:
-        type: string
       currency:
         type: string
       entity_type:
@@ -17507,6 +17505,8 @@ definitions:
       purpose_code:
         type: string
       purpose_description:
+        type: string
+      bank_account_country:
         type: string
     example:
       currency: INR
