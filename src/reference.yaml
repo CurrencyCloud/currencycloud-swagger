@@ -10303,6 +10303,11 @@ paths:
             - company
             - individual
           description: "Legal entity type. Can be either 'company' or 'individual'."
+        - name: bank_account_country
+          in: query
+          required: false
+          type: string
+          description: Two-letter country code of the bank account.
       responses:
         '200':
           description: Success.
@@ -17390,11 +17395,14 @@ definitions:
         type: string
       purpose_description:
         type: string
+      bank_account_country:
+        type: string
     example:
       currency: INR
       entity_type: Company
       purpose_code: 'delivery'
       purpose_description: 'Delivery fees for goods'
+      bank_account_country: 'India'
   PaymentConfirmation:
     type: object
     description: Payment confirmation.
