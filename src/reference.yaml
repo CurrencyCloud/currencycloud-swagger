@@ -10413,7 +10413,7 @@ paths:
           description: "Legal entity type. Can be either 'company' or 'individual'."
         - name: bank_account_country
           in: query
-          required: false
+          required: true
           type: string
           description: Two-letter country code of the bank account.
       responses:
