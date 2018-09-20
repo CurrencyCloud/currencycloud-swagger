@@ -5210,6 +5210,22 @@ paths:
               category: amount
               message: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
               params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
+            - code: x-error-conversion_forward_not_enabled
+              category: limit
+              message: Sorry - you are currently only setup to trade up to 3 months forward. Please contact us on the phone if you want to change this.
+              params: ''
+            - code: x-error-conversion_above_forward_limit
+              category: amount
+              message: Sorry - your maximum trading limit up to 3 months forward is 20000.00 GBP. Please contact us on the phone if you want to change this.
+              params: '{ "limit_amount" => "20000.00", "ccy" => "GBP" }'
+            - code: x-error-conversion_upper_limit_not_set
+              category: limit
+              message: Trading is not enabled as your upper api trading limit has not been set - please contact us to set this for you.
+              params: ''
+            - code: x-error-conversion_lower_limit_not_set
+              category: limit
+              message: Trading is not enabled as your lower trading limit has not been set - please contact us to set this for you.
+              params: ''
             - code: amount_type_is_wrong
               category: amount
               message: amount should be of numeric type
