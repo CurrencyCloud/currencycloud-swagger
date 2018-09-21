@@ -5212,11 +5212,11 @@ paths:
               params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
             - code: x-error-conversion_forward_not_enabled
               category: limit
-              message: Sorry - you are currently only setup to trade up to 3 months forward. Please contact us on the phone if you want to change this.
+              message: Sorry - you are currently only setup to trade up to 3 months forward. Please contact us if you want to change this.
               params: ''
             - code: x-error-conversion_above_forward_limit
               category: amount
-              message: Sorry - your maximum trading limit up to 3 months forward is 20000.00 GBP. Please contact us on the phone if you want to change this.
+              message: Sorry - your maximum trading limit up to 3 months forward is 20000.00 GBP. Please contact us if you want to change this.
               params: '{ "limit_amount" => "20000.00", "ccy" => "GBP" }'
             - code: x-error-conversion_upper_limit_not_set
               category: limit
@@ -5300,7 +5300,7 @@ paths:
               params: ''
             - code: variable_value_dates_not_permitted
               category: variable_value_dates_not_permitted
-              message: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
+              message: Sorry - you are not currently setup to trade with variable value dates, please contact us if you want to change this or wish to trade now on the phone.
               params: ''
             - code: client_buy_amount_is_in_invalid_format
               category: client_buy_amount
