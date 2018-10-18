@@ -5892,11 +5892,6 @@ paths:
           required: false
           type: string
           description: Whether the order is ascending (asc) or descending (desc).
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: UUID of account to act on behalf of.
       responses:
         '200':
           description: Success.
@@ -6020,11 +6015,6 @@ paths:
           required: true
           type: string
           description: Desired new settlement date of conversion
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -6140,11 +6130,6 @@ paths:
           required: true
           type: string
           description: ID of the conversion that is being changed
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
         - name: new_settlement_date
           required: true
           type: string
@@ -6273,11 +6258,6 @@ paths:
           required: true
           type: string
           description: Conversion UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
         - name: amount
           required: true
           type: string
@@ -6398,11 +6378,6 @@ paths:
           required: true
           type: string
           description: ID of the conversion that is being cancelled
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
         - name: amount
           required: true
           type: string
@@ -6523,11 +6498,6 @@ paths:
           required: true
           type: string
           description: Conversion UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -6641,11 +6611,6 @@ paths:
           required: true
           type: string
           description: Conversion UUID.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -6761,11 +6726,6 @@ paths:
           required: true
           type: string
           description: ID of the conversion that is being cancelled
-        - name: on_behalf_of
-          in: formData
-          required: false
-          type: string
-          description: Contact UUID.
         - name: notes
           required: false
           type: string
