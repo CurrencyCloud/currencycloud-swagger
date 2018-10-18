@@ -6113,7 +6113,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Date Change
-      description: Changes the date ofthe conversion identified by the provided unique id {id}
+      description: Changes the date of the conversion identified by the provided unique id {id}
       operationId: ConversionDateChange
       consumes:
         - multipart/form-data
