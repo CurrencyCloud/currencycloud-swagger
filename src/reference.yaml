@@ -90,6 +90,13 @@ tags:
       retrieve and assign VANs to the account.
 schemes:
   - https
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-Auth-Token
+security:
+  - ApiKeyAuth: []
 host: devapi.currencycloud.com
 basePath: /v2
 consumes:
@@ -103,6 +110,7 @@ paths:
         - Authenticate
       x-api-group: manage
       summary: Login
+      security: []
       description: >-
         The Currencycloud API authentication and authorization endpoint.
 
@@ -238,12 +246,6 @@ paths:
         - multipart/form-data
       produces:
         - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
       responses:
         '200':
           description: >-
@@ -323,12 +325,6 @@ paths:
       operationId: GetAuthenticatingAccount
       produces:
         - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          type: string
-          required: true
-          description: Authentication token.
       responses:
         '200':
           description: Success.
@@ -424,11 +420,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: account_name
           in: query
           required: false
@@ -660,11 +651,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -785,11 +771,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -1080,11 +1061,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: account_name
           in: formData
           required: true
@@ -1391,11 +1367,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: path
           required: true
@@ -1523,11 +1494,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -1690,11 +1656,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -2085,11 +2046,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -2206,11 +2162,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -2864,11 +2815,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: name
           in: formData
           required: true
@@ -3528,11 +3474,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -3655,11 +3596,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: bank_country
           in: formData
           required: true
@@ -4224,12 +4160,6 @@ paths:
       operationId: GetAuthenticatingContact
       produces:
         - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
       responses:
         '200':
           description: Success.
@@ -4310,11 +4240,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: account_name
           in: query
           required: false
@@ -4485,11 +4410,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -4597,11 +4517,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -4847,11 +4762,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: account_id
           in: formData
           required: true
@@ -5094,11 +5004,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: buy_currency
           in: formData
           required: true
@@ -5403,11 +5308,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -5694,11 +5594,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -5814,11 +5709,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: account_id
           in: formData
           required: false
@@ -6005,11 +5895,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6130,11 +6015,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6263,11 +6143,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6388,11 +6263,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6513,11 +6383,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6631,11 +6496,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6751,11 +6611,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -6879,11 +6734,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: false
@@ -7030,11 +6880,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: scope
           in: query
           required: false
@@ -7195,11 +7040,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: false
@@ -7338,11 +7178,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -7480,11 +7315,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: formData
           required: true
@@ -7875,11 +7705,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -8163,11 +7988,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
       - name: id
         in: path
         required: true
@@ -8296,11 +8116,6 @@ paths:
       produces:
       - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
       - name: id
         in: path
         required: true
@@ -8710,11 +8525,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -8832,11 +8642,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -8956,11 +8761,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: payment_ids[]
           in: query
           required: true
@@ -9073,11 +8873,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -9200,11 +8995,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -9325,11 +9115,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: buy_currency
           in: query
           required: true
@@ -9519,11 +9304,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency_pair
           in: query
           required: true
@@ -9650,11 +9430,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: false
@@ -9781,11 +9556,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: conversion_pair
           in: query
           required: true
@@ -9911,12 +9681,6 @@ paths:
       operationId: GetAvailableCurrencies
       produces:
         - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
       responses:
         '200':
           description: Success.
@@ -10008,11 +9772,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: payer_country
           in: query
           required: true
@@ -10145,11 +9904,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: true
@@ -10275,11 +10029,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: true
@@ -10410,11 +10159,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: currency
           in: query
           required: false
@@ -10525,11 +10269,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: formData
           required: false
@@ -10773,11 +10512,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: formData
           required: false
@@ -10984,11 +10718,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: short_reference
           in: query
           required: false
@@ -11169,11 +10898,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -11278,11 +11002,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -11392,11 +11111,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -11576,11 +11290,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -11707,11 +11416,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: type
           in: formData
           required: false
@@ -11823,11 +11527,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -11962,11 +11661,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -12095,11 +11789,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -12220,11 +11909,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -12343,11 +12027,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -12464,11 +12143,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -12752,11 +12426,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -12857,11 +12526,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: on_behalf_of
           in: query
           required: false
@@ -13126,11 +12790,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
@@ -13253,11 +12912,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: source_account_id
           in: formData
           required: true
@@ -13373,11 +13027,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: page
           in: query
           required: false
@@ -13516,11 +13165,6 @@ paths:
           required: false
           type: string
           description: UUID of a specific account you want to see the IBAN for
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: page
           in: query
           required: false
@@ -13648,11 +13292,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: page
           in: query
           required: false
@@ -13778,11 +13417,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
         - name: id
           in: path
           required: true
