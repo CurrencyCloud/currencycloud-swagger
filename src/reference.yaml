@@ -144,7 +144,7 @@ paths:
             $ref: '#/definitions/AuthenticationToken'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -173,13 +173,13 @@ paths:
             $ref: '#/definitions/LoginError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -192,7 +192,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -203,7 +203,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -214,13 +214,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /authenticate/close_session:
     post:
@@ -251,7 +251,7 @@ paths:
             authentication token is successfully retired.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -264,13 +264,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -283,7 +283,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -294,7 +294,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -305,13 +305,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /accounts/current:
     get:
@@ -336,7 +336,7 @@ paths:
             $ref: '#/definitions/Account'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -349,7 +349,7 @@ paths:
             $ref: '#/definitions/GetAuthenticatingAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -362,13 +362,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -381,7 +381,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -392,7 +392,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -403,13 +403,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /accounts/find:
     get:
@@ -522,7 +522,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -587,7 +587,7 @@ paths:
             $ref: '#/definitions/FindAccountsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -600,13 +600,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -619,7 +619,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -630,7 +630,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -641,13 +641,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/accounts/{id}':
     get:
@@ -682,7 +682,7 @@ paths:
             $ref: '#/definitions/Account'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -707,7 +707,7 @@ paths:
             $ref: '#/definitions/GetAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -720,7 +720,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -728,7 +728,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -741,7 +741,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -752,7 +752,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -763,13 +763,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
     post:
       tags:
@@ -918,7 +918,7 @@ paths:
             $ref: '#/definitions/Account'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -1003,7 +1003,7 @@ paths:
             $ref: '#/definitions/UpdateAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -1016,7 +1016,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -1024,7 +1024,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -1037,7 +1037,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -1048,7 +1048,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -1059,13 +1059,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /accounts/create:
     post:
@@ -1203,7 +1203,7 @@ paths:
             $ref: '#/definitions/Account'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -1316,7 +1316,7 @@ paths:
             $ref: '#/definitions/CreateAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -1329,13 +1329,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -1348,7 +1348,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -1359,7 +1359,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -1370,13 +1370,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/balances/{currency}':
     get:
@@ -1413,7 +1413,7 @@ paths:
             $ref: '#/definitions/Balance'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -1446,7 +1446,7 @@ paths:
             $ref: '#/definitions/GetBalanceError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -1459,7 +1459,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -1467,7 +1467,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -1480,7 +1480,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -1491,7 +1491,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -1502,13 +1502,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /balances/find:
     get:
@@ -1598,7 +1598,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -1615,7 +1615,7 @@ paths:
             $ref: '#/definitions/FindBalancesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -1628,13 +1628,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -1647,7 +1647,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -1658,7 +1658,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -1669,13 +1669,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /beneficiaries/find:
     get:
@@ -1875,7 +1875,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -2012,7 +2012,7 @@ paths:
             $ref: '#/definitions/FindBeneficiariesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -2025,13 +2025,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -2044,7 +2044,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -2055,7 +2055,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -2066,13 +2066,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/beneficiaries/{id}':
     get:
@@ -2107,7 +2107,7 @@ paths:
             $ref: '#/definitions/Beneficiary'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -2128,7 +2128,7 @@ paths:
             $ref: '#/definitions/GetBeneficiaryError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -2141,7 +2141,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -2149,7 +2149,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -2162,7 +2162,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -2173,7 +2173,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -2184,13 +2184,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
     post:
       tags:
@@ -2446,7 +2446,7 @@ paths:
             $ref: '#/definitions/Beneficiary'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -2787,7 +2787,7 @@ paths:
             $ref: '#/definitions/UpdateBeneficiaryError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -2800,13 +2800,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -2819,7 +2819,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -2830,7 +2830,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -2841,13 +2841,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /beneficiaries/create:
     post:
@@ -3098,7 +3098,7 @@ paths:
             $ref: '#/definitions/Beneficiary'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -3451,7 +3451,7 @@ paths:
             $ref: '#/definitions/CreateBeneficiaryError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -3464,13 +3464,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -3483,7 +3483,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -3494,7 +3494,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -3505,13 +3505,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/beneficiaries/{id}/delete':
     post:
@@ -3550,7 +3550,7 @@ paths:
             $ref: '#/definitions/Beneficiary'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -3575,7 +3575,7 @@ paths:
             $ref: '#/definitions/DeleteBeneficiaryError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -3588,7 +3588,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -3596,7 +3596,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -3609,7 +3609,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -3620,7 +3620,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -3631,13 +3631,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /beneficiaries/validate:
     post:
@@ -3867,7 +3867,7 @@ paths:
             $ref: '#/definitions/Beneficiary'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -4152,7 +4152,7 @@ paths:
             $ref: '#/definitions/ValidateBeneficiaryError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -4165,13 +4165,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -4184,7 +4184,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -4195,7 +4195,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -4206,13 +4206,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /contacts/current:
     get:
@@ -4237,7 +4237,7 @@ paths:
             $ref: '#/definitions/Contact'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -4250,13 +4250,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -4269,7 +4269,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -4280,7 +4280,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -4291,13 +4291,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /contacts/find:
     get:
@@ -4404,7 +4404,7 @@ paths:
             $ref: '#/definitions/Contact'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -4412,7 +4412,7 @@ paths:
             $ref: '#/definitions/FindContactsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -4425,13 +4425,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -4444,7 +4444,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -4455,7 +4455,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -4466,13 +4466,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/contacts/{id}':
     get:
@@ -4502,7 +4502,7 @@ paths:
             $ref: '#/definitions/Contact'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -4519,7 +4519,7 @@ paths:
             $ref: '#/definitions/GetContactError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -4532,7 +4532,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -4540,7 +4540,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -4553,7 +4553,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -4564,7 +4564,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -4575,13 +4575,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
     post:
       tags:
@@ -4673,7 +4673,7 @@ paths:
             $ref: '#/definitions/Contact'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -4770,7 +4770,7 @@ paths:
             $ref: '#/definitions/UpdateContactError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -4783,13 +4783,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -4802,7 +4802,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -4813,7 +4813,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -4824,13 +4824,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /contacts/create:
     post:
@@ -4922,7 +4922,7 @@ paths:
             $ref: '#/definitions/Contact'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -5019,7 +5019,7 @@ paths:
             $ref: '#/definitions/CreateContactError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -5032,13 +5032,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -5051,7 +5051,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -5062,7 +5062,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -5073,13 +5073,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/create:
     post:
@@ -5165,7 +5165,7 @@ paths:
             $ref: '#/definitions/Conversion'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -5330,7 +5330,7 @@ paths:
             $ref: '#/definitions/CreateConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -5343,13 +5343,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -5362,7 +5362,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -5373,7 +5373,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -5384,13 +5384,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/find:
     get:
@@ -5604,7 +5604,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -5621,7 +5621,7 @@ paths:
             $ref: '#/definitions/FindConversionsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -5634,13 +5634,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -5653,7 +5653,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -5664,7 +5664,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -5675,13 +5675,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/conversions/{id}':
     get:
@@ -5716,7 +5716,7 @@ paths:
             $ref: '#/definitions/Conversion'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -5737,7 +5737,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -5750,7 +5750,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -5758,7 +5758,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -5771,7 +5771,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -5782,7 +5782,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -5793,13 +5793,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/profit_and_loss:
     get:
@@ -5927,7 +5927,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -5940,13 +5940,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -5959,7 +5959,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -5970,7 +5970,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -5981,13 +5981,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/conversions/{id}/date_change_quote':
     get:
@@ -6022,7 +6022,7 @@ paths:
             $ref: '#/definitions/ConversionDateChange'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6043,7 +6043,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6056,7 +6056,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -6064,7 +6064,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6077,7 +6077,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6088,7 +6088,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6099,13 +6099,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/{id}/date_change:
     post:
@@ -6142,7 +6142,7 @@ paths:
             $ref: '#/definitions/ConversionDateChange'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6175,7 +6175,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6188,13 +6188,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6207,7 +6207,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6218,7 +6218,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6229,13 +6229,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/conversions/{id}/split_preview':
     get:
@@ -6270,7 +6270,7 @@ paths:
             $ref: '#/definitions/ConversionSplit'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6291,7 +6291,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6304,7 +6304,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -6312,7 +6312,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6325,7 +6325,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6336,7 +6336,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6347,13 +6347,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/{id}/split:
     post:
@@ -6390,7 +6390,7 @@ paths:
             $ref: '#/definitions/ConversionSplit'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6415,7 +6415,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6428,13 +6428,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6447,7 +6447,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6458,7 +6458,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6469,13 +6469,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/conversions/{id}/split_history':
     get:
@@ -6505,7 +6505,7 @@ paths:
             $ref: '#/definitions/ConversionSplitHistory'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6526,7 +6526,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6539,7 +6539,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -6547,7 +6547,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6560,7 +6560,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6571,7 +6571,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6582,13 +6582,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/conversions/{id}/cancellation_quote':
     get:
@@ -6618,7 +6618,7 @@ paths:
             $ref: '#/definitions/ConversionCancellationQuote'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6639,7 +6639,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6652,7 +6652,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -6660,7 +6660,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6673,7 +6673,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6684,7 +6684,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6695,13 +6695,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /conversions/{id}/cancel:
     post:
@@ -6738,7 +6738,7 @@ paths:
             $ref: '#/definitions/ConversionProfitAndLoss'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6763,7 +6763,7 @@ paths:
             $ref: '#/definitions/GetConversionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6776,13 +6776,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6795,7 +6795,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6806,7 +6806,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6817,13 +6817,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /ibans:
     get:
@@ -6892,7 +6892,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -6917,7 +6917,7 @@ paths:
             $ref: '#/definitions/GetIBANsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -6930,13 +6930,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -6949,7 +6949,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -6960,7 +6960,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -6971,13 +6971,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /ibans/find:
     get:
@@ -7053,7 +7053,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -7078,7 +7078,7 @@ paths:
             $ref: '#/definitions/GetIBANsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -7091,13 +7091,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -7110,7 +7110,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -7121,7 +7121,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -7132,13 +7132,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /ibans/subaccounts/find:
     get:
@@ -7203,7 +7203,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -7224,7 +7224,7 @@ paths:
             $ref: '#/definitions/GetIBANsForSubAccountsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -7237,13 +7237,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -7256,7 +7256,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -7267,7 +7267,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -7278,13 +7278,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/ibans/subaccounts/{id}':
     get:
@@ -7346,7 +7346,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -7363,7 +7363,7 @@ paths:
             $ref: '#/definitions/GetIBANsForSubAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -7376,7 +7376,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -7384,7 +7384,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -7397,7 +7397,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -7408,7 +7408,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -7419,13 +7419,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /payments/create:
     post:
@@ -7609,7 +7609,7 @@ paths:
             $ref: '#/definitions/Payment'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -7762,7 +7762,7 @@ paths:
             $ref: '#/definitions/CreatePaymentError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -7775,13 +7775,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -7794,7 +7794,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -7805,7 +7805,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -7816,13 +7816,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /payments/find:
     get:
@@ -8029,7 +8029,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8050,7 +8050,7 @@ paths:
             $ref: '#/definitions/FindPaymentsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8063,13 +8063,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8082,7 +8082,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -8093,7 +8093,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -8104,13 +8104,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/payments/{id}':
     get:
@@ -8155,7 +8155,7 @@ paths:
             $ref: '#/definitions/Payment'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8180,7 +8180,7 @@ paths:
             $ref: '#/definitions/GetPaymentError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8193,7 +8193,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -8201,7 +8201,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8214,7 +8214,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -8225,7 +8225,7 @@ paths:
             params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -8236,13 +8236,13 @@ paths:
             params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
     post:
       tags:
@@ -8440,7 +8440,7 @@ paths:
             $ref: '#/definitions/Payment'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8597,7 +8597,7 @@ paths:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8610,13 +8610,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8629,7 +8629,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -8640,7 +8640,7 @@ paths:
             params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -8651,13 +8651,13 @@ paths:
             params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/payments/{id}/confirmation':
     get:
@@ -8692,7 +8692,7 @@ paths:
             $ref: '#/definitions/PaymentConfirmation'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8717,7 +8717,7 @@ paths:
             $ref: '#/definitions/GetPaymentSubmissionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8730,7 +8730,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -8738,7 +8738,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8751,7 +8751,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -8762,7 +8762,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -8773,13 +8773,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/payments/{id}/submission':
     get:
@@ -8814,7 +8814,7 @@ paths:
             $ref: '#/definitions/PaymentSubmission'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8839,7 +8839,7 @@ paths:
             $ref: '#/definitions/GetPaymentSubmissionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8852,7 +8852,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -8860,7 +8860,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8873,7 +8873,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -8884,7 +8884,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -8895,13 +8895,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /payments/authorise:
     post:
@@ -8935,7 +8935,7 @@ paths:
             $ref: '#/definitions/PaymentAuthorisations'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -8956,7 +8956,7 @@ paths:
             $ref: '#/definitions/CreatePaymentAuthorisationError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -8969,7 +8969,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -8977,7 +8977,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -8990,7 +8990,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9001,7 +9001,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9012,13 +9012,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/payments/{id}/delete':
     post:
@@ -9060,7 +9060,7 @@ paths:
             $ref: '#/definitions/Payment'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9085,7 +9085,7 @@ paths:
             $ref: '#/definitions/DeletePaymentError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9098,7 +9098,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -9106,7 +9106,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9119,7 +9119,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9130,7 +9130,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9141,13 +9141,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/payers/{id}':
     get:
@@ -9182,7 +9182,7 @@ paths:
             $ref: '#/definitions/Payer'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9207,7 +9207,7 @@ paths:
             $ref: '#/definitions/GetPayerError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9220,7 +9220,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -9228,7 +9228,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9241,7 +9241,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9252,7 +9252,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9263,13 +9263,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /rates/detailed:
     get:
@@ -9333,7 +9333,7 @@ paths:
             $ref: '#/definitions/RateDetailed'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9406,7 +9406,7 @@ paths:
             $ref: '#/definitions/GetDetailedRatesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9419,13 +9419,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9438,7 +9438,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9449,7 +9449,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9460,13 +9460,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /rates/find:
     get:
@@ -9506,7 +9506,7 @@ paths:
             $ref: '#/definitions/RatesBasic'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9535,7 +9535,7 @@ paths:
             $ref: '#/definitions/GetBasicRatesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9548,13 +9548,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9567,7 +9567,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9578,7 +9578,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9589,13 +9589,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/beneficiary_required_details:
     get:
@@ -9647,7 +9647,7 @@ paths:
                   $ref: '#/definitions/BeneficiaryRequirements'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9668,7 +9668,7 @@ paths:
             $ref: '#/definitions/GetBeneficiaryRequirementsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9681,13 +9681,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9700,7 +9700,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9711,7 +9711,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9722,13 +9722,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/conversion_dates:
     get:
@@ -9764,7 +9764,7 @@ paths:
             $ref: '#/definitions/ConversionDates'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9797,7 +9797,7 @@ paths:
             $ref: '#/definitions/GetConversionDatesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9810,13 +9810,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9829,7 +9829,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9840,7 +9840,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9851,13 +9851,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/currencies:
     get:
@@ -9884,7 +9884,7 @@ paths:
             $ref: '#/definitions/AvailableCurrencies'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -9892,7 +9892,7 @@ paths:
             $ref: '#/definitions/GetAvailableCurrenciesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -9905,13 +9905,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -9924,7 +9924,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -9935,7 +9935,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -9946,13 +9946,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/payer_required_details:
     get:
@@ -10004,7 +10004,7 @@ paths:
             $ref: '#/definitions/PayerRequirements'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10029,7 +10029,7 @@ paths:
             $ref: '#/definitions/GetPayerRequirementsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10042,13 +10042,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10061,7 +10061,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10072,7 +10072,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10083,13 +10083,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/payment_dates:
     get:
@@ -10128,7 +10128,7 @@ paths:
             $ref: '#/definitions/PaymentDates'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10161,7 +10161,7 @@ paths:
             $ref: '#/definitions/GetPaymentDatesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10174,13 +10174,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10193,7 +10193,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10204,7 +10204,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10215,13 +10215,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/payment_purpose_codes:
     get:
@@ -10270,7 +10270,7 @@ paths:
                   $ref: '#/definitions/PaymentPurposeCodes'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10295,7 +10295,7 @@ paths:
             $ref: '#/definitions/GetPaymentPurposeCodesError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10308,13 +10308,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10327,7 +10327,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10338,7 +10338,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10349,13 +10349,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reference/settlement_accounts:
     get:
@@ -10397,7 +10397,7 @@ paths:
                   $ref: '#/definitions/SettlementAccount'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10410,7 +10410,7 @@ paths:
             $ref: '#/definitions/GetSettlementAccountsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10423,13 +10423,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10442,7 +10442,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10453,7 +10453,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10464,13 +10464,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reports/conversions/create:
     post:
@@ -10641,7 +10641,7 @@ paths:
             $ref: '#/definitions/ReportRequest'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10658,7 +10658,7 @@ paths:
             $ref: '#/definitions/GenerateReportError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10671,13 +10671,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10690,7 +10690,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10701,7 +10701,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10712,13 +10712,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reports/payments/create:
     post:
@@ -10853,7 +10853,7 @@ paths:
             $ref: '#/definitions/ReportRequest'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -10870,7 +10870,7 @@ paths:
             $ref: '#/definitions/GenerateReportError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -10883,13 +10883,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -10902,7 +10902,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -10913,7 +10913,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -10924,13 +10924,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /reports/report_requests/find:
     get:
@@ -11042,7 +11042,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11055,7 +11055,7 @@ paths:
             $ref: '#/definitions/GetReportRequestError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11068,13 +11068,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11087,7 +11087,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11098,7 +11098,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11109,13 +11109,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/reports/report_requests/{id}':
     get:
@@ -11151,7 +11151,7 @@ paths:
             $ref: '#/definitions/ReportRequest'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11164,7 +11164,7 @@ paths:
             $ref: '#/definitions/GetReportRequestError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11177,13 +11177,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11196,7 +11196,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11207,7 +11207,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11218,13 +11218,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/transactions/sender/{id}':
     get:
@@ -11260,7 +11260,7 @@ paths:
             $ref: '#/definitions/Sender'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11277,7 +11277,7 @@ paths:
             $ref: '#/definitions/GetSenderError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11290,7 +11290,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -11298,7 +11298,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11311,7 +11311,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11322,7 +11322,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11333,13 +11333,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /settlements/find:
     get:
@@ -11446,7 +11446,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11463,7 +11463,7 @@ paths:
             $ref: '#/definitions/FindSettlementsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11476,13 +11476,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11495,7 +11495,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11506,7 +11506,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11517,13 +11517,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}':
     get:
@@ -11565,7 +11565,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11590,7 +11590,7 @@ paths:
             $ref: '#/definitions/GetSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11603,7 +11603,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -11611,7 +11611,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11624,7 +11624,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11635,7 +11635,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11646,13 +11646,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /settlements/create:
     post:
@@ -11689,7 +11689,7 @@ paths:
             $ref: '#/definitions/Settlement'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11706,7 +11706,7 @@ paths:
             $ref: '#/definitions/CreateSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11719,13 +11719,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11738,7 +11738,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11749,7 +11749,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11760,13 +11760,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}/add_conversion':
     post:
@@ -11817,7 +11817,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11842,7 +11842,7 @@ paths:
             $ref: '#/definitions/AddConversionToSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11855,7 +11855,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -11863,7 +11863,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -11876,7 +11876,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -11887,7 +11887,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -11898,13 +11898,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}/delete':
     post:
@@ -11951,7 +11951,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -11976,7 +11976,7 @@ paths:
             $ref: '#/definitions/DeleteSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -11989,7 +11989,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -11997,7 +11997,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12010,7 +12010,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12021,7 +12021,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12032,13 +12032,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}/release':
     post:
@@ -12084,7 +12084,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -12101,7 +12101,7 @@ paths:
             $ref: '#/definitions/ReleaseSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -12114,7 +12114,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -12122,7 +12122,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12135,7 +12135,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12146,7 +12146,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12157,13 +12157,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}/remove_conversion':
     post:
@@ -12207,7 +12207,7 @@ paths:
             $ref: '#/definitions/Settlement'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -12224,7 +12224,7 @@ paths:
             $ref: '#/definitions/RemoveConversionFromSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -12237,7 +12237,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -12245,7 +12245,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12258,7 +12258,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12269,7 +12269,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12280,13 +12280,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/settlements/{id}/unrelease':
     post:
@@ -12332,7 +12332,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -12349,7 +12349,7 @@ paths:
             $ref: '#/definitions/UnreleaseSettlementError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -12362,7 +12362,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -12370,7 +12370,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12383,7 +12383,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12394,7 +12394,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12405,13 +12405,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /transactions/find:
     get:
@@ -12618,7 +12618,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -12639,7 +12639,7 @@ paths:
             $ref: '#/definitions/FindTransactionsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -12652,13 +12652,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12671,7 +12671,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12682,7 +12682,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12693,13 +12693,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/transactions/{id}':
     get:
@@ -12734,7 +12734,7 @@ paths:
             $ref: '#/definitions/Transaction'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -12742,7 +12742,7 @@ paths:
             $ref: '#/definitions/GetTransactionError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -12755,7 +12755,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -12763,7 +12763,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -12776,7 +12776,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -12787,7 +12787,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -12798,13 +12798,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /transfers/find:
     get:
@@ -12944,7 +12944,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13013,7 +13013,7 @@ paths:
             $ref: '#/definitions/FindTransfersError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13026,13 +13026,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13045,7 +13045,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13056,7 +13056,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13067,13 +13067,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/transfers/{id}':
     get:
@@ -13108,7 +13108,7 @@ paths:
             $ref: '#/definitions/Transfer'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13133,7 +13133,7 @@ paths:
             $ref: '#/definitions/GetTransferError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13146,7 +13146,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -13154,7 +13154,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13167,7 +13167,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13178,7 +13178,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13189,13 +13189,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /transfers/create:
     post:
@@ -13250,7 +13250,7 @@ paths:
             $ref: '#/definitions/Transfer'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13258,7 +13258,7 @@ paths:
             $ref: '#/definitions/CreateTransferError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13271,13 +13271,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13290,7 +13290,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13301,7 +13301,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13312,13 +13312,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /virtual_accounts:
     get:
@@ -13376,7 +13376,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13389,7 +13389,7 @@ paths:
             $ref: '#/definitions/GetVANsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13402,13 +13402,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13421,7 +13421,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13432,7 +13432,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13443,13 +13443,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   /virtual_accounts/find:
     get:
@@ -13519,7 +13519,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13532,7 +13532,7 @@ paths:
             $ref: '#/definitions/GetVANsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13545,13 +13545,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13564,7 +13564,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13575,7 +13575,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13586,13 +13586,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.                
   /virtual_accounts/subaccounts/find:
     get:
@@ -13651,7 +13651,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13664,7 +13664,7 @@ paths:
             $ref: '#/definitions/GetVANsForSubAccountsError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13677,13 +13677,13 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13696,7 +13696,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13707,7 +13707,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13718,13 +13718,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
   '/virtual_accounts/subaccounts/{id}':
     get:
@@ -13786,7 +13786,7 @@ paths:
                 $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '400':
           description: Client error.
@@ -13803,7 +13803,7 @@ paths:
             $ref: '#/definitions/GetVANsForSubAccountError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '401':
           description: Unauthorized.
@@ -13816,7 +13816,7 @@ paths:
             $ref: '#/definitions/UnauthorizedError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '404':
           description: Resource not found.
@@ -13824,7 +13824,7 @@ paths:
             $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '429':
           description: Too many requests.
@@ -13837,7 +13837,7 @@ paths:
             $ref: '#/definitions/RateLimitError'
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '500':
           description: Internal server error
@@ -13848,7 +13848,7 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         '503':
           description: Service is temporary unavailable
@@ -13859,13 +13859,13 @@ paths:
               params: ''
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
         default:
           description: Unexpected error.
           headers:
             X-Request-Id:
-              type: integer
+              type: string
               description: A unique reference for the request.
 definitions:
   Account:
