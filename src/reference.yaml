@@ -65,11 +65,9 @@ tags:
       including beneficiary details, conversion dates, available currencies,
       payer required details, payment dates and settlement details.
   - name: Reporting
-    description: >-
-      Ability to create and retrieve reports.
+    description: Ability to create and retrieve reports.
   - name: Sender
-    description: >-
-      Sender of funds.
+    description: Sender of funds.
   - name: Settlements
     description: >-
       Consolidate multiple currency conversions into a single group. Search,
@@ -186,7 +184,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -277,7 +277,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -375,7 +377,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -613,7 +617,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -735,7 +741,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -925,7 +933,10 @@ paths:
           x-errors:
             - code: at_least_one_parameter
               category: base
-              message: 'At least one parameter should be present: account_name, brand, your_reference, status, street, city, country, postal_code, spread_table'
+              message: >-
+                At least one parameter should be present: account_name, brand,
+                your_reference, status, street, city, country, postal_code,
+                spread_table
               params: ''
             - code: id_is_not_valid_uuid
               category: id
@@ -1031,7 +1042,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1306,7 +1319,7 @@ paths:
               params: ''
             - code: state_or_province_is_required
               category: state_or_province
-              message: State or province is required for US, CA and MX
+              message: 'State or province is required for US, CA and MX'
               params: ''
             - code: invalid_extra_parameters
               category: base
@@ -1342,7 +1355,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1474,7 +1489,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1641,7 +1658,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1824,9 +1843,9 @@ paths:
           type: string
           format: date
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration.
-            If "beneficiary_entity_type" is "individual", date of birth. ISO
-            8601 format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration. If
+            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
         - name: scope
           in: query
           required: false
@@ -1935,7 +1954,10 @@ paths:
             - code: routing_code_type_not_included_in_list
               category: routing_code_type
               message: One or more of routing_code_type items are not included in list
-              params: '{ "list" => "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe }'
+              params: >-
+                { "list" =>
+                "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe
+                }
             - code: routing_code_type_too_many_items
               category: routing_code_type
               message: routing_code_type should have less than 50 items
@@ -1998,8 +2020,15 @@ paths:
               params: '{ "range" => "asc, desc" }'
             - code: order_not_in_range
               category: order
-              message: 'order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at'
-              params: '{ "range" => "order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban, default_beneficiary, bank_address, name, created_at" }'
+              message: >-
+                order should be in range: bank_account_holder_name,
+                beneficiary_country, currency, account_number, bic_swift, iban,
+                default_beneficiary, bank_address, name, created_at
+              params: >-
+                { "range" => "order should be in range:
+                bank_account_holder_name, beneficiary_country, currency,
+                account_number, bic_swift, iban, default_beneficiary,
+                bank_address, name, created_at" }
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -2038,7 +2067,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -2156,7 +2187,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -2302,7 +2335,7 @@ paths:
           required: false
           type: string
           description: Routing code for "routing_code_type_2".
-        - name: payment_types[]
+        - name: 'payment_types[]'
           in: formData
           required: false
           type: array
@@ -2314,9 +2347,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payment: "priority", made
-            using the SWIFT network; and "regular", made using the local bank
-            network.
+            Currencycloud supports two types of payment: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
         - name: bic_swift
           in: formData
           required: false
@@ -2397,9 +2429,9 @@ paths:
           required: false
           type: string
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration.
-            If "beneficiary_entity_type" is "individual", date of birth. ISO
-            8601 format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration. If
+            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -2601,12 +2633,20 @@ paths:
               params: '{ "type" => "boolean" }'
             - code: routing_code_type_1_not_in_range
               category: routing_code_type_1
-              message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_1 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range" => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: routing_code_type_2_not_in_range
               category: routing_code_type_2
-              message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_2 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: beneficiary_country_is_required
               category: beneficiary_country
               message: beneficiary_country is required
@@ -2701,12 +2741,26 @@ paths:
               params: ''
             - code: unique_value_parameters
               category: base
-              message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+              message: >-
+                Following parameters should not have same values:
+                routing_code_type_1, routing_code_type_2
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: at_least_one_parameter
               category: base
-              message: 'At least one parameter should be present: bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name'
-              params: '{ "parameters" => "bank_account_holder_name, beneficiary_country, bank_country, currency, email, beneficiary_address, account_number, routing_code_type_1, routing_code_type_2, routing_code_value_1, routing_code_value_2, bic_swift, iban, default_beneficiary, bank_address, bank_name, name" }'
+              message: >-
+                At least one parameter should be present:
+                bank_account_holder_name, beneficiary_country, bank_country,
+                currency, email, beneficiary_address, account_number,
+                routing_code_type_1, routing_code_type_2, routing_code_value_1,
+                routing_code_value_2, bic_swift, iban, default_beneficiary,
+                bank_address, bank_name, name
+              params: >-
+                { "parameters" => "bank_account_holder_name,
+                beneficiary_country, bank_country, currency, email,
+                beneficiary_address, account_number, routing_code_type_1,
+                routing_code_type_2, routing_code_value_1, routing_code_value_2,
+                bic_swift, iban, default_beneficiary, bank_address, bank_name,
+                name" }
             - code: payment_types_not_in_range
               category: payment_types
               message: 'payment_types should be in range: priority, regular'
@@ -2773,7 +2827,9 @@ paths:
               params: ''
             - code: beneficiary_details_are_missing
               category: beneficiary
-              message: 'Following beneficiary details are missing: beneficiary_company_name'
+              message: >-
+                Following beneficiary details are missing:
+                beneficiary_company_name
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -2813,7 +2869,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -3034,9 +3092,9 @@ paths:
           required: false
           type: string
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration.
-            If "beneficiary_entity_type" is "individual", date of birth. ISO
-            8601 format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration. If
+            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -3071,7 +3129,7 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
-        - name: payment_types[]
+        - name: 'payment_types[]'
           in: formData
           required: false
           type: array
@@ -3083,9 +3141,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made
-            using the SWIFT network; and "regular", made using the local bank
-            network.
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
         - name: on_behalf_of
           in: formData
           required: false
@@ -3249,12 +3306,20 @@ paths:
               params: '{ "type" => "boolean"  }'
             - code: routing_code_type_1_not_in_range
               category: routing_code_type_1
-              message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_1 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range" => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: routing_code_type_2_not_in_range
               category: routing_code_type_2
-              message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_2 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: beneficiary_country_is_required
               category: beneficiary_country
               message: beneficiary_country is required
@@ -3357,7 +3422,9 @@ paths:
               params: ''
             - code: unique_value_parameters
               category: base
-              message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+              message: >-
+                Following parameters should not have same values:
+                routing_code_type_1, routing_code_type_2
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: unsupported_beneficiary_country_code
               category: base
@@ -3369,7 +3436,9 @@ paths:
               params: ''
             - code: beneficiary_details_are_missing
               category: beneficiary
-              message: 'Following beneficiary details are missing: beneficiary_company_name'
+              message: >-
+                Following beneficiary details are missing:
+                beneficiary_company_name
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: payment_types_not_in_range
               category: payment_types
@@ -3477,7 +3546,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -3603,7 +3674,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -3770,20 +3843,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            Required if "beneficiary_entity_type" is "company".
+          description: Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: >-
-            Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_city
           in: formData
           required: false
@@ -3804,9 +3874,9 @@ paths:
           required: false
           type: string
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration.
-            If "beneficiary_entity_type" is "individual", date of birth.
-            ISO 8601 format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration. If
+            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -3839,8 +3909,9 @@ paths:
             - incorporation_number
             - others
           description: >-
-            A unique reference code for the identification document, such as a passport number.
-        - name: payment_types[]
+            A unique reference code for the identification document, such as a
+            passport number.
+        - name: 'payment_types[]'
           in: formData
           required: false
           type: array
@@ -3852,9 +3923,8 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority",
-            made using the SWIFT network; and "regular", made using
-            the local bank network.
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
         - name: on_behalf_of
           in: formData
           required: false
@@ -4034,12 +4104,20 @@ paths:
               params: ''
             - code: routing_code_type_1_not_in_range
               category: routing_code_type_1
-              message: 'routing_code_type_1 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range" => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_1 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range" => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: routing_code_type_2_not_in_range
               category: routing_code_type_2
-              message: 'routing_code_type_2 should be in range: sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps'
-              params: '{ "range => "sort_code, bsb_code, institution_no, bank_code, branch_code, aba, clabe, cnaps" }'
+              message: >-
+                routing_code_type_2 should be in range: sort_code, bsb_code,
+                institution_no, bank_code, branch_code, aba, clabe, cnaps
+              params: >-
+                { "range => "sort_code, bsb_code, institution_no, bank_code,
+                branch_code, aba, clabe, cnaps" }
             - code: bank_country_is_required
               category: bank_country
               message: bank_country is required
@@ -4066,7 +4144,9 @@ paths:
               params: ''
             - code: unique_value_parameters
               category: base
-              message: 'Following parameters should not have same values: routing_code_type_1, routing_code_type_2'
+              message: >-
+                Following parameters should not have same values:
+                routing_code_type_1, routing_code_type_2
               params: '{ "parameters" => "routing_code_type_1, routing_code_type_2" }'
             - code: beneficiary_create_failed
               category: beneficiary
@@ -4074,7 +4154,9 @@ paths:
               params: ''
             - code: beneficiary_details_are_missing
               category: beneficiary
-              message: 'Following beneficiary details are missing: beneficiary_company_name'
+              message: >-
+                Following beneficiary details are missing:
+                beneficiary_company_name
               params: '{ "missing_details" => ["beneficiary_company_name"] }'
             - code: payment_types_not_in_range
               category: payment_types
@@ -4178,7 +4260,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4263,7 +4347,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4438,7 +4524,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4547,7 +4635,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4680,7 +4770,10 @@ paths:
           x-errors:
             - code: at_least_one_parameter
               category: base
-              message: 'At least one parameter should be present: first_name, last_name, email_address, phone_number, mobile_phone_number, login_id, locale, timezone, status'
+              message: >-
+                At least one parameter should be present: first_name, last_name,
+                email_address, phone_number, mobile_phone_number, login_id,
+                locale, timezone, status
               params: ''
             - code: id_is_not_valid_uuid
               category: id
@@ -4796,7 +4889,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5013,7 +5108,9 @@ paths:
               params: '{ "type" => "date" }'
             - code: date_of_birth_is_required
               category: date_of_birth
-              message: Date of Birth is a required field. Please provide date of birth (YYYY-MM-DD)
+              message: >-
+                Date of Birth is a required field. Please provide date of birth
+                (YYYY-MM-DD)
               params: ''
           schema:
             $ref: '#/definitions/CreateContactError'
@@ -5045,7 +5142,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5204,12 +5303,20 @@ paths:
               params: ''
             - code: conversion_above_limit
               category: amount
-              message: Conversion of GBP equivalent 30000.01 exceeds your limit of 30000.00
-              params: '{ "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" => "GBP" }'
+              message: >-
+                Conversion of GBP equivalent 30000.01 exceeds your limit of
+                30000.00
+              params: >-
+                { "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" =>
+                "GBP" }
             - code: conversion_below_limit
               category: amount
-              message: Conversion of GBP equivalent 999.99 is less than your lower limit of 1000.00
-              params: '{ "amount" => "999.99", "limit_amount" => "1000.00", "ccy" => "GBP" }'
+              message: >-
+                Conversion of GBP equivalent 999.99 is less than your lower
+                limit of 1000.00
+              params: >-
+                { "amount" => "999.99", "limit_amount" => "1000.00", "ccy" =>
+                "GBP" }
             - code: amount_type_is_wrong
               category: amount
               message: amount should be of numeric type
@@ -5260,7 +5367,9 @@ paths:
               params: '{ "type" => "currency_pair" }'
             - code: invalid_currency_pair
               category: invalid_currency_pair
-              message: The currency_pair should be the real market pair of the buy_currency and sell_currency
+              message: >-
+                The currency_pair should be the real market pair of the
+                buy_currency and sell_currency
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -5276,7 +5385,9 @@ paths:
               params: ''
             - code: on_behalf_of_is_required
               category: on_behalf_of
-              message: You should do this conversion on behalf of someone if you supply client_rate
+              message: >-
+                You should do this conversion on behalf of someone if you supply
+                client_rate
               params: ''
             - code: currency_pair_is_required
               category: currency_pair_is_required
@@ -5284,7 +5395,10 @@ paths:
               params: ''
             - code: variable_value_dates_not_permitted
               category: variable_value_dates_not_permitted
-              message: Sorry - you are not currently setup to trade with variable value dates, please contact us on the phone if you want to change this or wish to trade now on the phone.
+              message: >-
+                Sorry - you are not currently setup to trade with variable value
+                dates, please contact us on the phone if you want to change this
+                or wish to trade now on the phone.
               params: ''
             - code: client_buy_amount_is_in_invalid_format
               category: client_buy_amount
@@ -5296,35 +5410,52 @@ paths:
               params: '{ "type" => "client_sell_amount" }'
             - code: cannot_fix_client_sell_on_fixed_sell_side
               category: cannot_fix_client_sell_on_fixed_sell_side
-              message: You cannot specify a fixed client_sell_amount when the fixed side for a conversion is the sell side
+              message: >-
+                You cannot specify a fixed client_sell_amount when the fixed
+                side for a conversion is the sell side
               params: '{ "type" => "client_sell_amount" }'
             - code: client_buy_amount_exceeds_partner_buy_amount
               category: client_buy_amount_exceeds_partner_buy_amount
-              message: The client buy amount specified is greater than the amount that you would be buying and is thus invalid
+              message: >-
+                The client buy amount specified is greater than the amount that
+                you would be buying and is thus invalid
               params: '{ "type" => "client_buy_amount" }'
             - code: partner_sell_amount_exceeds_client_sell_amount
               category: partner_sell_amount_exceeds_client_sell_amount
-              message: The client sell amount specified is less than the amount that you would be selling and is thus invalid
+              message: >-
+                The client sell amount specified is less than the amount that
+                you would be selling and is thus invalid
               params: '{ "type" => "client_sell_amount" }'
             - code: missing_partner_spread_table_data
               category: missing_partner_spread_table_data
-              message: Sorry, the online partner pricing for the amount of the currency pair you are trying to trade has not been set up
+              message: >-
+                Sorry, the online partner pricing for the amount of the currency
+                pair you are trying to trade has not been set up
               params: ''
             - code: missing_client_spread_table_data
               category: missing_client_spread_table_data
-              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up
+              message: >-
+                Sorry, the online client pricing for the amount of the currency
+                pair you are trying to trade has not been set up
               params: ''
             - code: fixed_amounts_not_permitted_for_this_user
               category: fixed_amounts_not_permitted_for_this_user
-              message: You are not permitted to specify a fixed client_buy_amount or client_sell_amount for this customer
+              message: >-
+                You are not permitted to specify a fixed client_buy_amount or
+                client_sell_amount for this customer
               params: ''
             - code: invalid_client_rate_combination
               category: invalid_client_rate_combination
-              message: You cannot specify a client rate and client currency pair alongside a client buy amount or client sell amount
+              message: >-
+                You cannot specify a client rate and client currency pair
+                alongside a client buy amount or client sell amount
               params: ''
             - code: duplicate_request
               category: duplicate_request
-              message: The unique_request_id provided for this conversion has already been used, please provide a new unique_request_id to successfully submit this conversion
+              message: >-
+                The unique_request_id provided for this conversion has already
+                been used, please provide a new unique_request_id to
+                successfully submit this conversion
               params: ''
           schema:
             $ref: '#/definitions/CreateConversionError'
@@ -5356,7 +5487,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5450,7 +5583,7 @@ paths:
           required: false
           type: string
           description: The currency sold. Three-digit code.
-        - name: conversion_ids[]
+        - name: 'conversion_ids[]'
           in: query
           required: false
           type: array
@@ -5647,7 +5780,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5765,7 +5900,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5807,7 +5944,10 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Retrieve Profit / Loss
-      description: Returns a JSON structure that contains information related to actions on conversions that have generated profit or loss, including the profit or loss amount
+      description: >-
+        Returns a JSON structure that contains information related to actions on
+        conversions that have generated profit or loss, including the profit or
+        loss amount
       operationId: ConversionProfitAndLoss
       consumes:
         - multipart/form-data
@@ -5838,27 +5978,35 @@ paths:
           in: formData
           required: false
           type: string
-          description: Event type, in this case 'self_service_cancellation'
+          description: 'Event type, in this case ''self_service_cancellation'''
         - name: event_date_time_from
           in: formData
           required: false
           type: string
-          description: Allows you to return profit and losses will be done from on or after a defined date/time. ISO 8601 standard.
+          description: >-
+            Allows you to return profit and losses will be done from on or after
+            a defined date/time. ISO 8601 standard.
         - name: event_date_time_to
           in: formData
           required: false
           type: string
-          description: Allows you to return profit and losses will be done from on or before a defined date/time. ISO 8601 standard.
+          description: >-
+            Allows you to return profit and losses will be done from on or
+            before a defined date/time. ISO 8601 standard.
         - name: amount_from
           in: formData
           required: false
           type: string
-          description: Allows you to return profit and losses based on a minimum profit or loss amount.
+          description: >-
+            Allows you to return profit and losses based on a minimum profit or
+            loss amount.
         - name: amount_to
           in: formData
           required: false
           type: string
-          description: Allows you to return profit and losses based on a maximum profit or loss amount.
+          description: >-
+            Allows you to return profit and losses based on a maximum profit or
+            loss amount.
         - name: currency
           in: formData
           required: false
@@ -5868,10 +6016,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Scope allows contacts to search all profit and losses at all account levels. Defaults to own.
-            own - allows to search profit and losses on the main account
-            clients - allows to search profit and losses of account sub accounts
-            all - allows to search balances profit and losses account and subaccounts
+          description: >-
+            Scope allows contacts to search all profit and losses at all account
+            levels. Defaults to own. own - allows to search profit and losses on
+            the main account clients - allows to search profit and losses of
+            account sub accounts all - allows to search balances profit and
+            losses account and subaccounts
         - name: page
           in: formData
           required: false
@@ -5953,7 +6103,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5995,7 +6147,9 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Quote Conversion Date Change
-      description: Returns a JSON structure containing the quote for changing the date of the specified conversion.
+      description: >-
+        Returns a JSON structure containing the quote for changing the date of
+        the specified conversion.
       operationId: ConversionDateChangeQuote
       produces:
         - application/json
@@ -6071,7 +6225,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6113,7 +6269,9 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Date Change
-      description: Changes the date of the conversion identified by the provided unique id {id}
+      description: >-
+        Changes the date of the conversion identified by the provided unique id
+        {id}
       operationId: ConversionDateChange
       consumes:
         - multipart/form-data
@@ -6169,7 +6327,9 @@ paths:
               params: ''
             - code: new_settlement_date_invalid
               category: new_settlement_date
-              message: Invalid new settlement date, next valid date time is - YYYY-MM-DDT15:30:00Z
+              message: >-
+                Invalid new settlement date, next valid date time is -
+                YYYY-MM-DDT15:30:00Z
               params: ''
           schema:
             $ref: '#/definitions/GetConversionError'
@@ -6201,7 +6361,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6319,7 +6481,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6441,7 +6605,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6554,7 +6720,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6596,7 +6764,9 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Quote Conversion Cancellation
-      description: Returns a JSON structure containing the quote for cancelling the specified conversion.
+      description: >-
+        Returns a JSON structure containing the quote for cancelling the
+        specified conversion.
       operationId: ConversionCancellationQuote
       produces:
         - application/json
@@ -6667,7 +6837,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6709,7 +6881,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Cancel a Conversion
-      description: Cancels the conversion identified by the provided unique id {id}
+      description: 'Cancels the conversion identified by the provided unique id {id}'
       operationId: CancelConversion
       consumes:
         - multipart/form-data
@@ -6789,7 +6961,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6943,7 +7117,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6985,7 +7161,9 @@ paths:
         - IBANs
       x-api-group: collect
       summary: Find IBANs
-      description: Returns a JSON structure with details of the IBANs for the specified accounts.
+      description: >-
+        Returns a JSON structure with details of the IBANs for the specified
+        accounts.
       operationId: FindIBANs
       produces:
         - application/json
@@ -7000,11 +7178,10 @@ paths:
           required: false
           type: string
           description: >-
-            Scope allows the logged in account to search all IBANs at all account levels.
-            Defaults to all.
-            own: search for IBANs on the main account
-            clients: search for IBANs of account sub accounts
-            all: search for IBANs of account and sub-accounts
+            Scope allows the logged in account to search all IBANs at all
+            account levels. Defaults to all. own: search for IBANs on the main
+            account clients: search for IBANs of account sub accounts all:
+            search for IBANs of account and sub-accounts
         - name: currency
           in: query
           required: false
@@ -7104,7 +7281,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7185,8 +7364,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -7250,7 +7429,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7328,8 +7509,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -7391,7 +7572,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7485,9 +7668,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made
-            using the SWIFT network; and "regular", made using the local bank
-            network.
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
         - name: conversion_id
           in: formData
           required: false
@@ -7547,8 +7729,8 @@ paths:
           type: string
           description: >-
             If "payer_entity_type" is "company", company registration date. If
-            "payer_entity_type" is "individual", date of birth. ISO 8601
-            format YYYY-MM-DD.
+            "payer_entity_type" is "individual", date of birth. ISO 8601 format
+            YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
           required: false
@@ -7660,7 +7842,9 @@ paths:
               params: ''
             - code: payment_above_limit
               category: amount
-              message: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
+              message: >-
+                3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a
+                local payment.
               params: ''
             - code: payer_entity_type_not_in_range
               category: payer_entity_type
@@ -7756,7 +7940,10 @@ paths:
               params: ''
             - code: duplicate_request
               category: duplicate_request
-              message: The unique_request_id provided for this payment has already been used, please provide a new unique_request_id to successfully submit this payment
+              message: >-
+                The unique_request_id provided for this payment has already been
+                used, please provide a new unique_request_id to successfully
+                submit this payment
               params: ''
           schema:
             $ref: '#/definitions/CreatePaymentError'
@@ -7788,7 +7975,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8076,7 +8265,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8115,39 +8306,39 @@ paths:
   '/payments/{id}':
     get:
       tags:
-      - Payments
+        - Payments
       x-api-group: pay
       summary: Get Payment
       description: Get a payment record.
       operationId: GetPayment
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: Payment UUID.
-      - name: with_deleted
-        in: query
-        required: false
-        type: boolean
-        description: Include deleted payments.
-      - name: purpose_code
-        in: query
-        required: false
-        type: string
-        description: Payment Purpose Code (Mandatory for all INR payments).
-      - name: on_behalf_of
-        in: query
-        required: false
-        type: string
-        description: Contact UUID.
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID.
+        - name: with_deleted
+          in: query
+          required: false
+          type: boolean
+          description: Include deleted payments.
+        - name: purpose_code
+          in: query
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -8160,22 +8351,22 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: invalid_id
-            category: id
-            message: ID has invalid format
-            params: ''
-          - code: on_behalf_of_self
-            category: on_behalf_of
-            message: You cannot act on behalf of your own Contact
-            params: ''
-          - code: payment_not_found
-            category: id
-            message: Payment was not found for this id
-            params: ''
-          - code: contact_not_found
-            category: on_behalf_of
-            message: Contact was not found for this id
-            params: ''
+            - code: invalid_id
+              category: id
+              message: ID has invalid format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/GetPaymentError'
           headers:
@@ -8185,10 +8376,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8206,10 +8397,12 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8219,10 +8412,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -8230,10 +8423,10 @@ paths:
         '503':
           description: Service is temporary unavailable
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -8246,193 +8439,192 @@ paths:
               description: A unique reference for the request.
     post:
       tags:
-      - Payments
+        - Payments
       x-api-group: pay
       summary: Update Payment
       description: 'Update a payment. On success, returns the updated payment entity.'
       operationId: UpdatePayment
       consumes:
-      - multipart/form-data
+        - multipart/form-data
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: Payment UUID.
-      - name: with_deleted
-        in: query
-        required: false
-        type: boolean
-        description: Include deleted payments.
-      - name: currency
-        in: formData
-        required: false
-        type: string
-        description: >-
-          Currency in which the payment is being made. Three-digit currency
-          code.
-      - name: beneficiary_id
-        in: formData
-        required: false
-        type: string
-        description: Beneficiary UUID.
-      - name: amount
-        in: formData
-        required: false
-        type: string
-        description: Payment amount.
-      - name: payment_date
-        in: formData
-        required: false
-        type: string
-        description: >-
-          Instructed date of payment. Any valid ISO 8601 format, eg.
-          "2017-12-31".
-      - name: reason
-        in: formData
-        required: false
-        type: string
-        description: User-generated reason for payment. Freeform text.
-      - name: payment_type
-        in: formData
-        required: false
-        type: string
-        enum:
-        - priority
-        - regular
-        description: >-
-          Currencycloud supports two types of payments: "priority", made
-          using the SWIFT network; and "regular", made using the local bank
-          network.
-      - name: reference
-        in: formData
-        required: false
-        type: string
-        description: User-generated reference code.
-      - name: conversion_id
-        in: formData
-        required: false
-        type: string
-        description: Conversion UUID.
-      - name: payer_entity_type
-        in: formData
-        required: false
-        type: string
-        enum:
-        - company
-        - individual
-        description: Legal entity.
-      - name: payer_company_name
-        in: formData
-        required: false
-        type: string
-        description: Required if "payer_entity_type" is "company".
-      - name: payer_first_name
-        in: formData
-        required: false
-        type: string
-        description: Required if "payer_entity_type" is "individual".
-      - name: payer_last_name
-        in: formData
-        required: false
-        type: string
-        description: Required if payer_entity_type is "individual".
-      - name: payer_city
-        in: formData
-        required: false
-        type: string
-        description: City.
-      - name: payer_address
-        in: formData
-        required: false
-        type: string
-        description: First line of address.
-      - name: payer_postcode
-        in: formData
-        required: false
-        type: string
-        description: Postal code.
-      - name: payer_state_or_province
-        in: formData
-        required: false
-        type: string
-        description: State or province.
-      - name: payer_country
-        in: formData
-        required: false
-        type: string
-        description: Two-letter country code.
-      - name: payer_date_of_birth
-        in: formData
-        required: false
-        type: string
-        description: >-
-          If "payer_entity_type" is "company", company registration date. If
-          "payer_entity_type" is "individual", date of birth. ISO 8601
-          format YYYY-MM-DD..
-      - name: payer_identification_type
-        in: formData
-        required: false
-        type: string
-        enum:
-        - none
-        - drivers_license
-        - social_security_number
-        - green_card
-        - passport
-        - visa
-        - matricula_consular
-        - registro_federal_de_contribuyentes
-        - credential_de_elector
-        - social_insurance_number
-        - citizenship_papers
-        - drivers_license_canadian
-        - existing_credit_card_details
-        - employer_identification_number
-        - national_id
-        - others
-        - incorporation_number
-        description: >-
-          A legal document that verifies the identity of the payer. Required
-          documentation will vary depending on the nationality or registered
-          address of the payer.
-      - name: payer_identification_value
-        in: formData
-        required: false
-        type: string
-        description: >-
-          A unique reference code for the identification document, such as a
-          passport number.
-      - name: payer_details_source
-        in: formData
-        required: false
-        type: string
-        enum:
-        - account
-        - payer
-        description: 'Source for payer details: the "account" or "payer" record.'
-      - name: ultimate_beneficiary_name
-        in: formData
-        required: false
-        type: string
-        description: The name of the ultimate beneficiary if different.
-      - name: purpose_code
-        in: formData
-        required: false
-        type: string
-        description: Payment Purpose Code (Mandatory for all INR payments).
-      - name: on_behalf_of
-        in: formData
-        required: false
-        type: string
-        description: Contact UUID.
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID.
+        - name: with_deleted
+          in: query
+          required: false
+          type: boolean
+          description: Include deleted payments.
+        - name: currency
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Currency in which the payment is being made. Three-digit currency
+            code.
+        - name: beneficiary_id
+          in: formData
+          required: false
+          type: string
+          description: Beneficiary UUID.
+        - name: amount
+          in: formData
+          required: false
+          type: string
+          description: Payment amount.
+        - name: payment_date
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Instructed date of payment. Any valid ISO 8601 format, eg.
+            "2017-12-31".
+        - name: reason
+          in: formData
+          required: false
+          type: string
+          description: User-generated reason for payment. Freeform text.
+        - name: payment_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - priority
+            - regular
+          description: >-
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
+        - name: reference
+          in: formData
+          required: false
+          type: string
+          description: User-generated reference code.
+        - name: conversion_id
+          in: formData
+          required: false
+          type: string
+          description: Conversion UUID.
+        - name: payer_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - company
+            - individual
+          description: Legal entity.
+        - name: payer_company_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "payer_entity_type" is "company".
+        - name: payer_first_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "payer_entity_type" is "individual".
+        - name: payer_last_name
+          in: formData
+          required: false
+          type: string
+          description: Required if payer_entity_type is "individual".
+        - name: payer_city
+          in: formData
+          required: false
+          type: string
+          description: City.
+        - name: payer_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
+        - name: payer_postcode
+          in: formData
+          required: false
+          type: string
+          description: Postal code.
+        - name: payer_state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province.
+        - name: payer_country
+          in: formData
+          required: false
+          type: string
+          description: Two-letter country code.
+        - name: payer_date_of_birth
+          in: formData
+          required: false
+          type: string
+          description: >-
+            If "payer_entity_type" is "company", company registration date. If
+            "payer_entity_type" is "individual", date of birth. ISO 8601 format
+            YYYY-MM-DD..
+        - name: payer_identification_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - none
+            - drivers_license
+            - social_security_number
+            - green_card
+            - passport
+            - visa
+            - matricula_consular
+            - registro_federal_de_contribuyentes
+            - credential_de_elector
+            - social_insurance_number
+            - citizenship_papers
+            - drivers_license_canadian
+            - existing_credit_card_details
+            - employer_identification_number
+            - national_id
+            - others
+            - incorporation_number
+          description: >-
+            A legal document that verifies the identity of the payer. Required
+            documentation will vary depending on the nationality or registered
+            address of the payer.
+        - name: payer_identification_value
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A unique reference code for the identification document, such as a
+            passport number.
+        - name: payer_details_source
+          in: formData
+          required: false
+          type: string
+          enum:
+            - account
+            - payer
+          description: 'Source for payer details: the "account" or "payer" record.'
+        - name: ultimate_beneficiary_name
+          in: formData
+          required: false
+          type: string
+          description: The name of the ultimate beneficiary if different.
+        - name: purpose_code
+          in: formData
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -8445,154 +8637,166 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: currency_type_is_wrong
-            category: currency
-            message: XYZ is not a valid ISO 4217 currency code
-            params: ''
-          - code: invalid_currency
-            category: currency
-            message: You cannot make payments with this currency
-            params: ''
-          - code: id_is_not_valid_uuid
-            category: id
-            message: id should be in UUID format
-            params: ''
-          - code: beneficiary_id_is_not_valid_uuid
-            category: beneficiary_id
-            message: beneficiary_id should be in UUID format
-            params: ''
-          - code: invalid_beneficiary_id
-            category: beneficiary_id
-            message: Unknown beneficiary_id
-            params: ''
-          - code: invalid_beneficiary_currency
-            category: beneficiary_currency
-            message: You cannot assign this Beneficiary to the Payment as it is the incorrect currency
-            params: ''
-          - code: amount_type_is_wrong
-            category: amount
-            message: amount should be of numeric type
-            params: '{ "type" => "numeric" }'
-          - code: payment_above_limit
-            category: amount
-            message: 3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a local payment.
-            params: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
-          - code: invalid_amount_for_order
-            category: amount_for_order
-            message: The payment amount is more than the value of the order
-            params: ''
-          - code: payment_type_not_in_range
-            category: payment_type
-            message: 'payment_type should be in range: priority, regular'
-            params: ''
-          - code: invalid_conversion_id
-            category: conversion_id
-            message: Conversion could not be found.
-            params: ''
-          - code: conversion_id_is_not_valid_uuid
-            category: conversion_id
-            message: conversion_id should be in UUID format
-            params: ''
-          - code: invalid_payment_date
-            category: payment_date
-            message: The payment date is invalid
-            params: ''
-          - code: payment_date_is_in_invalid_format
-            category: payment_date
-            message: payment_date should be in ISO 8601 format
-            params: ''
-          - code: payment_date_is_too_early
-            category: payment_date
-            message: The payment date cannot be sooner than the conversion date
-            params: ''
-          - code: reference_is_too_long
-            category: reference
-            message: reference can not be longer than 255 character(s)
-            params: '{ "maxlength" => 255 }'
-          - code: payment_can_not_be_edited
-            category: can_not_be_edited
-            message: Sorry this Payment has already been processed and you are unable to Edit it
-            params: ''
-          - code: extra_dependent_params
-            category: base
-            message: Parameters payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_address, payer_country, payer_postcode, payer_state_or_province, payer_date_of_birth, payer_identification_type, payer_identification_value can't be provided in the same request with 'payer_details_source' with value 'account'
-            params: ''
-          - code: payer_entity_type_not_in_range
-            category: payer_entity_type
-            message: 'payer_entity_type should be in range: individual, company'
-            params: '{ "range" => "individual, company" }'
-          - code: payer_entity_type_is_missing
-            category: payer_entity_type
-            message: Payer entity type is missing
-            params: ''
-          - code: payer_company_name_is_missing
-            category: payer_company_name
-            message: Payer company name is missing
-            params: ''
-          - code: payer_first_name_is_missing
-            category: payer_first_name
-            message: Payer first name is missing
-            params: ''
-          - code: payer_last_name_is_missing
-            category: payer_last_name
-            message: Payer last name is missing
-            params: ''
-          - code: payer_city_is_missing
-            category: payer_city
-            message: Payer city is missing
-            params: ''
-          - code: payer_state_or_province_is_missing
-            category: payer_state_or_province
-            message: Payer state or province is missing
-            params: ''
-          - code: payer_postcode_is_missing
-            category: payer_postcode
-            message: Payer postcode is missing
-            params: ''
-          - code: payer_date_of_birth_type_is_wrong
-            category: payer_date_of_birth
-            message: payer_date_of_birth should be of date type
-            params: '{ "type" => "date" }'
-          - code: payer_date_of_birth_is_incorrect
-            category: payer_date_of_birth
-            message: payer_date_of_birth is incorrect
-            params: ''
-          - code: payer_date_of_birth_is_earlier
-            category: payer_date_of_birth
-            message: payer_date_of_birth should be later
-            params: ''
-          - code: payer_date_of_birth_is_after
-            category: payer_date_of_birth
-            message: payer_date_of_birth should be earlier
-            params: ''
-          - code: identification_type_is_missing
-            category: payer_identification_type
-            message: identification_type is missing
-            params: ''
-          - code: identification_type_is_invalid
-            category: payer_identification_type
-            message: identification_type is invalid
-            params: ''
-          - code: identification_value_is_missing
-            category: payer_identification_value
-            message: identification_value is missing
-            params: ''
-          - code: identification_value_is_invalid
-            category: payer_identification_value
-            message: identification_value is invalid
-            params: ''
-          - code: on_behalf_of_self
-            category: on_behalf_of
-            message: You cannot act on behalf of your own Contact
-            params: ''
-          - code: payment_not_found
-            category: id
-            message: Payment was not found for this id
-            params: ''
-          - code: contact_not_found
-            category: on_behalf_of
-            message: Contact was not found for this id
-            params: ''
+            - code: currency_type_is_wrong
+              category: currency
+              message: XYZ is not a valid ISO 4217 currency code
+              params: ''
+            - code: invalid_currency
+              category: currency
+              message: You cannot make payments with this currency
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: beneficiary_id_is_not_valid_uuid
+              category: beneficiary_id
+              message: beneficiary_id should be in UUID format
+              params: ''
+            - code: invalid_beneficiary_id
+              category: beneficiary_id
+              message: Unknown beneficiary_id
+              params: ''
+            - code: invalid_beneficiary_currency
+              category: beneficiary_currency
+              message: >-
+                You cannot assign this Beneficiary to the Payment as it is the
+                incorrect currency
+              params: ''
+            - code: amount_type_is_wrong
+              category: amount
+              message: amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: payment_above_limit
+              category: amount
+              message: >-
+                3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a
+                local payment.
+              params: '{ "amount" => 3000.0, "ccy" => "EUR", "limit" => 2500.0 }'
+            - code: invalid_amount_for_order
+              category: amount_for_order
+              message: The payment amount is more than the value of the order
+              params: ''
+            - code: payment_type_not_in_range
+              category: payment_type
+              message: 'payment_type should be in range: priority, regular'
+              params: ''
+            - code: invalid_conversion_id
+              category: conversion_id
+              message: Conversion could not be found.
+              params: ''
+            - code: conversion_id_is_not_valid_uuid
+              category: conversion_id
+              message: conversion_id should be in UUID format
+              params: ''
+            - code: invalid_payment_date
+              category: payment_date
+              message: The payment date is invalid
+              params: ''
+            - code: payment_date_is_in_invalid_format
+              category: payment_date
+              message: payment_date should be in ISO 8601 format
+              params: ''
+            - code: payment_date_is_too_early
+              category: payment_date
+              message: The payment date cannot be sooner than the conversion date
+              params: ''
+            - code: reference_is_too_long
+              category: reference
+              message: reference can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: payment_can_not_be_edited
+              category: can_not_be_edited
+              message: >-
+                Sorry this Payment has already been processed and you are unable
+                to Edit it
+              params: ''
+            - code: extra_dependent_params
+              category: base
+              message: >-
+                Parameters payer_entity_type, payer_company_name,
+                payer_first_name, payer_last_name, payer_address, payer_country,
+                payer_postcode, payer_state_or_province, payer_date_of_birth,
+                payer_identification_type, payer_identification_value can't be
+                provided in the same request with 'payer_details_source' with
+                value 'account'
+              params: ''
+            - code: payer_entity_type_not_in_range
+              category: payer_entity_type
+              message: 'payer_entity_type should be in range: individual, company'
+              params: '{ "range" => "individual, company" }'
+            - code: payer_entity_type_is_missing
+              category: payer_entity_type
+              message: Payer entity type is missing
+              params: ''
+            - code: payer_company_name_is_missing
+              category: payer_company_name
+              message: Payer company name is missing
+              params: ''
+            - code: payer_first_name_is_missing
+              category: payer_first_name
+              message: Payer first name is missing
+              params: ''
+            - code: payer_last_name_is_missing
+              category: payer_last_name
+              message: Payer last name is missing
+              params: ''
+            - code: payer_city_is_missing
+              category: payer_city
+              message: Payer city is missing
+              params: ''
+            - code: payer_state_or_province_is_missing
+              category: payer_state_or_province
+              message: Payer state or province is missing
+              params: ''
+            - code: payer_postcode_is_missing
+              category: payer_postcode
+              message: Payer postcode is missing
+              params: ''
+            - code: payer_date_of_birth_type_is_wrong
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: payer_date_of_birth_is_incorrect
+              category: payer_date_of_birth
+              message: payer_date_of_birth is incorrect
+              params: ''
+            - code: payer_date_of_birth_is_earlier
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be later
+              params: ''
+            - code: payer_date_of_birth_is_after
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be earlier
+              params: ''
+            - code: identification_type_is_missing
+              category: payer_identification_type
+              message: identification_type is missing
+              params: ''
+            - code: identification_type_is_invalid
+              category: payer_identification_type
+              message: identification_type is invalid
+              params: ''
+            - code: identification_value_is_missing
+              category: payer_identification_value
+              message: identification_value is missing
+              params: ''
+            - code: identification_value_is_invalid
+              category: payer_identification_value
+              message: identification_value is invalid
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
@@ -8602,10 +8806,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -8621,10 +8825,12 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -8634,10 +8840,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -8645,10 +8851,10 @@ paths:
         '503':
           description: Service is temporary unavailable
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -8745,7 +8951,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8867,7 +9075,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8909,7 +9119,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Authorise Payment
-      description: 'Authorises a payment pending authorisation.'
+      description: Authorises a payment pending authorisation.
       operationId: AuthorisePayment
       consumes:
         - multipart/form-data
@@ -8921,7 +9131,7 @@ paths:
           required: true
           type: string
           description: Authentication token.
-        - name: payment_ids[]
+        - name: 'payment_ids[]'
           in: query
           required: true
           type: array
@@ -8984,7 +9194,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9113,7 +9325,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9235,7 +9449,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9340,7 +9556,9 @@ paths:
           x-errors:
             - code: unique_value_parameters
               category: base
-              message: 'Following parameters should not have same values: sell_currency, buy_currency'
+              message: >-
+                Following parameters should not have same values: sell_currency,
+                buy_currency
               params: '{ "parameters" => "sell_currency, buy_currency" }'
             - code: rate_could_not_be_retrieved
               category: base
@@ -9364,7 +9582,9 @@ paths:
               params: '{ "type" => "date" }'
             - code: invalid_delivery_date
               category: conversion_date
-              message: The delivery date you have requested cannot be met for this currency pair
+              message: >-
+                The delivery date you have requested cannot be met for this
+                currency pair
               params: ''
             - code: sell_currency_is_in_invalid_format
               category: sell_currency
@@ -9432,7 +9652,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9561,7 +9783,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9654,7 +9878,9 @@ paths:
           x-errors:
             - code: bank_account_country_is_in_invalid_format
               category: bank_account_country
-              message: Bank account country is not a valid ISO 3166-1 Alpha-2 country code
+              message: >-
+                Bank account country is not a valid ISO 3166-1 Alpha-2 country
+                code
               params: ''
             - code: currency_is_in_invalid_format
               category: currency
@@ -9662,7 +9888,9 @@ paths:
               params: ''
             - code: beneficiary_country_is_in_invalid_format
               category: beneficiary_country
-              message: Beneficiary country is not a valid ISO 3166-1 Alpha-2 country code
+              message: >-
+                Beneficiary country is not a valid ISO 3166-1 Alpha-2 country
+                code
               params: ''
           schema:
             $ref: '#/definitions/GetBeneficiaryRequirementsError'
@@ -9694,7 +9922,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9823,7 +10053,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9918,7 +10150,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9994,9 +10228,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made
-            using the SWIFT network; and "regular", made using the local bank
-            network.
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
       responses:
         '200':
           description: Success.
@@ -10055,7 +10288,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10187,7 +10422,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10230,7 +10467,12 @@ paths:
       x-api-group: manage
       summary: Get Payment Purpose Codes
       description: >-
-        Get a list of payment purpose codes for a given currency and entity type. When initiating cross-border payments, the central bank of the country may require a purpose to be included with your transaction in order for your payment to be accepted and processed. If a payment purpose code is required but not provided, your payment may be delayed or rejected by the beneficiary bank.
+        Get a list of payment purpose codes for a given currency and entity
+        type. When initiating cross-border payments, the central bank of the
+        country may require a purpose to be included with your transaction in
+        order for your payment to be accepted and processed. If a payment
+        purpose code is required but not provided, your payment may be delayed
+        or rejected by the beneficiary bank.
       operationId: GetPaymentPurposeCodes
       produces:
         - application/json
@@ -10252,7 +10494,7 @@ paths:
           enum:
             - company
             - individual
-          description: "Legal entity type. Can be either 'company' or 'individual'."
+          description: Legal entity type. Can be either 'company' or 'individual'.
         - name: bank_account_country
           in: query
           required: true
@@ -10321,7 +10563,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10436,7 +10680,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10478,7 +10724,9 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Generate Conversion Report
-      description: 'Returns a JSON structure with details of the conversion report requested.'
+      description: >-
+        Returns a JSON structure with details of the conversion report
+        requested.
       operationId: GenerateConversionReport
       consumes:
         - multipart/form-data
@@ -10684,7 +10932,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10726,7 +10976,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Generate Payment Report
-      description: 'Returns a JSON structure with details of the payments report requested.'
+      description: Returns a JSON structure with details of the payments report requested.
       operationId: GeneratePaymentReport
       consumes:
         - multipart/form-data
@@ -10896,7 +11146,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10938,8 +11190,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Find Report Requests
-      description: >-
-        Returns a JSON structure with details of report requests.
+      description: Returns a JSON structure with details of report requests.
       operationId: Find Report Requests
       produces:
         - application/json
@@ -10958,7 +11209,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Description, which was provided during the report creation process.
+          description: 'Description, which was provided during the report creation process.'
         - name: account_id
           in: query
           required: false
@@ -11002,7 +11253,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Type of reports, that we expect to receive in search results.
+          description: 'Type of reports, that we expect to receive in search results.'
         - name: page
           in: query
           required: false
@@ -11081,7 +11332,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11123,8 +11376,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Retrieve a Report Request
-      description: >-
-        Returns a JSON structure with details of the specified report request.
+      description: Returns a JSON structure with details of the specified report request.
       operationId: Retrieve a Report Request
       produces:
         - application/json
@@ -11190,7 +11442,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11232,8 +11486,7 @@ paths:
         - Sender
       x-api-group: collect
       summary: Get Sender Details
-      description: >-
-        Returns a JSON structure with details of the sender of funds
+      description: Returns a JSON structure with details of the sender of funds
       operationId: GetSenderDetails
       produces:
         - application/json
@@ -11305,7 +11558,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11489,7 +11744,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11618,7 +11875,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11732,7 +11991,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11828,7 +12089,9 @@ paths:
               params: ''
             - code: add_closed_conversion_failed
               category: conversion_id
-              message: Cannot add conversion to a settlement as it does not have any open amounts
+              message: >-
+                Cannot add conversion to a settlement as it does not have any
+                open amounts
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -11870,7 +12133,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12004,7 +12269,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12129,7 +12396,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12252,7 +12521,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12377,7 +12648,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12665,7 +12938,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12770,7 +13045,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13039,7 +13316,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13161,7 +13440,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13284,7 +13565,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13358,8 +13641,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -13415,7 +13698,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13457,7 +13742,9 @@ paths:
         - VANs
       x-api-group: collect
       summary: Find VANs
-      description: Returns a JSON structure with details of the VANs for the specified accounts
+      description: >-
+        Returns a JSON structure with details of the VANs for the specified
+        accounts
       operationId: FindVANs
       produces:
         - application/json
@@ -13467,10 +13754,10 @@ paths:
           required: false
           type: string
           description: >-
-            Scope allows the logged in account to search all VANs at all account levels. 
-            Defaults to all. 
-            Own - search for VANs on the main account 
-            Clients - search for VANs of account sub accounts <br> all - search for VANs of account and sub-accounts
+            Scope allows the logged in account to search all VANs at all account
+            levels.  Defaults to all.  Own - search for VANs on the main
+            account  Clients - search for VANs of account sub accounts <br> all
+            - search for VANs of account and sub-accounts
         - name: account_id
           in: query
           required: false
@@ -13501,8 +13788,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -13558,7 +13845,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13593,7 +13882,7 @@ paths:
           headers:
             X-Request-Id:
               type: string
-              description: A unique reference for the request.                
+              description: A unique reference for the request.
   /virtual_accounts/subaccounts/find:
     get:
       deprecated: true
@@ -13633,8 +13922,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -13690,7 +13979,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13768,8 +14059,8 @@ paths:
           required: false
           type: string
           enum:
-          - asc
-          - desc
+            - asc
+            - desc
           default: asc
           description: Sort records in ascending or descending order.
       responses:
@@ -13831,7 +14122,9 @@ paths:
           x-errors:
             - code: too_many_requests
               category: base
-              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13951,8 +14244,8 @@ definitions:
       postal_code: AB12 CD1
       spread_table: flat_0.5_percent
       legal_entity_type: company
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
       identification_type: green_card
       identification_value: 123456789
       short_reference: 110104-00004
@@ -13963,7 +14256,7 @@ definitions:
       settlement_type: bulk
   AddConversionToSettlementError:
     type: object
-    description: >
+    description: |
       Client error information for the Add Conversion to Settlement endpoint.
     required:
       - error_code
@@ -14067,8 +14360,8 @@ definitions:
       account_id: TcC
       currency: USD
       amount: '1000.00'
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
   Beneficiary:
     type: object
     description: Beneficiary.
@@ -14208,8 +14501,8 @@ definitions:
       bank_address:
         - Line 1
         - Line 2
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
       beneficiary_external_reference: B-5847789
   BeneficiaryRequirements:
     type: object
@@ -14304,9 +14597,9 @@ definitions:
       locale: en-US
       timezone: Europe/London
       email_address: john.smith@company.com
-      date_of_birth: 1980-01-22T00:00:00.000Z
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      date_of_birth: '1980-01-22T00:00:00.000Z'
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
   Conversion:
     type: object
     description: Conversion.
@@ -14378,8 +14671,8 @@ definitions:
       account_id: 0386e472-8d2b-45a8-9c14-a393dce5bf3a
       creator_contact_id: ac743762-5860-4b78-9c6a-82c5bca68867
       short_reference: 20140507-VRTNFC
-      settlement_date: 2017-12-31T23:59:59.000Z
-      conversion_date: 2017-12-31T23:59:59.000Z
+      settlement_date: '2017-12-31T23:59:59.000Z'
+      conversion_date: '2017-12-31T23:59:59.000Z'
       status: awaiting_funds
       partner_status: awaiting_funds
       currency_pair: GBPUSD
@@ -14398,13 +14691,13 @@ definitions:
       deposit_amount: '47.85'
       deposit_currency: GBP
       deposit_status: awaiting_deposit
-      deposit_required_at: 2017-12-31T23:59:59.000Z
+      deposit_required_at: '2017-12-31T23:59:59.000Z'
       unallocated_funds: '1000.00'
       payment_ids:
         - b934794f-d810-4b4a-b360-5a0f47b7126e
       unique_request_id: 1234567890abc
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
   ConversionCancellationQuote:
     type: object
     description: Projected cost to cancel a conversion.
@@ -14417,12 +14710,12 @@ definitions:
         type: string
         format: date-time
     example:
-      amount: 100.00
+      amount: 100
       currency: GBP
-      event_date_time: 2018-07-14T17:03:11.000Z
+      event_date_time: '2018-07-14T17:03:11.000Z'
   ConversionProfitAndLoss:
     type: object
-    description:  Recognised profit / loss on a conversion
+    description: Recognised profit / loss on a conversion
     properties:
       conversion_profit_and_losses:
         type: array
@@ -14432,8 +14725,7 @@ definitions:
         $ref: '#/definitions/Pagination'
     example:
       conversion_profit_and_losses:
-        -
-          account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
+        - account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
           contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
           event_account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
           event_contact_id: 8a98ebac-6f88-e205-a685-4d235b1b088b
@@ -14442,9 +14734,8 @@ definitions:
           currency: GBP
           notes: Cancel the conversion due to personal issues
           event_type: self_service_cancellation
-          event_date_time: 2017-11-10T12:18:56+00:00
-        -
-          account_id: 67e1b252-40a7-454d-a097-8f77d385889d
+          event_date_time: '2017-11-10T12:18:56.000Z'
+        - account_id: 67e1b252-40a7-454d-a097-8f77d385889d
           contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
           event_account_id: 67e1b252-40a7-454d-a097-8f77d385889d
           event_contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
@@ -14453,7 +14744,7 @@ definitions:
           currency: USD
           notes: Cancel due to very important reason
           event_type: self_service_cancellation
-          event_date_time: 2017-11-10T12:18:56+00:00
+          event_date_time: '2017-11-10T12:18:56.000Z'
       pagination:
         total_entries: 2
         total_pages: 1
@@ -14498,10 +14789,10 @@ definitions:
       currency: GBP
       notes: Cancel the conversion due to personal issues
       event_type: self_service_cancellation
-      event_date_time: 2017-11-10T12:18:56+00:00
+      event_date_time: '2017-11-10T12:18:56.000Z'
   ConversionDateChange:
     type: object
-    description:  Conversion Date change record
+    description: Conversion Date change record
     properties:
       profit_loss:
         type: string
@@ -14564,8 +14855,8 @@ definitions:
         '2013-06-07': No trading on Saturday
         '2013-06-08': No trading on Sunday
         '2013-06-14': No trading on Saturday
-      first_conversion_date: 2013-04-15T00:00:00.000Z
-      default_conversion_date: 2013-04-17T00:00:00.000Z
+      first_conversion_date: '2013-04-15T00:00:00.000Z'
+      default_conversion_date: '2013-04-17T00:00:00.000Z'
   ConversionSplitDetails:
     properties:
       id:
@@ -14619,7 +14910,8 @@ definitions:
       search_params:
         type: object
         default: {}
-        description: Parameters to select specific range of items, that we want to see in
+        description: >-
+          Parameters to select specific range of items, that we want to see in
           report
       report_type:
         type: string
@@ -14649,19 +14941,30 @@ definitions:
     example:
       id: 950dac23-c4af-4a6a-ba19-344560abe2a9
       short_reference: RP-30250607-VDTMFA
-      description: Description, which was provided during the report creation process
-      search_params: {"short_reference":"RP-30250607-VDTMFA","description":"Description, which was provided during the report creation process","account_id":"9a7ba866-56d1-39c6-8ca2-12cb4141213a","contact_id":"543a7716c-816e-01af-3214-2e0030f6f25a","created_at_from":"2014-01-12","created_at_to":"2014-01-17","expiration_date_from":"2014-01-12","expiration_date_to":"2014-01-17","status":"completed","report_type":"Payment"}
+      description: 'Description, which was provided during the report creation process'
+      search_params:
+        short_reference: RP-30250607-VDTMFA
+        description: 'Description, which was provided during the report creation process'
+        account_id: 9a7ba866-56d1-39c6-8ca2-12cb4141213a
+        contact_id: 543a7716c-816e-01af-3214-2e0030f6f25a
+        created_at_from: '2014-01-12'
+        created_at_to: '2014-01-17'
+        expiration_date_from: '2014-01-12'
+        expiration_date_to: '2014-01-17'
+        status: completed
+        report_type: Payment
       report_type: payment
       status: completed
-      expiration_date: 2017-03-23T00:00:00.000Z
-      report_url: https://tcc.s3.amazonaws.com/reports/transaction_reports/000/000/011/transaction_report_23_03_2017.csv?1471682433
+      expiration_date: '2017-03-23T00:00:00.000Z'
+      report_url: >-
+        https://tcc.s3.amazonaws.com/reports/transaction_reports/000/000/011/transaction_report_23_03_2017.csv?1471682433
       account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
-      created_at: 2017-03-16T23:59:59.000Z
-      updated_at: 2017-03-16T23:59:59.000Z
+      created_at: '2017-03-16T23:59:59.000Z'
+      updated_at: '2017-03-16T23:59:59.000Z'
   CreateAccountError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Account endpoint.
     required:
       - error_code
@@ -14706,7 +15009,7 @@ definitions:
                   maxlength: 255
   CreateBeneficiaryError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Beneficiary endpoint.
     required:
       - error_code
@@ -14751,7 +15054,7 @@ definitions:
                   maxlength: 255
   CreateContactError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Contact endpoint.
     required:
       - error_code
@@ -14796,7 +15099,7 @@ definitions:
                   maxlength: 255
   CreateConversionError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Conversion endpoint.
     required:
       - error_code
@@ -14841,7 +15144,7 @@ definitions:
                   maxlength: 255
   CreatePaymentAuthorisationError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Payment Authorise endpoint.
     required:
       - error_code
@@ -14886,7 +15189,7 @@ definitions:
                   maxlength: 255
   CreatePaymentError:
     type: object
-    description: >
+    description: |
       Client error information for the Create Payment endpoint.
     required:
       - error_code
@@ -15155,7 +15458,7 @@ definitions:
                   maxlength: 255
   FindAccountsError:
     type: object
-    description: >
+    description: |
       Client error information for the Find Accounts endpoint.
     required:
       - error_code
@@ -15245,7 +15548,7 @@ definitions:
                   maxlength: 255
   FindBeneficiariesError:
     type: object
-    description: >
+    description: |
       Client error information for the Find Beneficiaries endpoint.
     required:
       - error_code
@@ -15560,7 +15863,7 @@ definitions:
                   maxlength: 255
   GenerateReportError:
     type: object
-    description: >
+    description: |
       Client error information for the Generate Report endpoint.
     required:
       - error_code
@@ -15875,7 +16178,7 @@ definitions:
                   maxlength: 255
   GetBeneficiaryRequirementsError:
     type: object
-    description: >
+    description: |
       Client error information for the Get Beneficiary Requirements endpoint.
     required:
       - error_code
@@ -16055,7 +16358,7 @@ definitions:
                   maxlength: 255
   GetDetailedRatesError:
     type: object
-    description: >
+    description: |
       Client error information for the Get Detailed Rates endpoint.
     required:
       - error_code
@@ -16946,8 +17249,8 @@ definitions:
       bank_institution_address: '12 Steward Street, The Steward Building, London, E1 6FQ, GB'
       bank_institution_country: United Kingdom
       bic_swift: TCCLGB31
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
   LoginError:
     type: object
     description: |
@@ -17133,9 +17436,9 @@ definitions:
       identification_type: incorporation_number
       identification_value: 123123
       postcode: EC2M 4LX
-      date_of_birth: 2017-12-31T23:59:59.000Z
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      date_of_birth: '2017-12-31T23:59:59.000Z'
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
   PayerRequirements:
     type: object
     description: Payer requirements.
@@ -17230,15 +17533,15 @@ definitions:
       payment_type: regular
       reference: INVOICE 9876
       reason: Salary for March
-      payment_date: 2017-12-31T23:59:59.000Z
-      transferred_at: 2017-12-31T23:59:59.000Z
+      payment_date: '2017-12-31T23:59:59.000Z'
+      transferred_at: '2017-12-31T23:59:59.000Z'
       authorisation_steps_required: '0'
       creator_contact_id: ab3477161-91de-012f-e284-1e0030c7f35c
       last_updater_contact_id: ab3477161-91de-012f-e284-1e0030c7f35c
       failure_reason: ''
       payer_id: ''
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
       payment_group_id: 20140428-CJRRJM
       unique_request_id: 1234567890abc
       failure_returned_amount: ''
@@ -17277,7 +17580,7 @@ definitions:
       error: null
       auth_steps_taken: 3
       auth_steps_required: 0
-      short_reference: "180628-FGVXPX001"
+      short_reference: 180628-FGVXPX001
   PaymentDates:
     type: object
     description: Payment dates.
@@ -17314,7 +17617,7 @@ definitions:
         '2013-06-07': No trading on Saturday
         '2013-06-08': No trading on Sunday
         '2013-06-14': No trading on Saturday
-      first_payment_date: 2013-04-15T00:00:00.000Z
+      first_payment_date: '2013-04-15T00:00:00.000Z'
   PaymentPurposeCodes:
     type: object
     description: Payment purpose codes.
@@ -17332,9 +17635,9 @@ definitions:
     example:
       currency: INR
       entity_type: Company
-      purpose_code: 'delivery'
-      purpose_description: 'Delivery fees for goods'
-      bank_account_country: 'India'
+      purpose_code: delivery
+      purpose_description: Delivery fees for goods
+      bank_account_country: India
   PaymentConfirmation:
     type: object
     description: Payment confirmation.
@@ -17368,15 +17671,15 @@ definitions:
         format: date-time
         description: Datetime of when the Payment Confirmation will expire
     example:
-      id: "123123121-91de-012f-e284-1e0030c7f3111"
-      payment_id: "543477161-91de-012f-e284-1e0030c7f3123"
-      account_id: "543477161-91de-012f-e284-1e0030c7f352"
-      short_reference: "140416-GGJBNQ001"
-      status: "completed"
-      confirmation_url: "https://s3.com/140416-GGJBNQ001.pdf"
-      created_at: "2014-01-12T00:00:00+00:00"
-      updated_at: "2014-01-12T00:00:00+00:00"
-      expires_at: "2014-02-12T00:00:00+00:00"
+      id: 123123121-91de-012f-e284-1e0030c7f3111
+      payment_id: 543477161-91de-012f-e284-1e0030c7f3123
+      account_id: 543477161-91de-012f-e284-1e0030c7f352
+      short_reference: 140416-GGJBNQ001
+      status: completed
+      confirmation_url: 'https://s3.com/140416-GGJBNQ001.pdf'
+      created_at: '2014-01-12T00:00:00+00:00'
+      updated_at: '2014-01-12T00:00:00+00:00'
+      expires_at: '2014-02-12T00:00:00+00:00'
   PaymentSubmission:
     type: object
     description: Payment submission.
@@ -17452,7 +17755,7 @@ definitions:
       deposit_currency:
         type: string
     example:
-      settlement_cut_off_time: 2017-12-31T23:59:59.000Z
+      settlement_cut_off_time: '2017-12-31T23:59:59.000Z'
       currency_pair: GBPUSD
       client_buy_currency: GBP
       client_sell_currency: USD
@@ -17628,14 +17931,16 @@ definitions:
       id: 21a7edce-fff8-486a-ac28-0dd143375081
       amount: '450.00'
       currency_code: GBP
-      free_text: 6320260731508339645906       0000045000TEST NAME      THE CURRENCY CLOUD    S 0063106146268242
-      value_date: 2018-03-27T00:00:00+00:00
-      sender: CITIBANK XFER, POPMONEY
+      free_text: >-
+        6320260731508339645906       0000045000TEST NAME      THE CURRENCY
+        CLOUD    S 0063106146268242
+      value_date: '2018-03-27T00:00:00.000Z'
+      sender: 'CITIBANK XFER, POPMONEY'
       source_account_number: 8119645406
       source_account_iban: null
       credit_debit: debit
-      created_at: 2018-03-27T10:51:32+00:00
-      updated_at: 2018-03-27T10:51:34+00:00
+      created_at: '2018-03-27T10:51:32.000Z'
+      updated_at: '2018-03-27T10:51:34.000Z'
   Settlement:
     type: object
     description: Settlement.
@@ -17684,9 +17989,9 @@ definitions:
         USD:
           send_amount: '1587.80'
           receive_amount: '0.00'
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
-      released_at: 2017-12-31T23:59:59.000Z
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
+      released_at: '2017-12-31T23:59:59.000Z'
   SettlementAccount:
     type: object
     description: Settlement accounts.
@@ -17799,10 +18104,10 @@ definitions:
       related_entity_short_reference: 140416-GGJBNQ001
       status: completed
       reason: Reason for Transaction
-      settles_at: 2017-12-31T23:59:59.000Z
-      created_at: 2017-12-31T23:59:59.000Z
-      updated_at: 2017-12-31T23:59:59.000Z
-      completed_at: 2017-12-31T23:59:59.000Z
+      settles_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2017-12-31T23:59:59.000Z'
+      updated_at: '2017-12-31T23:59:59.000Z'
+      completed_at: '2017-12-31T23:59:59.000Z'
   Transfer:
     type: object
     description: Transfer.
@@ -17841,9 +18146,9 @@ definitions:
       currency: GBP
       amount: '1250.00'
       status: completed
-      created_at: 2017-01-18T14:08:34.000Z
-      updated_at: 2017-01-18T14:08:34.000Z
-      completed_at: 2017-01-18T14:08:34.000Z
+      created_at: '2017-01-18T14:08:34.000Z'
+      updated_at: '2017-01-18T14:08:34.000Z'
+      completed_at: '2017-01-18T14:08:34.000Z'
       creator_account_id: 30cb8632-e152-11e6-a5af-080027a79e8f
       creator_contact_id: 262e3d2a-e152-11e6-a5af-080027a79e8f
       reason: Director's fees for March
@@ -17947,7 +18252,7 @@ definitions:
                   maxlength: 255
   UpdateAccountError:
     type: object
-    description: >
+    description: |
       Client error information for the Update Account endpoint.
     required:
       - error_code
@@ -17992,7 +18297,7 @@ definitions:
                   maxlength: 255
   UpdateBeneficiaryError:
     type: object
-    description: >
+    description: |
       Client error information for the Update Beneficiary endpoint.
     required:
       - error_code
@@ -18037,7 +18342,7 @@ definitions:
                   maxlength: 255
   UpdateContactError:
     type: object
-    description: >
+    description: |
       Client error information for the Update Contact endpoint.
     required:
       - error_code
@@ -18082,7 +18387,7 @@ definitions:
                   maxlength: 255
   UpdatePaymentError:
     type: object
-    description: >
+    description: |
       Client error information for the Update Payment endpoint.
     required:
       - error_code
@@ -18127,7 +18432,7 @@ definitions:
                   maxlength: 255
   ValidateBeneficiaryError:
     type: object
-    description: >
+    description: |
       Client error information for the Validate Beneficiary endpoint.
     required:
       - error_code
@@ -18205,5 +18510,6 @@ definitions:
       bank_institution_address: 'Seventh Avenue, New York, NY 10019, US'
       bank_institution_country: United States
       routing_code: 5797480
-      created_at: 2014-01-12T00:00:00.000Z
-      updated_at: 2014-01-12T00:00:00.000Z
+      created_at: '2014-01-12T00:00:00.000Z'
+      updated_at: '2014-01-12T00:00:00.000Z'
+
