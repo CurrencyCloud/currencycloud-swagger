@@ -9255,11 +9255,6 @@ paths:
           required: true
           type: string
           description: Payment UUID.
-        - name: purpose_code
-          in: formData
-          required: false
-          type: string
-          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: on_behalf_of
           in: formData
           required: false
