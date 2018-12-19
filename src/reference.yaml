@@ -8227,7 +8227,7 @@ paths:
               params: ''
             - code: on_behalf_of_charge_type_not_available
               category: on_behalf_of
-              message: Not available charge_type has been provided for behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
               params: '{ "charge_type" => "shared, ours" }'
             - code: duplicate_request
               category: duplicate_request
@@ -8546,7 +8546,7 @@ paths:
               params: ''
             - code: on_behalf_of_charge_type_not_available
               category: on_behalf_of
-              message: Not available charge_type has been provided for behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
               params: '{ "charge_type" => "shared, ours" }'
           schema:
             $ref: '#/definitions/FindPaymentsError'
@@ -9131,7 +9131,7 @@ paths:
               params: ''
             - code: on_behalf_of_charge_type_not_available
               category: on_behalf_of
-              message: Not available charge_type has been provided for behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
               params: '{ "charge_type" => "shared, ours" }'
           schema:
             $ref: '#/definitions/UpdatePaymentError'
