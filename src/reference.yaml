@@ -12309,7 +12309,7 @@ paths:
       x-api-group: convert
       summary: Release Settlement
       description: >-
-        Move a settlemnent to “released” status. Released settlements are ready
+        Move a settlement to “released” status. Released settlements are ready
         for processing.
       operationId: ReleaseSettlement
       consumes:
