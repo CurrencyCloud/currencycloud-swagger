@@ -13600,6 +13600,7 @@ paths:
               description: A unique reference for the request.
   /virtual_accounts:
     get:
+      deprecated: true
       tags:
         - VANs
       x-api-group: collect
