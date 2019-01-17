@@ -7784,6 +7784,17 @@ paths:
           required: false
           type: string
           description: Contact UUID.
+        - name: charge_type
+          in: formData
+          required: false
+          type: string
+          enum:
+          - ours
+          - shared
+          description: >-
+            Payment Charges Setting value (only applicable to SWIFT payments).
+            If empty - then account's default value is used.
+            Do not specify for regular (local) payments.
       responses:
         '200':
           description: Success.
@@ -7930,6 +7941,14 @@ paths:
               category: reference
               message: reference can not be longer than 255 character(s)
               params: ''
+            - code: charge_type_not_available
+              category: charge_type
+              message: Not available charge_type has been provided
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: invalid_charge_type
+              category: charge_type
+              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -7938,6 +7957,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: on_behalf_of_charge_type_not_available
+              category: on_behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
+              params: '{ "charge_type" => "shared, ours" }'
             - code: duplicate_request
               category: duplicate_request
               message: >-
@@ -8204,6 +8227,16 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: charge_type
+          in: formData
+          required: false
+          type: string
+          enum:
+          - ours
+          - shared
+          description: >-
+            Payment Charges Setting value (only applicable to SWIFT payments).
+            Limits search results scope to just payments of the specified charge type.
       responses:
         '200':
           description: Success.
@@ -8227,6 +8260,14 @@ paths:
               category: id
               message: currency has invalid format
               params: ''
+            - code: charge_type_not_available
+              category: charge_type
+              message: Not available charge_type has been provided
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: invalid_charge_type
+              category: charge_type
+              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -8235,6 +8276,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: on_behalf_of_charge_type_not_available
+              category: on_behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
+              params: '{ "charge_type" => "shared, ours" }'
           schema:
             $ref: '#/definitions/FindPaymentsError'
           headers:
@@ -8625,6 +8670,17 @@ paths:
           required: false
           type: string
           description: Contact UUID.
+        - name: charge_type
+          in: formData
+          required: false
+          type: string
+          enum:
+          - ours
+          - shared
+          description: >-
+            Payment Charges Setting value (only applicable to SWIFT payments).
+            If empty - then account's default value is used.
+            Do not specify for regular (local) payments.
       responses:
         '200':
           description: Success.
@@ -8785,6 +8841,14 @@ paths:
               category: payer_identification_value
               message: identification_value is invalid
               params: ''
+            - code: charge_type_not_available
+              category: charge_type
+              message: Not available charge_type has been provided
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: invalid_charge_type
+              category: charge_type
+              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -8797,6 +8861,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: on_behalf_of_charge_type_not_available
+              category: on_behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
+              params: '{ "charge_type" => "shared, ours" }'
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
