@@ -18559,6 +18559,8 @@ definitions:
         type: string
       routing_code:
         type: string
+      wire_routing_code:
+        type: string
       created_at:
         type: string
         format: date-time
@@ -18573,7 +18575,8 @@ definitions:
       bank_institution_name: Community Federal Savings Bank
       bank_institution_address: 'Seventh Avenue, New York, NY 10019, US'
       bank_institution_country: United States
-      routing_code: 5797480
+      routing_code: 026073150
+      wire_routing_code: 026073008
       created_at: '2014-01-12T00:00:00.000Z'
       updated_at: '2014-01-12T00:00:00.000Z'
 
