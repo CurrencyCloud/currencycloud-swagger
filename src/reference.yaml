@@ -6468,6 +6468,18 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: You do not have permission 'split_conversion' to perform this operation
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
         '404':
           description: Resource not found.
           schema:
@@ -6594,6 +6606,18 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: You do not have permission 'split_conversion' to perform this operation
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
         '404':
           description: Resource not found.
           headers:
@@ -6703,6 +6727,18 @@ paths:
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: You do not have permission 'split_conversion' to perform this operation
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
           headers:
             X-Request-Id:
               type: string
@@ -18539,6 +18575,52 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  ForbiddenError:
+    type: object
+    description: Permission error.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+        enum:
+          - auth_failed
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information on what permissions are missing
+          so that the request could not be fulfilled
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents the reasons why the request
+              was not permitted.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+
   VAN:
     type: object
     description: VAN.
