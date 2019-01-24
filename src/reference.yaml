@@ -10256,7 +10256,7 @@ paths:
       tags:
         - Reference
       x-api-group: manage
-      summary: Get Requirements for Payers
+      summary: Get Payer Requirements
       description: >-
         Get information on the minimum details required to create a payer.
         Requirements vary depending on the location of the payer, the type of
