@@ -1080,7 +1080,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/accounts/{id}/payment_charges_settings':
+  '/accounts/{account_id}/payment_charges_settings':
     get:
       tags:
       - Accounts
@@ -1096,7 +1096,7 @@ paths:
         required: true
         type: string
         description: Authentication token.
-      - name: id
+      - name: account_id
         in: path
         required: true
         type: string
@@ -1121,11 +1121,11 @@ paths:
           description: Client error.
           x-errors:
           - code: id_is_not_valid_uuid
-            category: id
+            category: account_id
             message: id should be in UUID format
             params: ''
           - code: account_not_found
-            category: id
+            category: account_id
             message: Account was not found for this id
             params: ''
           schema:
@@ -1196,7 +1196,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/accounts/{account_id}/payment_charges_settings/{id}':
+  '/accounts/{account_id}/payment_charges_settings/{charge_settings_id}':
     post:
       tags:
       - Accounts
@@ -1217,7 +1217,7 @@ paths:
         required: true
         type: string
         description: Account UUID.
-      - name: id
+      - name: charge_settings_id
         in: path
         required: true
         type: string
@@ -1257,8 +1257,8 @@ paths:
             message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
             params: ''
           - code: banking_charges_settings_not_found
-            category: id
-            message: Bank Charges Settings were not found for the provided ID
+            category: charge_settings_id
+            message: Bank Charges Settings were not found for the provided ChargeSettingsId
             params: ''
           - code: unavailable_charge_type
             category: permission
