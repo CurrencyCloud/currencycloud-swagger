@@ -30,6 +30,13 @@ All source files are UTF-8 encoded with Unix line-endings (``LF``, ``\n``). They
 
 We maintain a style guide for the Currencycloud API documentation. See [STYLE_GUIDE.md](STYLE_GUIDE.md).
 
+## API Versions
+The current version of the API is the [latest tagged release](https://github.com/CurrencyCloud/currencycloud-swagger/releases/latest). 
+This version is the valid documentation for the current Currencycloud API. The API definition described in the master branch may differ
+from this and, as such, should not be used directly.
+### Releases
+**Current**
+- [2.0.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.0.0)
 
 ## Tools
 
