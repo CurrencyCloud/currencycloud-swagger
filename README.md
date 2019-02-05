@@ -36,6 +36,12 @@ The current version of the API is the [latest tagged release](https://github.com
 It is recommended that the latest tagged release should be used instead of master directly.
 ### Releases
 **Current**
+- [2.1.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.1.0)
+   - Fixes documentation of *Get Payer Requirements*
+   - Documents 403 Error
+   - Adds wire_routing_code to VANS Definition
+
+**Previous**
 - [2.0.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.0.0)
 
 ## Tools
