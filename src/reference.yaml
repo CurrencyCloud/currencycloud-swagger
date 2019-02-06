@@ -7218,6 +7218,11 @@ paths:
             account levels. Defaults to all. own: search for IBANs on the main
             account clients: search for IBANs of account sub accounts all:
             search for IBANs of account and sub-accounts
+          enum:
+            - own
+            - all
+            - clients
+          default: own
         - name: currency
           in: query
           required: false
@@ -7287,6 +7292,10 @@ paths:
               category: currency
               message: currency is not supported
               params: ''
+            - code: scope_not_in_range
+              category: scope
+              message: "scope should be in range: own, all, clients"
+              params: '{ "range" => "own, all, clients" }'
           schema:
             $ref: '#/definitions/GetIBANsError'
           headers:
@@ -13007,6 +13016,10 @@ paths:
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
+            - code: scope_not_in_range
+              category: scope
+              message: "scope should be in range: own, all, clients"
+              params: '{ "range" => "own, all, clients" }'
           schema:
             $ref: '#/definitions/FindTransactionsError'
           headers:
@@ -13858,6 +13871,11 @@ paths:
             levels.  Defaults to all.  Own - search for VANs on the main
             account  Clients - search for VANs of account sub accounts <br> all
             - search for VANs of account and sub-accounts
+          enum:
+            - own
+            - all
+            - clients
+          default: own
         - name: account_id
           in: query
           required: false
@@ -13915,6 +13933,10 @@ paths:
               category: base
               message: VANs were not found
               params: ''
+            - code: scope_not_in_range
+              category: scope
+              message: "scope should be in range: own, all, clients"
+              params: '{ "range" => "own, all, clients" }'
           schema:
             $ref: '#/definitions/GetVANsError'
           headers:
