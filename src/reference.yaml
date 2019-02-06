@@ -1880,6 +1880,10 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: beneficiary_external_reference
+          in: query
+          type: string
+          description: Beneficiary external reference
       responses:
         '200':
           description: Success.
@@ -2037,6 +2041,14 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: beneficiary_external_reference_is_too_short
+              category: beneficiary_external_reference
+              message: beneficiary_external_reference can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_external_reference_is_too_long
+              category: beneficiary_external_reference
+              message: beneficiary_external_reference can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
           schema:
             $ref: '#/definitions/FindBeneficiariesError'
           headers:
