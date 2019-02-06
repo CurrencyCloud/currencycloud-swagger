@@ -12837,6 +12837,9 @@ paths:
             - payment_failure
             - manual_intervention
             - manual_transaction
+            - top_up_fee
+            - transfer
+            - conversion_deposit
           description: The action that triggered the transaction.
         - name: related_entity_type
           in: query
@@ -13007,6 +13010,14 @@ paths:
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
+            - code: action_not_in_range
+              category: action
+              message: >-
+                action should be in range: funding, conversion, payment, payment_failure, manual_intervention,
+                manual_transaction, top_up_fee, transfer, conversion_deposit
+              params: >-
+                { "range" => "funding, conversion, payment, payment_failure, manual_intervention,
+                manual_transaction, top_up_fee, transfer, conversion_deposit" }
           schema:
             $ref: '#/definitions/FindTransactionsError'
           headers:
