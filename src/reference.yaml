@@ -7969,6 +7969,10 @@ paths:
               category: conversion_id
               message: The conversion is already settled
               params: ''
+            - code: invalid_payment_date
+              category: payment_date
+              message: The payment date is invalid
+              params: ''
             - code: payment_date_is_too_early
               category: payment_date
               message: The payment date cannot be sooner than the conversion date
@@ -8124,6 +8128,7 @@ paths:
           type: string
           enum:
             - new
+            - ready_to_send
             - completed
             - failed
             - released
@@ -8131,6 +8136,7 @@ paths:
             - awaiting_authorisation
             - submitted
             - authorised
+            - deleted
           description: Payment status.
         - name: reason
           in: query
@@ -8316,6 +8322,14 @@ paths:
               category: on_behalf_of
               message: Not available charge_type has been provided for on_behalf_of
               params: '{ "charge_type" => "shared, ours" }'
+            - code: status_not_in_range
+              category: status
+              message: >-
+                status should be in range: new, ready_to_send, completed, failed, released, suspended,
+                awaiting_authorisation, submitted, authorised, deleted"
+              params: >-
+                { "range" => "new, ready_to_send, completed, failed, released, suspended,
+                awaiting_authorisation, submitted, authorised, deleted" }
           schema:
             $ref: '#/definitions/FindPaymentsError'
           headers:
@@ -12846,6 +12860,8 @@ paths:
             - conversion
             - payment
             - inbound_funds
+            - deposit
+            - transfer
           description: The related entity that created the transaction.
         - name: related_entity_id
           in: query
@@ -13007,6 +13023,10 @@ paths:
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
+            - code: related_entity_type_not_in_range
+              category: related_entity_type
+              message: "related_entity_type should be in range: conversion, payment, inbound_funds, deposit, transfer"
+              params: '{ "range" => "conversion, payment, inbound_funds, deposit, transfer" }'
           schema:
             $ref: '#/definitions/FindTransactionsError'
           headers:
