@@ -1111,8 +1111,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/definitions/AccountPaymentChargesSetting'
-              pagination:
-                $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
               type: string
@@ -14590,7 +14588,7 @@ definitions:
     type: object
     description: Account Payment Charges Setting.
     properties:
-      id:
+      charge_settings_id:
         type: string
       account_id:
         type: string
@@ -14601,7 +14599,7 @@ definitions:
       default:
         type: boolean
     example:
-      id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
+      charge_settings_id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
       account_id: 2b6db571-a810-0144-a9b2-10a22cb33cf9
       charge_type: shared
       enabled: true
