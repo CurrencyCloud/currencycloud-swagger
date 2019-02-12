@@ -1080,6 +1080,272 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  '/accounts/{account_id}/payment_charges_settings':
+    get:
+      tags:
+      - Accounts
+      x-api-group: manage
+      summary: Get Payment Charges Settings
+      description: Retrieve payment charges settings for given account.
+      operationId: GetAccountPaymentChargesSettings
+      produces:
+      - application/json
+      parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: account_id
+        in: path
+        required: true
+        type: string
+        description: An UUID of a sub-account or house account available in current visibility scope.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              payment_charges_settings:
+                type: array
+                items:
+                  $ref: '#/definitions/AccountPaymentChargesSetting'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+          - code: id_is_not_valid_uuid
+            category: account_id
+            message: id should be in UUID format
+            params: ''
+          - code: account_not_found
+            category: account_id
+            message: Account was not found for this id
+            params: ''
+          schema:
+            $ref: '#/definitions/GetAccountPaymentChargesSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials
+            params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+            category: base
+            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+            params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  '/accounts/{account_id}/payment_charges_settings/{charge_settings_id}':
+    post:
+      tags:
+      - Accounts
+      x-api-group: manage
+      summary: Manage Account Payment Charges Settings
+      description: Manage given Account's Payment Charge Settings (enable, disable, set default).
+      operationId: ManageAccountPaymentChargesSettings
+      produces:
+      - application/json
+      parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: account_id
+        in: path
+        required: true
+        type: string
+        description: Account UUID.
+      - name: charge_settings_id
+        in: path
+        required: true
+        type: string
+        description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for given Account UUID.
+      - name: enabled
+        in: formData
+        required: false
+        type: boolean
+        description: Enable or disable given Account Payment Charges Setting
+      - name: default
+        in: formData
+        required: false
+        type: boolean
+        description: Set given Account Payment Charges Setting as default (for the cases when 'charge_type' parameter is not specified for payment).
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/AccountPaymentChargesSetting'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+          - code: id_is_not_valid_uuid
+            category: account_id
+            message: id should be in UUID format
+            params: ''
+          - code: account_not_found
+            category: account_id
+            message: Account was not found for this id
+            params: ''
+          - code: edit_not_allowed
+            category: permission
+            message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
+            params: ''
+          - code: banking_charges_settings_not_found
+            category: charge_settings_id
+            message: Bank Charges Settings were not found for the provided ChargeSettingsId
+            params: ''
+          - code: unavailable_charge_type
+            category: permission
+            message: You are not enabled to switch on this type of charges. In order to be enabled for this option - please contact Customer Support
+            params: ''
+          - code: disable_and_default_charge_not_allowed
+            category: invalid_value
+            message: You can not disable and then default setting.
+            params: ''
+          - code: default_disabled_charge_not_allowed
+            category: invalid_value
+            message: You cannot default disabled setting.
+            params: ''
+          - code: disable_default_charge_not_allowed
+            category: invalid_value
+            message: You can not disable default settings.
+            params: ''
+          - code: set_default_to_false_not_allowed
+            category: invalid_value
+            message: You cannot disable default charge type. Please update the charge type not to be default and then disable it.
+            params: ''
+          schema:
+            $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials
+            params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+            category: base
+            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+            params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /accounts/create:
     post:
       tags:
@@ -14407,6 +14673,26 @@ definitions:
       phone_trading: true
       process_third_party_funds: false
       settlement_type: bulk
+  AccountPaymentChargesSetting:
+    type: object
+    description: Account Payment Charges Setting.
+    properties:
+      charge_settings_id:
+        type: string
+      account_id:
+        type: string
+      charge_type:
+        type: string
+      enabled:
+        type: boolean
+      default:
+        type: boolean
+    example:
+      charge_settings_id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
+      account_id: 2b6db571-a810-0144-a9b2-10a22cb33cf9
+      charge_type: shared
+      enabled: true
+      default: true
   AddConversionToSettlementError:
     type: object
     description: |
@@ -16131,6 +16417,96 @@ definitions:
             required:
               - code
               - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  GetAccountPaymentChargesSettingsError:
+    type: object
+    description: >
+      Client error information for the Get Account Payment Charges Settings endpoint.
+    required:
+    - error_code
+    - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+            - code
+            - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  ManageAccountPaymentChargesSettingsError:
+    type: object
+    description: >
+      Client error information for the Manage Account Payment Charges Settings endpoint.
+    required:
+    - error_code
+    - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+            - code
+            - message
             properties:
               code:
                 type: string
