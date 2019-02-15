@@ -9751,8 +9751,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
-
   '/payments/payment_delivery_date':
     get:
       tags:
