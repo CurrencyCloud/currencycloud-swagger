@@ -18442,7 +18442,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-      additionalProperties: false
+    additionalProperties: false
   ReleaseSettlementError:
     type: object
     description: |
