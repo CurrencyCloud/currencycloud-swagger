@@ -14583,6 +14583,29 @@ definitions:
   Account:
     type: object
     description: Account.
+    required:
+      - id
+      - account_name
+      - brand
+      - your_reference
+      - status
+      - street
+      - city
+      - state_or_province
+      - country
+      - postal_code
+      - spread_table
+      - legal_entity_type
+      - created_at
+      - updated_at
+      - identification_type
+      - identification_value
+      - short_reference
+      - api_trading
+      - online_trading
+      - phone_trading
+      - process_third_party_funds
+      - settlement_type
     properties:
       id:
         type: string
@@ -14650,6 +14673,7 @@ definitions:
         type: boolean
       settlement_type:
         type: string
+    additionalProperties: false
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -14676,6 +14700,12 @@ definitions:
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
+    required:
+      - charge_settings_id
+      - account_id
+      - charge_type
+      - enabled
+      - default
     properties:
       charge_settings_id:
         type: string
@@ -14687,6 +14717,7 @@ definitions:
         type: boolean
       default:
         type: boolean
+    additionalProperties: false
     example:
       charge_settings_id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
       account_id: 2b6db571-a810-0144-a9b2-10a22cb33cf9
@@ -14738,20 +14769,31 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
   AuthenticationToken:
     type: object
     description: Authentication token.
+    required:
+      - auth_token
     properties:
       auth_token:
         type: string
         description: >-
           A randomly-generated 64-digit authentication token. Clients must store
           this securely and destroy it when it is no longer needed.
+    additionalProperties: false
     example:
       auth_token: 043cc6069f5e32757647641460d1d5ed
   AvailableCurrencies:
     type: object
     description: Available currencies.
+    required:
+      - code
+      - decimal_places
+      - name
+      - online_trading
+      - can_buy
+      - can_sell
     properties:
       code:
         type: string
@@ -14765,6 +14807,7 @@ definitions:
         type: boolean
       can_sell:
         type: boolean
+    additionalProperties: false
     example:
       code: AED
       decimal_places: 2
@@ -14775,6 +14818,13 @@ definitions:
   Balance:
     type: object
     description: Balance.
+    required:
+      - id
+      - account_id
+      - currency
+      - amount
+      - created_at
+      - updated_at
     properties:
       id:
         type: string
@@ -14794,6 +14844,7 @@ definitions:
       updated_at:
         type: string
         format: date-time
+    additionalProperties: false
     example:
       id: 18230F1D-648A-406A-AD1F-A09CBC02E9E9
       account_id: TcC
@@ -17825,6 +17876,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
     example:
       error_code: auth_invalid_user_login_details
       error_messages:
@@ -18340,6 +18392,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+      additionalProperties: false
   ReleaseSettlementError:
     type: object
     description: |
@@ -18727,6 +18780,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
     example:
       error_code: auth_failed
       error_messages:
