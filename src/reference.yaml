@@ -14855,6 +14855,41 @@ definitions:
   Beneficiary:
     type: object
     description: Beneficiary.
+    required:
+      - id
+      - bank_account_holder_name
+      - name
+      - email
+      - payment_types
+      - beneficiary_address
+      - beneficiary_country
+      - beneficiary_entity_type
+      - beneficiary_company_name
+      - beneficiary_first_name
+      - beneficiary_last_name
+      - beneficiary_city
+      - beneficiary_postcode
+      - beneficiary_state_or_province
+      - beneficiary_date_of_birth
+      - beneficiary_identification_type
+      - beneficiary_identification_value
+      - bank_country
+      - bank_name
+      - bank_account_type
+      - currency
+      - account_number
+      - routing_code_type_1
+      - routing_code_value_1
+      - routing_code_type_2
+      - routing_code_value_2
+      - bic_swift
+      - iban
+      - default_beneficiary
+      - creator_contact_id
+      - bank_address
+      - created_at
+      - updated_at
+      - beneficiary_external_reference
     properties:
       id:
         type: string
@@ -14954,6 +14989,7 @@ definitions:
         format: date-time
       beneficiary_external_reference:
         type: string
+    additionalProperties: false
     example:
       id: a6000ce9-46b8-49a7-9f5b-325ed3f047c2
       bank_account_holder_name: Company PLC
@@ -14997,6 +15033,19 @@ definitions:
   BeneficiaryRequirements:
     type: object
     description: Beneficiary requirements.
+    required:
+      - payment_type
+      - acct_number
+      - bic_swift
+      - aba
+      - beneficiary_address
+      - beneficiary_city
+      - beneficiary_country
+      - beneficiary_postcode
+      - beneficiary_state_or_province
+      - beneficiary_first_name
+      - beneficiary_last_name
+      - beneficiary_entity_type
     properties:
       payment_type:
         type: string
@@ -15025,6 +15074,7 @@ definitions:
         enum:
           - company
           - individual
+    additionalProperties: false
     example:
       payment_type: regular
       acct_number: '^\\d{1,17}$'
