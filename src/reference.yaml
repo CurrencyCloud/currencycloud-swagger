@@ -3365,6 +3365,25 @@ paths:
           in: formData
           required: false
           type: string
+          enum:
+          - none
+          - drivers_license
+          - social_security_number
+          - green_card
+          - passport
+          - visa
+          - matricula_consular
+          - registro_federal_de_contribuyentes
+          - clave_unica_de_registro_de_poblacion
+          - credential_de_elector
+          - social_insurance_number
+          - citizenship_papers
+          - drivers_license_canadian
+          - existing_credit_card_details
+          - employer_identification_number
+          - national_id
+          - incorporation_number
+          - others
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
@@ -3373,25 +3392,6 @@ paths:
           in: formData
           required: false
           type: string
-          enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - clave_unica_de_registro_de_poblacion
-            - credential_de_elector
-            - social_insurance_number
-            - citizenship_papers
-            - drivers_license_canadian
-            - existing_credit_card_details
-            - employer_identification_number
-            - national_id
-            - incorporation_number
-            - others
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
