@@ -2610,8 +2610,8 @@ paths:
             enum:
               - priority
               - regular
-          default:
-            - regular
+            default:
+              - regular
           description: >-
             Currencycloud supports two types of payment: "priority", made using
             the SWIFT network; and "regular", made using the local bank network.
@@ -3404,8 +3404,8 @@ paths:
             enum:
               - priority
               - regular
-          default:
-            - regular
+            default:
+              - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
             the SWIFT network; and "regular", made using the local bank network.
@@ -4186,7 +4186,7 @@ paths:
             enum:
               - priority
               - regular
-          default:
+            default:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
