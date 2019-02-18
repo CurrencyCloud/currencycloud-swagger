@@ -18354,6 +18354,14 @@ definitions:
   PaymentDeliveryDate:
     type: object
     description: Payment Delivery Date
+    required:
+      - payment_date
+      - payment_delivery_date
+      - payment_cutoff_time
+      - payment_type
+      - currency
+      - bank_country
+    additionalProperties: false
     properties:
       payment_date:
         type: string
