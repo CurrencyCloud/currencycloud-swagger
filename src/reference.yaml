@@ -1882,6 +1882,7 @@ paths:
           description: Sort records in ascending or descending order.
         - name: beneficiary_external_reference
           in: query
+          required: false
           type: string
           description: Beneficiary external reference
       responses:
