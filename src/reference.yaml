@@ -9751,6 +9751,165 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  '/payments/payment_delivery_date':
+    get:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Get Payment Delivery Date
+      description: Gets Payment Delivery Date.
+      operationId: GetPaymentDeliveryDate
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: payment_date
+          in: query
+          required: true
+          type: string
+          description: The date when the payment will be released. Any valid ISO 8601 format, eg. "2017-12-31".
+        - name: payment_type
+          in: query
+          required: true
+          type: string
+          enum:
+            - priority
+            - regular
+          description: >-
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
+        - name: currency
+          in: query
+          required: true
+          type: string
+          description: The 3-letter ISO code of the currency of the payment
+        - name: bank_country
+          in: query
+          required: true
+          type: string
+          description: The 2-letter ISO code of the country where the payment is sent
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentDeliveryDate'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: bank_country_is_required
+              category: bank_country
+              message: bank_country is required
+              params: ''
+            - code: bank_country_is_in_invalid_format
+              category: bank_country
+              message: bank_country is in invalid format
+              params: ''
+            - code: currency_is_required
+              category: currency
+              message: currency is required
+              params: ''
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: Currency is not a valid ISO 4217 currency code
+              params: ''
+            - code: payment_type_is_required
+              category: payment_type
+              message: payment_type is required
+              params: ''
+            - code: payment_type_not_in_range
+              category: payment_type
+              message: 'payment_type should be in range: priority, regular'
+              params: '{ "range" => "priority, regular" }'
+            - code: invalid_payment
+              category: base
+              message: Payment cannot be processed
+              params: ''
+            - code: invalid_currency
+              category: currency
+              message: You cannot make payments with this currency
+              params: ''
+            - code: payment_date_is_required
+              category: payment_date
+              message: payment_date is required
+              params: ''
+            - code: invalid_payment_date
+              category: payment_date
+              message: The payment date is invalid
+              params: ''
+            - code: payment_date_is_in_invalid_format
+              category: payment_date
+              message: payment_date should be in ISO 8601 format
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentDeliveryDateError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/payers/{id}':
     get:
       tags:
@@ -17290,6 +17449,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetPaymentDeliveryDateError:
+    type: object
+    description: |
+      Client error information for the Get Payment Delivery Date endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetPaymentSubmissionError:
     type: object
     description: |
@@ -18147,6 +18351,37 @@ definitions:
         '2013-06-08': No trading on Sunday
         '2013-06-14': No trading on Saturday
       first_payment_date: '2013-04-15T00:00:00.000Z'
+  PaymentDeliveryDate:
+    type: object
+    description: Payment Delivery Date
+    required:
+      - payment_date
+      - payment_delivery_date
+      - payment_cutoff_time
+      - payment_type
+      - currency
+      - bank_country
+    additionalProperties: false
+    properties:
+      payment_date:
+        type: string
+      payment_delivery_date:
+        type: string
+      payment_cutoff_time:
+        type: string
+      payment_type:
+        type: string
+      currency:
+        type: string
+      bank_country:
+        type: string
+    example:
+      payment_date: "2019-02-11"
+      payment_delivery_date: "2019-02-11T00:00:00+00:00"
+      payment_cutoff_time: "2019-02-11T19:00:00+00:00"
+      payment_type: "priority"
+      currency: "MXN"
+      bank_country: "MX"
   PaymentPurposeCodes:
     type: object
     description: Payment purpose codes.
