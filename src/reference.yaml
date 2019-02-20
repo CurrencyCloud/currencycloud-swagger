@@ -14742,6 +14742,29 @@ definitions:
   Account:
     type: object
     description: Account.
+    required:
+      - id
+      - account_name
+      - brand
+      - your_reference
+      - status
+      - street
+      - city
+      - state_or_province
+      - country
+      - postal_code
+      - spread_table
+      - legal_entity_type
+      - created_at
+      - updated_at
+      - identification_type
+      - identification_value
+      - short_reference
+      - api_trading
+      - online_trading
+      - phone_trading
+      - process_third_party_funds
+      - settlement_type
     properties:
       id:
         type: string
@@ -14809,6 +14832,7 @@ definitions:
         type: boolean
       settlement_type:
         type: string
+    additionalProperties: false
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -14835,6 +14859,12 @@ definitions:
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
+    required:
+      - charge_settings_id
+      - account_id
+      - charge_type
+      - enabled
+      - default
     properties:
       charge_settings_id:
         type: string
@@ -14846,6 +14876,7 @@ definitions:
         type: boolean
       default:
         type: boolean
+    additionalProperties: false
     example:
       charge_settings_id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
       account_id: 2b6db571-a810-0144-a9b2-10a22cb33cf9
@@ -14897,20 +14928,31 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
   AuthenticationToken:
     type: object
     description: Authentication token.
+    required:
+      - auth_token
     properties:
       auth_token:
         type: string
         description: >-
           A randomly-generated 64-digit authentication token. Clients must store
           this securely and destroy it when it is no longer needed.
+    additionalProperties: false
     example:
       auth_token: 043cc6069f5e32757647641460d1d5ed
   AvailableCurrencies:
     type: object
     description: Available currencies.
+    required:
+      - code
+      - decimal_places
+      - name
+      - online_trading
+      - can_buy
+      - can_sell
     properties:
       code:
         type: string
@@ -14924,6 +14966,7 @@ definitions:
         type: boolean
       can_sell:
         type: boolean
+    additionalProperties: false
     example:
       code: AED
       decimal_places: 2
@@ -14934,6 +14977,13 @@ definitions:
   Balance:
     type: object
     description: Balance.
+    required:
+      - id
+      - account_id
+      - currency
+      - amount
+      - created_at
+      - updated_at
     properties:
       id:
         type: string
@@ -14953,6 +15003,7 @@ definitions:
       updated_at:
         type: string
         format: date-time
+    additionalProperties: false
     example:
       id: 18230F1D-648A-406A-AD1F-A09CBC02E9E9
       account_id: TcC
@@ -14963,6 +15014,41 @@ definitions:
   Beneficiary:
     type: object
     description: Beneficiary.
+    required:
+      - id
+      - bank_account_holder_name
+      - name
+      - email
+      - payment_types
+      - beneficiary_address
+      - beneficiary_country
+      - beneficiary_entity_type
+      - beneficiary_company_name
+      - beneficiary_first_name
+      - beneficiary_last_name
+      - beneficiary_city
+      - beneficiary_postcode
+      - beneficiary_state_or_province
+      - beneficiary_date_of_birth
+      - beneficiary_identification_type
+      - beneficiary_identification_value
+      - bank_country
+      - bank_name
+      - bank_account_type
+      - currency
+      - account_number
+      - routing_code_type_1
+      - routing_code_value_1
+      - routing_code_type_2
+      - routing_code_value_2
+      - bic_swift
+      - iban
+      - default_beneficiary
+      - creator_contact_id
+      - bank_address
+      - created_at
+      - updated_at
+      - beneficiary_external_reference
     properties:
       id:
         type: string
@@ -15062,6 +15148,7 @@ definitions:
         format: date-time
       beneficiary_external_reference:
         type: string
+    additionalProperties: false
     example:
       id: a6000ce9-46b8-49a7-9f5b-325ed3f047c2
       bank_account_holder_name: Company PLC
@@ -15105,6 +15192,19 @@ definitions:
   BeneficiaryRequirements:
     type: object
     description: Beneficiary requirements.
+    required:
+      - payment_type
+      - acct_number
+      - bic_swift
+      - aba
+      - beneficiary_address
+      - beneficiary_city
+      - beneficiary_country
+      - beneficiary_postcode
+      - beneficiary_state_or_province
+      - beneficiary_first_name
+      - beneficiary_last_name
+      - beneficiary_entity_type
     properties:
       payment_type:
         type: string
@@ -15133,6 +15233,7 @@ definitions:
         enum:
           - company
           - individual
+    additionalProperties: false
     example:
       payment_type: regular
       acct_number: '^\\d{1,17}$'
@@ -18029,6 +18130,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
     example:
       error_code: auth_invalid_user_login_details
       error_messages:
@@ -18575,6 +18677,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
   ReleaseSettlementError:
     type: object
     description: |
@@ -18962,6 +19065,7 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+    additionalProperties: false
     example:
       error_code: auth_failed
       error_messages:
