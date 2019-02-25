@@ -6215,8 +6215,6 @@ paths:
         conversions that have generated profit or loss, including the profit or
         loss amount
       operationId: ConversionProfitAndLoss
-      consumes:
-        - multipart/form-data
       produces:
         - application/json
       parameters:
@@ -6226,60 +6224,60 @@ paths:
           type: string
           description: Authentication token.
         - name: account_id
-          in: formData
+          in: query
           required: false
           type: string
           description: ID of the Account that the Conversion belongs to.
         - name: contact_id
-          in: formData
+          in: query
           required: false
           type: string
           description: ID of the Contact that did the cancellation.
         - name: conversion_id
-          in: formData
+          in: query
           required: false
           type: string
           description: ID of the cancelled conversion.
         - name: event_type
-          in: formData
+          in: query
           required: false
           type: string
           description: 'Event type, in this case ''self_service_cancellation'''
         - name: event_date_time_from
-          in: formData
+          in: query
           required: false
           type: string
           description: >-
             Allows you to return profit and losses will be done from on or after
             a defined date/time. ISO 8601 standard.
         - name: event_date_time_to
-          in: formData
+          in: query
           required: false
           type: string
           description: >-
             Allows you to return profit and losses will be done from on or
             before a defined date/time. ISO 8601 standard.
         - name: amount_from
-          in: formData
+          in: query
           required: false
           type: string
           description: >-
             Allows you to return profit and losses based on a minimum profit or
             loss amount.
         - name: amount_to
-          in: formData
+          in: query
           required: false
           type: string
           description: >-
             Allows you to return profit and losses based on a maximum profit or
             loss amount.
         - name: currency
-          in: formData
+          in: query
           required: false
           type: string
           description: The currency of the profit and loss. ISO 4217 standard.
         - name: scope
-          in: formData
+          in: query
           required: false
           type: string
           description: >-
@@ -6289,22 +6287,22 @@ paths:
             account sub accounts all - allows to search balances profit and
             losses account and subaccounts
         - name: page
-          in: formData
+          in: query
           required: false
           type: string
           description: Returns a specific page within the results of a search.
         - name: per_page
-          in: formData
+          in: query
           required: false
           type: string
           description: Maximum number of entries to return per page of results.
         - name: order
-          in: formData
+          in: query
           required: false
           type: string
           description: The field to order entries by.
         - name: order_asc_desc
-          in: formData
+          in: query
           required: false
           type: string
           description: Whether the order is ascending (asc) or descending (desc).
@@ -6689,7 +6687,7 @@ paths:
         - name: amount
           required: true
           type: string
-          in: formData
+          in: query
           description: The amount at which to split this conversion.
       responses:
         '200':
@@ -7326,7 +7324,7 @@ paths:
           type: string
           description: Currency in which the balance is held. Three-digit currency code.
         - name: on_behalf_of
-          in: formData
+          in: query
           required: false
           type: string
           description: Contact UUID.
@@ -8545,7 +8543,7 @@ paths:
           default: asc
           description: Sort records in ascending or descending order.
         - name: charge_type
-          in: formData
+          in: query
           required: false
           type: string
           enum:
