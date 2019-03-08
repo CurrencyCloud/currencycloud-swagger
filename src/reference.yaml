@@ -10777,6 +10777,11 @@ paths:
           description: >-
             Currencycloud supports two types of payments: "priority", made using
             the SWIFT network; and "regular", made using the local bank network.
+        - name: currency
+          in: query
+          required: false
+          type: string
+          description: 3 character ISO 4217 currency code.
       responses:
         '200':
           description: Success.
@@ -10805,6 +10810,14 @@ paths:
               category: payer_entity_type
               message: 'payer_entity_type should be in range: company, individual'
               params: '{ "range" => "company, individual" }'
+            - code: currency_is_too_short
+              category: currency
+              message: currency can not be shorter than 3 character(s)
+              params: '{ "minlength" => 3 }'
+            - code: currency_is_too_long
+              category: currency
+              message: currency can not be longer than 3 character(s)
+              params: '{ "maxlength" => 3 }'
           schema:
             $ref: '#/definitions/GetPayerRequirementsError'
           headers:
