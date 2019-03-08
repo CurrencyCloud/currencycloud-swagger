@@ -2702,14 +2702,6 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            A legal document that verifies the identity of the beneficiary.
-            Required documentation will vary depending on the country in which
-            the beneficiary's bank account is held.
-        - name: beneficiary_identification_value
-          in: formData
-          required: false
-          type: string
           enum:
             - none
             - drivers_license
@@ -2729,6 +2721,14 @@ paths:
             - national_id
             - incorporation_number
             - others
+          description: >-
+            A legal document that verifies the identity of the beneficiary.
+            Required documentation will vary depending on the country in which
+            the beneficiary's bank account is held.
+        - name: beneficiary_identification_value
+          in: formData
+          required: false
+          type: string
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
@@ -4147,14 +4147,6 @@ paths:
           in: formData
           required: false
           type: string
-          description: >-
-            A legal document that verifies the identity of the beneficiary.
-            Required documentation will vary depending on the country in which
-            the beneficiary's bank account is held.
-        - name: beneficiary_identification_value
-          in: formData
-          required: false
-          type: string
           enum:
             - none
             - drivers_license
@@ -4174,6 +4166,14 @@ paths:
             - national_id
             - incorporation_number
             - others
+          description: >-
+            A legal document that verifies the identity of the beneficiary.
+            Required documentation will vary depending on the country in which
+            the beneficiary's bank account is held.
+        - name: beneficiary_identification_value
+          in: formData
+          required: false
+          type: string
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
