@@ -41,6 +41,7 @@ It is recommended that the latest tagged release should be used instead of maste
     - Adds currency as an optional field in the 'Get Requirements for Payers' API
     - Adds beneficiary_external_reference as an optional field in the 'Find Beneficiaries' API
     - Bugfix to 'Create Beneficiary' beneficiary_identification_type enum list
+    - Bugfix to 'Find Payments' charge_type parameter 'in' type
     
 **Previous**
 
