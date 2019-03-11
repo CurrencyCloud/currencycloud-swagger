@@ -37,6 +37,13 @@ It is recommended that the latest tagged release should be used instead of maste
 ### Releases
 **Current**
 
+- [2.3.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.3.0)
+    - Adds currency as an optional field in the 'Get Requirements for Payers' API
+    - Adds beneficiary_external_reference as an optional field in the 'Find Beneficiaries' API
+    - Bugfix to 'Create Beneficiary' beneficiary_identification_type enum list
+    
+**Previous**
+
 - [2.2.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.2.0)
     - Adds enum and default values for scope parmeter on find-ibans and find-vans
     - Adds missing actions to the enum of the action parameter of transactions/find
@@ -46,7 +53,7 @@ It is recommended that the latest tagged release should be used instead of maste
     - Fix Beneficiary Payment Type Defaults
     - Adds get payment delivery date to api definition
 
-**Previous**
+
 
 - [2.1.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.1.0)
    - Fixes documentation of *Get Payer Requirements*
