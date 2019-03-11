@@ -8558,7 +8558,7 @@ paths:
           default: asc
           description: Sort records in ascending or descending order.
         - name: charge_type
-          in: formData
+          in: query
           required: false
           type: string
           enum:
