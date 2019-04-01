@@ -2247,7 +2247,7 @@ paths:
               params: '{ "min_date" => "1900-01-01" }'
             - code: beneficiary_date_of_birth_is_after
               category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth should be earlier that todays date
+              message: beneficiary_date_of_birth should be earlier than todays date
               params: '{ "max_date" => "Todays Date" }'
             - code: routing_code_value_is_too_short
               category: routing_code_value
