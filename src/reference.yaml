@@ -2243,12 +2243,12 @@ paths:
               params: ''
             - code: beneficiary_date_of_birth_is_earlier
               category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth should be later
-              params: ''
+              message: beneficiary_date_of_birth should be later than 1900-01-01
+              params: '{ "min_date" => "1900-01-01" }'
             - code: beneficiary_date_of_birth_is_after
               category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth should be earlier
-              params: ''
+              message: beneficiary_date_of_birth should be earlier than todays date
+              params: '{ "max_date" => "Todays Date" }'
             - code: routing_code_value_is_too_short
               category: routing_code_value
               message: routing_code_value can not be shorter than 1 character(s)
@@ -2273,6 +2273,10 @@ paths:
               category: iban
               message: iban can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
+            - code: iban_is_in_invalid_format
+              category: iban
+              message: iban is in invalid format
+              params: ''
             - code: default_beneficiary_type_is_wrong
               category: default_beneficiary
               message: default_beneficiary should be of boolean type
@@ -2292,14 +2296,15 @@ paths:
             - code: order_not_in_range
               category: order
               message: >-
-                order should be in range: bank_account_holder_name,
-                beneficiary_country, currency, account_number, bic_swift, iban,
-                default_beneficiary, bank_address, name, created_at
+                order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number,
+                bic_swift, iban, default_beneficiary, bank_address, name, bank_account_type, beneficiary_entity_type,
+                beneficiary_city, beneficiary_address, beneficiary_company_name, beneficiary_first_name,
+                beneficiary_last_name, beneficiary_state_or_province, beneficiary_postcode, created_at, updated_at
               params: >-
-                { "range" => "order should be in range:
-                bank_account_holder_name, beneficiary_country, currency,
-                account_number, bic_swift, iban, default_beneficiary,
-                bank_address, name, created_at" }
+                { "range" => "bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban,
+                default_beneficiary, bank_address, name, bank_account_type, beneficiary_entity_type, beneficiary_city,
+                beneficiary_address, beneficiary_company_name, beneficiary_first_name, beneficiary_last_name,
+                beneficiary_state_or_province, beneficiary_postcode, created_at, updated_at" }
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -2307,6 +2312,10 @@ paths:
             - code: contact_not_found
               category: on_behalf_of
               message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
               params: ''
             - code: beneficiary_external_reference_is_too_short
               category: beneficiary_external_reference
@@ -2316,6 +2325,85 @@ paths:
               category: beneficiary_external_reference
               message: beneficiary_external_reference can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
+            - code: cope_not_in_range
+              category: scope
+              message: >-
+                scope should be in range: own, all, clients
+              params: '{ "range" => "own, all, clients" }'
+            - code: beneficiary_entity_type_not_in_range
+              category: beneficiary_entity_type
+              message: >-
+                beneficiary_entity_type should be in range: individual, company
+              params: '{ "range" => "individual, company" }'
+            - code: beneficiary_company_name_is_too_short
+              category: beneficiary_company_name
+              message: beneficiary_company_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_company_name_is_too_long
+              category: beneficiary_company_name
+              message: beneficiary_company_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_first_name_is_too_short
+              category: beneficiary_first_name
+              message: beneficiary_first_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_first_name_is_too_long
+              category: beneficiary_first_name
+              message: beneficiary_first_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_last_name_is_too_short
+              category: beneficiary_last_name
+              message: beneficiary_last_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_last_name_is_too_long
+              category: beneficiary_last_name
+              message: beneficiary_last_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_city_is_too_short
+              category: beneficiary_city
+              message: beneficiary_city can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_city_is_too_long
+              category: beneficiary_city
+              message: beneficiary_city can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_postcode_is_too_short
+              category: beneficiary_postcode
+              message: beneficiary_postcode can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_postcode_is_too_long
+              category: beneficiary_postcode
+              message: beneficiary_postcode can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_state_or_province_is_too_short
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_state_or_province_is_too_long
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: page_type_is_wrong
+              category: page
+              message: page should be of integer type
+              params: '{ "type" => "integer" }'
+            - code: page_is_too_small
+              category: page
+              message: page can not be smaller than 1
+              params: '{ "minvalue" => 1 }'
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page should be of integer type
+              params: '{ "type" => "integer" }'
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page can not be smaller than 1
+              params: '{ "minvalue" => 1 }'
+            - code: order_asc_desc_not_in_range
+              category: order_asc_desc
+              message: >-
+                order_asc_desc should be in range: asc, desc
+              params: '{ "range" => "asc, desc" }'
           schema:
             $ref: '#/definitions/FindBeneficiariesError'
           headers:
