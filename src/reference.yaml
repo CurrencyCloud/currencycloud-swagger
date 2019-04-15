@@ -14499,9 +14499,9 @@ definitions:
       client_rate:
         type: string
       deposit_required:
-        type: string
-      deposit_amount:
         type: boolean
+      deposit_amount:
+        type: string
       deposit_currency:
         type: string
       deposit_status:
