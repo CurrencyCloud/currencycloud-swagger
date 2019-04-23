@@ -11714,7 +11714,7 @@ paths:
           in: path
           required: true
           type: string
-          description: UUID of the sender details entity.
+          description: The Related Entity UUID (related_entity_id) of the Transaction.
         - name: on_behalf_of
           in: query
           required: false
