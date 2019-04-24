@@ -11812,6 +11812,10 @@ paths:
               description: A unique reference for the request.
   /settlements/find:
     get:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -11998,6 +12002,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}':
     get:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12129,6 +12137,10 @@ paths:
               description: A unique reference for the request.
   /settlements/create:
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12245,6 +12257,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}/add_conversion':
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12387,6 +12403,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}/delete':
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12523,6 +12543,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}/release':
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12650,6 +12674,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}/remove_conversion':
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12775,6 +12803,10 @@ paths:
               description: A unique reference for the request.
   '/settlements/{id}/unrelease':
     post:
+      deprecated: true
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
