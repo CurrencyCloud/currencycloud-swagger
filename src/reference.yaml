@@ -11814,7 +11814,7 @@ paths:
     get:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12004,7 +12004,7 @@ paths:
     get:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12139,7 +12139,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12259,7 +12259,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12405,7 +12405,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12545,7 +12545,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12676,7 +12676,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
@@ -12805,7 +12805,7 @@ paths:
     post:
       deprecated: true
       x-deprecation-version: 2.4.0
-      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead.
       x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
