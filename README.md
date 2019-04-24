@@ -67,7 +67,7 @@ It is recommended that the latest tagged release should be used instead of maste
 ## Deprecation Policy
 
 Deprecated features will no longer be supported in the next release 3 months after the release that the deprecation notification was 
-included. The release that the feature was deprecated is denoted by the tag x-deprecated-release.
+included. The release that the feature was deprecated in is denoted by the tag _x-deprecation-version_.
 
 For more details see [Developer Center Deprecation Policy](https://www.currencycloud.com/developers/deprecation-policy/)
 

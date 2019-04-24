@@ -11813,7 +11813,9 @@ paths:
   /settlements/find:
     get:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12001,7 +12003,9 @@ paths:
   '/settlements/{id}':
     get:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12134,7 +12138,9 @@ paths:
   /settlements/create:
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12252,7 +12258,9 @@ paths:
   '/settlements/{id}/add_conversion':
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12396,7 +12404,9 @@ paths:
   '/settlements/{id}/delete':
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12534,7 +12544,9 @@ paths:
   '/settlements/{id}/release':
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12663,7 +12675,9 @@ paths:
   '/settlements/{id}/remove_conversion':
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
@@ -12790,7 +12804,9 @@ paths:
   '/settlements/{id}/unrelease':
     post:
       deprecated: true
-      x-deprecated-version: 2.4.0
+      x-deprecation-version: 2.4.0
+      x-deprecation-notes: The Settlement model is now deprecated and the Balances model should be used instead
+      x-deprecation-guide: https://www.currencycloud.com/developers/cookbooks/migration-guide-moving-from-the-settlement-model-to-the-balances-model/
       tags:
         - Settlements
       x-api-group: convert
