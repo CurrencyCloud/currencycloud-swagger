@@ -37,14 +37,22 @@ It is recommended that the latest tagged release should be used instead of maste
 ### Releases
 **Current**
 
-- [2.3.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.3.0)
+- [2.4.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.4.0)
+    - Removes support for deprecated VANS and IBANS operations
+    - Deprecates all settlement operations
+    - Adds action_type deposit_refund to transaction find operation
+    - Updates error codes on beneficiaries/find operation
+    - Small syntax/description fixes
+
+**Previous**
+
+- [2.3.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.3.0b)
     - Adds currency as an optional field in the 'Get Requirements for Payers' API
     - Adds beneficiary_external_reference as an optional field in the 'Find Beneficiaries' API
     - Bugfix to 'Create Beneficiary' beneficiary_identification_type enum list
     - Bugfix to 'Find Payments' charge_type parameter 'in' type
     
-**Previous**
-
+    
 - [2.2.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.2.0)
     - Adds enum and default values for scope parmeter on find-ibans and find-vans
     - Adds missing actions to the enum of the action parameter of transactions/find
