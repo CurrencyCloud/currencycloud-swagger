@@ -10045,10 +10045,6 @@ paths:
           type: string
           enum:
             - iban
-            - bic
-            - aba
-            - bank_code_ca
-            - bsb
           description: The type of the idenitifier used to identify the account
         - name: identifier_value
           in: query
@@ -10074,11 +10070,15 @@ paths:
             - code: identifier_type_not_in_range
               category: identifier_type
               message: 'identifier_type should be in range: iban, bic, aba, bank_code_ca, bsb'
-              params: '{ "range" => "iban, bic, aba, bank_code_ca, bsb" }'
+              params: '{ "range" => "iban" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
               params: ''
+            - code: identifier_value_is_empty
+              category: identifier_value
+              message: identifier_value should not be empty
+              params: '{ "type" => "not_empty_string" }'
           schema:
             $ref: '#/definitions/GetBankDetailsError'
           headers:
@@ -14376,25 +14376,26 @@ definitions:
       bank_country:
         type: string
         description: Full country name.
-      bank_country_iso:
+      bank_country_ISO:
         type: string
         description: 2 letter ISO country code.
       currency:
         type: string
         description: 3 letter ISO currency code.
     example:
-      identifier_type: ""
-      identifier_value: ""
-      bic_swift: ""
-      bank_name: ""
-      bank_branch: ""
-      bank_address: ""
-      bank_city: ""
-      bank_state: ""
-      bank_post_code: ""
-      bank_country: ""
-      bank_country_iso: ""
-      currency: ""
+      identifier_type: iban
+      identifier_value: FR7530002002460000012345X12
+      account_number: FR7530002002460000012345X12
+      bic_swift: CRLYFRPPXXX
+      bank_name: CREDIT LYONNAIS
+      bank_branch: AG STALINGRAD
+      bank_address: 212 BOULEVARD DE LA VILLETTE
+      bank_city: PARIS
+      bank_state: PARIS
+      bank_post_code: 75019
+      bank_country: FRANCE
+      bank_country_ISO: FR
+      currency: null
   Beneficiary:
     type: object
     description: Beneficiary.
