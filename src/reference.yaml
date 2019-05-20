@@ -14427,8 +14427,6 @@ definitions:
         type: string
       bic_swift:
         type: string
-      aba:
-        type: string
       beneficiary_address:
         type: string
       beneficiary_city:
@@ -14448,6 +14446,22 @@ definitions:
         enum:
           - company
           - individual
+      sort_code:
+        type: string
+      aba:
+        type: string
+      bsb_code:
+        type: string
+      institution_no:
+        type: string
+      bank_code:
+        type: string
+      branch_code:
+        type: string
+      clabe:
+        type: string
+      cnaps:
+        type: string
     example:
       payment_type: regular
       acct_number: '^\\d{1,17}$'
