@@ -10079,6 +10079,14 @@ paths:
               category: identifier_value
               message: identifier_value should not be empty
               params: '{ "type" => "not_empty_string" }'
+            - code: invalid_iban
+              category: base
+              message: IBAN is invalid
+              params: ''
+            - code: cannot_retrieve_bank_data
+              category: base
+              message: Bank Details service is temporarily unavailable
+              params: ''
           schema:
             $ref: '#/definitions/GetBankDetailsError'
           headers:
