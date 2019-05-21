@@ -10048,6 +10048,133 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /reference/bank_details:
+    get:
+      tags:
+        - Reference
+      x-api-group: manage
+      summary: Get Bank Details
+      description: >-
+        Returns the related bank details for the given account reference.
+      operationId: GetBankDetails
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: identifier_type
+          in: query
+          required: true
+          type: string
+          enum:
+            - iban
+          description: The type of the idenitifier used to identify the account
+        - name: identifier_value
+          in: query
+          required: true
+          type: string
+          description: The value of the idenitifier of the account in the format of the identifier_type
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/BankDetails'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: identifier_type_is_required
+              category: identifier_type
+              message: identifier_type is required
+              params: ''
+            - code: identifier_type_not_in_range
+              category: identifier_type
+              message: 'identifier_type should be in range: iban'
+              params: '{ "range" => "iban" }'
+            - code: identifier_value_is_required
+              category: identifier_value
+              message: identifier_value is required
+              params: ''
+            - code: identifier_value_is_empty
+              category: identifier_value
+              message: identifier_value should not be empty
+              params: '{ "type" => "not_empty_string" }'
+            - code: invalid_iban
+              category: base
+              message: IBAN is invalid
+              params: ''
+            - code: cannot_retrieve_bank_data
+              category: base
+              message: Bank Details service is temporarily unavailable
+              params: ''
+          schema:
+            $ref: '#/definitions/GetBankDetailsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /reference/beneficiary_required_details:
     get:
       tags:
@@ -14275,6 +14402,67 @@ definitions:
       amount: '1000.00'
       created_at: '2017-12-31T23:59:59.000Z'
       updated_at: '2017-12-31T23:59:59.000Z'
+  BankDetails:
+    type: object
+    description: Bank Details.
+    required:
+      - identifier_type
+      - identifier_value
+    additionalProperties: false
+    properties:
+      identifier_type:
+        type: string
+        description: account identifier type.
+      identifier_value:
+        type: string
+        description: account identifier value.
+      account_number:
+        type: string
+        description: account number.
+      bic_swift:
+        type: string
+        description: BIC/SWIFT code.
+      bank_name:
+        type: string
+        description: Name of the bank.
+      bank_branch:
+        type: string
+        description: Branch of the bank.
+      bank_address:
+        type: string
+        description: Address of the bank.
+      bank_city:
+        type: string
+        description: City of the bank.
+      bank_state:
+        type: string
+        description: State the bank is situated in. Available in all countries using states.
+      bank_post_code:
+        type: string
+        description: The post code of the bank or the zip code for USA banks.
+      bank_country:
+        type: string
+        description: Full country name.
+      bank_country_ISO:
+        type: string
+        description: 2 letter ISO country code.
+      currency:
+        type: string
+        description: 3 letter ISO currency code.
+    example:
+      identifier_type: iban
+      identifier_value: FR7530002002460000012345X12
+      account_number: FR7530002002460000012345X12
+      bic_swift: CRLYFRPPXXX
+      bank_name: CREDIT LYONNAIS
+      bank_branch: AG STALINGRAD
+      bank_address: 212 BOULEVARD DE LA VILLETTE
+      bank_city: PARIS
+      bank_state: PARIS
+      bank_post_code: 75019
+      bank_country: FRANCE
+      bank_country_ISO: FR
+      currency: null
   Beneficiary:
     type: object
     description: Beneficiary.
@@ -16062,6 +16250,51 @@ definitions:
     type: object
     description: |
       Client error information for the Get Balance endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  GetBankDetailsError:
+    type: object
+    description: |
+      Client error information for the Get Bank Details endpoint.
     required:
       - error_code
       - error_messages
