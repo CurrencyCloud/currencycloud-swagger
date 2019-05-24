@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.5.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.5.0) (2019-04-25)
+   - Adds get bank_details endpoint
+   - Adds beneficiary_external_reference parameter to beneficiaries create and update endpoints
+   - Fixes missing parameters in BeneficiaryRequirements definition
+
 ## [2.4.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.4.0) (2019-04-25)
    - Removes support for deprecated VANS and IBANS operations
    - Deprecates all settlement operations
