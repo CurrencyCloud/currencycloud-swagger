@@ -10071,6 +10071,7 @@ paths:
           type: string
           enum:
             - iban
+            - bic_swift
           description: The type of the idenitifier used to identify the account
         - name: identifier_value
           in: query
@@ -10108,6 +10109,10 @@ paths:
             - code: invalid_iban
               category: base
               message: IBAN is invalid
+              params: ''
+            - code: invalid_bic
+              category: base
+              message: Given BIC is not valid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
