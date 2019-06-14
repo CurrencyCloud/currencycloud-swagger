@@ -10112,7 +10112,7 @@ paths:
               params: ''
             - code: invalid_bic
               category: base
-              message: Given BIC is not valid
+              message: BIC is invalid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
