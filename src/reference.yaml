@@ -14942,11 +14942,14 @@ definitions:
       first_conversion_date:
         type: string
         format: date
-        description: Example - "2017-12-31".
+        description: The first conversion date
       default_conversion_date:
         type: string
         format: date
-        description: Example - "2017-12-31".
+        description: The default conversion date
+      cut_off_time:
+        type: string
+        description: The cut off time.
     example:
       invalid_conversion_dates:
         '2013-04-18': Good Friday
@@ -14970,8 +14973,9 @@ definitions:
         '2013-06-07': No trading on Saturday
         '2013-06-08': No trading on Sunday
         '2013-06-14': No trading on Saturday
-      first_conversion_date: '2013-04-15T00:00:00.000Z'
-      default_conversion_date: '2013-04-17T00:00:00.000Z'
+      first_conversion_date: '2013-04-15'
+      default_conversion_date: '2013-04-17'
+      cut_off_time: '13:30'
   ConversionSplitDetails:
     properties:
       id:
