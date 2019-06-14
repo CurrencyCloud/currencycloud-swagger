@@ -10114,7 +10114,7 @@ paths:
               params: ''
             - code: invalid_bic
               category: base
-              message: Given BIC is not valid
+              message: BIC is invalid
               params: ''
             - code: invalid_aba
               category: base
