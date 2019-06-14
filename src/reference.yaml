@@ -10072,6 +10072,8 @@ paths:
           enum:
             - iban
             - bic_swift
+            - aba
+            - sort_code
           description: The type of the idenitifier used to identify the account
         - name: identifier_value
           in: query
@@ -10113,6 +10115,14 @@ paths:
             - code: invalid_bic
               category: base
               message: Given BIC is not valid
+              params: ''
+            - code: invalid_aba
+              category: base
+              message: aba is invalid
+              params: ''
+            - code: invalid_sort_code
+              category: base
+              message: Sort Code is invalid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
