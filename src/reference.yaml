@@ -86,6 +86,9 @@ tags:
       Create, search and manage Virtual Accounts (VANs) assigned to your
       Currencycloud account balance or your sub-accounts' balances. You can also
       retrieve and assign VANs to the account.
+  - name: Withdrawal Accounts
+    description: >-
+      Manage withdrawal accounts
 schemes:
   - https
 host: devapi.currencycloud.com
@@ -14183,7 +14186,7 @@ paths:
   /withdrawal_accounts/find:
     get:
       tags:
-        - Accounts
+        - Withdrawal Accounts
       x-api-group: manage
       summary: Find Withdrawal Account
       description: >-
@@ -14310,7 +14313,7 @@ paths:
   /withdrawal_accounts/{withdrawal_account_id}/pull_funds:
     post:
       tags:
-        - Accounts
+        - Withdrawal Accounts
       x-api-group: manage
       summary: Pull Funds From Withdrawal Account
       description: >-
