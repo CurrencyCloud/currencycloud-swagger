@@ -10122,7 +10122,7 @@ paths:
               params: ''
             - code: invalid_sort_code
               category: base
-              message: Sort Code is invalid
+              message: SORT_CODE is invalid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
