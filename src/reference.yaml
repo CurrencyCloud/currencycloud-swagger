@@ -86,6 +86,9 @@ tags:
       Create, search and manage Virtual Accounts (VANs) assigned to your
       Currencycloud account balance or your sub-accounts' balances. You can also
       retrieve and assign VANs to the account.
+  - name: Withdrawal Accounts
+    description: >-
+      Manage withdrawal accounts
 schemes:
   - https
 host: devapi.currencycloud.com
@@ -14185,6 +14188,289 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /withdrawal_accounts/find:
+    get:
+      tags:
+        - Withdrawal Accounts
+      x-api-group: manage
+      summary: Find Withdrawal Account
+      description: >-
+        Lists all withdrawal accounts assigned to an account
+      operationId: FindWithdrawlAccount
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_id
+          in: query
+          required: false
+          type: string
+          description: >-
+            The UUID of a sub-account you want to see the withdrawal accounts for. If omitted the withdrawal accounts
+            for the house account and all sub-accounts are returned
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              withdrawal_accounts:
+                type: array
+                items:
+                  $ref: '#/definitions/WithdrawalAccount'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format
+              params: ''
+          schema:
+            $ref: '#/definitions/GetWithdrawalAccountError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: permission_denied
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /withdrawal_accounts/{withdrawal_account_id}/pull_funds:
+    post:
+      tags:
+        - Withdrawal Accounts
+      x-api-group: manage
+      summary: Pull Funds From Withdrawal Account
+      description: >-
+        Submits an ACH pull request from a specific withdrawal account.
+        The funds will be pulled into the account the specified withdrawal account is related to
+      operationId: FindWithdrawlAccount
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: withdrawal_account_id
+          in: path
+          required: true
+          type: string
+          description: >-
+            The withdrawal account ID you want to pull the funds from.
+            The funds will be pulled into the account id related to this withdrawal account
+        - name: reference
+          in: formData
+          required: true
+          type: string
+          description: The reference you want on the statement
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: The amount of funds to pull in USD
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/WithdrawalPullFundsRequestDetails'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: reference_is_required
+              category: reference
+              message: reference is required
+              params: ''
+            - code: reference_invalid
+              category: reference
+              message: >-
+                Only characters, digits, spaces, '_' and '-' allowed
+              params: ''
+            - code: reference_too_long
+              category: reference
+              message: Reference cannot be longer than 10 characters
+              params: ''
+            - code: amount_is_required
+              category: amount
+              message: amount is required
+              params: ''
+            - code: amount_is_in_invalid_format
+              category: amount
+              message: amount should be of numeric type with 2 dp
+              params: '{ "type" => "numeric_with_precision", "precision" => 2 }'
+            - code: amount_not_positive
+              category: amount
+              message: Amount should be positive
+              params: ''
+            - code: amount_not_allowed
+              category: amount
+              message: Amount should be up to 25000 limit
+              params: ''
+          schema:
+            $ref: '#/definitions/WithdrawalPullFundsRequestError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: permission_denied
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
 definitions:
   Account:
     type: object
@@ -17331,6 +17617,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetWithdrawalAccountError:
+    type: object
+    description: |
+      Client error information for the Get WithdrawalAccount endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   IBAN:
     type: object
     description: IBAN.
@@ -18712,4 +19043,129 @@ definitions:
       wire_routing_code: 026073008
       created_at: '2014-01-12T00:00:00.000Z'
       updated_at: '2014-01-12T00:00:00.000Z'
-
+  WithdrawalAccount:
+    type: object
+    description: WithdrawalAccount.
+    required:
+      - id
+      - account_name
+      - account_holder_name
+      - account_holder_dob
+      - routing_code
+      - account_number
+      - currency
+      - account_id
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        description: The UUID of the withdrawal account
+      account_name:
+        type: string
+        description: The name of the withdrawal account
+      account_holder_name:
+        type: string
+        description: The name of the withdrawal account holder
+      account_holder_dob:
+        type: string
+        format: date
+        description: The DOB of the withdrawal account holder
+      routing_code:
+        type: string
+        description: The routing code of the withdrawal account
+      account_number:
+        type: string
+        description: The account number of the withdrawal account
+      currency:
+        type: string
+        description: The currency of the withdrawal account
+      account_id:
+        type: string
+        description: The UUID of the CurrencyCloud account the withdrawal account is linked to
+    example:
+      id: ffb9fdea-312b-4bc8-beb9-5e44ee2d2a8c
+      account_name: TestAccount
+      account_holder_name: John Smith
+      account_holder_dob: '1987-05-12'
+      routing_code: 987654321
+      account_number: 0123456789
+      currency: USD
+      account_id: 82214b7e-9192-4d9e-82cf-e2c4b1670f23
+  WithdrawalPullFundsRequestDetails:
+    type: object
+    description: Details of a Withdrawal Pull Request.
+    required:
+      - id
+      - withdrawal_account_id
+      - reference
+      - amount
+      - created_at
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        description: The UUID of the withdrawal account
+      withdrawal_account_id:
+        type: string
+        description: The name of the withdrawal account
+      reference:
+        type: string
+        description: The name of the withdrawal account holder
+      amount:
+        type: string
+        description: The dob of the withdrawal account holder
+      created_at:
+        type: string
+        format: date-time
+        description: The routing code of the withdrawal account
+    example:
+      id: 82214b7e-9192-4d9e-82cf-e2c4b1670f23
+      withdrawal_account_id: ffb9fdea-312b-4bc8-beb9-5e44ee2d2a8c
+      reference: Reference
+      amount: 1000.00
+      created_at: '2019-04-18T08:17:22+00:00'
+  WithdrawalPullFundsRequestError:
+    type: object
+    description: |
+      Client error information for the Post WithdrawalAccount PullFunds endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
