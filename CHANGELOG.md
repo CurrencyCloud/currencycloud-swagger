@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.6.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.6.0) (2019-06-25)
+   - Adds find withdrawal_accounts end point
+   - Adds pull_funds from withdrawal_accounts end point
+   - Adds bic_swift option to identifier_type of bank_details end point
+
 ## [2.5.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.5.0) (2019-04-25)
    - Adds get bank_details endpoint
    - Adds beneficiary_external_reference parameter to beneficiaries create and update endpoints
