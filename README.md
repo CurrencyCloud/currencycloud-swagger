@@ -37,12 +37,13 @@ It is recommended that the latest tagged release should be used instead of maste
 ### Releases
 **Current**
 
-- [2.5.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.5.0)
+- [2.6.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.6.0)
 
 For details on the contents of releases see [CHANGELOG](CHANGELOG.md)
 
 **Previous**
 
+- [2.5.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.5.0)
 - [2.4.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.4.0)
 - [2.3.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.3.0b)
 - [2.2.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.2.0)
