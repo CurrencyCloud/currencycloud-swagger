@@ -10075,6 +10075,8 @@ paths:
           enum:
             - iban
             - bic_swift
+            - aba
+            - sort_code
           description: The type of the idenitifier used to identify the account
         - name: identifier_value
           in: query
@@ -10099,8 +10101,8 @@ paths:
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: 'identifier_type should be in range: iban'
-              params: '{ "range" => "iban, bic_swift" }'
+              message: 'identifier_type should be in range: iban, bic_swift, sort_code, aba'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
@@ -10116,6 +10118,14 @@ paths:
             - code: invalid_bic
               category: base
               message: BIC_SWIFT is invalid
+              params: ''
+            - code: invalid_aba
+              category: base
+              message: ABA is invalid
+              params: ''
+            - code: invalid_sort_code
+              category: base
+              message: SORT_CODE is invalid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
