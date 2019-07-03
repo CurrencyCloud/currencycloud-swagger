@@ -10098,8 +10098,8 @@ paths:
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: 'identifier_type should be in range: iban, bic_swift, aba, sort_code'
-              params: '{ "range" => "iban, bic_swift, aba, sort_code" }'
+              message: 'identifier_type should be in range: iban, bic_swift, sort_code, aba'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
