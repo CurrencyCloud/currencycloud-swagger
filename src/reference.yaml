@@ -14334,7 +14334,7 @@ paths:
       description: >-
         Submits an ACH pull request from a specific withdrawal account.
         The funds will be pulled into the account the specified withdrawal account is related to
-      operationId: FindWithdrawlAccount
+      operationId: PullFundsFromWithdrawlAccount
       produces:
         - application/json
       parameters:
