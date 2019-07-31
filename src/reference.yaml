@@ -17839,7 +17839,7 @@ definitions:
     properties:
       hmac_key:
         type: string
-        decription: The generated HMAC Key
+        description: The generated HMAC Key
     example:
       hmac_key: 9562c7c1094dfe8f46125aa3f3c0d141471fadd443828bb0
   IBAN:
