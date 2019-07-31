@@ -5607,13 +5607,14 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: generate_hmac_key_no_permissions
-              category: ''
-              message: You don't have permissions to generate HMAC key
-              params: ''
             - code: generate_hmac_key_wrong_brand
-              category: ''
+              category: base
               message: HMAC key can't be generated for that brand
+              params: ''
+            - code: generate_hmac_key_brand_not_configured
+              category: base
+              message: >-
+                Brand #{brand} should be configured first
               params: ''
           schema:
             $ref: '#/definitions/GenrateHMACKeyError'
@@ -5630,6 +5631,18 @@ paths:
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: permission_denied
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
           headers:
             X-Request-Id:
               type: string
