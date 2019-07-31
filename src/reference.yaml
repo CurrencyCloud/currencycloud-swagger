@@ -10202,8 +10202,8 @@ paths:
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: 'identifier_type should be in range: iban, bic_swift, sort_code, aba'
-              params: '{ "range" => "iban, bic_swift, sort_code, aba" }'
+              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
@@ -10227,6 +10227,18 @@ paths:
             - code: invalid_sort_code
               category: base
               message: SORT_CODE is invalid
+              params: ''
+            - code: invalid_bsb
+              category: base
+              message: BSB_CODE is invalid
+              params: ''
+            - code: invalid_routing_number
+              category: base
+              message: ROUTING_NUMBER is invalid
+              params: ''
+            - code: invalid_cnap
+              category: base
+              message: CNAPS is invalid
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
@@ -14435,7 +14447,7 @@ paths:
       description: >-
         Submits an ACH pull request from a specific withdrawal account.
         The funds will be pulled into the account the specified withdrawal account is related to
-      operationId: FindWithdrawlAccount
+      operationId: PullFundsFromWithdrawlAccount
       produces:
         - application/json
       parameters:
