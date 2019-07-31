@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.7.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.7.0) (2019-08-01)
+   - Adds additional supported identifier types to bank details end point
+   - Adds contacts generate_hmac_key end point
+   - Fixes duplicated operation Id for Pull Funds From Withdrawal Account
+
 ## [2.6.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.6.0) (2019-06-25)
    - Adds find withdrawal_accounts end point
    - Adds pull_funds from withdrawal_accounts end point
