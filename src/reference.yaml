@@ -5576,6 +5576,107 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /contacts/generate_hmac_key:
+    post:
+      tags:
+        - Contacts
+      x-api-group: manage
+      summary: Generate HMAC Key for Contact
+      description: >-
+        Generates a new HMAC key for the current contact.
+      operationId: GenrateHMACKey
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/HMACKey'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: generate_hmac_key_no_permissions
+              category: ''
+              message: You don't have permissions to generate HMAC key
+              params: ''
+            - code: generate_hmac_key_wrong_brand
+              category: ''
+              message: HMAC key can't be generated for that brand
+              params: ''
+          schema:
+            $ref: '#/definitions/GenrateHMACKeyError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /conversions/create:
     post:
       tags:
@@ -16277,6 +16378,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GenrateHMACKeyError:
+    type: object
+    description: |
+      Client error information for the Contacts Generate HMAC Key endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GenerateReportError:
     type: object
     description: |
@@ -17672,6 +17818,18 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  HMACKey:
+    type: object
+    description: HMAC Key.
+    required:
+      - hmac_key
+    additionalProperties: false
+    properties:
+      hmac_key:
+        type: string
+        decription: The generated HMAC Key
+    example:
+      hmac_key: 9562c7c1094dfe8f46125aa3f3c0d141471fadd443828bb0
   IBAN:
     type: object
     description: IBAN.
