@@ -10252,7 +10252,7 @@ paths:
               category: base
               message: ROUTING_NUMBER is invalid
               params: ''
-            - code: invalid_cnap
+            - code: invalid_cnaps
               category: base
               message: CNAPS is invalid
               params: ''
