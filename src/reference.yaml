@@ -7549,7 +7549,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
   /funding_accounts/find:
     get:
       tags:
