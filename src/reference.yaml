@@ -10974,7 +10974,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
   /reference/payment_fee_rules:
     get:
       tags:
@@ -11114,7 +11113,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
   /reference/payment_purpose_codes:
     get:
       tags:
