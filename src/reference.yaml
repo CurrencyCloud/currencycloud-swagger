@@ -9707,6 +9707,167 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /payments/quote_payment_fee:
+    get:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Get Quote Payment Fee
+      description: >-
+        Gets the calculated quote for the fee that will be applied against a payment
+      operationId: GetQuotePaymentFee
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_id
+          in: query
+          required: false
+          type: string
+          description: Account UUID. If this is left empty, the account that makes the API call is used
+        - name: payment_currency
+          in: query
+          required: true
+          type: string
+          description: Account UUID.
+        - name: payment_destination_country
+          in: query
+          required: true
+          type: string
+          description: Account UUID.
+        - name: payment_type
+          in: query
+          required: true
+          type: string
+          enum:
+            - priority
+            - regular
+          description: Payment Charges Setting value
+        - name: charge_type
+          in: query
+          required: false
+          type: string
+          enum:
+            - ours
+            - shared
+          description: Payment Charges value. if no value is provided the default value is used
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/QuotePaymentFee'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format
+              params: ''
+            - code: payment_currency_is_required
+              category: payment_currency
+              message: payment_currency is required
+              params: ''
+            - code: payment_currency_is_in_invalid_format
+              category: payment_currency
+              message: payment_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: payment_destination_country_is_required
+              category: payment_destination_country
+              message: payment_destination_country is required
+              params: ''
+            - code: payment_destination_country_is_in_invalid_format
+              category: payment_destination_country
+              message: payment_destination_country is in invalid format
+              params: ''
+            - code: charge_type_is_required
+              category: charge_type
+              message: charge_type is required
+              params: ''
+            - code: charge_type_not_in_range
+              category: charge_type
+              message: 'charge_type should be in range: shared, ours'
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: payment_type_not_in_range
+              category: payment_type
+              message: 'payment_type should be in range: priority, regular'
+              params: '{ "payment_type" => "priority, regular" }'
+          schema:
+            $ref: '#/definitions/GetQuotePaymentFeeError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
   '/payers/{id}':
     get:
       tags:
@@ -10988,7 +11149,7 @@ paths:
       parameters:
         - name: X-Auth-Token
           in: header
-          required: false
+          required: true
           type: string
           description: Authentication token.
         - name: account_id
@@ -17670,6 +17831,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetQuotePaymentFeeError:
+    type: object
+    description: |
+      Client error information for the Get Quote Payment Fee endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetReportRequestError:
     type: object
     description: |
@@ -18589,6 +18795,48 @@ definitions:
         group: 0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
+  QuotePaymentFee:
+    type: object
+    description: QuotePaymentFee.
+    required:
+      - account_id
+      - payment_currency
+      - payment_destination_country
+      - payment_type
+      - charge_type
+      - fee_amount
+      - fee_currency
+    additionalProperties: false
+    properties:
+      account_id:
+        type: string
+        description: Tha account Id
+      payment_currency:
+        type: string
+        description: The currency of the payment
+      payment_destination_country:
+        type: string
+        description: The destination country for the payment
+      payment_type:
+        type: string
+        description: The payment type the fee is applicable to
+      charge_type:
+        type: string
+        description: The charge type the fee is applicable to
+      fee_amount:
+        type: string
+        description: The fee amount
+      fee_currency:
+        type: string
+        description: The fee currency
+    example:
+       account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
+       payment_currency: USD
+       payment_destination_country: US
+       payment_type: regular
+       charge_type: null
+       fee_amount: '10.00'
+       fee_currency: EUR
   RatesBasic:
     properties:
       rates:
