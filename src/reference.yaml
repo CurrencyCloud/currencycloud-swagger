@@ -9707,7 +9707,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
   /payments/quote_payment_fee:
     get:
       tags:
