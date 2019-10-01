@@ -7903,6 +7903,16 @@ paths:
             Payment Charges Setting value (only applicable to SWIFT payments).
             If empty - then account's default value is used.
             Do not specify for regular (local) payments.
+        - name: fee_amount
+          in: formData
+          required: false
+          type: string
+          description: Fee amount.
+        - name: fee_currency
+          in: formData
+          required: false
+          type: string
+          description: Currency fee is paid in.
       responses:
         '200':
           description: Success.
@@ -8080,6 +8090,14 @@ paths:
                 used, please provide a new unique_request_id to successfully
                 submit this payment
               params: ''
+            - code: fee_amount_type_is_wrong
+              category: fee_amount
+              message: fee_amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: fee_currency_is_in_invalid_format
+              category: fee_currency
+              message: fee_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
@@ -8803,6 +8821,16 @@ paths:
             Payment Charges Setting value (only applicable to SWIFT payments).
             If empty - then account's default value is used.
             Do not specify for regular (local) payments.
+        - name: fee_amount
+          in: formData
+          required: false
+          type: string
+          description: Fee amount.
+        - name: fee_currency
+          in: formData
+          required: false
+          type: string
+          description: Currency Fee is paid in.
       responses:
         '200':
           description: Success.
@@ -8987,6 +9015,14 @@ paths:
               category: on_behalf_of
               message: Not available charge_type has been provided for on_behalf_of
               params: '{ "charge_type" => "shared, ours" }'
+            - code: fee_amount_type_is_wrong
+              category: fee_amount
+              message: fee_amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: fee_currency_is_in_invalid_format
+              category: fee_currency
+              message: fee_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
@@ -13427,6 +13463,7 @@ paths:
             - transfer
             - conversion_deposit
             - deposit_refund
+            - payment_fee
           description: The action that triggered the transaction.
         - name: related_entity_type
           in: query
@@ -13602,7 +13639,7 @@ paths:
             - code: related_entity_type_not_in_range
               category: related_entity_type
               message: "related_entity_type should be in range: conversion, payment, inbound_funds, deposit, transfer"
-              params: '{ "range" => "conversion, payment, inbound_funds, deposit, transfer" }'
+              params: '{ "range" => "conversion, payment, inbound_funds, deposit, transfer, payment_fee" }'
             - code: action_not_in_range
               category: action
               message: >-
@@ -18353,6 +18390,10 @@ definitions:
         type: string
       purpose_code:
         type: string
+      fee_amount:
+        type: string
+      fee_currency:
+        type: string
     example:
       id: 543477161-91de-012f-e284-1e0030c7f3123
       short_reference: 140416-GGJBNQ001
@@ -18378,6 +18419,8 @@ definitions:
       failure_returned_amount: ''
       ultimate_beneficiary_name: Some beneficiary name
       purpose_code: ''
+      fee_amount: '10.00'
+      fee_currency: EUR
   PaymentAuthorisations:
     type: object
     description: Payment Authorisations.
@@ -19027,6 +19070,10 @@ definitions:
         type: string
       reason:
         type: string
+      fee_amount:
+        type: string
+      fee_currency:
+        type: string
     example:
       id: 993d63bd-e151-11e6-a5af-080027a79e8f
       short_reference: BT-20170118-VMSCBS
@@ -19041,6 +19088,8 @@ definitions:
       creator_account_id: 30cb8632-e152-11e6-a5af-080027a79e8f
       creator_contact_id: 262e3d2a-e152-11e6-a5af-080027a79e8f
       reason: Director's fees for March
+      fee_amount: ''
+      fee_currency: ''
   UnauthorizedError:
     type: object
     description: Authorization error.
