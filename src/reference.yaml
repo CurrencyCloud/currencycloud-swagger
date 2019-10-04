@@ -44,7 +44,7 @@ tags:
       between two currencies.
   - name: Funding
     description: >-
-      Gives you the ability to find Funding accounts  that can use to settle
+      Gives you the ability to find funding accounts that can be used to settle
       and collect funds in each available currency
   - name: IBANs
     description: >-
