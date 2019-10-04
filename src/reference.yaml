@@ -7630,10 +7630,10 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: payment_type_is_not_supported
+            - code: payment_type_not_in_range
               category: payment_type
-              message: Payment type is not supported
-              params: ''
+              message: 'payment_type should be in range: priority, regular'
+              params: '{ "range" => "priority, regular" }'
             - code: currency_is_in_invalid_format
               category: currency
               message: currency is not a valid ISO 4217 currency code
@@ -7641,6 +7641,10 @@ paths:
             - code: currency_is_not_supported
               category: currency
               message: currency is not supported
+              params: ''
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format
               params: ''
           schema:
             $ref: '#/definitions/FindFundingAccountsError'
