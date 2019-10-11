@@ -42,6 +42,10 @@ tags:
       Gives you the ability to find, retrieve and create a live currency
       conversion. You can also create and manage the live conversion of funds
       between two currencies.
+  - name: Funding
+    description: >-
+      Gives you the ability to find funding accounts that can be used to settle
+      and collect funds in each available currency
   - name: IBANs
     description: >-
       Create, search and manage International Bank Account Numbers (IBANs)
@@ -7545,6 +7549,174 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /funding_accounts/find:
+    get:
+      tags:
+        - Funding
+      x-api-group: collect
+      summary: Find Funding Accounts
+      description: >-
+        Gets details of the SSIs that can be used to settle and collect funds in each available currency
+      operationId: FindFundingAccounts
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: payment_type
+          in: query
+          required: false
+          type: string
+          description: >-
+            The type of SSI to be returned e.g. priority (SWIFT) or regular. Defaults to all.
+          enum:
+            - all
+            - priority
+            - regular
+          default: all
+        - name: currency
+          in: query
+          required: false
+          type: string
+          description: The currency of the account details required. ISO 4217 standard.
+        - name: account_id
+          in: query
+          required: false
+          type: string
+          description: UUID of a specific account you want to see the SSIs for
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              funding_accounts:
+                type: array
+                items:
+                  $ref: '#/definitions/FundingAccount'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: payment_type_not_in_range
+              category: payment_type
+              message: 'payment_type should be in range: priority, regular'
+              params: '{ "range" => "priority, regular" }'
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: currency_is_not_supported
+              category: currency
+              message: currency is not supported
+              params: ''
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format
+              params: ''
+          schema:
+            $ref: '#/definitions/FindFundingAccountsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
+
+
   /ibans/find:
     get:
       tags:
@@ -16526,6 +16698,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  FindFundingAccountsError:
+    type: object
+    description: |
+      Client error information for the Find Funding Accounts endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   FindPaymentsError:
     type: object
     description: |
@@ -16706,6 +16923,113 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  FundingAccount:
+    type: object
+    description: FundingAccount.
+    required:
+      - id
+      - account_id
+      - account_number
+      - account_number_type
+      - account_holder_name
+      - bank_name
+      - bank_address
+      - bank_country
+      - currency
+      - payment_type
+      - regular_routing_code
+      - regular_routing_code_type
+      - priority_routing_code
+      - priority_routing_code_type
+      - created_at
+      - updated_at
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        description: The unique UUID of the SSI
+      account_id:
+        type: string
+        description: The account ID the SSI is attached to. If money is paid to the account details, this account will be credited.
+      account_number:
+        type: string
+        description: The account number to use when adding funds to the account.
+      account_number_type:
+        type: string
+        description: The type of account number provided (e.g. account number of IBAN).
+        enum:
+          - account_number
+          - iban
+      account_holder_name:
+        type: string
+        description: The name of the account used to make a payment.
+      bank_name:
+        type: string
+        description: The name of the bank the account is held with.
+      bank_address:
+        type: string
+        description: The address of the bank the account is held with.
+      bank_country:
+        type: string
+        description: The 2 digit ISO country code where the bank is based.
+      currency:
+        type: string
+        description: The currency that should be sent to these account details.
+      payment_type:
+        type: string
+        description: >-
+          The type of payment that can be made into the account details provided.
+          Regular - an in country scheme such as faster payments in the UK
+          Priority - a priority payment eg FEDwire or using SWIFT
+        enum:
+          - regular
+          - priority
+          - any
+      regular_routing_code:
+        type: string
+        description: The particular routing card for this account number.
+      regular_routing_code_type:
+        type: string
+        description: The type of routing number
+        enum:
+          - bic_swift
+          - sort_code
+          - ach_routing_code
+      priority_routing_code:
+        type: string
+        description: The particular priority routing card for this account number.
+      priority_routing_code_type:
+        type: string
+        description: The type of routing number
+        enum:
+          - bic_swift
+          - sort_code
+          - wire_routing_code
+      created_at:
+        type: string
+        description: The date-time the SSI was added to the account.
+        format: date-time
+      updated_at:
+        type: string
+        description: The date-time the SSI was last updated on the account.
+        format: date-time
+    example:
+      id: b7981972-8e29-485b-8a4a-9643fc9ae4ea
+      account_id: 8d98bdc8-e8e3-47dc-bd08-3dd0f4f7ea7b
+      account_number: GB61TCCL00997950423807
+      account_number_type: IBAN
+      account_holder_name: Jon Doe
+      bank_name: The Currency Cloud
+      bank_address: '12 Steward Street, The Steward Building, London, E1 6FQ, GB'
+      bank_country: UK
+      currency: EUR
+      payment_type: regular
+      regular_routing_code: TCCLGB31
+      regular_routing_code_type: bic_swift
+      priority_routing_code: ''
+      priority_routing_code_type: ''
+      created_at: '2018-05-14T14:18:30+00:00'
+      updated_at: '2018-05-14T14:18:30+00:00'
   GenrateHMACKeyError:
     type: object
     description: |
