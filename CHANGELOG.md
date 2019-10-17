@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.8.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.8.0) (2019-10-11)
+   - Updates error response on bank_details endpoint for invalid cnaps
+   - Adds find funding accounts end point
+   - Adds get payment level fees endpoint
+   - Adds get quote payment fee endpoint
+   
 ## [2.7.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.7.0) (2019-08-01)
    - Adds additional supported identifier types to bank details end point
    - Adds contacts generate_hmac_key end point
