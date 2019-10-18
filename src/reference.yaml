@@ -9941,12 +9941,12 @@ paths:
           in: query
           required: true
           type: string
-          description: Account UUID.
+          description: Currency of the payment.
         - name: payment_destination_country
           in: query
           required: true
           type: string
-          description: Account UUID.
+          description: Destination Country of the payment.
         - name: payment_type
           in: query
           required: true
@@ -9954,7 +9954,7 @@ paths:
           enum:
             - priority
             - regular
-          description: Payment Charges Setting value
+          description: Payment Type
         - name: charge_type
           in: query
           required: false
@@ -9962,7 +9962,7 @@ paths:
           enum:
             - ours
             - shared
-          description: Payment Charges value. if no value is provided the default value is used
+          description: Payment Charges type. if no value is provided the accounts default value is used
       responses:
         '200':
           description: Success.
