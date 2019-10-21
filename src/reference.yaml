@@ -13972,15 +13972,15 @@ paths:
             - code: related_entity_type_not_in_range
               category: related_entity_type
               message: "related_entity_type should be in range: conversion, payment, inbound_funds, deposit, transfer"
-              params: '{ "range" => "conversion, payment, inbound_funds, deposit, transfer", payment_fee }'
+              params: '{ "range" => "conversion, payment, inbound_funds, deposit, transfer" }'
             - code: action_not_in_range
               category: action
               message: >-
                 action should be in range: funding, conversion, payment, payment_failure, manual_intervention,
-                manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund
+                manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease, payment_fee
               params: >-
-                { "range" => "funding, conversion, payment, payment_failure, manual_intervention,
-                manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund" }
+                { "range" => "funding, conversion, payment, payment_failure, manual_intervention, manual_transaction,
+                top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease, payment_fee" }
             - code: scope_not_in_range
               category: scope
               message: "scope should be in range: own, all, clients"
