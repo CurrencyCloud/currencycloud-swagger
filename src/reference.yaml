@@ -19644,10 +19644,6 @@ definitions:
         type: string
       reason:
         type: string
-      fee_amount:
-        type: string
-      fee_currency:
-        type: string
     example:
       id: 993d63bd-e151-11e6-a5af-080027a79e8f
       short_reference: BT-20170118-VMSCBS
@@ -19662,8 +19658,6 @@ definitions:
       creator_account_id: 30cb8632-e152-11e6-a5af-080027a79e8f
       creator_contact_id: 262e3d2a-e152-11e6-a5af-080027a79e8f
       reason: Director's fees for March
-      fee_amount: ''
-      fee_currency: ''
   UnauthorizedError:
     type: object
     description: Authorization error.
