@@ -8399,6 +8399,7 @@ paths:
             - submitted
             - authorised
             - deleted
+            - awaiting_balance
           description: Payment status.
         - name: reason
           in: query
