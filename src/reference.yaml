@@ -8270,6 +8270,11 @@ paths:
               category: fee_currency
               message: fee_currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
+            - code: unsupported_beneficiary_country_code
+              category: beneficiary_country_code
+              message: Beneficiary country is not supported
+              params: ''
+
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
