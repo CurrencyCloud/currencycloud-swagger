@@ -7715,7 +7715,7 @@ paths:
           default: all
         - name: currency
           in: query
-          required: false
+          required: true
           type: string
           description: The currency of the account details required. ISO 4217 standard.
         - name: account_id
