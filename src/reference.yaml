@@ -13798,6 +13798,8 @@ paths:
             - conversion_deposit
             - deposit_refund
             - payment_fee
+            - payment_unrelease
+            - margin
           description: The action that triggered the transaction.
         - name: related_entity_type
           in: query
@@ -13979,11 +13981,11 @@ paths:
               message: >-
                 action should be in range: funding, conversion, payment, payment_failure, manual_intervention,
                 manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease,
-                payment_fee
+                payment_fee, margin
               params: >-
                 { "range" => "funding, conversion, payment, payment_failure, manual_intervention,
                 manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease,
-                payment_fee" }
+                payment_fee, margin" }
             - code: scope_not_in_range
               category: scope
               message: "scope should be in range: own, all, clients"
