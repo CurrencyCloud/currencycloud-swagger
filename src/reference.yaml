@@ -2022,11 +2022,15 @@ paths:
             - code: currency_is_in_invalid_format
               category: currency
               message: currency is in invalid format
-              params: ''
+              params: '{ "type" => "currency" }'
             - code: amount_is_required
               category: amount
               message: amount is required
               params: ''
+            - code: amount_type_is_wrong
+              category: amount
+              message: amount should be of numeric_greater_than_zero type
+              params: '{ "type" => "numeric_greater_than_zero" }'
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
@@ -2034,6 +2038,10 @@ paths:
             - code: contact_not_found
               category: on_behalf_of
               message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
               params: ''
           schema:
             $ref: '#/definitions/TopUpMarginBalanceError'
