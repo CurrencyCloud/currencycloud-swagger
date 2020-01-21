@@ -17115,10 +17115,8 @@ definitions:
       - bank_country
       - currency
       - payment_type
-      - regular_routing_code
-      - regular_routing_code_type
-      - priority_routing_code
-      - priority_routing_code_type
+      - routing_code
+      - routing_code_type
       - created_at
       - updated_at
     additionalProperties: false
@@ -17163,26 +17161,16 @@ definitions:
           - regular
           - priority
           - any
-      regular_routing_code:
+      routing_code:
         type: string
         description: The particular routing card for this account number.
-      regular_routing_code_type:
+      routing_code_type:
         type: string
         description: The type of routing number
         enum:
           - bic_swift
           - sort_code
           - ach_routing_code
-      priority_routing_code:
-        type: string
-        description: The particular priority routing card for this account number.
-      priority_routing_code_type:
-        type: string
-        description: The type of routing number
-        enum:
-          - bic_swift
-          - sort_code
-          - wire_routing_code
       created_at:
         type: string
         description: The date-time the SSI was added to the account.
@@ -17202,10 +17190,8 @@ definitions:
       bank_country: UK
       currency: EUR
       payment_type: regular
-      regular_routing_code: TCCLGB31
-      regular_routing_code_type: bic_swift
-      priority_routing_code: ''
-      priority_routing_code_type: ''
+      routing_code: TCCLGB31
+      routing_code_type: bic_swift
       created_at: '2018-05-14T14:18:30+00:00'
       updated_at: '2018-05-14T14:18:30+00:00'
   GenrateHMACKeyError:
