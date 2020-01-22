@@ -480,7 +480,7 @@ paths:
           in: query
           required: false
           type: string
-          description: State or province.
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
         - name: postal_code
           in: query
           required: false
@@ -859,7 +859,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province.
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
         - name: postal_code
           in: formData
           required: false
@@ -1430,7 +1430,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province.
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
         - name: spread_table
           in: formData
           required: false
@@ -15298,7 +15298,7 @@ definitions:
         description: City.
       state_or_province:
         type: string
-        description: State or province.
+        description: State or province two-letter ISO 3166 code. Only applicable to some countries.
       country:
         type: string
         description: Two-letter country code.
