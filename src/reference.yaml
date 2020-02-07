@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: >-
-    The Currencycloud API is a robust, predictable, easy-to-use API for
+    The Currencycloud API is a reliable, predictable, easy-to-use API for
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
