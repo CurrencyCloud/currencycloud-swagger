@@ -10477,6 +10477,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: amount_is_in_invalid_format
+              category: amount
+              message: amount should be of numeric type with 2 dp
+              params: '{ "type" => "numeric_with_precision", "precision" => 2 }'
           schema:
             $ref: '#/definitions/GetDetailedRatesError'
           headers:
