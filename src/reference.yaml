@@ -9898,6 +9898,154 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /payments/assign_payment_fee:
+    post:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Assign Payment Fee
+      description: 'Assign payment fee table to specific sub-account.'
+      operationId: PaymentsAssignPaymentFee
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: payment_fee_id
+          in: formData
+          required: true
+          type: string
+          format: uuid
+          description: Id of the payment fee entity which will be assigned to teh account.
+        - name: account_id
+          in: formData
+          required: true
+          format: uuid
+          type: string
+          description: Id of the account which the payment fee will be assigned.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentFeeAssignment'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: payment_fee_id_is_required
+              category: payment_fee_id
+              message: payment_fee_id is required
+              params: ''
+            - code: payment_fee_id_is_not_valid_uuid
+              category: payment_fee_id
+              message: payment_fee_id should be in UUID format
+              params: ''
+            - code: account_id_is_required
+              category: account_id
+              message: account_id is required
+              params: ''
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format
+              params: ''
+            - code: account_configuration_is_invalid
+              category: base
+              message: Account is not enabled for CashManager or NewPaymentRelease flow
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/PaymentFeeAssignmentError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: permission_denied
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/payments/payment_delivery_date':
     get:
       tags:
@@ -19316,7 +19464,7 @@ definitions:
       bank_country: "MX"
   PaymentFee:
     type: object
-    description: PaymentFeeRule.
+    description: Payment Fee.
     required:
       - id
       - name
@@ -19358,6 +19506,66 @@ definitions:
       priority_shared_amount: '40.00'
       priority_ours_amount: '30.00'
       owner_account_id: null
+  PaymentFeeAssignment:
+    type: object
+    description: Payment Fee Assignment.
+    required:
+      - id
+      - account_id
+    additionalProperties: false
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: Id of the payment fee
+      account_id:
+        type: string
+        format: uuid
+        description: Id of the sub-account the rule is assigned to
+    example:
+      id: a6c4a482-1a56-49ea-be55-b9b0bb92a9b2
+      account_id: 0178a7ba-9a77-4c74-af71-a5f650f00e09
+  PaymentFeeAssignmentError:
+    type: object
+    description: |
+      Client error information for the Payment Fee Assignment endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   PaymentFeeRule:
     type: object
     description: PaymentFeeRule.
