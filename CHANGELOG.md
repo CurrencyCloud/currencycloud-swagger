@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.11.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.11.0) (2020-03-9)
+## [2.11.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.11.0) (2020-03-09)
    - Adds top_up_margin endpoint definition
 
 ## [2.10.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.10.0) (2020-01-22)
