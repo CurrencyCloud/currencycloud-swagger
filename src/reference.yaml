@@ -19707,6 +19707,8 @@ definitions:
       - charge_type
       - fee_amount
       - fee_currency
+      - payment_fee_id
+      - payment_fee_name
     additionalProperties: false
     properties:
       payment_type:
@@ -19721,11 +19723,20 @@ definitions:
       fee_currency:
         type: string
         description: The fee currency
+      payment_fee_id:
+        type: string
+        format: uuid
+        description: The id of payment level rule Id
+      payment_fee_name:
+        type: string
+        description: The name of payment level fee table
     example:
       payment_type: priority
       charge_type: shared
       fee_amount: '2.00'
       fee_currency: AED
+      payment_fee_id: 5c3b8754-406d-4e7e-a80e-606fa273ab80
+      payment_fee_name: fee_table_AED
   PaymentPurposeCodes:
     type: object
     description: Payment purpose codes.
