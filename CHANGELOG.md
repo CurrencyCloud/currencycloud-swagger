@@ -1,9 +1,11 @@
 # Changelog
 
+## [2.11.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.11.0) (2020-03-09)
+   - Adds top_up_margin endpoint definition
+
 ## [2.10.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.10.0) (2020-01-22)
    - Makes currency required for /funding_accounts/find 
-   - Adds top_up_margin endpoint definition  
-   - Adds "margin" to action enum in transactions find 
+   - Adds "margin" to action enum in transactions find
    - Adds awaiting_balance to status enum of find payments 
    - Adds unsupported_beneficiary_country_code error response to payments/create
    - Updates the routing_code parameters in Funding Accounts object
