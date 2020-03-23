@@ -31,9 +31,10 @@ All source files are UTF-8 encoded with Unix line-endings (``LF``, ``\n``). They
 We maintain a style guide for the Currencycloud API documentation. See [STYLE_GUIDE.md](STYLE_GUIDE.md).
 
 ## API Versions
-The current version of the API is the [latest tagged release](https://github.com/CurrencyCloud/currencycloud-swagger/releases/latest) and matches the documentation for the current Currencycloud API. 
+The current version of the API is the [latest tagged release](https://github.com/CurrencyCloud/currencycloud-swagger/releases/latest)
+and matches the documentation for the current Currencycloud API. Changes merged in master, but not yet part of a release,
+are not available on the API. The latest tagged release should be used instead of the swagger definition in master directly.
 
-It is recommended that the latest tagged release should be used instead of master directly.
 ### Releases
 **Current**
 
