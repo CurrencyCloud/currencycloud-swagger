@@ -1435,7 +1435,7 @@ paths:
           in: formData
           required: false
           type: string
-          default: no_markup
+          default: fxcg_rfx_default
           description: The name of the spread table assigned to the account.
         - name: api_trading
           in: formData
