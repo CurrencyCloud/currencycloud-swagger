@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.12.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.12.0) (2020-03-24)
+   - Adds /payments/assign_payment_fee endpoint
+   - Adds /payments/payment_fees endpoint
+   - Adds /payments/unassign_payment_fee endpoint
+   - Adds payment_fee_id and payment_fee_name to PaymentFeeRule response definition
+
 ## [2.11.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.11.0) (2020-03-09)
    - Adds top_up_margin endpoint definition
 
