@@ -19761,7 +19761,6 @@ definitions:
     type: object
     description: Payment Fee Unassignment.
     required:
-      - id
       - account_id
     additionalProperties: false
     properties:
