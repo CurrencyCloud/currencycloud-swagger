@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.13.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.13.0) (2020-05-04)
+   - Adds Conversion date preference parameter to /v2/rates/detailed and /v2/conversions/create
+
 ## [2.12.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.12.0) (2020-03-24)
    - Adds /payments/assign_payment_fee endpoint
    - Adds /payments/payment_fees endpoint
