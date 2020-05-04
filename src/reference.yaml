@@ -5908,7 +5908,7 @@ paths:
           type: string
           description: Contact UUID.
         - name: conversion_date_preference
-          in: query
+          in: formData
           required: false
           type: string
           enum:
