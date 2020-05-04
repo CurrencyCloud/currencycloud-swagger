@@ -5907,6 +5907,20 @@ paths:
           required: false
           type: string
           description: Contact UUID.
+        - name: conversion_date_preference
+          in: query
+          required: false
+          type: string
+          enum:
+            - earliest
+            - default
+            - optimize_liquidity
+          description: >-
+            Available only if conversion_date is not provided. Must be one of the following:<br>
+            'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'default' for conversion in 2 working days.<br>
+            'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
+            Conversion is within 1 or 2 working days depending on currencies.
       responses:
         '200':
           description: Success.
@@ -6106,6 +6120,14 @@ paths:
                 The unique_request_id provided for this conversion has already
                 been used, please provide a new unique_request_id to
                 successfully submit this conversion
+              params: ''
+            - code: invalid_conversion_date_combination
+              category: base
+              message: conversion_date_preference can not be specified along side a date parameter
+              params: ''
+            - code: invalid_conversion_date_preference
+              category: base
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
               params: ''
           schema:
             $ref: '#/definitions/CreateConversionError'
@@ -10803,6 +10825,20 @@ paths:
           description: >-
             Date of delivery of purchase currency. ISO 8601 format YYYY-MM-DD.
             If not specified, deals settle in two working days.
+        - name: conversion_date_preference
+          in: query
+          required: false
+          type: string
+          enum:
+            - earliest
+            - default
+            - optimize_liquidity
+          description: >-
+            Available only if conversion_date is not provided. Must be one of the following:<br>
+            'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'default' for conversion in 2 working days.<br>
+            'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
+            Conversion is within 1 or 2 working days depending on currencies.
       responses:
         '200':
           description: Success.
@@ -10887,6 +10923,14 @@ paths:
               category: amount
               message: amount should be of numeric type with 2 dp
               params: '{ "type" => "numeric_with_precision", "precision" => 2 }'
+            - code: invalid_conversion_date_combination
+              category: base
+              message: conversion_date_preference can not be specified along side a date parameter
+              params: ''
+            - code: invalid_conversion_date_preference
+              category: base
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
+              params: ''
           schema:
             $ref: '#/definitions/GetDetailedRatesError'
           headers:
