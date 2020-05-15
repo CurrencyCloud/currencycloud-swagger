@@ -15637,7 +15637,7 @@ paths:
               params: ''
             - code: amount_not_allowed
               category: amount
-              message: Amount should be up to 25000 limit
+              message: Amount should be up to 100000 limit
               params: ''
           schema:
             $ref: '#/definitions/WithdrawalPullFundsRequestError'
