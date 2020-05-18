@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.13.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.13.1) (2020-05-18)
+   - Updates amount limit error message on withdrawal_accounts pull_funds
+
 ## [2.13.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.13.0) (2020-05-04)
    - Adds Conversion date preference parameter to /v2/rates/detailed and /v2/conversions/create
 
