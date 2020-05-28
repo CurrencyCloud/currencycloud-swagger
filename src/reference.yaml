@@ -12828,16 +12828,6 @@ paths:
           required: false
           type: string
           description: 'Description, which was provided during the report creation process.'
-        - name: account_id
-          in: query
-          required: false
-          type: string
-          description: ID of account.
-        - name: contact_id
-          in: query
-          required: false
-          type: string
-          description: ID of contact.
         - name: created_at_from
           in: query
           required: false
