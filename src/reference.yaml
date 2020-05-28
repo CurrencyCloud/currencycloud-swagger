@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.13.1
+  version: 2.14.0
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -16471,11 +16471,11 @@ definitions:
       first_conversion_date:
         type: string
         format: date
-        description: Example - "2017-12-31".
+        description: The first conversion date.
       default_conversion_date:
         type: string
         format: date
-        description: Example - "2017-12-31".
+        description: The default conversion date.
       optimize_liquidity_conversion_date:
         type: string
         format: date
