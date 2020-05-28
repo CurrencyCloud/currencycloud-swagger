@@ -16486,31 +16486,32 @@ definitions:
         type: string
         format: date
         description: Example - "2017-12-31".
+      optimize_liquidity_conversion_date:
+        type: string
+        format: date
+        description: Optimal liquidity conversion date.
     example:
       invalid_conversion_dates:
-        '2013-04-18': Good Friday
-        '2013-04-19': No trading on Saturday
-        '2013-04-20': No trading on Sunday
-        '2013-04-21': Easter Monday
-        '2013-04-26': No trading on Saturday
-        '2013-04-27': No trading on Sunday
-        '2013-05-03': No trading on Saturday
-        '2013-05-04': No trading on Sunday
-        '2013-05-05': Early May Bank Holiday
-        '2013-05-10': No trading on Saturday
-        '2013-05-11': No trading on Sunday
-        '2013-05-17': No trading on Saturday
-        '2013-05-18': No trading on Sunday
-        '2013-05-24': No trading on Saturday
-        '2013-05-25': No trading on Sunday
-        '2013-05-26': Spring Bank Holiday
-        '2013-05-31': No trading on Saturday
-        '2013-06-01': No trading on Sunday
-        '2013-06-07': No trading on Saturday
-        '2013-06-08': No trading on Sunday
-        '2013-06-14': No trading on Saturday
-      first_conversion_date: '2013-04-15T00:00:00.000Z'
-      default_conversion_date: '2013-04-17T00:00:00.000Z'
+        '2020-11-21': No trading on Saturday
+        '2020-11-22': No trading on Sunday
+        '2020-11-28': No trading on Saturday
+        '2020-11-29': No trading on Sunday
+        '2020-12-05': No trading on Saturday
+        '2020-12-06': No trading on Sunday
+        '2020-12-12': No trading on Saturday
+        '2020-12-13': No trading on Sunday
+        '2020-12-19': No trading on Saturday
+        '2020-12-20': No trading on Sunday
+        '2020-12-25': Christmas Day
+        '2020-12-26': No trading on Saturday
+        '2020-12-27': No trading on Sunday
+        '2020-12-28': Boxing Day OBS
+        '2021-01-01': New Year's Day
+        '2021-01-02': No trading on Saturday
+        '2021-01-03': No trading on Sunday
+      first_conversion_date: '2020-11-18'
+      default_conversion_date: '2020-11-20'
+      optimize_liquidity_conversion_date: '2020-11-23'
   ConversionSplitDetails:
     properties:
       id:
