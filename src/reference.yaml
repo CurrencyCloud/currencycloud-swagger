@@ -20130,7 +20130,7 @@ definitions:
       uetr: 46ed4827-7b6f-4491-a06f-b548d5a7512d
       transaction_status:
         status: processing
-        reason": transferred_and_tracked
+        reason: transferred_and_tracked
       initiation_time: "2019-07-09T13:20:30.000Z"
       completion_time: null
       last_update_time: "2019-07-10T15:39:08.690Z"
