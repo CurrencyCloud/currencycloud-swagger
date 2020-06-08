@@ -9920,6 +9920,133 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  '/payments/{payment_id}/tracking_info':
+    get:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Get Payment Tracking Information
+      description: Get a payment Tracking Information.
+      operationId: GetPaymentTrackingInfo
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: payment_id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentTrackingInfo'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: payment_tracking_info_failed
+              category: payment_id
+              message: payment_id should be in UUID format
+              params: ''
+            - code: payment_is_not_swift
+              category: base
+              message: You cannot track non-swift payments
+              params: ''
+            - code: payment_is_not_executed
+              category: base
+              message: This payment is not executed yet, please try again later
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentTrackingInfoError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '403':
+          description: Forbidden.
+          x-errors:
+            - code: permission_denied
+              message: You do not have permission 'payment_tracking' to perform this operation
+              params: ''
+          schema:
+            $ref: '#/definitions/ForbiddenError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /payments/assign_payment_fee:
     post:
       tags:
@@ -18769,6 +18896,51 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetPaymentTrackingInfoError:
+    type: object
+    description: |
+      Client error information for the Get Payment Tracking Info endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   GetQuotePaymentFeeError:
     type: object
     description: |
@@ -19908,6 +20080,107 @@ definitions:
         group: 0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
+  PaymentTrackingInfo:
+    type: object
+    description: PaymentTrackingInfo
+    required:
+      - uetr
+      - transaction_status
+      - initiation_time
+      - completion_time
+      - last_update_time
+      - payment_events
+    additionalProperties: false
+    properties:
+      uetr:
+        type: string
+        description: Unique End-to-end Transaction Reference
+      transaction_status:
+        type: object
+        description: Status of the transaction
+        required:
+          - status
+          - reason
+        properties:
+          status:
+            type: string
+            description: Current status
+          reason:
+            type: string
+            description: reason for current status
+      initiation_time:
+        type: string
+        format: date-time
+        description: Time of Initiation
+      completion_time:
+        type: string
+        format: date-time
+        description: Time of completeion
+      last_update_time:
+        type: string
+        format: date-time
+        description: Time of last update
+      payment_events:
+        type: array
+        description: List of events that have been applied to the payment
+        items:
+          type: object
+          description: An object describing an event that has been applied to the payment.
+    example:
+      uetr: 46ed4827-7b6f-4491-a06f-b548d5a7512d
+      transaction_status:
+        status: processing
+        reason": transferred_and_tracked
+      initiation_time: "2019-07-09T13:20:30.000Z"
+      completion_time: null
+      last_update_time: "2019-07-10T15:39:08.690Z",
+      payment_events:
+        - tracker_event_type: credit_transfer_payment_cancellation_request
+          valid: true
+          transaction_status: null
+          funds_available: null
+          forwarded_to_agent: null
+          from: BANABEBBXXX
+          to: BANAUS33XXX
+          originator: BANABEBBXXX
+          serial_parties: null
+          sender_acknowledgement_receipt: "2019-07-10T14:22:41.273Z"
+          instructed_amount: null
+          confirmed_amount: null
+          interbank_settlement_amount:
+            currency: USD
+            amount: 745437.57
+          interbank_settlement_date: "2019-07-09"
+          charge_type: null
+          charge_amount: null
+          foreign_exchange_details: null
+          last_update_time: "2019-07-10T14:22:41.273Z"
+        - tracker_event_type: customer_credit_transfer_payment
+          valid: true
+          transaction_status:
+            status: processing
+            reason: transferred_and_tracked
+          funds_available: null
+          forwarded_to_agent: null
+          from: BANABEBBXXX
+          to: BANAUS33XXX
+          originator: BANABEBBXXX
+          serial_parties:
+            debtor_agent: GPMRCH30
+            creditor_agent: GPMRQAJ0
+          sender_acknowledgement_receipt: "2019-07-09T13:20:30.000Z"
+          instructed_amount:
+            currency: USD
+            amount: 745437.57
+          confirmed_amount: null
+          interbank_settlement_amount:
+            currency: USD
+            amount: 745437.57
+          interbank_settlement_date: "2019-07-09"
+          charge_type: shared
+          charge_amount: null
+          foreign_exchange_details: null
+          last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
     description: QuotePaymentFee.
