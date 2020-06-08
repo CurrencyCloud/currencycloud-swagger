@@ -20133,7 +20133,7 @@ definitions:
         reason": transferred_and_tracked
       initiation_time: "2019-07-09T13:20:30.000Z"
       completion_time: null
-      last_update_time: "2019-07-10T15:39:08.690Z",
+      last_update_time: "2019-07-10T15:39:08.690Z"
       payment_events:
         - tracker_event_type: credit_transfer_payment_cancellation_request
           valid: true
