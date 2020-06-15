@@ -9920,7 +9920,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/payments/{payment_id}/tracking_info':
+  '/payments/{id}/tracking_info':
     get:
       tags:
         - Payments
@@ -9936,7 +9936,7 @@ paths:
           required: true
           type: string
           description: Authentication token.
-        - name: payment_id
+        - name: id
           in: path
           required: true
           type: string
@@ -9954,7 +9954,7 @@ paths:
           description: Client error.
           x-errors:
             - code: payment_tracking_info_failed
-              category: payment_id
+              category: id
               message: payment_id should be in UUID format
               params: ''
             - code: payment_is_not_swift
