@@ -38,7 +38,7 @@ are not available on the API. The latest tagged release should be used instead o
 ### Releases
 **Current**
 
-- [2.14.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.14.0)
+- [2.13.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.13.1)
 
 For details on the contents of releases see [CHANGELOG](CHANGELOG.md)
 
