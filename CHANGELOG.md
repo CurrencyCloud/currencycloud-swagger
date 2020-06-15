@@ -1,8 +1,9 @@
 # Changelog
 
-## [2.14.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.14.0) (2020-05-28)
+## [2.14.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.14.0) (2020-06-XX)
    - Adds optimize_liquidity_conversion_date to reference/conversion_dates response
    - Removes account_id and contact_id parameters from report_requests/find endpoint 
+   - Adds payments tracking_info endpoint
 
 ## [2.13.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.13.1) (2020-05-18)
    - Updates amount limit error message on withdrawal_accounts pull_funds
