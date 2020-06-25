@@ -4983,7 +4983,7 @@ paths:
           type: string
           enum:
             - enabled
-            - disabled
+            - not_enabled
           description: Contact status.
         - name: locale
           in: query
@@ -5274,7 +5274,7 @@ paths:
           type: string
           enum:
             - enabled
-            - disabled
+            - not_enabled
           description: Contact status.
         - name: locale
           in: query
