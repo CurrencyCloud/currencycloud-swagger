@@ -1838,7 +1838,7 @@ paths:
           required: false
           type: string
           format: date-time
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'A valid ISO 8601 format, e.g. "2019-12-31T23:59:59".'
         - name: scope
           in: query
           required: false
