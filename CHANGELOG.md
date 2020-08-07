@@ -1,4 +1,8 @@
 # Changelog
+## [2.15.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.15.0) (2020-XX-XX)
+   - Removed "awaiting_balance" from list of possible status for find payment endpoint
+   - Changed contact status from enabled and disabled to enabled and not_enabled
+   - Update the description for field 'as_at_date' so that the example doesn't specify the timezone offset 
 
 ## [2.14.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.14.0) (2020-06-26)
    - Adds optimize_liquidity_conversion_date to reference/conversion_dates response
