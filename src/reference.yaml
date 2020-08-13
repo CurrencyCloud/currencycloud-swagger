@@ -1396,7 +1396,7 @@ paths:
           description: City.
         - name: postal_code
           in: formData
-          required: true
+          required: false
           type: string
           description: Postal code.
         - name: country
