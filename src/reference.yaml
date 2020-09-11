@@ -2153,7 +2153,7 @@ paths:
           required: false
           type: string
           description: Bank account number.
-        - name: routing_code_type
+        - name: 'routing_code_type[0]'
           in: query
           required: false
           type: string
@@ -2168,7 +2168,7 @@ paths:
             - cnaps
             - ifsc
           description: Local payment routing system.
-        - name: routing_code_value
+        - name: 'routing_code_value[0]'
           in: query
           required: false
           type: string
