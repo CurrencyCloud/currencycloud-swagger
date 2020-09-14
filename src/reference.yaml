@@ -10772,6 +10772,487 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /payments/validate:
+    post:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Validate Payment
+      description: >-
+        Validate a new payments's details, without actually creating a
+        record of the payment. On success, returns an object that represents
+        the payment that would be created if the payment create had been called.
+      operationId: ValidatePayment
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: x-sca-force-sms
+          in: header
+          required: false
+          type: boolean
+          description: Defines whether sms should be enforced as the SCA message mediator.
+        - name: id
+          in: formData
+          required: false
+          type: string
+          description: Payment UUID.
+        - name: currency
+          in: formData
+          required: true
+          type: string
+          description: Currency in which payment is made. Three-digit currency code.
+        - name: beneficiary_id
+          in: formData
+          required: true
+          type: string
+          description: Beneficiary UUID.
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: Amount.
+        - name: reason
+          in: formData
+          required: true
+          type: string
+          description: User-generated reason for payment. Freeform text.
+        - name: reference
+          in: formData
+          required: true
+          type: string
+          description: User-generated reference code.
+        - name: payment_date
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Instructed date of payment. Any valid ISO 8601 format, eg.
+            "2017-12-31".
+        - name: payment_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - priority
+            - regular
+          description: >-
+            Currencycloud supports two types of payments: "priority", made using
+            the SWIFT network; and "regular", made using the local bank network.
+        - name: conversion_id
+          in: formData
+          required: false
+          type: string
+          description: Conversion UUID.
+        - name: payer_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - company
+            - individual
+          description: Legal entity.
+        - name: payer_company_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "payer_entity_type" is "company".
+        - name: payer_first_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "payer_entity_type" is "individual".
+        - name: payer_last_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "payer_entity_type" is "individual".
+        - name: payer_city
+          in: formData
+          required: false
+          type: string
+          description: City.
+        - name: payer_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
+        - name: payer_postcode
+          in: formData
+          required: false
+          type: string
+          description: Postal code.
+        - name: payer_state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province.
+        - name: payer_country
+          in: formData
+          required: false
+          type: string
+          description: Two-letter country code.
+        - name: payer_date_of_birth
+          in: formData
+          required: false
+          type: string
+          description: >-
+            If "payer_entity_type" is "company", company registration date. If
+            "payer_entity_type" is "individual", date of birth. ISO 8601 format
+            YYYY-MM-DD.
+        - name: payer_identification_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - none
+            - drivers_license
+            - social_security_number
+            - green_card
+            - passport
+            - visa
+            - matricula_consular
+            - registro_federal_de_contribuyentes
+            - credential_de_elector
+            - social_insurance_number
+            - citizenship_papers
+            - drivers_license_canadian
+            - existing_credit_card_details
+            - employer_identification_number
+            - national_id
+            - others
+            - incorporation_number
+          description: >-
+            A legal document that verifies the identity of the payer. Required
+            documentation will vary depending on the nationality or registered
+            address of the payer.
+        - name: payer_identification_value
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A unique reference code for the identification document, such as a
+            passport number.
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: User-generated idempotency key.
+        - name: ultimate_beneficiary_name
+          in: formData
+          required: false
+          type: string
+          description: The name of the ultimate beneficiary if different.
+        - name: purpose_code
+          in: formData
+          required: false
+          type: string
+          description: Payment Purpose Code (Mandatory for all INR payments).
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: Contact UUID.
+        - name: charge_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - ours
+            - shared
+          description: >-
+            Payment Charges Setting value (only applicable to SWIFT payments).
+            If empty - then account's default value is used.
+            Do not specify for regular (local) payments.
+        - name: fee_amount
+          in: formData
+          required: false
+          type: string
+          description: Fee amount.
+        - name: fee_currency
+          in: formData
+          required: false
+          type: string
+          description: Currency fee is paid in.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              validation_result:
+                type: string
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+            x-sca-required:
+              type: boolean
+              description: true if SCA is required to create the payment.
+            x-sca-id:
+              type: string
+              description: UUID to correlate to the SCA request.
+            x-sca-type:
+              type: string
+              enum:
+                - sms
+                - oneTouch
+                - NONE
+              description: Type of SCA applied to the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_type
+              category: type
+              message: Invalid Payment type
+              params: ''
+            - code: currency_length_is_invalid
+              category: currency
+              message: currency should be 3 character(s) long
+              params: ''
+            - code: currency_is_required
+              category: currency
+              message: currency is required
+              params: ''
+            - code: invalid_currency
+              category: currency
+              message: You cannot make payments with this currency
+              params: ''
+            - code: beneficiary_id_is_not_valid_uuid
+              category: beneficiary_id
+              message: beneficiary_id should be in UUID format
+              params: ''
+            - code: beneficiary_id_is_required
+              category: beneficiary_id
+              message: beneficiary_id is required
+              params: ''
+            - code: beneficiary_date_of_birth_type_is_wrong
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_incorrect
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth is incorrect
+              params: ''
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later
+              params: ''
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier
+              params: ''
+            - code: invalid_beneficiary_id
+              category: beneficiary_id
+              message: Unknown beneficiary_id
+              params: ''
+            - code: payment_above_limit
+              category: amount
+              message: >-
+                3000.00 EUR exceeds the maximum amount of 2500.00 EUR for a
+                local payment.
+              params: ''
+            - code: payer_entity_type_not_in_range
+              category: payer_entity_type
+              message: 'payer_entity_type should be in range: individual, company'
+              params: ''
+            - code: payer_entity_type_is_missing
+              category: payer_entity_type
+              message: Payer entity type is missing
+              params: ''
+            - code: payer_company_name_is_missing
+              category: payer_company_name
+              message: Payer company name is missing
+              params: ''
+            - code: payer_first_name_is_missing
+              category: payer_first_name
+              message: Payer first name is missing
+              params: ''
+            - code: payer_last_name_is_missing
+              category: payer_last_name
+              message: Payer last name is missing
+              params: ''
+            - code: payer_city_is_missing
+              category: payer_city
+              message: Payer city is missing
+              params: ''
+            - code: unsupported_payer_country_code
+              category: payer_country_code
+              message: Payer country is not supported
+              params: ''
+            - code: payer_state_or_province_is_missing
+              category: payer_state_or_province
+              message: Payer state or province is missing
+              params: ''
+            - code: payer_postcode_is_missing
+              category: payer_postcode
+              message: Payer postcode is missing
+              params: ''
+            - code: payer_date_of_birth_type_is_wrong
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: payer_date_of_birth_is_incorrect
+              category: payer_date_of_birth
+              message: payer_date_of_birth is incorrect
+              params: ''
+            - code: payer_date_of_birth_is_earlier
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be later
+              params: ''
+            - code: payer_date_of_birth_is_after
+              category: payer_date_of_birth
+              message: payer_date_of_birth should be earlier
+              params: ''
+            - code: identification_type_is_missing
+              category: payer_identification_type
+              message: identification_type is missing
+              params: ''
+            - code: identification_type_is_invalid
+              category: payer_identification_type
+              message: identification_type is invalid
+              params: ''
+            - code: identification_value_is_missing
+              category: payer_identification_value
+              message: identification_value is missing
+              params: ''
+            - code: identification_value_is_invalid
+              category: payer_identification_value
+              message: identification_value is invalid
+              params: ''
+            - code: invalid_conversion_id
+              category: conversion_id
+              message: Conversion could not be found
+              params: ''
+            - code: conversion_is_already_settled
+              category: conversion_id
+              message: The conversion is already settled
+              params: ''
+            - code: invalid_payment_date
+              category: payment_date
+              message: The payment date is invalid
+              params: ''
+            - code: payment_date_is_too_early
+              category: payment_date
+              message: The payment date cannot be sooner than the conversion date
+              params: ''
+            - code: reference_is_too_long
+              category: reference
+              message: reference can not be longer than 255 character(s)
+              params: ''
+            - code: charge_type_not_available
+              category: charge_type
+              message: Not available charge_type has been provided
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: invalid_charge_type
+              category: charge_type
+              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_charge_type_not_available
+              category: on_behalf_of
+              message: Not available charge_type has been provided for on_behalf_of
+              params: '{ "charge_type" => "shared, ours" }'
+            - code: duplicate_request
+              category: duplicate_request
+              message: >-
+                The unique_request_id provided for this payment has already been
+                used, please provide a new unique_request_id to successfully
+                submit this payment
+              params: ''
+            - code: fee_amount_type_is_wrong
+              category: fee_amount
+              message: fee_amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: fee_currency_is_in_invalid_format
+              category: fee_currency
+              message: fee_currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: unsupported_beneficiary_country_code
+              category: beneficiary_country_code
+              message: Beneficiary country is not supported
+              params: ''
+          schema:
+            $ref: '#/definitions/ValidatePaymentError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/payers/{id}':
     get:
       tags:
@@ -21030,6 +21511,51 @@ definitions:
     type: object
     description: |
       Client error information for the Validate Beneficiary endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  ValidatePaymentError:
+    type: object
+    description: |
+      Client error information for the Validate Payment endpoint.
     required:
       - error_code
       - error_messages
