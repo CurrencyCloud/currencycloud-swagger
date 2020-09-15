@@ -1,5 +1,10 @@
 # Changelog
-## [2.15.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.15.0) (2020-XX-XX)
+## [2.16.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.16.0) (2020-09-15)
+   - Adds payments/validate endpoint
+   - Updated the names of routing_code_type and routing_code_value on beneficiaries/find
+   - Sets postal_code as optional on accounts/create
+
+## [2.15.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.15.0) (2020-09-11)
    - Removed "awaiting_balance" from list of possible status for find payment endpoint
    - Changed contact status from enabled and disabled to enabled and not_enabled
    - Update the description for field 'as_at_date' so that the example doesn't specify the timezone offset 
