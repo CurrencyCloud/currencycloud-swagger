@@ -5881,7 +5881,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Earliest delivery date in UTC time zone. ISO 8601 format YYYY-MM-DD.
+          description: Earliest delivery date in UTC time zone. Format YYYY-MM-DD.
         - name: client_buy_amount
           in: formData
           required: false
