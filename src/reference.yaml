@@ -17068,13 +17068,10 @@ definitions:
     type: object
     description: Conversion dates.
     properties:
-      invalid_conversion_dates:
-        type: object
-        additionalProperties:
-          type: string
-          description: >-
-            Maps dates (eg. "2017-12-31") to string values that explain why
-            trading is not available on the date (eg. "No trading on Sunday").
+      first_conversion_cutoff_datetime:
+        type: string
+        format: date-time
+        description: The first conversion date and cutoff time by when conversions can be created.
       first_conversion_date:
         type: string
         format: date
@@ -17087,7 +17084,18 @@ definitions:
         type: string
         format: date
         description: Optimal conversion date for maximizing chances of getting a successful rate.
+      invalid_conversion_dates:
+        type: object
+        additionalProperties:
+          type: string
+          description: >-
+            Maps dates (eg. "2020-12-27") to string values that explain why
+            trading is not available on the date (eg. "No trading on Sunday").
     example:
+      first_conversion_cutoff_datetime: '2020-11-18T15:50:00Z'
+      first_conversion_date: '2020-11-18'
+      default_conversion_date: '2020-11-20'
+      optimize_liquidity_conversion_date: '2020-11-23'
       invalid_conversion_dates:
         '2020-11-21': No trading on Saturday
         '2020-11-22': No trading on Sunday
@@ -17106,9 +17114,6 @@ definitions:
         '2021-01-01': New Year's Day
         '2021-01-02': No trading on Saturday
         '2021-01-03': No trading on Sunday
-      first_conversion_date: '2020-11-18'
-      default_conversion_date: '2020-11-20'
-      optimize_liquidity_conversion_date: '2020-11-23'
   ConversionSplitDetails:
     properties:
       id:
