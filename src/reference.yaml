@@ -17092,7 +17092,7 @@ definitions:
             Maps dates (eg. "2020-12-27") to string values that explain why
             trading is not available on the date (eg. "No trading on Sunday").
     example:
-      first_conversion_cutoff_datetime: '2020-11-18T15:50:00Z'
+      first_conversion_cutoff_datetime: '2020-11-18T15:50:00+00:00'
       first_conversion_date: '2020-11-18'
       default_conversion_date: '2020-11-20'
       optimize_liquidity_conversion_date: '2020-11-23'
