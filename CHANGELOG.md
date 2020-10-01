@@ -1,4 +1,8 @@
 # Changelog
+## [2.17.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.17.0) (2020-10-01)
+   - Updates ConversionDates definition.
+   - Updates 'Create Conversion' API to reflect UTC for conversion_date instead of ISO 8601 format.
+      
 ## [2.16.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.16.0) (2020-09-15)
    - Adds payments/validate endpoint
    - Updated the names of routing_code_type and routing_code_value on beneficiaries/find
