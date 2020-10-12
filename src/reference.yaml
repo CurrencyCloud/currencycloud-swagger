@@ -15796,11 +15796,11 @@ paths:
               message: Transfer was not found for this ID
               params: ''
             - code: invalid_status
-              category: id
+              category: status
               message: Transfer is already cancelled
               params: ''
             - code: invalid_status
-              category: id
+              category: status
               message: Transfer cannot be cancelled since it is already completed
               params: ''
             - code: invalid_extra_parameters
