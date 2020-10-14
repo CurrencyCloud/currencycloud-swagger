@@ -8432,6 +8432,10 @@ paths:
               category: beneficiary_country_code
               message: Beneficiary country is not supported
               params: ''
+            - code: unsupported_account
+              category: account
+              message: The account is currently not permitted to create payments.
+              params: ''
 
           schema:
             $ref: '#/definitions/CreatePaymentError'
