@@ -1,4 +1,8 @@
 # Changelog
+## [2.18.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.18.0) (2020-10-15)
+   - Adds transfers/cancel endpoint
+   - Adds unsupported_account error response to payments/crate
+   
 ## [2.17.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.17.0) (2020-10-01)
    - Updates ConversionDates definition.
    - Updates 'Create Conversion' API to reflect UTC for conversion_date instead of ISO 8601 format.
