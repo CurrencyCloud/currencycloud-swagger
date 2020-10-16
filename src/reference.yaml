@@ -11918,19 +11918,19 @@ paths:
           description: Authentication token.
         - name: currency
           in: query
-          required: false
+          required: true
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
-            Three-digit currency code.
+            Three-letter currency code in uppercase.
         - name: bank_account_country
           in: query
-          required: false
+          required: true
           type: string
           description: Two-letter country code.
         - name: beneficiary_country
           in: query
-          required: false
+          required: true
           type: string
           description: >-
             Two-letter country code. If the beneficiary is a company, the
