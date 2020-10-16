@@ -5918,7 +5918,7 @@ paths:
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
-            'default' for conversion in 2 working days.<br>
+            'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
       responses:
@@ -11447,7 +11447,7 @@ paths:
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
-            'default' for conversion in 2 working days.<br>
+            'default' for conversion - T+1, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
       responses:
