@@ -15404,6 +15404,7 @@ paths:
           enum:
             - completed
             - pending
+            - cancelled
           description: Transfer status.
         - name: currency
           in: query
@@ -15522,8 +15523,8 @@ paths:
               params: '{ "type" => "numeric" }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: pending, completed'
-              params: '{ "range" => "pending, completed" }'
+              message: 'status should be in range: pending, completed, cancelled'
+              params: '{ "range" => "pending, completed, cancelled" }'
             - code: created_at_from_is_in_invalid_format
               category: created_at_from
               message: created_at_from should be in ISO 8601 format
