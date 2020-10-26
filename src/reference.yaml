@@ -13705,7 +13705,7 @@ paths:
         - Sender
       x-api-group: collect
       summary: Get Sender Details
-      description: Returns a JSON structure with details of the sender of funds
+      description: Returns a JSON structure with details of the sender of funds. The format of the sender tag in the response is "sender":"name; address; country; account_number or iban; bic; routing_code"
       operationId: GetSenderDetails
       produces:
         - application/json
