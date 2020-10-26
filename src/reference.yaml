@@ -3644,7 +3644,7 @@ paths:
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
-            the beneficiary's bank account is held.
+            the beneficiar's bank account is held and on whether "beneficiary_entity_type" is "individual" or "company".
         - name: beneficiary_identification_value
           in: formData
           required: false
