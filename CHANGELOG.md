@@ -1,4 +1,12 @@
 # Changelog
+## [2.19.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.19.0) (2020-10-29)
+   - Updates create beneficiary endpoint to differentiate between company and individual identification.
+   - Updates documentation for conversion endpoints.
+   - Adds 'cancelled' as possible option for 'status' parameter on find transfers.
+   - Adds description for sender tag in get sender details.
+   - Update the endpoint /v2/reference/beneficiary_required_details making currency, bank_account_country, 
+   beneficiary_country required rather than optional          
+
 ## [2.18.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.18.0) (2020-10-15)
    - Adds transfers/cancel endpoint
    - Adds unsupported_account error response to payments/crate
