@@ -8669,11 +8669,6 @@ paths:
           required: false
           type: string
           description: Bulk upload reference code.
-        - name: purpose_code
-          in: query
-          required: false
-          type: string
-          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: page
           in: query
           required: false
