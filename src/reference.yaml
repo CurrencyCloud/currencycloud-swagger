@@ -14669,6 +14669,14 @@ paths:
               category: id
               message: Transfer was not found for this ID
               params: ''
+            - code: transfer_is_already_cancelled
+              category: status
+              message: Transfer is already cancelled
+              params: ''
+            - code: transfer_is_already_completed
+              category: status
+              message: Transfer has already completed (settled)
+              params: ''
             - code: invalid_status
               category: status
               message: Transfer is already cancelled
