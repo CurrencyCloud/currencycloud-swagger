@@ -1,4 +1,10 @@
 # Changelog
+## [2.20.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.20.0) (2020-11-25)
+   - Removes purpose_code parameter from payments find.
+   - Removes all settlement model endpoints.
+   - Adds new error codes for canceling a transfer.
+
+
 ## [2.19.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.19.0) (2020-10-29)
    - Updates create beneficiary endpoint to differentiate between company and individual identification.
    - Updates documentation for conversion endpoints.
