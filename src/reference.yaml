@@ -6240,7 +6240,7 @@ paths:
             - funds_arrived
             - trade_settled
             - closed
-          description: 'Conversion status, as displayed to contacts of the sub-account.'
+          description: DEPRECATED. Conversion status, as displayed to contacts of the sub-account.
         - name: buy_currency
           in: query
           required: false
@@ -13042,7 +13042,7 @@ paths:
             - trade_settled
             - closed
           description: >-
-            The current status of the Conversion - awaiting_funds - funds_sent -
+            DEPRECATED. The current status of the Conversion - awaiting_funds - funds_sent -
             funds_arrived - trade_settled - closed.
         - name: conversion_date_from
           in: formData
