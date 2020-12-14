@@ -7873,6 +7873,7 @@ paths:
 
   /ibans/find:
     get:
+      deprecated: true
       tags:
         - IBANs
       x-api-group: collect
@@ -14896,6 +14897,7 @@ paths:
               description: A unique reference for the request.
   /virtual_accounts/find:
     get:
+      deprecated: true
       tags:
         - VANs
       x-api-group: collect
