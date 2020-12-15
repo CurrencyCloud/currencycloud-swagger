@@ -48,11 +48,13 @@ tags:
       and collect funds in each available currency
   - name: IBANs
     description: >-
+      **This endpoint is deprecated and will be removed at the end of February, 2021. Please use the Funding Account API instead.**
+
       Create, search and manage International Bank Account Numbers (IBANs)
       assigned to your Currencycloud account balance or your sub-accounts'
       balances. You can also retrieve and assign IBANs to the the account.
   - name: Payers
-    description: >-
+    description: >- 
       Provides you with the ability to view information relating to the 'payer'
       for a payment that has been initiated through the platform.
   - name: Payments
@@ -83,6 +85,8 @@ tags:
       account and associated sub-accounts.
   - name: VANs
     description: >-
+      **This endpoint is deprecated and will be removed at the end of February, 2021. Please use the Funding Account API instead.**
+
       Create, search and manage Virtual Accounts (VANs) assigned to your
       Currencycloud account balance or your sub-accounts' balances. You can also
       retrieve and assign VANs to the account.
@@ -7873,6 +7877,7 @@ paths:
 
   /ibans/find:
     get:
+      deprecated: true
       tags:
         - IBANs
       x-api-group: collect
@@ -14896,13 +14901,14 @@ paths:
               description: A unique reference for the request.
   /virtual_accounts/find:
     get:
+      deprecated: true
       tags:
         - VANs
       x-api-group: collect
       summary: Find VANs
       description: >-
         Returns a JSON structure with details of the VANs for the specified
-        accounts
+        accounts.
       operationId: FindVANs
       produces:
         - application/json
