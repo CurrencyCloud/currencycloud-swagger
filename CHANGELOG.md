@@ -1,9 +1,15 @@
 # Changelog
+## [2.22.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.20.0) (2020-12-15)
+   - Updates the default value of the spread table in accounts/create endpoint.
+   - Adds offline_conversion_dates to response from reference/conversion_dates endpoint.
+   - Deprecate ibans/find 
+   - Deprecate virtual_accounts/find 
+   - Deprecate partner_status field in conversions response
+
 ## [2.20.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.20.0) (2020-11-25)
    - Removes purpose_code parameter from payments find.
    - Removes all settlement model endpoints.
    - Adds new error codes for canceling a transfer.
-
 
 ## [2.19.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.19.0) (2020-10-29)
    - Updates create beneficiary endpoint to differentiate between company and individual identification.
