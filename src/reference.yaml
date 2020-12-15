@@ -16114,6 +16114,11 @@ definitions:
           description: >-
             Maps dates (eg. "2020-12-27") to string values that explain why
             trading is not available on the date (eg. "No trading on Sunday").
+      offline_conversion_dates:
+        type: array
+        items:
+          type: string
+          description: The list of available offline conversion dates.
     example:
       first_conversion_cutoff_datetime: '2020-11-18T15:50:00+00:00'
       first_conversion_date: '2020-11-18'
@@ -16137,6 +16142,8 @@ definitions:
         '2021-01-01': New Year's Day
         '2021-01-02': No trading on Saturday
         '2021-01-03': No trading on Sunday
+      offline_conversion_dates:
+        - '2020-11-23'
   ConversionSplitDetails:
     properties:
       id:
