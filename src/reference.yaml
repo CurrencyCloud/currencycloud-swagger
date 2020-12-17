@@ -15446,7 +15446,7 @@ definitions:
       online_trading: true
       phone_trading: true
       process_third_party_funds: false
-      settlement_type: bulki
+      settlement_type: bulk
       terms_and_conditions_accepted: true
       agent_or_reliance: true
   AccountPaymentChargesSetting:
