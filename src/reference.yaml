@@ -688,6 +688,11 @@ paths:
           required: false
           type: string
           description: Contact UUID.
+        - name: terms_and_conditions_accepted
+          in: query
+          required: false
+          type: boolean
+          description: Acceptance of the terms and conditions.
       responses:
         '200':
           description: Success.
@@ -1482,6 +1487,11 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
+        - name: terms_and_conditions_accepted
+          in: formData
+          required: false
+          type: boolean
+          description: Acceptance of the terms and conditions.
       responses:
         '200':
           description: Success.
@@ -15410,6 +15420,10 @@ definitions:
         type: boolean
       settlement_type:
         type: string
+      terms_and_conditions:
+        type: boolean
+      agent_or_reliance:
+        type: boolean
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -15433,6 +15447,8 @@ definitions:
       phone_trading: true
       process_third_party_funds: false
       settlement_type: bulk
+      terms_and_conditions_accepted: true
+      agent_or_reliance: true
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
