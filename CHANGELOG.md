@@ -1,4 +1,7 @@
 # Changelog
+## [2.23.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.23.0) (2020-12-23)
+   - Adds terms_and_conditions_accepted and agent_or_reliance parameters to account details 
+ 
 ## [2.22.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.20.0) (2020-12-15)
    - Updates the default value of the spread table in accounts/create endpoint.
    - Adds offline_conversion_dates to response from reference/conversion_dates endpoint.
