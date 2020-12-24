@@ -931,7 +931,6 @@ paths:
           required: false
           type: boolean
           description: Acceptance of the terms and conditions.
-
       responses:
         '200':
           description: Success.
