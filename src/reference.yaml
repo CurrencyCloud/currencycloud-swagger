@@ -688,11 +688,6 @@ paths:
           required: false
           type: string
           description: Contact UUID.
-        - name: terms_and_conditions_accepted
-          in: query
-          required: false
-          type: boolean
-          description: Acceptance of the terms and conditions.
       responses:
         '200':
           description: Success.
@@ -931,6 +926,11 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+        - name: terms_and_conditions_accepted
+          in: formData
+          required: false
+          type: boolean
+          description: Acceptance of the terms and conditions.
       responses:
         '200':
           description: Success.
