@@ -6244,17 +6244,6 @@ paths:
             - trade_settled
             - closed
           description: Conversion status.
-        - name: partner_status
-          in: query
-          required: false
-          type: string
-          enum:
-            - awaiting_funds
-            - funds_sent
-            - funds_arrived
-            - trade_settled
-            - closed
-          description: DEPRECATED. Conversion status, as displayed to contacts of the sub-account.
         - name: buy_currency
           in: query
           required: false
@@ -13046,19 +13035,6 @@ paths:
           description: >-
             The current status of the Conversion - awaiting_funds - funds_sent -
             funds_arrived - trade_settled - closed.
-        - name: partner_status
-          in: formData
-          required: false
-          type: string
-          enum:
-            - awaiting_funds
-            - funds_sent
-            - funds_arrived
-            - trade_settled
-            - closed
-          description: >-
-            DEPRECATED. The current status of the Conversion - awaiting_funds - funds_sent -
-            funds_arrived - trade_settled - closed.
         - name: conversion_date_from
           in: formData
           required: false
@@ -15908,8 +15884,6 @@ definitions:
         type: string
       status:
         type: string
-      partner_status:
-        type: string
       currency_pair:
         type: string
       buy_currency:
@@ -15964,7 +15938,6 @@ definitions:
       settlement_date: '2017-12-31T23:59:59.000Z'
       conversion_date: '2017-12-31T23:59:59.000Z'
       status: awaiting_funds
-      partner_status: awaiting_funds
       currency_pair: GBPUSD
       buy_currency: GBP
       sell_currency: USD
