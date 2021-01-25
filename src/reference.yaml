@@ -54,7 +54,7 @@ tags:
       assigned to your Currencycloud account balance or your sub-accounts'
       balances. You can also retrieve and assign IBANs to the the account.
   - name: Payers
-    description: >- 
+    description: >-
       Provides you with the ability to view information relating to the 'payer'
       for a payment that has been initiated through the platform.
   - name: Payments
@@ -1095,24 +1095,24 @@ paths:
   '/accounts/{account_id}/payment_charges_settings':
     get:
       tags:
-      - Accounts
+        - Accounts
       x-api-group: manage
       summary: Get Payment Charges Settings
       description: Retrieve payment charges settings for given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: An UUID of a sub-account or house account available in current visibility scope.
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_id
+          in: path
+          required: true
+          type: string
+          description: An UUID of a sub-account or house account available in current visibility scope.
       responses:
         '200':
           description: Success.
@@ -1130,14 +1130,14 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
+            - code: id_is_not_valid_uuid
+              category: account_id
+              message: id should be in UUID format
+              params: ''
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/GetAccountPaymentChargesSettingsError'
           headers:
@@ -1147,10 +1147,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1168,10 +1168,10 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1181,10 +1181,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -1192,10 +1192,10 @@ paths:
         '503':
           description: Service is temporary unavailable
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -1209,39 +1209,39 @@ paths:
   '/accounts/{account_id}/payment_charges_settings/{charge_settings_id}':
     post:
       tags:
-      - Accounts
+        - Accounts
       x-api-group: manage
       summary: Manage Account Payment Charges Settings
       description: Manage given Account's Payment Charge Settings (enable, disable, set default).
       operationId: ManageAccountPaymentChargesSettings
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: Account UUID.
-      - name: charge_settings_id
-        in: path
-        required: true
-        type: string
-        description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for given Account UUID.
-      - name: enabled
-        in: formData
-        required: false
-        type: boolean
-        description: Enable or disable given Account Payment Charges Setting
-      - name: default
-        in: formData
-        required: false
-        type: boolean
-        description: Set given Account Payment Charges Setting as default (for the cases when 'charge_type' parameter is not specified for payment).
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_id
+          in: path
+          required: true
+          type: string
+          description: Account UUID.
+        - name: charge_settings_id
+          in: path
+          required: true
+          type: string
+          description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for given Account UUID.
+        - name: enabled
+          in: formData
+          required: false
+          type: boolean
+          description: Enable or disable given Account Payment Charges Setting
+        - name: default
+          in: formData
+          required: false
+          type: boolean
+          description: Set given Account Payment Charges Setting as default (for the cases when 'charge_type' parameter is not specified for payment).
       responses:
         '200':
           description: Success.
@@ -1254,42 +1254,42 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
-          - code: edit_not_allowed
-            category: permission
-            message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
-            params: ''
-          - code: banking_charges_settings_not_found
-            category: charge_settings_id
-            message: Bank Charges Settings were not found for the provided ChargeSettingsId
-            params: ''
-          - code: unavailable_charge_type
-            category: permission
-            message: You are not enabled to switch on this type of charges. In order to be enabled for this option - please contact Customer Support
-            params: ''
-          - code: disable_and_default_charge_not_allowed
-            category: invalid_value
-            message: You can not disable and then default setting.
-            params: ''
-          - code: default_disabled_charge_not_allowed
-            category: invalid_value
-            message: You cannot default disabled setting.
-            params: ''
-          - code: disable_default_charge_not_allowed
-            category: invalid_value
-            message: You can not disable default settings.
-            params: ''
-          - code: set_default_to_false_not_allowed
-            category: invalid_value
-            message: You cannot disable default charge type. Please update the charge type not to be default and then disable it.
-            params: ''
+            - code: id_is_not_valid_uuid
+              category: account_id
+              message: id should be in UUID format
+              params: ''
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
+              params: ''
+            - code: edit_not_allowed
+              category: permission
+              message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
+              params: ''
+            - code: banking_charges_settings_not_found
+              category: charge_settings_id
+              message: Bank Charges Settings were not found for the provided ChargeSettingsId
+              params: ''
+            - code: unavailable_charge_type
+              category: permission
+              message: You are not enabled to switch on this type of charges. In order to be enabled for this option - please contact Customer Support
+              params: ''
+            - code: disable_and_default_charge_not_allowed
+              category: invalid_value
+              message: You can not disable and then default setting.
+              params: ''
+            - code: default_disabled_charge_not_allowed
+              category: invalid_value
+              message: You cannot default disabled setting.
+              params: ''
+            - code: disable_default_charge_not_allowed
+              category: invalid_value
+              message: You can not disable default settings.
+              params: ''
+            - code: set_default_to_false_not_allowed
+              category: invalid_value
+              message: You cannot disable default charge type. Please update the charge type not to be default and then disable it.
+              params: ''
           schema:
             $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
           headers:
@@ -1299,10 +1299,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1320,10 +1320,10 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1333,10 +1333,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -1344,10 +1344,10 @@ paths:
         '503':
           description: Service is temporary unavailable
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -3633,24 +3633,24 @@ paths:
           required: false
           type: string
           enum:
-          - none
-          - drivers_license
-          - social_security_number
-          - green_card
-          - passport
-          - visa
-          - matricula_consular
-          - registro_federal_de_contribuyentes
-          - clave_unica_de_registro_de_poblacion
-          - credential_de_elector
-          - social_insurance_number
-          - citizenship_papers
-          - drivers_license_canadian
-          - existing_credit_card_details
-          - employer_identification_number
-          - national_id
-          - incorporation_number
-          - others
+            - none
+            - drivers_license
+            - social_security_number
+            - green_card
+            - passport
+            - visa
+            - matricula_consular
+            - registro_federal_de_contribuyentes
+            - clave_unica_de_registro_de_poblacion
+            - credential_de_elector
+            - social_insurance_number
+            - citizenship_papers
+            - drivers_license_canadian
+            - existing_credit_card_details
+            - employer_identification_number
+            - national_id
+            - incorporation_number
+            - others
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
@@ -6244,17 +6244,6 @@ paths:
             - trade_settled
             - closed
           description: Conversion status.
-        - name: partner_status
-          in: query
-          required: false
-          type: string
-          enum:
-            - awaiting_funds
-            - funds_sent
-            - funds_arrived
-            - trade_settled
-            - closed
-          description: DEPRECATED. Conversion status, as displayed to contacts of the sub-account.
         - name: buy_currency
           in: query
           required: false
@@ -8238,8 +8227,8 @@ paths:
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
             If empty - then account's default value is used.
@@ -8709,8 +8698,8 @@ paths:
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
             Limits search results scope to just payments of the specified charge type.
@@ -9160,8 +9149,8 @@ paths:
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
             If empty - then account's default value is used.
@@ -13046,19 +13035,6 @@ paths:
           description: >-
             The current status of the Conversion - awaiting_funds - funds_sent -
             funds_arrived - trade_settled - closed.
-        - name: partner_status
-          in: formData
-          required: false
-          type: string
-          enum:
-            - awaiting_funds
-            - funds_sent
-            - funds_arrived
-            - trade_settled
-            - closed
-          description: >-
-            DEPRECATED. The current status of the Conversion - awaiting_funds - funds_sent -
-            funds_arrived - trade_settled - closed.
         - name: conversion_date_from
           in: formData
           required: false
@@ -15908,8 +15884,6 @@ definitions:
         type: string
       status:
         type: string
-      partner_status:
-        type: string
       currency_pair:
         type: string
       buy_currency:
@@ -15964,7 +15938,6 @@ definitions:
       settlement_date: '2017-12-31T23:59:59.000Z'
       conversion_date: '2017-12-31T23:59:59.000Z'
       status: awaiting_funds
-      partner_status: awaiting_funds
       currency_pair: GBPUSD
       buy_currency: GBP
       sell_currency: USD
@@ -17352,8 +17325,8 @@ definitions:
     description: >
       Client error information for the Get Account Payment Charges Settings endpoint.
     required:
-    - error_code
-    - error_messages
+      - error_code
+      - error_messages
     properties:
       error_code:
         type: string
@@ -17372,8 +17345,8 @@ definitions:
               An object that represents one of the reasons why the input
               parameter failed.
             required:
-            - code
-            - message
+              - code
+              - message
             properties:
               code:
                 type: string
@@ -17397,8 +17370,8 @@ definitions:
     description: >
       Client error information for the Manage Account Payment Charges Settings endpoint.
     required:
-    - error_code
-    - error_messages
+      - error_code
+      - error_messages
     properties:
       error_code:
         type: string
@@ -17417,8 +17390,8 @@ definitions:
               An object that represents one of the reasons why the input
               parameter failed.
             required:
-            - code
-            - message
+              - code
+              - message
             properties:
               code:
                 type: string
@@ -19567,13 +19540,13 @@ definitions:
         type: string
         description: The fee currency
     example:
-       account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
-       payment_currency: USD
-       payment_destination_country: US
-       payment_type: regular
-       charge_type: null
-       fee_amount: '10.00'
-       fee_currency: EUR
+      account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
+      payment_currency: USD
+      payment_destination_country: US
+      payment_type: regular
+      charge_type: null
+      fee_amount: '10.00'
+      fee_currency: EUR
   RatesBasic:
     properties:
       rates:
