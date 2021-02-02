@@ -1,4 +1,7 @@
 # Changelog
+## [2.24.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.24.0) (2020-02-03)
+   - Removes partner_status field in conversions response
+   
 ## [2.23.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.23.0) (2020-12-23)
    - Adds terms_and_conditions_accepted and agent_or_reliance parameters to account details 
  
