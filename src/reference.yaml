@@ -54,7 +54,7 @@ tags:
       assigned to your Currencycloud account balance or your sub-accounts'
       balances. You can also retrieve and assign IBANs to the the account.
   - name: Payers
-    description: >- 
+    description: >-
       Provides you with the ability to view information relating to the 'payer'
       for a payment that has been initiated through the platform.
   - name: Payments
@@ -16088,6 +16088,10 @@ definitions:
         type: string
         format: date
         description: The first conversion date.
+      next_day_conversion_date:
+        type: string
+        format: date
+        description: The next day conversion date.
       default_conversion_date:
         type: string
         format: date
@@ -16111,6 +16115,7 @@ definitions:
     example:
       first_conversion_cutoff_datetime: '2020-11-18T15:50:00+00:00'
       first_conversion_date: '2020-11-18'
+      next_day_conversion_date: '2020-11-19'
       default_conversion_date: '2020-11-20'
       optimize_liquidity_conversion_date: '2020-11-23'
       invalid_conversion_dates:
