@@ -5923,11 +5923,13 @@ paths:
           type: string
           enum:
             - earliest
+            - next_day
             - default
             - optimize_liquidity
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
@@ -6137,7 +6139,7 @@ paths:
               params: ''
             - code: invalid_conversion_date_preference
               category: base
-              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default, next_day
               params: ''
           schema:
             $ref: '#/definitions/CreateConversionError'
@@ -11437,11 +11439,13 @@ paths:
           type: string
           enum:
             - earliest
+            - next_day
             - default
             - optimize_liquidity
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
@@ -11535,7 +11539,7 @@ paths:
               params: ''
             - code: invalid_conversion_date_preference
               category: base
-              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default, next_day
               params: ''
           schema:
             $ref: '#/definitions/GetDetailedRatesError'
