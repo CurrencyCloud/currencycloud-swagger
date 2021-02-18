@@ -54,7 +54,7 @@ tags:
       assigned to your Currencycloud account balance or your sub-accounts'
       balances. You can also retrieve and assign IBANs to the the account.
   - name: Payers
-    description: >- 
+    description: >-
       Provides you with the ability to view information relating to the 'payer'
       for a payment that has been initiated through the platform.
   - name: Payments
@@ -5923,11 +5923,13 @@ paths:
           type: string
           enum:
             - earliest
+            - next_day
             - default
             - optimize_liquidity
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
@@ -6137,7 +6139,7 @@ paths:
               params: ''
             - code: invalid_conversion_date_preference
               category: base
-              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default, next_day
               params: ''
           schema:
             $ref: '#/definitions/CreateConversionError'
@@ -11437,11 +11439,13 @@ paths:
           type: string
           enum:
             - earliest
+            - next_day
             - default
             - optimize_liquidity
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
@@ -11535,7 +11539,7 @@ paths:
               params: ''
             - code: invalid_conversion_date_preference
               category: base
-              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default, next_day
               params: ''
           schema:
             $ref: '#/definitions/GetDetailedRatesError'
@@ -16088,6 +16092,10 @@ definitions:
         type: string
         format: date
         description: The first conversion date.
+      next_day_conversion_date:
+        type: string
+        format: date
+        description: The next day conversion date.
       default_conversion_date:
         type: string
         format: date
@@ -16111,6 +16119,7 @@ definitions:
     example:
       first_conversion_cutoff_datetime: '2020-11-18T15:50:00+00:00'
       first_conversion_date: '2020-11-18'
+      next_day_conversion_date: '2020-11-19'
       default_conversion_date: '2020-11-20'
       optimize_liquidity_conversion_date: '2020-11-23'
       invalid_conversion_dates:
