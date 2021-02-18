@@ -1,4 +1,7 @@
 # Changelog
+## [2.25.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.25.1) (2020-02-18)
+   - Adds nes next_day conversion date option for ConversionDates endpoint
+
 ## [2.24.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.24.0) (2020-02-03)
    - Removes partner_status field in conversions response
    
