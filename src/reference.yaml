@@ -15404,6 +15404,12 @@ definitions:
         type: boolean
       agent_or_reliance:
         type: boolean
+      bank_account_verified:
+        type: string
+        enum:
+          - yes
+          - no
+          - not required
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -15429,6 +15435,7 @@ definitions:
       settlement_type: bulk
       terms_and_conditions_accepted: true
       agent_or_reliance: true
+      bank_account_verified: no
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
