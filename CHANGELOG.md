@@ -1,6 +1,11 @@
 # Changelog
+## [2.26.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.25.1) (2020-03-15)
+   - Adds on_behalf_option parameter to /reference/conversion_dates
+   - Adds bank_account_verified parameter to Account response entity
+   - Adds optional bank_account_verified query parameter to /accounts/find
+
 ## [2.25.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.25.1) (2020-02-18)
-   - Adds nes next_day conversion date option for ConversionDates endpoint
+   - Adds new next_day conversion date option for ConversionDates endpoint
 
 ## [2.24.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.24.0) (2020-02-03)
    - Removes partner_status field in conversions response
