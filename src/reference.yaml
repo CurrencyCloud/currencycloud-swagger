@@ -12075,6 +12075,11 @@ paths:
           type: string
           format: date
           description: Start date of conversion. ISO 8601 format YYYY-MM-DD.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -12111,6 +12116,14 @@ paths:
               category: start_date
               message: start_date should be in ISO 8601 format
               params: '{ "type" => "date" }'
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
           schema:
             $ref: '#/definitions/GetConversionDatesError'
           headers:
