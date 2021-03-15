@@ -520,6 +520,14 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: bank_account_verified
+          in: query
+          required: false
+          type: string
+          enum:
+            - yes
+            - no
+            - not required
       responses:
         '200':
           description: Success.
@@ -594,6 +602,10 @@ paths:
               category: spread_table
               message: country can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
+            - code: bank_account_verified_not_in_range
+              category: bank_account_verified
+              message: 'bank_account_verified should be in range: yes, no, not required'
+              params: '{ "range" => "yes, no, not required" }'
           schema:
             $ref: '#/definitions/FindAccountsError'
           headers:
@@ -15404,6 +15416,12 @@ definitions:
         type: boolean
       agent_or_reliance:
         type: boolean
+      bank_account_verified:
+        type: string
+        enum:
+          - yes
+          - no
+          - not required
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -15429,6 +15447,7 @@ definitions:
       settlement_type: bulk
       terms_and_conditions_accepted: true
       agent_or_reliance: true
+      bank_account_verified: no
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
