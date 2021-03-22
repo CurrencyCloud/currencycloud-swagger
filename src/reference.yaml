@@ -5033,7 +5033,13 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Contact'
+            properties:
+              contacts:
+                type: array
+                items:
+                  $ref: '#/definitions/Contact'
+              pagination:
+                $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
               type: string
