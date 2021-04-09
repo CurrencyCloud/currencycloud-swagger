@@ -1401,7 +1401,7 @@ paths:
           description: City.
         - name: postal_code
           in: formData
-          required: true
+          required: false
           type: string
           description: Postal code. Required for sub-accounts on our outsourced KYC model, optional otherwise.
         - name: country
@@ -1459,7 +1459,7 @@ paths:
           description: Allows the account to make trades via phone.
         - name: identification_type
           in: formData
-          required: true
+          required: false
           type: string
           enum:
             - none
@@ -1482,14 +1482,14 @@ paths:
           description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
-          required: true
+          required: false
           type: string
           description: >-
             A unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
         - name: terms_and_conditions_accepted
           in: formData
-          required: true
+          required: false
           type: boolean
           description: Acceptance of the terms and conditions. Required for sub-accounts that are on our Outsourced KYC model, optional otherwise.
       responses:
