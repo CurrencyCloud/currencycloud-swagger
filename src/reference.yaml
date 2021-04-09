@@ -1380,7 +1380,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: Account name.
+          description: Account name. 
         - name: legal_entity_type
           in: formData
           required: true
@@ -1401,9 +1401,9 @@ paths:
           description: City.
         - name: postal_code
           in: formData
-          required: false
+          required: true
           type: string
-          description: Postal code.
+          description: Postal code. Required for sub-accounts on our outsourced KYC model, optional otherwise.
         - name: country
           in: formData
           required: true
@@ -1459,7 +1459,7 @@ paths:
           description: Allows the account to make trades via phone.
         - name: identification_type
           in: formData
-          required: false
+          required: true
           type: string
           enum:
             - none
@@ -1479,19 +1479,19 @@ paths:
             - national_id
             - others
             - incorporation_number
-          description: A legal document that verifies the identity of the account owner.
+          description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
-          required: false
+          required: true
           type: string
           description: >-
             A unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
         - name: terms_and_conditions_accepted
           in: formData
-          required: false
+          required: true
           type: boolean
-          description: Acceptance of the terms and conditions.
+          description: Acceptance of the terms and conditions. Required for sub-accounts that are on our Outsourced KYC model, optional otherwise.
       responses:
         '200':
           description: Success.
