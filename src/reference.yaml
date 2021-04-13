@@ -14712,7 +14712,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-    /withdrawal_accounts/find:
+  /withdrawal_accounts/find:
     get:
       tags:
         - Withdrawal Accounts
