@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.25.1
+  version: 2.26.1
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -11873,6 +11873,11 @@ paths:
           type: string
           format: date
           description: Start date of conversion. ISO 8601 format YYYY-MM-DD.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Contact UUID.
       responses:
         '200':
           description: Success.
@@ -11909,6 +11914,14 @@ paths:
               category: start_date
               message: start_date should be in ISO 8601 format
               params: '{ "type" => "date" }'
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
           schema:
             $ref: '#/definitions/GetConversionDatesError'
           headers:
