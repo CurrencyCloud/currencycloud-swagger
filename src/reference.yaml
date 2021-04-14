@@ -17535,51 +17535,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-  GetIBANsError:
-    type: object
-    description: |
-      Client error information for the Get IBANs endpoint.
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
   GetPayerError:
     type: object
     description: |
@@ -18255,51 +18210,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-  GetVANsError:
-    type: object
-    description: |
-      Client error information for the Get VANs endpoint.
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
   GetWithdrawalAccountError:
     type: object
     description: |
@@ -18357,46 +18267,6 @@ definitions:
         description: The generated HMAC Key
     example:
       hmac_key: 9562c7c1094dfe8f46125aa3f3c0d141471fadd443828bb0
-  IBAN:
-    type: object
-    description: IBAN.
-    properties:
-      uuid:
-        type: string
-      iban_code:
-        type: string
-      account_id:
-        type: string
-      currency:
-        type: string
-      account_holder_name:
-        type: string
-      bank_institution_name:
-        type: string
-      bank_institution_address:
-        type: string
-      bank_institution_country:
-        type: string
-      bic_swift:
-        type: string
-      created_at:
-        type: string
-        format: date-time
-      updated_at:
-        type: string
-        format: date-time
-    example:
-      uuid: 01d8c0bc-7f0c-4cdd-bc7e-ef81f68500fe
-      iban_code: GB51TCCL00997997989489
-      account_id: 87077161-91de-012f-e284-1e0030c7f352
-      currency: EUR
-      account_holder_name: Account-IGGLNHYTWFKI
-      bank_institution_name: The Currency Cloud
-      bank_institution_address: '12 Steward Street, The Steward Building, London, E1 6FQ, GB'
-      bank_institution_country: United Kingdom
-      bic_swift: TCCLGB31
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
   LoginError:
     type: object
     description: |
@@ -20029,47 +19899,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-
-  VAN:
-    type: object
-    description: VAN.
-    properties:
-      id:
-        type: string
-      account_id:
-        type: string
-      virtual_account_number:
-        type: string
-      account_holder_name:
-        type: string
-      bank_institution_name:
-        type: string
-      bank_institution_address:
-        type: string
-      bank_institution_country:
-        type: string
-      routing_code:
-        type: string
-      wire_routing_code:
-        type: string
-      created_at:
-        type: string
-        format: date-time
-      updated_at:
-        type: string
-        format: date-time
-    example:
-      id: 00d272ee-fae5-4f97-b425-993a2d6e3a46
-      account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
-      virtual_account_number: 8303723297
-      account_holder_name: Account-ZXOANNAMKPRQ
-      bank_institution_name: Community Federal Savings Bank
-      bank_institution_address: 'Seventh Avenue, New York, NY 10019, US'
-      bank_institution_country: United States
-      routing_code: 026073150
-      wire_routing_code: 026073008
-      created_at: '2014-01-12T00:00:00.000Z'
-      updated_at: '2014-01-12T00:00:00.000Z'
   WithdrawalAccount:
     type: object
     description: WithdrawalAccount.
