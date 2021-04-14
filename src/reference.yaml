@@ -3982,6 +3982,10 @@ paths:
               category: payment_types
               message: 'payment_types should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
+            - code: payment_type_is_not_supported
+              category: payment_types
+              message: Payment type is not supported for given parameters
+              params: ''
             - code: sort_code_is_missing
               category: routing_code
               message: Sort code is missing
