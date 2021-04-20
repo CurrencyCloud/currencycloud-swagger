@@ -5297,7 +5297,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Date of birth. ISO 8601 format YYYY-MM-DD.
+          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
       responses:
         '200':
           description: Success.
@@ -5397,6 +5397,12 @@ paths:
               category: date_of_birth
               message: date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: date_of_birth_is_required
+              category: date_of_birth
+              message: >-
+                Date of Birth is a required field. Please provide date of birth
+                (YYYY-MM-DD)
+              params: ''
             - code: contact_not_found
               category: id
               message: Contact was not found for this id
@@ -5551,7 +5557,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Date of birth. ISO 8601 format YYYY-MM-DD.
+          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
       responses:
         '200':
           description: Success.
