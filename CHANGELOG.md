@@ -1,4 +1,14 @@
 # Changelog
+## [2.27.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.0) (2020-04-20)
+   - Updates response from contacts/find to be an array of Contacts
+   - Adds payment_type_is_not_supported error response type to beneficiaries/create
+   - Following deprecated endpoints were removed
+     - GET /ibans/find
+     - GET /virtual_accounts/find
+   - Updates description of date_of_birth parameter in update and create accounts endpoints
+     - POST /accounts/create
+     - POST /accounts/{id}
+
 ## [2.26.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.26.1) (2020-03-19)
    - Removes bank_account_verified parameter to Account response entity
    - Removes optional bank_account_verified query parameter to /accounts/find
