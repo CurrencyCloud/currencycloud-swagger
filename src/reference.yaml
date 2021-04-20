@@ -5400,7 +5400,7 @@ paths:
             - code: date_of_birth_is_required
               category: date_of_birth
               message: >-
-                Date of Birth is a required field where account type is individual. Please provide date of birth
+                Date of Birth is a required field. Please provide date of birth
                 (YYYY-MM-DD)
               params: ''
             - code: contact_not_found
@@ -5657,7 +5657,7 @@ paths:
             - code: date_of_birth_is_required
               category: date_of_birth
               message: >-
-                Date of Birth is a required field where account type is individual. Please provide date of birth
+                Date of Birth is a required field. Please provide date of birth
                 (YYYY-MM-DD)
               params: ''
           schema:
