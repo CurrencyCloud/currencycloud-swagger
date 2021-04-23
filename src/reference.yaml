@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.26.1
+  version: 2.27.0
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -46,13 +46,6 @@ tags:
     description: >-
       Gives you the ability to find funding accounts that can be used to settle
       and collect funds in each available currency
-  - name: IBANs
-    description: >-
-      **This endpoint is deprecated and will be removed at the end of February, 2021. Please use the Funding Account API instead.**
-
-      Create, search and manage International Bank Account Numbers (IBANs)
-      assigned to your Currencycloud account balance or your sub-accounts'
-      balances. You can also retrieve and assign IBANs to the the account.
   - name: Payers
     description: >-
       Provides you with the ability to view information relating to the 'payer'
@@ -83,13 +76,6 @@ tags:
     description: >-
       Search, retrieve and create a transfer of funds between your Currencycloud
       account and associated sub-accounts.
-  - name: VANs
-    description: >-
-      **This endpoint is deprecated and will be removed at the end of February, 2021. Please use the Funding Account API instead.**
-
-      Create, search and manage Virtual Accounts (VANs) assigned to your
-      Currencycloud account balance or your sub-accounts' balances. You can also
-      retrieve and assign VANs to the account.
   - name: Withdrawal Accounts
     description: >-
       Manage withdrawal accounts
@@ -3982,6 +3968,10 @@ paths:
               category: payment_types
               message: 'payment_types should be in range: priority, regular'
               params: '{ "range" => "priority, regular" }'
+            - code: payment_type_is_not_supported
+              category: payment_types
+              message: Payment type is not supported for given parameters
+              params: ''
             - code: sort_code_is_missing
               category: routing_code
               message: Sort code is missing
@@ -5033,7 +5023,13 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Contact'
+            properties:
+              contacts:
+                type: array
+                items:
+                  $ref: '#/definitions/Contact'
+              pagination:
+                $ref: '#/definitions/Pagination'
           headers:
             X-Request-Id:
               type: string
@@ -5301,7 +5297,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Date of birth. ISO 8601 format YYYY-MM-DD.
+          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
       responses:
         '200':
           description: Success.
@@ -5401,6 +5397,12 @@ paths:
               category: date_of_birth
               message: date_of_birth should be of date type
               params: '{ "type" => "date" }'
+            - code: date_of_birth_is_required
+              category: date_of_birth
+              message: >-
+                Date of Birth is a required field. Please provide date of birth
+                (YYYY-MM-DD)
+              params: ''
             - code: contact_not_found
               category: id
               message: Contact was not found for this id
@@ -5555,7 +5557,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Date of birth. ISO 8601 format YYYY-MM-DD.
+          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
       responses:
         '200':
           description: Success.
@@ -7874,182 +7876,6 @@ paths:
               type: string
               description: A unique reference for the request.
 
-
-
-  /ibans/find:
-    get:
-      deprecated: true
-      tags:
-        - IBANs
-      x-api-group: collect
-      summary: Find IBANs
-      description: >-
-        Returns a JSON structure with details of the IBANs for the specified
-        accounts.
-      operationId: FindIBANs
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: scope
-          in: query
-          required: false
-          type: string
-          description: >-
-            Scope allows the logged in account to search all IBANs at all
-            account levels. Defaults to all. own: search for IBANs on the main
-            account clients: search for IBANs of account sub accounts all:
-            search for IBANs of account and sub-accounts
-          enum:
-            - own
-            - all
-            - clients
-          default: all
-        - name: currency
-          in: query
-          required: false
-          type: string
-          description: Currency in which the balance is held. Three-digit currency code.
-        - name: account_id
-          in: query
-          required: false
-          type: string
-          description: UUID of a specific account you want to see the IBAN for
-        - name: page
-          in: query
-          required: false
-          type: integer
-          description: Page number.
-        - name: per_page
-          in: query
-          required: false
-          type: integer
-          description: Number of results per page.
-        - name: order
-          in: query
-          required: false
-          type: string
-          description: Any field name to change the sort order.
-        - name: order_asc_desc
-          in: query
-          required: false
-          type: string
-          enum:
-            - asc
-            - desc
-          default: asc
-          description: Sort records in ascending or descending order.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            type: object
-            properties:
-              ibans:
-                type: array
-                items:
-                  $ref: '#/definitions/IBAN'
-              pagination:
-                $ref: '#/definitions/Pagination'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: ibans_not_found
-              category: base
-              message: IBANs were not found
-              params: ''
-            - code: iban_not_found_for_currency
-              category: base
-              message: IBAN was not found for the selected currency
-              params: ''
-            - code: currency_is_in_invalid_format
-              category: currency
-              message: currency is not a valid ISO 4217 currency code
-              params: '{ "type" => "currency" }'
-            - code: currency_is_not_supported
-              category: currency
-              message: currency is not supported
-              params: ''
-            - code: scope_not_in_range
-              category: scope
-              message: "scope should be in range: own, all, clients"
-              params: '{ "range" => "own, all, clients" }'
-          schema:
-            $ref: '#/definitions/GetIBANsError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
   /payments/create:
     post:
       tags:
@@ -14902,163 +14728,6 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  /virtual_accounts/find:
-    get:
-      deprecated: true
-      tags:
-        - VANs
-      x-api-group: collect
-      summary: Find VANs
-      description: >-
-        Returns a JSON structure with details of the VANs for the specified
-        accounts.
-      operationId: FindVANs
-      produces:
-        - application/json
-      parameters:
-        - name: scope
-          in: query
-          required: false
-          type: string
-          description: >-
-            Scope allows the logged in account to search all VANs at all account
-            levels.  Defaults to all.  Own - search for VANs on the main
-            account  Clients - search for VANs of account sub accounts <br> all
-            - search for VANs of account and sub-accounts
-          enum:
-            - own
-            - all
-            - clients
-          default: all
-        - name: account_id
-          in: query
-          required: false
-          type: string
-          description: UUID of a specific account you want to see the IBAN for
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: page
-          in: query
-          required: false
-          type: integer
-          description: Page number.
-        - name: per_page
-          in: query
-          required: false
-          type: integer
-          description: Number of results per page.
-        - name: order
-          in: query
-          required: false
-          type: string
-          description: Any field name to change the sort order.
-        - name: order_asc_desc
-          in: query
-          required: false
-          type: string
-          enum:
-            - asc
-            - desc
-          default: asc
-          description: Sort records in ascending or descending order.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            type: object
-            properties:
-              vans:
-                type: array
-                items:
-                  $ref: '#/definitions/VAN'
-              pagination:
-                $ref: '#/definitions/Pagination'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: vans_not_found
-              category: base
-              message: VANs were not found
-              params: ''
-            - code: scope_not_in_range
-              category: scope
-              message: "scope should be in range: own, all, clients"
-              params: '{ "range" => "own, all, clients" }'
-          schema:
-            $ref: '#/definitions/GetVANsError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
   /withdrawal_accounts/find:
     get:
       tags:
@@ -17882,51 +17551,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-  GetIBANsError:
-    type: object
-    description: |
-      Client error information for the Get IBANs endpoint.
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
   GetPayerError:
     type: object
     description: |
@@ -18602,51 +18226,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-  GetVANsError:
-    type: object
-    description: |
-      Client error information for the Get VANs endpoint.
-    required:
-      - error_code
-      - error_messages
-    properties:
-      error_code:
-        type: string
-        description: A high-level error code for the whole request.
-      error_messages:
-        type: object
-        description: >-
-          Detailed error information for individual input parameters that failed
-          validation. Object keys are the names of the invalid input parameters.
-          Each parameter may have one or more reasons why it failed.
-        additionalProperties:
-          type: array
-          items:
-            type: object
-            description: >-
-              An object that represents one of the reasons why the input
-              parameter failed.
-            required:
-              - code
-              - message
-            properties:
-              code:
-                type: string
-                description: >-
-                  A unique code that identifies this error. It can be used for
-                  translations.
-              message:
-                type: string
-                description: An explanation of the error in English.
-              params:
-                type: object
-                default: {}
-                description: >-
-                  Relevant validation rules that failed. This can be used for
-                  translations.
-                example:
-                  minlength: 1
-                  maxlength: 255
   GetWithdrawalAccountError:
     type: object
     description: |
@@ -18704,46 +18283,6 @@ definitions:
         description: The generated HMAC Key
     example:
       hmac_key: 9562c7c1094dfe8f46125aa3f3c0d141471fadd443828bb0
-  IBAN:
-    type: object
-    description: IBAN.
-    properties:
-      uuid:
-        type: string
-      iban_code:
-        type: string
-      account_id:
-        type: string
-      currency:
-        type: string
-      account_holder_name:
-        type: string
-      bank_institution_name:
-        type: string
-      bank_institution_address:
-        type: string
-      bank_institution_country:
-        type: string
-      bic_swift:
-        type: string
-      created_at:
-        type: string
-        format: date-time
-      updated_at:
-        type: string
-        format: date-time
-    example:
-      uuid: 01d8c0bc-7f0c-4cdd-bc7e-ef81f68500fe
-      iban_code: GB51TCCL00997997989489
-      account_id: 87077161-91de-012f-e284-1e0030c7f352
-      currency: EUR
-      account_holder_name: Account-IGGLNHYTWFKI
-      bank_institution_name: The Currency Cloud
-      bank_institution_address: '12 Steward Street, The Steward Building, London, E1 6FQ, GB'
-      bank_institution_country: United Kingdom
-      bic_swift: TCCLGB31
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
   LoginError:
     type: object
     description: |
@@ -20376,47 +19915,6 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
-
-  VAN:
-    type: object
-    description: VAN.
-    properties:
-      id:
-        type: string
-      account_id:
-        type: string
-      virtual_account_number:
-        type: string
-      account_holder_name:
-        type: string
-      bank_institution_name:
-        type: string
-      bank_institution_address:
-        type: string
-      bank_institution_country:
-        type: string
-      routing_code:
-        type: string
-      wire_routing_code:
-        type: string
-      created_at:
-        type: string
-        format: date-time
-      updated_at:
-        type: string
-        format: date-time
-    example:
-      id: 00d272ee-fae5-4f97-b425-993a2d6e3a46
-      account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
-      virtual_account_number: 8303723297
-      account_holder_name: Account-ZXOANNAMKPRQ
-      bank_institution_name: Community Federal Savings Bank
-      bank_institution_address: 'Seventh Avenue, New York, NY 10019, US'
-      bank_institution_country: United States
-      routing_code: 026073150
-      wire_routing_code: 026073008
-      created_at: '2014-01-12T00:00:00.000Z'
-      updated_at: '2014-01-12T00:00:00.000Z'
   WithdrawalAccount:
     type: object
     description: WithdrawalAccount.
