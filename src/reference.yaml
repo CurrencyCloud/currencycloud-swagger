@@ -1389,7 +1389,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code. Required for sub-accounts on our outsourced KYC model, optional otherwise.
         - name: country
           in: formData
           required: true
@@ -1465,7 +1465,7 @@ paths:
             - national_id
             - others
             - incorporation_number
-          description: A legal document that verifies the identity of the account owner.
+          description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
           required: false
@@ -1477,7 +1477,7 @@ paths:
           in: formData
           required: false
           type: boolean
-          description: Acceptance of the terms and conditions.
+          description: Acceptance of the terms and conditions. Required for sub-accounts that are on our Outsourced KYC model, optional otherwise.
       responses:
         '200':
           description: Success.
@@ -1530,6 +1530,10 @@ paths:
               category: legal_entity_type
               message: 'legal_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
+            - code: legal_entity_type_is_required
+              category: legal_entity_type
+              message: 'Legal entity type is required'
+              params: ''
             - code: street_is_too_long
               category: street
               message: street can not be longer than 150 character(s)
@@ -1589,6 +1593,10 @@ paths:
             - code: state_or_province_is_required
               category: state_or_province
               message: 'State or province is required for US, CA and MX'
+              params: ''
+            - code: terms_and_conditions_accepted_is_required
+              category: terms_and_conditions_accepted
+              message: 'Terms and conditions accepted is required'
               params: ''
             - code: invalid_extra_parameters
               category: base
