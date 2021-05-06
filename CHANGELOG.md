@@ -1,4 +1,7 @@
 # Changelog
+## [2.27.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.1) (2020-05-06)
+   - Documetation update on creating Outsourced KYC sub-accounts
+
 ## [2.27.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.0) (2020-04-20)
    - Updates response from contacts/find to be an array of Contacts
    - Adds payment_type_is_not_supported error response type to beneficiaries/create
