@@ -7,13 +7,13 @@ info:
     services to your own customers.
   version: 2.27.1
   title: Currencycloud API
-  termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
+  termsOfService: 'https://www.currencycloud.com/legal/terms'
   contact:
     name: support
     email: support@currencycloud.com
 externalDocs:
   description: API overview
-  url: 'https://www.currencycloud.com/developers/'
+  url: 'https://www.developer.currencycloud.com/'
 tags:
   - name: Authenticate
     description: >-
