@@ -518,6 +518,7 @@ paths:
         '200':
           description: Success.
           schema:
+            type: object
             properties:
               accounts:
                 type: array
