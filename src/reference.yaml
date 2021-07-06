@@ -10628,8 +10628,8 @@ paths:
       summary: Validate Payment
       description: >-
         Validate a new payments's details, without actually creating a
-        record of the payment. On success, returns an object that represents
-        the payment that would be created if the payment create had been called.
+        record of the payment. On success, returns an object containing
+        validation_result equal to "success".
       operationId: ValidatePayment
       consumes:
         - multipart/form-data
