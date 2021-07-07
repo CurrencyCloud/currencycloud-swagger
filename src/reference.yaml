@@ -668,7 +668,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Account UUID.
+          description: Account UUID, returned by the create account endpoint.
         - name: on_behalf_of
           in: query
           required: false
@@ -795,7 +795,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Account UUID.
+          description: Account UUID, returned by the create account endpoint.
         - name: account_name
           in: formData
           required: false
@@ -1389,7 +1389,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code. Required for sub-accounts on our outsourced KYC model, optional otherwise.
+          description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country = "US", "CA" or "MX".
         - name: country
           in: formData
           required: true
@@ -1401,7 +1401,7 @@ paths:
           type: string
           description: >-
             The value of this field is used for white labeling the Currencycloud
-            user interface.
+            user interface. If nothing is specified then the account will inherit the house account's brand.
         - name: your_reference
           in: formData
           required: false
@@ -1421,13 +1421,13 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country = "US", "CA" or "MX".
         - name: spread_table
           in: formData
           required: false
           type: string
           default: flat_0.00
-          description: The name of the spread table assigned to the account.
+          description: The name of the spread table assigned to the account. This is needed if they intend to apply markup.
         - name: api_trading
           in: formData
           required: false
@@ -1697,7 +1697,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: The contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -1826,7 +1826,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: The contact UUID for the sub-acccount you're acting on behalf of.
         - name: amount_from
           in: query
           required: false
@@ -2006,7 +2006,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: The contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -2131,7 +2131,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: bank_account_holder_name
           in: query
           required: false
@@ -2644,7 +2644,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -3674,7 +3674,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: beneficiary_external_reference
           in: formData
           required: false
@@ -4157,7 +4157,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -4473,7 +4473,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -5921,7 +5921,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key. Beneficial for request tracking / management.
         - name: on_behalf_of
           in: formData
           required: false
@@ -5937,7 +5937,7 @@ paths:
             - default
             - optimize_liquidity
           description: >-
-            Available only if conversion_date is not provided. Must be one of the following:<br>
+            Available and required only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
             'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
@@ -6225,7 +6225,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Find Conversions
-      description: Find conversions based on search parameters.
+      description: Find conversions based on search parameters. If no search parameters are provided, all conversions under the house account are returned.
       operationId: FindConversions
       produces:
         - application/json
@@ -6239,7 +6239,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: Contact UUID. Required if performing activity on behalf of a sub-account.
         - name: short_reference
           in: query
           required: false
@@ -6521,12 +6521,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: Contact UUID for a named account contact. This is a required parameter when acting on behalf of a named account (sub-account).
       responses:
         '200':
           description: Success.
@@ -6630,7 +6630,7 @@ paths:
       description: >-
         Returns a JSON structure that contains information related to actions on
         conversions that have generated profit or loss, including the profit or
-        loss amount
+        loss amount.
       operationId: ConversionProfitAndLoss
       consumes:
         - multipart/form-data
@@ -6646,17 +6646,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: ID of the Account that the Conversion belongs to.
+          description: UUID of the Account that the Conversion belongs to.
         - name: contact_id
           in: formData
           required: false
           type: string
-          description: ID of the Contact that did the cancellation.
+          description: UUID of the Contact that did the cancellation.
         - name: conversion_id
           in: formData
           required: false
           type: string
-          description: ID of the cancelled conversion.
+          description: UUID of the cancelled conversion.
         - name: event_type
           in: formData
           required: false
@@ -6846,7 +6846,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, Conversion UUID, this is returned by a successful trade request when creating a conversion.
         - name: new_settlement_date
           in: query
           required: true
@@ -6970,7 +6970,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being changed
+          description: The UUID of the conversion that is being changed
         - name: new_settlement_date
           required: true
           type: string
@@ -7102,7 +7102,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: The UUID of the conversion to be split, the UUID is returned by a successful trade request when creating a conversion.
         - name: amount
           required: true
           type: string
@@ -7236,7 +7236,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being cancelled
+          description: UUID of the conversion that is being split. The conversion UUID is returned by a successful trade request when creating a conversion."
         - name: amount
           required: true
           type: string
@@ -7370,7 +7370,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID. The UUID is returned by a successful trade request when creating a conversion.
       responses:
         '200':
           description: Success.
@@ -7499,7 +7499,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
       responses:
         '200':
           description: Success.
@@ -7616,7 +7616,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being cancelled
+          description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
         - name: notes
           required: false
           type: string
@@ -7755,7 +7755,7 @@ paths:
           in: query
           required: false
           type: string
-          description: UUID of a specific account you want to see the SSIs for
+          description: UUID of a specific sub-account you want to see the SSIs for.
         - name: page
           in: query
           required: false
@@ -8057,7 +8057,10 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: >-
+            A contact UUID for the sub-acccount you're acting on behalf of.
+            Payer details parameters should not be sent if using on_behalf_of, the
+            they will be populated using the details from the sub-account.
         - name: charge_type
           in: formData
           required: false
@@ -8361,7 +8364,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
@@ -8693,7 +8696,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -9286,7 +9289,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -9410,7 +9413,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -9655,7 +9658,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -10793,7 +10796,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: charge_type
           in: formData
           required: false
@@ -11113,7 +11116,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -11258,7 +11261,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: Contact UUID. Required if performing activity on behalf of a sub-account.
         - name: conversion_date
           in: query
           required: false
@@ -11463,12 +11466,12 @@ paths:
           in: query
           required: true
           type: string
-          description: 'Concatenated string of the two currencies traded, eg. "USDEUR".'
+          description: 'Concatenated string of the two currencies traded, eg. "USDEUR". More than one pair can be entered, e.g. "EURGBP,GBPUSD,EURUSD".'
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: Contact UUID. Required if performing activity on behalf of a sub-account.
         - name: ignore_invalid_pairs
           in: query
           required: false
@@ -12817,7 +12820,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: UUID of contact to act on behalf of. Required if conducting activity on behalf of a sub-account.
         - name: description
           in: formData
           required: false
@@ -13054,7 +13057,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: description
           in: formData
           required: false
@@ -13447,7 +13450,7 @@ paths:
           in: query
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -13668,7 +13671,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: currency
           in: query
           required: false
@@ -13990,7 +13993,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -14364,12 +14367,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Transfer UUID.
+          description: Transfer UUID, returned when the transfer was created.
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
