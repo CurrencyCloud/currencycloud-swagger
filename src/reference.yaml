@@ -5542,7 +5542,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Currencycloud login ID.
+          description: Currencycloud login ID, allows the contact to login and conduct activity on the sub-account.
         - name: status
           in: formData
           required: false
@@ -5550,7 +5550,7 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status.
+          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
         - name: locale
           in: formData
           required: false
