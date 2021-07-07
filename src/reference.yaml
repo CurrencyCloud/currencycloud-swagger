@@ -506,10 +506,19 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: bank_account_verified
+          in: query
+          required: false
+          type: string
+          enum:
+            - yes
+            - no
+            - not required
       responses:
         '200':
           description: Success.
           schema:
+            type: object
             properties:
               accounts:
                 type: array
@@ -580,6 +589,10 @@ paths:
               category: spread_table
               message: country can not be longer than 100 character(s)
               params: '{ "maxlength" => 100 }'
+            - code: bank_account_verified_not_in_range
+              category: bank_account_verified
+              message: 'bank_account_verified should be in range: yes, no, not required'
+              params: '{ "range" => "yes, no, not required" }'
           schema:
             $ref: '#/definitions/FindAccountsError'
           headers:
@@ -10618,8 +10631,8 @@ paths:
       summary: Validate Payment
       description: >-
         Validate a new payments's details, without actually creating a
-        record of the payment. On success, returns an object that represents
-        the payment that would be created if the payment create had been called.
+        record of the payment. On success, returns an object containing
+        validation_result equal to "success".
       operationId: ValidatePayment
       consumes:
         - multipart/form-data
@@ -15097,6 +15110,12 @@ definitions:
         type: boolean
       agent_or_reliance:
         type: boolean
+      bank_account_verified:
+        type: string
+        enum:
+          - yes
+          - no
+          - not required
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -15122,6 +15141,7 @@ definitions:
       settlement_type: bulk
       terms_and_conditions_accepted: true
       agent_or_reliance: true
+      bank_account_verified: no
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
