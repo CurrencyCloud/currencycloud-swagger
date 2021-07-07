@@ -8072,7 +8072,7 @@ paths:
           type: string
           description: >-
             A contact UUID for the sub-acccount you're acting on behalf of.
-            Payer details parameters should not be sent if using on_behalf_of, the
+            Payer details parameters should not be sent if using on_behalf_of,
             they will be populated using the details from the sub-account.
         - name: charge_type
           in: formData
@@ -11479,7 +11479,7 @@ paths:
           in: query
           required: true
           type: string
-          description: 'Concatenated string of the two currencies traded, eg. "USDEUR". More than one pair can be entered, e.g. "EURGBP,GBPUSD,EURUSD".'
+          description: 'Concatenated string of the two currencies traded, eg. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
         - name: on_behalf_of
           in: query
           required: false
