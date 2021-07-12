@@ -5869,7 +5869,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Create Conversion
-      description: 'Create a new conversion. On success, returns the new conversion entity.'
+      description: 'Creates a new conversion, and upon success, returns the details of the created conversion.'
       operationId: CreateConversion
       consumes:
         - multipart/form-data
@@ -6520,7 +6520,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Get Conversion
-      description: Get a conversion record.
+      description: Get a conversion record for the provided unique id {id}.
       operationId: GetConversion
       produces:
         - application/json
@@ -6641,9 +6641,8 @@ paths:
       x-api-group: convert
       summary: Retrieve Profit / Loss
       description: >-
-        Returns a JSON structure that contains information related to actions on
-        conversions that have generated profit or loss, including the profit or
-        loss amount
+        Returns the information of any actions related to a conversion that have
+        generated profit or loss, including the profit or loss amount.
       operationId: ConversionProfitAndLoss
       consumes:
         - multipart/form-data
@@ -6844,8 +6843,8 @@ paths:
       x-api-group: convert
       summary: Quote Conversion Date Change
       description: >-
-        Returns a JSON structure containing the quote for changing the date of
-        the specified conversion.
+        Get a quote of the projected cost to change the date of a conversion identified
+        by a provided unique id {id}.
       operationId: ConversionDateChangeQuote
       produces:
         - application/json
@@ -7101,7 +7100,8 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Split Preview
-      description: Returns a JSON structure of conversion split preview details.
+      description: Get a preview of the details of each part of a split conversion
+        specified by the provided unique conversion id {id}.
       operationId: GetConversionSplitPreview
       produces:
         - application/json
@@ -7233,7 +7233,8 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split
-      description: Returns a JSON structure of conversion split execute details.
+      description: Splits the conversion specified by the unique id {id}. Upon success,
+          it returns the details of the parent and new child conversions.
       operationId: SplitConversion
       consumes:
         - multipart/form-data
@@ -7369,7 +7370,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split History
-      description: Returns a JSON structure of conversion split history details.
+      description: Returns the history of executed conversion splits specified by a unique id {id}.
       operationId: GetConversionSplitHistory
       produces:
         - application/json
@@ -7497,8 +7498,7 @@ paths:
       x-api-group: convert
       summary: Quote Conversion Cancellation
       description: >-
-        Returns a JSON structure containing the quote for cancelling the
-        specified conversion.
+        Get a quote of the projected cost to cancel a conversion identified by a provided unique id {id}.
       operationId: ConversionCancellationQuote
       produces:
         - application/json
@@ -11232,9 +11232,13 @@ paths:
       x-api-group: convert
       summary: Get Detailed Rates
       description: >-
-        Get a detailed quotation to convert money from one currency to another.
-        The quotation will be based on the spread table of the authenticating
-        user.
+        Get a detailed, tradeable rate quote to convert money from one currency to another.
+        The quotation provided will be based on the spread table of the authenticated user.
+        There is also the option to provide a specific date for the conversion to occur. <br><br>
+        This endpoint provides a current tradeable rate for a single currency pair.
+        It should be used as the start of the flow before a conversion is booked.
+        This endpoint should be used where accuracy is the most important aspect, such as when
+        a trade is about to be booked.
       operationId: GetDetailedRates
       produces:
         - application/json
@@ -11462,7 +11466,11 @@ paths:
         - Rates
       x-api-group: convert
       summary: Get Basic Rates
-      description: Get basic foreign exchange rate information for multiple currency pairs.
+      description: Get indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br>
+            This endpoint is intended to provide an indication of the rate available in the
+            market and can support requests for multiple currency pairs, so is good for polling
+            requirements such as live FX ticker widgets. This endpoint should be used where speed,
+            availability and the ability to request multiple currency pairs is important.
       operationId: GetBasicRates
       produces:
         - application/json
@@ -11889,7 +11897,11 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Conversion Dates
-      description: Get a list of future non-trading dates for specified currency pairs.
+      description: Get a list of future non-trading dates for specified currency pairs.<br><br>
+         This endpoint will provide a list of upcoming non-trading dates, such as weekends or
+         public holidays, for a specified currency pair. Common use cases for this endpoint
+         will include any situations where this information wants to be provided, or for
+         planning upcoming conversion bookings.
       operationId: GetConversionDates
       produces:
         - application/json
