@@ -11234,7 +11234,7 @@ paths:
       description: >-
         Get a detailed, tradeable rate quote to convert money from one currency to another.
         The quotation provided will be based on the spread table of the authenticated user.
-        There is also the option to provide a specific date for the conversion to occur. <br>
+        There is also the option to provide a specific date for the conversion to occur. <br><br>
         This endpoint provides a current tradeable rate for a single currency pair.
         It should be used as the start of the flow before a conversion is booked.
         This endpoint should be used where accuracy is the most important aspect, such as when
@@ -11466,7 +11466,7 @@ paths:
         - Rates
       x-api-group: convert
       summary: Get Basic Rates
-      description: Get indicative foreign exchange rate information for one or more currency pairs in a single request. <br>
+      description: Get indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br>
             This endpoint is intended to provide an indication of the rate available in the
             market and can support requests for multiple currency pairs, so is good for polling
             requirements such as live FX ticker widgets. This endpoint should be used where speed,
@@ -11897,7 +11897,7 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Conversion Dates
-      description: Get a list of future non-trading dates for specified currency pairs.<br>
+      description: Get a list of future non-trading dates for specified currency pairs.<br><br>
          This endpoint will provide a list of upcoming non-trading dates, such as weekends or
          public holidays, for a specified currency pair. Common use cases for this endpoint
          will include any situations where this information wants to be provided, or for
