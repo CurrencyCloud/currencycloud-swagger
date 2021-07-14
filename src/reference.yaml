@@ -681,12 +681,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Account UUID.
+          description: Account UUID, returned by the create account endpoint.
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -808,7 +808,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Account UUID.
+          description: Account UUID, returned by the create account endpoint.
         - name: account_name
           in: formData
           required: false
@@ -1402,7 +1402,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code. Required for sub-accounts on our outsourced KYC model, optional otherwise.
+          description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country = "US", "CA" or "MX".
         - name: country
           in: formData
           required: true
@@ -1414,7 +1414,7 @@ paths:
           type: string
           description: >-
             The value of this field is used for white labeling the Currencycloud
-            user interface.
+            user interface. If nothing is specified then the account will inherit the house account's brand.
         - name: your_reference
           in: formData
           required: false
@@ -1434,13 +1434,13 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country = "US", "CA" or "MX".
         - name: spread_table
           in: formData
           required: false
           type: string
           default: flat_0.00
-          description: The name of the spread table assigned to the account.
+          description: The name of the spread table assigned to the account. This is needed if they intend to apply markup.
         - name: api_trading
           in: formData
           required: false
@@ -1710,7 +1710,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -1839,7 +1839,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: amount_from
           in: query
           required: false
@@ -2019,7 +2019,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -2144,7 +2144,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: bank_account_holder_name
           in: query
           required: false
@@ -2657,7 +2657,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -3687,7 +3687,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: beneficiary_external_reference
           in: formData
           required: false
@@ -4170,7 +4170,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -4486,7 +4486,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -5555,7 +5555,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Currencycloud login ID.
+          description: Currencycloud login ID, allows the contact to login and conduct activity on the sub-account.
         - name: status
           in: formData
           required: false
@@ -5563,7 +5563,7 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status.
+          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
         - name: locale
           in: formData
           required: false
@@ -5934,12 +5934,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key. Beneficial for request tracking / management.
         - name: on_behalf_of
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: conversion_date_preference
           in: formData
           required: false
@@ -5950,7 +5950,7 @@ paths:
             - default
             - optimize_liquidity
           description: >-
-            Available only if conversion_date is not provided. Must be one of the following:<br>
+            Available and required only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
             'next_day' for next day available conversion date - T+1.<br>
             'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
@@ -6238,7 +6238,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Find Conversions
-      description: Find conversions based on search parameters.
+      description: Find conversions based on search parameters. If no search parameters are provided, all conversions under the house account are returned.
       operationId: FindConversions
       produces:
         - application/json
@@ -6252,7 +6252,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
@@ -6290,32 +6290,32 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: conversion_date_from
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: conversion_date_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: currency_pair
           in: query
           required: false
@@ -6377,14 +6377,14 @@ paths:
           type: string
           description: >-
             Earliest date when sold currency debited. Any valid ISO 8601 format,
-            eg. "2017-12-31T23:59:59+00:00".
+            eg. "2020-12-31T23:59:59+00:00".
         - name: settlement_date_to
           in: query
           required: false
           type: string
           description: >-
             Latest date when sold currency debited. Any valid ISO 8601 format,
-            eg. "2017-12-31T23:59:59+00:00".
+            eg. "2020-12-31T23:59:59+00:00".
         - name: unique_request_id
           in: query
           required: false
@@ -6534,12 +6534,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -6658,17 +6658,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: ID of the Account that the Conversion belongs to.
+          description: UUID of the Account that the Conversion belongs to.
         - name: contact_id
           in: formData
           required: false
           type: string
-          description: ID of the Contact that did the cancellation.
+          description: UUID of the Contact that did the cancellation.
         - name: conversion_id
           in: formData
           required: false
           type: string
-          description: ID of the cancelled conversion.
+          description: UUID of the cancelled conversion.
         - name: event_type
           in: formData
           required: false
@@ -6858,7 +6858,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
         - name: new_settlement_date
           in: query
           required: true
@@ -6982,7 +6982,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being changed
+          description: The UUID of the conversion that is being changed
         - name: new_settlement_date
           required: true
           type: string
@@ -7115,7 +7115,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: The UUID of the conversion to be split, the UUID is returned by a successful trade request when creating a conversion.
         - name: amount
           required: true
           type: string
@@ -7250,7 +7250,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being cancelled
+          description: UUID of the conversion that is being split. The conversion UUID is returned by a successful trade request when creating a conversion."
         - name: amount
           required: true
           type: string
@@ -7384,7 +7384,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID. The UUID is returned by a successful trade request when creating a conversion.
       responses:
         '200':
           description: Success.
@@ -7512,7 +7512,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
       responses:
         '200':
           description: Success.
@@ -7629,7 +7629,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ID of the conversion that is being cancelled
+          description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
         - name: notes
           required: false
           type: string
@@ -7768,7 +7768,7 @@ paths:
           in: query
           required: false
           type: string
-          description: UUID of a specific account you want to see the SSIs for
+          description: UUID of a specific sub-account you want to see the SSIs for.
         - name: page
           in: query
           required: false
@@ -7946,7 +7946,7 @@ paths:
           type: string
           description: >-
             Instructed date of payment. Any valid ISO 8601 format, eg.
-            "2017-12-31".
+            "2020-12-31".
         - name: payment_type
           in: formData
           required: false
@@ -8070,7 +8070,10 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: >-
+            A contact UUID for the sub-acccount you're acting on behalf of.
+            Payer details parameters should not be sent if using on_behalf_of,
+            they will be populated using the details from the sub-account.
         - name: charge_type
           in: formData
           required: false
@@ -8374,7 +8377,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
@@ -8428,7 +8431,7 @@ paths:
           format: date
           description: >-
             Earliest instructed payment date. Any valid ISO 8601 format, eg.
-            "2017-12-31T23:59:59+00:00".
+            "2020-12-31T23:59:59+00:00".
         - name: payment_date_to
           in: query
           required: false
@@ -8436,7 +8439,7 @@ paths:
           format: date
           description: >-
             Latest instructed payment date. Any valid ISO 8601 format, eg.
-            "2017-12-31T23:59:59+00:00".
+            "2020-12-31T23:59:59+00:00".
         - name: transferred_at_from
           in: query
           required: false
@@ -8444,7 +8447,7 @@ paths:
           format: date-time
           description: >-
             Earliest date of payment processing. Any valid ISO 8601 format, eg.
-            "2017-12-31T23:59:59+00:00".
+            "2020-12-31T23:59:59+00:00".
         - name: transferred_at_to
           in: query
           required: false
@@ -8452,31 +8455,31 @@ paths:
           format: date-time
           description: >-
             Latest date of payment processing. Any valid ISO 8601 format, eg.
-            "2017-12-31T23:59:59+00:00".
+            "2020-12-31T23:59:59+00:00".
         - name: created_at_from
           in: query
           required: false
           type: string
           format: date-time
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date-time
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date-time
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date-time
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59+00:00".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59+00:00".'
         - name: beneficiary_id
           in: query
           required: false
@@ -8706,7 +8709,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -8855,7 +8858,7 @@ paths:
           type: string
           description: >-
             Instructed date of payment. Any valid ISO 8601 format, eg.
-            "2017-12-31".
+            "2020-12-31".
         - name: reason
           in: formData
           required: false
@@ -8992,7 +8995,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: charge_type
           in: formData
           required: false
@@ -9299,7 +9302,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -9423,7 +9426,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -9668,7 +9671,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -10062,7 +10065,7 @@ paths:
           in: query
           required: true
           type: string
-          description: The date when the payment will be released. Any valid ISO 8601 format, eg. "2017-12-31".
+          description: The date when the payment will be released. Any valid ISO 8601 format, eg. "2020-12-31".
         - name: payment_type
           in: query
           required: true
@@ -10682,7 +10685,7 @@ paths:
           type: string
           description: >-
             Instructed date of payment. Any valid ISO 8601 format, eg.
-            "2017-12-31".
+            "2020-12-31".
         - name: payment_type
           in: formData
           required: false
@@ -10806,7 +10809,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: charge_type
           in: formData
           required: false
@@ -11126,7 +11129,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -11275,7 +11278,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: conversion_date
           in: query
           required: false
@@ -11484,12 +11487,12 @@ paths:
           in: query
           required: true
           type: string
-          description: 'Concatenated string of the two currencies traded, eg. "USDEUR".'
+          description: 'Concatenated string of the two currencies traded, eg. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: ignore_invalid_pairs
           in: query
           required: false
@@ -11926,7 +11929,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -12842,7 +12845,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: description
           in: formData
           required: false
@@ -13079,7 +13082,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: description
           in: formData
           required: false
@@ -13472,7 +13475,7 @@ paths:
           in: query
           required: false
           type: string
-          description: UUID of contact to act on behalf of.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -13582,7 +13585,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -13693,7 +13696,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: currency
           in: query
           required: false
@@ -13783,49 +13786,49 @@ paths:
           format: date
           description: >-
             Earliest processing date. Any valid ISO 8601 format, eg.
-            "2017-12-31".
+            "2020-12-31".
         - name: settles_at_to
           in: query
           required: false
           type: string
           format: date
-          description: 'Latest processing date. Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Latest processing date. Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: created_at_from
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: completed_at_from
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: completed_at_to
           in: query
           required: false
           type: string
           format: date
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31".'
         - name: beneficiary_id
           in: query
           required: false
@@ -14015,7 +14018,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -14117,7 +14120,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
@@ -14161,32 +14164,32 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: completed_at_from
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: completed_at_to
           in: query
           required: false
           type: string
-          description: 'Any valid ISO 8601 format, eg. "2017-12-31T23:59:59Z".'
+          description: 'Any valid ISO 8601 format, eg. "2020-12-31T23:59:59Z".'
         - name: creator_contact_id
           in: query
           required: false
@@ -14389,12 +14392,12 @@ paths:
           in: path
           required: true
           type: string
-          description: Transfer UUID.
+          description: Transfer UUID, returned when the transfer was created.
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: Contact UUID.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -15138,8 +15141,8 @@ definitions:
       postal_code: AB12 CD1
       spread_table: flat_0.5_percent
       legal_entity_type: company
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
       identification_type: green_card
       identification_value: 123456789
       short_reference: 110104-00004
@@ -15232,8 +15235,8 @@ definitions:
       account_id: TcC
       currency: USD
       amount: '1000.00'
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
   BankDetails:
     type: object
     description: Bank Details.
@@ -15434,8 +15437,8 @@ definitions:
       bank_address:
         - Line 1
         - Line 2
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
       beneficiary_external_reference: B-5847789
   BeneficiaryRequirements:
     type: object
@@ -15590,8 +15593,8 @@ definitions:
       timezone: Europe/London
       email_address: john.smith@company.com
       date_of_birth: '1980-01-22T00:00:00.000Z'
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
   Conversion:
     type: object
     description: Conversion.
@@ -15661,8 +15664,8 @@ definitions:
       account_id: 0386e472-8d2b-45a8-9c14-a393dce5bf3a
       creator_contact_id: ac743762-5860-4b78-9c6a-82c5bca68867
       short_reference: 20140507-VRTNFC
-      settlement_date: '2017-12-31T23:59:59.000Z'
-      conversion_date: '2017-12-31T23:59:59.000Z'
+      settlement_date: '2020-12-31T23:59:59.000Z'
+      conversion_date: '2020-12-31T23:59:59.000Z'
       status: awaiting_funds
       currency_pair: GBPUSD
       buy_currency: GBP
@@ -15680,13 +15683,13 @@ definitions:
       deposit_amount: '47.85'
       deposit_currency: GBP
       deposit_status: awaiting_deposit
-      deposit_required_at: '2017-12-31T23:59:59.000Z'
+      deposit_required_at: '2020-12-31T23:59:59.000Z'
       unallocated_funds: '1000.00'
       payment_ids:
         - b934794f-d810-4b4a-b360-5a0f47b7126e
       unique_request_id: 1234567890abc
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
   ConversionCancellationQuote:
     type: object
     description: Projected cost to cancel a conversion.
@@ -15701,7 +15704,7 @@ definitions:
     example:
       amount: 100
       currency: GBP
-      event_date_time: '2018-07-14T17:03:11.000Z'
+      event_date_time: '2020-07-14T17:03:11.000Z'
   ConversionProfitAndLoss:
     type: object
     description: Recognised profit / loss on a conversion
@@ -15723,7 +15726,7 @@ definitions:
           currency: GBP
           notes: Cancel the conversion due to personal issues
           event_type: self_service_cancellation
-          event_date_time: '2017-11-10T12:18:56.000Z'
+          event_date_time: '2020-11-10T12:18:56.000Z'
         - account_id: 67e1b252-40a7-454d-a097-8f77d385889d
           contact_id: 04d0c252-7b78-4d72-b408-df78841e3ddc
           event_account_id: 67e1b252-40a7-454d-a097-8f77d385889d
@@ -15733,7 +15736,7 @@ definitions:
           currency: USD
           notes: Cancel due to very important reason
           event_type: self_service_cancellation
-          event_date_time: '2017-11-10T12:18:56.000Z'
+          event_date_time: '2020-11-10T12:18:56.000Z'
       pagination:
         total_entries: 2
         total_pages: 1
@@ -15778,7 +15781,7 @@ definitions:
       currency: GBP
       notes: Cancel the conversion due to personal issues
       event_type: self_service_cancellation
-      event_date_time: '2017-11-10T12:18:56.000Z'
+      event_date_time: '2020-11-10T12:18:56.000Z'
   ConversionDateChange:
     type: object
     description: Conversion Date change record
@@ -15962,13 +15965,13 @@ definitions:
         report_type: Payment
       report_type: payment
       status: completed
-      expiration_date: '2017-03-23T00:00:00.000Z'
+      expiration_date: '2020-03-23T00:00:00.000Z'
       report_url: >-
-        https://tcc.s3.amazonaws.com/reports/transaction_reports/000/000/011/transaction_report_23_03_2017.csv?1471682433
+        https://tcc.s3.amazonaws.com/reports/transaction_reports/000/000/011/transaction_report_23_03_2020.csv?1471682433
       account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
-      created_at: '2017-03-16T23:59:59.000Z'
-      updated_at: '2017-03-16T23:59:59.000Z'
+      created_at: '2020-03-16T23:59:59.000Z'
+      updated_at: '2020-03-16T23:59:59.000Z'
   CreateAccountError:
     type: object
     description: |
@@ -18508,9 +18511,9 @@ definitions:
       identification_type: incorporation_number
       identification_value: 123123
       postcode: EC2M 4LX
-      date_of_birth: '2017-12-31T23:59:59.000Z'
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      date_of_birth: '2020-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
   PayerRequirements:
     type: object
     description: Payer requirements.
@@ -18609,15 +18612,15 @@ definitions:
       payment_type: regular
       reference: INVOICE 9876
       reason: Salary for March
-      payment_date: '2017-12-31T23:59:59.000Z'
-      transferred_at: '2017-12-31T23:59:59.000Z'
+      payment_date: '2020-12-31T23:59:59.000Z'
+      transferred_at: '2020-12-31T23:59:59.000Z'
       authorisation_steps_required: '0'
       creator_contact_id: ab3477161-91de-012f-e284-1e0030c7f35c
       last_updater_contact_id: ab3477161-91de-012f-e284-1e0030c7f35c
       failure_reason: ''
       payer_id: ''
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
       payment_group_id: 20140428-CJRRJM
       unique_request_id: 1234567890abc
       failure_returned_amount: ''
@@ -18668,7 +18671,7 @@ definitions:
         additionalProperties:
           type: string
           description: >-
-            Maps dates (eg. "2017-12-31") to string values that explains why
+            Maps dates (eg. "2020-12-31") to string values that explains why
             payments cannot be made on this date (eg. "No trading on Sunday").
       first_payment_date:
         type: string
@@ -19203,7 +19206,7 @@ definitions:
       deposit_currency:
         type: string
     example:
-      settlement_cut_off_time: '2017-12-31T23:59:59.000Z'
+      settlement_cut_off_time: '2020-12-31T23:59:59.000Z'
       currency_pair: GBPUSD
       client_buy_currency: GBP
       client_sell_currency: USD
@@ -19350,9 +19353,9 @@ definitions:
         USD:
           send_amount: '1587.80'
           receive_amount: '0.00'
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
-      released_at: '2017-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
+      released_at: '2020-12-31T23:59:59.000Z'
   SettlementAccount:
     type: object
     description: Settlement accounts.
@@ -19539,10 +19542,10 @@ definitions:
       related_entity_short_reference: 140416-GGJBNQ001
       status: completed
       reason: Reason for Transaction
-      settles_at: '2017-12-31T23:59:59.000Z'
-      created_at: '2017-12-31T23:59:59.000Z'
-      updated_at: '2017-12-31T23:59:59.000Z'
-      completed_at: '2017-12-31T23:59:59.000Z'
+      settles_at: '2020-12-31T23:59:59.000Z'
+      created_at: '2020-12-31T23:59:59.000Z'
+      updated_at: '2020-12-31T23:59:59.000Z'
+      completed_at: '2020-12-31T23:59:59.000Z'
   Transfer:
     type: object
     description: Transfer.
@@ -19575,15 +19578,15 @@ definitions:
         type: string
     example:
       id: 993d63bd-e151-11e6-a5af-080027a79e8f
-      short_reference: BT-20170118-VMSCBS
+      short_reference: BT-20200118-VMSCBS
       source_account_id: a7117404-e150-11e6-a5af-080027a79e8f
       destination_account_id: 946f2d58-e150-11e6-a5af-080027a79e8f
       currency: GBP
       amount: '1250.00'
       status: completed
-      created_at: '2017-01-18T14:08:34.000Z'
-      updated_at: '2017-01-18T14:08:34.000Z'
-      completed_at: '2017-01-18T14:08:34.000Z'
+      created_at: '2020-01-18T14:08:34.000Z'
+      updated_at: '2020-01-18T14:08:34.000Z'
+      completed_at: '2020-01-18T14:08:34.000Z'
       creator_account_id: 30cb8632-e152-11e6-a5af-080027a79e8f
       creator_contact_id: 262e3d2a-e152-11e6-a5af-080027a79e8f
       reason: Director's fees for March
