@@ -11510,10 +11510,10 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: currency_pair_too_many_items
+            - code: currency_pair_is_too_long
               category: currency_pair
-              message: currency_pair should have less than 350 items
-              params: '{ "maxcount" => 350 }'
+              message: currency_pair can not be longer than 2450 character(s)
+              params: '{ "maxlength" => 2450 }'
             - code: currency_pair_is_too_short
               category: currency_pair
               message: currency_pair can not be shorter than 6 letter(s)
