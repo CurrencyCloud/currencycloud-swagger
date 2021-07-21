@@ -15054,7 +15054,6 @@ paths:
     post:
       tags:
         - Demo
-      x-throttling-tier: Unlimited
       x-api-group: collect
       summary: Emulate inbound funds
       description: >-
