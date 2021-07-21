@@ -15057,7 +15057,9 @@ paths:
       x-api-group: collect
       summary: Emulate inbound funds
       description: >-
-        Triggers prod like flow for processing funds with topping up CM balance or rejecting the transaction without topping up CM balance
+        Triggers a Production like flow for processing funds with topping up CM balance or rejecting the transaction
+        without topping up CM balance. This resource is only available in the Currencycloud Demo environment. It is
+        not implemented in the Production environment.
       operationId: SimulateFunding
       consumes:
         - multipart/form-data
