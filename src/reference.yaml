@@ -81,7 +81,7 @@ tags:
       Manage withdrawal accounts
   - name: Demo
     description: >-
-      Requests that are only availble on the demo system
+      Requests that are only available on the demo system
 schemes:
   - https
 host: devapi.currencycloud.com
