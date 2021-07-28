@@ -5950,11 +5950,12 @@ paths:
             - default
             - optimize_liquidity
           description: >-
-            Available and required only if conversion_date is not provided. Must be one of the following:<br>
-            'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
-            'next_day' for next day available conversion date - T+1.<br>
-            'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
-            'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
+            Available and required only if conversion_date is not provided. Not currently supported for APAC currencies.<br>
+            Must be one of the following:<br>
+            - 'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            - 'next_day' for next day available conversion date - T+1.<br>
+            - 'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
+            - 'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
       responses:
         '200':
@@ -11904,7 +11905,9 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Conversion Dates
-      description: Get a list of future non-trading dates for specified currency pairs.<br><br>
+      description: Get a list of future non-trading dates for specified currency pairs. Please note that since APAC
+        currencies do not support the 'conversion_date_preference' parameter on the conversions/create endpoint, 'default_conversion_date'
+        returned in this response should be used and not the `first_conversion_date` or `optimize_liquidity_conversion_date`.<br><br>
          This endpoint will provide a list of upcoming non-trading dates, such as weekends or
          public holidays, for a specified currency pair. Common use cases for this endpoint
          will include any situations where this information wants to be provided, or for
