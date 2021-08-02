@@ -1,8 +1,19 @@
 # Changelog
-## [2.27.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.1) (2020-05-06)
+
+## [2.28.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.28.0) (2021-08-02)
+   - Adds currency_pair_is_too_long error response to rates/find   
+   - Fixes schema type for response from accounts/find
+   - Adds bank_account_verified query parameter to accounts/find
+   - Adds bank_account_verified parameter to Account response definition
+   - Documentation Updates
+     - Updates Description of /conversions/create to accommodate APAC currencies
+     - Corrects description of response from payments/validate call
+     - General updates to endpoint descriptions
+
+## [2.27.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.1) (2021-05-06)
    - Documetation update on creating Outsourced KYC sub-accounts
 
-## [2.27.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.0) (2020-04-20)
+## [2.27.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.27.0) (2021-04-20)
    - Updates response from contacts/find to be an array of Contacts
    - Adds payment_type_is_not_supported error response type to beneficiaries/create
    - Following deprecated endpoints were removed
@@ -12,19 +23,19 @@
      - POST /accounts/create
      - POST /accounts/{id}
 
-## [2.26.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.26.1) (2020-03-19)
+## [2.26.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.26.1) (2021-03-19)
    - Removes bank_account_verified parameter to Account response entity
    - Removes optional bank_account_verified query parameter to /accounts/find
 
-## [2.26.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.26.0) (2020-03-15)
+## [2.26.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.26.0) (2021-03-15)
    - Adds on_behalf_option parameter to /reference/conversion_dates
    - Adds bank_account_verified parameter to Account response entity
    - Adds optional bank_account_verified query parameter to /accounts/find
 
-## [2.25.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.25.1) (2020-02-18)
+## [2.25.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.25.1) (2021-02-18)
    - Adds new next_day conversion date option for ConversionDates endpoint
 
-## [2.24.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.24.0) (2020-02-03)
+## [2.24.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.24.0) (2021-02-03)
    - Removes partner_status field in conversions response
    
 ## [2.23.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.23.0) (2020-12-23)
