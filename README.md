@@ -99,13 +99,13 @@ To use a locally-installed instance of [Swagger Editor](https://github.com/swagg
 From the root directory of this project, run:
 
 ```bash
-npm run install
+npm install
 ```
 
 When the installation is complete, run the following command to launch a local instance of Swagger Editor:
 
 ```
-npm run swagger:editor
+npm run swagger:edit
 ```
 
 This command will serve Swagger Editor in your default web browser from http://127.0.0.1:9000/. The file ``./src/reference.yaml`` will be loaded by default. Any changes you make to the API definition file will be saved automatically as you type; there is no need to use the editor's file import/export commands. Alternatively you can use the online version of Swagger Editor at http://editor2.swagger.io.
