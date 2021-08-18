@@ -84,41 +84,22 @@ For more details see [Developer Center Deprecation Policy](https://www.currencyc
 
 ## Tools
 
-### Swagger Editor and Swagger UI
+### Local Swagger Editor
 
-There are two ways to edit the Swagger OpenAPI definition file (``./src/reference.yaml``): using Swagger Editor, or using your preferred IDE with a live preview of the Swagger UI.
-
-**Requirements**
-
-To use a locally-installed instance of [Swagger Editor](https://github.com/swagger-api/swagger-editor), you will need:
-
-- Node.js >= v6.11.3
-
-**Installation**
-
-From the root directory of this project, run:
-
-```bash
-npm run install
-```
-
-When the installation is complete, run the following command to launch a local instance of Swagger Editor:
+Docker provides a simple way to start a local [Swagger Editor](https://github.com/swagger-api/swagger-editor) with the API schema 
 
 ```
-npm run swagger:editor
+docker pull swaggerapi/swagger-editor
+docker run -p 8866:8080 -v $(pwd)/src:/tmp -e SWAGGER_FILE=/tmp/reference.yaml swaggerapi/swagger-editor
 ```
 
-This command will serve Swagger Editor in your default web browser from http://127.0.0.1:9000/. The file ``./src/reference.yaml`` will be loaded by default. Any changes you make to the API definition file will be saved automatically as you type; there is no need to use the editor's file import/export commands. Alternatively you can use the online version of Swagger Editor at http://editor2.swagger.io.
+which can be accessed then via `http://localhost:8866` and after editing new version can be saved.
 
-If you prefer to edit the API definition file from your IDE, you can still preview your changes using the following command:
+Alternatively follow the Swagger Editor's local build procedure.
 
-```
-npm run swagger:preview
-```
+### Remote Swagger Editor
 
-This will serve the default [Swagger UI](https://swagger.io/swagger-ui/) from http://127.0.0.1:8000/. It is a live preview, so as you save changes to the file ``./src/reference.yaml`` via your IDE, the Swagger UI will be regenerated in your browser window.
-
-To stop the server, in the console type ``Ctrl+C`` to terminate the running Node.js batch job.
+Online editor is available at [https://editor.swagger.io/](https://editor.swagger.io/).
 
 ### Postman
 
