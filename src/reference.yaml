@@ -18576,6 +18576,8 @@ definitions:
         type: string
       reason:
         type: string
+      estimated_arrival:
+        type: string
       payment_date:
         type: string
       transferred_at:
@@ -18619,6 +18621,7 @@ definitions:
       payment_type: regular
       reference: INVOICE 9876
       reason: Salary for March
+      estimated_arrival: '2020-12-31T00:00:00.000Z'
       payment_date: '2020-12-31T23:59:59.000Z'
       transferred_at: '2020-12-31T23:59:59.000Z'
       authorisation_steps_required: '0'
