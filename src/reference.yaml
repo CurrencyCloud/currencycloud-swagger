@@ -8066,7 +8066,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Payment Purpose Code (Mandatory for all INR payments).
+          description: >-
+            Payment Purpose Code (Mandatory for all local INR and MYR payments, SWIFT CNY payments, 
+            and SWIFT payments in any currency to banks in Bahrain or the United Arab Emirates).
+            Visit our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Help Center</a>
+            for more information.
         - name: on_behalf_of
           in: formData
           required: false
