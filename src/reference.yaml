@@ -14232,6 +14232,11 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: User-generated idempotency key.
       responses:
         '200':
           description: Success.
@@ -14692,6 +14697,11 @@ paths:
           required: false
           type: string
           description: User-generated reason for transfer. Freeform text.
+        - name: unique_request_id
+          in: formData
+          required: false
+          type: string
+          description: User-generated idempotency key.
       responses:
         '200':
           description: Success.
@@ -14703,6 +14713,14 @@ paths:
               description: A unique reference for the request.
         '400':
           description: Client error.
+          x-errors:
+            - code: duplicate_request
+              category: duplicate_request
+              message: >-
+                The unique_request_id provided for this payment has already been
+                used, please provide a new unique_request_id to successfully
+                submit this transfer.
+              params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
