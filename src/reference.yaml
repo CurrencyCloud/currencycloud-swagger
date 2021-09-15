@@ -7759,7 +7759,6 @@ paths:
           enum:
             - priority
             - regular
-          default: all
         - name: currency
           in: query
           required: true
