@@ -7754,12 +7754,11 @@ paths:
           required: false
           type: string
           description: >-
-            The type of SSI to be returned e.g. priority (SWIFT) or regular. Defaults to all.
+            The type of SSI to be returned, priority (SWIFT) or regular (local).
+            Null value returns all.
           enum:
-            - all
             - priority
             - regular
-          default: all
         - name: currency
           in: query
           required: true
