@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.29.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.29.1) (2021-09-17)
+   - Updates the description of payment purpose code
+   - Corrects the enum for payment_type for find funding accounts
+
 ## [2.29.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.29.0) (2021-08-31)
    - Adds estimated_arrival to get payment response
    - Replace live swagger editor with official swagger-editor docker image
