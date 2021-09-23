@@ -15085,7 +15085,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: UUID of the request
+          description: Unique value in UUID format user-generated with each request
         - name: sender_name
           in: formData
           required: false
@@ -15121,12 +15121,12 @@ paths:
           in: formData
           required: true
           type: string
-          description: Account number of a client or it’s sub-account
+          description: Virtual account number of a client or it’s sub-account (as seen in Find Funding Accounts API)
         - name: receiver_routing_code
           in: formData
           required: false
           type: string
-          description: Routing code of a client or it’s sub-account
+          description: Virtual account routing code of a client or it’s sub-account (as seen in Find Funding Accounts API)
         - name: amount
           in: formData
           required: true
