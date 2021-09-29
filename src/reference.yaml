@@ -6412,7 +6412,7 @@ paths:
         - name: order
           in: query
           required: false
-          type: integer
+          type: string
           description: Any field name to change the sort order.
         - name: order_asc_desc
           in: query
