@@ -7948,9 +7948,9 @@ paths:
           required: false
           type: string
           description: >-
-            Instructed date of payment - on this date we will attempt to debit funds on the account and submit the payment 
-            to the scheme. If the payment fails, we will re-attempt on the next working day. Defaults to the earliest 
-            possible date if not passed as parameter. Any valid ISO 8601 format, e.g. "2020-12-31.
+            Instructed date of payment - on this date we will attempt to debit funds on the account and submit the payment
+            to the scheme. If the payment cannot be submitted before the cut-off (i.e. due to lack of funding), we will re-attempt
+            on the next working day. Defaults to the earliest possible date if not passed as parameter. Any valid ISO 8601 format, e.g. "2020-12-31.
         - name: payment_type
           in: formData
           required: false
@@ -8070,7 +8070,7 @@ paths:
           required: false
           type: string
           description: >-
-            Payment Purpose Code (Mandatory for all local INR and MYR payments, SWIFT CNY payments, 
+            Payment Purpose Code (Mandatory for all local INR and MYR payments, SWIFT CNY payments,
             and SWIFT payments in any currency to banks in Bahrain or the United Arab Emirates).
             Visit our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Help Center</a>
             for more information.
