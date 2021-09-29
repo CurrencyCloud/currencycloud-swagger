@@ -7948,8 +7948,9 @@ paths:
           required: false
           type: string
           description: >-
-            Instructed date of payment. Any valid ISO 8601 format, eg.
-            "2020-12-31".
+            Instructed date of payment - on this date we will attempt to debit funds on the account and submit the payment 
+            to the scheme. If the payment fails, we will re-attempt on the next working day. Defaults to the earliest 
+            possible date if not passed as parameter. Any valid ISO 8601 format, e.g. "2020-12-31.
         - name: payment_type
           in: formData
           required: false
