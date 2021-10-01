@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.31.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.0) (2021-10-01)
+   - Updates payment_date parameter description on payments/create
+   - Adds optional unique_request_id parameter to transfers/create and transfers/find request and response
+   - Corrects the type of the order parameter in conversions/find from integer to string
+
 ## [2.30.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.30.0) (2021-09-23)
    - Adds demo only demo/funding/create endpoint
 
