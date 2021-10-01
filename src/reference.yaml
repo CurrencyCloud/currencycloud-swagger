@@ -14708,7 +14708,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key. The value must be in UUID format
       responses:
         '200':
           description: Success.
@@ -14721,12 +14721,16 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: duplicate_request
-              category: duplicate_request
+            - code: duplicate_unique_request_id
+              category: unique_request_id
               message: >-
-                The unique_request_id provided for this payment has already been
-                used, please provide a new unique_request_id to successfully
-                submit this transfer.
+                The unique_request_id provided for this transfer has already been used,
+                please provide a new one to successfully submit this transfer
+              params: ''
+            - code: unique_request_id_is_not_valid_uuid
+              category: unique_request_id
+              message: >-
+                unique_request_id should be in UUID format
               params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
