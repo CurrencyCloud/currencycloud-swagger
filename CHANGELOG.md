@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.31.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.1) (2021-10-01)
+   - Updates error responses for transfers/create
+
 ## [2.31.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.0) (2021-10-01)
    - Updates payment_date parameter description on payments/create
    - Adds optional unique_request_id parameter to transfers/create and transfers/find request and response
