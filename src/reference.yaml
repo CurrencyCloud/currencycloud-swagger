@@ -13760,7 +13760,11 @@ paths:
             - inbound_funds
             - deposit
             - transfer
-          description: The related entity that created the transaction.
+          description: >-
+            The related entity that created the transaction.<br>
+            For information, the related_entity_type for margin transactions is <b>'margin_transaction'</b>. 
+            While it isn't possible to search directly by this value, margin transactions can
+            be filtered using the ‘action’ field and may be included in the response.
         - name: related_entity_id
           in: query
           required: false
