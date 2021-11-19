@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.31.3](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.3) (2021-11-19)
+   - Adds an explanation of margin transactions to 'related_entity_type'
+
 ## [2.31.2](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.2) (2021-10-29)
    - Removes the requirement for unique_request_id on transfers/create to be UUID format
 
