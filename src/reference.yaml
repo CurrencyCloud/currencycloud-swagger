@@ -7772,6 +7772,11 @@ paths:
           required: false
           type: string
           description: UUID of a specific sub-account you want to see the SSIs for.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: page
           in: query
           required: false
@@ -7830,6 +7835,18 @@ paths:
             - code: account_id_is_not_valid_uuid
               category: account_id
               message: account_id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
               params: ''
           schema:
             $ref: '#/definitions/FindFundingAccountsError'
