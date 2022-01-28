@@ -6040,6 +6040,10 @@ paths:
               category: client_rate
               message: client_rate is invalid
               params: '{ "client_rate" => "1.455543..1.778997" }'
+            - code: currency_pair_not_available_for_weekend_error
+              category: currency_pair_not_available_for_weekend_error
+              message: Currency pair is not available for weekend
+              params: ''
             - code: client_rate_is_required
               category: client_rate
               message: The client_rate is required if you supply currency_pair
@@ -11380,6 +11384,10 @@ paths:
               category: sell_currency
               message: sell_currency is required
               params: ''
+            - code: currency_pair_not_available_for_weekend_error
+              category: currency_pair_not_available_for_weekend_error
+              message: Currency pair is not available for weekend
+              params: ''
             - code: amount_type_is_wrong
               category: amount
               message: amount should be of numeric type
@@ -13779,7 +13787,7 @@ paths:
             - transfer
           description: >-
             The related entity that created the transaction.<br>
-            For information, the related_entity_type for margin transactions is <b>'margin_transaction'</b>. 
+            For information, the related_entity_type for margin transactions is <b>'margin_transaction'</b>.
             While it isn't possible to search directly by this value, margin transactions can
             be filtered using the ‘action’ field and may be included in the response.
         - name: related_entity_id
