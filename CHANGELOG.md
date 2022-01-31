@@ -3,6 +3,7 @@
 ## [2.32.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.32.0) (2022-01-31)
 - Adds on_behalf_of parameter to funding_accounts/find
 - Adds new error responses to /conversions/create and /rates/detailed
+- Aligns terms and conditions accepted parameter in account model
 
 ## [2.31.3](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.31.3) (2021-11-19)
    - Adds an explanation of margin transactions to 'related_entity_type'
