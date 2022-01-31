@@ -6040,8 +6040,8 @@ paths:
               category: client_rate
               message: client_rate is invalid
               params: '{ "client_rate" => "1.455543..1.778997" }'
-            - code: currency_pair_not_available_for_weekend_error
-              category: currency_pair_not_available_for_weekend_error
+            - code: currency_pair_not_available_for_weekend
+              category: currency_pair_not_available_for_weekend
               message: Currency pair is not available for weekend
               params: ''
             - code: client_rate_is_required
@@ -11384,8 +11384,8 @@ paths:
               category: sell_currency
               message: sell_currency is required
               params: ''
-            - code: currency_pair_not_available_for_weekend_error
-              category: currency_pair_not_available_for_weekend_error
+            - code: currency_pair_not_available_for_weekend
+              category: currency_pair_not_available_for_weekend
               message: Currency pair is not available for weekend
               params: ''
             - code: amount_type_is_wrong
