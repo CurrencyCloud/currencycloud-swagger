@@ -14269,7 +14269,7 @@ paths:
           default: asc
           description: Sort records in ascending or descending order.
         - name: unique_request_id
-          in: formData
+          in: query
           required: false
           type: string
           description: User-generated idempotency key. The value must be in UUID format
