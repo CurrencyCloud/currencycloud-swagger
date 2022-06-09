@@ -17,8 +17,8 @@ externalDocs:
 tags:
   - name: Authenticate
     description: >-
-      Authenticate to gain access to the API. Provides the ability to log in to
-      your Currencycloud account using your API Key and log out by terminating
+      Authenticate to gain access to the API. Log in to
+      your Currencycloud account using your API Key and log out to terminate
       your session.
   - name: Accounts
     description: >-
@@ -31,7 +31,7 @@ tags:
       currently hold in different currencies on your Currencycloud account.
   - name: Beneficiaries
     description: >-
-      Provides you with the ability to create, search and manage the list of
+      Create, search and manage the list of
       individuals or companies that you send payments to.
   - name: Contacts
     description: >-
@@ -39,16 +39,16 @@ tags:
       Currencycloud account or associated sub-accounts.
   - name: Conversions
     description: >-
-      Gives you the ability to find, retrieve and create a live currency
+      Find, retrieve and create a live currency
       conversion. You can also create and manage the live conversion of funds
       between two currencies.
   - name: Funding
     description: >-
-      Gives you the ability to find funding accounts that can be used to settle
-      and collect funds in each available currency
+      Find funding accounts that can be used to settle
+      and collect funds in each available currency.
   - name: Payers
     description: >-
-      Provides you with the ability to view information relating to the 'payer'
+      View information relating to the 'payer'
       for a payment that has been initiated through the platform.
   - name: Payments
     description: >-
@@ -81,7 +81,7 @@ tags:
       Manage withdrawal accounts
   - name: Demo
     description: >-
-      Requests that are only available on the demo system
+      Requests that are only available in the Demo environment.
 schemes:
   - https
 host: devapi.currencycloud.com
@@ -181,7 +181,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -274,7 +274,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -374,7 +374,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -627,7 +627,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -751,7 +751,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -1057,7 +1057,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -1172,7 +1172,7 @@ paths:
           x-errors:
           - code: too_many_requests
             category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+            message: Too many requests have been made to the API. Please refer to the Developer Center for more information
             params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1324,7 +1324,7 @@ paths:
           x-errors:
           - code: too_many_requests
             category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+            message: Too many requests have been made to the API. Please refer to the Developer Center for more information
             params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1649,7 +1649,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -1783,7 +1783,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -1952,7 +1952,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -2088,7 +2088,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -2598,7 +2598,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -2718,7 +2718,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -3413,7 +3413,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -4107,7 +4107,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -4235,7 +4235,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -4821,7 +4821,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -4908,7 +4908,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -5091,7 +5091,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -5202,7 +5202,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -5462,7 +5462,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -5715,7 +5715,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -5829,7 +5829,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -6203,7 +6203,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -6485,7 +6485,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -6605,7 +6605,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -6807,7 +6807,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -6929,7 +6929,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7065,7 +7065,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7198,7 +7198,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7335,7 +7335,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7462,7 +7462,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7578,7 +7578,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7702,7 +7702,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -7746,7 +7746,7 @@ paths:
       x-api-group: collect
       summary: Find Funding Accounts
       description: >-
-        Gets details of the SSIs that can be used to settle and collect funds in each available currency
+        Gets details of the Standard Settlement Instructions (SSIs) that can be used to settle and collect funds in each available currency.
       operationId: FindFundingAccounts
       produces:
         - application/json
@@ -7826,31 +7826,35 @@ paths:
           x-errors:
             - code: payment_type_not_in_range
               category: payment_type
-              message: 'payment_type should be in range: priority, regular'
+              message: 'payment_type should be in range: priority, regular.'
               params: '{ "range" => "priority, regular" }'
+            - code: currency_is_required
+              category: currency
+              message: currency is a required parameter.
+              params: ''
             - code: currency_is_in_invalid_format
               category: currency
-              message: currency is not a valid ISO 4217 currency code
+              message: The currency specified is not a valid ISO 4217 currency code.
               params: '{ "type" => "currency" }'
             - code: currency_is_not_supported
               category: currency
-              message: currency is not supported
+              message: This currency is not supported.
+              params: ''
+            - code: funding_accounts_not_found
+              category: funding_accounts
+              message: No funding accounts found for this account.
               params: ''
             - code: account_id_is_not_valid_uuid
               category: account_id
-              message: account_id should be in UUID format
+              message: account_id should be in UUID format.
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
+              message: You cannot act on behalf of your own Contact.
               params: ''
             - code: on_behalf_of_is_not_valid_uuid
               category: on_behalf_of
-              message: on_behalf_of should be in UUID format
+              message: The on_behalf_of parameter should be in UUID format.
               params: ''
           schema:
             $ref: '#/definitions/FindFundingAccountsError'
@@ -7859,11 +7863,11 @@ paths:
               type: string
               description: A unique reference for the request.
         '401':
-          description: Unauthorized.
+          description: Unauthorized
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7873,6 +7877,15 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: account_not_found
+              category: account
+              message: Account was not found for this id.
+              params: ''
+            - code: contact_not_found
+              category: contact
+              message: Contact was not found for this id.
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -7883,8 +7896,8 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
+                Too many requests have been made to the API. Please refer to the
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7893,22 +7906,22 @@ paths:
               type: string
               description: A unique reference for the request.
         '500':
-          description: Internal server error
+          description: Internal server error.
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
         '503':
-          description: Service is temporary unavailable
+          description: Service is temporary unavailable.
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -8349,7 +8362,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -8666,7 +8679,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -8800,7 +8813,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9269,7 +9282,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9393,7 +9406,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9517,7 +9530,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9636,7 +9649,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9762,7 +9775,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -9889,7 +9902,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -10037,7 +10050,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -10196,7 +10209,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -10321,7 +10334,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -10481,7 +10494,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -10615,7 +10628,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11096,7 +11109,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11220,7 +11233,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11459,7 +11472,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11598,7 +11611,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11755,7 +11768,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -11894,7 +11907,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12044,7 +12057,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12141,7 +12154,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12292,7 +12305,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12426,7 +12439,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12565,7 +12578,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12706,7 +12719,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -12823,7 +12836,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -13062,7 +13075,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -13276,7 +13289,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -13452,7 +13465,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -13562,7 +13575,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -13604,8 +13617,8 @@ paths:
       tags:
         - Sender
       x-api-group: collect
-      summary: Get Sender Details
-      description: Returns a JSON structure with details of the sender of funds. The format of the sender tag in the response is "sender":"name; address; country; account_number or iban; bic; routing_code"
+      summary: Get Sender Details.
+      description: Returns a JSON structure with details of the sender of funds.
       operationId: GetSenderDetails
       produces:
         - application/json
@@ -13619,7 +13632,7 @@ paths:
           in: path
           required: true
           type: string
-          description: The Related Entity UUID (related_entity_id) of the Transaction.
+          description: The Related Entity UUID (related_entity_id) for the Transaction.
         - name: on_behalf_of
           in: query
           required: false
@@ -13637,13 +13650,13 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: sender_not_found
-              category: id
-              message: Sender was not found for this id
-              params: ''
             - code: id_is_not_valid_uuid
               category: id
-              message: id should be in UUID format
+              message: The id should be in UUID format.
+              params: ''
+            - code: on_behalf_of_self
+              category: contact
+              message: You cannot act on behalf of your own Contact.
               params: ''
           schema:
             $ref: '#/definitions/GetSenderError'
@@ -13656,7 +13669,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -13666,6 +13679,11 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: sender_not_found
+              category: id
+              message: A sender was not found for this id.
+              params: ''
           schema:
             $ref: '#/definitions/NotFoundError'
           headers:
@@ -13678,8 +13696,8 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
+                Too many requests have been made to the API. Please refer to the
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13692,18 +13710,18 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
         '503':
-          description: Service is temporary unavailable
+          description: Service is temporary unavailable.
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: The service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13999,7 +14017,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14106,7 +14124,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14386,7 +14404,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14510,7 +14528,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14653,7 +14671,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14790,7 +14808,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -14917,7 +14935,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -15073,7 +15091,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -15117,8 +15135,8 @@ paths:
       x-api-group: collect
       summary: Emulate inbound funds
       description: >-
-        Triggers a Production like flow for processing funds with topping up CM balance or rejecting the transaction
-        without topping up CM balance. This resource is only available in the Currencycloud Demo environment. It is
+        Triggers a production-like flow for processing funds, topping up CM balance or rejecting the transaction
+        without topping up CM balance. This resource is only available in the Currencycloud Demo environment; it is
         not implemented in the Production environment.
       operationId: SimulateFunding
       consumes:
@@ -15135,58 +15153,58 @@ paths:
           in: formData
           required: true
           type: string
-          description: Unique value in UUID format user-generated with each request
+          description: Unique value in UUID format, user-generated with each request.
         - name: sender_name
           in: formData
           required: false
           type: string
           default: Test sender
-          description: Sender name
+          description: Sender's name.
         - name: sender_address
           in: formData
           required: false
           type: string
-          description: Sender address
+          description: Sender's address.
         - name: sender_country
           in: formData
           required: false
           type: string
-          description: Two-digit sender country
+          description: Two-digit sender country.
         - name: sender_reference
           in: formData
           required: false
           type: string
-          description: Sender reference
+          description: Sender reference.
         - name: sender_account_number
           in: formData
           required: false
           type: string
-          description: Sender account number
+          description: Sender account number.
         - name: sender_routing_code
           in: formData
           required: false
           type: string
-          description: Sender routing code
+          description: Sender routing code.
         - name: receiver_account_number
           in: formData
           required: true
           type: string
-          description: Virtual account number of a client or it’s sub-account (as seen in Find Funding Accounts API)
+          description: A client's virtual account number or its sub-account (as seen in Find Funding Accounts).
         - name: receiver_routing_code
           in: formData
           required: false
           type: string
-          description: Virtual account routing code of a client or it’s sub-account (as seen in Find Funding Accounts API)
+          description: A client's virtual account routing code or its sub-account (as seen in Find Funding Accounts).
         - name: amount
           in: formData
           required: true
           type: string
-          description: Amount of the emulated transaction
+          description: Amount of the emulated transaction.
         - name: currency
           in: formData
           required: true
           type: string
-          description: Three-digit currency code
+          description: Three-digit currency code.
         - name: action
           in: formData
           required: false
@@ -15195,12 +15213,12 @@ paths:
             - approve
             - reject
           default: approve
-          description: Allows you to trigger certain behaviour
+          description: Allows you to trigger approval or rejection behaviour.
         - name: on_behalf_of
           in: formData
           required: false
           type: string
-          description: Contact UUID to act on behalf of the contact
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -15219,35 +15237,35 @@ paths:
               params: ''
             - code: id_has_invalid_format
               category: id
-              message: ID should be in UUID format
+              message: ID should be in UUID format.
               params: ''
             - code: receiver_account_number_cant_be_blank
               category: receiver_account_number
-              message: "Receiver account number can't be blank"
+              message: "Receiver account number can't be blank."
               params: ''
             - code: receiver_account_number_not_found
               category: receiver_account_number
-              message: Receiver account number not found
+              message: Receiver account number not found.
               params: ''
             - code: sender_country_is_invalid
               category: sender_country
-              message: Sender country is invalid
+              message: Sender country is invalid.
               params: ''
             - code: sender_country_has_invalid_format
               category: sender_country
-              message: Sender country is not a valid ISO 3166 country code
+              message: Sender country is not a valid ISO 3166 country code.
               params: ''
             - code: amount_cant_be_blank
               category: amount
-              message: "Amount can't be blank"
+              message: "Amount can't be blank."
               params: ''
             - code: amount_must_be_greater_than_0
               category: amount
-              message: Amount must be greater than 0
+              message: Amount must be greater than 0.
               params: ''
             - code: amount_must_be_less_than_1000000000000
               category: amount
-              message: Amount must be less than 1 000 000 000 000
+              message: Amount must be less than 1 000 000 000 000.
               params: ''
             - code: amount_is_invalid
               category: amount
@@ -15255,31 +15273,31 @@ paths:
               params: ''
             - code: action_is_invalid
               category: action
-              message: 'Action is invalid, should be in range: approve, reject'
+              message: 'Action is invalid, should be in range: approve, reject.'
               params: ''
             - code: currency_cant_be_blank
               category: currency
-              message: "Currency can't be blank"
+              message: "Currency can't be blank."
               params: ''
             - code: currency_is_invalid
               category: currency
-              message: Currency is invalid
+              message: Currency is invalid.
               params: ''
             - code: currency_has_invalid_format
               category: currency
-              message: Currency is not a valid ISO 4217 currency code
+              message: Currency is not a valid ISO 4217 currency code.
               params: ''
             - code: currency_not_supported_by_account
               category: currency
-              message: Currency not supported by account
+              message: Currency not supported by account.
               params: ''
-            - code: contact_not_found
+            - code: on_behalf_of_is_not_valid_uuid
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: on_behalf_of should be in UUID format.
               params: ''
-            - code: contact_failed_to_validate
+            - code: on_behalf_of_self
               category: on_behalf_of
-              message: Contact failed to validate
+              message: You cannot act on behalf of your own Contact.
               params: ''
           schema:
             $ref: '#/definitions/CreateSimulateFundingError'
@@ -15324,7 +15342,7 @@ paths:
             - code: too_many_requests
               category: base
               message: >-
-                Too many requests have been made to the api. Please refer to the
+                Too many requests have been made to the API. Please refer to the
                 Developer Center for more information
               params: ''
           schema:
@@ -17111,7 +17129,7 @@ definitions:
     properties:
       id:
         type: string
-        description: The unique UUID of the SSI
+        description: The SSI's unique UUID.
       account_id:
         type: string
         description: The account ID the SSI is attached to. If money is paid to the account details, this account will be credited.
@@ -17143,8 +17161,8 @@ definitions:
         type: string
         description: >-
           The type of payment that can be made into the account details provided.
-          Regular - an in country scheme such as faster payments in the UK
-          Priority - a priority payment eg FEDwire or using SWIFT
+          Regular - a local scheme such as Faster Payments in the UK.
+          Priority - a priority payment e.g. FEDwire or SWIFT.
         enum:
           - regular
           - priority
@@ -17154,7 +17172,7 @@ definitions:
         description: The particular routing card for this account number.
       routing_code_type:
         type: string
-        description: The type of routing number
+        description: The type of routing number.
         enum:
           - bic_swift
           - sort_code
@@ -19579,6 +19597,7 @@ definitions:
     properties:
       id:
         type: string
+        description: The unique UUID for the Sender.
       amount:
         type: string
       currency:
@@ -20423,19 +20442,19 @@ definitions:
     properties:
       id:
         type: string
-        description: The unique UUID of the simulated fund.
+        description: The unique UUID for the simulated fund.
       account_id:
         type: string
-        description: The account UUID the simulated fund were created for.
+        description: The account UUID the simulated fund was created for.
       state:
         type: string
         description: The state of the simulated fund.
       sender_name:
         type: string
-        description: Sender name.
+        description: The sender's name.
       sender_address:
         type: string
-        description: Sender address.
+        description: The sender's address.
       sender_country:
         type: string
         description: Two-digit sender country.
@@ -20450,25 +20469,25 @@ definitions:
         description: Sender routing code.
       receiver_account_number:
         type: string
-        description: Account number of a client or it’s sub-account.
+        description: A client or its sub-account's account number.
       receiver_routing_code:
         type: string
-        description: Routing code of a client or it’s sub-account.
+        description: Routing code for a client or its sub-account.
       amount:
         type: string
-        description: Amount of the emulated transaction
+        description: Amount of the emulated transaction.
       currency:
         type: string
-        description: Three-digit currency code
+        description: Three-digit currency code.
       action:
         type: string
-        description: Allows you to trigger certain behaviour
+        description: Allows you to trigger approval or rejection behaviour.
         enum:
           - approve
           - reject
       short_reference:
         type: string
-        description: The reference generated by system to identify fund
+        description: The reference generated by the system to identify the fund.
       created_at:
         type: string
         description: The date-time the SSI was added to the account.
