@@ -311,1062 +311,13 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  /accounts/current:
-    get:
-      tags:
-        - Accounts
-      x-api-group: manage
-      summary: Get Authenticating Account
-      description: Get the main account of the authenticating user.
-      operationId: GetAuthenticatingAccount
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          type: string
-          required: true
-          description: Authentication token.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Account'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-          schema:
-            $ref: '#/definitions/GetAuthenticatingAccountError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  /accounts/find:
-    get:
-      tags:
-        - Accounts
-      x-api-group: manage
-      summary: Find Accounts
-      description: >-
-        Get sub-accounts owned by the authenticating user. Optionally filter by
-        account status and other criteria.
-      operationId: FindAccounts
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: account_name
-          in: query
-          required: false
-          type: string
-          description: Account name.
-        - name: brand
-          in: query
-          required: false
-          type: string
-          description: >-
-            The value of this field is used for white labeling the Currencycloud
-            user interface.
-        - name: your_reference
-          in: query
-          required: false
-          type: string
-          description: User-generated reference code.
-        - name: status
-          in: query
-          required: false
-          type: string
-          enum:
-            - enabled
-            - enabled_no_trading
-            - disabled
-          description: Account status.
-        - name: street
-          in: query
-          required: false
-          type: string
-          description: First line of address.
-        - name: city
-          in: query
-          required: false
-          type: string
-          description: City.
-        - name: state_or_province
-          in: query
-          required: false
-          type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
-        - name: postal_code
-          in: query
-          required: false
-          type: string
-          description: Postal code.
-        - name: country
-          in: query
-          required: false
-          type: string
-          description: Two-letter country code.
-        - name: spread_table
-          in: query
-          required: false
-          type: string
-          description: The name of the spread table assigned to the account.
-        - name: page
-          in: query
-          required: false
-          type: integer
-          description: Page number.
-        - name: per_page
-          in: query
-          required: false
-          type: integer
-          description: Number of results per page.
-        - name: order
-          in: query
-          required: false
-          type: string
-          description: Any field name to change the sort order.
-        - name: order_asc_desc
-          in: query
-          required: false
-          type: string
-          enum:
-            - asc
-            - desc
-          default: asc
-          description: Sort records in ascending or descending order.
-        - name: bank_account_verified
-          in: query
-          required: false
-          type: string
-          enum:
-            - yes
-            - no
-            - not required
-      responses:
-        '200':
-          description: Success.
-          schema:
-            type: object
-            properties:
-              accounts:
-                type: array
-                items:
-                  $ref: '#/definitions/Account'
-              pagination:
-                $ref: '#/definitions/Pagination'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: account_name_is_too_short
-              category: account_name
-              message: account_name can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: account_name_is_too_long
-              category: account_name
-              message: account_name can not be longer than 150 character(s)
-              params: '{ "maxlength" => 255 }'
-            - code: brand_is_too_short
-              category: brand
-              message: brand can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: brand_is_too_long
-              category: brand
-              message: brand can not be longer than 100 character(s)
-              params: '{ "maxlength" => 255 }'
-            - code: your_reference_is_too_short
-              category: your_reference
-              message: your_reference can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: your_reference_is_too_long
-              category: your_reference
-              message: your_reference can not be longer than 25 character(s)
-              params: '{ "maxlength" => 25 }'
-            - code: status_not_in_range
-              category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
-            - code: legal_entity_type_not_in_range
-              category: legal_entity_type
-              message: 'legal_entity_type should be in range: individual, company'
-              params: '{ "range" => "individual, company" }'
-            - code: street_is_too_long
-              category: street
-              message: street can not be longer than 150 character(s)
-              params: '{ "maxlength" => 150 }'
-            - code: city_is_too_long
-              category: city
-              message: city can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: postal_code_is_too_long
-              category: postal_code
-              message: postal_code can not be longer than 20 character(s)
-              params: '{ "maxlength" => 20 }'
-            - code: country_is_too_long
-              category: country
-              message: country can not be longer than 2 character(s)
-              params: '{ "maxlength" => 2 }'
-            - code: spread_table_is_too_short
-              category: spread_table
-              message: country can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: spread_table_is_too_long
-              category: spread_table
-              message: country can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: bank_account_verified_not_in_range
-              category: bank_account_verified
-              message: 'bank_account_verified should be in range: yes, no, not required'
-              params: '{ "range" => "yes, no, not required" }'
-          schema:
-            $ref: '#/definitions/FindAccountsError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  '/accounts/{id}':
-    get:
-      tags:
-        - Accounts
-      x-api-group: manage
-      summary: Get Account
-      description: Get a sub-account owned by the authenticating user.
-      operationId: GetAccount
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Account UUID, returned by the create account endpoint.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Account'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: account_not_found
-              category: id
-              message: Account was not found for this id
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetAccountError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-    post:
-      tags:
-        - Accounts
-      x-api-group: manage
-      summary: Update Account
-      description: >-
-        Update a sub-account owned by the authenticating user. On success,
-        returns the updated account entity.
-      operationId: UpdateAccount
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Account UUID, returned by the create account endpoint.
-        - name: account_name
-          in: formData
-          required: false
-          type: string
-          description: Account name.
-        - name: legal_entity_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - company
-            - individual
-          description: Legal entity.
-        - name: brand
-          in: formData
-          required: false
-          type: string
-          description: >-
-            The value of this field is used for white labeling the Currencycloud
-            user interface.
-        - name: your_reference
-          in: formData
-          required: false
-          type: string
-          description: User-generated reference code.
-        - name: status
-          in: formData
-          required: false
-          type: string
-          enum:
-            - enabled
-            - enabled_no_trading
-            - disabled
-          default: enabled
-          description: Status of the account.
-        - name: street
-          in: formData
-          required: false
-          type: string
-          description: First line of address.
-        - name: city
-          in: formData
-          required: false
-          type: string
-          description: City.
-        - name: state_or_province
-          in: formData
-          required: false
-          type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
-        - name: postal_code
-          in: formData
-          required: false
-          type: string
-          description: Postal code.
-        - name: country
-          in: formData
-          required: false
-          type: string
-          description: Two-letter country code.
-        - name: spread_table
-          in: formData
-          required: false
-          type: string
-          default: fxcg_rfx_default
-          description: The name of the spread table assigned to the account.
-        - name: api_trading
-          in: formData
-          required: false
-          type: boolean
-          default: true
-          description: >-
-            Whether trading via the Currencycloud API is to be enabled on the
-            account.
-        - name: online_trading
-          in: formData
-          required: false
-          type: boolean
-          default: true
-          description: Whether online trading is to be enabled on the account.
-        - name: phone_trading
-          in: formData
-          required: false
-          default: true
-          type: boolean
-          description: Whether phone trading is to be enabled on the account.
-        - name: identification_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
-            - citizenship_papers
-            - drivers_license_canadian
-            - existing_credit_card_details
-            - employer_identification_number
-            - national_id
-            - others
-            - incorporation_number
-          description: A legal document that verifies the identity of the account owner.
-        - name: identification_value
-          in: formData
-          required: false
-          type: string
-          description: >-
-            A unique reference code for the identification document, such as a
-            passport number.
-        - name: terms_and_conditions_accepted
-          in: formData
-          required: false
-          type: boolean
-          description: Acceptance of the terms and conditions.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/Account'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: at_least_one_parameter
-              category: base
-              message: >-
-                At least one parameter should be present: account_name, brand,
-                your_reference, status, street, city, country, postal_code,
-                spread_table
-              params: ''
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: account_name_is_too_long
-              category: account_name
-              message: account_name can not be longer than 150 character(s)
-              params: '{ "maxlength" => 150 }'
-            - code: brand_is_too_long
-              category: brand
-              message: brand can not be longer than 100 character(s)
-              params: '{ "maxlength" => 255 }'
-            - code: brand_not_found
-              category: brand
-              message: Brand non_existing_brand wasn't found
-              params: '{ "brand" => "non_existing_brand" }'
-            - code: brand_account_not_broker
-              category: brand
-              message: Account doesn't have broker permissions
-              params: '{ "brand" => "wrong_brand" }'
-            - code: your_reference_is_too_long
-              category: your_reference
-              message: your_reference can not be longer than 25 character(s)
-              params: '{ "maxlength" => 25 }'
-            - code: legal_entity_type_not_in_range
-              category: legal_entity_type
-              message: 'legal_entity_type should be in range: individual, company'
-              params: '{ "range" => "individual, company" }'
-            - code: status_not_in_range
-              category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
-            - code: street_is_too_long
-              category: street
-              message: street can not be longer than 150 character(s)
-              params: '{ "maxlength" => 150 }'
-            - code: city_is_too_long
-              category: city
-              message: city can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: postal_code_is_too_long
-              category: postal_code
-              message: postal_code can not be longer than 20 character(s)
-              params: '{ "maxlength" => 20 }'
-            - code: state_or_province_invalid_format
-              category: state_or_province
-              message: state or province should be a two-letter ISO 3166 code
-              params: '{ "maxlength" => 2 }'
-            - code: country_is_too_long
-              category: country
-              message: country can not be longer than 2 character(s)
-              params: '{ "maxlength" => 2 }'
-            - code: spread_table_is_too_long
-              category: spread_table
-              message: spread_table can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: identification_type_is_missing
-              category: identification_type
-              message: identification_type is missing
-              params: ''
-            - code: identification_type_is_invalid
-              category: identification_type
-              message: identification_type is invalid
-              params: ''
-            - code: identification_value_is_missing
-              message: identification_value is missing
-              category: identification_value
-              params: ''
-            - code: identification_value_is_invalid
-              category: identification_value
-              message: identification_value is invalid
-              params: ''
-          schema:
-            $ref: '#/definitions/UpdateAccountError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  '/accounts/{account_id}/payment_charges_settings':
-    get:
-      tags:
-      - Accounts
-      x-api-group: manage
-      summary: Get Payment Charges Settings
-      description: Retrieve payment charges settings for given account.
-      operationId: GetAccountPaymentChargesSettings
-      produces:
-      - application/json
-      parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: An UUID of a sub-account or house account available in current visibility scope.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            type: object
-            properties:
-              payment_charges_settings:
-                type: array
-                items:
-                  $ref: '#/definitions/AccountPaymentChargesSetting'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
-          schema:
-            $ref: '#/definitions/GetAccountPaymentChargesSettingsError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the API. Please refer to the Developer Center for more information
-            params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  '/accounts/{account_id}/payment_charges_settings/{charge_settings_id}':
-    post:
-      tags:
-      - Accounts
-      x-api-group: manage
-      summary: Manage Account Payment Charges Settings
-      description: Manage given Account's Payment Charge Settings (enable, disable, set default).
-      operationId: ManageAccountPaymentChargesSettings
-      produces:
-      - application/json
-      parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token.
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: Account UUID.
-      - name: charge_settings_id
-        in: path
-        required: true
-        type: string
-        description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for given Account UUID.
-      - name: enabled
-        in: formData
-        required: false
-        type: boolean
-        description: Enable or disable given Account Payment Charges Setting
-      - name: default
-        in: formData
-        required: false
-        type: boolean
-        description: Set given Account Payment Charges Setting as default (for the cases when 'charge_type' parameter is not specified for payment).
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/AccountPaymentChargesSetting'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
-          - code: edit_not_allowed
-            category: permission
-            message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
-            params: ''
-          - code: banking_charges_settings_not_found
-            category: charge_settings_id
-            message: Bank Charges Settings were not found for the provided ChargeSettingsId
-            params: ''
-          - code: unavailable_charge_type
-            category: permission
-            message: You are not enabled to switch on this type of charges. In order to be enabled for this option - please contact Customer Support
-            params: ''
-          - code: disable_and_default_charge_not_allowed
-            category: invalid_value
-            message: You can not disable and then default setting.
-            params: ''
-          - code: default_disabled_charge_not_allowed
-            category: invalid_value
-            message: You cannot default disabled setting.
-            params: ''
-          - code: disable_default_charge_not_allowed
-            category: invalid_value
-            message: You can not disable default settings.
-            params: ''
-          - code: set_default_to_false_not_allowed
-            category: invalid_value
-            message: You cannot disable default charge type. Please update the charge type not to be default and then disable it.
-            params: ''
-          schema:
-            $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the API. Please refer to the Developer Center for more information
-            params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporary unavailable
-            params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
   /accounts/create:
     post:
       tags:
         - Accounts
       x-api-group: manage
       summary: Create Account
-      description: 'Create a new sub-account. On success, returns the new account entity.'
+      description: 'Create a new sub-account. Returns the new account entity on success.'
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -1400,17 +351,17 @@ paths:
           in: formData
           required: true
           type: string
-          description: City.
+          description: City
         - name: postal_code
           in: formData
           required: false
           type: string
-          description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country = "US", "CA" or "MX".
+          description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country code = "US", "CA" or "MX".
         - name: country
           in: formData
           required: true
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: brand
           in: formData
           required: false
@@ -1437,7 +388,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country = "US", "CA" or "MX".
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country code = "US", "CA" or "MX".
         - name: spread_table
           in: formData
           required: false
@@ -1487,7 +438,7 @@ paths:
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document, such as a
+            Unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
         - name: terms_and_conditions_accepted
           in: formData
@@ -1508,35 +459,35 @@ paths:
           x-errors:
             - code: account_name_is_too_short
               category: account_name
-              message: account_name can not be shorter than 1 character(s)
+              message: account_name cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: account_name_is_too_long
               category: account_name
-              message: account_name can not be longer than 150 character(s)
+              message: account_name cannot be longer than 150 character(s).
               params: '{ "maxlength" => 150 }'
             - code: account_name_is_required
               category: account_name
-              message: account_name is required
+              message: account_name is required.
               params: ''
             - code: brand_is_too_short
               category: brand
-              message: brand can not be shorter than 1 character(s)
+              message: brand cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: brand_is_too_long
               category: brand
-              message: brand can not be longer than 100 character(s)
+              message: brand can not be longer than 255 character(s).
               params: '{ "maxlength" => 255 }'
             - code: brand_not_found
               category: brand
-              message: Brand non_existing_brand wasn't found
+              message: Brand non_existing_brand wasn't found.
               params: '{ "brand" => "non_existing_brand" }'
             - code: brand_account_not_broker
               category: brand
-              message: Account doesn't have broker permissions
+              message: Account doesn't have broker permissions.
               params: '{ "brand" => "wrong_brand" }'
             - code: your_reference_is_too_long
               category: your_reference
-              message: your_reference can not be longer than 25 character(s)
+              message: your_reference cannot be longer than 25 character(s).
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
@@ -1544,79 +495,79 @@ paths:
               params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
             - code: legal_entity_type_not_in_range
               category: legal_entity_type
-              message: 'legal_entity_type should be in range: individual, company'
+              message: 'legal_entity_type should be in range: individual, company.'
               params: '{ "range" => "individual, company" }'
             - code: legal_entity_type_is_required
               category: legal_entity_type
-              message: 'Legal entity type is required'
+              message: 'Legal entity type is required.'
               params: ''
             - code: street_is_too_long
               category: street
-              message: street can not be longer than 150 character(s)
+              message: street cannot be longer than 150 character(s).
               params: '{ "maxlength" => 150 }'
             - code: street_is_required
               category: street
-              message: Street is required
+              message: Street is required.
               params: ''
             - code: city_is_too_long
               category: city
-              message: city can not be longer than 100 character(s)
+              message: city cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: city_is_required
               category: city
-              message: City is required
+              message: City is required.
               params: ''
             - code: postal_code_is_too_long
               category: postal_code
-              message: postal_code can not be longer than 20 character(s)
+              message: postal_code cannot be longer than 20 character(s).
               params: '{ "maxlength" => 20 }'
             - code: postal_code_is_required
               category: postal_code
-              message: Postal code is required
+              message: Postal code is required.
               params: ''
-            - code: state_or_province_invalid_format
+            - code: state_or_province_is_too_long
               category: state_or_province
-              message: state or province should be a two-letter ISO 3166 code
-              params: '{ "maxlength" => 2 }'
-            - code: country_is_too_long
+              message: state_or_province cannot be longer than 100 character(s).
+              params: '{ "maxlength" => 100 }'
+            - code: country_is_in_invalid_format
               category: country
-              message: country can not be longer than 2 character(s)
+              message: country is not a valid ISO 3166-1 Alpha-2 country code.
               params: '{ "maxlength" => 2 }'
             - code: country_is_required
               category: country
-              message: Country is required
+              message: Country is required.
               params: ''
             - code: spread_table_is_too_long
               category: spread_table
-              message: spread_table can not be longer than 100 character(s)
+              message: spread_table cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: identification_type_is_missing
               category: identification_type
-              message: identification_type is missing
+              message: identification_type is missing.
               params: ''
             - code: identification_type_is_invalid
               category: identification_type
-              message: identification_type is invalid
+              message: identification_type is invalid.
               params: ''
             - code: identification_value_is_missing
               category: identification_value
-              message: identification_value is missing
+              message: identification_value is missing.
               params: ''
             - code: identification_value_is_invalid
               category: identification_value
-              message: identification_value is invalid
+              message: identification_value is invalid.
               params: ''
             - code: state_or_province_is_required
               category: state_or_province
-              message: 'State or province is required for US, CA and MX'
+              message: 'State or province is required for US, CA and MX.'
               params: ''
             - code: terms_and_conditions_accepted_is_required
               category: terms_and_conditions_accepted
-              message: 'Terms and conditions accepted is required'
+              message: 'Terms and conditions accepted is required.'
               params: ''
             - code: invalid_extra_parameters
               category: base
-              message: Invalid extra parameters extra_parameter
+              message: Invalid extra parameters extra_parameter.
               params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/CreateAccountError'
@@ -1686,72 +637,484 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/balances/{currency}':
+  /accounts/{id}:
+   get:
+    tags:
+      - Accounts
+    x-api-group: manage
+    summary: Get Account
+    description: Get an account or sub-account owned by the authenticated user.
+    operationId: GetAccount
+    produces:
+      - application/json
+    parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Account UUID, returned by the create account endpoint.
+      - name: on_behalf_of
+        in: query
+        required: false
+        type: string
+        description: A contact UUID for the sub-acccount you're acting on behalf of.
+    responses:
+      '200':
+        description: Success.
+        schema:
+          $ref: '#/definitions/Account'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '400':
+        description: Client error.
+        x-errors:
+          - code: id_is_not_valid_uuid
+            category: id
+            message: id should be in UUID format.
+            params: ''
+          - code: account_not_found
+            category: id
+            message: Account was not found for this id.
+            params: ''
+          - code: on_behalf_of_self
+            category: on_behalf_of
+            message: You cannot act on behalf of your own contact.
+            params: ''
+          - code: contact_not_found
+            category: on_behalf_of
+            message: Contact was not found for this id.
+            params: ''
+        schema:
+          $ref: '#/definitions/GetAccountError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '401':
+        description: Unauthorized
+        x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials.
+            params: ''
+        schema:
+          $ref: '#/definitions/UnauthorizedError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '404':
+        description: Resource not found.
+        schema:
+          $ref: '#/definitions/NotFoundError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '429':
+        description: Too many requests.
+        x-errors:
+          - code: too_many_requests
+            category: base
+            message: >-
+              Too many requests have been made to the API. Please refer to the
+              Developer Center for more information.
+            params: ''
+        schema:
+          $ref: '#/definitions/RateLimitError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '500':
+        description: Internal server error
+        x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '503':
+        description: Service is temporary unavailable.
+        x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable.
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      default:
+        description: Unexpected error.
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+   post:
+    tags:
+      - Accounts
+    x-api-group: manage
+    summary: Update Account
+    description: >-
+      Update a sub-account owned by the authenticated user. The updated account entity is returned on success.
+    operationId: UpdateAccount
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Account UUID, returned by the create account endpoint.
+      - name: account_name
+        in: formData
+        required: false
+        type: string
+        description: Account name.
+      - name: legal_entity_type
+        in: formData
+        required: false
+        type: string
+        enum:
+          - company
+          - individual
+        description: Legal entity.
+      - name: brand
+        in: formData
+        required: false
+        type: string
+        description: >-
+          The value of this field is used for white labeling the Currencycloud
+          user interface.
+      - name: your_reference
+        in: formData
+        required: false
+        type: string
+        description: User-generated reference code.
+      - name: status
+        in: formData
+        required: false
+        type: string
+        enum:
+          - enabled
+          - enabled_no_trading
+          - disabled
+        default: enabled
+        description: Status of the account.
+      - name: street
+        in: formData
+        required: false
+        type: string
+        description: First line of address.
+      - name: city
+        in: formData
+        required: false
+        type: string
+        description: City name.
+      - name: state_or_province
+        in: formData
+        required: false
+        type: string
+        description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+      - name: postal_code
+        in: formData
+        required: false
+        type: string
+        description: Postal code.
+      - name: country
+        in: formData
+        required: false
+        type: string
+        description: Two-letter ISO country code.
+      - name: spread_table
+        in: formData
+        required: false
+        type: string
+        default: fxcg_rfx_default
+        description: The name of the spread table assigned to the account.
+      - name: api_trading
+        in: formData
+        required: false
+        type: boolean
+        default: true
+        description: >-
+          Whether trading via the Currencycloud API is to be enabled on the
+          account.
+      - name: online_trading
+        in: formData
+        required: false
+        type: boolean
+        default: true
+        description: Whether online trading is to be enabled on the account.
+      - name: phone_trading
+        in: formData
+        required: false
+        default: true
+        type: boolean
+        description: Whether phone trading is to be enabled on the account.
+      - name: identification_type
+        in: formData
+        required: false
+        type: string
+        enum:
+          - none
+          - drivers_license
+          - social_security_number
+          - green_card
+          - passport
+          - visa
+          - matricula_consular
+          - registro_federal_de_contribuyentes
+          - credential_de_elector
+          - social_insurance_number
+          - citizenship_papers
+          - drivers_license_canadian
+          - existing_credit_card_details
+          - employer_identification_number
+          - national_id
+          - others
+          - incorporation_number
+        description: A legal document that verifies the identity of the account owner.
+      - name: identification_value
+        in: formData
+        required: false
+        type: string
+        description: >-
+          A unique reference code for the identification document, such as a
+          passport number.
+      - name: terms_and_conditions_accepted
+        in: formData
+        required: false
+        type: boolean
+        description: Acceptance of the terms and conditions.
+    responses:
+      '200':
+        description: Success.
+        schema:
+          $ref: '#/definitions/Account'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '400':
+        description: Client error.
+        x-errors:
+          - code: at_least_one_parameter
+            category: base
+            message: >-
+              At least one parameter should be present: account_name, brand,
+              your_reference, status, street, city, state_or_province, postal_code,
+              country, spread_table, legal_entity_type, identification_type,
+              identification_value, api_trading, online_trading, phone_trading
+              or terms_and_conditions_accepted.
+            params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
+          - code: id_is_not_valid_uuid
+            category: id
+            message: id should be in UUID format.
+            params: ''
+          - code: account_name_is_too_short
+            category: account_name
+            message: account_name cannot be shorter than 1 character(s).
+            params: '{ "minlength" => 1}'
+          - code: account_name_is_too_long
+            category: account_name
+            message: account_name cannot be longer than 150 character(s).
+            params: '{ "maxlength" => 150 }'
+          - code: account_name_is_in_invalid_format
+            category: account_name
+            message: account_name is in invalid format.
+            params: ''
+          - code: brand_is_too_long
+            category: brand
+            message: brand cannot be longer than 255 character(s).
+            params: '{ "maxlength" => 255 }'
+          - code: brand_not_found
+            category: brand
+            message: Brand non_existing_brand wasn't found.
+            params: '{ "brand" => "non_existing_brand" }'
+          - code: brand_account_not_broker
+            category: brand
+            message: Account doesn't have broker permissions.
+            params: '{ "brand" => "wrong_brand" }'
+          - code: permission_denied
+            category: permissions
+            message: Permission denied.
+            params: ''
+          - code: your_reference_is_too_long
+            category: your_reference
+            message: your_reference cannot be longer than 25 character(s).
+            params: '{ "maxlength" => 25 }'
+          - code: legal_entity_type_not_in_range
+            category: legal_entity_type
+            message: 'legal_entity_type should be in range: individual, company.'
+            params: '{ "range" => "individual, company" }'
+          - code: status_not_in_range
+            category: status
+            message: 'status should be in range: enabled, disabled, enabled_no_trading.'
+            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+          - code: street_is_too_long
+            category: street
+            message: street cannot be longer than 150 character(s).
+            params: '{ "maxlength" => 150 }'
+          - code: city_is_too_long
+            category: city
+            message: city cannot be longer than 100 character(s).
+            params: '{ "maxlength" => 100 }'
+          - code: postal_code_is_too_long
+            category: postal_code
+            message: postal_code cannot be longer than 20 character(s).
+            params: '{ "maxlength" => 20 }'
+          - code: state_or_province_is_too_long
+            category: state_or_province
+            message: state_or_province cannot be longer than 100 character(s).
+            params: '{ "maxlength" => 100 }'
+          - code: country_is_in_invalid_format
+            category: country
+            message: country is not a valid ISO 3166-1 Alpha-2 country code.
+            params: '{ "type" => "country_code" }'
+          - code: spread_table_is_too_long
+            category: spread_table
+            message: spread_table cannot be longer than 100 character(s).
+            params: '{ "maxlength" => 100 }'
+          - code: identification_type_is_missing
+            category: identification_type
+            message: identification_type is missing.
+            params: ''
+          - code: identification_type_not_in_range
+            category: identification_type
+            message: >-
+              identification_type should be in range: none, drivers_license,
+              social_security_number, green_card, passport, visa, matricula_consular,
+              registro_federal_de_contribuyentes, credential_de_elector,
+              social_insurance_number, citizenship_papers, drivers_license_canadian,
+              existing_credit_card_details, employer_identification_number, national_id,
+              others, incorporation_number, clave_unica_de_registro_de_poblacion.
+            params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
+          - code: identification_type_is_invalid
+            category: identification_type
+            message: identification_type is invalid.
+            params: ''
+          - code: identification_value_is_missing
+            message: identification_value is missing.
+            category: identification_value
+            params: ''
+          - code: identification_value_is_invalid
+            category: identification_value
+            message: identification_value is invalid.
+            params: ''
+          - code: identification_value_is_too_short
+            category: identification_value
+            message: identification_value cannot be shorter than 1 character(s).
+            params: ' { "minlength": 1 }'
+        schema:
+          $ref: '#/definitions/UpdateAccountError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '401':
+        description: Unauthorized.
+        x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials.
+            params: ''
+        schema:
+          $ref: '#/definitions/UnauthorizedError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '404':
+        description: Resource not found.
+        schema:
+          $ref: '#/definitions/NotFoundError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '429':
+        description: Too many requests.
+        x-errors:
+          - code: too_many_requests
+            category: base
+            message: >-
+              Too many requests have been made to the API. Please refer to the
+              Developer Center for more information.
+            params: ''
+        schema:
+          $ref: '#/definitions/RateLimitError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '500':
+        description: Internal server error
+        x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error.
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '503':
+        description: Service is temporary unavailable
+        x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable.
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      default:
+        description: Unexpected error.
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+  /accounts/current:
     get:
       tags:
-        - Balances
+        - Accounts
       x-api-group: manage
-      summary: Get Balance
-      description: >-
-        Get the balance for a currency from the account of the authenticating
-        user.
-      operationId: GetBalance
+      summary: Get Authenticating Account
+      description: Get the authenticated user's main account.
+      operationId: GetAuthenticatingAccount
       produces:
         - application/json
       parameters:
         - name: X-Auth-Token
           in: header
-          required: true
           type: string
+          required: true
           description: Authentication token.
-        - name: currency
-          in: path
-          required: true
-          type: string
-          description: Three-digit currency code.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Balance'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: invalid_currency
-              category: currency
-              message: XYZ is not a valid ISO 4217 currency code
-              params: ''
-            - code: currency_is_in_invalid_format
-              category: currency
-              message: currency is not a valid ISO 4217 currency code
-              params: '{ "type" => "currency" }'
-            - code: on_behalf_of_is_not_valid_uuid
-              category: on_behalf_of
-              message: on_behalf_of should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-            - code: unsupported_currency
-              category: currency
-              message: Unsupported currency XYZ
-              params: ''
-          schema:
-            $ref: '#/definitions/GetBalanceError'
+            $ref: '#/definitions/Account'
           headers:
             X-Request-Id:
               type: string
@@ -1761,8 +1124,378 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the API. Please refer to the
+                Developer Center for more information.
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error.
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable.
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /accounts/find:
+    get:
+      tags:
+        - Accounts
+      x-api-group: manage
+      summary: Find Accounts
+      description: >-
+        Get account and any sub-accounts owned by the authenticated user. Optionally filter by
+        account status and other criteria.
+      operationId: FindAccounts
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: account_name
+          in: query
+          required: false
+          type: string
+          description: Account name.
+        - name: brand
+          in: query
+          required: false
+          type: string
+          description: >-
+            The value of this field is used for white labeling the Currencycloud
+            user interface.
+        - name: your_reference
+          in: query
+          required: false
+          type: string
+          description: User-generated reference code.
+        - name: status
+          in: query
+          required: false
+          type: string
+          enum:
+            - enabled
+            - enabled_no_trading
+            - disabled
+          description: Account status.
+        - name: street
+          in: query
+          required: false
+          type: string
+          description: First line of address.
+        - name: city
+          in: query
+          required: false
+          type: string
+          description: City.
+        - name: state_or_province
+          in: query
+          required: false
+          type: string
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+        - name: postal_code
+          in: query
+          required: false
+          type: string
+          description: Postal code.
+        - name: country
+          in: query
+          required: false
+          type: string
+          description: Two-letter country code.
+        - name: spread_table
+          in: query
+          required: false
+          type: string
+          description: The name of the spread table assigned to the account.
+        - name: bank_account_verified
+          in: query
+          required: false
+          type: string
+          enum:
+            - yes
+            - no
+            - not required
+          description: Has the bank account been verified?
+        - name: fuzzy_search_string
+          in: query
+          required: false
+          type: string
+          description: Partial string of Account name (used only in Direct).
+        - name: page
+          in: query
+          required: false
+          type: integer
+          description: Page number.
+        - name: per_page
+          in: query
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: query
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: query
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              accounts:
+                type: array
+                items:
+                  $ref: '#/definitions/Account'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: account_name_is_too_short
+              category: account_name
+              message: account_name cannot be shorter than 1 character(s).
+              params: '{ "minlength" => 1 }'
+            - code: account_name_is_too_long
+              category: account_name
+              message: The account_name cannot be longer than 150 character(s).
+              params: '{ "maxlength" => 150 }'
+            - code: brand_is_too_short
+              category: brand
+              message: brand cannot be shorter than 1 character(s).
+              params: '{ "minlength" => 1 }'
+            - code: brand_is_too_long
+              category: brand
+              message: brand cannot be longer than 100 character(s).
+              params: '{ "maxlength" => 255 }'
+            - code: your_reference_is_too_short
+              category: your_reference
+              message: your_reference cannot be shorter than 1 character(s).
+              params: '{ "minlength" => 1 }'
+            - code: your_reference_is_too_long
+              category: your_reference
+              message: your_reference cannot be longer than 25 character(s).
+              params: '{ "maxlength" => 25 }'
+            - code: status_not_in_range
+              category: status
+              message: 'status should be in range: enabled, disabled, enabled_no_trading.'
+              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            - code: street_is_too_long
+              category: street
+              message:  street cannot be longer than 150 character(s).
+              params: '{ "maxlength" => 150 }'
+            - code: city_is_too_long
+              category: city
+              message: city cannot be longer than 100 character(s).
+              params: '{ "maxlength" => 100 }'
+            - code: postal_code_is_too_long
+              category: postal_code
+              message: postal_code cannot be longer than 20 character(s).
+              params: '{ "maxlength" => 20 }'
+            - code: country_is_in_invalid_format
+              category: country
+              message: country is not a valid ISO 3166-1 Alpha-2 country code.
+              params: '{ "type" => "country_code" }'
+            - code: spread_table_is_too_short
+              category: spread_table
+              message: Country cannot be shorter than 1 character(s).
+              params: '{ "minlength" => 1 }'
+            - code: spread_table_is_too_long
+              category: spread_table
+              message: spread_table can not be longer than 100 character(s).
+              params: '{ "maxlength" => 100 }'
+            - code: bank_account_verified_not_in_range
+              category: bank_account_verified
+              message: 'bank_account_verified should be in range: yes, no, not required.'
+              params: '{ "range" => "yes, no, not required" }'
+          schema:
+            $ref: '#/definitions/FindAccountsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials.
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the API. Please refer to the
+                Developer Center for more information.
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error.
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable.
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /accounts/{account_id}/payment_charges_settings:
+    get:
+      tags:
+      - Accounts
+      x-api-group: manage
+      summary: Get the Payment Charges Settings for a given account.
+      description: Retrieve the Payment Charges Settings for the given account.
+      operationId: GetAccountPaymentChargesSettings
+      produces:
+      - application/json
+      parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: account_id
+        in: path
+        required: true
+        type: string
+        description: A UUID of a sub-account or house account visible to the authenticated user.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              payment_charges_settings:
+                type: array
+                items:
+                  $ref: '#/definitions/AccountPaymentChargesSetting'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+          - code: id_is_not_valid_uuid
+            category: account_id
+            message: id should be in UUID format.
+            params: ''
+          - code: account_not_found
+            category: account_id
+            message: Account was not found for this id.
+            params: ''
+          schema:
+            $ref: '#/definitions/GetAccountPaymentChargesSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials.
+            params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -1780,12 +1513,10 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
-              params: ''
+          - code: too_many_requests
+            category: base
+            message: Too many requests have been made to the API. Please refer to the Developer Center for more information.
+            params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -1793,23 +1524,23 @@ paths:
               type: string
               description: A unique reference for the request.
         '500':
-          description: Internal server error
+          description: Internal server error.
           x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
+          - code: internal_server_error
+            category: base
+            message: Internal server error.
+            params: ''
           headers:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
         '503':
-          description: Service is temporary unavailable
+          description: Service is temporary unavailable.
           x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporary unavailable
-              params: ''
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable.
+            params: ''
           headers:
             X-Request-Id:
               type: string
@@ -1820,6 +1551,297 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /accounts/{account_id}/payment_charges_settings/{charge_settings_id}:
+    post:
+      tags:
+      - Accounts
+      x-api-group: manage
+      summary: Manage the Account Payment Charges Settings.
+      description: Manage a given account's Payment Charge Settings (enable, disable, set as default).
+      operationId: ManageAccountPaymentChargesSettings
+      produces:
+      - application/json
+      parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: account_id
+        in: path
+        required: true
+        type: string
+        description: Account UUID.
+      - name: charge_settings_id
+        in: path
+        required: true
+        type: string
+        description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for the given Account UUID.
+      - name: enabled
+        in: formData
+        required: false
+        type: boolean
+        description: Enable or disable the given Account Payment Charges Setting.
+      - name: default
+        in: formData
+        required: false
+        type: boolean
+        description: Set the given Account Payment Charges Setting as default. This will be used when the 'charge_type' parameter is not specified for a payment.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/AccountPaymentChargesSetting'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+          - code: id_is_not_valid_uuid
+            category: account_id
+            message: id should be in UUID format.
+            params: ''
+          - code: account_not_found
+            category: account_id
+            message: Account was not found for this id.
+            params: ''
+          - code: permission_denied
+            category: permissions
+            message: You do not have permission 'payment_charges_management' to perform this operation.
+            params: ''
+          - code: edit_not_allowed
+            category: permission
+            message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact <a href="mailto:support@currencycloud.com">Customer Support</a>.
+            params: ''
+          - code: banking_charges_settings_not_found
+            category: charge_settings_id
+            message: Bank Charges Settings were not found for the provided ChargeSettingsId.
+            params: ''
+          - code: unavailable_charge_type
+            category: permission
+            message: You are not enabled to switch on these type of charges. In order to be enabled for this option - please contact  <a href="mailto:support@currencycloud.com">support@currencycloud.com</a>.
+            params: ''
+          - code: disable_and_default_charge_not_allowed
+            category: invalid_value
+            message: You cannot disable and then default setting.
+            params: ''
+          - code: default_disabled_charge_not_allowed
+            category: invalid_value
+            message: You cannot default disabled setting.
+            params: ''
+          - code: disable_default_charge_not_allowed
+            category: invalid_value
+            message: You can not disable default settings.
+            params: ''
+          - code: set_default_to_false_not_allowed
+            category: invalid_value
+            message: You cannot disable a default charge type. Please update the charge type not to be default and then disable it.
+            params: ''
+          schema:
+            $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials.
+            params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+          - code: too_many_requests
+            category: base
+            message: Too many requests have been made to the API. Please refer to the Developer Center for more information.
+            params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error.
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable.
+            params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /balances/{currency}:
+   get:
+    tags:
+      - Balances
+    x-api-group: manage
+    summary: Get Balance
+    description: >-
+      Get the balance for a currency from the account of the authenticating
+      user.
+    operationId: GetBalance
+    produces:
+      - application/json
+    parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token.
+      - name: currency
+        in: path
+        required: true
+        type: string
+        description: Three-digit currency code.
+      - name: on_behalf_of
+        in: query
+        required: false
+        type: string
+        description: A contact UUID for the sub-acccount you're acting on behalf of.
+    responses:
+      '200':
+        description: Success.
+        schema:
+          $ref: '#/definitions/Balance'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '400':
+        description: Client error.
+        x-errors:
+          - code: invalid_currency
+            category: currency
+            message: XYZ is not a valid ISO 4217 currency code
+            params: ''
+          - code: currency_is_in_invalid_format
+            category: currency
+            message: currency is not a valid ISO 4217 currency code
+            params: '{ "type" => "currency" }'
+          - code: on_behalf_of_is_not_valid_uuid
+            category: on_behalf_of
+            message: on_behalf_of should be in UUID format
+            params: ''
+          - code: on_behalf_of_self
+            category: on_behalf_of
+            message: You cannot act on behalf of your own Contact
+            params: ''
+          - code: contact_not_found
+            category: on_behalf_of
+            message: Contact was not found for this id
+            params: ''
+          - code: unsupported_currency
+            category: currency
+            message: Unsupported currency XYZ
+            params: ''
+        schema:
+          $ref: '#/definitions/GetBalanceError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '401':
+        description: Unauthorized.
+        x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials
+            params: ''
+        schema:
+          $ref: '#/definitions/UnauthorizedError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '404':
+        description: Resource not found.
+        schema:
+          $ref: '#/definitions/NotFoundError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '429':
+        description: Too many requests.
+        x-errors:
+          - code: too_many_requests
+            category: base
+            message: >-
+              Too many requests have been made to the API. Please refer to the
+              Developer Center for more information
+            params: ''
+        schema:
+          $ref: '#/definitions/RateLimitError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '500':
+        description: Internal server error
+        x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '503':
+        description: Service is temporary unavailable
+        x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporary unavailable
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      default:
+        description: Unexpected error.
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+
   /balances/find:
     get:
       tags:
@@ -7830,15 +7852,15 @@ paths:
               params: '{ "range" => "priority, regular" }'
             - code: currency_is_required
               category: currency
-              message: currency is a required parameter.
+              message: currency is required.
               params: ''
             - code: currency_is_in_invalid_format
               category: currency
-              message: The currency specified is not a valid ISO 4217 currency code.
+              message: currency is not a valid ISO 4217 currency code.
               params: '{ "type" => "currency" }'
             - code: currency_is_not_supported
               category: currency
-              message: This currency is not supported.
+              message: currency is not supported.
               params: ''
             - code: funding_accounts_not_found
               category: funding_accounts
@@ -7854,7 +7876,7 @@ paths:
               params: ''
             - code: on_behalf_of_is_not_valid_uuid
               category: on_behalf_of
-              message: The on_behalf_of parameter should be in UUID format.
+              message: on_behalf_of parameter should be in UUID format.
               params: ''
           schema:
             $ref: '#/definitions/FindFundingAccountsError'
@@ -13652,7 +13674,7 @@ paths:
           x-errors:
             - code: id_is_not_valid_uuid
               category: id
-              message: The id should be in UUID format.
+              message: id should be in UUID format.
               params: ''
             - code: on_behalf_of_self
               category: contact
@@ -13682,7 +13704,7 @@ paths:
           x-errors:
             - code: sender_not_found
               category: id
-              message: A sender was not found for this id.
+              message: Sender not found.
               params: ''
           schema:
             $ref: '#/definitions/NotFoundError'
@@ -13721,7 +13743,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: The service is temporary unavailable.
+              message: Service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15169,7 +15191,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Two-digit sender country.
+          description: Two character ISO sender country code.
         - name: sender_reference
           in: formData
           required: false
@@ -15310,7 +15332,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -15343,7 +15365,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -15356,7 +15378,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -15367,7 +15389,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15383,6 +15405,7 @@ definitions:
         description: Account ID.
       account_name:
         type: string
+        description: Account name.
       brand:
         type: string
         description: >-
@@ -15403,13 +15426,13 @@ definitions:
         description: First line of address.
       city:
         type: string
-        description: City.
+        description: City
       state_or_province:
         type: string
         description: State or province two-letter ISO 3166 code. Only applicable to some countries.
       country:
         type: string
-        description: Two-letter country code.
+        description: Two-letter ISO country code.
       postal_code:
         type: string
         description: Postal code.
@@ -15418,37 +15441,69 @@ definitions:
         description: The name of the spread table assigned to the account.
       legal_entity_type:
         type: string
+        description: The type of entity - individual or company.
       created_at:
         type: string
+        description: The date and time the account was created.
         format: date-time
       updated_at:
         type: string
+        description: The date and time the account was last updated.
         format: date-time
       identification_type:
         type: string
         description: A legal document that verifies the identity of the account owner.
+        enum:
+          - none
+          - drivers_license
+          - social_security_number
+          - green_card
+          - passport
+          - visa
+          - matricula_consular
+          - registro_federal_de_contribuyentes
+          - credential_de_elector
+          - social_insurance_number
+          - citizenship_papers
+          - drivers_license_canadian
+          - existing_credit_card_details
+          - employer_identification_number
+          - national_id
+          - others
+          - incorporation_number
       identification_value:
         type: string
         description: >-
           A unique reference code for the identification document, such as a
           passport number.
       short_reference:
+        description: The account's reference number.
         type: string
       api_trading:
+        description: Is trading via the Currencycloud API enabled?
         type: boolean
       online_trading:
+        description: Is trading via Currencycloud Direct enabled?
         type: boolean
       phone_trading:
+        description: Is trading via phone enabled?
         type: boolean
       process_third_party_funds:
+        description: Is the account enabled for third party funds?
         type: boolean
       settlement_type:
+        description: The settlement type - bulk or net.
+        enum:
+          - bulk
+          - net
         type: string
       terms_and_conditions_accepted:
+        description: Have the terms and conditions been accepted?
         type: boolean
       agent_or_reliance:
         type: boolean
       bank_account_verified:
+        description: Has the bank account been verified?
         type: string
         enum:
           - yes
@@ -15485,14 +15540,22 @@ definitions:
     description: Account Payment Charges Setting.
     properties:
       charge_settings_id:
+        description: Unique ID.
         type: string
       account_id:
+        description: Account ID.
         type: string
       charge_type:
+        description: The charge type - shared or ours.
+        enum:
+          - shared
+          - ours
         type: string
       enabled:
+        description: Is this charge type enabled for this account?
         type: boolean
       default:
+        description: Is this the default charge type for this account?
         type: boolean
     example:
       charge_settings_id: 2b7db581-a810-0132-a8c2-10b11cb33cfc
