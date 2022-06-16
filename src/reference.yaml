@@ -4919,7 +4919,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Get Authenticating Contact
-      description: Get the contact record for the authenticating user.
+      description: Get the contact record for the authenticated user.
       operationId: GetAuthenticatingContact
       produces:
         - application/json
@@ -4943,7 +4943,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -4964,7 +4964,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4977,7 +4977,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -4988,7 +4988,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5006,7 +5006,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Find Contacts
-      description: Get contacts that match search parameters.
+      description: Get contacts that match the parameters.
       operationId: FindContacts
       produces:
         - application/json
@@ -5030,17 +5030,17 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact first name.
+          description: Contact's first name.
         - name: last_name
           in: query
           required: false
           type: string
-          description: Contact last name.
+          description: Contact's last name.
         - name: email_address
           in: query
           required: false
           type: string
-          description: Email address.
+          description: Contact's email address.
         - name: your_reference
           in: query
           required: false
@@ -5050,12 +5050,12 @@ paths:
           in: query
           required: false
           type: string
-          description: Phone number.
+          description: Contact's phone number.
         - name: login_id
           in: query
           required: false
           type: string
-          description: Currencycloud login ID.
+          description: Contact's Currencycloud login ID.
         - name: status
           in: query
           required: false
@@ -5126,7 +5126,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -5147,7 +5147,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5171,7 +5171,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5189,7 +5189,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Get Contact
-      description: Get a contact.
+      description: Get the contact with the given id.
       operationId: GetContact
       produces:
         - application/json
@@ -5218,11 +5218,11 @@ paths:
           x-errors:
             - code: id_is_not_valid_uuid
               category: id
-              message: id should be in UUID format
+              message: id should be in UUID format.
               params: ''
             - code: contact_not_found
               category: id
-              message: Contact was not found for this id
+              message: Contact was not found for this id.
               params: ''
           schema:
             $ref: '#/definitions/GetContactError'
@@ -5235,7 +5235,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -5258,7 +5258,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5282,7 +5282,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5300,8 +5300,8 @@ paths:
       x-api-group: manage
       summary: Update Contact
       description: >-
-        Update an existing contact. On success, returns the updated contact
-        entity.
+        Update an existing contact. Returns the updated contact
+        entity on success.
       operationId: UpdateContact
       consumes:
         - multipart/form-data
@@ -5394,55 +5394,55 @@ paths:
               message: >-
                 At least one parameter should be present: first_name, last_name,
                 email_address, phone_number, mobile_phone_number, login_id,
-                locale, timezone, status
+                locale, timezone, status.
               params: ''
             - code: id_is_not_valid_uuid
               category: id
-              message: id should be in UUID format
+              message: id should be in UUID format.
               params: ''
             - code: first_name_is_too_short
               category: first_name
-              message: first_name can not be shorter than 1 character(s)
+              message: first_name cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: first_name_is_too_long
               category: first_name
-              message: first_name can not be longer than 100 character(s)
+              message: first_name cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: last_name_is_too_short
               category: last_name
-              message: last_name can not be shorter than 1 character(s)
+              message: last_name cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: last_name_is_too_long
               category: last_name
-              message: last_name can not be longer than 100 character(s)
+              message: last_name cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: email_address_is_too_short
               category: email_address
-              message: email_address can not be shorter than 1 character(s)
+              message: email_address cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: email_address_is_too_long
               category: email_address
-              message: email_address can not be longer than 255 character(s)
+              message: email_address cannot be longer than 255 character(s).
               params: '{ "maxlength" => 255 }'
             - code: email_address_is_in_invalid_format
               category: email_address
-              message: email_address is in invalid format
+              message: email_address is in invalid format.
               params: ''
             - code: phone_number_is_too_short
               category: phone_number
-              message: phone_number can not be shorter than 1 character(s)
+              message: phone_number cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: phone_number_is_too_long
               category: phone_number
-              message: phone_number can not be longer than 100 character(s)
+              message: phone_number cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: mobile_phone_number_is_too_short
               category: mobile_phone_number
-              message: mobile_phone_number can not be shorter than 1 character(s)
+              message: mobile_phone_number cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: mobile_phone_number_is_too_long
               category: mobile_phone_number
-              message: mobile_phone_number can not be longer than 100 character(s)
+              message: mobile_phone_number cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: login_id_in_use
               category: login_id
@@ -5450,41 +5450,41 @@ paths:
               params: ''
             - code: login_id_is_too_long
               category: login_id
-              message: login_id can not be longer than 50 character(s)
+              message: login_id cannot be longer than 50 character(s).
               params: '{ "maxlength" => 50 }'
             - code: locale_is_too_short
               category: locale
-              message: locale can not be shorter than 2 character(s)
+              message: locale cannot be shorter than 2 character(s).
               params: '{ "minlength" => 2 }'
             - code: locale_is_too_long
               category: locale
-              message: locale can not be longer than 5 character(s)
+              message: locale can not be longer than 5 character(s).
               params: '{ "maxlength" => 5 }'
             - code: timezone_is_too_short
               category: timezone
-              message: timezone can not be shorter than 2 character(s)
-              params: '{ "minlength" => 2 }'
+              message: timezone cannot be shorter than 7 character(s).
+              params: '{ "minlength" => 7 }'
             - code: timezone_is_too_long
               category: timezone
-              message: timezone can not be longer than 5 character(s)
-              params: '{ "maxlength" => 5 }'
+              message: timezone cannot be longer than 35 character(s)
+              params: '{ "maxlength" => 35 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, not_enabled'
+              message: 'status should be in range: enabled, not_enabled.'
               params: ''
             - code: date_of_birth_type_is_wrong
               category: date_of_birth
-              message: date_of_birth should be of date type
+              message: date_of_birth should be of date type.
               params: '{ "type" => "date" }'
             - code: date_of_birth_is_required
               category: date_of_birth
               message: >-
                 Date of Birth is a required field. Please provide date of birth
-                (YYYY-MM-DD)
+                (YYYY-MM-DD).
               params: ''
             - code: contact_not_found
               category: id
-              message: Contact was not found for this id
+              message: Contact was not found for this id.
               params: ''
           schema:
             $ref: '#/definitions/UpdateContactError'
@@ -5497,7 +5497,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -5531,7 +5531,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -5542,7 +5542,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5561,8 +5561,8 @@ paths:
       x-api-group: manage
       summary: Create Contact
       description: >-
-        Create a new contact and attach to a sub-account. On success, returns
-        the new contact entity.
+        Create a new contact and attach it to a sub-account. Returns
+        the new contact entity on success.
       operationId: CreateContact
       consumes:
         - multipart/form-data
@@ -5583,22 +5583,22 @@ paths:
           in: formData
           required: true
           type: string
-          description: Contact first name.
+          description: Contact's first name.
         - name: last_name
           in: formData
           required: true
           type: string
-          description: Contact last name.
+          description: Contact's last name.
         - name: email_address
           in: formData
           required: true
           type: string
-          description: Email address.
+          description: Contact's email address.
         - name: phone_number
           in: formData
           required: true
           type: string
-          description: Phone number.
+          description: Contact's phone number.
         - name: your_reference
           in: formData
           required: false
@@ -5649,95 +5649,115 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: account_id_is_in_invalid_format
+            - code: account_id_is_required
               category: account_id
-              message: account_id is in invalid format
+              message: account_id is required.
+              params: ''
+            - code: first_name_is_required
+              category: first_name
+              message: first_name is required.
+              params: ''
+            - code: last_name_is_required
+              category: last_name
+              message: last_name is required.
+              params: ''
+            - code: email_address_is_required
+              category: email_address
+              message: email_address is required.
+              params: ''
+            - code: phone_number_is_required
+              category: phone_number
+              message: phone_number is required.
+              params: ''
+            - code: account_id_is_not_valid_uuid
+              category: account_id
+              message: account_id should be in UUID format.
               params: ''
             - code: first_name_is_too_short
               category: first_name
-              message: first_name can not be shorter than 1 character(s)
+              message: first_name cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: first_name_is_too_long
               category: first_name
-              message: first_name can not be longer than 100 character(s)
+              message: first_name cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: last_name_is_too_short
               category: last_name
-              message: last_name can not be shorter than 1 character(s)
+              message: last_name cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: last_name_is_too_long
               category: last_name
-              message: last_name can not be longer than 100 character(s)
+              message: last_name cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: email_address_is_too_short
               category: email_address
-              message: email_address can not be shorter than 1 character(s)
+              message: email_address cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: email_address_is_too_long
               category: email_address
-              message: email_address can not be longer than 255 character(s)
+              message: email_address cannot be longer than 255 character(s).
               params: '{ "maxlength" => 255 }'
             - code: email_address_is_in_invalid_format
               category: email_address
-              message: email_address is in invalid format
+              message: email_address is in invalid format.
               params: ''
             - code: phone_number_is_too_short
               category: phone_number
-              message: phone_number can not be shorter than 1 character(s)
+              message: phone_number cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: phone_number_is_too_long
               category: phone_number
-              message: phone_number can not be longer than 100 character(s)
+              message: phone_number cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: mobile_phone_number_is_too_short
               category: mobile_phone_number
-              message: mobile_phone_number can not be shorter than 1 character(s)
+              message: mobile_phone_number cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: mobile_phone_number_is_too_long
               category: mobile_phone_number
-              message: mobile_phone_number can not be longer than 100 character(s)
+              message: mobile_phone_number cannot be longer than 100 character(s).
               params: '{ "maxlength" => 100 }'
             - code: login_id_is_too_short
               category: login_id
-              message: login_id can not be shorter than 1 character(s)
+              message: login_id cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: login_id_in_use
               category: login_id
-              message: login_id already in use
-              params: ''
+              message: login_id already in use.
+              params: '{"field": "login_id"}'
             - code: login_id_is_too_long
               category: login_id
-              message: login_id can not be longer than 50 character(s)
+              message: login_id cannot be longer than 50 character(s).
               params: '{ "maxlength" => 50 }'
             - code: locale_is_too_short
               category: locale
-              message: locale can not be shorter than 2 character(s)
+              message: locale cannot be shorter than 2 character(s).
               params: '{ "minlength" => 2 }'
             - code: locale_is_too_long
               category: locale
-              message: locale can not be longer than 5 character(s)
+              message: locale cannot be longer than 5 character(s).
               params: '{ "maxlength" => 5 }'
             - code: timezone_is_too_short
               category: timezone
-              message: timezone can not be shorter than 2 character(s)
-              params: '{ "minlength" => 2 }'
+              message: timezone cannot be shorter than 7 character(s).
+              params: '{ "minlength" => 7 }'
             - code: timezone_is_too_long
               category: timezone
-              message: timezone can not be longer than 5 character(s)
-              params: '{ "maxlength" => 5 }'
+              message: timezone cannot be longer than 35 character(s).
+              params: '{ "maxlength" => 35 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, not_enabled'
+              message: 'status should be in range: enabled, not_enabled.'
               params: ''
             - code: date_of_birth_type_is_wrong
               category: date_of_birth
-              message: date_of_birth should be of date type
+              message: date_of_birth should be of date type.
               params: '{ "type" => "date" }'
             - code: date_of_birth_is_required
               category: date_of_birth
               message: >-
                 Date of Birth is a required field. Please provide date of birth
-                (YYYY-MM-DD)
+                (YYYY-MM-DD).
               params: ''
           schema:
             $ref: '#/definitions/CreateContactError'
@@ -5750,7 +5770,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -5771,7 +5791,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5784,7 +5804,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -5795,7 +5815,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5840,12 +5860,12 @@ paths:
           x-errors:
             - code: generate_hmac_key_wrong_brand
               category: base
-              message: HMAC key can't be generated for that brand
+              message: HMAC key can't be generated for that brand.
               params: ''
             - code: generate_hmac_key_brand_not_configured
               category: base
               message: >-
-                Brand #{brand} should be configured first
+                Brand #{brand} should be configured first.
               params: ''
           schema:
             $ref: '#/definitions/GenrateHMACKeyError'
@@ -5858,7 +5878,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -5870,7 +5890,7 @@ paths:
           description: Forbidden.
           x-errors:
             - code: permission_denied
-              message: permission_denied
+              message: Permission denied.
               params: ''
           schema:
             $ref: '#/definitions/ForbiddenError'
@@ -5885,7 +5905,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5898,7 +5918,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -5909,7 +5929,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15973,36 +15993,52 @@ definitions:
     properties:
       login_id:
         type: string
+        description: The contact's Currencycloud login id.
       id:
         type: string
+        description: The contact's id.
       your_reference:
         type: string
+        description: The user-generated reference code given to the contact.
       first_name:
         type: string
+        description: The contact's first name.
       last_name:
         type: string
+        description: The contact's last name.
       account_id:
         type: string
+        description: The contact's account id.
       account_name:
         type: string
+        description: The account name.
       status:
         type: string
+        description: The contact's status (enabled or not_enabled)
       phone_number:
         type: string
+        description: The contact's phone number.
       mobile_phone_number:
         type: string
+        description: The contact's mobile phone number.
       locale:
         type: string
+        description: The contact's locale.
       timezone:
         type: string
+        description: The contact's timezone.
       email_address:
         type: string
+        description: The contact's email address.
       date_of_birth:
         type: string
+        description: The contact's date of birth.
       created_at:
         type: string
+        description: The date the contact record was created.
       updated_at:
         type: string
+        description: The date the contact record was last updated.
     example:
       login_id: john.smith
       id: 543477161-91de-012f-e284-1e0030c7f352
@@ -18748,7 +18784,7 @@ definitions:
     properties:
       hmac_key:
         type: string
-        description: The generated HMAC Key
+        description: The generated HMAC Key.
     example:
       hmac_key: 9562c7c1094dfe8f46125aa3f3c0d141471fadd443828bb0
   LoginError:
