@@ -100,18 +100,19 @@ paths:
       description: >-
         The Currencycloud API authentication and authorization endpoint.
 
-        Submit a login ID and API key for a Currencycloud account. On successful
-        login, a temporary authentication token is returned.
+        Submit a login ID and API key for a Currencycloud account, you can register
+        for and API key [here]https://developer.currencycloud.com/register-for-an-api-key/.
+        A temporary authentication token is returned following a succesful login.
 
-        An authentication token is required to make requests to all other
+        The authentication token is required to make requests to all other
         endpoints in the Currencycloud API. Tokens expire after 30 minutes of
         inactivity.
 
         Token requests are limited to 10 calls per minute.
 
         For security, Currencycloud accounts are disabled when four unsuccessful
-        login attempts are made within a short period. Account holders must
-        [contact support](https://developer.currencycloud.com/support) to
+        login attempts are made within a short period. In these circumstances, account
+        holders must[contact support](https://developer.currencycloud.com/support) to
         reactivate their account.
       operationId: Login
       consumes:
@@ -124,7 +125,7 @@ paths:
           required: true
           type: string
           description: >-
-            Login ID for a Currencycloud account. This is usually an email
+            The login ID for a Currencycloud account, this is usually an email
             address.
         - name: api_key
           in: formData
@@ -145,23 +146,23 @@ paths:
           x-errors:
             - code: login_id_is_required
               category: login_id
-              message: login_id is required
+              message: login_id is required.
               params: ''
             - code: login_id_is_too_short
               category: login_id
-              message: login_id can not be shorter than 1 character(s)
+              message: login_id cannot be shorter than 1 character(s).
               params: '{ "minlength" => 1 }'
             - code: login_id_is_too_long
               category: login_id
-              message: login_id can not be longer than 255 character(s)
+              message: login_id cannot be longer than 255 character(s).
               params: '{ "maxlength" => 255 }'
             - code: api_key_is_required
               category: api_key
-              message: api_key is required
+              message: api_key is required.
               params: ''
             - code: api_key_length_is_invalid
               category: api_key
-              message: api_key should be 64 character(s) long
+              message: api_key should be 64 character(s) long.
               params: '{ "length" => 64 }'
           schema:
             $ref: '#/definitions/LoginError'
@@ -202,11 +203,11 @@ paths:
               type: string
               description: A unique reference for the request.
         '503':
-          description: Service is temporary unavailable
+          description: Service is temporarily unavailable
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporary unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -254,7 +255,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -299,7 +300,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -1714,7 +1715,7 @@ paths:
     x-api-group: manage
     summary: Get Balance
     description: >-
-      Get the balance for a currency from the account of the authenticating
+      Get the balance for a currency from the account of the authenticated
       user.
     operationId: GetBalance
     produces:
@@ -1729,12 +1730,14 @@ paths:
         in: path
         required: true
         type: string
-        description: Three-digit currency code.
+        description: Three-letter ISO currency code.
+        format: 'AAA'
       - name: on_behalf_of
         in: query
         required: false
         type: string
         description: A contact UUID for the sub-acccount you're acting on behalf of.
+        format: uuid
     responses:
       '200':
         description: Success.
@@ -1749,28 +1752,28 @@ paths:
         x-errors:
           - code: invalid_currency
             category: currency
-            message: XYZ is not a valid ISO 4217 currency code
-            params: ''
+            message: XYZ is not a valid ISO 4217 currency code.
+            params: '{ "currency" => "XYZ" }'
           - code: currency_is_in_invalid_format
             category: currency
-            message: currency is not a valid ISO 4217 currency code
+            message: currency is not a valid ISO 4217 currency code.
             params: '{ "type" => "currency" }'
           - code: on_behalf_of_is_not_valid_uuid
             category: on_behalf_of
-            message: on_behalf_of should be in UUID format
+            message: on_behalf_of should be in UUID format.
             params: ''
           - code: on_behalf_of_self
             category: on_behalf_of
-            message: You cannot act on behalf of your own Contact
+            message: You cannot act on behalf of your own Contact.
             params: ''
           - code: contact_not_found
             category: on_behalf_of
-            message: Contact was not found for this id
+            message: Contact was not found for this id.
             params: ''
           - code: unsupported_currency
             category: currency
-            message: Unsupported currency XYZ
-            params: ''
+            message: Unsupported currency XYZ.
+            params: '{ "currency": "UAH" }'
         schema:
           $ref: '#/definitions/GetBalanceError'
         headers:
@@ -1782,7 +1785,7 @@ paths:
         x-errors:
           - code: invalid_supplied_credentials
             category: username
-            message: Authentication failed with the supplied credentials
+            message: Authentication failed with the supplied credentials.
             params: ''
         schema:
           $ref: '#/definitions/UnauthorizedError'
@@ -1805,7 +1808,7 @@ paths:
             category: base
             message: >-
               Too many requests have been made to the API. Please refer to the
-              Developer Center for more information
+              Developer Center for more information.
             params: ''
         schema:
           $ref: '#/definitions/RateLimitError'
@@ -1818,7 +1821,7 @@ paths:
         x-errors:
           - code: internal_server_error
             category: base
-            message: Internal server error
+            message: Internal server error.
             params: ''
         headers:
           X-Request-Id:
@@ -1829,7 +1832,7 @@ paths:
         x-errors:
           - code: service_unavailable
             category: base
-            message: Service is temporary unavailable
+            message: Service is temporarily unavailable.
             params: ''
         headers:
           X-Request-Id:
@@ -1850,7 +1853,7 @@ paths:
       summary: Find Balances
       description: >-
         Search for currency balances in the main account or a sub-account owned
-        by the authenticating user.
+        by the authenticated user.
       operationId: FindBalances
       produces:
         - application/json
@@ -1865,6 +1868,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-acccount you're acting on behalf of.
+          format: uuid
         - name: amount_from
           in: query
           required: false
@@ -1906,7 +1910,12 @@ paths:
           required: false
           type: string
           default: created_at
-          description: Any field name to change the sort order.
+          description: A field name to change the sort order - "created_at", "amount", "updated_at" or "currency".
+          enum:
+            - created_at
+            - amount
+            - updated_at
+            - currency
         - name: order_asc_desc
           in: query
           required: false
@@ -1937,12 +1946,34 @@ paths:
           x-errors:
             - code: contact_not_found
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: Contact was not found for this id.
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
+              message: You cannot act on behalf of your own Contact.
               params: ''
+            - code: as_at_date_is_in_invalid_format
+              category: as_at_date
+              message: as_at_date should be in ISO 8601 format.
+              params: '{ "type": "datetime" }'
+            - code: amount_from_type_is_wrong
+              category: amount_from_type
+              message: amount_from should be of decimal type.
+              params: '{"type": "decimal"}'
+            - code: amount_to_type_is_wrong
+              category: amount_to_type
+              message: amount_to should be of decimal type.
+              params: '{"type": "decimal"}'
+            - code: order_not_in_range
+              category: order
+              message: >-
+                order should be in range: created_at, amount, updated_at, currency.
+              params: '{"range": "created_at, amount, updated_at, currency"}'
+            - code: order_asc_desc_not_in_range
+              category: order_asc_desc
+              message: >-
+                order_asc_desc should be in range: asc, desc.
+              params: '{"range": "asc, desc"}'
           schema:
             $ref: '#/definitions/FindBalancesError'
           headers:
@@ -1954,7 +1985,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -1975,7 +2006,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -1988,7 +2019,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -1999,7 +2030,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -2018,7 +2049,7 @@ paths:
       x-api-group: manage
       summary: Top Up Margin Balance
       description: >-
-        Tops up the Margin Balance
+        Top up the Margin Balance
       operationId: TopUpMarginBalance
       consumes:
         - multipart/form-data
@@ -2034,7 +2065,8 @@ paths:
           in: formData
           required: true
           type: string
-          description: Currency to top up.
+          description: Three-character ISO currency code for the currency to top up.
+          format: 'AAA'
         - name: amount
           in: formData
           required: true
@@ -2045,6 +2077,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-acccount you're acting on behalf of.
+          format: 'UUID'
       responses:
         '200':
           description: Success.
@@ -2059,11 +2092,11 @@ paths:
           x-errors:
             - code: currency_is_required
               category: currency
-              message: currency is required
+              message: currency is required.
               params: ''
             - code: currency_is_in_invalid_format
               category: currency
-              message: currency is in invalid format
+              message: currency is not a valid ISO 4217 currency code.
               params: '{ "type" => "currency" }'
             - code: amount_is_required
               category: amount
@@ -2071,19 +2104,19 @@ paths:
               params: ''
             - code: amount_type_is_wrong
               category: amount
-              message: amount should be of numeric_greater_than_zero type
+              message: amount should be of numeric_greater_than_zero type.
               params: '{ "type" => "numeric_greater_than_zero" }'
             - code: on_behalf_of_self
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
+              message: You cannot act on behalf of your own Contact.
               params: ''
             - code: contact_not_found
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: Contact was not found for this id.
               params: ''
             - code: on_behalf_of_is_not_valid_uuid
               category: on_behalf_of
-              message: on_behalf_of should be in UUID format
+              message: on_behalf_of should be in UUID format.
               params: ''
           schema:
             $ref: '#/definitions/TopUpMarginBalanceError'
@@ -2096,7 +2129,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -2111,7 +2144,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -2135,7 +2168,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15604,12 +15637,15 @@ definitions:
       id:
         type: string
         description: Balance UUID.
+        format: UUID
       account_id:
         type: string
         description: Account UUID.
+        format: UUID
       currency:
         type: string
-        description: Currency code.
+        description: ISO currency code.
+        format: AAA
       amount:
         type: string
         description: Amount.
@@ -19820,7 +19856,8 @@ definitions:
         description: account identifier.
       currency:
         type: string
-        description: Currency of transfer.
+        description: Currency code for currency transferred.
+        format: AAA
       transferred_amount:
         type: string
         description: amount of transfer.
