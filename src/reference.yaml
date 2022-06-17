@@ -183,7 +183,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -196,7 +196,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -207,7 +207,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -276,7 +276,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -289,7 +289,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -581,7 +581,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -602,7 +602,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -615,7 +615,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -626,7 +626,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -739,7 +739,7 @@ paths:
         x-errors:
           - code: internal_server_error
             category: base
-            message: Internal server error
+            message: Internal server error.
             params: ''
         headers:
           X-Request-Id:
@@ -750,7 +750,7 @@ paths:
         x-errors:
           - code: service_unavailable
             category: base
-            message: Service is temporary unavailable.
+            message: Service is temporarily unavailable.
             params: ''
         headers:
           X-Request-Id:
@@ -1083,7 +1083,7 @@ paths:
         x-errors:
           - code: service_unavailable
             category: base
-            message: Service is temporary unavailable.
+            message: Service is temporarily unavailable.
             params: ''
         headers:
           X-Request-Id:
@@ -1170,7 +1170,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -1426,7 +1426,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -1540,7 +1540,7 @@ paths:
           x-errors:
           - code: service_unavailable
             category: base
-            message: Service is temporary unavailable.
+            message: Service is temporarily unavailable.
             params: ''
           headers:
             X-Request-Id:
@@ -1696,7 +1696,7 @@ paths:
           x-errors:
           - code: service_unavailable
             category: base
-            message: Service is temporary unavailable.
+            message: Service is temporarily unavailable.
             params: ''
           headers:
             X-Request-Id:
@@ -1731,7 +1731,6 @@ paths:
         required: true
         type: string
         description: Three-letter ISO currency code.
-        format: 'AAA'
       - name: on_behalf_of
         in: query
         required: false
@@ -2066,7 +2065,6 @@ paths:
           required: true
           type: string
           description: Three-character ISO currency code for the currency to top up.
-          format: 'AAA'
         - name: amount
           in: formData
           required: true
@@ -2157,7 +2155,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -2633,7 +2631,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -2654,7 +2652,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -2667,7 +2665,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -2678,7 +2676,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -2751,7 +2749,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -2774,7 +2772,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -2787,7 +2785,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -2798,7 +2796,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -3448,7 +3446,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -3469,7 +3467,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -3482,7 +3480,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -3493,7 +3491,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -4142,7 +4140,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -4163,7 +4161,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4176,7 +4174,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -4187,7 +4185,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -4268,7 +4266,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -4291,7 +4289,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4304,7 +4302,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -4315,7 +4313,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -4856,7 +4854,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -4877,7 +4875,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -4890,7 +4888,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -4901,7 +4899,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -5160,7 +5158,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -5271,7 +5269,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -5518,7 +5516,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -5815,7 +5813,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -6258,7 +6256,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -6279,7 +6277,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6292,7 +6290,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -6303,7 +6301,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -6540,7 +6538,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -6561,7 +6559,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6574,7 +6572,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -6585,7 +6583,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -6658,7 +6656,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -6681,7 +6679,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6694,7 +6692,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -6705,7 +6703,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -6862,7 +6860,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -6883,7 +6881,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -6896,7 +6894,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -6907,7 +6905,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -6982,7 +6980,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7005,7 +7003,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7018,7 +7016,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7029,7 +7027,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7120,7 +7118,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7141,7 +7139,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7154,7 +7152,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7165,7 +7163,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7239,7 +7237,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7274,7 +7272,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7287,7 +7285,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7298,7 +7296,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7378,7 +7376,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7411,7 +7409,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7424,7 +7422,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7435,7 +7433,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7503,7 +7501,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7538,7 +7536,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7551,7 +7549,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7562,7 +7560,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7631,7 +7629,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7654,7 +7652,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7667,7 +7665,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7678,7 +7676,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7757,7 +7755,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -7778,7 +7776,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -7791,7 +7789,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -7802,7 +7800,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -7996,7 +7994,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -8417,7 +8415,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -8438,7 +8436,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8451,7 +8449,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -8462,7 +8460,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -8734,7 +8732,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -8755,7 +8753,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8768,7 +8766,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -8779,7 +8777,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -8866,7 +8864,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -8889,7 +8887,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -8902,7 +8900,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -8913,7 +8911,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9337,7 +9335,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9358,7 +9356,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9371,7 +9369,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -9382,7 +9380,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9459,7 +9457,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9482,7 +9480,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9495,7 +9493,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -9506,7 +9504,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9583,7 +9581,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9606,7 +9604,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9619,7 +9617,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -9630,7 +9628,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9702,7 +9700,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9725,7 +9723,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9738,7 +9736,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -9749,7 +9747,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9828,7 +9826,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9851,7 +9849,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9864,7 +9862,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -9875,7 +9873,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -9943,7 +9941,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -9978,7 +9976,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -9991,7 +9989,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10002,7 +10000,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -10091,7 +10089,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -10126,7 +10124,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10139,7 +10137,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10150,7 +10148,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -10270,7 +10268,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -10285,7 +10283,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10298,7 +10296,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10309,7 +10307,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -10383,7 +10381,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -10410,7 +10408,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10423,7 +10421,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10434,7 +10432,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -10549,7 +10547,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -10570,7 +10568,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10583,7 +10581,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10594,7 +10592,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -10669,7 +10667,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -10704,7 +10702,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -10717,7 +10715,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -10728,7 +10726,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11164,7 +11162,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11185,7 +11183,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11198,7 +11196,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -11209,7 +11207,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11286,7 +11284,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11309,7 +11307,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11322,7 +11320,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -11333,7 +11331,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11527,7 +11525,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11548,7 +11546,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11561,7 +11559,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -11572,7 +11570,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11666,7 +11664,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11687,7 +11685,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11700,7 +11698,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -11711,7 +11709,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11752,12 +11750,12 @@ paths:
             - bsb_code
             - routing_number
             - cnaps
-          description: The type of the idenitifier used to identify the account
+          description: The type of the idenitifier used to identify the account.
         - name: identifier_value
           in: query
           required: true
           type: string
-          description: The value of the idenitifier of the account in the format of the identifier_type
+          description: The value of the idenitifier of the account in the format of the identifier_type.
       responses:
         '200':
           description: Success.
@@ -11772,51 +11770,51 @@ paths:
           x-errors:
             - code: identifier_type_is_required
               category: identifier_type
-              message: identifier_type is required
+              message: identifier_type is required.
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps'
+              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps.'
               params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps" }'
             - code: identifier_value_is_required
               category: identifier_value
-              message: identifier_value is required
+              message: identifier_value is required.
               params: ''
             - code: identifier_value_is_empty
               category: identifier_value
-              message: identifier_value should not be empty
+              message: identifier_value should not be empty.
               params: '{ "type" => "not_empty_string" }'
             - code: invalid_iban
               category: base
-              message: IBAN is invalid
+              message: IBAN is invalid.
               params: ''
             - code: invalid_bic
               category: base
-              message: BIC_SWIFT is invalid
+              message: BIC_SWIFT is invalid.
               params: ''
             - code: invalid_aba
               category: base
-              message: ABA is invalid
+              message: ABA is invalid.
               params: ''
             - code: invalid_sort_code
               category: base
-              message: SORT_CODE is invalid
+              message: SORT_CODE is invalid.
               params: ''
             - code: invalid_bsb
               category: base
-              message: BSB_CODE is invalid
+              message: BSB_CODE is invalid.
               params: ''
             - code: invalid_routing_number
               category: base
-              message: ROUTING_NUMBER is invalid
+              message: ROUTING_NUMBER is invalid.
               params: ''
             - code: invalid_cnaps
               category: base
-              message: CNAPS is invalid
+              message: CNAPS is invalid.
               params: ''
             - code: cannot_retrieve_bank_data
               category: base
-              message: Bank Details service is temporarily unavailable
+              message: Bank Details service is temporarily unavailable.
               params: ''
           schema:
             $ref: '#/definitions/GetBankDetailsError'
@@ -11829,7 +11827,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11844,7 +11842,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11857,7 +11855,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -11868,7 +11866,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -11904,18 +11902,18 @@ paths:
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
-            Three-letter currency code in uppercase.
+            Three-letter ISO currency code.
         - name: bank_account_country
           in: query
           required: true
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: beneficiary_country
           in: query
           required: true
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, the
             country in which the company is registered. If the beneficiary is an
             individual, a country in which the beneficiary holds nationality.
       responses:
@@ -11939,17 +11937,17 @@ paths:
               category: bank_account_country
               message: >-
                 Bank account country is not a valid ISO 3166-1 Alpha-2 country
-                code
+                code.
               params: ''
             - code: currency_is_in_invalid_format
               category: currency
-              message: Currency is not a valid ISO 4217 currency code
+              message: Currency is not a valid ISO 4217 currency code.
               params: ''
             - code: beneficiary_country_is_in_invalid_format
               category: beneficiary_country
               message: >-
                 Beneficiary country is not a valid ISO 3166-1 Alpha-2 country
-                code
+                code.
               params: ''
           schema:
             $ref: '#/definitions/GetBeneficiaryRequirementsError'
@@ -11962,7 +11960,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -11983,7 +11981,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -11996,7 +11994,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12007,7 +12005,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12025,13 +12023,16 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Conversion Dates
-      description: Get a list of future non-trading dates for specified currency pairs. Please note that since APAC
-        currencies do not support the 'conversion_date_preference' parameter on the conversions/create endpoint, 'default_conversion_date'
-        returned in this response should be used and not the `first_conversion_date` or `optimize_liquidity_conversion_date`.<br><br>
-         This endpoint will provide a list of upcoming non-trading dates, such as weekends or
-         public holidays, for a specified currency pair. Common use cases for this endpoint
-         will include any situations where this information wants to be provided, or for
-         planning upcoming conversion bookings.
+      description: >-
+         This endpoint provides a list of upcoming non-trading dates, such as weekends or
+         public holidays, for a specified currency pair. Common use cases
+         include  situations where this information needs to be provided, or for
+         planning upcoming conversion bookings. <br><br>
+         Many currencies are triangulated; which means that holidays affecting the intermediary
+         currency, as well as the sale and purchase currencies, will impact transactions.<br><br>
+         Please note that since APAC currencies do not support the `conversion_date_preference`
+         parameter on the conversions/create endpoint, `default_conversion_date` returned
+         in this response should be used and not the `first_conversion_date` or `optimize_liquidity_conversion_date`.
       operationId: GetConversionDates
       produces:
         - application/json
@@ -12045,7 +12046,7 @@ paths:
           in: query
           required: true
           type: string
-          description: 'Concatenated string of the two currencies converted, eg. "USDEUR".'
+          description: 'Concatenated string of the currency codes for the two currencies involved, e.g. "USDEUR".'
         - name: start_date
           in: query
           required: false
@@ -12071,35 +12072,35 @@ paths:
           x-errors:
             - code: conversion_pair_is_required
               category: conversion_pair
-              message: conversion_pair is required
+              message: conversion_pair is required.
               params: ''
             - code: invalid_conversion_pair
               category: conversion_pair
-              message: The conversion pair specified was invalid
+              message: The conversion pair specified was invalid.
               params: ''
             - code: conversion_pair_is_too_short
               category: conversion_pair
-              message: conversion_pair can not be shorter than 6 character(s)
+              message: conversion_pair cannot be shorter than 6 character(s).
               params: '{ "minlength" => 6 }'
             - code: conversion_pair_is_too_long
               category: conversion_pair
-              message: conversion_pair can not be longer than 6 character(s)
+              message: conversion_pair cannot be longer than 6 character(s).
               params: '{ "maxlength" => 6 }'
             - code: start_date_is_too_far_in_future
               category: start_date
-              message: Date is too far in the future (more than 1 year)
+              message: Date is too far in the future (more than 1 year).
               params: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
             - code: start_date_is_in_invalid_format
               category: start_date
-              message: start_date should be in ISO 8601 format
+              message: start_date should be in ISO 8601 format.
               params: '{ "type" => "date" }'
             - code: contact_not_found
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: Contact was not found for this id.
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
+              message: You cannot act on behalf of your own Contact.
               params: ''
           schema:
             $ref: '#/definitions/GetConversionDatesError'
@@ -12112,7 +12113,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12133,7 +12134,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12146,7 +12147,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12157,7 +12158,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12209,7 +12210,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12230,7 +12231,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12243,7 +12244,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12254,7 +12255,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12273,9 +12274,9 @@ paths:
       x-api-group: manage
       summary: Get Payer Requirements
       description: >-
-        Get information on the minimum details required to create a payer.
-        Requirements vary depending on the location of the payer, the type of
-        payment to be made (priority or regular), and other factors.
+        Returns the payer information you need to provide to create a payment.
+        Requirements vary depending on the location of the payer, the type of payment
+        to be made (priority or regular), and other factors.
       operationId: GetPayerRequirements
       produces:
         - application/json
@@ -12289,7 +12290,7 @@ paths:
           in: query
           required: true
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: payer_entity_type
           in: query
           required: false
@@ -12297,7 +12298,7 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity.
+          description: Legal entity type - company or individual.
         - name: payment_type
           in: query
           required: false
@@ -12306,8 +12307,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            Currencycloud supports two types of payments: "priority" (SWIFT), made using
+            the SWIFT network; and "regular" (local), made using the local bank network.
         - name: currency
           in: query
           required: false
@@ -12327,28 +12328,24 @@ paths:
           x-errors:
             - code: payer_country_is_required
               category: payer_country
-              message: payer_country is required
+              message: payer_country is required.
               params: ''
             - code: payer_country_is_in_invalid_format
               category: payer_country
-              message: payer_country is not a valid ISO 3166-1 Alpha-2 country code
+              message: payer_country is not a valid ISO 3166-1 Alpha-2 country code.
               params: '{ "type" => "country_code" }'
             - code: payment_type_not_in_range
               category: payment_type
-              message: 'payment_type should be in range: priority, regular'
+              message: 'payment_type should be in range: priority, regular.'
               params: '{ "range" => "priority, regular" }'
             - code: payer_entity_type_not_in_range
               category: payer_entity_type
-              message: 'payer_entity_type should be in range: company, individual'
+              message: 'payer_entity_type should be in range: company, individual.'
               params: '{ "range" => "company, individual" }'
-            - code: currency_is_too_short
+            - code: currency_is_in_invalid_format
               category: currency
-              message: currency can not be shorter than 3 character(s)
-              params: '{ "minlength" => 3 }'
-            - code: currency_is_too_long
-              category: currency
-              message: currency can not be longer than 3 character(s)
-              params: '{ "maxlength" => 3 }'
+              message: 'currency is not a valid ISO 4217 currency code.'
+              params: ''
           schema:
             $ref: '#/definitions/GetPayerRequirementsError'
           headers:
@@ -12360,7 +12357,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12381,7 +12378,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12394,7 +12391,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12405,7 +12402,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12424,8 +12421,8 @@ paths:
       x-api-group: manage
       summary: Get Payment Dates
       description: >-
-        Get a list of invalid payment dates for a given currency. A payment date
-        is when a payment will be executed by Currencycloud. Payments cannot be
+        Get a list of invalid payment dates for a given currency over a two month period.
+        A payment date is when a payment will be executed by Currencycloud. Payments cannot be
         made on some days, for example when banks are closed.
       operationId: GetPaymentDates
       produces:
@@ -12440,7 +12437,7 @@ paths:
           in: query
           required: true
           type: string
-          description: Currency in which payment made. Three-digit currency code.
+          description: Currency in which payment made. Three-letter ISO currency code.
         - name: start_date
           in: query
           required: false
@@ -12461,27 +12458,19 @@ paths:
           x-errors:
             - code: currency_is_required
               category: currency
-              message: currency is required
+              message: currency is required.
               params: ''
-            - code: invalid_currency
+            - code: currency_is_in_invalid_format
               category: currency
-              message: The currency specified was invalid
+              message: currency is not a valid ISO 4217 currency code.
               params: ''
-            - code: currency_is_too_short
-              category: currency
-              message: currency can not be shorter than 3 character(s)
-              params: '{ "minlength" => 3 }'
-            - code: currency_is_too_long
-              category: currency
-              message: currency can not be longer than 3 character(s)
-              params: '{ "maxlength" => 3 }'
             - code: start_date_is_too_far_in_future
               category: start_date
-              message: Date is too far in the future (more than 1 year)
+              message: Date is too far in the future (more than 1 year).
               params: '{ "maxdate" => "2015-04-04T00:00:00Z", "period" => "1 year" }'
             - code: start_date_is_in_invalid_format
               category: start_date
-              message: Date is too far in the future (more than 1 year)
+              message: start_date should be in ISO 8601 format.
               params: '{ "type" => "date" }'
           schema:
             $ref: '#/definitions/GetPaymentDatesError'
@@ -12494,7 +12483,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12515,7 +12504,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12528,7 +12517,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12539,7 +12528,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12558,7 +12547,7 @@ paths:
       x-api-group: manage
       summary: Get Payment Fee Rules
       description: >-
-        Get the payment fee information based on the specific values provided
+        Get the payment fee information based on the specific values provided.
       operationId: GetPaymentFeeRules
       produces:
         - application/json
@@ -12612,15 +12601,15 @@ paths:
           x-errors:
             - code: account_id_is_not_valid_uuid
               category: account_id
-              message: account_id should be in UUID format
+              message: account_id should be in UUID format.
               params: ''
             - code: charge_type_not_in_range
               category: charge_type
-              message: 'charge_type should be in range: shared, ours'
+              message: 'charge_type should be in range: shared, ours.'
               params: '{ "charge_type" => "shared, ours" }'
             - code: payment_type_not_in_range
               category: payment_type
-              message: 'payment_type should be in range: priority, regular'
+              message: 'payment_type should be in range: priority, regular.'
               params: '{ "payment_type" => "priority, regular" }'
           schema:
             $ref: '#/definitions/GetPaymentFeeRulesError'
@@ -12633,7 +12622,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12654,7 +12643,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12667,7 +12656,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12678,7 +12667,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12716,7 +12705,9 @@ paths:
           in: query
           required: true
           type: string
-          description: Currency in which payment made. Three-digit currency code.
+          description: >-
+            Currency in which payment made. Three-letter ISO currency code.
+            No purpose codes will be returned if an invalid currency code is given.
         - name: entity_type
           in: query
           required: false
@@ -12724,12 +12715,12 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity type. Can be either 'company' or 'individual'.
+          description: Legal entity type - either 'company' or 'individual'.
         - name: bank_account_country
           in: query
           required: true
           type: string
-          description: Two-letter country code of the bank account.
+          description: Two-letter ISO country code of the bank account.
       responses:
         '200':
           description: Success.
@@ -12749,20 +12740,8 @@ paths:
           x-errors:
             - code: currency_is_required
               category: currency
-              message: currency is required
+              message: currency is required.
               params: ''
-            - code: invalid_currency
-              category: currency
-              message: The currency specified was invalid
-              params: ''
-            - code: currency_is_too_short
-              category: currency
-              message: currency can not be shorter than 3 character(s)
-              params: '{ "minlength" => 3 }'
-            - code: currency_is_too_long
-              category: currency
-              message: currency can not be longer than 3 character(s)
-              params: '{ "maxlength" => 3 }'
           schema:
             $ref: '#/definitions/GetPaymentPurposeCodesError'
           headers:
@@ -12795,7 +12774,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12808,7 +12787,11 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
+              params: ''
+            - code: missing_translation
+              category: based
+              message: Internatl server error. Currency value was not specified.
               params: ''
           headers:
             X-Request-Id:
@@ -12819,7 +12802,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -12853,7 +12836,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Three-digit currency code.
+          description: Three-letter ISO currency code.
         - name: account_id
           in: query
           required: false
@@ -12876,9 +12859,13 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: account_not_found
+            - code: account_id_is_not_valid_uuid
               category: id
-              message: Account was not found for this id
+              message: account_id should be in UUID format.
+              params: ''
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: currency is not a valid ISO 4217 currency code.
               params: ''
           schema:
             $ref: '#/definitions/GetSettlementAccountsError'
@@ -12891,7 +12878,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -12901,6 +12888,17 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: account_not_found
+              category: base
+              message: Account was not found for this id.
+              params: ''
+            - code: settlement_accounts_not_found
+              category: base
+              message: Settlement Account details not found.
+              params: ''
+          schema:
+            $ref: '#/definitions/NotFoundError'
           headers:
             X-Request-Id:
               type: string
@@ -12912,7 +12910,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -12925,7 +12923,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -12936,7 +12934,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13130,7 +13128,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -13151,7 +13149,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13164,7 +13162,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -13175,7 +13173,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13344,7 +13342,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -13365,7 +13363,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13378,7 +13376,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -13389,7 +13387,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13520,7 +13518,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -13541,7 +13539,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13554,7 +13552,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -13565,7 +13563,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13630,7 +13628,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -13651,7 +13649,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -13664,7 +13662,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -13675,7 +13673,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -13796,7 +13794,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14072,7 +14070,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14093,7 +14091,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14106,7 +14104,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14117,7 +14115,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14177,7 +14175,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14200,7 +14198,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14213,7 +14211,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14224,7 +14222,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14459,7 +14457,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14480,7 +14478,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14493,7 +14491,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14504,7 +14502,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14581,7 +14579,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14604,7 +14602,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14617,7 +14615,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14628,7 +14626,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14714,7 +14712,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14747,7 +14745,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14760,7 +14758,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14771,7 +14769,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14863,7 +14861,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -14884,7 +14882,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -14897,7 +14895,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -14908,7 +14906,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -14978,7 +14976,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -15011,7 +15009,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -15024,7 +15022,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -15035,7 +15033,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15134,7 +15132,7 @@ paths:
           x-errors:
             - code: invalid_supplied_credentials
               category: username
-              message: Authentication failed with the supplied credentials
+              message: Authentication failed with the supplied credentials.
               params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
@@ -15167,7 +15165,7 @@ paths:
               category: base
               message: >-
                 Too many requests have been made to the API. Please refer to the
-                Developer Center for more information
+                Developer Center for more information.
               params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
@@ -15180,7 +15178,7 @@ paths:
           x-errors:
             - code: internal_server_error
               category: base
-              message: Internal server error
+              message: Internal server error.
               params: ''
           headers:
             X-Request-Id:
@@ -15191,7 +15189,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15442,7 +15440,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable.
+              message: Service is temporarily unavailable.
               params: ''
           headers:
             X-Request-Id:
@@ -15665,7 +15663,6 @@ definitions:
       currency:
         type: string
         description: ISO currency code.
-        format: AAA
       amount:
         type: string
         description: Amount.
@@ -19735,26 +19732,33 @@ definitions:
         description: The unique UUID for the Sender.
       amount:
         type: string
+        description: The transaction amount.
       currency:
         type: string
+        description: ISO currency code for the transaction's currency.
       additional_information:
         type: string
+        description: Any additional information for the transaction, e.g. addtional sender details or transaction and client references.
       value_date:
         type: string
+        description: The transaction value date.
         format: date-time
       sender:
         type: string
+        description: Sender details - the format is "sender":"name; address; country; account_number or iban; bic; routing_code"
       receiving_account_number:
         type: string
-        description: this is the receiving VAN
+        description: The account number that received the funds.
       receiving_account_iban:
         type: string
-        description: this is the receiving IBAN
+        description: The IBAN number for the account that received the funds.
       created_at:
         type: string
+        description: The transaction date and time of creation.
         format: date-time
       updated_at:
         type: string
+        description: The transaction date and time of the last update.
         format: date-time
     example:
       id: 21a7edce-fff8-486a-ac28-0dd143375081
@@ -19893,7 +19897,6 @@ definitions:
       currency:
         type: string
         description: Currency code for currency transferred.
-        format: AAA
       transferred_amount:
         type: string
         description: amount of transfer.
@@ -20110,7 +20113,7 @@ definitions:
       error_messages:
         api_key:
           - code: invalid_supplied_credentials
-            message: Authentication failed with the supplied credentials
+            message: Authentication failed with the supplied credentials.
             params: {}
   UpdateAccountError:
     type: object
