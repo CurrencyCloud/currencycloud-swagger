@@ -5277,7 +5277,11 @@ paths:
           in: query
           required: false
           type: string
-          description: Email address.
+          description: >-
+            Email address. A request to update a contacts email address does not immediately update the value.
+            Instead an email change request flow is initiated, sending notifications to both the old and new
+            email addresses. The value will be updated when the change is confirmed via a link sent to the new
+            email address
         - name: your_reference
           in: query
           required: false
