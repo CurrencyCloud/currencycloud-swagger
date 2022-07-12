@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.36.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.0) (2022-07-12)
+- Updates type of unique_request_id in transfer/find to be query parameter
+- Documents updating email_address of contacts works in calls to POST contacts/{id}
+
 ## [2.32.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.32.0) (2022-01-31)
 - Adds on_behalf_of parameter to funding_accounts/find
 - Adds new error responses to /conversions/create and /rates/detailed
