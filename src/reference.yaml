@@ -12340,9 +12340,8 @@ paths:
       x-api-group: manage
       summary: Get Payment Dates
       description: >-
-        Get a list of invalid payment dates for a given currency. A payment date
-        is when a payment will be executed by Currencycloud. Payments cannot be
-        made on some days, for example when banks are closed.
+        Get a list of invalid payment dates for a given currency covering a two months period from the start_date specified. A payment date
+        is when a payment will be executed by Currencycloud. Payments cannot be made on some days, for example when banks are closed.
       operationId: GetPaymentDates
       produces:
         - application/json
@@ -12362,7 +12361,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Payment start date. ISO 8601 format YYYY-MM-DD.
+          description: Payment start date, defaults to today's date. ISO 8601 format YYYY-MM-DD.
       responses:
         '200':
           description: Success.
