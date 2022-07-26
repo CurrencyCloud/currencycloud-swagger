@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.32.0
+  version: 2.36.0
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -5330,7 +5330,11 @@ paths:
           in: query
           required: false
           type: string
-          description: Email address.
+          description: >-
+            Email address. A request to update a contacts email address does not immediately update the value.
+            Instead, an email change request flow is initiated, sending notifications to both the old and new
+            email addresses. The value will be updated when the change is confirmed via a link sent to the new
+            email address.
         - name: your_reference
           in: query
           required: false
