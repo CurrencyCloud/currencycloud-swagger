@@ -3603,6 +3603,7 @@ paths:
             - branch_code
             - clabe
             - cnaps
+            - ifsc
           description: Local payment routing system.
         - name: routing_code_value_2
           in: formData
@@ -15634,16 +15635,22 @@ definitions:
     description: Available currencies.
     properties:
       code:
+        description: Three character ISO currency code.
         type: string
       decimal_places:
+        description: The number of decimal places used by the currency.
         type: integer
       name:
+        description: The name of the currency.
         type: string
       online_trading:
+        description: Is online trading available.
         type: boolean
       can_buy:
+        description: Can the currency be bought.
         type: boolean
       can_sell:
+        description: Can the currency be sold.
         type: boolean
     example:
       code: AED
@@ -15891,46 +15898,69 @@ definitions:
     description: Beneficiary requirements.
     properties:
       payment_type:
+        description: The type of payment - 'priority' (SWIFT) or 'regular' (local).
         type: string
+        enum:
+          - priority
+          - regular
       acct_number:
         type: string
+        description: Account number
       bic_swift:
         type: string
+        description: BIC / SWIFT code
       beneficiary_address:
         type: string
+        description: Beneficiary's address
       beneficiary_city:
         type: string
+        description: Beneficiary's city
       beneficiary_country:
         type: string
+        description: Beneficiary's country
       beneficiary_postcode:
         type: string
+        description: Beneficiary's postcode
       beneficiary_state_or_province:
         type: string
+        description: Beneficiary's state or province
       beneficiary_first_name:
         type: string
+        description: Beneficiary's first name
       beneficiary_last_name:
         type: string
+        description: Beneficiary's last name
       beneficiary_entity_type:
         type: string
+        description: Type of entity
         enum:
           - company
           - individual
+
       sort_code:
         type: string
+        description: Routing code
       aba:
         type: string
+        description: Routing code
       bsb_code:
         type: string
+        description: Routing code
       institution_no:
         type: string
+        description: Routing code
       bank_code:
         type: string
+        description: Routing code
       branch_code:
         type: string
+        description: Routing code
       clabe:
         type: string
+        description: Routing code
       cnaps:
         type: string
+        description: Routing code
     example:
       payment_type: regular
       acct_number: '^\\d{1,17}$'
@@ -18981,10 +19011,19 @@ definitions:
     description: Payer requirements.
     properties:
       payer_entity_type:
+        description: Legal entity type.
+        enum:
+          - company
+          - individual
         type: string
       payment_type:
+        description: Type of payment.
+        enum:
+          - regular
+          - priority
         type: string
       required_fields:
+        description: The required payer fields for the payment.
         type: array
         items:
           type: object
@@ -19133,12 +19172,14 @@ definitions:
     properties:
       invalid_payment_dates:
         type: object
+        description: Invalid payment dates with reason.
         additionalProperties:
           type: string
           description: >-
             Maps dates (eg. "2020-12-31") to string values that explains why
             payments cannot be made on this date (eg. "No trading on Sunday").
       first_payment_date:
+        description: Frist possible payment date.
         type: string
     example:
       invalid_payment_dates:
@@ -19313,23 +19354,23 @@ definitions:
     properties:
       payment_type:
         type: string
-        description: The payment type the fee is applicable to
+        description: The payment type the fee is applicable to.
       charge_type:
         type: string
-        description: The charge type the fee is applicable to
+        description: The charge type the fee is applicable to.
       fee_amount:
         type: string
-        description: The fee amount
+        description: The fee amount.
       fee_currency:
         type: string
-        description: The fee currency
+        description: The fee currency.
       payment_fee_id:
         type: string
         format: uuid
-        description: The id of payment level rule Id
+        description: The id of payment level rule Id.
       payment_fee_name:
         type: string
-        description: The name of payment level fee table
+        description: The name of payment level fee table.
     example:
       payment_type: priority
       charge_type: shared
@@ -19343,20 +19384,25 @@ definitions:
     properties:
       currency:
         type: string
+        description: Payment currency
       entity_type:
         type: string
+        description: Legal entity type - 'company' or 'individual'.
       purpose_code:
         type: string
+        description: A purpose code
       purpose_description:
         type: string
+        description: A description of the purpose code.
       bank_account_country:
         type: string
+        description: Two-letter country code for the country of the bank account.
     example:
       currency: INR
       entity_type: Company
       purpose_code: delivery
       purpose_description: Delivery fees for goods
-      bank_account_country: India
+      bank_account_country: IN
   PaymentFeeUnassignment:
     type: object
     description: Payment Fee Unassignment.
@@ -19835,39 +19881,72 @@ definitions:
     properties:
       bank_account_holder_name:
         type: string
+        description: The bank account holder's name.
       beneficiary_address:
         type: array
+        description: The beneficiary's address.
         items:
           type: string
           description: Line of address.
       beneficiary_country:
+        description: Beneficiary's country.
         type: string
       bank_name:
+        description: The name of the bank.
         type: string
       bank_address:
+        description: The bank's address.
         type: array
         items:
           type: string
-          description: Line of address.
+          description: Line of address
       bank_country:
         type: string
-        description: Two-letter country code.
+        description: Two-letter ISO country code for the bank's country.
       currency:
+        description: Payment currency
         type: string
       bic_swift:
+        description: BIC / SWIFT code
         type: string
       iban:
+        description: IBAN number
         type: string
       account_number:
+        description: Account number
         type: string
       routing_code_type_1:
+        description: Routing system for regular (local) payments.
         type: string
+        enum:
+          - sort_code
+          - aba
+          - bsb_code
+          - institution_no
+          - bank_code
+          - branch_code
+          - clabe
+          - cnaps
+          - ifsc
       routing_code_value_1:
         type: string
+        description: Value for routing system 'routing_code_type_1'.
       routing_code_type_2:
         type: string
+        enum:
+          - sort_code
+          - aba
+          - bsb_code
+          - institution_no
+          - bank_code
+          - branch_code
+          - clabe
+          - cnaps
+          - ifsc
+        description: Local payment routing system.
       routing_code_value_2:
         type: string
+        description: Value for routing system 'routing_code_type_2'.
     example:
       bank_account_holder_name: The Currency Cloud GBP - Client Seg A/C
       beneficiary_address:
