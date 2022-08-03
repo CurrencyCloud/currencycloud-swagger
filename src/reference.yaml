@@ -6606,7 +6606,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Get Conversion
-      description: Get a conversion record for the provided unique id {id}.
+      description: Get a conversion record for the provided unique ID.
       operationId: GetConversion
       produces:
         - application/json
@@ -6930,7 +6930,7 @@ paths:
       summary: Quote Conversion Date Change
       description: >-
         Get a quote of the projected cost to change the date of a conversion identified
-        by a provided unique id {id}.
+        by a provided unique ID {id}.
       operationId: ConversionDateChangeQuote
       produces:
         - application/json
@@ -7187,7 +7187,7 @@ paths:
       x-api-group: convert
       summary: Split Preview
       description: Get a preview of the details of each part of a split conversion
-        specified by the provided unique conversion id {id}.
+        specified by the provided unique conversion ID {id}.
       operationId: GetConversionSplitPreview
       produces:
         - application/json
@@ -7319,7 +7319,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split
-      description: Splits the conversion specified by the unique id {id}. Upon success,
+      description: Splits the conversion specified by the unique ID {id}. Upon success,
           it returns the details of the parent and new child conversions.
       operationId: SplitConversion
       consumes:
@@ -7456,7 +7456,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split History
-      description: Returns the history of executed conversion splits specified by a unique id {id}.
+      description: Returns the history of executed conversion splits specified by a unique ID {id}.
       operationId: GetConversionSplitHistory
       produces:
         - application/json
@@ -7584,7 +7584,7 @@ paths:
       x-api-group: convert
       summary: Quote Conversion Cancellation
       description: >-
-        Get a quote of the projected cost to cancel a conversion identified by a provided unique id {id}.
+        Get a quote of the projected cost to cancel a conversion identified by a provided unique ID {id}.
       operationId: ConversionCancellationQuote
       produces:
         - application/json
@@ -7699,7 +7699,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Cancel a Conversion
-      description: 'Cancels the conversion identified by the provided unique id {id}'
+      description: 'Cancels the conversion identified by the provided unique ID {id}'
       operationId: CancelConversion
       consumes:
         - multipart/form-data
@@ -10040,13 +10040,13 @@ paths:
           required: true
           type: string
           format: uuid
-          description: Id of the payment fee entity which will be assigned to teh account.
+          description: ID of the payment fee entity which will be assigned to teh account.
         - name: account_id
           in: formData
           required: true
           format: uuid
           type: string
-          description: Id of the account which the payment fee will be assigned.
+          description: ID of the account which the payment fee will be assigned.
       responses:
         '200':
           description: Success.
@@ -12980,7 +12980,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Description that will be applied to report.
+          description: Description that will be applied to the report.
         - name: buy_currency
           in: formData
           required: false
@@ -12996,41 +12996,49 @@ paths:
           required: false
           type: string
           description: .
+          format: numeric
         - name: client_buy_amount_to
           in: formData
           required: false
           type: string
           description: .
+          format: numeric
         - name: client_sell_amount_from
           in: formData
           required: false
           type: string
           description: .
+          format: numeric
         - name: client_sell_amount_to
           in: formData
           required: false
           type: string
           description: .
+          format: numeric
         - name: partner_buy_amount_from
           in: formData
           required: false
           type: string
           description: Minimum buy amount (sub-accounts).
+          format: numeric
         - name: partner_buy_amount_to
           in: formData
           required: false
           type: string
           description: Maximum buy amount (sub-accounts).
+          format: numeric
         - name: partner_sell_amount_from
           in: formData
           required: false
           type: string
           description: Minimum sell amount (sub-accounts).
+          format: numeric
         - name: partner_sell_amount_to
           in: formData
           required: false
           type: string
           description: Maximum sell amount (sub-accounts).
+          format: numeric
         - name: client_status
           in: formData
           required: false
@@ -13040,68 +13048,74 @@ paths:
             - funds_sent
             - funds_arrived
             - trade_settled
+            - awaiting_authorisation
+            - funds_being_processed
+            - trade_settling
             - closed
           description: >-
-            The current status of the Conversion - awaiting_funds - funds_sent -
-            funds_arrived - trade_settled - closed.
+            The current status of the conversion.
         - name: conversion_date_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when buy currency was delivered.
+          description: ISO 8601 Date/time for start of range for when buy currency was delivered.
         - name: conversion_date_to
           in: formData
           required: false
           format: date
           type: string
-          description: ISO 8601 Datetime when buy currency was delivered.
+          description: ISO 8601 Date/time for end of range for when buy currency was delivered.
         - name: settlement_date_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the sell_currency was debited.
+          description: ISO 8601 Date/time for start of date range for when the sell_currency was debited.
         - name: settlement_date_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the sell_currency was debited.
+          description: ISO 8601 Datetime for end of date range for when the sell_currency was debited.
         - name: created_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the conversion was created.
+          description: ISO 8601 Date/time for start of date range for when the conversion was created.
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the conversion was created.
+          description: ISO 8601 Date/time for end of date range for when the conversion was created.
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the conversion was updated.
+          description: ISO 8601 Date/time for start of date range for when the conversion was updated.
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the conversion was updated.
+          description: ISO 8601 Date/time for end of date range for when the conversion was updated.
         - name: unique_request_id
           in: formData
           required: false
           type: string
-          description: Unique request ID of conversion
+          description: Unique request ID of conversion.
         - name: scope
           in: formData
           required: false
           type: string
-          description: Specify which account level will be used; 'own' is a default value.
+          enum:
+            - own
+            - all
+            - clients
+          description: Specify which account level will be used - 'own' is the default.
       responses:
         '200':
           description: Success.
@@ -13118,6 +13132,30 @@ paths:
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
+            - code: description_is_too_long
+              category: description
+              message: description can not be longer than 255 character(s)
+              params: '{"maxlength": 255}'
+            - code: buy_currency_is_in_invalid_format
+              category: currency
+              message: sell_currency is not a valid ISO 4217 currency code
+              params: '{"type": "currency"}'
+            - code: sell_currency_is_in_invalid_format
+              category: currency
+              message: sell_currency is not a valid ISO 4217 currency code
+              params: '{"type": "currency"}'
+            - code: partner_sell_amount_to_type_is_wrong
+              category: currency
+              message: partner_sell_amount_to should be of numeric type
+              params: '{"type": "numeric" }'
+            - code: scope_not_in_range
+              category: currency
+              message: 'scope should be in range: own, all, clients'
+              params: '{"range": "own, all, clients"}'
+            - code: client_status_not_in_range
+              category: client
+              message: 'client_status should be in range: awaiting_funds, funds_sent, funds_arrived, trade_settled, closed, awaiting_authorisation, funds_being_processed, trade_settling'
+              params: '{"range": "awaiting_funds, funds_sent, funds_arrived, trade_settled, closed, awaiting_authorisation, funds_being_processed, trade_settling"}'
             - code: contact_not_found
               category: on_behalf_of
               message: Contact was not found for this id
@@ -13227,12 +13265,19 @@ paths:
           in: formData
           required: false
           type: string
+          format: numeric
           description: Amount of Payment to 2dp.
         - name: amount_to
           in: formData
           required: false
+          format: numeric
           type: string
           description: Amount of Payment to 2dp.
+        - name: bulk_upload_reference
+          in: formData
+          required: false
+          type: string
+          description: Reference to Bulk Upload.
         - name: status
           in: formData
           required: false
@@ -13243,79 +13288,79 @@ paths:
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment should be paid.
+          description: ISO 8601 Date/time when the payment should be paid.
         - name: payment_date_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment should be paid.
+          description: ISO 8601 Date/time when the payment should be paid.
         - name: transferred_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment should be transfered.
+          description: ISO 8601 Date/time when the payment should be transfered.
         - name: transferred_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment should be transfered.
+          description: ISO 8601 Date/time when the payment should be transfered.
         - name: created_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment was created.
+          description: ISO 8601 Date/time when the payment was created.
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment was created.
+          description: ISO 8601 Date/time when the payment was created.
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment was updated.
+          description: ISO 8601 Date/time when the payment was updated.
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime when the payment was updated.
+          description: ISO 8601 Date/time when the payment was updated.
         - name: beneficiary_id
           in: formData
           required: false
           type: string
-          description: ID of the beneficiary
+          description: ID of the beneficiary.
         - name: conversion_id
           in: formData
           required: false
           type: string
-          description: Conversion unique ID
+          description: Conversion unique ID.
         - name: with_deleted
           in: formData
           required: false
           type: string
-          description: Allow to search within deleted payments too
+          description: Allow to search within deleted payments.
         - name: payment_group_id
           in: formData
           required: false
           type: string
-          description: ID of the payment group
+          description: ID of the payment group.
         - name: unique_request_id
           in: formData
           required: false
           type: string
-          description: Unique request ID of conversion
+          description: Unique request ID of payment.
         - name: scope
           in: formData
           required: false
           type: string
-          description: Specify which account level will be used; 'own' is a default value.
+          description: Specify which account level will be used - 'own' is the default value.
       responses:
         '200':
           description: Success.
@@ -13336,6 +13381,30 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: description_is_too_long
+              category: description
+              message: description can not be longer than 255 character(s)
+              params: '{"maxlength": 255}'
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: buy_currency is not a valid ISO 4217 currency code
+              params: '{"type": "currency"}'
+            - code: amount_from_type_is_wrong
+              category: amount_from
+              message: amount_from should be of numeric type
+              params: '{"type": "numeric"}'
+            - code: updated_at_to_is_in_invalid_format
+              category: update_at_to
+              message: updated_at_to should be in ISO 8601 format
+              params: '{"type": "datetime"}'
+            - code: conversion_id_is_not_valid_uuid
+              category: conversion_id
+              message: conversion_id should be in UUID format
+              params: '{"type": "datetime"}'
+            - code: with_deleted_type_is_wrong
+              category: with_deleted
+              message: with_deleted should be of boolean type
+              params: '{"type": "boolean"}'
           schema:
             $ref: '#/definitions/GenerateReportError'
           headers:
@@ -13410,7 +13479,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Find Report Requests
-      description: Returns a JSON structure with details of report requests.
+      description: Search for report requests made. Returns a JSON structure with details of matching report requests.
       operationId: Find Report Requests
       produces:
         - application/json
@@ -13442,6 +13511,18 @@ paths:
           type: string
           format: date
           description: End date (for range) when the reports were created.
+        - name: updated_at_from
+          in: query
+          required: false
+          type: string
+          format: date
+          description: Start date (for range) when the reports were updated.
+        - name: updated_at_to
+          in: query
+          required: false
+          type: string
+          format: date
+          description: End date (for range) when the reports were updated.
         - name: expiration_date_from
           in: query
           required: false
@@ -13459,10 +13540,20 @@ paths:
           required: false
           type: string
           description: Status of the report.
+          enum:
+            - processing
+            - completed
+            - expired
+            - failed
         - name: report_type
           in: query
           required: false
           type: string
+          enum:
+            - conversion
+            - payment
+            - beneficiary
+            - transaction
           description: 'Type of reports, that we expect to receive in search results.'
         - name: page
           in: query
@@ -13489,6 +13580,15 @@ paths:
             - desc
           default: asc
           description: Sort records in ascending or descending order.
+        - name: scope
+          in: query
+          required: false
+          type: string
+          enum:
+              - own
+              - all
+              - clients
+          description: Specify which account level will be used; 'own' is a default value.
       responses:
         '200':
           description: Success.
@@ -13512,6 +13612,21 @@ paths:
               category: id
               message: Account was not found for this id
               params: ''
+            - code: updated_at_to_is_in_invalid_format
+              category: updated_at_to
+              message: updated_at_to should be in ISO 8601 format
+              params: '{"type": "datetime"}'
+            - code: status_not_in_range
+              category: status
+              message: 'status should be in range: processing, completed, expired, failed'
+              params: '{"range": "processing, completed, expired, failed"}'
+            - code: report_type_not_in_range
+              category: report_type
+              message: 'report_type should be in range: conversion, payment, beneficiary, transaction'
+              params: '{ "range": "conversion, payment, beneficiary, transaction" }'
+            - code: short_reference_is_too_long
+              category: short_reference
+              message: short_reference can not be longer than 25 character(s)
           schema:
             $ref: '#/definitions/GetReportRequestError'
           headers:
@@ -13586,7 +13701,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Retrieve a Report Request
-      description: Returns a JSON structure with details of the specified report request.
+      description: Search for a report by ID. Returns a JSON structure with details of the specified report request.
       operationId: Retrieve a Report Request
       produces:
         - application/json
@@ -15074,7 +15189,7 @@ paths:
           type: string
           description: >-
             The withdrawal account ID you want to pull the funds from.
-            The funds will be pulled into the account id related to this withdrawal account
+            The funds will be pulled into the account ID related to this withdrawal account
         - name: reference
           in: formData
           required: true
@@ -15315,7 +15430,7 @@ paths:
               params: ''
             - code: id_has_invalid_format
               category: id
-              message: ID should be in UUID format.
+              message: id should be in UUID format.
               params: ''
             - code: receiver_account_number_cant_be_blank
               category: receiver_account_number
@@ -16405,20 +16520,30 @@ definitions:
     properties:
       id:
         type: string
-        description: Report unique ID
+        description: Unique ID for report
       short_reference:
         type: string
-        description: Human readable unique ID
+        description: Human readable unique Id
       search_params:
         type: object
         default: {}
         description: >-
-          Parameters to select specific range of items, that we want to see in
+          Parameters to select specific range of items that we want to see in the
           report
       report_type:
         type: string
+        description: The type of report - conversion or payment.
+        enum:
+          - conversion
+          - payment
       status:
         type: string
+        description: The status of the report
+        enum:
+          - processing
+          - completed
+          - expired
+          - failed
       expiration_date:
         type: string
         format: date
@@ -19252,7 +19377,7 @@ definitions:
       id:
         type: string
         format: uuid
-        description: id of the payment fee
+        description: ID of the payment fee
       name:
         type: string
         description: name of the payment fee
@@ -19271,7 +19396,7 @@ definitions:
       owner_account_id:
         type: string
         format: uuid
-        description: The Id of the owner account
+        description: The ID of the owner account
     example:
       id: 49521d55-5dd8-4362-8c2d-03b02b1a714b
       name: 1updfee_table_AUD4
@@ -19291,11 +19416,11 @@ definitions:
       id:
         type: string
         format: uuid
-        description: Id of the payment fee
+        description: ID of the payment fee
       account_id:
         type: string
         format: uuid
-        description: Id of the sub-account the rule is assigned to
+        description: ID of the sub-account the rule is assigned to
     example:
       id: a6c4a482-1a56-49ea-be55-b9b0bb92a9b2
       account_id: 0178a7ba-9a77-4c74-af71-a5f650f00e09
@@ -19367,7 +19492,7 @@ definitions:
       payment_fee_id:
         type: string
         format: uuid
-        description: The id of payment level rule Id.
+        description: The ID of payment level rule.
       payment_fee_name:
         type: string
         description: The name of payment level fee table.
@@ -19413,7 +19538,7 @@ definitions:
       account_id:
         type: string
         format: uuid
-        description: Id of the sub-account the rule is assigned to
+        description: ID of the sub-account the rule is assigned to.
     example:
       account_id: 0178a7ba-9a77-4c74-af71-a5f650f00e09
   PaymentFeeUnassignmentError:
@@ -19463,20 +19588,20 @@ definitions:
     properties:
       id:
         type: string
-        description: Unique ID of the Payment Confirmation
+        description: Unique ID of the Payment Confirmation.
       payment_id:
         type: string
       account_id:
         type: string
       short_reference:
         type: string
-        description: Short reference of the Payment Confirmation
+        description: Short reference for the Payment Confirmation.
       status:
         type: string
-        description: Status of the Payment Confirmation processing
+        description: Status of the Payment Confirmation processing.
       confirmation_url:
         type: string
-        description: URL to download Payment Confirmation file
+        description: URL to download Payment Confirmation file.
       created_at:
         type: string
         format: date-time
