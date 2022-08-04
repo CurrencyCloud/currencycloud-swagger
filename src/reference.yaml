@@ -15070,7 +15070,7 @@ paths:
       x-api-group: manage
       summary: Find Withdrawal Account
       description: >-
-        Lists all withdrawal accounts assigned to an account
+        Lists all withdrawal accounts assigned to an account.
       operationId: FindWithdrawlAccount
       produces:
         - application/json
@@ -15143,6 +15143,10 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: account_not_found
+              message: Account was not found for this id
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -15198,7 +15202,7 @@ paths:
       summary: Pull Funds From Withdrawal Account
       description: >-
         Submits an ACH pull request from a specific withdrawal account.
-        The funds will be pulled into the account the specified withdrawal account is related to
+        The funds will be pulled into the account the specified withdrawal account is related to.
       operationId: PullFundsFromWithdrawalAccount
       produces:
         - application/json
@@ -15237,6 +15241,14 @@ paths:
         '400':
           description: Client error.
           x-errors:
+            - code: withdrawal_account_not_found
+              category: id
+              message: No withdrawal account found for this account
+              params: ''
+            - code: withdrawal_account_id_is_not_valid_uuid
+              category: id
+              message: withdrawal_account_id should be in UUID format
+              params: ''
             - code: reference_is_required
               category: reference
               message: reference is required
@@ -15289,7 +15301,7 @@ paths:
           description: Forbidden.
           x-errors:
             - code: permission_denied
-              message: permission_denied
+              message: Permission denied
               params: ''
           schema:
             $ref: '#/definitions/ForbiddenError'
@@ -15299,6 +15311,10 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: account_not_found
+              message: Account was not found for this id
+              params: ''
           headers:
             X-Request-Id:
               type: string
