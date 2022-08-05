@@ -2211,7 +2211,7 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, the
             country in which the company is registered. If the beneficiary is an
             individual, a country in which the beneficiary holds nationality.
         - name: currency
@@ -2245,17 +2245,17 @@ paths:
           in: query
           required: false
           type: string
-          description: Routing code.
+          description: Routing code
         - name: bic_swift
           in: query
           required: false
           type: string
-          description: BIC/SWIFT code.
+          description: BIC/SWIFT code
         - name: iban
           in: query
           required: false
           type: string
-          description: IBAN code.
+          description: IBAN code
         - name: default_beneficiary
           in: query
           required: false
@@ -2267,7 +2267,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Bank name.
+          description: Bank name
         - name: bank_account_type
           in: query
           required: false
@@ -2308,12 +2308,12 @@ paths:
           in: query
           required: false
           type: string
-          description: City.
+          description: City
         - name: beneficiary_postcode
           in: query
           required: false
           type: string
-          description: Post code.
+          description: Post code
         - name: beneficiary_state_or_province
           in: query
           required: false
@@ -2342,7 +2342,7 @@ paths:
           in: query
           required: false
           type: integer
-          description: Page number.
+          description: Page number
         - name: per_page
           in: query
           required: false
@@ -2434,10 +2434,6 @@ paths:
               category: routing_code_type
               message: routing_code_type can not be longer than 50 character(s)
               params: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
-            - code: routing_code_type_type_is_wrong
-              category: routing_code_type
-              message: routing_code_type should be of hash type
-              params: '{ "type" => "hash" }'
             - code: routing_code_type_not_included_in_list
               category: routing_code_type
               message: One or more of routing_code_type items are not included in list
@@ -2445,18 +2441,10 @@ paths:
                 { "list" =>
                 "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe
                 }
-            - code: routing_code_type_too_many_items
-              category: routing_code_type
-              message: routing_code_type should have less than 50 items
-              params: '{ "maxcount" => 50 }'
             - code: beneficiary_date_of_birth_type_is_wrong
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
-            - code: beneficiary_date_of_birth_is_incorrect
-              category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth is incorrect
-              params: ''
             - code: beneficiary_date_of_birth_is_earlier
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be later than 1900-01-01
@@ -2703,12 +2691,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: on_behalf_of
           in: query
           required: false
@@ -2815,7 +2803,9 @@ paths:
       summary: Update Beneficiary
       description: >-
         Update an existing beneficiary. On success, returns the updated
-        beneficiary entity.
+        beneficiary entity. <br>
+        It is not possible to change a beneficiary's entity type (company or individual)
+        by an update. To achieve this, a new beneficiary should be created.
       operationId: UpdateBeneficiary
       consumes:
         - multipart/form-data
@@ -2826,17 +2816,17 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: name
           in: formData
           required: false
           type: string
-          description: Beneficiary name.
+          description: Beneficiary name
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -2848,30 +2838,25 @@ paths:
           type: string
           description: >-
             Country in which the beneficiary's bank account is held. Two-letter
-            country code.
+            ISO country code.
         - name: currency
           in: formData
           required: false
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
-            Three-digit currency code.
+            Three-digit ISO currency code.
         - name: email
           in: formData
           required: false
           type: string
-          description: Email address.
-        - name: beneficiary_address
-          in: formData
-          required: false
-          type: string
-          description: First line of address.
+          description: Email address
         - name: beneficiary_country
           in: formData
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, the
             country in which the company is registered. If the beneficiary is an
             individual, a country in which the beneficiary holds nationality.
         - name: account_number
@@ -2930,18 +2915,18 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payment: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            Currencycloud supports two types of payment: "priority" (SWIFT), made using
+            the SWIFT network; and "regular" (local), made using the local bank network.
         - name: bic_swift
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code.
+          description: BIC/SWIFT code
         - name: iban
           in: formData
           required: false
           type: string
-          description: IBAN code.
+          description: IBAN code
         - name: default_beneficiary
           in: formData
           required: false
@@ -2959,7 +2944,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Bank name.
+          description: Bank name
         - name: bank_account_type
           in: formData
           required: false
@@ -2975,7 +2960,7 @@ paths:
           enum:
             - individual
             - company
-          description: Legal entity.
+          description: Legal entity
         - name: beneficiary_company_name
           in: formData
           required: false
@@ -2995,12 +2980,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: beneficiary_state_or_province
           in: formData
           required: false
@@ -3058,7 +3043,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary external reference
+          description: Beneficiary external reference.
       responses:
         '200':
           description: Success.
@@ -3087,10 +3072,6 @@ paths:
               category: bank_account_holder_name
               message: bank_account_holder_name can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
-            - code: email_is_too_short
-              category: email
-              message: email can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
             - code: email_is_too_long
               category: email
               message: email can not be longer than 255 character(s)
@@ -3103,10 +3084,6 @@ paths:
               category: beneficiary_address
               message: beneficiary_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
-            - code: beneficiary_address_is_missing
-              category: beneficiary_address
-              message: Beneficiary address is missing
-              params: ''
             - code: account_number_is_too_short
               category: account_number
               message: account_number can not be shorter than 1 character(s)
@@ -3155,14 +3132,6 @@ paths:
               category: iban
               message: IBAN is in invalid format
               params: ''
-            - code: bic_swift_is_too_short
-              category: bic_swift
-              message: bic_swift can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: bic_swift_is_too_long
-              category: bic_swift
-              message: bic_swift can not be longer than 11 character(s)
-              params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
               category: bic_swift
               message: BIC/SWIFT is missing
@@ -3195,10 +3164,6 @@ paths:
               category: bank_name
               message: Bank name is missing
               params: ''
-            - code: bank_name_is_invalid
-              category: bank_name
-              message: Bank name is in invalid format
-              params: ''
             - code: bank_account_type_not_in_range
               category: bank_account_type
               message: 'bank_account_type should be in range: checking, savings'
@@ -3206,6 +3171,10 @@ paths:
             - code: bank_account_type_is_missing
               category: bank_account_type
               message: Beneficiary bank account type is missing
+              params: ''
+            - code: name_is_in_invalid_format
+              category: name
+              message: name is in invalid format
               params: ''
             - code: name_is_too_short
               category: name
@@ -3235,10 +3204,6 @@ paths:
               params: >-
                 { "range => "sort_code, bsb_code, institution_no, bank_code,
                 branch_code, aba, clabe, cnaps" }
-            - code: beneficiary_country_is_required
-              category: beneficiary_country
-              message: beneficiary_country is required
-              params: ''
             - code: beneficiary_country_is_in_invalid_format
               category: beneficiary_country
               message: beneficiary_country is in invalid format
@@ -3263,9 +3228,9 @@ paths:
               category: beneficiary_last_name
               message: Beneficiary last name is missing
               params: ''
-            - code: beneficiary_city_is_missing
+            - code: beneficiary_city_is_too_short
               category: beneficiary_city
-              message: Beneficiary city is missing
+              message: beneficiary_city can not be shorter than 1 character(s)
               params: ''
             - code: beneficiary_state_or_province_is_missing
               category: beneficiary_state_or_province
@@ -3275,6 +3240,10 @@ paths:
               category: beneficiary_state_or_province
               message: Beneficiary state or province is not supported
               params: ''
+            - code: beneficiary_state_or_province_is_too_short
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province_is_too_short
+              params: ''
             - code: beneficiary_postcode_is_missing
               category: beneficiary_postcode
               message: Beneficiary postcode is missing
@@ -3283,10 +3252,6 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
-            - code: beneficiary_date_of_birth_is_incorrect
-              category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth is incorrect
-              params: ''
             - code: beneficiary_date_of_birth_is_earlier
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be later
@@ -3294,10 +3259,6 @@ paths:
             - code: beneficiary_date_of_birth_is_after
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be earlier
-              params: ''
-            - code: identification_type_is_missing
-              category: beneficiary_identification_type
-              message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
               category: beneficiary_identification_type
@@ -3401,14 +3362,6 @@ paths:
               category: routing_code
               message: Bank code is in invalid format
               params: ''
-            - code: clabe_is_missing
-              category: routing_code
-              message: CLABE is missing
-              params: ''
-            - code: clabe_is_invalid
-              category: routing_code
-              message: CLABE is in invalid format
-              params: ''
             - code: beneficiary_update_failed
               category: beneficiary
               message: Beneficiary was not updated
@@ -3427,10 +3380,6 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
-            - code: beneficiary_external_reference_is_too_short
-              category: beneficiary_external_reference
-              message: beneficiary_external_reference can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
             - code: beneficiary_external_reference_is_too_long
               category: beneficiary_external_reference
               message: beneficiary_external_reference can not be longer than 255 character(s)
@@ -3510,7 +3459,7 @@ paths:
       x-api-group: pay
       summary: Create Beneficiary
       description: >-
-        Create a new beneficiary. On success, returns the new beneficiary
+        Create a new beneficiary. Returns the new beneficiary entity on success.
         entity.
       operationId: CreateBeneficiary
       consumes:
@@ -3552,17 +3501,12 @@ paths:
           required: false
           type: string
           description: Email address.
-        - name: beneficiary_address
-          in: formData
-          required: false
-          type: string
-          description: First line of address.
         - name: beneficiary_country
           in: formData
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, the
             country in which the company is registered. If the beneficiary is an
             individual, a country in which the beneficiary holds nationality.
         - name: account_number
@@ -3673,12 +3617,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: beneficiary_state_or_province
           in: formData
           required: false
@@ -3774,10 +3718,6 @@ paths:
               category: bank_account_holder_name
               message: bank_account_holder_name can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
-            - code: email_is_too_short
-              category: email
-              message: email can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
             - code: email_is_too_long
               category: email
               message: email can not be longer than 255 character(s)
@@ -3790,10 +3730,6 @@ paths:
               category: beneficiary_address
               message: beneficiary_address can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
-            - code: beneficiary_address_is_missing
-              category: beneficiary_address
-              message: Beneficiary address is missing
-              params: ''
             - code: account_number_is_too_short
               category: account_number
               message: account_number can not be shorter than 1 character(s)
@@ -3842,14 +3778,6 @@ paths:
               category: iban
               message: IBAN is in invalid format
               params: ''
-            - code: bic_swift_is_too_short
-              category: bic_swift
-              message: bic_swift can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: bic_swift_is_too_long
-              category: bic_swift
-              message: bic_swift can not be longer than 11 character(s)
-              params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
               category: bic_swift
               message: BIC/SWIFT is missing
@@ -3882,10 +3810,6 @@ paths:
               category: bank_name
               message: Bank name is missing
               params: ''
-            - code: bank_name_is_invalid
-              category: bank_name
-              message: Bank name is in invalid format
-              params: ''
             - code: bank_account_type_not_in_range
               category: bank_account_type
               message: 'bank_account_type should be in range: checking, savings'
@@ -3898,6 +3822,10 @@ paths:
               category: name
               message: name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
+            - code: name_is_in_invalid_format
+              category: name
+              message: name is in invalid format
+              params: ''
             - code: name_is_too_long
               category: name
               message: name can not be longer than 100 character(s)
@@ -3922,10 +3850,6 @@ paths:
               params: >-
                 { "range => "sort_code, bsb_code, institution_no, bank_code,
                 branch_code, aba, clabe, cnaps" }
-            - code: beneficiary_country_is_required
-              category: beneficiary_country
-              message: beneficiary_country is required
-              params: ''
             - code: beneficiary_country_is_in_invalid_format
               category: beneficiary_country
               message: beneficiary_country is in invalid format
@@ -3950,10 +3874,14 @@ paths:
               category: beneficiary_last_name
               message: Beneficiary last name is missing
               params: ''
-            - code: beneficiary_city_is_missing
+            - code: beneficiary_city_is_too_short
               category: beneficiary_city
-              message: Beneficiary city is missing
-              params: ''
+              message: beneficiary_city can not be shorter than 1 character(s)
+              params: '{"minlength" => 1}'
+            - code: beneficiary_state_or_province_is_too_short
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province_is_too_short
+              params: '{ "minlength" => 1 }'
             - code: beneficiary_state_or_province_is_missing
               category: beneficiary_state_or_province
               message: Beneficiary state or province is missing
@@ -3970,10 +3898,6 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
-            - code: beneficiary_date_of_birth_is_incorrect
-              category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth is incorrect
-              params: ''
             - code: beneficiary_date_of_birth_is_earlier
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be later
@@ -3981,10 +3905,6 @@ paths:
             - code: beneficiary_date_of_birth_is_after
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be earlier
-              params: ''
-            - code: identification_type_is_missing
-              category: beneficiary_identification_type
-              message: identification_type is missing
               params: ''
             - code: identification_type_is_invalid
               category: beneficiary_identification_type
@@ -4098,14 +4018,6 @@ paths:
               category: routing_code
               message: Bank code is in invalid format
               params: ''
-            - code: clabe_is_missing
-              category: routing_code
-              message: CLABE is missing
-              params: ''
-            - code: clabe_is_invalid
-              category: routing_code
-              message: CLABE is in invalid format
-              params: ''
             - code: cnaps_is_missing
               category: routing_code
               message: CNAPS number is missing
@@ -4122,10 +4034,6 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
-            - code: beneficiary_external_reference_is_too_short
-              category: beneficiary_external_reference
-              message: beneficiary_external_reference can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
             - code: beneficiary_external_reference_is_too_long
               category: beneficiary_external_reference
               message: beneficiary_external_reference can not be longer than 255 character(s)
@@ -4335,7 +4243,7 @@ paths:
       description: >-
         Validate a new beneficiary's bank details, without actually creating a
         record of the beneficiary. On success, returns an object that represents
-        the entity that would be created if the beneficiary were saved.
+        the entity that would be created if the beneficiary was saved.
       operationId: ValidateBeneficiary
       consumes:
         - multipart/form-data
@@ -4556,10 +4464,6 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: beneficiary_country_is_required
-              category: beneficiary_country
-              message: beneficiary_country is required
-              params: ''
             - code: beneficiary_country_is_in_invalid_format
               category: beneficiary_country
               message: beneficiary_country is in invalid format
@@ -4584,10 +4488,6 @@ paths:
               category: beneficiary_last_name
               message: Beneficiary last name is missing
               params: ''
-            - code: beneficiary_city_is_missing
-              category: beneficiary_city
-              message: Beneficiary city is missing
-              params: ''
             - code: beneficiary_state_or_province_is_missing
               category: beneficiary_state_or_province
               message: Beneficiary state or province is missing
@@ -4604,10 +4504,6 @@ paths:
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be of date type
               params: '{ "type" => "date" }'
-            - code: beneficiary_date_of_birth_is_incorrect
-              category: beneficiary_date_of_birth
-              message: beneficiary_date_of_birth is incorrect
-              params: ''
             - code: beneficiary_date_of_birth_is_earlier
               category: beneficiary_date_of_birth
               message: beneficiary_date_of_birth should be later
@@ -4664,14 +4560,6 @@ paths:
               category: iban
               message: IBAN is in invalid format
               params: ''
-            - code: bic_swift_is_too_short
-              category: bic_swift
-              message: bic_swift can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1 }'
-            - code: bic_swift_is_too_long
-              category: bic_swift
-              message: bic_swift can not be longer than 11 character(s)
-              params: '{ "maxlength" => 11 }'
             - code: bic_swift_is_missing
               category: bic_swift
               message: BIC/SWIFT is missing
@@ -4703,10 +4591,6 @@ paths:
             - code: bank_name_is_missing
               category: bank_name
               message: Bank name is missing
-              params: ''
-            - code: bank_name_is_invalid
-              category: bank_name
-              message: Bank name is in invalid format
               params: ''
             - code: bank_account_type_not_in_range
               category: bank_account_type
@@ -4823,14 +4707,6 @@ paths:
             - code: bank_code_is_invalid
               category: routing_code
               message: Bank code is in invalid format
-              params: ''
-            - code: clabe_is_missing
-              category: routing_code
-              message: CLABE is missing
-              params: ''
-            - code: clabe_is_invalid
-              category: routing_code
-              message: CLABE is in invalid format
               params: ''
             - code: beneficiary_update_failed
               category: beneficiary
@@ -15909,17 +15785,20 @@ definitions:
       currency: null
   Beneficiary:
     type: object
-    description: Beneficiary.
+    description: Beneficiary
     properties:
       id:
         type: string
-        description: Beneficiary UUID.
+        description: Beneficiary UUID
       bank_account_holder_name:
         type: string
+        description: Bank account holder's name.
       name:
         type: string
+        description: Beneficiary name
       email:
         type: string
+        description: Email address
       payment_types:
         type: array
         items:
@@ -15932,7 +15811,7 @@ definitions:
           description: Line of address.
       beneficiary_country:
         type: string
-        description: Two-letter country code.
+        description: Two letter country code.
       beneficiary_entity_type:
         type: string
         enum:
@@ -15940,19 +15819,19 @@ definitions:
           - individual
       beneficiary_company_name:
         type: string
-        description: For companies.
+        description: For companies
       beneficiary_first_name:
         type: string
-        description: For individuals.
+        description: For individuals
       beneficiary_last_name:
         type: string
-        description: For individuals.
+        description: For individuals
       beneficiary_city:
         type: string
-        description: City.
+        description: City
       beneficiary_postcode:
         type: string
-        description: Postal code.
+        description: Postal code
       beneficiary_state_or_province:
         type: string
         description: State or province.
@@ -15970,30 +15849,47 @@ definitions:
       bank_country:
         type: string
         description: >-
-          Two-letter code for the country in which the beneficiary's bank
+          Two-letter ISO code for the country in which the beneficiary's bank
           account is held.
       bank_name:
         type: string
+        description: Bank name
       bank_account_type:
         type: string
+        description: Bank account type
+        enum:
+          - checkings
+          - savings
       currency:
         type: string
+        description: Currency in which money is held in the beneficiary's bank account. Three-digit currency code.
       account_number:
         type: string
+        description: Bank account number.
       routing_code_type_1:
         type: string
+        description: Local payment routing system.
       routing_code_value_1:
         type: string
+        description: Value for "routing_code_type_1".
       routing_code_type_2:
         type: string
+        description: Local payment routing system.
       routing_code_value_2:
         type: string
+        description: Value for "routing_code_type_2".
       bic_swift:
         type: string
+        description: BIC/SWIFT code
       iban:
         type: string
+        description: IBAN code
       default_beneficiary:
         type: string
+        description: Payments are made automatically to default beneficiaries when a beneficiary is not specified.
+        enum:
+          - 'true'
+          - 'false'
       creator_contact_id:
         type: string
       bank_address:
@@ -19115,18 +19011,25 @@ definitions:
       order_asc_desc: asc
   Payer:
     type: object
-    description: Payer.
+    description: Payer
     properties:
       id:
         type: string
+        description: Unique UUID for the payer.
       legal_entity_type:
         type: string
+        description: Payer's entity type.
+        enum:
+          - company_name
+          - individual
       company_name:
         type: string
       first_name:
         type: string
+        description: Payer's first name.
       last_name:
         type: string
+        description: Payer's last name.
       address:
         type: array
         items:
@@ -19138,6 +19041,7 @@ definitions:
         type: string
       country:
         type: string
+        description: Two character ISO country code.
       identification_type:
         type: string
         description: A legal document that verifies the identity of the payer.
@@ -20216,7 +20120,6 @@ definitions:
         type: string
       currency:
         type: string
-        enum:
       amount:
         type: string
       balance_amount:
