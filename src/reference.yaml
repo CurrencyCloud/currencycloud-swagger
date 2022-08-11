@@ -8084,7 +8084,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key <b>(strongly recommended)</b>.
         - name: ultimate_beneficiary_name
           in: formData
           required: false
