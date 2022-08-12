@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.36.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.1) (2022-08-12)
+- Updates documentation of reference/payment_dates
+- Updates documentation of unique_request_id on payments/create
+
 ## [2.36.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.0) (2022-07-12)
 - Updates type of unique_request_id in transfer/find to be query parameter
 - Documents updating email_address of contacts works in calls to POST contacts/{id}
