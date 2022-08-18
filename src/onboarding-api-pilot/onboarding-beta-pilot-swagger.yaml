@@ -1,0 +1,4751 @@
+---
+openapi: 3.0.3
+info:
+  title: api-onboarding
+  version: v1
+paths:
+  "/v1/forms/{form_id}/account_usage":
+    get:
+      summary: Get a form's associated account usage
+      tags:
+      - Account Usage
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account usage found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/account_usage"
+        '404':
+          description: Returns error if form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+    put:
+      summary: Update a form's associated account usage
+      tags:
+      - Account Usage
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates account usage when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/account_usage"
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '400':
+          description: Returns error if any request body schema validation fails
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_account_usage_request"
+    delete:
+      summary: Delete account usage attached to the form
+      tags:
+      - Account Usage
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes account usage if it exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      form_id:
+                        type: string
+                    required:
+                    - message
+                    - form_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/business_information":
+    get:
+      summary: Get business information for specific form
+      tags:
+      - Business Information
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Business information found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/business_information"
+        '404':
+          description: Returns error if form is not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+    put:
+      summary: Update business information for form
+      tags:
+      - Business Information
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates business information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/business_information"
+        '400':
+          description: Returns error if any request body schema validation fails
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '422':
+          description: Returns error if form has already been submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Returns error if form is not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_business_information_request"
+    delete:
+      summary: Delete business information attached to the form
+      tags:
+      - Business Information
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes business information if it exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      form_id:
+                        type: string
+                    required:
+                    - message
+                    - form_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/countries":
+    get:
+      summary: List countries.
+      tags:
+      - Country
+      security:
+      - JWT: []
+      responses:
+        '200':
+          description: List of countries.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      countries:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            iso2:
+                              type: string
+                            iso3:
+                              type: string
+                            name:
+                              type: string
+                            dial_code:
+                              type: string
+                            eea_country:
+                              type: boolean
+                            permitted_jurisdiction:
+                              type: boolean
+                            document_types:
+                              type: array
+                              items:
+                                type: string
+                            created_at:
+                              type: string
+                            updated_at:
+                              type: string
+                          required:
+                          - id
+                          - iso2
+                          - iso3
+                          - name
+                          - eea_country
+                          - permitted_jurisdiction
+  "/v1/countries/{country_code}/document_types":
+    get:
+      summary: Country document types
+      tags:
+      - Country
+      security:
+      - JWT: []
+      parameters:
+      - name: country_code
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Get country document types (ISO3).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      document_types:
+                        type: array
+                        items:
+                          type: string
+        '404':
+          description: Incorrect country sent in params
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/currencies/supported":
+    get:
+      summary: List of supported currencies.
+      tags:
+      - Currency
+      security:
+      - JWT: []
+      responses:
+        '200':
+          description: List of supported currencies.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    properties:
+                      currencies:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            iso3:
+                              type: string
+                            name:
+                              type: string
+                            supported:
+                              type: boolean
+                            created_at:
+                              type: string
+                            updated_at:
+                              type: string
+                          required:
+                          - id
+                          - iso3
+                          - name
+  "/v1/forms/{form_id}/documents/{document_id}/document_images":
+    post:
+      summary: Create a document image for a document in a form
+      tags:
+      - Document Images
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Document image attached
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/document_image"
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+        '400':
+          description: Invalid side in request params
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_document_image_request"
+    get:
+      summary: Get all document images for a specific document
+      tags:
+      - Document Images
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves document images
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  document_images:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/document_image"
+        '404':
+          description: Document image not found with incorrect form id
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
+    delete:
+      summary: Delete an image attached to the document
+      tags:
+      - Document Images
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_image_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes the document image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      document_image_id:
+                        type: string
+                    required:
+                    - message
+                    - document_image_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Document image not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/documents":
+    post:
+      summary: Create document for a form
+      tags:
+      - Documents
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Creates a document when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/document"
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '400':
+          description: Invalid parameter in request params
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_document_request"
+    get:
+      summary: Retrieve documents for a form
+      tags:
+      - Documents
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves all form documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documents:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/document_with_image_ids"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/documents/{document_id}":
+    delete:
+      summary: Delete a document attached to the form
+      tags:
+      - Documents
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes the document
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      document_id:
+                        type: string
+                    required:
+                    - message
+                    - document_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Document not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/submit":
+    post:
+      summary: Submit the form
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/form"
+        '422':
+          description: Form already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+  "/v1/forms":
+    get:
+      summary: Retrieve all forms for a house account
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters:
+      - name: order
+        in: query
+        schema:
+          type: string
+      - name: order_asc_desc
+        in: query
+        schema:
+          type: string
+      - name: application_status
+        in: query
+        schema:
+          type: string
+          enum:
+          - new
+          - submitted
+      - name: entity_type
+        in: query
+        schema:
+          type: string
+          enum:
+          - individual
+          - corporate
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Retrieves all forms for a house_account_id
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  forms:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/form_with_associations"
+                  pagination:
+                    type: object
+                    properties:
+                      total_entries:
+                        type: integer
+                        minimum: 0
+                      total_pages:
+                        type: integer
+                        minimum: 0
+                      current_page:
+                        type: integer
+                        minimum: 1
+                      per_page:
+                        type: integer
+                        minimum: 1
+                      previous_page:
+                        type: integer
+                        minimum: 1
+                        nullable: true
+                      next_page:
+                        type: integer
+                        minimum: 1
+                        nullable: true
+                      order:
+                        type: string
+                      order_asc_desc:
+                        type: string
+                    required:
+                    - total_entries
+                    - total_pages
+                    - current_page
+                    - per_page
+                    - previous_page
+                    - next_page
+                    - order
+                    - order_asc_desc
+        '400':
+          description: Returns error if request validation errors occur
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+    post:
+      summary: Create a form
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters: []
+      responses:
+        '422':
+          description: Invalid parameter in request params
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '201':
+          description: Creates a form when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/form"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_form_request"
+  "/v1/forms/{form_id}":
+    get:
+      summary: Retrieve a form
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves form if the UUID exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/form_with_associations"
+        '404':
+          description: Record not found - Invalid UUID
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+    put:
+      summary: Update a form
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '422':
+          description: Invalid parameter in request params
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '200':
+          description: Updates form when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/form"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                affiliate_code:
+                  type: string
+                  nullable: true
+                agreed_to_marketing_emails:
+                  type: boolean
+                agreed_to_terms_and_conditions:
+                  type: boolean
+                country:
+                  type: string
+                  enum:
+                  - AD
+                  - AN
+                  - AE
+                  - AF
+                  - AG
+                  - AI
+                  - AL
+                  - AM
+                  - AO
+                  - AQ
+                  - AR
+                  - AS
+                  - AT
+                  - AU
+                  - AW
+                  - AX
+                  - AZ
+                  - BA
+                  - BB
+                  - BD
+                  - BE
+                  - BF
+                  - BG
+                  - BH
+                  - BI
+                  - BJ
+                  - BL
+                  - BM
+                  - BN
+                  - BO
+                  - BQ
+                  - BR
+                  - BS
+                  - BT
+                  - BV
+                  - BW
+                  - BY
+                  - BZ
+                  - CA
+                  - CC
+                  - CD
+                  - CF
+                  - CG
+                  - CH
+                  - CI
+                  - CK
+                  - CL
+                  - CM
+                  - CN
+                  - CO
+                  - CR
+                  - CV
+                  - CW
+                  - CX
+                  - CY
+                  - CZ
+                  - DE
+                  - DJ
+                  - DK
+                  - DM
+                  - DO
+                  - DZ
+                  - EC
+                  - EE
+                  - EG
+                  - EH
+                  - ER
+                  - ES
+                  - ET
+                  - FI
+                  - FJ
+                  - FK
+                  - FM
+                  - FO
+                  - FR
+                  - GA
+                  - GB
+                  - GD
+                  - GE
+                  - GF
+                  - GG
+                  - GH
+                  - GI
+                  - GL
+                  - GM
+                  - GN
+                  - GP
+                  - GQ
+                  - GR
+                  - GS
+                  - GT
+                  - GU
+                  - GW
+                  - GY
+                  - HK
+                  - HM
+                  - HN
+                  - HR
+                  - HT
+                  - HU
+                  - ID
+                  - IE
+                  - IL
+                  - IM
+                  - IN
+                  - IO
+                  - IQ
+                  - IS
+                  - IT
+                  - JE
+                  - JM
+                  - JO
+                  - JP
+                  - KE
+                  - KG
+                  - KH
+                  - KI
+                  - KM
+                  - KN
+                  - KR
+                  - KW
+                  - KY
+                  - KZ
+                  - LA
+                  - LB
+                  - LC
+                  - LI
+                  - LK
+                  - LR
+                  - LS
+                  - LT
+                  - LU
+                  - LV
+                  - MA
+                  - MC
+                  - MD
+                  - ME
+                  - MF
+                  - MG
+                  - MH
+                  - MK
+                  - ML
+                  - MM
+                  - MN
+                  - MO
+                  - MP
+                  - MQ
+                  - MR
+                  - MS
+                  - MT
+                  - MU
+                  - MV
+                  - MW
+                  - MX
+                  - MY
+                  - MZ
+                  - NA
+                  - NC
+                  - NE
+                  - NF
+                  - NG
+                  - NI
+                  - NL
+                  - 'NO'
+                  - NP
+                  - NR
+                  - NU
+                  - NZ
+                  - OM
+                  - PA
+                  - PE
+                  - PF
+                  - PG
+                  - PH
+                  - PK
+                  - PL
+                  - PM
+                  - PN
+                  - PR
+                  - PS
+                  - PT
+                  - PW
+                  - PY
+                  - QA
+                  - RE
+                  - RO
+                  - RS
+                  - RU
+                  - RW
+                  - SA
+                  - SB
+                  - SC
+                  - SE
+                  - SG
+                  - SH
+                  - SI
+                  - SJ
+                  - SK
+                  - SL
+                  - SM
+                  - SN
+                  - SO
+                  - SR
+                  - ST
+                  - SV
+                  - SX
+                  - SZ
+                  - TC
+                  - TD
+                  - TF
+                  - TG
+                  - TH
+                  - TJ
+                  - TK
+                  - TL
+                  - TM
+                  - TN
+                  - TO
+                  - TR
+                  - TT
+                  - TV
+                  - TW
+                  - TZ
+                  - UA
+                  - UG
+                  - UM
+                  - US
+                  - UY
+                  - UZ
+                  - VA
+                  - VC
+                  - VE
+                  - VG
+                  - VI
+                  - VN
+                  - VU
+                  - WF
+                  - WS
+                  - XK
+                  - YE
+                  - YT
+                  - ZA
+                  - ZM
+                  - ZW
+                  - AND
+                  - ANT
+                  - ARE
+                  - AFG
+                  - ATG
+                  - AIA
+                  - ALB
+                  - ARM
+                  - AGO
+                  - ATA
+                  - ARG
+                  - ASM
+                  - AUT
+                  - AUS
+                  - ABW
+                  - ALA
+                  - AZE
+                  - BIH
+                  - BRB
+                  - BGD
+                  - BEL
+                  - BFA
+                  - BGR
+                  - BHR
+                  - BDI
+                  - BEN
+                  - BLM
+                  - BMU
+                  - BRN
+                  - BOL
+                  - BES
+                  - BRA
+                  - BHS
+                  - BTN
+                  - BVT
+                  - BWA
+                  - BLR
+                  - BLZ
+                  - CAN
+                  - CCK
+                  - COD
+                  - CAF
+                  - COG
+                  - CHE
+                  - CIV
+                  - COK
+                  - CHL
+                  - CMR
+                  - CHN
+                  - COL
+                  - CRI
+                  - CPV
+                  - CUW
+                  - CXR
+                  - CYP
+                  - CZE
+                  - DEU
+                  - DJI
+                  - DNK
+                  - DMA
+                  - DOM
+                  - DZA
+                  - ECU
+                  - EST
+                  - EGY
+                  - ESH
+                  - ERI
+                  - ESP
+                  - ETH
+                  - FIN
+                  - FJI
+                  - FLK
+                  - FSM
+                  - FRO
+                  - FRA
+                  - GAB
+                  - GBR
+                  - GRD
+                  - GEO
+                  - GUF
+                  - GGY
+                  - GHA
+                  - GIB
+                  - GRL
+                  - GMB
+                  - GIN
+                  - GLP
+                  - GNQ
+                  - GRC
+                  - SGS
+                  - GTM
+                  - GUM
+                  - GNB
+                  - GUY
+                  - HKG
+                  - HMD
+                  - HND
+                  - HRV
+                  - HTI
+                  - HUN
+                  - IDN
+                  - IRL
+                  - ISR
+                  - IMN
+                  - IND
+                  - IOT
+                  - IRQ
+                  - ISL
+                  - ITA
+                  - JEY
+                  - JAM
+                  - JOR
+                  - JPN
+                  - KEN
+                  - KGZ
+                  - KHM
+                  - KIR
+                  - COM
+                  - KNA
+                  - KOR
+                  - KWT
+                  - CYM
+                  - KAZ
+                  - LAO
+                  - LBN
+                  - LCA
+                  - LIE
+                  - LKA
+                  - LBR
+                  - LSO
+                  - LTU
+                  - LUX
+                  - LVA
+                  - MAR
+                  - MCO
+                  - MDA
+                  - MNE
+                  - MAF
+                  - MDG
+                  - MHL
+                  - MKD
+                  - MLI
+                  - MMR
+                  - MNG
+                  - MAC
+                  - MNP
+                  - MTQ
+                  - MRT
+                  - MSR
+                  - MLT
+                  - MUS
+                  - MDV
+                  - MWI
+                  - MEX
+                  - MYS
+                  - MOZ
+                  - NAM
+                  - NCL
+                  - NER
+                  - NFK
+                  - NGA
+                  - NIC
+                  - NLD
+                  - NOR
+                  - NPL
+                  - NRU
+                  - NIU
+                  - NZL
+                  - OMN
+                  - PAN
+                  - PER
+                  - PYF
+                  - PNG
+                  - PHL
+                  - PAK
+                  - POL
+                  - SPM
+                  - PCN
+                  - PRI
+                  - PSE
+                  - PRT
+                  - PLW
+                  - PRY
+                  - QAT
+                  - REU
+                  - ROU
+                  - SRB
+                  - RUS
+                  - RWA
+                  - SAU
+                  - SLB
+                  - SYC
+                  - SWE
+                  - SGP
+                  - SHN
+                  - SVN
+                  - SJM
+                  - SVK
+                  - SLE
+                  - SMR
+                  - SEN
+                  - SOM
+                  - SUR
+                  - STP
+                  - SLV
+                  - SXM
+                  - SWZ
+                  - TCA
+                  - TCD
+                  - ATF
+                  - TGO
+                  - THA
+                  - TJK
+                  - TKL
+                  - TLS
+                  - TKM
+                  - TUN
+                  - TON
+                  - TUR
+                  - TTO
+                  - TUV
+                  - TWN
+                  - TZA
+                  - UKR
+                  - UGA
+                  - UMI
+                  - USA
+                  - URY
+                  - UZB
+                  - VAT
+                  - VCT
+                  - VEN
+                  - VGB
+                  - VIR
+                  - VNM
+                  - VUT
+                  - WLF
+                  - WSM
+                  - UNK
+                  - YEM
+                  - MYT
+                  - ZAF
+                  - ZMB
+                  - ZWE
+                email:
+                  type: string
+                entity_type:
+                  type: string
+                  enum:
+                  - individual
+                  - corporate
+                brand_name:
+                  type: string
+                referred_by:
+                  type: string
+                  nullable: true
+                phone_number:
+                  type: string
+                  nullable: true
+                contact_name:
+                  type: string
+                  nullable: true
+    delete:
+      summary: Delete a form
+      tags:
+      - Form
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes form
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      form_id:
+                        type: string
+                    required:
+                    - message
+                    - form_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/people":
+    post:
+      summary: Create a person
+      tags:
+      - People
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Creates a person when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_person_request"
+    get:
+      summary: Retrieve all people for a form
+      tags:
+      - People
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves people for a form if this form exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  people:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/person"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/people/{person_id}":
+    get:
+      summary: Retrieve a person
+      tags:
+      - People
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves person if the UUIDs match
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person"
+        '404':
+          description: Person not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+    put:
+      summary: Update a person
+      tags:
+      - People
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates a person when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person"
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_person_request"
+    delete:
+      summary: Delete a person attached to the form
+      tags:
+      - People
+      security:
+      - JWT: []
+      parameters:
+      - name: form_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletes the person
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      person_id:
+                        type: string
+                    required:
+                    - message
+                    - person_id
+        '422':
+          description: Form is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:35039
+components:
+  securitySchemes:
+    JWT:
+      type: apiKey
+      in: header
+      name: X-JWS-Auth-Token
+  schemas:
+    create_form_request:
+      type: object
+      properties:
+        affiliate_code:
+          type: string
+          nullable: true
+        agreed_to_marketing_emails:
+          type: boolean
+        agreed_to_terms_and_conditions:
+          type: boolean
+        country:
+          type: string
+          enum:
+          - AD
+          - AN
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - ST
+          - SV
+          - SX
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XK
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+          - AND
+          - ANT
+          - ARE
+          - AFG
+          - ATG
+          - AIA
+          - ALB
+          - ARM
+          - AGO
+          - ATA
+          - ARG
+          - ASM
+          - AUT
+          - AUS
+          - ABW
+          - ALA
+          - AZE
+          - BIH
+          - BRB
+          - BGD
+          - BEL
+          - BFA
+          - BGR
+          - BHR
+          - BDI
+          - BEN
+          - BLM
+          - BMU
+          - BRN
+          - BOL
+          - BES
+          - BRA
+          - BHS
+          - BTN
+          - BVT
+          - BWA
+          - BLR
+          - BLZ
+          - CAN
+          - CCK
+          - COD
+          - CAF
+          - COG
+          - CHE
+          - CIV
+          - COK
+          - CHL
+          - CMR
+          - CHN
+          - COL
+          - CRI
+          - CPV
+          - CUW
+          - CXR
+          - CYP
+          - CZE
+          - DEU
+          - DJI
+          - DNK
+          - DMA
+          - DOM
+          - DZA
+          - ECU
+          - EST
+          - EGY
+          - ESH
+          - ERI
+          - ESP
+          - ETH
+          - FIN
+          - FJI
+          - FLK
+          - FSM
+          - FRO
+          - FRA
+          - GAB
+          - GBR
+          - GRD
+          - GEO
+          - GUF
+          - GGY
+          - GHA
+          - GIB
+          - GRL
+          - GMB
+          - GIN
+          - GLP
+          - GNQ
+          - GRC
+          - SGS
+          - GTM
+          - GUM
+          - GNB
+          - GUY
+          - HKG
+          - HMD
+          - HND
+          - HRV
+          - HTI
+          - HUN
+          - IDN
+          - IRL
+          - ISR
+          - IMN
+          - IND
+          - IOT
+          - IRQ
+          - ISL
+          - ITA
+          - JEY
+          - JAM
+          - JOR
+          - JPN
+          - KEN
+          - KGZ
+          - KHM
+          - KIR
+          - COM
+          - KNA
+          - KOR
+          - KWT
+          - CYM
+          - KAZ
+          - LAO
+          - LBN
+          - LCA
+          - LIE
+          - LKA
+          - LBR
+          - LSO
+          - LTU
+          - LUX
+          - LVA
+          - MAR
+          - MCO
+          - MDA
+          - MNE
+          - MAF
+          - MDG
+          - MHL
+          - MKD
+          - MLI
+          - MMR
+          - MNG
+          - MAC
+          - MNP
+          - MTQ
+          - MRT
+          - MSR
+          - MLT
+          - MUS
+          - MDV
+          - MWI
+          - MEX
+          - MYS
+          - MOZ
+          - NAM
+          - NCL
+          - NER
+          - NFK
+          - NGA
+          - NIC
+          - NLD
+          - NOR
+          - NPL
+          - NRU
+          - NIU
+          - NZL
+          - OMN
+          - PAN
+          - PER
+          - PYF
+          - PNG
+          - PHL
+          - PAK
+          - POL
+          - SPM
+          - PCN
+          - PRI
+          - PSE
+          - PRT
+          - PLW
+          - PRY
+          - QAT
+          - REU
+          - ROU
+          - SRB
+          - RUS
+          - RWA
+          - SAU
+          - SLB
+          - SYC
+          - SWE
+          - SGP
+          - SHN
+          - SVN
+          - SJM
+          - SVK
+          - SLE
+          - SMR
+          - SEN
+          - SOM
+          - SUR
+          - STP
+          - SLV
+          - SXM
+          - SWZ
+          - TCA
+          - TCD
+          - ATF
+          - TGO
+          - THA
+          - TJK
+          - TKL
+          - TLS
+          - TKM
+          - TUN
+          - TON
+          - TUR
+          - TTO
+          - TUV
+          - TWN
+          - TZA
+          - UKR
+          - UGA
+          - UMI
+          - USA
+          - URY
+          - UZB
+          - VAT
+          - VCT
+          - VEN
+          - VGB
+          - VIR
+          - VNM
+          - VUT
+          - WLF
+          - WSM
+          - UNK
+          - YEM
+          - MYT
+          - ZAF
+          - ZMB
+          - ZWE
+        email:
+          type: string
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - corporate
+        brand_name:
+          type: string
+        brand_key:
+          type: string
+        referred_by:
+          type: string
+          nullable: true
+        phone_number:
+          type: string
+          nullable: true
+        contact_name:
+          type: string
+          nullable: true
+      required:
+      - agreed_to_marketing_emails
+      - agreed_to_terms_and_conditions
+      - country
+      - email
+      - entity_type
+      - brand_name
+    create_account_usage_request:
+      type: object
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+        collections_account:
+          type: boolean
+        collection_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+            enum:
+            - AED
+            - AFN
+            - ALL
+            - AMD
+            - ANG
+            - AOA
+            - ARS
+            - AUD
+            - AWG
+            - AZN
+            - BAM
+            - BBD
+            - BDT
+            - BGN
+            - BHD
+            - BIF
+            - BMD
+            - BND
+            - BOB
+            - BRL
+            - BSD
+            - BTN
+            - BWP
+            - BYR
+            - BZD
+            - CAD
+            - CDF
+            - CHF
+            - CLP
+            - CNH
+            - CNY
+            - COP
+            - COU
+            - CRC
+            - CUP
+            - CVE
+            - CZK
+            - DJF
+            - DKK
+            - DOP
+            - DZD
+            - EEK
+            - EGP
+            - ERN
+            - ETB
+            - EUR
+            - FJD
+            - FKP
+            - GBP
+            - GEL
+            - GHS
+            - GIP
+            - GMD
+            - GNF
+            - GTQ
+            - GYD
+            - HKD
+            - HNL
+            - HRK
+            - HTG
+            - HUF
+            - IDR
+            - ILS
+            - INR
+            - IQD
+            - IRR
+            - ISK
+            - JMD
+            - JOD
+            - JPY
+            - KES
+            - KGS
+            - KHR
+            - KMF
+            - KPW
+            - KRW
+            - KWD
+            - KYD
+            - KZT
+            - LAK
+            - LBP
+            - LKR
+            - LRD
+            - LSL
+            - LVL
+            - LYD
+            - MAD
+            - MDL
+            - MGA
+            - MKD
+            - MMK
+            - MNT
+            - MOP
+            - MRO
+            - MUR
+            - MVR
+            - MWK
+            - MXN
+            - MYR
+            - MZN
+            - NAD
+            - NGN
+            - NIO
+            - NOK
+            - NPR
+            - NZD
+            - OMR
+            - PAB
+            - PEN
+            - PGK
+            - PHP
+            - PKR
+            - PLN
+            - PYG
+            - QAR
+            - RON
+            - RSD
+            - RUB
+            - RWF
+            - SAR
+            - SBD
+            - SCR
+            - SDG
+            - SEK
+            - SGD
+            - SHP
+            - SLL
+            - SOS
+            - SRD
+            - SSP
+            - STD
+            - SYP
+            - SZL
+            - THB
+            - TJS
+            - TMT
+            - TND
+            - TOP
+            - TRY
+            - TTD
+            - TWD
+            - TZS
+            - UAH
+            - UGX
+            - USD
+            - UYU
+            - UZS
+            - VEF
+            - VND
+            - VUV
+            - WST
+            - XAF
+            - XCD
+            - XOF
+            - XPF
+            - YER
+            - ZAR
+            - ZMK
+            - ZWL
+        payment_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+            enum:
+            - AED
+            - AFN
+            - ALL
+            - AMD
+            - ANG
+            - AOA
+            - ARS
+            - AUD
+            - AWG
+            - AZN
+            - BAM
+            - BBD
+            - BDT
+            - BGN
+            - BHD
+            - BIF
+            - BMD
+            - BND
+            - BOB
+            - BRL
+            - BSD
+            - BTN
+            - BWP
+            - BYR
+            - BZD
+            - CAD
+            - CDF
+            - CHF
+            - CLP
+            - CNH
+            - CNY
+            - COP
+            - COU
+            - CRC
+            - CUP
+            - CVE
+            - CZK
+            - DJF
+            - DKK
+            - DOP
+            - DZD
+            - EEK
+            - EGP
+            - ERN
+            - ETB
+            - EUR
+            - FJD
+            - FKP
+            - GBP
+            - GEL
+            - GHS
+            - GIP
+            - GMD
+            - GNF
+            - GTQ
+            - GYD
+            - HKD
+            - HNL
+            - HRK
+            - HTG
+            - HUF
+            - IDR
+            - ILS
+            - INR
+            - IQD
+            - IRR
+            - ISK
+            - JMD
+            - JOD
+            - JPY
+            - KES
+            - KGS
+            - KHR
+            - KMF
+            - KPW
+            - KRW
+            - KWD
+            - KYD
+            - KZT
+            - LAK
+            - LBP
+            - LKR
+            - LRD
+            - LSL
+            - LVL
+            - LYD
+            - MAD
+            - MDL
+            - MGA
+            - MKD
+            - MMK
+            - MNT
+            - MOP
+            - MRO
+            - MUR
+            - MVR
+            - MWK
+            - MXN
+            - MYR
+            - MZN
+            - NAD
+            - NGN
+            - NIO
+            - NOK
+            - NPR
+            - NZD
+            - OMR
+            - PAB
+            - PEN
+            - PGK
+            - PHP
+            - PKR
+            - PLN
+            - PYG
+            - QAR
+            - RON
+            - RSD
+            - RUB
+            - RWF
+            - SAR
+            - SBD
+            - SCR
+            - SDG
+            - SEK
+            - SGD
+            - SHP
+            - SLL
+            - SOS
+            - SRD
+            - SSP
+            - STD
+            - SYP
+            - SZL
+            - THB
+            - TJS
+            - TMT
+            - TND
+            - TOP
+            - TRY
+            - TTD
+            - TWD
+            - TZS
+            - UAH
+            - UGX
+            - USD
+            - UYU
+            - UZS
+            - VEF
+            - VND
+            - VUV
+            - WST
+            - XAF
+            - XCD
+            - XOF
+            - XPF
+            - YER
+            - ZAR
+            - ZMK
+            - ZWL
+        transaction_countries:
+          type: array
+          items:
+            type: string
+            nullable: true
+            enum:
+            - AD
+            - AN
+            - AE
+            - AF
+            - AG
+            - AI
+            - AL
+            - AM
+            - AO
+            - AQ
+            - AR
+            - AS
+            - AT
+            - AU
+            - AW
+            - AX
+            - AZ
+            - BA
+            - BB
+            - BD
+            - BE
+            - BF
+            - BG
+            - BH
+            - BI
+            - BJ
+            - BL
+            - BM
+            - BN
+            - BO
+            - BQ
+            - BR
+            - BS
+            - BT
+            - BV
+            - BW
+            - BY
+            - BZ
+            - CA
+            - CC
+            - CD
+            - CF
+            - CG
+            - CH
+            - CI
+            - CK
+            - CL
+            - CM
+            - CN
+            - CO
+            - CR
+            - CV
+            - CW
+            - CX
+            - CY
+            - CZ
+            - DE
+            - DJ
+            - DK
+            - DM
+            - DO
+            - DZ
+            - EC
+            - EE
+            - EG
+            - EH
+            - ER
+            - ES
+            - ET
+            - FI
+            - FJ
+            - FK
+            - FM
+            - FO
+            - FR
+            - GA
+            - GB
+            - GD
+            - GE
+            - GF
+            - GG
+            - GH
+            - GI
+            - GL
+            - GM
+            - GN
+            - GP
+            - GQ
+            - GR
+            - GS
+            - GT
+            - GU
+            - GW
+            - GY
+            - HK
+            - HM
+            - HN
+            - HR
+            - HT
+            - HU
+            - ID
+            - IE
+            - IL
+            - IM
+            - IN
+            - IO
+            - IQ
+            - IS
+            - IT
+            - JE
+            - JM
+            - JO
+            - JP
+            - KE
+            - KG
+            - KH
+            - KI
+            - KM
+            - KN
+            - KR
+            - KW
+            - KY
+            - KZ
+            - LA
+            - LB
+            - LC
+            - LI
+            - LK
+            - LR
+            - LS
+            - LT
+            - LU
+            - LV
+            - MA
+            - MC
+            - MD
+            - ME
+            - MF
+            - MG
+            - MH
+            - MK
+            - ML
+            - MM
+            - MN
+            - MO
+            - MP
+            - MQ
+            - MR
+            - MS
+            - MT
+            - MU
+            - MV
+            - MW
+            - MX
+            - MY
+            - MZ
+            - NA
+            - NC
+            - NE
+            - NF
+            - NG
+            - NI
+            - NL
+            - 'NO'
+            - NP
+            - NR
+            - NU
+            - NZ
+            - OM
+            - PA
+            - PE
+            - PF
+            - PG
+            - PH
+            - PK
+            - PL
+            - PM
+            - PN
+            - PR
+            - PS
+            - PT
+            - PW
+            - PY
+            - QA
+            - RE
+            - RO
+            - RS
+            - RU
+            - RW
+            - SA
+            - SB
+            - SC
+            - SE
+            - SG
+            - SH
+            - SI
+            - SJ
+            - SK
+            - SL
+            - SM
+            - SN
+            - SO
+            - SR
+            - ST
+            - SV
+            - SX
+            - SZ
+            - TC
+            - TD
+            - TF
+            - TG
+            - TH
+            - TJ
+            - TK
+            - TL
+            - TM
+            - TN
+            - TO
+            - TR
+            - TT
+            - TV
+            - TW
+            - TZ
+            - UA
+            - UG
+            - UM
+            - US
+            - UY
+            - UZ
+            - VA
+            - VC
+            - VE
+            - VG
+            - VI
+            - VN
+            - VU
+            - WF
+            - WS
+            - XK
+            - YE
+            - YT
+            - ZA
+            - ZM
+            - ZW
+            - AND
+            - ANT
+            - ARE
+            - AFG
+            - ATG
+            - AIA
+            - ALB
+            - ARM
+            - AGO
+            - ATA
+            - ARG
+            - ASM
+            - AUT
+            - AUS
+            - ABW
+            - ALA
+            - AZE
+            - BIH
+            - BRB
+            - BGD
+            - BEL
+            - BFA
+            - BGR
+            - BHR
+            - BDI
+            - BEN
+            - BLM
+            - BMU
+            - BRN
+            - BOL
+            - BES
+            - BRA
+            - BHS
+            - BTN
+            - BVT
+            - BWA
+            - BLR
+            - BLZ
+            - CAN
+            - CCK
+            - COD
+            - CAF
+            - COG
+            - CHE
+            - CIV
+            - COK
+            - CHL
+            - CMR
+            - CHN
+            - COL
+            - CRI
+            - CPV
+            - CUW
+            - CXR
+            - CYP
+            - CZE
+            - DEU
+            - DJI
+            - DNK
+            - DMA
+            - DOM
+            - DZA
+            - ECU
+            - EST
+            - EGY
+            - ESH
+            - ERI
+            - ESP
+            - ETH
+            - FIN
+            - FJI
+            - FLK
+            - FSM
+            - FRO
+            - FRA
+            - GAB
+            - GBR
+            - GRD
+            - GEO
+            - GUF
+            - GGY
+            - GHA
+            - GIB
+            - GRL
+            - GMB
+            - GIN
+            - GLP
+            - GNQ
+            - GRC
+            - SGS
+            - GTM
+            - GUM
+            - GNB
+            - GUY
+            - HKG
+            - HMD
+            - HND
+            - HRV
+            - HTI
+            - HUN
+            - IDN
+            - IRL
+            - ISR
+            - IMN
+            - IND
+            - IOT
+            - IRQ
+            - ISL
+            - ITA
+            - JEY
+            - JAM
+            - JOR
+            - JPN
+            - KEN
+            - KGZ
+            - KHM
+            - KIR
+            - COM
+            - KNA
+            - KOR
+            - KWT
+            - CYM
+            - KAZ
+            - LAO
+            - LBN
+            - LCA
+            - LIE
+            - LKA
+            - LBR
+            - LSO
+            - LTU
+            - LUX
+            - LVA
+            - MAR
+            - MCO
+            - MDA
+            - MNE
+            - MAF
+            - MDG
+            - MHL
+            - MKD
+            - MLI
+            - MMR
+            - MNG
+            - MAC
+            - MNP
+            - MTQ
+            - MRT
+            - MSR
+            - MLT
+            - MUS
+            - MDV
+            - MWI
+            - MEX
+            - MYS
+            - MOZ
+            - NAM
+            - NCL
+            - NER
+            - NFK
+            - NGA
+            - NIC
+            - NLD
+            - NOR
+            - NPL
+            - NRU
+            - NIU
+            - NZL
+            - OMN
+            - PAN
+            - PER
+            - PYF
+            - PNG
+            - PHL
+            - PAK
+            - POL
+            - SPM
+            - PCN
+            - PRI
+            - PSE
+            - PRT
+            - PLW
+            - PRY
+            - QAT
+            - REU
+            - ROU
+            - SRB
+            - RUS
+            - RWA
+            - SAU
+            - SLB
+            - SYC
+            - SWE
+            - SGP
+            - SHN
+            - SVN
+            - SJM
+            - SVK
+            - SLE
+            - SMR
+            - SEN
+            - SOM
+            - SUR
+            - STP
+            - SLV
+            - SXM
+            - SWZ
+            - TCA
+            - TCD
+            - ATF
+            - TGO
+            - THA
+            - TJK
+            - TKL
+            - TLS
+            - TKM
+            - TUN
+            - TON
+            - TUR
+            - TTO
+            - TUV
+            - TWN
+            - TZA
+            - UKR
+            - UGA
+            - UMI
+            - USA
+            - URY
+            - UZB
+            - VAT
+            - VCT
+            - VEN
+            - VGB
+            - VIR
+            - VNM
+            - VUT
+            - WLF
+            - WSM
+            - UNK
+            - YEM
+            - MYT
+            - ZAF
+            - ZMB
+            - ZWE
+        one_off_transaction:
+          type: boolean
+        estimated_monthly_transaction_currency:
+          type: string
+          nullable: true
+        estimated_monthly_transaction_value:
+          type: integer
+          nullable: true
+        estimated_monthly_transaction_volume:
+          type: integer
+          nullable: true
+        source_of_funds:
+          type: string
+          nullable: true
+          enum:
+          - business_revenue
+          - external_investment
+          - loan
+          - donations_or_grants
+          - inter_company_transfers
+          - sale_of_assets
+          - other
+        primary_purpose:
+          type: string
+          enum:
+          - intercompany_transfers
+          - liquidity_or_fx
+          - payment_to_an_individual
+          - paying_suppliers_or_bills
+          - investment_activity
+          - repatriating_overseas_earnings
+          - collecting_funds_from_clients
+          - property_purchase_or_sale
+          - other
+        purpose_details:
+          type: string
+          nullable: true
+      required:
+      - collections_account
+      - primary_purpose
+    create_business_information_request:
+      type: object
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+        business_country:
+          type: string
+          enum:
+          - AD
+          - AN
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - ST
+          - SV
+          - SX
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XK
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+          - AND
+          - ANT
+          - ARE
+          - AFG
+          - ATG
+          - AIA
+          - ALB
+          - ARM
+          - AGO
+          - ATA
+          - ARG
+          - ASM
+          - AUT
+          - AUS
+          - ABW
+          - ALA
+          - AZE
+          - BIH
+          - BRB
+          - BGD
+          - BEL
+          - BFA
+          - BGR
+          - BHR
+          - BDI
+          - BEN
+          - BLM
+          - BMU
+          - BRN
+          - BOL
+          - BES
+          - BRA
+          - BHS
+          - BTN
+          - BVT
+          - BWA
+          - BLR
+          - BLZ
+          - CAN
+          - CCK
+          - COD
+          - CAF
+          - COG
+          - CHE
+          - CIV
+          - COK
+          - CHL
+          - CMR
+          - CHN
+          - COL
+          - CRI
+          - CPV
+          - CUW
+          - CXR
+          - CYP
+          - CZE
+          - DEU
+          - DJI
+          - DNK
+          - DMA
+          - DOM
+          - DZA
+          - ECU
+          - EST
+          - EGY
+          - ESH
+          - ERI
+          - ESP
+          - ETH
+          - FIN
+          - FJI
+          - FLK
+          - FSM
+          - FRO
+          - FRA
+          - GAB
+          - GBR
+          - GRD
+          - GEO
+          - GUF
+          - GGY
+          - GHA
+          - GIB
+          - GRL
+          - GMB
+          - GIN
+          - GLP
+          - GNQ
+          - GRC
+          - SGS
+          - GTM
+          - GUM
+          - GNB
+          - GUY
+          - HKG
+          - HMD
+          - HND
+          - HRV
+          - HTI
+          - HUN
+          - IDN
+          - IRL
+          - ISR
+          - IMN
+          - IND
+          - IOT
+          - IRQ
+          - ISL
+          - ITA
+          - JEY
+          - JAM
+          - JOR
+          - JPN
+          - KEN
+          - KGZ
+          - KHM
+          - KIR
+          - COM
+          - KNA
+          - KOR
+          - KWT
+          - CYM
+          - KAZ
+          - LAO
+          - LBN
+          - LCA
+          - LIE
+          - LKA
+          - LBR
+          - LSO
+          - LTU
+          - LUX
+          - LVA
+          - MAR
+          - MCO
+          - MDA
+          - MNE
+          - MAF
+          - MDG
+          - MHL
+          - MKD
+          - MLI
+          - MMR
+          - MNG
+          - MAC
+          - MNP
+          - MTQ
+          - MRT
+          - MSR
+          - MLT
+          - MUS
+          - MDV
+          - MWI
+          - MEX
+          - MYS
+          - MOZ
+          - NAM
+          - NCL
+          - NER
+          - NFK
+          - NGA
+          - NIC
+          - NLD
+          - NOR
+          - NPL
+          - NRU
+          - NIU
+          - NZL
+          - OMN
+          - PAN
+          - PER
+          - PYF
+          - PNG
+          - PHL
+          - PAK
+          - POL
+          - SPM
+          - PCN
+          - PRI
+          - PSE
+          - PRT
+          - PLW
+          - PRY
+          - QAT
+          - REU
+          - ROU
+          - SRB
+          - RUS
+          - RWA
+          - SAU
+          - SLB
+          - SYC
+          - SWE
+          - SGP
+          - SHN
+          - SVN
+          - SJM
+          - SVK
+          - SLE
+          - SMR
+          - SEN
+          - SOM
+          - SUR
+          - STP
+          - SLV
+          - SXM
+          - SWZ
+          - TCA
+          - TCD
+          - ATF
+          - TGO
+          - THA
+          - TJK
+          - TKL
+          - TLS
+          - TKM
+          - TUN
+          - TON
+          - TUR
+          - TTO
+          - TUV
+          - TWN
+          - TZA
+          - UKR
+          - UGA
+          - UMI
+          - USA
+          - URY
+          - UZB
+          - VAT
+          - VCT
+          - VEN
+          - VGB
+          - VIR
+          - VNM
+          - VUT
+          - WLF
+          - WSM
+          - UNK
+          - YEM
+          - MYT
+          - ZAF
+          - ZMB
+          - ZWE
+        company_name:
+          type: string
+        trading_name:
+          type: string
+          nullable: true
+        legal_entity_type:
+          type: string
+          enum:
+          - limited_liability_company
+          - limited_liability_partnership
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - other
+          - public_limited_company
+          - registered_charity
+          - scottish_limited_partnership
+          - sole_trader
+          - trust
+          - unincorporated_partnership
+          - unregistered_charity
+        sector:
+          type: string
+          enum:
+          - registered_charity
+          - unregistered_charity
+          - aerospace
+          - weapons_and_military_equipment
+          - advertising_or_public_relations_or_marketing
+          - multi_level_marketing
+          - telecoms
+          - call_centres
+          - schools_and_universities
+          - hospitals_and_care_facilities
+          - adult_entertainment
+          - books_or_magazines_and_newspapers
+          - casinos_or_gambling
+          - forestry_and_forest_products
+          - Gaming
+          - music_production
+          - radio_or_tv_broadcaster
+          - speculative_trading
+          - sporting_or_professional_club
+          - banking
+          - broker_dealer
+          - building_materials_and_equipment
+          - broker
+          - cryptoassets
+          - fund
+          - insurance_or_insure_tech
+          - loan_company
+          - money_services_business
+          - payroll_company_or_pay_tech
+          - private_equity_or_investment_firm_or_venture_capital
+          - trust_company
+          - asset_or_wealth_management_or_wealth_tech
+          - regulated_online_marketplace_or_platform
+          - accountancy
+          - architecture
+          - interior_design
+          - legal
+          - other_consultancy
+          - political_group_or_lobbying
+          - recruitment
+          - hospitality_or_events_or_conferences
+          - tax_advisers
+          - construction
+          - engineering
+          - estate_or_letting_agency
+          - property_development
+          - real_estate_investment
+          - waste_management_or_recycling
+          - adult_products
+          - agricultural
+          - automobile_or_car_parts
+          - bio_sciences_or_beauty_products
+          - chemical_and_related_manufacturing
+          - clothing_or_textiles
+          - electronic_equipment_or_mobile_phones
+          - fitness_equipment
+          - food_and_beverage
+          - furniture_and_flooring
+          - high_value_goods
+          - machinery_and_tools_or_industrial_equipment
+          - pawn_brokers
+          - pharmaceuticals_or_medical_devices
+          - tobacco_or_alcohol
+          - etailor_or_ecommerce
+          - nutritional_or_dietary_supplements
+          - online_marketing_or_branding
+          - historical_or_cultural_artefacts
+          - bars_or_restaurants
+          - courier_or_express_or_parcel
+          - freight_or_logistics
+          - packaging
+          - transportation
+          - taxi_or_private_transport
+          - security
+          - travel_agent_or_travel_website
+          - hotels
+          - computer_software
+          - it_managed_services
+          - data_storage_or_processing
+          - website_or_app_development
+          - computer_or_cyber_security
+          - utilities
+          - logging_timber_and_paper_mills
+          - oil_and_gas
+          - precious_metals
+          - trust_and_company_formation_providers
+          - hedge_fund_or_family_office
+          - mining_or_extractive_industries
+        company_registration_number:
+          type: string
+          nullable: true
+        vat_number:
+          type: string
+          nullable: true
+        incorporation_date:
+          type: string
+          format: date
+        business_website:
+          type: string
+          nullable: true
+        business_activity_description:
+          type: string
+          nullable: true
+        registered_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+        trading_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+          nullable: true
+      required:
+      - business_country
+      - company_name
+      - legal_entity_type
+      - sector
+      - incorporation_date
+      - registered_address_attributes
+    create_person_request:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - account_creator
+            - director
+            - ultimate_business_owner
+            - user
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+        first_name:
+          type: string
+        middle_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+        dob:
+          type: string
+          format: date
+          nullable: true
+        phone_number:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        ownership_percentage:
+          type: number
+          nullable: true
+          minimum: 0
+          maximum: 100
+        user_required:
+          type: boolean
+        id_number:
+          type: string
+          nullable: true
+        home_country:
+          type: string
+        passport_number:
+          type: string
+          nullable: true
+        passport_country_of_issue:
+          type: string
+          nullable: true
+        personal_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+              enum:
+              - AD
+              - AN
+              - AE
+              - AF
+              - AG
+              - AI
+              - AL
+              - AM
+              - AO
+              - AQ
+              - AR
+              - AS
+              - AT
+              - AU
+              - AW
+              - AX
+              - AZ
+              - BA
+              - BB
+              - BD
+              - BE
+              - BF
+              - BG
+              - BH
+              - BI
+              - BJ
+              - BL
+              - BM
+              - BN
+              - BO
+              - BQ
+              - BR
+              - BS
+              - BT
+              - BV
+              - BW
+              - BY
+              - BZ
+              - CA
+              - CC
+              - CD
+              - CF
+              - CG
+              - CH
+              - CI
+              - CK
+              - CL
+              - CM
+              - CN
+              - CO
+              - CR
+              - CV
+              - CW
+              - CX
+              - CY
+              - CZ
+              - DE
+              - DJ
+              - DK
+              - DM
+              - DO
+              - DZ
+              - EC
+              - EE
+              - EG
+              - EH
+              - ER
+              - ES
+              - ET
+              - FI
+              - FJ
+              - FK
+              - FM
+              - FO
+              - FR
+              - GA
+              - GB
+              - GD
+              - GE
+              - GF
+              - GG
+              - GH
+              - GI
+              - GL
+              - GM
+              - GN
+              - GP
+              - GQ
+              - GR
+              - GS
+              - GT
+              - GU
+              - GW
+              - GY
+              - HK
+              - HM
+              - HN
+              - HR
+              - HT
+              - HU
+              - ID
+              - IE
+              - IL
+              - IM
+              - IN
+              - IO
+              - IQ
+              - IS
+              - IT
+              - JE
+              - JM
+              - JO
+              - JP
+              - KE
+              - KG
+              - KH
+              - KI
+              - KM
+              - KN
+              - KR
+              - KW
+              - KY
+              - KZ
+              - LA
+              - LB
+              - LC
+              - LI
+              - LK
+              - LR
+              - LS
+              - LT
+              - LU
+              - LV
+              - MA
+              - MC
+              - MD
+              - ME
+              - MF
+              - MG
+              - MH
+              - MK
+              - ML
+              - MM
+              - MN
+              - MO
+              - MP
+              - MQ
+              - MR
+              - MS
+              - MT
+              - MU
+              - MV
+              - MW
+              - MX
+              - MY
+              - MZ
+              - NA
+              - NC
+              - NE
+              - NF
+              - NG
+              - NI
+              - NL
+              - 'NO'
+              - NP
+              - NR
+              - NU
+              - NZ
+              - OM
+              - PA
+              - PE
+              - PF
+              - PG
+              - PH
+              - PK
+              - PL
+              - PM
+              - PN
+              - PR
+              - PS
+              - PT
+              - PW
+              - PY
+              - QA
+              - RE
+              - RO
+              - RS
+              - RU
+              - RW
+              - SA
+              - SB
+              - SC
+              - SE
+              - SG
+              - SH
+              - SI
+              - SJ
+              - SK
+              - SL
+              - SM
+              - SN
+              - SO
+              - SR
+              - ST
+              - SV
+              - SX
+              - SZ
+              - TC
+              - TD
+              - TF
+              - TG
+              - TH
+              - TJ
+              - TK
+              - TL
+              - TM
+              - TN
+              - TO
+              - TR
+              - TT
+              - TV
+              - TW
+              - TZ
+              - UA
+              - UG
+              - UM
+              - US
+              - UY
+              - UZ
+              - VA
+              - VC
+              - VE
+              - VG
+              - VI
+              - VN
+              - VU
+              - WF
+              - WS
+              - XK
+              - YE
+              - YT
+              - ZA
+              - ZM
+              - ZW
+              - AND
+              - ANT
+              - ARE
+              - AFG
+              - ATG
+              - AIA
+              - ALB
+              - ARM
+              - AGO
+              - ATA
+              - ARG
+              - ASM
+              - AUT
+              - AUS
+              - ABW
+              - ALA
+              - AZE
+              - BIH
+              - BRB
+              - BGD
+              - BEL
+              - BFA
+              - BGR
+              - BHR
+              - BDI
+              - BEN
+              - BLM
+              - BMU
+              - BRN
+              - BOL
+              - BES
+              - BRA
+              - BHS
+              - BTN
+              - BVT
+              - BWA
+              - BLR
+              - BLZ
+              - CAN
+              - CCK
+              - COD
+              - CAF
+              - COG
+              - CHE
+              - CIV
+              - COK
+              - CHL
+              - CMR
+              - CHN
+              - COL
+              - CRI
+              - CPV
+              - CUW
+              - CXR
+              - CYP
+              - CZE
+              - DEU
+              - DJI
+              - DNK
+              - DMA
+              - DOM
+              - DZA
+              - ECU
+              - EST
+              - EGY
+              - ESH
+              - ERI
+              - ESP
+              - ETH
+              - FIN
+              - FJI
+              - FLK
+              - FSM
+              - FRO
+              - FRA
+              - GAB
+              - GBR
+              - GRD
+              - GEO
+              - GUF
+              - GGY
+              - GHA
+              - GIB
+              - GRL
+              - GMB
+              - GIN
+              - GLP
+              - GNQ
+              - GRC
+              - SGS
+              - GTM
+              - GUM
+              - GNB
+              - GUY
+              - HKG
+              - HMD
+              - HND
+              - HRV
+              - HTI
+              - HUN
+              - IDN
+              - IRL
+              - ISR
+              - IMN
+              - IND
+              - IOT
+              - IRQ
+              - ISL
+              - ITA
+              - JEY
+              - JAM
+              - JOR
+              - JPN
+              - KEN
+              - KGZ
+              - KHM
+              - KIR
+              - COM
+              - KNA
+              - KOR
+              - KWT
+              - CYM
+              - KAZ
+              - LAO
+              - LBN
+              - LCA
+              - LIE
+              - LKA
+              - LBR
+              - LSO
+              - LTU
+              - LUX
+              - LVA
+              - MAR
+              - MCO
+              - MDA
+              - MNE
+              - MAF
+              - MDG
+              - MHL
+              - MKD
+              - MLI
+              - MMR
+              - MNG
+              - MAC
+              - MNP
+              - MTQ
+              - MRT
+              - MSR
+              - MLT
+              - MUS
+              - MDV
+              - MWI
+              - MEX
+              - MYS
+              - MOZ
+              - NAM
+              - NCL
+              - NER
+              - NFK
+              - NGA
+              - NIC
+              - NLD
+              - NOR
+              - NPL
+              - NRU
+              - NIU
+              - NZL
+              - OMN
+              - PAN
+              - PER
+              - PYF
+              - PNG
+              - PHL
+              - PAK
+              - POL
+              - SPM
+              - PCN
+              - PRI
+              - PSE
+              - PRT
+              - PLW
+              - PRY
+              - QAT
+              - REU
+              - ROU
+              - SRB
+              - RUS
+              - RWA
+              - SAU
+              - SLB
+              - SYC
+              - SWE
+              - SGP
+              - SHN
+              - SVN
+              - SJM
+              - SVK
+              - SLE
+              - SMR
+              - SEN
+              - SOM
+              - SUR
+              - STP
+              - SLV
+              - SXM
+              - SWZ
+              - TCA
+              - TCD
+              - ATF
+              - TGO
+              - THA
+              - TJK
+              - TKL
+              - TLS
+              - TKM
+              - TUN
+              - TON
+              - TUR
+              - TTO
+              - TUV
+              - TWN
+              - TZA
+              - UKR
+              - UGA
+              - UMI
+              - USA
+              - URY
+              - UZB
+              - VAT
+              - VCT
+              - VEN
+              - VGB
+              - VIR
+              - VNM
+              - VUT
+              - WLF
+              - WSM
+              - UNK
+              - YEM
+              - MYT
+              - ZAF
+              - ZMB
+              - ZWE
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+      required:
+      - roles
+      - first_name
+      - last_name
+      - user_required
+      - home_country
+    create_document_request:
+      type: object
+      properties:
+        document_type:
+          type: string
+          enum:
+          - bank_statement
+          - biometric_state_id
+          - driving_licence
+          - mortgage
+          - passport
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - residence_id
+          - state_id
+          - supporting
+          - unknown
+          - utility_bill
+          - visa
+        category:
+          type: string
+          enum:
+          - proof_of_address
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_identity
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - supporting
+      required:
+      - document_type
+      - category
+    create_document_image_request:
+      type: object
+      properties:
+        image:
+          type: string
+          format: byte
+        side:
+          type: string
+          enum:
+          - front
+          - back
+          - face
+      required:
+      - image
+      - side
+    form:
+      type: object
+      properties:
+        id:
+          type: string
+        affiliate_code:
+          type: string
+          nullable: true
+        agreed_to_marketing_emails:
+          type: boolean
+        agreed_to_terms_and_conditions:
+          type: boolean
+        agreed_to_corporate_authority:
+          type: boolean
+        country:
+          type: string
+        email:
+          type: string
+        entity_type:
+          type: string
+        brand_name:
+          type: string
+        brand_key:
+          type: string
+        referred_by:
+          type: string
+          nullable: true
+        products_required:
+          type: array
+          items:
+            type: string
+        state:
+          type: string
+        phone_number:
+          type: string
+        contact_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - agreed_to_marketing_emails
+      - agreed_to_terms_and_conditions
+      - country
+      - entity_type
+      - brand_name
+      - products_required
+      - created_at
+      - updated_at
+    form_with_associations:
+      type: object
+      properties:
+        id:
+          type: string
+        affiliate_code:
+          type: string
+          nullable: true
+        agreed_to_marketing_emails:
+          type: boolean
+        agreed_to_terms_and_conditions:
+          type: boolean
+        country:
+          type: string
+        email:
+          type: string
+        entity_type:
+          type: string
+        brand_name:
+          type: string
+        brand_key:
+          type: string
+        referred_by:
+          type: string
+          nullable: true
+        state:
+          type: string
+        phone_number:
+          type: string
+        contact_name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        business_information:
+          "$ref": "#/components/schemas/business_information"
+        account_usage:
+          "$ref": "#/components/schemas/account_usage"
+        people:
+          type: array
+          items:
+            "$ref": "#/components/schemas/person"
+      required:
+      - id
+      - agreed_to_marketing_emails
+      - agreed_to_terms_and_conditions
+      - country
+      - entity_type
+      - brand_name
+      - created_at
+      - updated_at
+    business_information:
+      type: object
+      properties:
+        id:
+          type: string
+        form_id:
+          type: string
+        business_country:
+          type: string
+        company_name:
+          type: string
+        trading_name:
+          type: string
+          nullable: true
+        legal_entity_type:
+          type: string
+        sector:
+          type: string
+        company_registration_number:
+          type: string
+          nullable: true
+        vat_number:
+          type: string
+          nullable: true
+        incorporation_date:
+          type: string
+          format: date
+        business_website:
+          type: string
+          nullable: true
+        business_activity_description:
+          type: string
+        registered_address:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+        trading_address:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - business_country
+      - company_name
+      - legal_entity_type
+      - sector
+      - incorporation_date
+      - business_activity_description
+      - registered_address
+      nullable: true
+    account_usage:
+      type: object
+      properties:
+        id:
+          type: string
+        form_id:
+          type: string
+        collections_account:
+          type: boolean
+        collection_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+        payment_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+        transaction_countries:
+          type: array
+          items:
+            type: string
+            nullable: true
+        one_off_transaction:
+          type: boolean
+        estimated_monthly_transaction_currency:
+          type: string
+          nullable: true
+        estimated_monthly_transaction_value:
+          type: integer
+          nullable: true
+        estimated_monthly_transaction_volume:
+          type: integer
+          nullable: true
+        source_of_funds:
+          type: string
+          nullable: true
+        primary_purpose:
+          type: string
+          nullable: true
+        purpose_details:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - collections_account
+      - one_off_transaction
+      nullable: true
+    person:
+      type: object
+      properties:
+        id:
+          type: string
+        form_id:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        first_name:
+          type: string
+        middle_name:
+          type: string
+          nullable: true
+        last_name:
+          type: string
+        dob:
+          type: string
+          format: date
+          nullable: true
+        phone_number:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        ownership_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+        user_required:
+          type: boolean
+        id_number:
+          type: string
+          nullable: true
+        home_country:
+          type: string
+        passport_number:
+          type: string
+          nullable: true
+        passport_country_of_issue:
+          type: string
+          nullable: true
+        personal_address:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            country:
+              type: string
+            postal_code:
+              type: string
+            apartment_number:
+              type: string
+              nullable: true
+            building_name:
+              type: string
+              nullable: true
+            building_number:
+              type: string
+              nullable: true
+            state_or_province:
+              type: string
+              nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - roles
+      - first_name
+      - last_name
+      - user_required
+      - home_country
+    document:
+      type: object
+      properties:
+        id:
+          type: string
+        document_type:
+          type: string
+        category:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - document_type
+      - category
+    document_with_image_ids:
+      type: object
+      properties:
+        id:
+          type: string
+        document_type:
+          type: string
+        category:
+          type: string
+        document_image_ids:
+          type: array
+          items:
+            type: string
+        form_section_type:
+          type: string
+          nullable: true
+        form_section_id:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      required:
+      - document_type
+      - category
+    document_image:
+      type: object
+      properties:
+        id:
+          type: string
+        side:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    validation_error_response:
+      type: object
+      properties:
+        status:
+          type: string
+        error_code:
+          type: string
+        reason:
+          type: string
+        error_messages:
+          type: object
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+    not_found_response:
+      type: object
+      properties:
+        status:
+          type: string
+        error_code:
+          type: string
+        reason:
+          type: string
+        error_messages:
+          type: object
+          nullable: true
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
