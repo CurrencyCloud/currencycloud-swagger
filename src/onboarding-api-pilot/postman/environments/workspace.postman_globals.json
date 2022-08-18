@@ -1,0 +1,36 @@
+{
+	"id": "8c464832-44e5-4afa-8702-c3c1c145dfbd",
+	"values": [
+		{
+			"key": "document_id",
+			"value": "4c9c8261-6e4f-450b-9289-6a01cab6bc0b",
+			"enabled": true
+		},
+		{
+			"key": "account_usage_id",
+			"value": "7d74fa1d-5e55-4c9e-a7a2-6bf025e76c18",
+			"enabled": true
+		},
+		{
+			"key": "business_info_id",
+			"value": "c67f6661-8efc-4f54-a87e-b2a705e0ef10",
+			"enabled": true
+		},
+		{
+			"key": "form_id",
+			"value": "b0743ad0-b841-4f0d-8fd9-7d37cbbd820b",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "person_id",
+			"value": "85de3a57-a95a-4147-b84b-a6a398118bcd",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2022-08-03T09:12:21.931Z",
+	"_postman_exported_using": "Postman/9.26.3"
+}

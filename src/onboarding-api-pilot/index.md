@@ -18,6 +18,13 @@ All files uploaded must be JPG, PNG or PDF under 10MB, for further details pleas
 
 Comprehensive documentation on request parameters and response payloads for every endpoint can be found here: [Onboarding OpenAPI 3.0.3 Spec](onboarding-beta-pilot-swagger.yaml)
 
+## Postman
+
+A Postman collection for interacting and testing our API can be found here: [Onboarding Beta Pilot Postman Collection](postman/collections/api-onboarding_d0b129cc-ceee-476a-a3b0-2b4d917d01ef.json)
+The relevant Postman environment can be found here: [Onboarding Beta Pilot Postman Environment](postman/environments/Demo-API-Onboarding.postman_environment.json)
+
+You can also generate your own Postman collection by importing the Swagger/OpenAPI 3.0.3 file above (API Reference section) into Postman.
+
 ### Terms & conditions
 
 It is really **important** that any applicant you seek to onboarding through our Onboarding APIs:
