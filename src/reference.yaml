@@ -7894,7 +7894,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: 'Make a payment. On success, returns the new payment record.'
+      description: 'Submits a payment. On success, returns the new payment record. Use the <a href="../get-payer-requirements/">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.'
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -7905,27 +7905,27 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: formData
           required: true
           type: string
-          description: Currency in which payment is made. Three-digit currency code.
+          description: Currency in which payment is made. Three-digit ISO currency code.
         - name: beneficiary_id
           in: formData
           required: true
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: amount
           in: formData
           required: true
           type: string
-          description: Amount.
+          description: Amount
         - name: reason
           in: formData
           required: true
           type: string
-          description: User-generated reason for payment. Freeform text.
+          description: User-generated reason for payment - freeform text.
         - name: reference
           in: formData
           required: true
@@ -7953,7 +7953,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID
         - name: payer_entity_type
           in: formData
           required: false
@@ -7961,7 +7961,7 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity.
+          description: Legal entity
         - name: payer_company_name
           in: formData
           required: false
@@ -7981,7 +7981,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: payer_address
           in: formData
           required: false
@@ -7991,7 +7991,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: payer_state_or_province
           in: formData
           required: false
@@ -8001,14 +8001,14 @@ paths:
           in: formData
           required: false
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: payer_date_of_birth
           in: formData
           required: false
           type: string
           description: >-
-            If "payer_entity_type" is "company", company registration date. If
-            "payer_entity_type" is "individual", date of birth. ISO 8601 format
+            If "payer_entity_type" is "company", this is the company registration date. If
+            "payer_entity_type" is "individual", this is date of birth. ISO 8601 format
             YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
@@ -8079,13 +8079,13 @@ paths:
           - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
-            If empty - then account's default value is used.
+            If this is left empty, the account's default value is used.
             Do not specify for regular (local) payments.
         - name: fee_amount
           in: formData
           required: false
           type: string
-          description: Fee amount.
+          description: Fee amount
         - name: fee_currency
           in: formData
           required: false
@@ -8284,6 +8284,10 @@ paths:
               category: account
               message: The account is currently not permitted to create payments.
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
 
           schema:
             $ref: '#/definitions/CreatePaymentError'
@@ -8359,7 +8363,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Find Payments
-      description: Search for payment records.
+      description: Searches for payment records.
       operationId: FindPayments
       produces:
         - application/json
@@ -8368,7 +8372,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: query
           required: false
@@ -8383,22 +8387,22 @@ paths:
           in: query
           required: false
           type: string
-          description: Currency in which payment made. Three-digit currency code.
+          description: Currency in which payment made. Three-digit ISO currency code.
         - name: amount
           in: query
           required: false
           type: string
-          description: Exact amount.
+          description: Exact amount
         - name: amount_from
           in: query
           required: false
           type: string
-          description: Minimum amount.
+          description: Minimum amount
         - name: amount_to
           in: query
           required: false
           type: string
-          description: Maximum amount.
+          description: Maximum amount
         - name: status
           in: query
           required: false
@@ -8414,7 +8418,7 @@ paths:
             - submitted
             - authorised
             - deleted
-          description: Payment status.
+          description: Payment status
         - name: reason
           in: query
           required: false
@@ -8480,12 +8484,12 @@ paths:
           in: query
           required: false
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: conversion_id
           in: query
           required: false
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID
         - name: with_deleted
           in: query
           required: false
@@ -8521,7 +8525,7 @@ paths:
           in: query
           required: false
           type: integer
-          description: Page number.
+          description: Page number
         - name: per_page
           in: query
           required: false
@@ -8602,6 +8606,11 @@ paths:
               params: >-
                 { "range" => "new, ready_to_send, completed, failed, released, suspended,
                 awaiting_authorisation, submitted, authorised, deleted" }
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+
           schema:
             $ref: '#/definitions/FindPaymentsError'
           headers:
@@ -8676,7 +8685,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get Payment
-      description: Get a payment record.
+      description: Gets a payment record.
       operationId: GetPayment
       produces:
         - application/json
@@ -8685,7 +8694,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -8696,11 +8705,6 @@ paths:
           required: false
           type: boolean
           description: Include deleted payments.
-        - name: purpose_code
-          in: query
-          required: false
-          type: string
-          description: Payment Purpose Code (Mandatory for all INR payments).
         - name: on_behalf_of
           in: query
           required: false
@@ -8722,18 +8726,23 @@ paths:
               category: id
               message: ID has invalid format
               params: ''
+            - code: with_deleted_type_is_wrong
+              category: id
+              message: with_deleted should be of boolean type
+              params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
-            - code: payment_not_found
-              category: id
-              message: Payment was not found for this id
-              params: ''
-            - code: contact_not_found
+            - code: on_behalf_of_is_not_valid_UUID
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: on_behalf_of should be in UUID format
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+
           schema:
             $ref: '#/definitions/GetPaymentError'
           headers:
@@ -8761,6 +8770,15 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+          x-errors:
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
         '429':
           description: Too many requests.
           x-errors:
@@ -8809,7 +8827,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Update Payment
-      description: 'Update a payment. On success, returns the updated payment entity.'
+      description: 'Updates a payment. On success, returns the updated payment entity.'
       operationId: UpdatePayment
       consumes:
         - multipart/form-data
@@ -8820,34 +8838,29 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Payment UUID.
-        - name: with_deleted
-          in: query
-          required: false
-          type: boolean
-          description: Include deleted payments.
+          description: Payment UUID
         - name: currency
           in: formData
           required: false
           type: string
           description: >-
-            Currency in which the payment is being made. Three-digit currency
+            Currency in which the payment is being made. Three-digit ISO currency
             code.
         - name: beneficiary_id
           in: formData
           required: false
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: amount
           in: formData
           required: false
           type: string
-          description: Payment amount.
+          description: Payment amount
         - name: payment_date
           in: formData
           required: false
@@ -8859,7 +8872,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated reason for payment. Freeform text.
+          description: User-generated reason for payment - freeform text.
         - name: payment_type
           in: formData
           required: false
@@ -8879,7 +8892,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID
         - name: payer_entity_type
           in: formData
           required: false
@@ -8887,7 +8900,7 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity.
+          description: Legal entity
         - name: payer_company_name
           in: formData
           required: false
@@ -8907,7 +8920,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: payer_address
           in: formData
           required: false
@@ -8917,7 +8930,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: payer_state_or_province
           in: formData
           required: false
@@ -8927,15 +8940,15 @@ paths:
           in: formData
           required: false
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: payer_date_of_birth
           in: formData
           required: false
           type: string
           description: >-
-            If "payer_entity_type" is "company", company registration date. If
-            "payer_entity_type" is "individual", date of birth. ISO 8601 format
-            YYYY-MM-DD..
+            If the "payer_entity_type" is "company", this is the company registration date. If
+            the "payer_entity_type" is "individual", this is the payer's date of birth. ISO 8601 format
+            YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
           required: false
@@ -8969,14 +8982,6 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
-        - name: payer_details_source
-          in: formData
-          required: false
-          type: string
-          enum:
-            - account
-            - payer
-          description: 'Source for payer details: the "account" or "payer" record.'
         - name: ultimate_beneficiary_name
           in: formData
           required: false
@@ -9001,18 +9006,18 @@ paths:
           - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
-            If empty - then account's default value is used.
+            If empty, the account's default value is used.
             Do not specify for regular (local) payments.
         - name: fee_amount
           in: formData
           required: false
           type: string
-          description: Fee amount.
+          description: Fee amount
         - name: fee_currency
           in: formData
           required: false
           type: string
-          description: Currency Fee is paid in.
+          description: The currency the fee is paid in.
       responses:
         '200':
           description: Success.
@@ -9025,9 +9030,9 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: currency_type_is_wrong
+            - code: currency_is_in_invalid_format
               category: currency
-              message: XYZ is not a valid ISO 4217 currency code
+              message: currency is not a valid ISO 4217 currency code
               params: ''
             - code: invalid_currency
               category: currency
@@ -9081,9 +9086,9 @@ paths:
               category: payment_date
               message: The payment date is invalid
               params: ''
-            - code: payment_date_is_in_invalid_format
+            - code: payment_date_type_is_wrong
               category: payment_date
-              message: payment_date should be in ISO 8601 format
+              message: payment_date should be of date type
               params: ''
             - code: payment_date_is_too_early
               category: payment_date
@@ -9113,34 +9118,13 @@ paths:
               category: payer_entity_type
               message: 'payer_entity_type should be in range: individual, company'
               params: '{ "range" => "individual, company" }'
-            - code: payer_entity_type_is_missing
+
+            - code: payer_details_are_missing
               category: payer_entity_type
-              message: Payer entity type is missing
-              params: ''
-            - code: payer_company_name_is_missing
-              category: payer_company_name
-              message: Payer company name is missing
-              params: ''
-            - code: payer_first_name_is_missing
-              category: payer_first_name
-              message: Payer first name is missing
-              params: ''
-            - code: payer_last_name_is_missing
-              category: payer_last_name
-              message: Payer last name is missing
-              params: ''
-            - code: payer_city_is_missing
-              category: payer_city
-              message: Payer city is missing
-              params: ''
-            - code: payer_state_or_province_is_missing
-              category: payer_state_or_province
-              message: Payer state or province is missing
-              params: ''
-            - code: payer_postcode_is_missing
-              category: payer_postcode
-              message: Payer postcode is missing
-              params: ''
+              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+
+
             - code: payer_date_of_birth_type_is_wrong
               category: payer_date_of_birth
               message: payer_date_of_birth should be of date type
@@ -9157,9 +9141,9 @@ paths:
               category: payer_date_of_birth
               message: payer_date_of_birth should be earlier
               params: ''
-            - code: identification_type_is_missing
+            - code: payer_identification_type_not_in_range
               category: payer_identification_type
-              message: identification_type is missing
+              message: 'payer_identification_type should be in range: none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion'
               params: ''
             - code: identification_type_is_invalid
               category: payer_identification_type
@@ -9177,21 +9161,17 @@ paths:
               category: charge_type
               message: Not available charge_type has been provided
               params: '{ "charge_type" => "shared, ours" }'
-            - code: invalid_charge_type
+            - code: charge_type_not_in_range
               category: charge_type
-              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              message:  'charge_type should be in range: ours, shared'
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
-            - code: payment_not_found
-              category: id
-              message: Payment was not found for this id
-              params: ''
-            - code: contact_not_found
+            - code: on_behalf_of_is_not_valid_UUID
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: on_behalf_of should be in UUID format
               params: ''
             - code: on_behalf_of_charge_type_not_available
               category: on_behalf_of
@@ -9205,6 +9185,24 @@ paths:
               category: fee_currency
               message: fee_currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
+
+            - code: invalid_fields_for_company
+              category: fee_amount
+              message: Please provide payer_company_name, but not payer_first_name and payer_last_name
+              params: ''
+            - code: invalid_fields_for_individual
+              category: fee_amount
+              message: Please provide payer_first_name and payer_last_name, but not payer_company_name
+              params: ''
+            - code: incorrect_purpose_code
+              category: purpose_code
+              message: Purpose code is invalid
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
@@ -9226,6 +9224,15 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -9279,7 +9286,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get a Payment Confirmation
-      description: Get confirmation for a payment.
+      description: Gets confirmation for a given payment.
       operationId: GetPaymentConfirmation
       produces:
         - application/json
@@ -9288,12 +9295,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Payment UUID.
+          description: Payment UUID
         - name: on_behalf_of
           in: query
           required: false
@@ -9311,9 +9318,9 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: invalid_id
+            - code: id_is_not_valid_uuid
               category: id
-              message: ID has invalid format
+              message: id should be in UUID format
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -9327,6 +9334,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/GetPaymentSubmissionError'
           headers:
@@ -9350,6 +9361,17 @@ paths:
           description: Resource not found.
           schema:
             $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '422':
+          description: Unprocessable Entity
+          x-errors:
+            - code: unprocessable_entity
+              category: base
+              message: Payment should be in 'Completed' or 'Failed' status
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -9403,7 +9425,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get Payment Submission
-      description: Get MT103 information for a SWIFT payment.
+      description: Gets the MT103 information for a SWIFT payment.
       operationId: GetPaymentSubmission
       produces:
         - application/json
@@ -9412,12 +9434,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Payment UUID.
+          description: Payment UUID
         - name: on_behalf_of
           in: query
           required: false
@@ -9435,22 +9457,28 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: invalid_id
+            - code: id_is_not_valid_uuid
               category: id
-              message: ID has invalid format
+              message: is should be in UUID format
               params: ''
+
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: on_behalf_of_is_not_valid_UUID
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
               params: ''
             - code: payment_not_found
               category: id
               message: Payment was not found for this id
               params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+
           schema:
             $ref: '#/definitions/GetPaymentSubmissionError'
           headers:
@@ -9474,6 +9502,11 @@ paths:
           description: Resource not found.
           schema:
             $ref: '#/definitions/NotFoundError'
+          x-errors:
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -9696,6 +9729,10 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/DeletePaymentError'
           headers:
@@ -9772,7 +9809,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get Payment Tracking Information
-      description: Get a payment Tracking Information.
+      description: Gets the tracking information for a payment.
       operationId: GetPaymentTrackingInfo
       produces:
         - application/json
@@ -9781,12 +9818,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Payment UUID.
+          description: Payment UUID
       responses:
         '200':
           description: Success.
@@ -9799,7 +9836,7 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: payment_tracking_info_failed
+            - code: payment_id_is_not_valid_uuid
               category: id
               message: payment_id should be in UUID format
               params: ''
@@ -9899,7 +9936,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Assign Payment Fee
-      description: 'Assign payment fee table to specific sub-account.'
+      description: 'Assigns a payment fee table to a specific sub-account.'
       operationId: PaymentsAssignPaymentFee
       consumes:
         - multipart/form-data
@@ -9910,19 +9947,19 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: payment_fee_id
           in: formData
           required: true
           type: string
           format: uuid
-          description: ID of the payment fee entity which will be assigned to teh account.
+          description: ID of the payment fee entity that will be assigned to the account.
         - name: account_id
           in: formData
           required: true
           format: uuid
           type: string
-          description: ID of the account which the payment fee will be assigned.
+          description: ID of the account to which the payment fee will be assigned.
       responses:
         '200':
           description: Success.
@@ -9954,6 +9991,10 @@ paths:
             - code: account_configuration_is_invalid
               category: base
               message: Account is not enabled for CashManager or NewPaymentRelease flow
+              params: ''
+            - code: account_operation_restricted
+              category: base
+              message: Operation restricted for the account
               params: ''
             - code: invalid_extra_parameters
               category: base
@@ -10056,7 +10097,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: payment_date
           in: query
           required: true
@@ -10076,12 +10117,12 @@ paths:
           in: query
           required: true
           type: string
-          description: The 3-letter ISO code of the currency of the payment
+          description: The 3-letter ISO code of the currency of the payment.
         - name: bank_country
           in: query
           required: true
           type: string
-          description: The 2-letter ISO code of the country where the payment is sent
+          description: The 2-letter ISO code of the country where the payment is sent.
       responses:
         '200':
           description: Success.
@@ -10138,6 +10179,10 @@ paths:
               category: payment_date
               message: payment_date should be in ISO 8601 format
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/GetPaymentDeliveryDateError'
           headers:
@@ -10207,7 +10252,7 @@ paths:
       x-api-group: pay
       summary: Get Payment Fees
       description: >-
-        Gets the Payment fee tables for the current authenticated account
+        Gets the payment fee tables for the current authenticated account.
       operationId: GetPaymentPaymentFees
       produces:
         - application/json
@@ -10216,12 +10261,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: page
           in: query
           required: false
           type: integer
-          description: Page number.
+          description: Page number
         - name: per_page
           in: query
           required: false
@@ -10332,7 +10377,7 @@ paths:
       x-api-group: pay
       summary: Get Quote Payment Fee
       description: >-
-        Gets the calculated quote for the fee that will be applied against a payment
+        Gets the calculated quote for the fee that will be applied against a payment.
       operationId: GetQuotePaymentFee
       produces:
         - application/json
@@ -10341,12 +10386,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: query
           required: false
           type: string
-          description: Account UUID. If this is left empty, the account that makes the API call is used
+          description: Account UUID. If this is left empty, the account that is making the API call is used.
         - name: payment_currency
           in: query
           required: true
@@ -10372,7 +10417,7 @@ paths:
           enum:
             - ours
             - shared
-          description: Payment Charges type. if no value is provided the accounts default value is used
+          description: Payment Charges type. if no value is provided the account's default value is used.
       responses:
         '200':
           description: Success.
@@ -10388,7 +10433,7 @@ paths:
             - code: account_id_is_not_valid_uuid
               category: account_id
               message: account_id should be in UUID format
-              params: ''
+              params: '{"type" => "currency"}'
             - code: payment_currency_is_required
               category: payment_currency
               message: payment_currency is required
@@ -10404,7 +10449,7 @@ paths:
             - code: payment_destination_country_is_in_invalid_format
               category: payment_destination_country
               message: payment_destination_country is in invalid format
-              params: ''
+              params: '{"type"=> "country_code"}'
             - code: charge_type_is_required
               category: charge_type
               message: charge_type is required
@@ -10491,7 +10536,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Unassign Payment Fee
-      description: 'Unassign payment fee tables to specific sub-account.'
+      description: 'Unassigns the payment fee tables for a specific sub-account.'
       operationId: PaymentsUnassignPaymentFee
       consumes:
         - multipart/form-data
@@ -10502,13 +10547,13 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: formData
           required: true
           format: uuid
           type: string
-          description: Sub account UUID for which Payment Level Fee will be un-assigned.
+          description: Sub-account UUID for which the payment level fee will be un-assigned.
       responses:
         '200':
           description: Success.
@@ -10532,6 +10577,10 @@ paths:
             - code: account_configuration_is_invalid
               category: base
               message: Account is not enabled for CashManager or NewPaymentRelease flow
+              params: ''
+            - code: account_operation_restricted
+              category: base
+              message: Operation restricted for the account
               params: ''
             - code: invalid_extra_parameters
               category: base
@@ -10639,17 +10688,17 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: x-sca-force-sms
           in: header
           required: false
           type: boolean
-          description: Defines whether sms should be enforced as the SCA message mediator.
+          description: Defines whether SMS should be enforced as the SCA message mediator.
         - name: id
           in: formData
           required: false
           type: string
-          description: Payment UUID.
+          description: Payment UUID
         - name: currency
           in: formData
           required: true
@@ -10659,17 +10708,17 @@ paths:
           in: formData
           required: true
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: amount
           in: formData
           required: true
           type: string
-          description: Amount.
+          description: Amount
         - name: reason
           in: formData
           required: true
           type: string
-          description: User-generated reason for payment. Freeform text.
+          description: User-generated reason for payment - freeform text.
         - name: reference
           in: formData
           required: true
@@ -10696,7 +10745,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Conversion UUID.
+          description: Conversion UUID
         - name: payer_entity_type
           in: formData
           required: false
@@ -10704,7 +10753,7 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity.
+          description: Legal entity
         - name: payer_company_name
           in: formData
           required: false
@@ -10724,7 +10773,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: payer_address
           in: formData
           required: false
@@ -10734,7 +10783,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: payer_state_or_province
           in: formData
           required: false
@@ -10744,14 +10793,14 @@ paths:
           in: formData
           required: false
           type: string
-          description: Two-letter country code.
+          description: Two-letter ISO country code.
         - name: payer_date_of_birth
           in: formData
           required: false
           type: string
           description: >-
-            If "payer_entity_type" is "company", company registration date. If
-            "payer_entity_type" is "individual", date of birth. ISO 8601 format
+            If "payer_entity_type" is "company", this is the company registration date. If
+            "payer_entity_type" is "individual", this is the individual's date of birth. ISO 8601 format
             YYYY-MM-DD.
         - name: payer_identification_type
           in: formData
@@ -10821,7 +10870,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Fee amount.
+          description: Fee amount
         - name: fee_currency
           in: formData
           required: false
@@ -10859,6 +10908,14 @@ paths:
               category: type
               message: Invalid Payment type
               params: ''
+            - code: payment_type_not_in_range
+              category: type
+              message: 'payment_type should be in range: priority, regular'
+              params: ''
+            - code: currency_is_in_invalid_format
+              category: type
+              message: currency is not a valid ISO 4217 currency code
+              params: ''
             - code: currency_length_is_invalid
               category: currency
               message: currency should be 3 character(s) long
@@ -10879,6 +10936,10 @@ paths:
               category: beneficiary_id
               message: beneficiary_id is required
               params: ''
+            - code: invalid_beneficiary_currency
+              category: beneficiary_currency
+              message: You cannot assign this Beneficiary to the Payment as it is the incorrect currency
+              params: ''
             - code: invalid_beneficiary_id
               category: beneficiary_id
               message: Unknown beneficiary_id
@@ -10893,38 +10954,21 @@ paths:
               category: payer_entity_type
               message: 'payer_entity_type should be in range: individual, company'
               params: ''
-            - code: payer_entity_type_is_missing
+            - code: payer_details_are_missing
               category: payer_entity_type
-              message: Payer entity type is missing
-              params: ''
-            - code: payer_company_name_is_missing
-              category: payer_company_name
-              message: Payer company name is missing
-              params: ''
-            - code: payer_first_name_is_missing
-              category: payer_first_name
-              message: Payer first name is missing
-              params: ''
-            - code: payer_last_name_is_missing
-              category: payer_last_name
-              message: Payer last name is missing
-              params: ''
-            - code: payer_city_is_missing
-              category: payer_city
-              message: Payer city is missing
-              params: ''
+              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+
+
             - code: unsupported_payer_country_code
               category: payer_country_code
               message: Payer country is not supported
               params: ''
-            - code: payer_state_or_province_is_missing
-              category: payer_state_or_province
-              message: Payer state or province is missing
+            - code: payer_country_is_in_invalid_format
+              category: payer_country
+              message: payer_country is not a valid ISO 3166-1 Alpha-2 country code
               params: ''
-            - code: payer_postcode_is_missing
-              category: payer_postcode
-              message: Payer postcode is missing
-              params: ''
+
             - code: payer_date_of_birth_type_is_wrong
               category: payer_date_of_birth
               message: payer_date_of_birth should be of date type
@@ -10941,22 +10985,9 @@ paths:
               category: payer_date_of_birth
               message: payer_date_of_birth should be earlier
               params: ''
-            - code: identification_type_is_missing
-              category: payer_identification_type
-              message: identification_type is missing
-              params: ''
-            - code: identification_type_is_invalid
-              category: payer_identification_type
-              message: identification_type is invalid
-              params: ''
-            - code: identification_value_is_missing
-              category: payer_identification_value
-              message: identification_value is missing
-              params: ''
-            - code: identification_value_is_invalid
-              category: payer_identification_value
-              message: identification_value is invalid
-              params: ''
+
+
+
             - code: invalid_conversion_id
               category: conversion_id
               message: Conversion could not be found
@@ -10965,34 +10996,48 @@ paths:
               category: conversion_id
               message: The conversion is already settled
               params: ''
-            - code: invalid_payment_date
+            - code: invalid_amount_for_conversion
+              category: conversion_id
+              message: The payment amount is more than the value of the conversion
+              params: ''
+
+            - code: payment_date_type_is_wrong
               category: payment_date
-              message: The payment date is invalid
+              message: payment_date should be of date type
               params: ''
             - code: payment_date_is_too_early
               category: payment_date
               message: The payment date cannot be sooner than the conversion date
               params: ''
+            - code: reason_is_too_long
+              category: reference
+              message: reference can not be longer than 255 character(s)
+              params: ''
             - code: reference_is_too_long
               category: reference
               message: reference can not be longer than 255 character(s)
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: reference
+              message: id should be in UUID format
               params: ''
             - code: charge_type_not_available
               category: charge_type
               message: Not available charge_type has been provided
               params: '{ "charge_type" => "shared, ours" }'
-            - code: invalid_charge_type
+            - code: charge_type_not_in_range
               category: charge_type
-              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              message:  'charge_type should be in range: ours, shared'
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
               params: ''
-            - code: contact_not_found
+            - code: on_behalf_of_is_not_valid_UUID
               category: on_behalf_of
-              message: Contact was not found for this id
+              message: on_behalf_of should be in UUID format
               params: ''
+
             - code: on_behalf_of_charge_type_not_available
               category: on_behalf_of
               message: Not available charge_type has been provided for on_behalf_of
@@ -11012,10 +11057,22 @@ paths:
               category: fee_currency
               message: fee_currency is not a valid ISO 4217 currency code
               params: '{ "type" => "currency" }'
+            - code: purpose_code_is_missing
+              category: purpose_code
+              message: Purpose code is missing
+              params: ''
+            - code: incorrect_purpose_code
+              category: purpose_code
+              message: Purpose code is invalid
+              params: ''
             - code: unsupported_beneficiary_country_code
               category: beneficiary_country_code
               message: Beneficiary country is not supported
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/ValidatePaymentError'
           headers:
@@ -11041,6 +11098,11 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+          x-errors:
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
         '429':
           description: Too many requests.
           x-errors:
@@ -15876,6 +15938,7 @@ definitions:
           - 'false'
       creator_contact_id:
         type: string
+        description: Contact UUID of beneficiary creator.
       bank_address:
         type: array
         items:
@@ -16133,6 +16196,7 @@ definitions:
         type: string
       creator_contact_id:
         type: string
+        description: Contact UUID of conversion creator.
       short_reference:
         type: string
       settlement_date:
@@ -19102,62 +19166,89 @@ definitions:
           validation_rule: '^.{1,255}'
   Payment:
     type: object
-    description: Payment.
+    description: Payment
     properties:
       id:
         type: string
+        description: Payment UUID
       short_reference:
         type: string
+        description: Short reference code.
       beneficiary_id:
         type: string
+        description: Beneficiary UUID
       conversion_id:
         type: string
+        description: Conversion UUID
       amount:
         type: string
+        description: Payment amount
       currency:
         type: string
+        description: Payment currency
       status:
         type: string
+        description: Payment status (new or ready_to-send).
       payment_type:
         type: string
+        description: Type of payment - priority (SWIFT) or regular (local).
       reference:
         type: string
+        description: Payment reference
       reason:
         type: string
+        description: Reason for payment.
       estimated_arrival:
         type: string
+        description: Estimated date of payment.
       payment_date:
         type: string
+        description: Payment date.
       transferred_at:
         type: string
+        description: Date of payment processing.
       authorisation_steps_required:
         type: string
+        description: Number of approvals required for the payment.
       creator_contact_id:
         type: string
+        description: Contact UUID of payment creator.
       last_updater_contact_id:
         type: string
+        description: Contact UUID of user who last updated the record.
       failure_reason:
         type: string
+        description: A reason for why the payment failed.
       payer_id:
         type: string
+        description: Payer UUID.
       created_at:
         type: string
+        description: Datetime of when the payment was created.
       updated_at:
         type: string
+        description: Datetime of when the payment was last updated.
       payment_group_id:
         type: string
+        description: Payment group ID.
       unique_request_id:
         type: string
+        description: The user-generated idempotency key provided for the payment.
       failure_returned_amount:
         type: string
+        description: The amount returned on failure.
       ultimate_beneficiary_name:
         type: string
+        description: The name of the ultimate beneficiary.
       purpose_code:
         type: string
+        description: Payment purpose code.
       fee_amount:
         type: string
+        description: Fee amount
       fee_currency:
         type: string
+        description: Currency code for fee.
     example:
       id: 543477161-91de-012f-e284-1e0030c7f3123
       short_reference: 140416-GGJBNQ001
@@ -19273,16 +19364,22 @@ definitions:
     properties:
       payment_date:
         type: string
+        description: The date when the payment will be released.
       payment_delivery_date:
         type: string
+        description: Date that we expect the payment to be delivered and available in the beneficiary bank account.
       payment_cutoff_time:
         type: string
+        description: Calculated cut-off date and time.
       payment_type:
         type: string
+        description: Type of payment - priority (SWIFT) or regular (local).
       currency:
         type: string
+        description: The 3-letter ISO code of the currency of the payment.
       bank_country:
         type: string
+        description: The 2-letter ISO code of the country where the payment is sent.
     example:
       payment_date: "2019-02-11"
       payment_delivery_date: "2019-02-11T00:00:00+00:00"
@@ -19292,7 +19389,7 @@ definitions:
       bank_country: "MX"
   PaymentFee:
     type: object
-    description: Payment Fee.
+    description: Payment fee.
     required:
       - id
       - name
@@ -19306,26 +19403,26 @@ definitions:
       id:
         type: string
         format: uuid
-        description: ID of the payment fee
+        description: ID of the payment fee.
       name:
         type: string
-        description: name of the payment fee
+        description: Name of the payment fee.
       currency:
         type: string
-        description: The fee currency
+        description: The fee currency.
       regular_amount:
         type: string
-        description: The fee regular amount
+        description: The fee regular amount.
       priority_shared_amount:
         type: string
-        description: The fee priority shared amount
+        description: The fee priority shared amount.
       priority_ours_amount:
         type: string
-        description: The fee priority our amount
+        description: The fee priority our amount.
       owner_account_id:
         type: string
         format: uuid
-        description: The ID of the owner account
+        description: The ID of the owner account.
     example:
       id: 49521d55-5dd8-4362-8c2d-03b02b1a714b
       name: 1updfee_table_AUD4
@@ -19345,11 +19442,11 @@ definitions:
       id:
         type: string
         format: uuid
-        description: ID of the payment fee
+        description: ID of the payment fee.
       account_id:
         type: string
         format: uuid
-        description: ID of the sub-account the rule is assigned to
+        description: ID of the sub-account the rule is assigned to.
     example:
       id: a6c4a482-1a56-49ea-be55-b9b0bb92a9b2
       account_id: 0178a7ba-9a77-4c74-af71-a5f650f00e09
@@ -19396,7 +19493,7 @@ definitions:
                   maxlength: 255
   PaymentFeeRule:
     type: object
-    description: PaymentFeeRule.
+    description: Payment fee rule.
     required:
       - payment_type
       - charge_type
@@ -19459,7 +19556,7 @@ definitions:
       bank_account_country: IN
   PaymentFeeUnassignment:
     type: object
-    description: Payment Fee Unassignment.
+    description: Payment fee unassignment.
     required:
       - account_id
     additionalProperties: false
@@ -19520,8 +19617,10 @@ definitions:
         description: Unique ID of the Payment Confirmation.
       payment_id:
         type: string
+        description: Unique ID for the payment the confirmation relates to.
       account_id:
         type: string
+        description: Account ID
       short_reference:
         type: string
         description: Short reference for the Payment Confirmation.
@@ -19534,15 +19633,15 @@ definitions:
       created_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation was created
+        description: Datetime of when the Payment Confirmation was created.
       updated_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation was last updated
+        description: Datetime of when the Payment Confirmation was last updated.
       expires_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation will expire
+        description: Datetime of when the Payment Confirmation will expire.
     example:
       id: 123123121-91de-012f-e284-1e0030c7f3111
       payment_id: 543477161-91de-012f-e284-1e0030c7f3123
@@ -19559,8 +19658,10 @@ definitions:
     properties:
       mt103:
         type: string
+        description: The MT103 message.
       status:
         type: string
+        description: The status of the submission.
       submission_ref:
         type: string
     example:
@@ -19587,10 +19688,10 @@ definitions:
     properties:
       uetr:
         type: string
-        description: Unique End-to-end Transaction Reference
+        description: Unique End-to-end Transaction Reference.
       transaction_status:
         type: object
-        description: Status of the transaction
+        description: Status of the transaction.
         required:
           - status
           - reason
@@ -19600,22 +19701,22 @@ definitions:
             description: Current status
           reason:
             type: string
-            description: reason for current status
+            description: Reason for current status.
       initiation_time:
         type: string
         format: date-time
-        description: Time of Initiation
+        description: Time of initiation.
       completion_time:
         type: string
         format: date-time
-        description: Time of completeion
+        description: Time of completion.
       last_update_time:
         type: string
         format: date-time
-        description: Time of last update
+        description: Time of last update.
       payment_events:
         type: array
-        description: List of events that have been applied to the payment
+        description: List of events that have been applied to the payment.
         items:
           type: object
           description: An object describing an event that has been applied to the payment.
@@ -19676,7 +19777,7 @@ definitions:
           last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
-    description: QuotePaymentFee.
+    description: Quote payment fee.
     required:
       - account_id
       - payment_currency
@@ -19689,25 +19790,25 @@ definitions:
     properties:
       account_id:
         type: string
-        description: Tha account Id
+        description: Tha account Id.
       payment_currency:
         type: string
-        description: The currency of the payment
+        description: The currency of the payment.
       payment_destination_country:
         type: string
-        description: The destination country for the payment
+        description: The destination country for the payment.
       payment_type:
         type: string
-        description: The payment type the fee is applicable to
+        description: The payment type the fee is applicable to.
       charge_type:
         type: string
-        description: The charge type the fee is applicable to
+        description: The charge type the fee is applicable to.
       fee_amount:
         type: string
-        description: The fee amount
+        description: The fee amount.
       fee_currency:
         type: string
-        description: The fee currency
+        description: The fee currency.
     example:
        account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
        payment_currency: USD
@@ -20030,17 +20131,17 @@ definitions:
     properties:
       account_id:
         type: string
-        description: account identifier.
+        description: Account identifier
       currency:
         type: string
         description: Currency code for currency transferred.
       transferred_amount:
         type: string
-        description: amount of transfer.
+        description: Amount of transfer.
       transfer_completed_at:
         type: string
         format: date-time
-        description: Transfer completion datetime
+        description: Transfer completion datetime.
     example:
       account_id: 6c046c51-2387-4004-8e87-4bf97102e36d
       currency: EUR
@@ -20617,23 +20718,23 @@ definitions:
         description: The name of the withdrawal account
       account_holder_name:
         type: string
-        description: The name of the withdrawal account holder
+        description: The name of the withdrawal account holder.
       account_holder_dob:
         type: string
         format: date
-        description: The DOB of the withdrawal account holder
+        description: The DOB of the withdrawal account holder.
       routing_code:
         type: string
-        description: The routing code of the withdrawal account
+        description: The routing code of the withdrawal account.
       account_number:
         type: string
-        description: The account number of the withdrawal account
+        description: The account number of the withdrawal account.
       currency:
         type: string
-        description: The currency of the withdrawal account
+        description: The currency of the withdrawal account.
       account_id:
         type: string
-        description: The UUID of the CurrencyCloud account the withdrawal account is linked to
+        description: The UUID of the CurrencyCloud account the withdrawal account is linked to.
     example:
       id: ffb9fdea-312b-4bc8-beb9-5e44ee2d2a8c
       account_name: TestAccount
