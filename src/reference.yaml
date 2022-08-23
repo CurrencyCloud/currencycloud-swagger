@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.36.0
+  version: 2.36.1
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -8047,7 +8047,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key <b>(strongly recommended)</b>.
         - name: ultimate_beneficiary_name
           in: formData
           required: false
@@ -8288,7 +8288,6 @@ paths:
               category: base
               message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
-
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
@@ -12348,9 +12347,8 @@ paths:
       x-api-group: manage
       summary: Get Payment Dates
       description: >-
-        Get a list of invalid payment dates for a given currency over a two month period.
-        A payment date is when a payment will be executed by Currencycloud. Payments cannot be
-        made on some days, for example when banks are closed.
+        Get a list of invalid payment dates for a given currency covering a two months period from the start_date specified. A payment date
+        is when a payment will be executed by Currencycloud. Payments cannot be made on some days, for example when banks are closed.
       operationId: GetPaymentDates
       produces:
         - application/json
@@ -12370,7 +12368,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Payment start date. ISO 8601 format YYYY-MM-DD.
+          description: Payment start date, defaults to today's date. ISO 8601 format YYYY-MM-DD.
       responses:
         '200':
           description: Success.
