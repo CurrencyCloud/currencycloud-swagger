@@ -8321,7 +8321,10 @@ paths:
               category: account
               message: The account is currently not permitted to create payments.
               params: ''
-
+            - code: invalid_fee_amount_format
+              category: fee_amount
+              message: "${FEE_CURRENCY} only supports up to ${CURRENCY_NUMBER_OF_DECIMAL_PLACES} decimal places"
+              params: ''
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
