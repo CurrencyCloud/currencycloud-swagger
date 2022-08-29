@@ -5826,7 +5826,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Create Conversion
-      description: 'Creates a new conversion, and upon success, returns the details of the created conversion.'
+      description: 'Creates a new conversion. Returns the details of the created conversion on success.'
       operationId: CreateConversion
       consumes:
         - multipart/form-data
@@ -5837,17 +5837,17 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: buy_currency
           in: formData
           required: true
           type: string
-          description: Currency purchased. Three-digit code.
+          description: Currency purchased. Three-digit ISO code.
         - name: sell_currency
           in: formData
           required: true
           type: string
-          description: Currency sold. Three-digit code.
+          description: Currency sold. Three-digit ISO code.
         - name: fixed_side
           in: formData
           required: true
@@ -5961,19 +5961,13 @@ paths:
             - code: conversion_above_limit
               category: amount
               message: >-
-                Conversion of GBP equivalent 30000.01 exceeds your limit of
-                30000.00
-              params: >-
-                { "amount" => "30000.01", "limit_amount" => "30000.00", "ccy" =>
-                "GBP" }
+                Conversion of ${currency} equivalent ${amount} exceeds your limit of
+                ${limit_amount}
             - code: conversion_below_limit
               category: amount
               message: >-
-                Conversion of GBP equivalent 999.99 is less than your lower
-                limit of 1000.00
-              params: >-
-                { "amount" => "999.99", "limit_amount" => "1000.00", "ccy" =>
-                "GBP" }
+                Conversion of ${currency} equivalent ${amount} is less than your lower
+                limit of ${limit_amount}
             - code: amount_type_is_wrong
               category: amount
               message: amount should be of numeric type
@@ -6209,7 +6203,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: query
           required: false
@@ -6235,12 +6229,12 @@ paths:
           in: query
           required: false
           type: string
-          description: The currency purchased. Three-digital code.
+          description: The currency purchased- three character ISO code.
         - name: sell_currency
           in: query
           required: false
           type: string
-          description: The currency sold. Three-digit code.
+          description: The currency sold - three character ISO code.
         - name: 'conversion_ids[]'
           in: query
           required: false
@@ -6491,7 +6485,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -6615,7 +6609,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: formData
           required: false
@@ -6635,20 +6629,20 @@ paths:
           in: formData
           required: false
           type: string
-          description: 'Event type, in this case ''self_service_cancellation'''
+          description: 'Event type, in this case ''self_service_cancellation''.'
         - name: event_date_time_from
           in: formData
           required: false
           type: string
           description: >-
-            Allows you to return profit and losses will be done from on or after
+            Allows you to return profit and losses that will be made from on or after
             a defined date/time. ISO 8601 standard.
         - name: event_date_time_to
           in: formData
           required: false
           type: string
           description: >-
-            Allows you to return profit and losses will be done from on or
+            Allows you to return profit and losses that will be made from on or
             before a defined date/time. ISO 8601 standard.
         - name: amount_from
           in: formData
@@ -6675,10 +6669,14 @@ paths:
           type: string
           description: >-
             Scope allows contacts to search all profit and losses at all account
-            levels. Defaults to own. own - allows to search profit and losses on
-            the main account clients - allows to search profit and losses of
-            account sub accounts all - allows to search balances profit and
-            losses account and subaccounts
+            levels. Defaults to own.<br>
+            'own' - search profit and losses on the main account <br>
+            'clients' - search profit and losses of account sub-accounts <br>
+            'all' - search profit and losses of main account and sub-accounts.
+          enum:
+            - own
+            - client
+            - all
         - name: page
           in: formData
           required: false
@@ -6699,6 +6697,9 @@ paths:
           required: false
           type: string
           description: Whether the order is ascending (asc) or descending (desc).
+          enum:
+            - asc
+            - desc
       responses:
         '200':
           description: Success.
@@ -6708,7 +6709,7 @@ paths:
               conversion_profit_and_losses:
                 type: array
                 items:
-                  $ref: '#/definitions/ConversionCancellation'
+                  $ref: '#/definitions/ConversionProfitAndLoss'
               pagination:
                 $ref: '#/definitions/Pagination'
         '400':
@@ -6815,7 +6816,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -6825,7 +6826,7 @@ paths:
           in: query
           required: true
           type: string
-          description: Desired new settlement date of conversion
+          description: Desired new settlement date of conversion.
       responses:
         '200':
           description: Success.
@@ -6927,8 +6928,7 @@ paths:
       x-api-group: convert
       summary: Conversion Date Change
       description: >-
-        Changes the date of the conversion identified by the provided unique id
-        {id}
+        Changes the date of the conversion identified by the provided unique ID {id}.
       operationId: ConversionDateChange
       consumes:
         - multipart/form-data
@@ -6939,17 +6939,17 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: The UUID of the conversion that is being changed
+          description: The UUID of the conversion that is being changed.
         - name: new_settlement_date
           required: true
           type: string
           in: formData
-          description: New conversion settlement date
+          description: New conversion settlement date.
       responses:
         '200':
           description: Success.
@@ -7072,7 +7072,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -7099,13 +7099,13 @@ paths:
               category: id
               message: id should be in UUID format
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
+            - code: amount_type_is_wrong
+              category: amount
+              message: amount should be of numeric type
               params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
+            - code: amount_is_too_small
+              category: amount
+              message: amount can not be smaller than 1
               params: ''
           schema:
             $ref: '#/definitions/GetConversionError'
@@ -7140,6 +7140,11 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: conversion_not_found
+              category: id
+              message: Conversion was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/NotFoundError'
           headers:
@@ -7207,7 +7212,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -7332,7 +7337,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split History
-      description: Returns the history of executed conversion splits specified by a unique ID {id}.
+      description: Returns the history of executed conversion splits, specified by a unique conversion ID {id}.
       operationId: GetConversionSplitHistory
       produces:
         - application/json
@@ -7341,7 +7346,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -7469,7 +7474,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -7575,7 +7580,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Cancel a Conversion
-      description: 'Cancels the conversion identified by the provided unique ID {id}'
+      description: 'Cancels the conversion identified by the provided unique ID {id}.'
       operationId: CancelConversion
       consumes:
         - multipart/form-data
@@ -7586,7 +7591,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -8288,6 +8293,10 @@ paths:
               category: base
               message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
+            - code: invalid_fee_amount_format
+              category: fee_amount
+              message: "${FEE_CURRENCY} only supports up to ${CURRENCY_NUMBER_OF_DECIMAL_PLACES} decimal places"
+              params: ''
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
@@ -10116,12 +10125,12 @@ paths:
           in: query
           required: true
           type: string
-          description: The 3-letter ISO code of the currency of the payment.
+          description: The three letter ISO code of the currency of the payment.
         - name: bank_country
           in: query
           required: true
           type: string
-          description: The 2-letter ISO code of the country where the payment is sent.
+          description: The two letter ISO code of the country where the payment is sent.
       responses:
         '200':
           description: Success.
@@ -11301,7 +11310,7 @@ paths:
           in: query
           required: true
           type: string
-          description: Currency sold. Three-digit code.
+          description: Currency sold - three character ISO code.
         - name: fixed_side
           in: query
           required: true
@@ -16312,18 +16321,21 @@ definitions:
     properties:
       amount:
         type: string
+        description: The cost to cancel the conversion.
       currency:
         type: string
+        description: Currency the amount is shown in.
       event_date_time:
         type: string
         format: date-time
+        description: The date and time of the quote.
     example:
       amount: 100
       currency: GBP
       event_date_time: '2020-07-14T17:03:11.000Z'
   ConversionProfitAndLoss:
     type: object
-    description: Recognised profit / loss on a conversion
+    description: Recognised profit / loss on a conversion.
     properties:
       conversion_profit_and_losses:
         type: array
@@ -16368,8 +16380,10 @@ definitions:
     properties:
       account_id:
         type: string
+        description: Account ID
       contact_id:
         type: string
+        description: Contact ID for the contact who made the cancellation.
       event_account_id:
         type: string
       event_contact_id:
@@ -16487,20 +16501,26 @@ definitions:
     properties:
       id:
         type: string
+        description: Conversion ID
       short_reference:
         type: string
+        description: Short reference
       sell_currency:
         type: string
+        description: Three character ISO code for currency sold.
       buy_currency:
         type: string
+        description: Three character ISO code for currency bought.
       buy_amount:
         type: string
+        description: Buy amount
       sell_amount:
         type: string
-      settles_at:
+        description: Sell amount
+      settlement_date:
         type: string
         format: date-time
-      delivery_at:
+      conversion_date:
         type: string
         format: date-time
       status:
