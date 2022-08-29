@@ -6188,13 +6188,133 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  '/conversions/{id}':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Get Conversion
+      description: Gets a conversion record for the provided unique ID.
+      operationId: GetConversion
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Conversion'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /conversions/find:
     get:
       tags:
         - Conversions
       x-api-group: convert
       summary: Find Conversions
-      description: Find conversions based on search parameters. If no search parameters are provided, all conversions under the house account are returned.
+      description: Finds conversions based on search parameters. If no search parameters are provided, all conversions under the house account are returned.
       operationId: FindConversions
       produces:
         - application/json
@@ -6470,14 +6590,15 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/conversions/{id}':
+  '/conversions/{id}/cancellation_quote':
     get:
       tags:
         - Conversions
       x-api-group: convert
-      summary: Get Conversion
-      description: Get a conversion record for the provided unique ID.
-      operationId: GetConversion
+      summary: Quote Conversion Cancellation
+      description: >-
+        Gets a quote of the projected cost to cancel a conversion identified by a provided unique ID {id}.
+      operationId: ConversionCancellationQuote
       produces:
         - application/json
       parameters:
@@ -6491,16 +6612,11 @@ paths:
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Conversion'
+            $ref: '#/definitions/ConversionCancellationQuote'
           headers:
             X-Request-Id:
               type: string
@@ -6543,6 +6659,387 @@ paths:
           description: Resource not found.
           schema:
             $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /conversions/{id}/cancel:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Cancel a Conversion
+      description: 'Cancels the conversion identified by the provided unique ID {id}.'
+      operationId: CancelConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
+        - name: notes
+          required: false
+          type: string
+          in: formData
+          description: Notes describing the reason for cancellation.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionProfitAndLoss'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  '/conversions/{id}/date_change_quote':
+    get:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Quote Conversion Date Change
+      description: >-
+        Gets a quote of the projected cost to change the date of a conversion identified
+        by a provided unique ID {id}.
+      operationId: ConversionDateChangeQuote
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
+        - name: new_settlement_date
+          in: query
+          required: true
+          type: string
+          description: Desired new settlement date of conversion.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionDateChange'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+  /conversions/{id}/date_change:
+    post:
+      tags:
+        - Conversions
+      x-api-group: convert
+      summary: Conversion Date Change
+      description: >-
+        Changes the date of the conversion identified by the provided unique ID {id}.
+      operationId: ConversionDateChange
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: The UUID of the conversion that is being changed.
+        - name: new_settlement_date
+          required: true
+          type: string
+          in: formData
+          description: New conversion settlement date.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/ConversionDateChange'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: new_settlement_date_invalid_in_past
+              category: new_settlement_date
+              message: New settlement date has to be today or greater than today's date
+              params: ''
+            - code: new_settlement_date_invalid
+              category: new_settlement_date
+              message: >-
+                Invalid new settlement date, next valid date time is -
+                YYYY-MM-DDT15:30:00Z
+              params: ''
+          schema:
+            $ref: '#/definitions/GetConversionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
           headers:
             X-Request-Id:
               type: string
@@ -6799,270 +7296,13 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-  '/conversions/{id}/date_change_quote':
-    get:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Quote Conversion Date Change
-      description: >-
-        Get a quote of the projected cost to change the date of a conversion identified
-        by a provided unique ID {id}.
-      operationId: ConversionDateChangeQuote
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
-        - name: new_settlement_date
-          in: query
-          required: true
-          type: string
-          description: Desired new settlement date of conversion.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionDateChange'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporarily unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  /conversions/{id}/date_change:
-    post:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Conversion Date Change
-      description: >-
-        Changes the date of the conversion identified by the provided unique ID {id}.
-      operationId: ConversionDateChange
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: The UUID of the conversion that is being changed.
-        - name: new_settlement_date
-          required: true
-          type: string
-          in: formData
-          description: New conversion settlement date.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionDateChange'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-            - code: invalid_extra_parameters
-              category: base
-              message: Invalid extra parameters extra_parameter
-              params: '{ "parameters" => "extra_parameter" }'
-            - code: new_settlement_date_invalid_in_past
-              category: new_settlement_date
-              message: New settlement date has to be today or greater than today's date
-              params: ''
-            - code: new_settlement_date_invalid
-              category: new_settlement_date
-              message: >-
-                Invalid new settlement date, next valid date time is -
-                YYYY-MM-DDT15:30:00Z
-              params: ''
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporarily unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
   '/conversions/{id}/split_preview':
     get:
       tags:
         - Conversions
       x-api-group: convert
       summary: Split Preview
-      description: Get a preview of the details of each part of a split conversion
+      description: Gets a preview of the details of each part of a split conversion
         specified by the provided unique conversion ID {id}.
       operationId: GetConversionSplitPreview
       produces:
@@ -7411,246 +7651,6 @@ paths:
           description: Resource not found.
           schema:
             $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporarily unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  '/conversions/{id}/cancellation_quote':
-    get:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Quote Conversion Cancellation
-      description: >-
-        Get a quote of the projected cost to cancel a conversion identified by a provided unique ID {id}.
-      operationId: ConversionCancellationQuote
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionCancellationQuote'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporarily unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  /conversions/{id}/cancel:
-    post:
-      tags:
-        - Conversions
-      x-api-group: convert
-      summary: Cancel a Conversion
-      description: 'Cancels the conversion identified by the provided unique ID {id}.'
-      operationId: CancelConversion
-      consumes:
-        - multipart/form-data
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
-        - name: notes
-          required: false
-          type: string
-          in: formData
-          description: Notes describing the reason for cancellation.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/ConversionProfitAndLoss'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-            - code: invalid_extra_parameters
-              category: base
-              message: Invalid extra parameters extra_parameter
-              params: '{ "parameters" => "extra_parameter" }'
-          schema:
-            $ref: '#/definitions/GetConversionError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
           headers:
             X-Request-Id:
               type: string
@@ -11278,6 +11278,145 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /rates/find:
+      get:
+        tags:
+          - Rates
+        x-api-group: convert
+        summary: Get Basic Rates
+        description: Gets indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br>
+              This endpoint is intended to provide an indication of the rate available in the
+              market and can support requests for multiple currency pairs, so is good for polling
+              requirements such as live FX ticker widgets. This endpoint should be used where speed,
+              availability and the ability to request multiple currency pairs is important.
+        operationId: GetBasicRates
+        produces:
+          - application/json
+        parameters:
+          - name: X-Auth-Token
+            in: header
+            required: true
+            type: string
+            description: Authentication token
+          - name: currency_pair
+            in: query
+            required: true
+            type: string
+            description: 'Concatenated string of the two currencies traded, e.g. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
+          - name: on_behalf_of
+            in: query
+            required: false
+            type: string
+            description: A contact UUID for the sub-acccount you're acting on behalf of.
+          - name: ignore_invalid_pairs
+            in: query
+            required: false
+            type: boolean
+            description: Ignore the validation of currency pairs.
+        responses:
+          '200':
+            description: Success.
+            schema:
+              $ref: '#/definitions/RatesBasic'
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '400':
+            description: Client error.
+            x-errors:
+              - code: currency_pair_is_too_long
+                category: currency_pair
+                message: currency_pair can not be longer than 2450 character(s)
+                params: '{ "maxlength" => 2450 }'
+              - code: currency_pair_is_too_short
+                category: currency_pair
+                message: currency_pair can not be shorter than 6 letter(s)
+                params: '{ "minlength" => 6 }'
+              - code: currency_pair_is_required
+                category: currency_pair
+                message: currency_pair is required
+                params: ''
+              - code: invalid_currency_pair
+                category: currency_pair
+                message: Invalid currency pair
+                params: '{ "currency_pair" => ["AAABBB"] }'
+              - code: on_behalf_of_self
+                category: on_behalf_of
+                message: You cannot act on behalf of your own Contact
+                params: ''
+              - code: contact_not_found
+                category: on_behalf_of
+                message: Contact was not found for this id
+                params: ''
+            schema:
+              $ref: '#/definitions/GetBasicRatesError'
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '401':
+            description: Unauthorized.
+            x-errors:
+              - code: invalid_supplied_credentials
+                category: username
+                message: Authentication failed with the supplied credentials
+                params: ''
+            schema:
+              $ref: '#/definitions/UnauthorizedError'
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '404':
+            description: Resource not found.
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '429':
+            description: Too many requests.
+            x-errors:
+              - code: too_many_requests
+                category: base
+                message: >-
+                  Too many requests have been made to the api. Please refer to the
+                  Developer Center for more information
+                params: ''
+            schema:
+              $ref: '#/definitions/RateLimitError'
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '500':
+            description: Internal server error
+            x-errors:
+              - code: internal_server_error
+                category: base
+                message: Internal server error
+                params: ''
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '503':
+            description: Service is temporary unavailable
+            x-errors:
+              - code: service_unavailable
+                category: base
+                message: Service is temporarily unavailable
+                params: ''
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          default:
+            description: Unexpected error.
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
   /rates/detailed:
     get:
       tags:
@@ -11285,7 +11424,7 @@ paths:
       x-api-group: convert
       summary: Get Detailed Rates
       description: >-
-        Get a detailed, tradeable rate quote to convert money from one currency to another.
+        Gets a detailed, tradeable rate quote to convert money from one currency to another.
         The quotation provided will be based on the spread table of the authenticated user.
         There is also the option to provide a specific date for the conversion to occur. <br><br>
         This endpoint provides a current tradeable rate for a single currency pair.
@@ -11300,17 +11439,17 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: buy_currency
           in: query
           required: true
           type: string
-          description: Currency purchased. Three-digit code.
+          description: Currency purchased - three letter ISO code.
         - name: sell_currency
           in: query
           required: true
           type: string
-          description: Currency sold - three character ISO code.
+          description: Currency sold - three letter ISO code.
         - name: fixed_side
           in: query
           required: true
@@ -11335,7 +11474,7 @@ paths:
           type: string
           format: date
           description: >-
-            Date of delivery of purchase currency. ISO 8601 format YYYY-MM-DD.
+            Date of delivery of purchased currency. ISO 8601 format YYYY-MM-DD.
             If not specified, deals settle in two working days.
         - name: conversion_date_preference
           in: query
@@ -11451,145 +11590,6 @@ paths:
               params: ''
           schema:
             $ref: '#/definitions/GetDetailedRatesError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '401':
-          description: Unauthorized.
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: Authentication failed with the supplied credentials
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '404':
-          description: Resource not found.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '429':
-          description: Too many requests.
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                Too many requests have been made to the api. Please refer to the
-                Developer Center for more information
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '500':
-          description: Internal server error
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: Internal server error
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '503':
-          description: Service is temporary unavailable
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: Service is temporarily unavailable
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        default:
-          description: Unexpected error.
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-  /rates/find:
-    get:
-      tags:
-        - Rates
-      x-api-group: convert
-      summary: Get Basic Rates
-      description: Get indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br>
-            This endpoint is intended to provide an indication of the rate available in the
-            market and can support requests for multiple currency pairs, so is good for polling
-            requirements such as live FX ticker widgets. This endpoint should be used where speed,
-            availability and the ability to request multiple currency pairs is important.
-      operationId: GetBasicRates
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: Authentication token.
-        - name: currency_pair
-          in: query
-          required: true
-          type: string
-          description: 'Concatenated string of the two currencies traded, e.g. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
-        - name: ignore_invalid_pairs
-          in: query
-          required: false
-          type: boolean
-          description: Ignore the validation of currency pairs.
-      responses:
-        '200':
-          description: Success.
-          schema:
-            $ref: '#/definitions/RatesBasic'
-          headers:
-            X-Request-Id:
-              type: string
-              description: A unique reference for the request.
-        '400':
-          description: Client error.
-          x-errors:
-            - code: currency_pair_is_too_long
-              category: currency_pair
-              message: currency_pair can not be longer than 2450 character(s)
-              params: '{ "maxlength" => 2450 }'
-            - code: currency_pair_is_too_short
-              category: currency_pair
-              message: currency_pair can not be shorter than 6 letter(s)
-              params: '{ "minlength" => 6 }'
-            - code: currency_pair_is_required
-              category: currency_pair
-              message: currency_pair is required
-              params: ''
-            - code: invalid_currency_pair
-              category: currency_pair
-              message: Invalid currency pair
-              params: '{ "currency_pair" => ["AAABBB"] }'
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
-          schema:
-            $ref: '#/definitions/GetBasicRatesError'
           headers:
             X-Request-Id:
               type: string
@@ -11952,6 +11952,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+
   /reference/conversion_dates:
     get:
       tags:
@@ -16239,6 +16240,7 @@ definitions:
       status:
         type: string
       currency_pair:
+        description: Concatenated string of the two currencies traded.
         type: string
       buy_currency:
         type: string
@@ -19888,32 +19890,46 @@ definitions:
     description: Detailed rate information.
     properties:
       settlement_cut_off_time:
+        description: Time the funds need to be available by.
         type: string
       currency_pair:
+        description: Concatenated string of the two currencies traded,
         type: string
       client_buy_currency:
+        description: The buy currency - three letter ISO code.
         type: string
       client_sell_currency:
+        description: The sell currency - three letter ISO code.
         type: string
       client_buy_amount:
+        description: Client buy amount.
         type: string
       client_sell_amount:
+        description: Client sell amount.
         type: string
       fixed_side:
+        description: The fixed side - buy or sell.
         type: string
       mid_market_rate:
+        description: The mid-market rate - the midpoint between the buy and sell prices of the two currencies.
         type: string
       core_rate:
+        description: Wholesale rate
         type: string
       partner_rate:
+        description: The wholesale rate + spread.
         type: string
       client_rate:
+        description: The rate to pass on to your customer.
         type: string
       deposit_required:
+        description: Is a deposit required?
         type: string
       deposit_amount:
+        description: The deposit amount.
         type: string
       deposit_currency:
+        description: Deposit currency - three letter ISO code.
         type: string
     example:
       settlement_cut_off_time: '2020-12-31T23:59:59.000Z'
