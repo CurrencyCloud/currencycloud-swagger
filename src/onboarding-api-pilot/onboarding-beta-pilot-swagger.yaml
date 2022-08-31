@@ -1591,10 +1591,10 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
 servers:
-- url: http://{defaultHost}
+- url: https://{defaultHost}/onboarding
   variables:
     defaultHost:
-      default: localhost:35039
+      default: devapi.currencycloud.com
 components:
   securitySchemes:
     AuthToken:
