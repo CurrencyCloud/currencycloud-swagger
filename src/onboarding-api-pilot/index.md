@@ -20,7 +20,7 @@ Comprehensive documentation on request parameters and response payloads for ever
 
 ## Postman
 
-A Postman collection for interacting and testing our API can be found here: [Onboarding Beta Pilot Postman Collection](postman/collections/api-onboarding_d0b129cc-ceee-476a-a3b0-2b4d917d01ef.json)
+A Postman collection for interacting and testing our API can be found here: [Onboarding Beta Pilot Postman Collection](postman/collections/api-onboarding.postman_collection.json)
 The relevant Postman environment can be found here: [Onboarding Beta Pilot Postman Environment](postman/environments/Demo-API-Onboarding.postman_environment.json)
 
 You can also generate your own Postman collection by importing the Swagger/OpenAPI 3.0.3 file above (API Reference section) into Postman.
