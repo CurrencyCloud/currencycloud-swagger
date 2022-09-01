@@ -748,7 +748,7 @@ paths:
       - AuthToken: []
       parameters: []
       responses:
-        '422':
+        '400':
           description: Invalid parameter in request params
           content:
             application/json:
@@ -1612,6 +1612,8 @@ components:
           type: boolean
         agreed_to_terms_and_conditions:
           type: boolean
+        agreed_to_corporate_authority:
+          type: boolean
         country:
           type: string
           enum:
@@ -2136,6 +2138,8 @@ components:
         affiliate_code:
           type: string
           nullable: true
+        agreed_to_corporate_authority:
+          type: boolean
         country:
           type: string
           enum:
@@ -4213,7 +4217,6 @@ components:
           items:
             type: string
             enum:
-            - account_creator
             - director
             - ultimate_business_owner
             - user
@@ -4859,6 +4862,10 @@ components:
         referred_by:
           type: string
           nullable: true
+        products_required:
+          type: array
+          items:
+            type: string
         state:
           type: string
         phone_number:
@@ -4875,9 +4882,10 @@ components:
       - id
       - agreed_to_marketing_emails
       - agreed_to_terms_and_conditions
+      - brand_name
       - country
       - entity_type
-      - brand_name
+      - products_required
       - created_at
       - updated_at
     form_with_associations:
@@ -4885,12 +4893,18 @@ components:
       properties:
         id:
           type: string
+        detached_document_ids:
+          type: array
+          items:
+            type: string
         affiliate_code:
           type: string
           nullable: true
         agreed_to_marketing_emails:
           type: boolean
         agreed_to_terms_and_conditions:
+          type: boolean
+        agreed_to_corporate_authority:
           type: boolean
         country:
           type: string
@@ -4905,6 +4919,10 @@ components:
         referred_by:
           type: string
           nullable: true
+        products_required:
+          type: array
+          items:
+            type: string
         state:
           type: string
         phone_number:
@@ -4932,6 +4950,7 @@ components:
       - country
       - entity_type
       - brand_name
+      - products_required
       - created_at
       - updated_at
     business_information:
