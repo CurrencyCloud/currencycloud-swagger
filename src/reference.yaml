@@ -98,17 +98,17 @@ paths:
       x-api-group: manage
       summary: Login
       description: >-
-        The Currencycloud API authentication and authorization endpoint.
+        Authenticates and authorizes a user to the Currencycloud API.<br><br>
 
         Submit a login ID and API key for a Currencycloud account, you can register
         for and API key [here]https://developer.currencycloud.com/register-for-an-api-key/.
-        A temporary authentication token is returned following a succesful login.
+        A temporary authentication token is returned following a succesful login.<br><br>
 
         The authentication token is required to make requests to all other
         endpoints in the Currencycloud API. Tokens expire after 30 minutes of
-        inactivity.
+        inactivity.<br><br>
 
-        Token requests are limited to 10 calls per minute.
+        Token requests are limited to 10 calls per minute.<br><br>
 
         For security, Currencycloud accounts are disabled when four unsuccessful
         login attempts are made within a short period. In these circumstances, account
@@ -318,7 +318,7 @@ paths:
         - Accounts
       x-api-group: manage
       summary: Create Account
-      description: 'Create a new sub-account. Returns the new account entity on success.'
+      description: 'Creates a new sub-account. Returns the new account entity on success.'
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -644,7 +644,7 @@ paths:
       - Accounts
     x-api-group: manage
     summary: Get Account
-    description: Get an account or sub-account owned by the authenticated user.
+    description: Gets an account or sub-account owned by the authenticated user.
     operationId: GetAccount
     produces:
       - application/json
@@ -768,7 +768,7 @@ paths:
     x-api-group: manage
     summary: Update Account
     description: >-
-      Update a sub-account owned by the authenticated user. The updated account entity is returned on success.
+      Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
     operationId: UpdateAccount
     consumes:
       - multipart/form-data
@@ -1101,7 +1101,7 @@ paths:
         - Accounts
       x-api-group: manage
       summary: Get Authenticating Account
-      description: Get the authenticated user's main account.
+      description: Gets the authenticated user's main account.
       operationId: GetAuthenticatingAccount
       produces:
         - application/json
@@ -1189,7 +1189,7 @@ paths:
       x-api-group: manage
       summary: Find Accounts
       description: >-
-        Get account and any sub-accounts owned by the authenticated user. Optionally filter by
+        Gets account and any sub-accounts owned by the authenticated user. Optionally filter by
         account status and other criteria.
       operationId: FindAccounts
       produces:
@@ -1265,11 +1265,6 @@ paths:
             - no
             - not required
           description: Has the bank account been verified?
-        - name: fuzzy_search_string
-          in: query
-          required: false
-          type: string
-          description: Partial string of Account name (used only in Direct).
         - name: page
           in: query
           required: false
@@ -1342,6 +1337,10 @@ paths:
               category: status
               message: 'status should be in range: enabled, disabled, enabled_no_trading'
               params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            - code: invalid_extra_parameters
+              category: legal_entity_type
+              message: 'Invalid extra parameters: ${legal_entity_type}'
+              params: ''
             - code: street_is_too_long
               category: street
               message:  street can not be longer than 150 character(s)
@@ -1444,7 +1443,7 @@ paths:
       - Accounts
       x-api-group: manage
       summary: Get the Payment Charges Settings for a given account.
-      description: Retrieve the Payment Charges Settings for the given account.
+      description: Retrieves the Payment Charges Settings for the given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
       - application/json
@@ -1715,7 +1714,7 @@ paths:
     x-api-group: manage
     summary: Get Balance
     description: >-
-      Get the balance for a currency from the account of the authenticated
+      Gets the balance for a currency from the account of the authenticated
       user.
     operationId: GetBalance
     produces:
@@ -1851,7 +1850,7 @@ paths:
       x-api-group: manage
       summary: Find Balances
       description: >-
-        Search for currency balances in the main account or a sub-account owned
+        Searches for currency balances in the main account or a sub-account owned
         by the authenticated user.
       operationId: FindBalances
       produces:
@@ -1861,7 +1860,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: query
           required: false
@@ -1898,7 +1897,7 @@ paths:
           in: query
           required: false
           type: integer
-          description: Page number.
+          description: Page number
         - name: per_page
           in: query
           required: false
@@ -2048,7 +2047,7 @@ paths:
       x-api-group: manage
       summary: Top Up Margin Balance
       description: >-
-        Top up the Margin Balance
+        Tops up the margin balance.
       operationId: TopUpMarginBalance
       consumes:
         - multipart/form-data
@@ -2059,7 +2058,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: formData
           required: true
@@ -2185,8 +2184,8 @@ paths:
       x-api-group: pay
       summary: Find Beneficiaries
       description: >-
-        Find beneficiaries attached to the account or any sub-account owned by
-        the authenticating user.
+        Finds beneficiaries attached to the account or any sub-account owned by
+        the authenticated user.
       operationId: FindBeneficiaries
       produces:
         - application/json
@@ -2195,7 +2194,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: query
           required: false
@@ -2220,7 +2219,7 @@ paths:
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
-            Three-digit currency code.
+            Three-letter currency code.
         - name: account_number
           in: query
           required: false
@@ -2288,7 +2287,7 @@ paths:
           enum:
             - individual
             - company
-          description: Legal entity.
+          description: Legal entity
         - name: beneficiary_company_name
           in: query
           required: false
@@ -2366,7 +2365,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Beneficiary external reference
+          description: Beneficiary external reference.
       responses:
         '200':
           description: Success.
@@ -2682,7 +2681,7 @@ paths:
         - Beneficiaries
       x-api-group: pay
       summary: Get Beneficiary
-      description: Get a beneficiary.
+      description: Gets a beneficiary with the given ID.
       operationId: GetBeneficiary
       produces:
         - application/json
@@ -2802,7 +2801,7 @@ paths:
       x-api-group: pay
       summary: Update Beneficiary
       description: >-
-        Update an existing beneficiary. On success, returns the updated
+        Updates an existing beneficiary. On success, returns the updated
         beneficiary entity. <br>
         It is not possible to change a beneficiary's entity type (company or individual)
         by an update. To achieve this, a new beneficiary should be created.
@@ -3242,7 +3241,7 @@ paths:
               params: ''
             - code: beneficiary_state_or_province_is_too_short
               category: beneficiary_state_or_province
-              message: beneficiary_state_or_province_is_too_short
+              message: beneficiary_state_or_province can not be shorter than 1 character(s)
               params: ''
             - code: beneficiary_postcode_is_missing
               category: beneficiary_postcode
@@ -3310,10 +3309,10 @@ paths:
                 routing_code_type_2, routing_code_value_1, routing_code_value_2,
                 bic_swift, iban, default_beneficiary, bank_address, bank_name,
                 name" }
-            - code: payment_types_not_in_range
+            - code: payment_types_not_included_in_list
               category: payment_types
-              message: 'payment_types should be in range: priority, regular'
-              params: '{ "range" => "priority, regular" }'
+              message: 'One or more payment_types items are not included in list'
+              params: '{ "list":"priority, regular" }'
             - code: sort_code_is_missing
               category: routing_code
               message: Sort code is missing
@@ -3459,7 +3458,7 @@ paths:
       x-api-group: pay
       summary: Create Beneficiary
       description: >-
-        Create a new beneficiary. Returns the new beneficiary entity on success.
+        Creates a new beneficiary. Returns the new beneficiary entity on success.
         entity.
       operationId: CreateBeneficiary
       consumes:
@@ -3471,12 +3470,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: name
           in: formData
           required: true
           type: string
-          description: Beneficiary name.
+          description: Beneficiary name
         - name: bank_account_holder_name
           in: formData
           required: true
@@ -3495,12 +3494,12 @@ paths:
           type: string
           description: >-
             Currency in which money is held in the beneficiary's bank account.
-            Three-digit currency code.
+            Three-letter IDO currency code.
         - name: email
           in: formData
           required: false
           type: string
-          description: Email address.
+          description: Email address
         - name: beneficiary_country
           in: formData
           required: false
@@ -3558,12 +3557,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code.
+          description: BIC/SWIFT code
         - name: iban
           in: formData
           required: false
           type: string
-          description: IBAN code.
+          description: IBAN code
         - name: default_beneficiary
           in: formData
           required: false
@@ -3581,7 +3580,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Bank name.
+          description: Bank name
         - name: bank_account_type
           in: formData
           required: false
@@ -3597,7 +3596,7 @@ paths:
           enum:
             - individual
             - company
-          description: Legal entity.
+          description: Legal entity
         - name: beneficiary_company_name
           in: formData
           required: false
@@ -3693,7 +3692,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary external reference
+          description: Beneficiary external reference.
       responses:
         '200':
           description: Success.
@@ -4125,12 +4124,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Beneficiary UUID.
+          description: Beneficiary UUID
         - name: on_behalf_of
           in: formData
           required: false
@@ -4241,7 +4240,7 @@ paths:
       x-api-group: pay
       summary: Validate Beneficiary
       description: >-
-        Validate a new beneficiary's bank details, without actually creating a
+        Validates a new beneficiary's bank details, without actually creating a
         record of the beneficiary. On success, returns an object that represents
         the entity that would be created if the beneficiary was saved.
       operationId: ValidateBeneficiary
@@ -4254,7 +4253,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: bank_country
           in: formData
           required: true
@@ -4329,12 +4328,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code.
+          description: BIC/SWIFT code
         - name: iban
           in: formData
           required: false
           type: string
-          description: IBAN code.
+          description: IBAN code
         - name: bank_address
           in: formData
           required: false
@@ -4344,7 +4343,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Bank name.
+          description: Bank name
         - name: bank_account_type
           in: formData
           required: false
@@ -4360,7 +4359,7 @@ paths:
           enum:
             - individual
             - company
-          description: Legal entity.
+          description: Legal entity
         - name: beneficiary_company_name
           in: formData
           required: false
@@ -4380,12 +4379,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: City.
+          description: City
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
-          description: Postal code.
+          description: Postal code
         - name: beneficiary_state_or_province
           in: formData
           required: false
@@ -4794,7 +4793,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Get Authenticating Contact
-      description: Get the contact record for the authenticated user.
+      description: Gets the contact record for the authenticated user.
       operationId: GetAuthenticatingContact
       produces:
         - application/json
@@ -5064,7 +5063,7 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Get Contact
-      description: Get the contact with the given id.
+      description: Gets the contact for the given ID.
       operationId: GetContact
       produces:
         - application/json
@@ -5175,7 +5174,7 @@ paths:
       x-api-group: manage
       summary: Update Contact
       description: >-
-        Update an existing contact. Returns the updated contact
+        Updates an existing contact. Returns the updated contact
         entity on success.
       operationId: UpdateContact
       consumes:
@@ -5187,12 +5186,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Contact UUID.
+          description: Contact UUID
         - name: first_name
           in: query
           required: false
@@ -5440,7 +5439,7 @@ paths:
       x-api-group: manage
       summary: Create Contact
       description: >-
-        Create a new contact and attach it to a sub-account. Returns
+        Creates a new contact and attaches it to a sub-account. Returns
         the new contact entity on success.
       operationId: CreateContact
       consumes:
@@ -5724,7 +5723,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
       responses:
         '200':
           description: Success.
@@ -7339,6 +7338,10 @@ paths:
               category: id
               message: id should be in UUID format
               params: ''
+            - code: amount_is_required
+              category: amount
+              message: amount is required
+              params: ''
             - code: amount_type_is_wrong
               category: amount
               message: amount should be of numeric type
@@ -7346,6 +7349,38 @@ paths:
             - code: amount_is_too_small
               category: amount
               message: amount can not be smaller than 1
+              params: ''
+            - code: parent_market_buy_amount_less_than_1
+              category: buy_amount
+              message: Remaining parent market buy amount cannot be less than 1
+              params: ''
+            - code: child_market_buy_amount_less_than_1
+              category: buy_amount
+              message: Remaining child market buy amount cannot be less than 1.
+              params: ''
+            - code: parent_market_sell_amount_less_than_1
+              category: sell_amount
+              message: Remaining parent market sell amount cannot be less than 1
+              params: ''
+            - code: child_market_sell_amount_less_than_1
+              category: sell_amount
+              message: Remaining child market sell amount cannot be less than 1.
+              params: ''
+            - code: split_amount_below_deposit_amount
+              category: amount
+              message: Remaining amount cannot be less than the original trade's deposit.
+              params: ''
+            - code: split_amount_exceeds_unallocated_funds
+              category: amount
+              message: Trade split amount cannot exceed unallocated funds if multiple payments attached.
+              params: ''
+            - code: conversion_status_is_incorrect
+              category: status
+              message: Trade must still be awaiting funds
+              params: ''
+            - code: split_amount_precision
+              category: amount
+              message: Amount precision is too low for currency GBP
               params: ''
           schema:
             $ref: '#/definitions/GetConversionError'
@@ -7608,14 +7643,10 @@ paths:
               category: id
               message: id should be in UUID format
               params: ''
-            - code: on_behalf_of_self
+            - code: invalid_extra_parameters
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/GetConversionError'
           headers:
@@ -7649,6 +7680,10 @@ paths:
               description: A unique reference for the request.
         '404':
           description: Resource not found.
+          x-errors:
+            - code: conversion_not_found
+              message: Conversion was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/NotFoundError'
           headers:
@@ -8707,7 +8742,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Payment UUID.
+          description: Payment UUID
         - name: with_deleted
           in: query
           required: false
@@ -10096,7 +10131,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get Payment Delivery Date
-      description: Gets Payment Delivery Date.
+      description: Gets payment delivery date.
       operationId: GetPaymentDeliveryDate
       produces:
         - application/json
@@ -10966,8 +11001,6 @@ paths:
               category: payer_entity_type
               message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
               params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
-
-
             - code: unsupported_payer_country_code
               category: payer_country_code
               message: Payer country is not supported
@@ -11672,7 +11705,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: identifier_type
           in: query
           required: true
@@ -11820,7 +11853,7 @@ paths:
       x-api-group: manage
       summary: Get Beneficiary Requirements
       description: >-
-        Find out what information is required to make payments to beneficiaries
+        Returns the information that is required to make payments to beneficiaries
         in specified currencies and countries.
       operationId: GetBeneficiaryRequirements
       produces:
@@ -11830,7 +11863,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: query
           required: true
@@ -11960,7 +11993,7 @@ paths:
       x-api-group: manage
       summary: Get Conversion Dates
       description: >-
-         This endpoint provides a list of upcoming non-trading dates, such as weekends or
+         Provides a list of upcoming non-trading dates, such as weekends or
          public holidays, for a specified currency pair. Common use cases
          include  situations where this information needs to be provided, or for
          planning upcoming conversion bookings. <br><br>
@@ -11977,7 +12010,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: conversion_pair
           in: query
           required: true
@@ -12113,7 +12146,7 @@ paths:
       x-api-group: manage
       summary: Get Available Currencies
       description: >-
-        Get a list of all currencies that can be traded on the Currencycloud
+        Gets a list of all currencies that can be traded on the Currencycloud
         platform.
       operationId: GetAvailableCurrencies
       produces:
@@ -12123,7 +12156,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
       responses:
         '200':
           description: Success.
@@ -12221,7 +12254,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: payer_country
           in: query
           required: true
@@ -12357,7 +12390,7 @@ paths:
       x-api-group: manage
       summary: Get Payment Dates
       description: >-
-        Get a list of invalid payment dates for a given currency covering a two months period from the start_date specified. A payment date
+        Gets a list of invalid payment dates for a given currency covering a two months period from the start_date specified. A payment date
         is when a payment will be executed by Currencycloud. Payments cannot be made on some days, for example when banks are closed.
       operationId: GetPaymentDates
       produces:
@@ -12367,7 +12400,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: query
           required: true
@@ -12406,7 +12439,7 @@ paths:
             - code: start_date_is_in_invalid_format
               category: start_date
               message: start_date should be in ISO 8601 format
-              params: '{ "type" => "date" }'
+              params: '{ "type" => "datetime" }'
           schema:
             $ref: '#/definitions/GetPaymentDatesError'
           headers:
@@ -12482,7 +12515,7 @@ paths:
       x-api-group: manage
       summary: Get Payment Fee Rules
       description: >-
-        Get the payment fee information based on the specific values provided.
+        Gets the payment fee information based on the specific values provided.
       operationId: GetPaymentFeeRules
       produces:
         - application/json
@@ -12491,12 +12524,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: query
           required: false
           type: string
-          description: Account UUID.
+          description: Account UUID
         - name: payment_type
           in: query
           required: false
@@ -12621,7 +12654,7 @@ paths:
       x-api-group: manage
       summary: Get Payment Purpose Codes
       description: >-
-        Get a list of payment purpose codes for a given currency and entity
+        Gets a list of payment purpose codes for a given currency and entity
         type. When initiating cross-border payments, the central bank of the
         country may require a purpose to be included with your transaction in
         order for your payment to be accepted and processed. If a payment
@@ -12725,8 +12758,8 @@ paths:
               message: Internal server error
               params: ''
             - code: missing_translation
-              category: based
-              message: Internatl server error. Currency value was not specified
+              category: base
+              message: Internal server error. Currency value was not specified
               params: ''
           headers:
             X-Request-Id:
@@ -12756,7 +12789,7 @@ paths:
       x-api-group: manage
       summary: Get Settlement Accounts
       description: >-
-        Get settlement account information - a list of accounts that require
+        Gets settlement account information - a list of accounts that require
         funding in order to allow for outstanding transactions to be processed.
       operationId: GetSettlementAccounts
       produces:
@@ -12766,7 +12799,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: query
           required: false
@@ -12776,7 +12809,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Account UUID.
+          description: Account UUID
       responses:
         '200':
           description: Success.
@@ -12900,7 +12933,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: formData
           required: false
@@ -12915,35 +12948,35 @@ paths:
           in: formData
           required: false
           type: string
-          description: 3 character ISO 4217 currency code.
+          description: Three letter ISO 4217 currency code.
         - name: sell_currency
           in: formData
           required: false
           type: string
-          description: 3 character ISO 4217 currency code.
+          description: Three letter ISO 4217 currency code.
         - name: client_buy_amount_from
           in: formData
           required: false
           type: string
-          description: .
+          description: Minimum client buy amount.
           format: numeric
         - name: client_buy_amount_to
           in: formData
           required: false
           type: string
-          description: .
+          description: Maximum client buy amount.
           format: numeric
         - name: client_sell_amount_from
           in: formData
           required: false
           type: string
-          description: .
+          description: Minimum client sell amount.
           format: numeric
         - name: client_sell_amount_to
           in: formData
           required: false
           type: string
-          description: .
+          description: Maximum client sell amount.
           format: numeric
         - name: partner_buy_amount_from
           in: formData
@@ -13175,7 +13208,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: formData
           required: false
@@ -13190,19 +13223,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: 3 character ISO 4217 currency code.
+          description: Three letter ISO 4217 currency code.
         - name: amount_from
           in: formData
           required: false
-          type: string
-          format: numeric
-          description: Amount of Payment to 2dp.
+          type: number
+          description: Minimum payment amount to 2 decimal places.
         - name: amount_to
           in: formData
           required: false
-          format: numeric
-          type: string
-          description: Amount of Payment to 2dp.
+          type: number
+          description: Maximum payment amount to 2 decimal places.
         - name: bulk_upload_reference
           in: formData
           required: false
@@ -13218,49 +13249,49 @@ paths:
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment should be paid.
+          description: ISO 8601 format date for earliest payment date to include.
         - name: payment_date_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment should be paid.
+          description: ISO 8601 format date for latest payment date to include.
         - name: transferred_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment should be transfered.
+          description: ISO 8601 format date/time for earliest payment transfer date.
         - name: transferred_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment should be transfered.
+          description: ISO 8601 format date/time for latest payment transfer date.
         - name: created_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment was created.
+          description: ISO 8601 format date/time for earliest payment creation to include.
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment was created.
+          description: ISO 8601 format date/time for latest payment creation to include.
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment was updated.
+          description: ISO 8601 format date/time for earliest payment updated to include.
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 Date/time when the payment was updated.
+          description: ISO 8601 format date/time for latest payment updated to include.
         - name: beneficiary_id
           in: formData
           required: false
@@ -13274,8 +13305,8 @@ paths:
         - name: with_deleted
           in: formData
           required: false
-          type: string
-          description: Allow to search within deleted payments.
+          type: boolean
+          description: Include deleted payments?
         - name: payment_group_id
           in: formData
           required: false
@@ -13409,7 +13440,7 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Find Report Requests
-      description: Search for report requests made. Returns a JSON structure with details of matching report requests.
+      description: Searches for report requests made. Returns a JSON structure with details of matching report requests.
       operationId: Find Report Requests
       produces:
         - application/json
@@ -13418,7 +13449,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: short_reference
           in: query
           required: false
@@ -13434,37 +13465,37 @@ paths:
           required: false
           type: string
           format: date
-          description: Start date (for range) when the reports were created.
+          description: Start date (for range), in ISO 8601 format, for when the reports were created.
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date
-          description: End date (for range) when the reports were created.
+          description: End date (for range), in ISO 8601 format, for when the reports were created.
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date
-          description: Start date (for range) when the reports were updated.
+          description: Start date (for range), in ISO 8601 format, for when the reports were updated.
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date
-          description: End date (for range) when the reports were updated.
+          description: End date (for range), in ISO 8601 format, for when the reports were updated.
         - name: expiration_date_from
           in: query
           required: false
           type: string
           format: date
-          description: Start date (for range) when the report will be (was) expired.
+          description: Start date (for range), in ISO 8601 format, for when the report will be (was) expired.
         - name: expiration_date_to
           in: query
           required: false
           type: string
           format: date
-          description: End date (for range) when the report will be (was) expired.
+          description: End date (for range), in ISO 8601 format, for when the report will be (was) expired.
         - name: status
           in: query
           required: false
@@ -13518,7 +13549,7 @@ paths:
               - own
               - all
               - clients
-          description: Specify which account level will be used; 'own' is a default value.
+          description: Specify which account level will be used; 'own' is the default value.
       responses:
         '200':
           description: Success.
@@ -13630,8 +13661,8 @@ paths:
       tags:
         - Reporting
       x-api-group: manage
-      summary: Retrieve a Report Request
-      description: Search for a report by ID. Returns a JSON structure with details of the specified report request.
+      summary: Retrieves a Report Request with the given ID.
+      description: Searches for a report by ID. Returns a JSON structure with details of the specified report request.
       operationId: Retrieve a Report Request
       produces:
         - application/json
@@ -13640,7 +13671,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -13871,7 +13902,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: on_behalf_of
           in: query
           required: false
@@ -13881,21 +13912,21 @@ paths:
           in: query
           required: false
           type: string
-          description: Three-digit ISO currency code.
+          description: Three-letter ISO currency code.
         - name: amount
           in: query
           required: false
-          type: integer
+          type: number
           description: Amount the transaction is for.
         - name: amount_from
           in: query
           required: false
-          type: integer
+          type: number
           description: Minimum amount.
         - name: amount_to
           in: query
           required: false
-          type: integer
+          type: number
           description: Maximum amount.
         - name: action
           in: query
@@ -14087,6 +14118,18 @@ paths:
               category: status
               message: 'status should be in range: completed, pending, deleted'
               params: '{"range": "completed, pending, deleted" }'
+            - code: amount_type_is_wrong
+              category: amount
+              message: 'amount should be of numeric type'
+              params: ''
+            - code: amount_from_type_is_wrong
+              category: amount_from
+              message: 'amount_from should be of numeric type'
+              params: ''
+            - code: amount_to_type_is_wrong
+              category: amount_to
+              message: 'amount_to should be of numeric type'
+              params: ''
             - code: created_at_to_type_is_wrong
               category: created_as_to
               message: created_at_to should be of date type
@@ -14097,7 +14140,7 @@ paths:
               params: '{"type": "date"}'
             - code: related_entity_id_is_not_valid_uuid
               category: related_entity
-              message: related_entity_id_is_not_valid_uuid
+              message: related_entity_id should be in UUID format
               params: ''
             - code: contact_not_found
               category: on_behalf_of
@@ -14199,7 +14242,7 @@ paths:
         - Transactions
       x-api-group: manage
       summary: Get Transaction
-      description: Get a transaction record.
+      description: Gets a transaction record.
       operationId: GetTransaction
       produces:
         - application/json
@@ -14208,12 +14251,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Transaction UUID.
+          description: Transaction UUID
         - name: on_behalf_of
           in: query
           required: false
@@ -14348,7 +14391,7 @@ paths:
         - name: amount
           in: formData
           required: true
-          type: string
+          type: number
           description: Amount
         - name: reason
           in: formData
@@ -14648,12 +14691,12 @@ paths:
         - name: amount_from
           in: query
           required: false
-          type: string
+          type: number
           description: Minimum amount
         - name: amount_to
           in: query
           required: false
-          type: string
+          type: number
           description: Maximum amount
         - name: created_at_from
           in: query
@@ -15035,14 +15078,14 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: query
           required: false
           type: string
           description: >-
             The UUID of a sub-account you want to see the withdrawal accounts for. If omitted the withdrawal accounts
-            for the house account and all sub-accounts are returned
+            for the house account and all sub-accounts are returned.
       responses:
         '200':
           description: Success.
@@ -15167,24 +15210,24 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: withdrawal_account_id
           in: path
           required: true
           type: string
           description: >-
             The withdrawal account ID you want to pull the funds from.
-            The funds will be pulled into the account ID related to this withdrawal account
+            The funds will be pulled into the account ID related to this withdrawal account.
         - name: reference
           in: formData
           required: true
           type: string
-          description: The reference you want on the statement
+          description: The reference you want on the statement.
         - name: amount
           in: formData
           required: true
-          type: string
-          description: The amount of funds to pull in USD
+          type: number
+          description: The amount of funds to pull in USD.
       responses:
         '200':
           description: Success.
@@ -15388,7 +15431,7 @@ paths:
         - name: amount
           in: formData
           required: true
-          type: string
+          type: number
           description: Amount of the emulated transaction.
         - name: currency
           in: formData
@@ -15570,10 +15613,10 @@ definitions:
     properties:
       id:
         type: string
-        description: Account ID.
+        description: Account ID
       account_name:
         type: string
-        description: Account name.
+        description: Account name
       brand:
         type: string
         description: >-
@@ -15588,7 +15631,7 @@ definitions:
           - enabled
           - enabled_no_trading
           - disabled
-        description: Account status.
+        description: Account status
       street:
         type: string
         description: First line of address.
@@ -15603,7 +15646,7 @@ definitions:
         description: Two-letter ISO country code.
       postal_code:
         type: string
-        description: Postal code.
+        description: Postal code
       spread_table:
         type: string
         description: The name of the spread table assigned to the account.
@@ -15708,10 +15751,10 @@ definitions:
     description: Account Payment Charges Setting.
     properties:
       charge_settings_id:
-        description: Unique ID.
+        description: Unique ID
         type: string
       account_id:
-        description: Account ID.
+        description: Account ID
         type: string
       charge_type:
         description: The charge type - shared or ours.
@@ -15756,13 +15799,13 @@ definitions:
         description: The name of the currency.
         type: string
       online_trading:
-        description: Is online trading available.
+        description: Is online trading available?
         type: boolean
       can_buy:
-        description: Can the currency be bought.
+        description: Can the currency be bought?
         type: boolean
       can_sell:
-        description: Can the currency be sold.
+        description: Can the currency be sold?
         type: boolean
     example:
       code: AED
@@ -15812,19 +15855,19 @@ definitions:
     properties:
       identifier_type:
         type: string
-        description: account identifier type.
+        description: Account identifier type.
       identifier_value:
         type: string
-        description: account identifier value.
+        description: Account identifier value.
       account_number:
         type: string
-        description: account number.
+        description: Account number
       bic_swift:
         type: string
         description: BIC/SWIFT code.
       bank_name:
         type: string
-        description: Name of the bank.
+        description: Bank name
       bank_branch:
         type: string
         description: Branch of the bank.
@@ -15845,10 +15888,10 @@ definitions:
         description: Full country name.
       bank_country_ISO:
         type: string
-        description: 2 letter ISO country code.
+        description: Two letter ISO country code.
       currency:
         type: string
-        description: 3 letter ISO currency code.
+        description: Three letter ISO currency code.
     example:
       identifier_type: iban
       identifier_value: FR7530002002460000012345X12
@@ -15883,7 +15926,10 @@ definitions:
         type: array
         items:
           type: string
-          description: Example - "regular".
+          description: The payment type - regular (local) or priority (SWIFT).
+          enum:
+            - regular
+            - priority
       beneficiary_address:
         type: array
         items:
@@ -15894,6 +15940,7 @@ definitions:
         description: Two letter country code.
       beneficiary_entity_type:
         type: string
+        description: Beneficiary legal entity type.
         enum:
           - company
           - individual
@@ -15980,12 +16027,15 @@ definitions:
           description: Line of address.
       created_at:
         type: string
+        description: Date the beneficiary record was created.
         format: date-time
       updated_at:
         type: string
+        description: Date the beneficiary record was last updated.
         format: date-time
       beneficiary_external_reference:
         type: string
+        description: Beneficiary external reference.
     example:
       id: a6000ce9-46b8-49a7-9f5b-325ed3f047c2
       bank_account_holder_name: Company PLC
@@ -16235,10 +16285,21 @@ definitions:
         type: string
       settlement_date:
         type: string
+        description: The date and time by which funds need to be available to settle the trade.
       conversion_date:
         type: string
+        description: The date the conversion will be made.
       status:
         type: string
+        enum:
+          - awaiting_funds
+          - funds_sent
+          - funds_arrived
+          - funds_being_processed
+          - trade_settling
+          - trade_settled
+          - closed
+          - awaiting_authorisation
       currency_pair:
         description: Concatenated string of the two currencies traded.
         type: string
@@ -16272,6 +16333,10 @@ definitions:
         type: string
       deposit_status:
         type: string
+        enum:
+          - not_required
+          - awaiting_deposit
+          - deposit_received
       deposit_required_at:
         type: string
       unallocated_funds:
@@ -16506,7 +16571,7 @@ definitions:
         description: Conversion ID
       short_reference:
         type: string
-        description: Short reference
+        description: Short reference for the trade.
       sell_currency:
         type: string
         description: Three character ISO code for currency sold.
@@ -16522,11 +16587,23 @@ definitions:
       settlement_date:
         type: string
         format: date-time
+        description: The date and time by which funds need to be available to settle the trade.
       conversion_date:
         type: string
         format: date-time
+        description: The date the conversion will be made.
       status:
         type: string
+        description: Status of the related trade.
+        enum:
+          - awaiting_funds
+          - funds_sent
+          - funds_arrived
+          - funds_being_processed
+          - trade_settling
+          - trade_settled
+          - closed
+          - awaiting_authorisation
   ConversionSplit:
     type: object
     properties:
@@ -16551,16 +16628,16 @@ definitions:
     properties:
       id:
         type: string
-        description: Unique ID for report
+        description: Unique ID for the report.
       short_reference:
         type: string
-        description: Human readable unique Id
+        description: Human readable unique ID.
       search_params:
         type: object
         default: {}
         description: >-
           Parameters to select specific range of items that we want to see in the
-          report
+          report.
       report_type:
         type: string
         description: The type of report - conversion or payment.
@@ -16578,24 +16655,24 @@ definitions:
       expiration_date:
         type: string
         format: date
-        description: ISO 8601 Date of report expiration
+        description: ISO 8601 Date of report expiration.
       report_url:
         type: string
-        description: URL to download CSV report
+        description: URL to use to download the CSV report.
       account_id:
         type: string
-        description: ID of the account
+        description: ID of the account.
       contact_id:
         type: string
-        description: ID of the contact
+        description: ID of the contact.
       created_at:
         type: string
         format: date
-        description: ISO 8601 Date when the Report was created
+        description: ISO 8601 date when the report was created.
       updated_at:
         type: string
         format: date
-        description: ISO 8601 Date when the Report was last updated
+        description: ISO 8601 date when the report was last updated.
     example:
       id: 950dac23-c4af-4a6a-ba19-344560abe2a9
       short_reference: RP-30250607-VDTMFA
@@ -19181,7 +19258,7 @@ definitions:
           - individual
         type: string
       payment_type:
-        description: Type of payment.
+        description: Type of payment - regular (local) or priority (SWIFT).
         enum:
           - regular
           - priority
@@ -19587,7 +19664,7 @@ definitions:
         description: Legal entity type - 'company' or 'individual'.
       purpose_code:
         type: string
-        description: A purpose code
+        description: Purpose code
       purpose_description:
         type: string
         description: A description of the purpose code.
@@ -19869,8 +19946,9 @@ definitions:
         type: object
         description: >-
           Maps currency pairs (eg. "EURUSD", "GBPZAR") to rates. The first
-          number is the bid amount, and the second is the rate currently offered
-          by Currencycloud.
+          number is the bid SPOT rate and the second is the ask SPOT rate.
+          For example, in the EURUSD example response, the first number (1.3803) is the EUR->USD rate
+          and the second number (1.3809) is the USD->EUR rate.
         additionalProperties:
           type: array
           items:
@@ -20259,23 +20337,31 @@ definitions:
     properties:
       id:
         type: string
+        description: Transaction ID
       balance_id:
         type: string
+        description: Balance ID
       account_id:
         type: string
+        description: Account ID
       currency:
         type: string
+        description: ISO currency code.
       amount:
         type: string
+        description: Transaction amount
       balance_amount:
         type: string
+        description: Balance amount
       type:
         type: string
+        description: Type (debit or credit)
         enum:
           - debit
           - credit
       action:
         type: string
+        description: Action
         enum:
           - funding
           - conversion
@@ -20292,6 +20378,7 @@ definitions:
           - margin
       related_entity_type:
         type: string
+        description: The related entity type.
         enum:
           - conversion
           - payment
@@ -20303,25 +20390,31 @@ definitions:
         type: string
       related_entity_short_reference:
         type: string
+        description: Releated entity short reference.
       status:
         type: string
+        description: Transaction status
         enum:
           - completed
           - depending
           - deleted
       reason:
+        description: Reason
         type: string
       settles_at:
+        description: Settlement date
         type: string
         format: date-time
       created_at:
         type: string
+        description: Created date
         format: date-time
       updated_at:
         type: string
         format: date-time
       completed_at:
         type: string
+        description: Completion date
         format: date-time
     example:
       id: c5a990eb-d4d7-482f-bfb1-695261fb1e4d
@@ -20772,7 +20865,7 @@ definitions:
                   maxlength: 255
   WithdrawalAccount:
     type: object
-    description: WithdrawalAccount.
+    description: Withdrawal account
     required:
       - id
       - account_name
@@ -20786,10 +20879,10 @@ definitions:
     properties:
       id:
         type: string
-        description: The UUID of the withdrawal account
+        description: The UUID of the withdrawal account.
       account_name:
         type: string
-        description: The name of the withdrawal account
+        description: The name of the withdrawal account.
       account_holder_name:
         type: string
         description: The name of the withdrawal account holder.
@@ -20831,16 +20924,16 @@ definitions:
     properties:
       id:
         type: string
-        description: The UUID of the withdrawal account
+        description: The UUID of the withdrawal account.
       withdrawal_account_id:
         type: string
-        description: The name of the withdrawal account
+        description: The name of the withdrawal account.
       reference:
         type: string
-        description: The name of the withdrawal account holder
+        description: The name of the withdrawal account holder.
       amount:
         type: string
-        description: The dob of the withdrawal account holder
+        description: The DOB of the withdrawal account holder.
       created_at:
         type: string
         format: date-time
