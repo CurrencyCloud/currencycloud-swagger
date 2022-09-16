@@ -101,7 +101,7 @@ paths:
         Authenticates and authorizes a user to the Currencycloud API.<br><br>
 
         Submit a login ID and API key for a Currencycloud account, you can register
-        for and API key [here]https://developer.currencycloud.com/register-for-an-api-key/.
+        for and API key <a href="https://developer.currencycloud.com/register-for-an-api-key/">here</a>.
         A temporary authentication token is returned following a succesful login.<br><br>
 
         The authentication token is required to make requests to all other
@@ -112,7 +112,7 @@ paths:
 
         For security, Currencycloud accounts are disabled when four unsuccessful
         login attempts are made within a short period. In these circumstances, account
-        holders must[contact support](https://developer.currencycloud.com/support) to
+        holders must <a href="mailto:support@currencycloud.com">contact support</a> to
         reactivate their account.
       operationId: Login
       consumes:
@@ -15855,10 +15855,10 @@ definitions:
     properties:
       identifier_type:
         type: string
-        description: Account identifier type.
+        description: The type of the identifier used to identify the account (e.g. iban).
       identifier_value:
         type: string
-        description: Account identifier value.
+        description: The value of the identifier of the account in the format of the identifier_type (e.g. iban code).
       account_number:
         type: string
         description: Account number
