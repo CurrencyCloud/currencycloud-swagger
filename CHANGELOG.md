@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.36.2](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.2) (2022-09-13)
+- Adds new error responses to contacts/create and contacts/update
+
 ## [2.36.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.1) (2022-08-12)
 - Updates documentation of reference/payment_dates
 - Updates documentation of unique_request_id on payments/create

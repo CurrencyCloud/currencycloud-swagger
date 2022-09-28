@@ -5111,6 +5111,14 @@ paths:
               category: username
               message: Authentication failed with the supplied credentials
               params: ''
+            - code: first_name_invalid_format
+              category: first_name
+              message: Please make sure that first_name doesn't contain < or > symbols
+              params: ''
+            - code: last_name_invalid_format
+              category: last_name
+              message: Please make sure that last_name doesn't contain < or > symbols
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
