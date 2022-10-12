@@ -240,7 +240,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
       responses:
         '200':
           description: >-
@@ -329,7 +329,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_name
           in: formData
           required: true
@@ -653,7 +653,7 @@ paths:
         in: header
         required: true
         type: string
-        description: Authentication token.
+        description: Authentication token
       - name: id
         in: path
         required: true
@@ -779,7 +779,7 @@ paths:
         in: header
         required: true
         type: string
-        description: Authentication token.
+        description: Authentication token
       - name: id
         in: path
         required: true
@@ -1110,7 +1110,7 @@ paths:
           in: header
           type: string
           required: true
-          description: Authentication token.
+          description: Authentication token
       responses:
         '200':
           description: Success.
@@ -1199,7 +1199,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_name
           in: query
           required: false
@@ -1452,7 +1452,7 @@ paths:
         in: header
         required: true
         type: string
-        description: Authentication token.
+        description: Authentication token
       - name: account_id
         in: path
         required: true
@@ -1566,12 +1566,12 @@ paths:
         in: header
         required: true
         type: string
-        description: Authentication token.
+        description: Authentication token
       - name: account_id
         in: path
         required: true
         type: string
-        description: Account UUID.
+        description: Account UUID
       - name: charge_settings_id
         in: path
         required: true
@@ -1724,7 +1724,7 @@ paths:
         in: header
         required: true
         type: string
-        description: Authentication token.
+        description: Authentication token
       - name: currency
         in: path
         required: true
@@ -1842,7 +1842,6 @@ paths:
           X-Request-Id:
             type: string
             description: A unique reference for the request.
-
   /balances/find:
     get:
       tags:
@@ -2244,7 +2243,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Routing code
+          description: The value for the routing code type.
         - name: bic_swift
           in: query
           required: false
@@ -2279,7 +2278,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Beneficiary name.
+          description: Beneficiary's name.
         - name: beneficiary_entity_type
           in: query
           required: false
@@ -2287,7 +2286,7 @@ paths:
           enum:
             - individual
             - company
-          description: Legal entity
+          description: Beneficiary's legal entity type - individual or company.
         - name: beneficiary_company_name
           in: query
           required: false
@@ -2801,10 +2800,10 @@ paths:
       x-api-group: pay
       summary: Update Beneficiary
       description: >-
-        Updates an existing beneficiary. On success, returns the updated
-        beneficiary entity. <br>
-        It is not possible to change a beneficiary's entity type (company or individual)
-        by an update. To achieve this, a new beneficiary should be created.
+        Updates an existing beneficiary. Returns the updated
+        beneficiary entity on success. <br>
+        Please note that it's not possible to change a beneficiary's entity type (company or individual)
+        by an update. To achieve this, you should create a new beneficiary.
       operationId: UpdateBeneficiary
       consumes:
         - multipart/form-data
@@ -2825,7 +2824,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary name
+          description: Beneficiary's name
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -2849,7 +2848,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Email address
+          description: Beneficiary's email address.
         - name: beneficiary_country
           in: formData
           required: false
@@ -2914,8 +2913,7 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payment: "priority" (SWIFT), made using
-            the SWIFT network; and "regular" (local), made using the local bank network.
+            Currencycloud supports two types of payment - "priority" (SWIFT) made using the SWIFT network, and "regular" (local) made using the local bank network.
         - name: bic_swift
           in: formData
           required: false
@@ -4802,7 +4800,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
       responses:
         '200':
           description: Success.
@@ -4889,32 +4887,32 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_name
           in: query
           required: false
           type: string
-          description: Account name.
+          description: Account name
         - name: account_id
           in: query
           required: false
           type: string
-          description: Sub-account UUID.
+          description: Sub-Account UUID
         - name: first_name
           in: query
           required: false
           type: string
-          description: Contact's first name.
+          description: The contact's first name.
         - name: last_name
           in: query
           required: false
           type: string
-          description: Contact's last name.
+          description: The contact's last name.
         - name: email_address
           in: query
           required: false
           type: string
-          description: Contact's email address.
+          description: The contact's email address.
         - name: your_reference
           in: query
           required: false
@@ -4924,12 +4922,12 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact's phone number.
+          description: The contact's phone number.
         - name: login_id
           in: query
           required: false
           type: string
-          description: Contact's Currencycloud login ID.
+          description: The contact's Currencycloud login ID.
         - name: status
           in: query
           required: false
@@ -4937,7 +4935,7 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status.
+          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
         - name: locale
           in: query
           required: false
@@ -4952,7 +4950,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Page number.
+          description: Page number
         - name: per_page
           in: query
           required: false
@@ -5072,12 +5070,12 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
           type: string
-          description: Contact UUID.
+          description: Contact UUID
       responses:
         '200':
           description: Success.
@@ -5204,18 +5202,18 @@ paths:
           in: query
           required: false
           type: string
-          description: Contact first name.
+          description: The contact's first name.
         - name: last_name
           in: query
           required: false
           type: string
-          description: Contact last name.
+          description: The contact's last name.
         - name: email_address
           in: query
           required: false
           type: string
           description: >-
-            Email address. A request to update a contacts email address does not immediately update the value.
+            The contact's email address. A request to update a contact's email address does not immediately update the value.
             Instead, an email change request flow is initiated, sending notifications to both the old and new
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
@@ -5228,17 +5226,17 @@ paths:
           in: query
           required: false
           type: string
-          description: Phone number.
+          description: The contact's phone number.
         - name: mobile_phone_number
           in: query
           required: false
           type: string
-          description: Mobile phone number.
+          description: The contact's mobile phone number.
         - name: login_id
           in: query
           required: false
           type: string
-          description: Currencycloud login ID.
+          description: The contact's Currencycloud login ID.
         - name: status
           in: query
           required: false
@@ -5246,7 +5244,7 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status.
+          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
         - name: locale
           in: query
           required: false
@@ -5262,7 +5260,7 @@ paths:
           required: false
           type: string
           format: date
-          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
+          description: Contact's date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
       responses:
         '200':
           description: Success.
@@ -5467,32 +5465,32 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: account_id
           in: formData
           required: true
           type: string
-          description: Account UUID.
+          description: Account UUID
         - name: first_name
           in: formData
           required: true
           type: string
-          description: Contact's first name.
+          description: The contact's first name.
         - name: last_name
           in: formData
           required: true
           type: string
-          description: Contact's last name.
+          description: The contact's last name.
         - name: email_address
           in: formData
           required: true
           type: string
-          description: Contact's email address.
+          description: The contact's email address.
         - name: phone_number
           in: formData
           required: true
           type: string
-          description: Contact's phone number.
+          description: The contact's phone number.
         - name: your_reference
           in: formData
           required: false
@@ -5502,12 +5500,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Mobile phone number.
+          description: The contact's mobile phone number.
         - name: login_id
           in: formData
           required: false
           type: string
-          description: Currencycloud login ID, allows the contact to login and conduct activity on the sub-account.
+          description: The contact's Currencycloud login ID, allows the contact to login and conduct activity on the sub-account.
         - name: status
           in: formData
           required: false
@@ -5530,7 +5528,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Date of birth. ISO 8601 format YYYY-MM-DD. Required if account type is individual.
+          description: The contact's date of birth. ISO 8601 format YYYY-MM-DD. <b>Required if account type is individual</b>.
       responses:
         '200':
           description: Success.
@@ -5909,7 +5907,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated reason for payment. Freeform text.
+          description: User-generated reason for conversion - freeform text.
         - name: unique_request_id
           in: formData
           required: false
@@ -7139,12 +7137,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: UUID of the Contact that did the cancellation.
+          description: UUID of the Contact that performed the action.
         - name: conversion_id
           in: formData
           required: false
           type: string
-          description: UUID of the cancelled conversion.
+          description: UUID of the conversion.
         - name: event_type
           in: formData
           required: false
@@ -7650,7 +7648,7 @@ paths:
           in: path
           required: true
           type: string
-          description: Conversion UUID. The UUID is returned by a successful trade request when creating a conversion.
+          description: Conversion UUID - the UUID is returned by a successful trade request when creating a conversion.
       responses:
         '200':
           description: Success.
@@ -7773,7 +7771,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: payment_type
           in: query
           required: false
@@ -7951,14 +7949,13 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-
   /payments/create:
     post:
       tags:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: 'Submits a payment. On success, returns the new payment record. Use the <a href="../get-payer-requirements/">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.'
+      description: 'Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.'
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -8454,7 +8451,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Currency in which payment made. Three-digit ISO currency code.
+          description: Currency in which payment was made. Three-digit ISO currency code.
         - name: amount
           in: query
           required: false
@@ -9638,7 +9635,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: 'payment_ids[]'
           in: query
           required: true
@@ -9757,7 +9754,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -10184,12 +10181,12 @@ paths:
           in: query
           required: true
           type: string
-          description: The three letter ISO code of the currency of the payment.
+          description: The three-letter ISO code of the currency of the payment.
         - name: bank_country
           in: query
           required: true
           type: string
-          description: The two letter ISO code of the country where the payment is sent.
+          description: The two-letter ISO code of the country where the payment is sent.
       responses:
         '200':
           description: Success.
@@ -10476,7 +10473,7 @@ paths:
           enum:
             - priority
             - regular
-          description: Payment Type
+          description: Type of payment - priority(SWIFT) or regular(local).
         - name: charge_type
           in: query
           required: false
@@ -11226,7 +11223,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -11398,6 +11395,10 @@ paths:
                 category: currency_pair
                 message: Invalid currency pair
                 params: '{ "currency_pair" => ["AAABBB"] }'
+              - code: ignore_invalid_pairs_type_is_wrong
+                category: currency_pair
+                message: ignore_invalid_pairs should be of boolean type
+                params: '{ "ignore_invalid_pairs": "not_true" }'
               - code: on_behalf_of_self
                 category: on_behalf_of
                 message: You cannot act on behalf of your own Contact
@@ -11501,12 +11502,12 @@ paths:
           in: query
           required: true
           type: string
-          description: Currency purchased - three letter ISO code.
+          description: Currency purchased - three-letter ISO code.
         - name: sell_currency
           in: query
           required: true
           type: string
-          description: Currency sold - three letter ISO code.
+          description: Currency sold - three-letter ISO code.
         - name: fixed_side
           in: query
           required: true
@@ -12023,9 +12024,9 @@ paths:
          planning upcoming conversion bookings. <br><br>
          Many currencies are triangulated; which means that holidays affecting the intermediary
          currency, as well as the sale and purchase currencies, will impact transactions.<br><br>
-         Please note that since APAC currencies do not support the `conversion_date_preference`
-         parameter on the conversions/create endpoint, `default_conversion_date` returned
-         in this response should be used and not the `first_conversion_date` or `optimize_liquidity_conversion_date`.
+         Please note that since APAC currencies do not support the <code>conversion_date_preference</code>
+         parameter on the conversions/create endpoint, <code>default_conversion_date</code> returned
+         in this response should be used and not the <code>first_conversion_date</code> or <code>optimize_liquidity_conversion_date</code>.
       operationId: GetConversionDates
       produces:
         - application/json
@@ -12306,7 +12307,7 @@ paths:
           in: query
           required: false
           type: string
-          description: 3 character ISO 4217 currency code.
+          description: Three-letter ISO 4217 currency code.
       responses:
         '200':
           description: Success.
@@ -12562,8 +12563,8 @@ paths:
             - priority
             - regular
           description: >-
-            Payment Type value.
-            Limits search results scope to just payments of the specified payment type.
+            Payment type value.
+            Limits search results scope to just payments of the specified payment type - priority(SWIFT) or regular(local).
         - name: charge_type
           in: query
           required: false
@@ -12572,8 +12573,8 @@ paths:
             - ours
             - shared
           description: >-
-            Payment Charges value .
-            Limits search results scope to just payments of the specified charge type.
+            Payment charges value .
+            Limits search results scope to just payments of the specified charge type - ours or shared.
       responses:
         '200':
           description: Success.
@@ -12692,13 +12693,13 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: currency
           in: query
           required: true
           type: string
           description: >-
-            Currency in which payment made. Three-letter ISO currency code.
+            Three-letter ISO currency code for the currency in which payment will be made.
             No purpose codes will be returned if an invalid currency code is given.
         - name: entity_type
           in: query
@@ -12707,7 +12708,7 @@ paths:
           enum:
             - company
             - individual
-          description: Legal entity type - either 'company' or 'individual'.
+          description: Legal entity type - company or individual.
         - name: bank_account_country
           in: query
           required: true
@@ -12972,12 +12973,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Three letter ISO 4217 currency code.
+          description: Three-letter ISO 4217 currency code.
         - name: sell_currency
           in: formData
           required: false
           type: string
-          description: Three letter ISO 4217 currency code.
+          description: Three-letter ISO 4217 currency code.
         - name: client_buy_amount_from
           in: formData
           required: false
@@ -13064,7 +13065,7 @@ paths:
           required: false
           type: string
           format: date
-          description: ISO 8601 Datetime for end of date range for when the sell_currency was debited.
+          description: ISO 8601 Date/time for end of date range for when the sell_currency was debited.
         - name: created_at_from
           in: formData
           required: false
@@ -13247,7 +13248,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Three letter ISO 4217 currency code.
+          description: Three-letter ISO 4217 currency code.
         - name: amount_from
           in: formData
           required: false
@@ -13483,7 +13484,7 @@ paths:
           in: query
           required: false
           type: string
-          description: 'Description, which was provided during the report creation process.'
+          description: 'Description that was provided during the report creation process.'
         - name: created_at_from
           in: query
           required: false
@@ -13805,7 +13806,7 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
         - name: id
           in: path
           required: true
@@ -13940,18 +13941,18 @@ paths:
         - name: amount
           in: query
           required: false
-          type: number
+          type: string
           description: Amount the transaction is for.
         - name: amount_from
           in: query
           required: false
-          type: number
-          description: Minimum amount.
+          type: string
+          description: Minimum amount
         - name: amount_to
           in: query
           required: false
-          type: number
-          description: Maximum amount.
+          type: string
+          description: Maximum amount
         - name: action
           in: query
           required: false
@@ -15679,11 +15680,11 @@ definitions:
         description: The type of entity - individual or company.
       created_at:
         type: string
-        description: The date and time the account was created.
+        description: The date/time the account was created.
         format: date-time
       updated_at:
         type: string
-        description: The date and time the account was last updated.
+        description: The date/time the account was last updated.
         format: date-time
       identification_type:
         type: string
@@ -15736,6 +15737,7 @@ definitions:
         description: Have the terms and conditions been accepted?
         type: boolean
       agent_or_reliance:
+        description: True for clients using Currencycloud’s regulatory coverage, false otherwise.
         type: boolean
       bank_account_verified:
         description: Has the bank account been verified?
@@ -15800,7 +15802,7 @@ definitions:
       default: true
   AuthenticationToken:
     type: object
-    description: Authentication token.
+    description: Authentication token
     properties:
       auth_token:
         type: string
@@ -15811,7 +15813,7 @@ definitions:
       auth_token: 043cc6069f5e32757647641460d1d5ed
   AvailableCurrencies:
     type: object
-    description: Available currencies.
+    description: Available currencies
     properties:
       code:
         description: Three character ISO currency code.
@@ -15844,24 +15846,26 @@ definitions:
     properties:
       id:
         type: string
-        description: Balance UUID.
+        description: Balance UUID
         format: UUID
       account_id:
         type: string
-        description: Account UUID.
+        description: Account UUID
         format: UUID
       currency:
         type: string
-        description: ISO currency code.
+        description: Three-letter ISO currency code for the currency the amount is shown in.
       amount:
         type: string
-        description: Amount.
+        description: The balance amount.
       created_at:
         type: string
         format: date-time
+        description: Date/time the record was created.
       updated_at:
         type: string
         format: date-time
+        description: Date/time the record was last updated.
     example:
       id: 18230F1D-648A-406A-AD1F-A09CBC02E9E9
       account_id: TcC
@@ -15871,7 +15875,7 @@ definitions:
       updated_at: '2020-12-31T23:59:59.000Z'
   BankDetails:
     type: object
-    description: Bank Details.
+    description: Bank Details
     required:
       - identifier_type
       - identifier_value
@@ -15894,10 +15898,10 @@ definitions:
         description: Bank name
       bank_branch:
         type: string
-        description: Branch of the bank.
+        description: Bank branch
       bank_address:
         type: string
-        description: Address of the bank.
+        description: Bank address
       bank_city:
         type: string
         description: City of the bank.
@@ -15906,16 +15910,16 @@ definitions:
         description: State the bank is situated in. Available in all countries using states.
       bank_post_code:
         type: string
-        description: The post code of the bank or the zip code for USA banks.
+        description: The bank's post code or the zip code for USA banks.
       bank_country:
         type: string
         description: Full country name.
       bank_country_ISO:
         type: string
-        description: Two letter ISO country code.
+        description: Two-letter ISO country code.
       currency:
         type: string
-        description: Three letter ISO currency code.
+        description: Three-letter ISO currency code.
     example:
       identifier_type: iban
       identifier_value: FR7530002002460000012345X12
@@ -15942,10 +15946,10 @@ definitions:
         description: Bank account holder's name.
       name:
         type: string
-        description: Beneficiary name
+        description: Beneficiary's name
       email:
         type: string
-        description: Email address
+        description: Beneficiary's email address
       payment_types:
         type: array
         items:
@@ -15961,7 +15965,7 @@ definitions:
           description: Line of address.
       beneficiary_country:
         type: string
-        description: Two letter country code.
+        description: Two-letter ISO country code.
       beneficiary_entity_type:
         type: string
         description: Beneficiary legal entity type.
@@ -15988,7 +15992,7 @@ definitions:
         description: State or province.
       beneficiary_date_of_birth:
         type: string
-        description: 'For companies, this is the foundation date of the company.'
+        description: 'For companies, this is the foundation date of the company. For individuals, it is their date of birth.'
       beneficiary_identification_type:
         type: string
         description: A legal document that verifies the identity of the beneficiary.
@@ -16007,7 +16011,7 @@ definitions:
         description: Bank name
       bank_account_type:
         type: string
-        description: Bank account type
+        description: Bank account type.
         enum:
           - checkings
           - savings
@@ -16252,7 +16256,7 @@ definitions:
         description: The account name.
       status:
         type: string
-        description: The contact's status (enabled or not_enabled)
+        description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
       phone_number:
         type: string
         description: The contact's phone number.
@@ -16474,7 +16478,7 @@ definitions:
         description: Account ID
       contact_id:
         type: string
-        description: Contact ID for the contact who made the cancellation.
+        description: Contact ID for the contact who performed the action.
       event_account_id:
         type: string
       event_contact_id:
@@ -16656,6 +16660,9 @@ definitions:
       short_reference:
         type: string
         description: Human readable unique ID.
+      description:
+        type: string
+        description: Description provided when the report was created.
       search_params:
         type: object
         default: {}
@@ -19213,12 +19220,13 @@ definitions:
         description: Unique UUID for the payer.
       legal_entity_type:
         type: string
-        description: Payer's entity type.
+        description: Payer's entity type - company or individual.
         enum:
-          - company_name
+          - company
           - individual
       company_name:
         type: string
+        description: The name of the company (if the payer is a company).
       first_name:
         type: string
         description: Payer's first name.
@@ -19236,10 +19244,10 @@ definitions:
         type: string
       country:
         type: string
-        description: Two character ISO country code.
+        description: Two-letter ISO country code.
       identification_type:
         type: string
-        description: A legal document that verifies the identity of the payer.
+        description: The legal document used to verify the identity of the payer (e.g. passport).
       identification_value:
         type: string
         description: >-
@@ -19276,7 +19284,7 @@ definitions:
     description: Payer requirements.
     properties:
       payer_entity_type:
-        description: Legal entity type.
+        description: Legal entity type - company or individual.
         enum:
           - company
           - individual
@@ -19318,63 +19326,66 @@ definitions:
       id:
         type: string
         description: Payment UUID
-      short_reference:
-        type: string
-        description: Short reference code.
-      beneficiary_id:
-        type: string
-        description: Beneficiary UUID
-      conversion_id:
-        type: string
-        description: Conversion UUID
       amount:
         type: string
         description: Payment amount
+      beneficiary_id:
+        type: string
+        description: Beneficiary UUID
       currency:
         type: string
         description: Payment currency
-      status:
-        type: string
-        description: Payment status (new or ready_to-send).
-      payment_type:
-        type: string
-        description: Type of payment - priority (SWIFT) or regular (local).
       reference:
         type: string
         description: Payment reference
       reason:
         type: string
         description: Reason for payment.
-      estimated_arrival:
+      status:
         type: string
-        description: Estimated date of payment.
-      payment_date:
+        description: Payment status
+      creator_contact_id:
         type: string
-        description: Payment date.
+        description: Contact UUID of payment creator.
+      payment_type:
+        type: string
+        description: Type of payment - priority(SWIFT) or regular(local).
       transferred_at:
         type: string
         description: Date of payment processing.
       authorisation_steps_required:
         type: string
         description: Number of approvals required for the payment.
-      creator_contact_id:
+
+      estimated_arrival:
         type: string
-        description: Contact UUID of payment creator.
+        description: Estimated date of payment.
+      payment_date:
+        type: string
+        description: Payment date.
       last_updater_contact_id:
         type: string
         description: Contact UUID of user who last updated the record.
+      short_reference:
+        type: string
+        description: Short reference code.
+      conversion_id:
+        type: string
+        description: Conversion UUID
       failure_reason:
         type: string
         description: A reason for why the payment failed.
       payer_id:
         type: string
-        description: Payer UUID.
+        description: Payer UUID
+      payer_details_source:
+        type: string
       created_at:
         type: string
-        description: Datetime of when the payment was created.
+        description: Date and time of when the payment was created.
       updated_at:
         type: string
-        description: Datetime of when the payment was last updated.
+        description: Date and time of when the payment was last updated.
       payment_group_id:
         type: string
         description: Payment group ID.
@@ -19390,6 +19401,7 @@ definitions:
       purpose_code:
         type: string
         description: Payment purpose code.
+
       fee_amount:
         type: string
         description: Fee amount
@@ -19523,10 +19535,10 @@ definitions:
         description: Type of payment - priority (SWIFT) or regular (local).
       currency:
         type: string
-        description: The 3-letter ISO code of the currency of the payment.
+        description: The 3-letter ISO code for the currency of the payment.
       bank_country:
         type: string
-        description: The 2-letter ISO code of the country where the payment is sent.
+        description: Country in which the beneficiary's bank account is held. Two-letter ISO country code.
     example:
       payment_date: "2019-02-11"
       payment_delivery_date: "2019-02-11T00:00:00+00:00"
@@ -19652,7 +19664,7 @@ definitions:
     properties:
       payment_type:
         type: string
-        description: The payment type the fee is applicable to.
+        description: The payment type the fee is applicable to, priority(SWIFT) or regular(local).
       charge_type:
         type: string
         description: The charge type the fee is applicable to.
@@ -19780,15 +19792,15 @@ definitions:
       created_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation was created.
+        description: Date and time of when the Payment Confirmation was created.
       updated_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation was last updated.
+        description: Date and time of when the Payment Confirmation was last updated.
       expires_at:
         type: string
         format: date-time
-        description: Datetime of when the Payment Confirmation will expire.
+        description: Date and time of when the Payment Confirmation will expire.
     example:
       id: 123123121-91de-012f-e284-1e0030c7f3111
       payment_id: 543477161-91de-012f-e284-1e0030c7f3123
@@ -19940,22 +19952,22 @@ definitions:
         description: Tha account Id.
       payment_currency:
         type: string
-        description: The currency of the payment.
+        description: Three letter ISO code for the currency of the payment.
       payment_destination_country:
         type: string
-        description: The destination country for the payment.
+        description: Two-letter ISO country code for the payment's destination country.
       payment_type:
         type: string
-        description: The payment type the fee is applicable to.
+        description: The payment type the fee is applicable to, priority(SWIFT) or regular(local).
       charge_type:
         type: string
-        description: The charge type the fee is applicable to.
+        description: The charge type the fee is applicable.
       fee_amount:
         type: string
         description: The fee amount.
       fee_currency:
         type: string
-        description: The fee currency.
+        description: Three-letter ISO currency code for the fee's currency.
     example:
        account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
        payment_currency: USD
@@ -19978,15 +19990,19 @@ definitions:
           items:
             type: string
             description: >-
-              A list of currency pairs that are not currently available for
-              exchange via the Currencycloud platform.
-        example:
-          EURUSD:
-            - '1.3803'
-            - '1.3809'
-          GBPZAR:
-            - '17.5271'
-            - '17.5279'
+              A pair of rates for the currency pair. The first
+              number is the bid SPOT rate and the second is the ask SPOT rate.
+      unavailable:
+        type: array
+        description: >-
+          A list of valid currency pairs that are not currently available.
+    example:
+      EURUSD:
+          - '1.3803'
+          - '1.3809'
+      GBPZAR:
+          - '17.5271'
+          - '17.5279'
   RateDetailed:
     type: object
     description: Detailed rate information.
@@ -19998,10 +20014,10 @@ definitions:
         description: Concatenated string of the two currencies traded,
         type: string
       client_buy_currency:
-        description: The buy currency - three letter ISO code.
+        description: The buy currency - three-letter ISO code.
         type: string
       client_sell_currency:
-        description: The sell currency - three letter ISO code.
+        description: The sell currency - three-letter ISO code.
         type: string
       client_buy_amount:
         description: Client buy amount.
@@ -20031,7 +20047,7 @@ definitions:
         description: The deposit amount.
         type: string
       deposit_currency:
-        description: Deposit currency - three letter ISO code.
+        description: Deposit currency - three-letter ISO code.
         type: string
     example:
       settlement_cut_off_time: '2020-12-31T23:59:59.000Z'
@@ -20303,7 +20319,7 @@ definitions:
       transfer_completed_at:
         type: string
         format: date-time
-        description: Transfer completion datetime.
+        description: Transfer completion date and time.
     example:
       account_id: 6c046c51-2387-4004-8e87-4bf97102e36d
       currency: EUR
@@ -20370,7 +20386,7 @@ definitions:
         description: Account ID
       currency:
         type: string
-        description: ISO currency code.
+        description: Three-letter ISO currency code.
       amount:
         type: string
         description: Transaction amount
@@ -20379,13 +20395,13 @@ definitions:
         description: Balance amount
       type:
         type: string
-        description: Type (debit or credit)
+        description: Type (debit or credit).
         enum:
           - debit
           - credit
       action:
         type: string
-        description: Action
+        description: The action that triggered the transaction.
         enum:
           - funding
           - conversion
@@ -20431,14 +20447,14 @@ definitions:
         format: date-time
       created_at:
         type: string
-        description: Created date
+        description: Date the transaction record was created.
         format: date-time
       updated_at:
         type: string
         format: date-time
       completed_at:
         type: string
-        description: Completion date
+        description: Date the transaction record was last updated.
         format: date-time
     example:
       id: c5a990eb-d4d7-482f-bfb1-695261fb1e4d
@@ -20482,7 +20498,7 @@ definitions:
         description: Transfer amount
       status:
         type: string
-        description: Description of the transfer.
+        description: Status of the transfer - completed, pending or cancelled.
       created_at:
         type: string
         description: Date/time the transfer was created.
@@ -20948,20 +20964,20 @@ definitions:
     properties:
       id:
         type: string
-        description: The UUID of the withdrawal account.
+        description: The UUID for the Pull Request.
       withdrawal_account_id:
         type: string
-        description: The name of the withdrawal account.
+        description: The ID of the withdrawal account to pull funds from.
       reference:
         type: string
-        description: The name of the withdrawal account holder.
+        description: The reference provided at the time the request was made.
       amount:
         type: string
-        description: The DOB of the withdrawal account holder.
+        description: The amount to be pulled from the withdrawal account."
       created_at:
         type: string
         format: date-time
-        description: The routing code of the withdrawal account
+        description: Date the pull funds equest record was created.
     example:
       id: 82214b7e-9192-4d9e-82cf-e2c4b1670f23
       withdrawal_account_id: ffb9fdea-312b-4bc8-beb9-5e44ee2d2a8c
