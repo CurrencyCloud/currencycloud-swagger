@@ -1,0 +1,19 @@
+{
+    "id": "85280ea5-ba77-414b-af1f-18283d4f140c",
+    "balance_id": "209ca23c-6ac3-442f-a666-aacd98b33c8b",
+    "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "currency": "USD",
+    "amount": "100000.00",
+    "balance_amount": "100000.00",
+    "type": "credit",
+    "related_entity_type": "inbound_funds",
+    "related_entity_id": "85ab4e71-5a94-48eb-8ce6-9b829e102195",
+    "related_entity_short_reference": "",
+    "status": "completed",
+    "reason": "",
+    "settles_at": "2018-04-18T12:30:39+00:00",
+    "created_at": "2018-04-18T12:30:39+00:00",
+    "updated_at": "2021-03-02T07:53:46+00:00",
+    "completed_at": "2018-04-18T12:30:39+00:00",
+    "action": "funding"
+}

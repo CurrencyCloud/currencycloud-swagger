@@ -1,0 +1,13 @@
+{
+    "authorisations": [
+        {
+            "payment_id": "1c19d453-5249-4f1a-ae4d-19f0debf6197",
+            "payment_status": "awaiting_authorisation",
+            "updated": true,
+            "error": null,
+            "auth_steps_taken": 1,
+            "auth_steps_required": 2,
+            "short_reference": "180628-FGVXPX001"
+        }
+    ]
+}

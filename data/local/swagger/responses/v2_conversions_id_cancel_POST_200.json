@@ -1,0 +1,12 @@
+{
+    "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "event_account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "event_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "conversion_id": "1873a622-ce56-4357-a016-84b850aca99f",
+    "event_type": "self_service_cancellation",
+    "amount": "-0.11",
+    "currency": "GBP",
+    "notes": "",
+    "event_date_time": "2022-01-31T14:30:46+00:00"
+}

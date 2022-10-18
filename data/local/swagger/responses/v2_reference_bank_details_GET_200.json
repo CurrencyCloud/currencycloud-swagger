@@ -1,0 +1,15 @@
+{
+    "identifier_value": "GB19TCCL00997901654515",
+    "identifier_type": "iban",
+    "account_number": "GB19TCCL00997901654515",
+    "bic_swift": "TCCLGB31XXX",
+    "bank_name": "THE CURRENCY CLOUD LIMITED",
+    "bank_branch": "",
+    "bank_address": "STEWARD STREET, 12 THE STEWARD BUILDING FLOOR 0",
+    "bank_city": "LONDON",
+    "bank_state": "GREATER LONDON",
+    "bank_post_code": "E1 6FQ",
+    "bank_country": "UNITED KINGDOM",
+    "bank_country_ISO": "GB",
+    "currency": null
+}

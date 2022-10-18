@@ -1,0 +1,42 @@
+{
+    "id": "7fb35c55-976d-4e77-8f9d-7a152c314222",
+    "bank_account_holder_name": "My Test Account Holder",
+    "name": "My Test Beneficiary",
+    "email": null,
+    "payment_types": [
+        "regular"
+    ],
+    "beneficiary_address": [],
+    "beneficiary_country": null,
+    "beneficiary_entity_type": null,
+    "beneficiary_company_name": "My Test Beneficiary Company",
+    "beneficiary_first_name": null,
+    "beneficiary_last_name": null,
+    "beneficiary_city": null,
+    "beneficiary_postcode": null,
+    "beneficiary_state_or_province": null,
+    "beneficiary_date_of_birth": null,
+    "beneficiary_identification_type": null,
+    "beneficiary_identification_value": null,
+    "bank_country": "GB",
+    "bank_name": "TEST BANK NAME",
+    "bank_account_type": null,
+    "currency": "GBP",
+    "account_number": "32847346",
+    "routing_code_type_1": "sort_code",
+    "routing_code_value_1": "101193",
+    "routing_code_type_2": null,
+    "routing_code_value_2": null,
+    "bic_swift": null,
+    "iban": null,
+    "default_beneficiary": "false",
+    "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "bank_address": [
+        "TEST BANK ADDRESS",
+        " NOT USING EXTERNAL SERVICE",
+        " DEVELOPMENT ENVIRONMENT."
+    ],
+    "created_at": "2018-11-19T11:53:13+00:00",
+    "updated_at": "2022-01-31T14:30:35+00:00",
+    "beneficiary_external_reference": null
+}

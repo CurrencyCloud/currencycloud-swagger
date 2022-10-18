@@ -1,0 +1,198 @@
+{
+    "balances": [
+        {
+            "id": "209ca23c-6ac3-442f-a666-aacd98b33c8b",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "USD",
+            "amount": "36038.01",
+            "created_at": "2018-04-18T12:30:39+00:00",
+            "updated_at": "2022-01-24T04:10:55+00:00"
+        },
+        {
+            "id": "4e33f858-7f51-477d-9a15-aaa852f2a59e",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "GBP",
+            "amount": "109169.11",
+            "created_at": "2018-04-18T12:30:40+00:00",
+            "updated_at": "2022-01-24T04:10:55+00:00"
+        },
+        {
+            "id": "3ef765f6-0a91-4deb-8077-dbfd869987e6",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "EUR",
+            "amount": "96969.97",
+            "created_at": "2018-04-18T12:30:41+00:00",
+            "updated_at": "2021-06-08T03:49:51+00:00"
+        },
+        {
+            "id": "45ddc72f-68bc-4f2b-b5ee-5f9ecdbe3e02",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "PLN",
+            "amount": "1524.90",
+            "created_at": "2018-06-28T12:19:28+00:00",
+            "updated_at": "2021-04-16T03:34:32+00:00"
+        },
+        {
+            "id": "840791c5-e24b-43b2-bd2e-ee905c676dae",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "AED",
+            "amount": "2868.00",
+            "created_at": "2018-08-21T16:44:58+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "c56da0eb-cac5-4428-943b-6fe2d2c6118c",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "SGD",
+            "amount": "2463.75",
+            "created_at": "2018-09-20T13:48:24+00:00",
+            "updated_at": "2021-05-21T03:39:34+00:00"
+        },
+        {
+            "id": "4cfcb4fd-9831-4d98-b416-5a59b19eefa6",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "CNY",
+            "amount": "77919.04",
+            "created_at": "2018-09-20T13:49:14+00:00",
+            "updated_at": "2021-04-21T03:36:09+00:00"
+        },
+        {
+            "id": "dec79759-5005-4bcb-bff3-e8f4013c6358",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "JPY",
+            "amount": "366475.00",
+            "created_at": "2018-09-21T12:23:29+00:00",
+            "updated_at": "2021-04-21T03:36:09+00:00"
+        },
+        {
+            "id": "523b8690-9254-4e47-b0a2-383dbd96f2bc",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "AUD",
+            "amount": "8459.28",
+            "created_at": "2018-10-11T07:38:06+00:00",
+            "updated_at": "2021-05-18T03:31:21+00:00"
+        },
+        {
+            "id": "126175fa-7b1c-40ad-acb4-e9842f6b3ed1",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "CHF",
+            "amount": "98.79",
+            "created_at": "2018-11-22T12:15:26+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "f9595ec5-bbaf-4dfe-985f-ea0fed888fa9",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "RON",
+            "amount": "0.00",
+            "created_at": "2019-01-30T09:49:08+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "2430a471-b4bc-402c-b623-dc356d8fdd38",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "SEK",
+            "amount": "300.00",
+            "created_at": "2019-04-16T13:11:46+00:00",
+            "updated_at": "2021-05-21T03:39:35+00:00"
+        },
+        {
+            "id": "f99e99d4-258b-4e1b-bbbe-3d1adc51e172",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "RUB",
+            "amount": "0.00",
+            "created_at": "2019-05-17T14:42:20+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "5d93f596-0808-47bd-9fb0-cdbbfa24435e",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "CAD",
+            "amount": "235.29",
+            "created_at": "2019-05-21T10:49:12+00:00",
+            "updated_at": "2021-04-27T03:35:53+00:00"
+        },
+        {
+            "id": "1d448174-8262-441e-aa3d-950014a2107a",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "NOK",
+            "amount": "519.42",
+            "created_at": "2019-06-13T07:49:49+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "f290c2a7-2d1b-4608-b611-76e5941da993",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "TRY",
+            "amount": "0.00",
+            "created_at": "2019-07-16T20:36:44+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "ed9bae94-d98d-4449-ac4c-5e9f04a82580",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "MXN",
+            "amount": "0.00",
+            "created_at": "2019-10-22T16:39:09+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "41f64281-3745-4ce8-bfe5-0659fc2ee8a0",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "THB",
+            "amount": "0.00",
+            "created_at": "2019-11-06T10:02:47+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "76ebb6a1-fde7-4186-b741-1d1624de1162",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "HKD",
+            "amount": "0.00",
+            "created_at": "2019-11-11T07:28:52+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "13a6c55c-a124-4767-916c-6248ce130907",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "CZK",
+            "amount": "28.99",
+            "created_at": "2020-01-31T06:02:18+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "89a225f6-a7ff-460d-9272-c722b7963c55",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "NZD",
+            "amount": "143.70",
+            "created_at": "2020-02-11T14:56:37+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "f270b5c3-3fd4-4755-b575-06cfab21cd31",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "ZAR",
+            "amount": "2000.00",
+            "created_at": "2020-09-30T08:33:29+00:00",
+            "updated_at": "2021-03-01T14:13:09+00:00"
+        },
+        {
+            "id": "fc21ba57-fc04-418c-81d7-5dd1aa45a65a",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "currency": "BGN",
+            "amount": "100.00",
+            "created_at": "2021-05-10T06:51:04+00:00",
+            "updated_at": "2021-05-12T03:33:24+00:00"
+        }
+    ],
+    "pagination": {
+        "total_entries": 23,
+        "total_pages": 1,
+        "current_page": 1,
+        "per_page": 25,
+        "previous_page": -1,
+        "next_page": -1,
+        "order": "created_at",
+        "order_asc_desc": "asc"
+    }
+}

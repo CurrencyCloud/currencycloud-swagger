@@ -1,0 +1,8 @@
+{
+    "payment_date": "2022-02-03",
+    "payment_delivery_date": "2022-02-03T00:00:00+00:00",
+    "payment_cutoff_time": "2022-02-03T23:59:00+00:00",
+    "payment_type": "regular",
+    "currency": "GBP",
+    "bank_country": "GB"
+}

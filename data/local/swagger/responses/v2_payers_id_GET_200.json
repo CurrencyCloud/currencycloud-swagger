@@ -1,0 +1,17 @@
+{
+    "id": "79a8e858-4610-4ac7-a8a6-4bb4aa6a7b66",
+    "legal_entity_type": "company",
+    "company_name": "Currency Cloud Dev Centre",
+    "first_name": null,
+    "last_name": null,
+    "address": "12 Steward Street",
+    "city": "London",
+    "state_or_province": null,
+    "country": "GB",
+    "postcode": "E1 6FQ",
+    "date_of_birth": null,
+    "identification_type": "incorporation_number",
+    "identification_value": "123456789",
+    "created_at": "2021-10-29T10:39:30.000Z",
+    "updated_at": "2021-10-29T10:39:30.000Z"
+}
