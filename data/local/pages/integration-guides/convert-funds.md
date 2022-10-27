@@ -30,7 +30,7 @@ In this guide, you will:
 
 ## Step 1: Login
 
-Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions to start a new API session.
+Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions for starting a new API session.
 
 ## Step 2: Get a quote
 
@@ -53,7 +53,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "settlement_cut_off_time": "2018-02-06T14:00:00Z",
+  "settlement_cut_off_time": "2021-02-06T14:00:00Z",
   "currency_pair": "EURGBP",
   "client_buy_currency": "EUR",
   "client_sell_currency": "GBP",
@@ -96,9 +96,9 @@ Content-Type: application/json
 
 {
   "id": "4c52215f-ca4b-4dcb-a7ae-36edc4f5db16",
-  "settlement_date": "2018-02-06T14:00:00+00:00",
-  "conversion_date": "2018-02-06T00:00:00+00:00",
-  "short_reference": "20180202-FYYXFH",
+  "settlement_date": "2021-02-06T14:00:00+00:00",
+  "conversion_date": "2021-02-06T00:00:00+00:00",
+  "short_reference": "20210202-FYYXFH",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
   "currency_pair": "EURGBP",
@@ -122,8 +122,8 @@ Content-Type: application/json
   "payment_ids": [],
   "unallocated_funds": "0.00",
   "unique_request_id": null,
-  "created_at": "2018-02-02T11:41:29+00:00",
-  "updated_at": "2018-02-02T11:41:29+00:00",
+  "created_at": "2021-02-02T11:41:29+00:00",
+  "updated_at": "2021-02-02T11:41:29+00:00",
   "mid_market_rate": "0.8056"
 }
 

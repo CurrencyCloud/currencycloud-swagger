@@ -8,19 +8,19 @@ We have put together this document to answer questions that we are frequently as
 ## Convert
 
 ### When requesting a rate, is the ordering of the currencies significant?
-Yes. When you fetch exchange rate information from the [Get Basic Rates](/api-reference/#get-basic-rates/) endpoint, the returned currency pair string will match the value of the currency_pair input parameter.
+Yes. When you fetch exchange rate information from the [Get Basic Rates](/api-reference/#get-basic-rates) endpoint, the returned currency pair string will match the value of the currency_pair input parameter.
 
-When you get a quote from the [Get Detailed Rates](/api-reference/#rates) endpoint, however, the value of the currency_pair property in the response will be standardised, adhering to market conventions for currency pair notation which does not consider the buy/sell order.
+When you get a quote from the [Get Detailed Rates](/api-reference/#get-detailed-rates) endpoint, however, the value of the currency_pair property in the response will be standardised, adhering to market conventions for currency pair notation which does not consider the buy/sell order.
 
 See our [foreign exchange rates guide](/guides/integration-guides/check-foreign-exchange-rates/) for more information.
 
 ### How can I apply a mark-up to conversions?
 
-The first step is to call the [Get Detailed Rates ](/api-reference/#rates)endpoint.
+The first step is to call the [Get Detailed Rates ](/api-reference/#get-detailed-rates)endpoint.
 
 Amongst other response fields, this will give you the `client_rate`. Using your own mechanism, you can calculate an additional markup to the client rate and display this marked-up rate. You should also display the appropriate buy or sell amounts to your end customer for approval before executing the conversion request, this is also known as the "all-in price". This is either the `client_buy_amount` or `client_sell_amount`, depending on which is fixed.
 
-For example, imagine you decide to apply a 0.5% mark-up on a trade to buy 1000 USD from a GBP balance. The call to [Get Detailed Rates](/api-reference/#rates) passes the parameters below:
+For example, imagine you decide to apply a 0.5% mark-up on a trade to buy 1000 USD from a GBP balance. The call to [Get Detailed Rates](/api-reference/#get-detailed-rates) passes the parameters below:
 
 | **Parameter Name** | **Parameter Type** | **Value** |
 | --- | --- | --- |
@@ -98,7 +98,7 @@ More information on these scenarios and the valid purpose codes can be found in 
 
 ### What is the mapping of parameters from the Get Beneficiary Requirements endpoint to Create Beneficiary?
 
-There is no one to one mapping.  Some data translation needs to be made from the response from [Get Beneficiary Requirements](/#get-beneficiary-requirements) to [Create Beneficiary](/api-reference/#create-beneficiary) (for example, acct_number >> account_number).
+There is no one to one mapping. Some data translation needs to be made from the response from [Get Beneficiary Requirements](/api-reference/#get-beneficiary-requirements) to [Create Beneficiary](/api-reference/#create-beneficiary) (for example, acct_number >> account_number).
 
 ## Manage
 

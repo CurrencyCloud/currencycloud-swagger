@@ -8,10 +8,10 @@ All endpoints in the Currencycloud API require authentication. Rather than provi
 ## TL;DR
 To authenticate, follow the steps below.
 1. Get a temporary authentication token by calling the [Login endpoint](/api-reference/#authenticate), passing in your Currencycloud login ID (which is usually your email address) and your unique [API key](/register-for-an-api-key/).
-2. Extract the `auth_token` from the response payload. This is your authentication token. From now on, your authentication token will be used as a proxy for your login credentials. You will need to submit your authentication token with all subsequent API calls. You do this via the `X-Auth-Token` header.
+2. Extract the `auth_token` from the response payload. This is your authentication token and will be used as a proxy for your login credentials. You will need to submit your authentication token via the `X-Auth-Token` header with all subsequent API calls.
 3. To terminate your session and retire your access token, send a request to the [Logout endpoint](/api-reference/#logout).
 
-Detailed instructions are given below.
+Detailed instructions are given in the authentication guide below.
 
 ## Workflow diagram
 
@@ -21,7 +21,7 @@ Detailed instructions are given below.
 
 ## 1. Login
 
-Call the [Login endpoint](/api-reference/#authenticate), passing in your Currencycloud login ID - which is usually your email address - and your unique API key. If you don't yet have an API key, you can register for one [here](/register-for-an-api-key/). An email will be sent to you which will include your API key for our demo environment.
+Call the [Login endpoint](/api-reference/#authenticate), passing in your Currencycloud login ID - which is usually your email address - and your unique API key. If you don't yet have an API key, you can register for one [here](/register-for-an-api-key/). An email will be sent to you that will provide instructions for obtaining your API key.
 
 ```
 POST /v2/authenticate/api
@@ -82,6 +82,6 @@ We recommend that you wait until your authentication token has expired before re
 It is good security practice to retire authentication tokens when they are no longer needed, rather than let them expire. Send a request to the [Logout endpoint](/api-reference/#logout) to terminate an authentication token immediately.
 
 ```
-POST /v2/authenticate/close_session 
+POST /v2/authenticate/close_session
 X-Auth-Token: ea6d13c7bc50feb46cf978d137bc01a2
 ```

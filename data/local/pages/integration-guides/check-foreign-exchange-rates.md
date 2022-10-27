@@ -9,7 +9,7 @@ A foreign exchange (FX) rate is a rate at which one currency is exchanged for an
 ## TL;DR
 Currencycloud's API provides two endpoints for checking foreign exchange rates.
 1.  Get indicative foreign exchange rate information for one or more currency pairs in a single request - [Get Basic Rates](/api-reference/#get-basic-rates).
-2.  Get a detailed, tradable rate quote to convert money from one currency to another. The quotation provided will be based on the [spread table](/guides/integration-guides/adding-an-fx-spread) of the authenticated user. There is also the option to provide a specific date for the conversion to occur - [Get Detailed Rates](/api-reference/#get-detailed-rates).
+2.  Get a detailed, tradable rate quote to convert money from one currency to another - [Get Detailed Rates](/api-reference/#get-detailed-rates). The quote provided is based on the [spread table](/guides/integration-guides/adding-an-fx-spread) of the authenticated user. There is also the option to provide a specific date for the conversion to occur.
 
 Detailed instructions are given below.
 
@@ -18,7 +18,7 @@ Detailed instructions are given below.
 
 ## Step 1: Login
 
-Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions on starting a new API session.
+Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions for starting a new API session.
 
 ## Step 2: Get basic exchange rate information
 
@@ -54,14 +54,14 @@ Content-Type: application/json
 
 The two rates in the response are the "bid" and "offer" prices. The bid price is applicable if you are selling the base currency. The offer rate is applicable if you are buying the base currency. So, in the example above:
 
--Selling EUR €1,000.00 would buy GBP £805.30.  
--To buy EUR €1,000.00 you would need to sell GBP £805.90.
+Selling EUR €1,000.00 would buy GBP £805.30.  
+To buy EUR €1,000.00 you would need to sell GBP £805.90.
 
-When you fetch exchange rate information from the [Get Basic Rates endpoint](/api-reference/#get-basic-rates), the returned currency pair string will match the value of the currency_pair input parameter. 
+When you fetch exchange rate information from the [Get Basic Rates](/api-reference/#get-basic-rates) endpoint, the returned currency pair string will match the value of the currency_pair input parameter. 
 
 ## Step 3: Get a detailed quote
 
-To find out *exactly* how much it will cost you to trade funds in one currency for another, use Currencycloud's [Get Detailed Rates endpoint](/api-reference/#get-detailed-rates). For example, to get a quote buy 10,000 Euros using funds from your Pound Sterling balance, make the following call:
+To find out *exactly* how much it will cost you to trade funds in one currency for another, use Currencycloud's [Get Detailed Rates](/api-reference/#get-detailed-rates) endpoint. For example, to get a quote buy 10,000 Euros using funds from your Pound Sterling balance, make the following call:
 
 `GET /v2/rates/detailed`
 
@@ -80,7 +80,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "settlement_cut_off_time": "2018-06-05T13:00:00Z",
+  "settlement_cut_off_time": "2021-06-05T13:00:00Z",
   "currency_pair": "EURGBP",
   "client_buy_currency": "EUR",
   "client_sell_currency": "GBP",
@@ -98,7 +98,7 @@ Content-Type: application/json
 
 ```
 
-When you fetch exchange rate information from the [Get Basic Rates endpoint](/api-reference/#get-basic-rates), the returned currency pair string will match exactly the value of the `currency_pair` input parameter. However, when you get a quote from the [Get Detailed Rates endpoint](/api-reference/#get-detailed-rates), the value of the `currency_pair` property in the response will be standardised, adhering to market conventions for currency pair notation.
+When you fetch exchange rate information from the [Get Basic Rates](/api-reference/#get-basic-rates) endpoint, the returned currency pair string will match exactly the value of the `currency_pair` input parameter. However, when you get a quote from the [Get Detailed Rates](/api-reference/#get-detailed-rates) endpoint, the value of the `currency_pair` property in the response will be standardised, adhering to market conventions for currency pair notation.
 
 It is conventional to represent a pairing of Euros to Pound Sterling as "EURGBP", never "GBPEUR", regardless which of the two currencies you are buying and selling. By default, the least valuable currency is the second unit in a currency pair. But there are some exceptions. If any of the following currencies are quoted against each other, then the currency appearing first in the list will be the first in the currency pair.
 

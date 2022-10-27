@@ -8,8 +8,7 @@
 The steps and endpoints for making a simple payment are:
 
 1. Check that you have enough balance in the payment currency - [Get Balance](/api-reference/#balances). Alternatively, [Find Balances](/api-reference/#find-balances) will tell you the value of all foreign currencies that you hold in your main Currencycloud account.
-2.	Find or create a new beneficiary - [Find Beneficiaries](/api-reference/#find-beneficiaries)  
-[Create Beneficiary](/api-reference/#create-beneficiary).
+2.	Find an existing beneficiary or create a new one - [Find Beneficiaries](/api-reference/#find-beneficiaries) / [Create Beneficiary](/api-reference/#create-beneficiary).
 3.	Find out what payer details are required for the payment - [Get Payer Requirements](/api-reference/#get-payer-requirements).
 4.	Create the payment - [Create Payment](/api-reference/#create-payment).
 
@@ -48,11 +47,11 @@ In this guide, you will:
 
 ## Step 1: Login
 
-Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions to start a new API session.
+Please refer to the [Authentication guide](/guides/integration-guides/authentication) for instructions for starting a new API session.
 
 ## Step 2: Check available balances
 
-To find out how many Euros you have, call the [Get Balance endpoint](/api-reference/#get-balance), passing `EUR` as the third URI path parameter.
+To find out how many Euros you have, call the [Get Balance](/api-reference/#get-balance) endpoint, passing `EUR` as the third URI path parameter.
 
 ```
 GET /v2/balances/EUR
@@ -71,13 +70,13 @@ Content-Type: application/json
   "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
   "currency": "EUR",
   "amount": "15458.12",
-  "created_at": "2018-12-10T16:05:20+00:00",
-  "updated_at": "2018-12-10T16:05:20+00:00"
+  "created_at": "2021-12-10T16:05:20+00:00",
+  "updated_at": "2021-12-10T16:05:20+00:00"
 }
 
 ```
 
-Alternatively, you can check the balances for all foreign currencies that you hold in your Currencycloud account by calling the [Find Balances endpoint](/api-reference/#find-balances).
+Alternatively, you can check the balances for all foreign currencies that you hold in your Currencycloud account by calling the [Find Balances](/api-reference/#find-balances) endpoint.
 
 ```
 GET /v2/balances/find
@@ -95,24 +94,24 @@ The following response shows that you hold £10,750.00, US$1,500.24 and €15,45
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "GBP",
       "amount": "10750.00",
-      "created_at": "2018-12-10T16:05:19+00:00",
-      "updated_at": "2018-12-10T16:05:19+00:00"
+      "created_at": "2021-12-10T16:05:19+00:00",
+      "updated_at": "2021-12-10T16:05:19+00:00"
     },
     {
       "id": "349a2b87-9455-4808-9e68-515daf1f7298",
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "USD",
       "amount": "1550.24",
-      "created_at": "2018-12-10T16:05:19+00:00",
-      "updated_at": "2018-12-10T16:05:19+00:00"
+      "created_at": "2021-12-10T16:05:19+00:00",
+      "updated_at": "2021-12-10T16:05:19+00:00"
     },
     {
       "id": "ad6411db-1e00-44fd-b4e8-194c74cf2f83",
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "EUR",
       "amount": "15458.12",
-      "created_at": "2018-12-10T16:05:20+00:00",
-      "updated_at": "2018-12-10T16:05:20+00:00"
+      "created_at": "2021-12-10T16:05:20+00:00",
+      "updated_at": "2021-12-10T16:05:20+00:00"
     }
   ],
   "pagination": {
@@ -252,8 +251,8 @@ Content-Type: application/json
   "default_beneficiary": "false",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "bank_address": [],
-  "created_at": "2018-02-02T11:52:23+00:00",
-  "updated_at": "2018-02-02T11:52:23+00:00",
+  "created_at": "2021-02-02T11:52:23+00:00",
+  "updated_at": "2021-02-02T11:52:23+00:00",
   "beneficiary_external_reference": null
 }
 
@@ -273,7 +272,7 @@ Authorize a payment by calling the [Create Payment](/api-reference/#create-paym
 | `amount` | Form Data | `10000` |
 | `reason` | Form Data | `Invoice Payment` |
 | `payment_type` | Form Data | `regular` |
-| `reference` | Form Data | `2018-014` |
+| `reference` | Form Data | `2021-014` |
 | `unique_request_id` | Form Data | `4abd730f-bb50-4b4a-8890-f46addff222b` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
@@ -288,12 +287,12 @@ Content-Type: application/json
   "amount": "10000.00",
   "beneficiary_id": "aea097c2-39e4-49b5-aaa6-c860ca55ca0b",
   "currency": "EUR",
-  "reference": "2018-014",
+  "reference": "2021-014",
   "reason": "Invoice Payment",
   "status": "ready_to_send",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "payment_type": "regular",
-  "payment_date": "2018-02-02",
+  "payment_date": "2021-02-02",
   "transferred_at": "",
   "authorisation_steps_required": "0",
   "last_updater_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
@@ -302,8 +301,8 @@ Content-Type: application/json
   "failure_reason": "",
   "payer_id": "49d44eff-af91-45b0-a32e-84c7c1750ca0",
   "payer_details_source": "account",
-  "created_at": "2018-02-02T11:56:05+00:00",
-  "updated_at": "2018-02-02T11:56:05+00:00",
+  "created_at": "2021-02-02T11:56:05+00:00",
+  "updated_at": "2021-02-02T11:56:05+00:00",
   "payment_group_id": null,
   "unique_request_id": "4abd730f-bb50-4b4a-8890-f46addff222b",
   "failure_returned_amount": "0.00",

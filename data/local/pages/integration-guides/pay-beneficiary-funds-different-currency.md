@@ -1,19 +1,37 @@
 [_metadata_:menu_title]:- "Paying a beneficiary using funds in a different currency"
-[_metadata_:order]:- "10"
+[_metadata_:order]:- "9"
 
 # Paying a beneficiary using funds in a different currency
+
+This guide explains how you can make a payment in a different currency and also how to ensure that you have enough balance available to make the payment.
+
+## TL;DR
+
+The steps and endpoints for making a payment in a chosen currency are:
+
+1. Check the balance for the payment currency by calling [Get Balance](/api-reference/#balances), passing the currency as a parameter. Alternatively, get the balances for all currencies you hold by calling [Find Balances](/api-reference/#find-balances).
+2. If you don't have enough balance to cover the payment, you can convert funds - first call [Get Detailed Rates](/api-reference/#get-detailed-rates) to get a rate, you can then go ahead and convert funds by calling  [Create Conversion](/api-reference/#create-conversion).
+3. Find out what details you need to provide to make a payment to the beneficiary by calling [Get Beneficiary Requirements](/api-reference/#get-beneficiary-requirements), passing the currency and country as parameters.
+4.	Find an existing beneficiary or create a new one - [Find Beneficiaries](/api-reference/#find-beneficiaries) /
+[Create Beneficiary](/api-reference/#create-beneficiary).
+5.	Find out what payer details are required for the payment - [Get Payer Requirements](/api-reference/#get-payer-requirements).
+6.	Create the payment - [Create Payment](/api-reference/#create-payment).
+
+Detailed instructions are given below.
+
+
+## Integration guide
 
 In this guide, we will:
 
 1. Check how much money you hold in various foreign currencies in your Currencycloud account.  
 2. Top up your Euros balance by trading some Pound Sterling.  
 3. Make a payment in Euros to a beneficiary in Germany.
-
-Note, **this functionality is available only via the live API, not the demo API.**
+Note, this functionality is available only via the live API, not the demo API.
 
 ## Step 1: Login
 
-Please refer to the [authentication guide](/guides/integration-guides/authentication) for instructions to start a new API session.
+Please refer to the [authentication guide](/guides/integration-guides/authentication) for instructions for starting a new API session.
 
 ## Step 2: Check available balances
 
@@ -36,8 +54,8 @@ Content-Type: application/json
   "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
   "currency": "EUR",
   "amount": "15458.12",
-  "created_at": "2018-12-10T16:05:20+00:00",
-  "updated_at": "2018-12-10T16:05:20+00:00"
+  "created_at": "2021-12-10T16:05:20+00:00",
+  "updated_at": "2021-12-10T16:05:20+00:00"
 }
 
 ```
@@ -60,24 +78,24 @@ The following response shows that you hold £10,750.00, US$1,500.24 and €15,45
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "GBP",
       "amount": "10750.00",
-      "created_at": "2018-12-10T16:05:19+00:00",
-      "updated_at": "2018-12-10T16:05:19+00:00"
+      "created_at": "2021-12-10T16:05:19+00:00",
+      "updated_at": "2021-12-10T16:05:19+00:00"
     },
     {
       "id": "349a2b87-9455-4808-9e68-515daf1f7298",
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "USD",
       "amount": "1550.24",
-      "created_at": "2018-12-10T16:05:19+00:00",
-      "updated_at": "2018-12-10T16:05:19+00:00"
+      "created_at": "2021-12-10T16:05:19+00:00",
+      "updated_at": "2021-12-10T16:05:19+00:00"
     },
     {
       "id": "ad6411db-1e00-44fd-b4e8-194c74cf2f83",
       "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
       "currency": "EUR",
       "amount": "15458.12",
-      "created_at": "2018-12-10T16:05:20+00:00",
-      "updated_at": "2018-12-10T16:05:20+00:00"
+      "created_at": "2021-12-10T16:05:20+00:00",
+      "updated_at": "2021-12-10T16:05:20+00:00"
     }
   ],
   "pagination": {
@@ -110,14 +128,14 @@ Check how much it will cost to buy 10,000 Euros using funds from your Pound Ster
 | `fixed_side` | Query String | `buy` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
-On success, the response payload will contain details of Currencycloud's quotation to make the conversion. The following example tells you that you can sell £8,059 to buy $10,000. The quote is valid until 2pm on 6 February 2018 (UTC time).
+On success, the response payload will contain details of Currencycloud's quotation to make the conversion. The following example tells you that you can sell £8,059 to buy $10,000. The quote is valid until 2pm on 6 February 2021 (UTC time).
 
 ```
 HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "settlement_cut_off_time": "2018-02-06T14:00:00Z",
+  "settlement_cut_off_time": "2021-02-06T14:00:00Z",
   "currency_pair": "EURGBP",
   "client_buy_currency": "EUR",
   "client_sell_currency": "GBP",
@@ -150,7 +168,7 @@ If you're happy with the quote, you may authorize the conversion by calling the�
 | `term_agreement` | Form Data | `true` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
-On success, the payload of the response message will contain full details of the conversion as recorded against your Currencycloud account. Note the unique conversion id (the `id` field). You'll need this to complete the conversion.
+On success, the payload of the response message will contain full details of the conversion as recorded against your Currencycloud account. Make a note of the unique conversion id (the `id` field), you'll need this if you want to link the conversion and payment. This means that the payment won’t be processed until the conversion settles. If you cancel the conversion, the payment itself will move to a status of `suspended`, you would have to re-create the payment again for the status to move to `ready_to_send`.
 
 ```
 HTTP/1.1 200 OK
@@ -158,9 +176,9 @@ Content-Type: application/json
 
 {
   "id": "4c52215f-ca4b-4dcb-a7ae-36edc4f5db16",
-  "settlement_date": "2018-02-06T14:00:00+00:00",
-  "conversion_date": "2018-02-06T00:00:00+00:00",
-  "short_reference": "20180202-FYYXFH",
+  "settlement_date": "2021-02-06T14:00:00+00:00",
+  "conversion_date": "2021-02-06T00:00:00+00:00",
+  "short_reference": "20210202-FYYXFH",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "account_id": "d22073a6-4c56-4980-8699-504b0c70003f",
   "currency_pair": "EURGBP",
@@ -184,8 +202,8 @@ Content-Type: application/json
   "payment_ids": [],
   "unallocated_funds": "0.00",
   "unique_request_id": null,
-  "created_at": "2018-02-02T11:41:29+00:00",
-  "updated_at": "2018-02-02T11:41:29+00:00",
+  "created_at": "2021-02-02T11:41:29+00:00",
+  "updated_at": "2021-02-02T11:41:29+00:00",
   "mid_market_rate": "0.8056"
 }
 
@@ -207,7 +225,7 @@ This conversion is currently awaiting funds.
 
 ## Step 4: Check payment requirements
 
-You want to make a regular payment to a supplier based in Germany. First, check what details are required to make a regular payment in Euros to a beneficiary with a bank account in Germany. To do that, call the [Get Beneficiary Requirements](/api-reference/#get-beneficiary-requirements) endpoint.
+Check what details are required to make a regular (local) payment in Euros to a beneficiary with a bank account in Germany. To do that, call the [Get Beneficiary Requirements](/api-reference/#get-beneficiary-requirements) endpoint.
 
 `GET /v2/reference/beneficiary_required_details`
 
@@ -321,8 +339,8 @@ Content-Type: application/json
   "default_beneficiary": "false",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "bank_address": [],
-  "created_at": "2018-02-02T11:52:23+00:00",
-  "updated_at": "2018-02-02T11:52:23+00:00",
+  "created_at": "2021-02-02T11:52:23+00:00",
+  "updated_at": "2021-02-02T11:52:23+00:00",
   "beneficiary_external_reference": null
 }
 
@@ -342,9 +360,11 @@ Authorize a payment by calling the [Create Payment](/api-reference/#create-paym
 | `amount` | Form Data | `10000` |
 | `reason` | Form Data | `Invoice Payment` |
 | `payment_type` | Form Data | `regular` |
-| `reference` | Form Data | `2018-014` |
+| `reference` | Form Data | `2021-014` |
 | `unique_request_id` | Form Data | `4abd730f-bb50-4b4a-8890-f46addff222b` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
+
+You can link the payment to the conversion by passing the `conversion_id` as a parameter. Under these circumstances, the payment won’t be processed/actioned until the conversion settles. If you cancel the conversion, the payment itself will move to a status of "suspended" and you would have to re-create the payment again for the status to move to "ready_to_send”.
 
 If the payment is successfully queued, the response payload will contain all the information about the payment as recorded in your Currencycloud account. This does not mean that the payment was made. It just means that it is ready for processing.
 
@@ -359,12 +379,12 @@ Content-Type: application/json
   "amount": "10000.00",
   "beneficiary_id": "aea097c2-39e4-49b5-aaa6-c860ca55ca0b",
   "currency": "EUR",
-  "reference": "2018-014",
+  "reference": "2021-014",
   "reason": "Invoice Payment",
   "status": "ready_to_send",
   "creator_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
   "payment_type": "regular",
-  "payment_date": "2018-02-02",
+  "payment_date": "2021-02-02",
   "transferred_at": "",
   "authorisation_steps_required": "0",
   "last_updater_contact_id": "1993263d-be07-42d4-b75b-ae4ea18bcb6c",
@@ -373,8 +393,8 @@ Content-Type: application/json
   "failure_reason": "",
   "payer_id": "49d44eff-af91-45b0-a32e-84c7c1750ca0",
   "payer_details_source": "account",
-  "created_at": "2018-02-02T11:56:05+00:00",
-  "updated_at": "2018-02-02T11:56:05+00:00",
+  "created_at": "2021-02-02T11:56:05+00:00",
+  "updated_at": "2021-02-02T11:56:05+00:00",
   "payment_group_id": null,
   "unique_request_id": "4abd730f-bb50-4b4a-8890-f46addff222b",
   "failure_returned_amount": "0.00",

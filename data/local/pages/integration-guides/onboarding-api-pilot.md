@@ -39,8 +39,10 @@ All endpoints in the Currencycloud API require authentication to access. Rather 
 
 Call the Login endpoint, passing in your Currencycloud login ID - which is usually your email address - and your unique API key.
 
-**`POST /v2/authenticate/api`**\
-**`Content-Type: multipart/form-data`**
+```
+POST /v2/authenticate/api
+Content-Type: multipart/form-data
+```
 
 | **Parameter Name** | **Parameter Type** | **Example Value** |
 | --- | --- | --- |
@@ -49,17 +51,20 @@ Call the Login endpoint, passing in your Currencycloud login ID - which is usual
 
 If your credentials are validated, the response payload will contain a fresh authentication token.
 
-**`HTTP/1.1 200 OK\
+```
+HTTP/1.1 200 OK\
 Content-Type: application/json\
-{ "auth_token": "ea6d13c7bc50feb46cf978d137bc01a2"}`**
+{ "auth_token": "ea6d13c7bc50feb46cf978d137bc01a2"}
+```
 
 ### **Step 2: Keep the authentication token**
 
 Extract the auth_token from the response payload. This is your authentication token. From now on, your authentication token will be used as a proxy for your login credentials. You will need to submit your authentication token with all subsequent API calls. You do this via the X-Auth-Token header. Example:
 
-`**POST https://api.currencycloud.com/onboarding/v1/forms HTTP/1.1**\
-**\
-X-Auth-Token: ****ea6d13c7bc50feb46cf978d137bc01a2**`
+```
+POST https://api.currencycloud.com/onboarding/v1/forms HTTP/1.1
+X-Auth-Token: ****ea6d13c7bc50feb46cf978d137bc01a2
+```
 
 Authentication tokens expire after 30 minutes of inactivity. In this situation, you should request a fresh authentication token by calling the Login endpoint again. We recommend that you wait until your authentication token has expired before re-authenticating.
 

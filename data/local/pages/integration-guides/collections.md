@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Inbound Funds / Collections"
-[_metadata_:order]:- "11"
+[_metadata_:order]:- "10"
 
 # Inbound Funds / Collections
 
@@ -7,7 +7,7 @@ This guide demonstrates how to use push notifications and API calls to reconcile
 
 ## TL;DR
 1.  To receive funds into a Currencycloud account, you need to know the account details. These can be obtained by making a request to the [Find Funding Accounts](/api-reference/#funding) endpoint.
-2.  Once funds have been settled to a Currencycloud account, you can ingest funding push notifications to be notified that funds have arrived. This messaging can be customized and displayed within your application. Please refer to our [push notifications page](/guides/docs/getting-started/push-notifications) for more details. 
+2.  Once funds have been settled to a Currencycloud account, you can ingest funding push notifications to be notified that funds have arrived. This messaging can be customized and displayed within your application. Please refer to our [push notifications page](/guides/getting-started/push-notifications) for more details. 
 3.  To see the transaction details, call the [Find Transactions](/api-reference/#find-transactions) endpoint.
 4.  The [Get Sender Details](/api-reference/#get-sender-details) endpoint gives you more information about the sender and the payment rail.
 

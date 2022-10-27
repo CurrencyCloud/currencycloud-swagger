@@ -56,7 +56,7 @@ The [Create Transfer](/api-reference/#create-transfer) endpoint allows you to 
 
 ## Step 4: Push notifications
 
-You can ingest transfer push notifications, please refer to our [push notifications guide](/guides/docs/getting-started/push-notifications) for more details.
+You can ingest transfer push notifications, please refer to our [push notifications guide](/guides/getting-started/push-notifications/) for more details.
 
 ## Step 5: Confirm transfer completed
 
