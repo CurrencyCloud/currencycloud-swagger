@@ -10,4 +10,4 @@ install:
 
 script:
 
-  - python -m openapi_spec_validator src/reference.yaml --schema 2.0
+  - python -m openapi_spec_validator src/OpenAPI.yaml --schema 2.0
