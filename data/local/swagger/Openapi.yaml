@@ -3498,6 +3498,11 @@ paths:
           required: false
           type: string
           description: Email address
+        - name: beneficiary_address
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
         - name: beneficiary_country
           in: formData
           required: false
