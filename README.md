@@ -9,7 +9,7 @@ The Currencycloud API documentation is maintained in two document formats:
 There are three categories of documentation on our developer centre: getting started guides, integration guides and API reference documentation. The getting started guides can be found at `data/local/pages/getting-started`, the integration guides can be found at `data/local/pages/integration-guides` and the OpenApi specification for the API reference docs is at `data/local/swagger`.
 
 
-Most of the source documentation is written in Markdown. The only exception is the file ``OpenAPI.yaml``, which is a [YAML](http://yaml.org/) file that conforms to the [OpenAPI Specification (OAS) v2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), a popular API definition language previously known as "Swagger".
+Most of the source documentation is written in Markdown. The only exception is the file ``reference.yaml``, which is a [YAML](http://yaml.org/) file that conforms to the [OpenAPI Specification (OAS) v2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), a popular API definition language previously known as "Swagger".
 
 The OpenAPI definition file describes individual endpoints in the Currencycloud API. OpenAPI definitions can be written in JSON or YAML. We've chosen YAML as it is the most readable of the two formats.
 
@@ -88,7 +88,7 @@ Docker provides a simple way to start a local [Swagger Editor](https://github.co
 
 ```
 docker pull swaggerapi/swagger-editor
-docker run -p 8866:8080 -v $(pwd)/src:/tmp -e SWAGGER_FILE=/tmp/OpenAPI.yaml swaggerapi/swagger-editor
+docker run -p 8866:8080 -v $(pwd)/src:/tmp -e SWAGGER_FILE=/tmp/reference.yaml swaggerapi/swagger-editor
 ```
 
 which can be accessed then via `http://localhost:8866` and after editing new version can be saved.
@@ -101,7 +101,7 @@ Online editor is available at [https://editor.swagger.io/](https://editor.swagge
 
 ### Postman
 
-The ``OpenAPI.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular app that makes it easy to manually test API endpoints.
+The ``reference.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular app that makes it easy to manually test API endpoints.
 
 For a step-by-step guideline on how to configure Postman, please see [this guide](POSTMAN_README.md)
 
@@ -111,4 +111,4 @@ Once Postman is installed and configured it is not mandatory to configure a Post
 - ``api_key``: Your unique Currencycloud API key that you retrieved from your Currencycloud account.
 - ``X-Auth-Token``: Keep this empty initially. Update it when you have an authentication token from the Login endpoint.
 
-Click on "Collections" on the left side of the Postman UI, and then click the icon to "Import collection". Under "Upload files", select the copy of ``OpenAPI.yaml`` on your computer. All of the Currencycloud endpoints defined in the OpenAPI document will be imported into a new Postman collection.
+Click on "Collections" on the left side of the Postman UI, and then click the icon to "Import collection". Under "Upload files", select the copy of ``reference.yaml`` on your computer. All of the Currencycloud endpoints defined in the OpenAPI document will be imported into a new Postman collection.
