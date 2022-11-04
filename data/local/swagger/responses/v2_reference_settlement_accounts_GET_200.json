@@ -1,0 +1,652 @@
+{
+    "settlement_accounts": [
+        {
+            "bank_account_holder_name": "The Currency Cloud HUF - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "HUF",
+            "bic_swift": "BARCGB22",
+            "iban": "GB05 BARC 2006 0562 0403 88",
+            "account_number": "62040388",
+            "routing_code_type_1": "sort_code",
+            "routing_code_value_1": "200605",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud AED - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "AED",
+            "bic_swift": "BARCGB22",
+            "iban": "GB67 BARC 2006 0556 2413 88",
+            "account_number": "56241388",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "sort_code",
+            "routing_code_value_2": "200605"
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud AUD - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "AUD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB34 BARC 2006 0587 6503 88",
+            "account_number": "87650388",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud CAD - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "CAD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB74 BARC 2006 0556 1958 66",
+            "account_number": "56195866",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud CHF - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "CHF",
+            "bic_swift": "BARCGB22",
+            "iban": "GB18 BARC 2006 0559 8777 33",
+            "account_number": "59877733",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud CZK - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "CZK",
+            "bic_swift": "BARCGB22",
+            "iban": "GB24 BARC 2006 0553 1642 55",
+            "account_number": "53164255",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud DKK - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "DKK",
+            "bic_swift": "BARCGB22",
+            "iban": "GB75 BARC 2006 0569 1763 88",
+            "account_number": "69176388",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud EUR - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "EUR",
+            "bic_swift": "BARCGB22",
+            "iban": "GB05 BARC 2006 0574 7412 77",
+            "account_number": "74741277",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud GBP - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "GBP",
+            "bic_swift": "BARCGB22",
+            "iban": "GB06 BARC 2006 0513 0714 72",
+            "account_number": "13071472",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud HKD - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "HKD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB87 BARC 2006 0546 9946 00",
+            "account_number": "46994600",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud ILS - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "ILS",
+            "bic_swift": "BARCGB22",
+            "iban": "GB58 BARC 2006 0584 7730 33",
+            "account_number": "84773033",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud JPY - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "JPY",
+            "bic_swift": "BARCGB22",
+            "iban": "GB57 BARC 2006 0565 5399 88",
+            "account_number": "65539988",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud KWD - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "BARCLAYS BANK PLC",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "KWD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB30BARC20060563914366",
+            "account_number": "63914366",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud MXN - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "MXN",
+            "bic_swift": "BARCGB22",
+            "iban": "GB24 BARC 2006 0575 5659 99",
+            "account_number": "75565999",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud NOK - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "NOK",
+            "bic_swift": "BARCGB22",
+            "iban": "GB68 BARC 2006 0584 9599 66",
+            "account_number": "84959966",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud NZD - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "NZD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB23 BARC 2006 0578 3776 77",
+            "account_number": "78377677",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud PLN - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "PLN",
+            "bic_swift": "BARCGB22",
+            "iban": "GB46 BARC 2006 0553 3436 00",
+            "account_number": "53343600",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud QAR - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "QAR",
+            "bic_swift": "BARCGB22",
+            "iban": "GB25 BARC 2006 0556 9548 66",
+            "account_number": "56954866",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud RUB - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "BARCLAYS BANK PLC",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "RUB",
+            "bic_swift": "BARCGB22",
+            "iban": "GB86 BARC 2006 0567 4467 77",
+            "account_number": "67446777",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud SAR - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "BARCLAYS BANK PLC",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "SAR",
+            "bic_swift": "BARCGB22",
+            "iban": "GB30 BARC 2006 0573 1717 55",
+            "account_number": "73171755",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud SEK - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "SEK",
+            "bic_swift": "BARCGB22",
+            "iban": "GB25 BARC 2006 0569 7589 00",
+            "account_number": "69758900",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud SGD - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "SGD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB41 BARC 2006 0578 4491 33",
+            "account_number": "78449133",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud THB - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "THB",
+            "bic_swift": "BARCGB22",
+            "iban": "GB35 BARC 2006 0574 8127 11",
+            "account_number": "74812711",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud TRY - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "TRY",
+            "bic_swift": "BARCGB22",
+            "iban": "GB29 BARC 2006 0574 8127 22",
+            "account_number": "74812722",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud UGX - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "BARCLAYS BANK PLC",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "UGX",
+            "bic_swift": "BARCGB22",
+            "iban": "GB16 BARC 2006 0573 0831 55",
+            "account_number": "73083155",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud USD - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "USD",
+            "bic_swift": "BARCGB22",
+            "iban": "GB91 BARC 2006 0565 4685 66",
+            "account_number": "65468566",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud ZAR - Client Seg A\/C\t",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "ZAR",
+            "bic_swift": "BARCGB22",
+            "iban": "GB15 BARC 2006 0578 4320 44",
+            "account_number": "78432044",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud BGN - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "BGN",
+            "bic_swift": "BARCGB22",
+            "iban": "GB16 BARC 2006 0567 6170 11",
+            "account_number": "67617011",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud KES - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank PLC",
+            "bank_address": [],
+            "bank_country": "",
+            "currency": "KES",
+            "bic_swift": "BARCCB22",
+            "iban": "GB02BARC20060549717077",
+            "account_number": "49717077",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud OMR - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "OMR",
+            "bic_swift": "BARCGB22",
+            "iban": "GB10 BARC 2006 0567 6170 22",
+            "account_number": "67617022",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud CNY - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [
+                "1 Churchill Place",
+                " London",
+                " E14 5HP"
+            ],
+            "bank_country": "",
+            "currency": "CNY",
+            "bic_swift": "BARCGB22",
+            "iban": null,
+            "account_number": "87135588",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud RON - Client Seg A\/C",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank plc",
+            "bank_address": [],
+            "bank_country": "",
+            "currency": "RON",
+            "bic_swift": "BARCGB22",
+            "iban": "GB15BARC20060549071599",
+            "account_number": "49071599",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        },
+        {
+            "bank_account_holder_name": "The Currency Cloud",
+            "beneficiary_address": "",
+            "beneficiary_country": "",
+            "bank_name": "Barclays Bank PLC",
+            "bank_address": [],
+            "bank_country": "",
+            "currency": "HRK",
+            "bic_swift": "BARCGB22",
+            "iban": "GB87BARC20060546994600",
+            "account_number": "46994600",
+            "routing_code_type_1": "",
+            "routing_code_value_1": "",
+            "routing_code_type_2": "",
+            "routing_code_value_2": ""
+        }
+    ]
+}

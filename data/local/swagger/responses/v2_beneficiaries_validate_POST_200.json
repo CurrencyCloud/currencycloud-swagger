@@ -1,0 +1,33 @@
+{
+    "payment_types": [
+        "regular"
+    ],
+    "bank_country": "GB",
+    "bank_name": "TEST BANK NAME",
+    "bank_account_type": null,
+    "currency": "GBP",
+    "account_number": "32847346",
+    "routing_code_type_1": "sort_code",
+    "beneficiary_address": [],
+    "beneficiary_country": null,
+    "beneficiary_entity_type": null,
+    "beneficiary_company_name": null,
+    "beneficiary_first_name": null,
+    "beneficiary_last_name": null,
+    "beneficiary_city": null,
+    "beneficiary_postcode": null,
+    "beneficiary_state_or_province": null,
+    "beneficiary_date_of_birth": null,
+    "beneficiary_identification_type": null,
+    "beneficiary_identification_value": null,
+    "routing_code_value_1": "101193",
+    "routing_code_type_2": null,
+    "routing_code_value_2": null,
+    "bic_swift": null,
+    "iban": null,
+    "bank_address": [
+        "TEST BANK ADDRESS",
+        " NOT USING EXTERNAL SERVICE",
+        " DEVELOPMENT ENVIRONMENT."
+    ]
+}

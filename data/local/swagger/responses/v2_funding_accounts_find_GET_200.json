@@ -1,0 +1,30 @@
+{
+    "funding_accounts": [
+        {
+            "id": "414ecebe-7894-441c-8c2e-0d2d6ff257f7",
+            "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+            "account_number": "GB63TCCL12345654082403",
+            "account_number_type": "iban",
+            "account_holder_name": "Currency Cloud Dev Centre",
+            "bank_name": "The Currency Cloud Limited",
+            "bank_address": "12 Steward Street, The Steward Building, London, E1 6FQ, GB",
+            "bank_country": "GB",
+            "currency": "GBP",
+            "payment_type": "priority",
+            "routing_code": "TCCLGB3L",
+            "routing_code_type": "bic_swift",
+            "created_at": "2020-06-25T14:13:18+00:00",
+            "updated_at": "2020-06-25T14:13:18+00:00"
+        }
+    ],
+    "pagination": {
+        "total_entries": 1,
+        "total_pages": 1,
+        "current_page": 1,
+        "per_page": 25,
+        "previous_page": -1,
+        "next_page": -1,
+        "order": "created_at",
+        "order_asc_desc": "asc"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "parent_conversion": null,
+    "origin_conversion": null,
+    "child_conversions": [
+        {
+            "id": "46a4fbc2-6b3f-4b3e-b583-4d6434a5ac2a",
+            "short_reference": "20220131-PSCTQS",
+            "sell_amount": "35.51",
+            "sell_currency": "GBP",
+            "buy_amount": "50.00",
+            "buy_currency": "USD",
+            "settlement_date": "2022-02-03T16:30:00+00:00",
+            "conversion_date": "2022-02-03T00:00:00+00:00",
+            "status": "awaiting_funds"
+        }
+    ]
+}

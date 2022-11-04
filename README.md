@@ -6,23 +6,10 @@ The Currencycloud API documentation is maintained in two document formats:
 - Markdown
 - OpenAPI Specification (v2) written in YAML
 
-The content of the ``./src`` directory mirrors the information architecture of the Currencycloud Developer Center.
+There are three categories of documentation on our developer centre: getting started guides, integration guides and API reference documentation. The getting started guides can be found at `data/local/pages/getting-started`, the integration guides can be found at `data/local/pages/integration-guides` and the OpenApi specification for the API reference docs is at `data/local/swagger`.
 
-For example, ``./src/overview.md`` maps to ``https://developer.currencycloud.com/overview``, and ``./src/overview/api-keys.md`` maps to ``https://developer.currencycloud.com/overview/api-keys``. The Developer Center homepage is generated from ``./src/index.md``.
 
-The main sections of the Developer Center are:
-
-- Get an API Key (/register)
-- API Overview (/overview)
-- API Reference (/reference)
-- Test (/test)
-- Cookbook (/cookbook)
-- SDKs (/sdks)
-- Support (/support)
-- FAQs (/faqs)
-- Glossary (/glossary)
-
-Most of the source documentation is written in [GitHub Flavoured Markdown](https://github.github.com/gfm/). The only exception is the file ``./src/reference.yaml``, which is a [YAML](http://yaml.org/) file that conforms to the [OpenAPI Specification (OAS) v2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), a popular API definition language previously known as "Swagger".
+Most of the source documentation is written in Markdown. The only exception is the file ``reference.yaml``, which is a [YAML](http://yaml.org/) file that conforms to the [OpenAPI Specification (OAS) v2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), a popular API definition language previously known as "Swagger".
 
 The OpenAPI definition file describes individual endpoints in the Currencycloud API. OpenAPI definitions can be written in JSON or YAML. We've chosen YAML as it is the most readable of the two formats.
 
@@ -114,7 +101,7 @@ Online editor is available at [https://editor.swagger.io/](https://editor.swagge
 
 ### Postman
 
-The ``./src/reference.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular app that makes it easy to manually test API endpoints.
+The ``reference.yaml`` file is a "single source of truth" for the Currencycloud API. It can be used to auto-generate documentation, tests, and even mock endpoints for development purposes. The file is also compatible with Postman, a popular app that makes it easy to manually test API endpoints.
 
 For a step-by-step guideline on how to configure Postman, please see [this guide](POSTMAN_README.md)
 
@@ -124,4 +111,4 @@ Once Postman is installed and configured it is not mandatory to configure a Post
 - ``api_key``: Your unique Currencycloud API key that you retrieved from your Currencycloud account.
 - ``X-Auth-Token``: Keep this empty initially. Update it when you have an authentication token from the Login endpoint.
 
-Click on "Collections" on the left side of the Postman UI, and then click the icon to "Import collection". Under "Upload files", select the copy of ``./src/reference.yaml`` on your computer. All of the Currencycloud endpoints defined in the OpenAPI document will be imported into a new Postman collection.
+Click on "Collections" on the left side of the Postman UI, and then click the icon to "Import collection". Under "Upload files", select the copy of ``reference.yaml`` on your computer. All of the Currencycloud endpoints defined in the OpenAPI document will be imported into a new Postman collection.

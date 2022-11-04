@@ -1,0 +1,21 @@
+{
+    "invalid_payment_dates": {
+        "2022-02-05": "No trading on Saturday",
+        "2022-02-06": "No trading on Sunday",
+        "2022-02-12": "No trading on Saturday",
+        "2022-02-13": "No trading on Sunday",
+        "2022-02-19": "No trading on Saturday",
+        "2022-02-20": "No trading on Sunday",
+        "2022-02-26": "No trading on Saturday",
+        "2022-02-27": "No trading on Sunday",
+        "2022-03-05": "No trading on Saturday",
+        "2022-03-06": "No trading on Sunday",
+        "2022-03-12": "No trading on Saturday",
+        "2022-03-13": "No trading on Sunday",
+        "2022-03-19": "No trading on Saturday",
+        "2022-03-20": "No trading on Sunday",
+        "2022-03-26": "No trading on Saturday",
+        "2022-03-27": "No trading on Sunday"
+    },
+    "first_payment_date": "2022-01-31"
+}

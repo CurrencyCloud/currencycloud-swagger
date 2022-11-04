@@ -1,0 +1,18 @@
+{
+    "id": "2d71d2de-bc17-4ffb-88f4-d644b327340f",
+    "short_reference": "RP-1224584-ARBYRB",
+    "description": null,
+    "search_params": {
+        "beneficiary_id": "7b300881-8d56-44d3-afd9-6a3dfc3c295d",
+        "scope": "own"
+    },
+    "report_type": "payment",
+    "status": "completed",
+    "failure_reason": null,
+    "expiration_date": "2018-08-12T00:00:00+00:00",
+    "report_url": "https:\/\/d2t73pljwpjsq.cloudfront.net\/customer_reporting\/2d71d2de-bc17-4ffb-88f4-d644b327340f\/payment_report_1008201815081533914796.csv?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9kMnQ3M3BsandwanNxLmNsb3VkZnJvbnQubmV0L2N1c3RvbWVyX3JlcG9ydGluZy8yZDcxZDJkZS1iYzE3LTRmZmItODhmNC1kNjQ0YjMyNzM0MGYvcGF5bWVudF9yZXBvcnRfMTAwODIwMTgxNTA4MTUzMzkxNDc5Ni5jc3YiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE2NDM4MTIyNTl9fX1dfQ__&Signature=g7EmTEUi8qjiYTVYAcurRo-PntGlO9I3HgqaydfIFFdp9zKTHcPGuaO49rrmqbWEnOErJd1zGd0XPlavPx~FNbsHdL5e3Yji0nnttCz1TyWkFHHEGrahA7YCjNrS~MSjrvvJGYcl4asxGD6RVAgwyGEwc8SzL7YAM8glVdeZn1HF6L5z3jpAAtGCmIEOboNnDUOPJ3G-cOgdc4ck9wsARNKoJCmdcivGMG5G5hGD53rljzKFhGFcRTFXEXHdsYn1hrkSw~pmdsUxylJXuZ5oiDdveAHP87WKxR9jt6Mz00p7mf-6blpxTGzgIuauoI6wF7nF9wKcaSfhd~1ytOCJwA__&Key-Pair-Id=APKAIIZWE4JIDKALGTLA",
+    "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "created_at": "2018-08-10T15:26:32+00:00",
+    "updated_at": "2018-08-10T15:26:36+00:00"
+}

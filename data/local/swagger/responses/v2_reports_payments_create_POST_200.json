@@ -1,0 +1,18 @@
+{
+    "id": "7aab07e9-482e-476f-95a5-04dc640e299a",
+    "short_reference": "RP-9328280-SUGDLX",
+    "description": null,
+    "search_params": {
+        "beneficiary_id": "5824f6a3-a5a7-4c3e-acf2-5b1ed2939811",
+        "scope": "own"
+    },
+    "report_type": "payment",
+    "status": "processing",
+    "failure_reason": null,
+    "expiration_date": null,
+    "report_url": "",
+    "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "created_at": "2022-01-31T14:30:58+00:00",
+    "updated_at": "2022-01-31T14:30:58+00:00"
+}

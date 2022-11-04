@@ -1,0 +1,117 @@
+{
+    "details": [
+        {
+            "currency": null,
+            "payer_entity_type": "company",
+            "payment_type": "priority",
+            "required_fields": [
+                {
+                    "name": "payer_country",
+                    "validation_rule": "\\A[A-z]{2}\\z"
+                },
+                {
+                    "name": "payer_city",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_address",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_company_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_identification_value",
+                    "validation_rule": "\\A.{1,255}\\z"
+                }
+            ],
+            "payer_identification_type": "incorporation_number"
+        },
+        {
+            "currency": null,
+            "payer_entity_type": "individual",
+            "payment_type": "priority",
+            "required_fields": [
+                {
+                    "name": "payer_country",
+                    "validation_rule": "\\A[A-z]{2}\\z"
+                },
+                {
+                    "name": "payer_city",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_address",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_first_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_last_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_date_of_birth",
+                    "validation_rule": "\/\\A([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?\\z\/"
+                }
+            ]
+        },
+        {
+            "currency": null,
+            "payer_entity_type": "company",
+            "payment_type": "regular",
+            "required_fields": [
+                {
+                    "name": "payer_country",
+                    "validation_rule": "\\A[A-z]{2}\\z"
+                },
+                {
+                    "name": "payer_city",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_address",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_company_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                }
+            ]
+        },
+        {
+            "currency": null,
+            "payer_entity_type": "individual",
+            "payment_type": "regular",
+            "required_fields": [
+                {
+                    "name": "payer_country",
+                    "validation_rule": "\\A[A-z]{2}\\z"
+                },
+                {
+                    "name": "payer_city",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_address",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_first_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_last_name",
+                    "validation_rule": "\\A.{1,255}\\z"
+                },
+                {
+                    "name": "payer_date_of_birth",
+                    "validation_rule": "\/\\A([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))([T\\s]((([01]\\d|2[0-3])((:?)[0-5]\\d)?|24\\:?00)([\\.,]\\d+(?!:))?)?(\\17[0-5]\\d([\\.,]\\d+)?)?([zZ]|([\\+-])([01]\\d|2[0-3]):?([0-5]\\d)?)?)?)?\\z\/"
+                }
+            ]
+        }
+    ]
+}

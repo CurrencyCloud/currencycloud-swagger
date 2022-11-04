@@ -1,0 +1,17 @@
+{
+    "id": "25e6b9a0-dfb9-44e2-9256-da3fa007d01e",
+    "short_reference": "RP-2627918-QHOYSO",
+    "description": null,
+    "search_params": {
+        "scope": "own"
+    },
+    "report_type": "conversion",
+    "status": "processing",
+    "failure_reason": null,
+    "expiration_date": null,
+    "report_url": "",
+    "account_id": "72970a7c-7921-431c-b95f-3438724ba16f",
+    "contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
+    "created_at": "2022-01-31T14:30:57+00:00",
+    "updated_at": "2022-01-31T14:30:57+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "parent_conversion": {
+    "id": "b401a1bc-ba02-4bd6-920e-8bf6fd97282b",
+    "short_reference": "20180622-XCRNWB",
+    "sell_amount": "70.93",
+    "sell_currency": "GBP",
+    "buy_amount": "100.00",
+    "buy_currency": "USD",
+    "settlement_date": "2018-07-02T15:30:00+00:00",
+    "conversion_date": "2018-07-02T00:00:00+00:00",
+    "status": "awaiting_funds"
+  },
+  "child_conversion": {
+    "id": "13575890-f1a3-466d-81ce-f9444d2816a7",
+    "short_reference": "20180622-GXWQPV",
+    "sell_amount": "35.46",
+    "sell_currency": "GBP",
+    "buy_amount": "50.00",
+    "buy_currency": "USD",
+    "settlement_date": "2018-07-02T15:30:00+00:00",
+    "conversion_date": "2018-07-02T00:00:00+00:00",
+    "status": "awaiting_funds"
+  }
+}
