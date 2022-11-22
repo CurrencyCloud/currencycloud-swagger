@@ -1025,6 +1025,14 @@ paths:
             category: identification_value
             message: identification_value can not be shorter than 1 character(s)
             params: ' { "minlength": 1 }'
+          - code: editing_address_not_allowed
+            category: address
+            message: You cannot edit address information. Please contact support for additional information
+            params: ''
+          - code: editing_country_not_allowed
+            category: country
+            message: You cannot edit country. Please contact support for additional information
+            params: ''
         schema:
           $ref: '#/definitions/UpdateAccountError'
         headers:
@@ -1442,7 +1450,7 @@ paths:
       tags:
       - Accounts
       x-api-group: manage
-      summary: Get the Payment Charges Settings for a given account.
+      summary: Get the Payment Charges Settings for a given account
       description: Retrieves the Payment Charges Settings for the given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
@@ -1556,7 +1564,7 @@ paths:
       tags:
       - Accounts
       x-api-group: manage
-      summary: Manage the Account Payment Charges Settings.
+      summary: Manage Account Payment Charges Settings
       description: Manage a given account's Payment Charge Settings (enable, disable, set as default).
       operationId: ManageAccountPaymentChargesSettings
       produces:
@@ -13813,7 +13821,7 @@ paths:
       tags:
         - Sender
       x-api-group: collect
-      summary: Get Sender Details.
+      summary: Get Sender Details
       description: Returns a JSON structure with details of the sender of funds.
       operationId: GetSenderDetails
       produces:
