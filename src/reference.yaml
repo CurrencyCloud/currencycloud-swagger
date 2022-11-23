@@ -14452,7 +14452,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key.
+          description: User-generated idempotency key. The value must be 255 characters or fewer.
       responses:
         '200':
           description: Success.
@@ -14494,6 +14494,12 @@ paths:
             - code: duplicate_unique_request_id
               category: unique_request_id
               message: The unique_request_id provided for this transfer has already been used, please provide a new one to successfully submit this transfer
+              params: ''
+            - code: unique_request_id_too_long
+              category: unique_request_id
+              message: >-
+                The unique_request_id provided for this transfer is longer than 255 characters,
+                please provide a shorter one to successfully submit this transfer
               params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
