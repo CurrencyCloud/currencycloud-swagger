@@ -2279,7 +2279,7 @@ paths:
           required: false
           type: string
           enum:
-            - checkings
+            - checking
             - savings
           description: Bank account type.
         - name: name
@@ -2960,7 +2960,7 @@ paths:
           required: false
           type: string
           enum:
-            - checkings
+            - checking
             - savings
           description: Bank account type.
         - name: beneficiary_entity_type
@@ -3602,7 +3602,7 @@ paths:
           required: false
           type: string
           enum:
-            - checkings
+            - checking
             - savings
           description: Bank account type.
         - name: beneficiary_entity_type
@@ -4365,7 +4365,7 @@ paths:
           required: false
           type: string
           enum:
-            - checkings
+            - checking
             - savings
           description: Bank account type.
         - name: beneficiary_entity_type
@@ -16051,7 +16051,7 @@ definitions:
         type: string
         description: Bank account type.
         enum:
-          - checkings
+          - checking
           - savings
       currency:
         type: string
