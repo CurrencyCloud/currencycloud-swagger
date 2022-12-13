@@ -14452,7 +14452,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: User-generated idempotency key. The value must be 255 characters or fewer.
+          description: User-generated idempotency key. The value must be 100 characters or fewer.
       responses:
         '200':
           description: Success.
@@ -14491,14 +14491,10 @@ paths:
               category: reason
               message: Reason longer than 255 symbols
               params: ''
-            - code: duplicate_unique_request_id
-              category: unique_request_id
-              message: The unique_request_id provided for this transfer has already been used, please provide a new one to successfully submit this transfer
-              params: ''
             - code: unique_request_id_too_long
               category: unique_request_id
               message: >-
-                The unique_request_id provided for this transfer is longer than 255 characters,
+                The unique_request_id provided for this transfer is longer than 100 characters,
                 please provide a shorter one to successfully submit this transfer
               params: ''
           schema:
@@ -14822,7 +14818,7 @@ paths:
           in: query
           required: false
           type: string
-          description: User-generated idempotency key. The value must be in UUID format.
+          description: User-generated idempotency key.
       responses:
         '200':
           description: Success.
@@ -14902,9 +14898,6 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
-            - code: unique_request_id_is_not_valid_uuid
-              category: unique_request_id
-              message: unique_request_id should be in UUID format
           schema:
             $ref: '#/definitions/FindTransfersError'
           headers:
