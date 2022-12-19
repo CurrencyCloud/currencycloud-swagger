@@ -2246,12 +2246,12 @@ paths:
             - clabe
             - cnaps
             - ifsc
-          description: Local payment routing system. If you specify a routing system, it is mandatory to provide a value for 'routing_code_value[0]'.
+          description: Local payment routing system. If supplied, it is mandatory to provide a value for routing_code_value[0].
         - name: 'routing_code_value[0]'
           in: query
           required: false
           type: string
-          description: The value for any routing system specified in routing_code_type[0]. If you provide a value, it is mandatory that you specify the routing system in 'routing_code_type[0]'.
+          description: The value for any routing system specified in routing_code_type[0]. If supplied, it is mandatory to specify a routing system in routing_code_type[0].
         - name: bic_swift
           in: query
           required: false
@@ -3543,12 +3543,12 @@ paths:
             - clabe
             - cnaps
             - ifsc
-          description: Local payment routing system.
+          description: Local payment routing system. If supplied, routing_code_value_1 should also be supplied.
         - name: routing_code_value_1
           in: formData
           required: false
           type: string
-          description: Routing code for "routing_code_type_1".
+          description: Routing code for routing_code_type_1. If supplied, routing_code_type_1 should also be supplied.
         - name: routing_code_type_2
           in: formData
           required: false
@@ -3563,12 +3563,12 @@ paths:
             - clabe
             - cnaps
             - ifsc
-          description: Local payment routing system.
+          description: Local payment routing system. If supplied, routing_code_value_2 should also be supplied.
         - name: routing_code_value_2
           in: formData
           required: false
           type: string
-          description: Routing code for "routing_code_type_2".
+          description: Routing code for routing_code_type_2. If supplied, routing_code_type_2 should also be supplied.
         - name: bic_swift
           in: formData
           required: false
@@ -4315,12 +4315,12 @@ paths:
             - branch_code
             - clabe
             - cnaps
-          description: Local payment routing system.
+          description: Local payment routing system. If supplied, routing_code_value_1 should also be supplied.
         - name: routing_code_value_1
           in: formData
           required: false
           type: string
-          description: Routing code for "routing_code_type_1".
+          description: Routing code for routing_code_type_1. If supplied, routing_code_type_1 should also be supplied.
         - name: routing_code_type_2
           in: formData
           required: false
@@ -4334,12 +4334,12 @@ paths:
             - branch_code
             - clabe
             - cnaps
-          description: Local payment routing system.
+          description: Local payment routing system. If supplied, routing_code_value_2 should also be supplied.
         - name: routing_code_value_2
           in: formData
           required: false
           type: string
-          description: Routing code for "routing_code_type_2".
+          description: Routing code for routing_code_type_2. If supplied, routing_code_type_2 should also be supplied.
         - name: bic_swift
           in: formData
           required: false
