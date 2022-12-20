@@ -2246,12 +2246,12 @@ paths:
             - clabe
             - cnaps
             - ifsc
-          description: Local payment routing system. If supplied, it is mandatory to provide a value for routing_code_value[0].
+          description: Local payment routing system. If supplied, a value for routing_code_value[0] must also be supplied.
         - name: 'routing_code_value[0]'
           in: query
           required: false
           type: string
-          description: The value for any routing system specified in routing_code_type[0]. If supplied, it is mandatory to specify a routing system in routing_code_type[0].
+          description: The value for any routing system specified in routing_code_type[0]. If supplied, a value for routing_code_type[0] must also be supplied.
         - name: bic_swift
           in: query
           required: false
