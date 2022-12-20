@@ -14495,7 +14495,7 @@ paths:
               category: unique_request_id
               message: >-
                 The unique_request_id provided for this transfer is longer than 100 characters,
-                please provide a shorter one to successfully submit this transfer
+                please provide a shorter one
               params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
