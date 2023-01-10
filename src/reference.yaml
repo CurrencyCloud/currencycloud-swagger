@@ -9374,7 +9374,7 @@ paths:
       tags:
         - Payments
       x-api-group: pay
-      summary: Get a Payment Confirmation
+      summary: Get Payment Confirmation
       description: Gets confirmation for a given payment.
       operationId: GetPaymentConfirmation
       produces:
@@ -9390,11 +9390,6 @@ paths:
           required: true
           type: string
           description: Payment UUID
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
       responses:
         '200':
           description: Success.
