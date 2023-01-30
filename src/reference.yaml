@@ -14492,6 +14492,11 @@ paths:
                 The unique_request_id provided for this transfer is longer than 100 characters,
                 please provide a shorter one
               params: ''
+            - code: cross_hub_transfer_not_permitted
+              category: unique_request_id
+              message: >-
+                The accounts would require a transfer between two hub banks which is not permitted
+              params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
