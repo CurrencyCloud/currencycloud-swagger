@@ -8639,11 +8639,20 @@ paths:
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
             Limits search results scope to just payments of the specified charge type.
+        - name: review_status
+          in: query
+          required: false
+          type: string
+          enum:
+            - passed
+            - in_review
+            - rejected
+          description: Compliance review status.
       responses:
         '200':
           description: Success.
@@ -8695,6 +8704,10 @@ paths:
               params: >-
                 { "range" => "new, ready_to_send, completed, failed, released, suspended,
                 awaiting_authorisation, submitted, authorised, deleted" }
+            - code: review_status_not_in_range
+              category: review_status
+              message: "review_status should be in range: passed, in_review, rejected"
+              params: '{ "range" => "passed, in_review, rejected }'
             - code: invalid_extra_parameters
               category: base
               message: Invalid extra parameters extra_parameter
@@ -8799,6 +8812,15 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-acccount you're acting on behalf of.
+        - name: review_status
+          in: query
+          required: false
+          type: string
+          enum:
+            - passed
+            - in_review
+            - rejected
+          description: Compliance review status.
       responses:
         '200':
           description: Success.
@@ -8827,11 +8849,14 @@ paths:
               category: on_behalf_of
               message: on_behalf_of should be in UUID format
               params: ''
+            - code: review_status_not_in_range
+              category: review_status
+              message: "review_status should be in range: passed, in_review, rejected"
+              params: '{ "range" => "passed, in_review, rejected"}'
             - code: invalid_extra_parameters
               category: base
               message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
-
           schema:
             $ref: '#/definitions/GetPaymentError'
           headers:
@@ -19481,13 +19506,19 @@ definitions:
       purpose_code:
         type: string
         description: Payment purpose code.
-
       fee_amount:
         type: string
         description: Fee amount
       fee_currency:
         type: string
         description: Currency code for fee.
+      review_status:
+        type: string
+        description: Compliance review status - 'passed', 'in_review' or 'rejected'.
+        enum:
+          - passed
+          - in_review
+          - rejected
     example:
       id: 543477161-91de-012f-e284-1e0030c7f3123
       short_reference: 140416-GGJBNQ001
@@ -19516,6 +19547,7 @@ definitions:
       purpose_code: ''
       fee_amount: '10.00'
       fee_currency: EUR
+      review_status: in_review
   PaymentAuthorisations:
     type: object
     description: Payment Authorisations.
