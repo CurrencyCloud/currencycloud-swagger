@@ -28,7 +28,8 @@
             "purpose_code": null,
             "charge_type": null,
             "fee_amount": null,
-            "fee_currency": null
+            "fee_currency": null,
+            "review_status": "in_review"
         }
     ],
     "pagination": {
