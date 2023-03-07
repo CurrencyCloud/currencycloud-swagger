@@ -8707,7 +8707,7 @@ paths:
             - code: review_status_not_in_range
               category: review_status
               message: "review_status should be in range: passed, in_review, rejected"
-              params: '{ "range" => "passed, in_review, rejected }'
+              params: '{ "range" => "passed, in_review, rejected" }'
             - code: invalid_extra_parameters
               category: base
               message: Invalid extra parameters extra_parameter
