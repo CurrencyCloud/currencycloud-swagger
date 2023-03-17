@@ -12849,6 +12849,162 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+    post:
+      tags:
+        - Reference
+      x-api-group: manage
+      summary: Return Bank Details
+      description: >-
+        Returns the related bank details for the given account reference.
+      operationId: FinfBankDetailsPost
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: identifier_type
+          in: formData
+          required: true
+          type: string
+          enum:
+            - iban
+            - bic_swift
+            - sort_code
+            - aba
+            - bsb_code
+            - routing_number
+            - cnaps
+          description: The type of the idenitifier used to identify the account.
+        - name: identifier_value
+          in: formData
+          required: true
+          type: string
+          description: The value of the idenitifier of the account in the format of the identifier_type.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/BankDetails'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: identifier_type_is_required
+              category: identifier_type
+              message: identifier_type is required
+              params: ''
+            - code: identifier_type_not_in_range
+              category: identifier_type
+              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps" }'
+            - code: identifier_value_is_required
+              category: identifier_value
+              message: identifier_value is required
+              params: ''
+            - code: identifier_value_is_empty
+              category: identifier_value
+              message: identifier_value should not be empty
+              params: '{ "type" => "not_empty_string" }'
+            - code: invalid_iban
+              category: base
+              message: IBAN is invalid
+              params: ''
+            - code: invalid_bic
+              category: base
+              message: BIC_SWIFT is invalid
+              params: ''
+            - code: invalid_aba
+              category: base
+              message: ABA is invalid
+              params: ''
+            - code: invalid_sort_code
+              category: base
+              message: SORT_CODE is invalid
+              params: ''
+            - code: invalid_bsb
+              category: base
+              message: BSB_CODE is invalid
+              params: ''
+            - code: invalid_routing_number
+              category: base
+              message: ROUTING_NUMBER is invalid
+              params: ''
+            - code: invalid_cnaps
+              category: base
+              message: CNAPS is invalid
+              params: ''
+            - code: cannot_retrieve_bank_data
+              category: base
+              message: Bank Details service is temporarily unavailable
+              params: ''
+          schema:
+            $ref: '#/definitions/GetBankDetailsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error s
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable.
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /reference/beneficiary_required_details:
     get:
       tags:
