@@ -2936,6 +2936,503 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+    post:
+      tags:
+        - Beneficiaries
+      x-api-group: pay
+      summary: Find Beneficiaries
+      description: >-
+        Returns beneficiaries attached to the account or any sub-account owned by
+        the authenticated user.
+      operationId: FindBeneficiariesPost
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
+        - name: bank_account_holder_name
+          in: formData
+          required: false
+          type: string
+          description: Bank account holder's name.
+        - name: beneficiary_country
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Two-letter ISO country code. If the beneficiary is a company, the
+            country in which the company is registered. If the beneficiary is an
+            individual, a country in which the beneficiary holds nationality.
+        - name: currency
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Currency in which money is held in the beneficiary's bank account.
+            Three-letter currency code.
+        - name: account_number
+          in: formData
+          required: false
+          type: string
+          description: Bank account number.
+        - name: 'routing_code_type[0]'
+          in: formData
+          required: false
+          type: string
+          enum:
+            - sort_code
+            - bsb_code
+            - institution_no
+            - bank_code
+            - branch_code
+            - aba
+            - clabe
+            - cnaps
+            - ifsc
+          description: Local payment routing system. If supplied, a value for routing_code_value[0] must also be supplied.
+        - name: 'routing_code_value[0]'
+          in: formData
+          required: false
+          type: string
+          description: The value for any routing system specified in routing_code_type[0]. If supplied, a value for routing_code_type[0] must also be supplied.
+        - name: bic_swift
+          in: formData
+          required: false
+          type: string
+          description: BIC/SWIFT code
+        - name: iban
+          in: formData
+          required: false
+          type: string
+          description: IBAN code
+        - name: default_beneficiary
+          in: formData
+          required: false
+          type: boolean
+          description: >-
+            Payments are made automatically to default beneficiaries when a
+            beneficiary is not specified.
+        - name: bank_name
+          in: formData
+          required: false
+          type: string
+          description: Bank name
+        - name: bank_account_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - checking
+            - savings
+          description: Bank account type.
+        - name: name
+          in: formData
+          required: false
+          type: string
+          description: Beneficiary's name.
+        - name: beneficiary_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - individual
+            - company
+          description: Beneficiary's legal entity type - individual or company.
+        - name: beneficiary_company_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "beneficiary_entity_type" is "company".
+        - name: beneficiary_first_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "beneficiary_entity_type" is "individual".
+        - name: beneficiary_last_name
+          in: formData
+          required: false
+          type: string
+          description: Required if "beneficiary_entity_type" is "individual".
+        - name: beneficiary_city
+          in: formData
+          required: false
+          type: string
+          description: City
+        - name: beneficiary_postcode
+          in: formData
+          required: false
+          type: string
+          description: Post code
+        - name: beneficiary_state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province.
+        - name: beneficiary_date_of_birth
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            If "beneficiary_entity_type" is "company", date of registration. If
+            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
+            format YYYY-MM-DD.
+        - name: scope
+          in: formData
+          required: false
+          type: string
+          enum:
+            - own
+            - clients
+            - all
+          default: own
+          description: 'Search "own" account, "clients" sub-accounts, or "all" accounts.'
+        - name: page
+          in: formData
+          required: false
+          type: integer
+          description: Page number
+        - name: per_page
+          in: formData
+          required: false
+          type: integer
+          description: Number of results per page.
+        - name: order
+          in: formData
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: formData
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+        - name: beneficiary_external_reference
+          in: formData
+          required: false
+          type: string
+          description: Beneficiary external reference.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              beneficiaries:
+                type: array
+                items:
+                  $ref: '#/definitions/Beneficiary'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: bank_account_holder_name_is_too_short
+              category: bank_account_holder_name
+              message: bank_account_holder_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: bank_account_holder_name_is_too_long
+              category: bank_account_holder_name
+              message: bank_account_holder_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_country_is_in_invalid_format
+              category: beneficiary_country
+              message: beneficiary_country is in invalid format
+              params: ''
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: currency is in invalid format
+              params: ''
+            - code: bank_name_is_too_short
+              category: bank_name
+              message: bank_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: bank_name_is_too_long
+              category: bank_name
+              message: bank_name can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: bank_account_type_not_in_range
+              category: bank_account_type
+              message: 'bank_account_type should be in range: checking, savings'
+              params: '{ "range" => "checking, savings" }'
+            - code: account_number_is_too_short
+              category: account_number
+              message: account_number can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: account_number_is_too_long
+              category: account_number
+              message: account_number can not be longer than 50 character(s)
+              params: '{ "maxlength" => 50 }'
+            - code: incorrect_mapping
+              category: base
+              message: Following parameters must have same keys
+              params: '{ "parameters" => "routing_code_value,routing_code_type" }'
+            - code: routing_code_type_is_too_short
+              category: routing_code_type
+              message: routing_code_type can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1, "indices" => ["0", "1"] }'
+            - code: routing_code_type_is_too_long
+              category: routing_code_type
+              message: routing_code_type can not be longer than 50 character(s)
+              params: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
+            - code: routing_code_type_not_included_in_list
+              category: routing_code_type
+              message: One or more of routing_code_type items are not included in list
+              params: >-
+                { "list" =>
+                "sort_code,bsb_code,institution_no,bank_code,branch_code,aba,clabe
+                }
+            - code: beneficiary_date_of_birth_type_is_wrong
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be of date type
+              params: '{ "type" => "date" }'
+            - code: beneficiary_date_of_birth_is_earlier
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be later than 1900-01-01
+              params: '{ "min_date" => "1900-01-01" }'
+            - code: beneficiary_date_of_birth_is_after
+              category: beneficiary_date_of_birth
+              message: beneficiary_date_of_birth should be earlier than todays date
+              params: '{ "max_date" => "Todays Date" }'
+            - code: routing_code_value_is_too_short
+              category: routing_code_value
+              message: routing_code_value can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1, "indices" => ["0", "1"] }'
+            - code: routing_code_value_is_too_long
+              category: routing_code_value
+              message: routing_code_value can not be longer than 50 character(s)
+              params: '{ "maxlength" => 50, "indices" => ["0", "1"] }'
+            - code: routing_code_value_type_is_wrong
+              category: routing_code_value
+              message: routing_code_value should be of hash type
+              params: '{ "type" => "hash" }'
+            - code: bic_swift_is_in_invalid_format
+              category: bic_swift
+              message: bic_swift is in invalid format
+              params: ''
+            - code: iban_is_too_long
+              category: iban
+              message: iban can not be longer than 34 character(s)
+              params: '{ "maxlength" => 34 }'
+            - code: iban_is_too_short
+              category: iban
+              message: iban can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: iban_is_in_invalid_format
+              category: iban
+              message: iban is in invalid format
+              params: ''
+            - code: default_beneficiary_type_is_wrong
+              category: default_beneficiary
+              message: default_beneficiary should be of boolean type
+              params: '{ "type" => "boolean" }'
+            - code: name_is_too_short
+              category: name
+              message: name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: name_is_too_long
+              category: name
+              message: name can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: order_asc_desc_not_in_range
+              category: order_asc_desc
+              message: 'order_asc_desc should be in range: asc, desc'
+              params: '{ "range" => "asc, desc" }'
+            - code: order_not_in_range
+              category: order
+              message: >-
+                order should be in range: bank_account_holder_name, beneficiary_country, currency, account_number,
+                bic_swift, iban, default_beneficiary, bank_address, name, bank_account_type, beneficiary_entity_type,
+                beneficiary_city, beneficiary_address, beneficiary_company_name, beneficiary_first_name,
+                beneficiary_last_name, beneficiary_state_or_province, beneficiary_postcode, created_at, updated_at
+              params: >-
+                { "range" => "bank_account_holder_name, beneficiary_country, currency, account_number, bic_swift, iban,
+                default_beneficiary, bank_address, name, bank_account_type, beneficiary_entity_type, beneficiary_city,
+                beneficiary_address, beneficiary_company_name, beneficiary_first_name, beneficiary_last_name,
+                beneficiary_state_or_province, beneficiary_postcode, created_at, updated_at" }
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
+              params: ''
+            - code: beneficiary_external_reference_is_too_short
+              category: beneficiary_external_reference
+              message: beneficiary_external_reference can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_external_reference_is_too_long
+              category: beneficiary_external_reference
+              message: beneficiary_external_reference can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: cope_not_in_range
+              category: scope
+              message: >-
+                scope should be in range: own, all, clients
+              params: '{ "range" => "own, all, clients" }'
+            - code: beneficiary_entity_type_not_in_range
+              category: beneficiary_entity_type
+              message: >-
+                beneficiary_entity_type should be in range: individual, company
+              params: '{ "range" => "individual, company" }'
+            - code: beneficiary_company_name_is_too_short
+              category: beneficiary_company_name
+              message: beneficiary_company_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_company_name_is_too_long
+              category: beneficiary_company_name
+              message: beneficiary_company_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_first_name_is_too_short
+              category: beneficiary_first_name
+              message: beneficiary_first_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_first_name_is_too_long
+              category: beneficiary_first_name
+              message: beneficiary_first_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_last_name_is_too_short
+              category: beneficiary_last_name
+              message: beneficiary_last_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_last_name_is_too_long
+              category: beneficiary_last_name
+              message: beneficiary_last_name can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_city_is_too_short
+              category: beneficiary_city
+              message: beneficiary_city can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_city_is_too_long
+              category: beneficiary_city
+              message: beneficiary_city can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_postcode_is_too_short
+              category: beneficiary_postcode
+              message: beneficiary_postcode can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_postcode_is_too_long
+              category: beneficiary_postcode
+              message: beneficiary_postcode can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: beneficiary_state_or_province_is_too_short
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: beneficiary_state_or_province_is_too_long
+              category: beneficiary_state_or_province
+              message: beneficiary_state_or_province can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: page_type_is_wrong
+              category: page
+              message: page should be of integer type
+              params: '{ "type" => "integer" }'
+            - code: page_is_too_small
+              category: page
+              message: page can not be smaller than 1
+              params: '{ "minvalue" => 1 }'
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page should be of integer type
+              params: '{ "type" => "integer" }'
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page can not be smaller than 1
+              params: '{ "minvalue" => 1 }'
+            - code: order_asc_desc_not_in_range
+              category: order_asc_desc
+              message: >-
+                order_asc_desc should be in range: asc, desc
+              params: '{ "range" => "asc, desc" }'
+          schema:
+            $ref: '#/definitions/FindBeneficiariesError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/beneficiaries/{id}':
     get:
       tags:
