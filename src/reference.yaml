@@ -5824,6 +5824,188 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+    post:
+      tags:
+        - Contacts
+      x-api-group: manage
+      summary: Find Contacts
+      description: Returns contacts that match the parameters.
+      operationId: FindContactsPost
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: account_name
+          in: formData
+          required: false
+          type: string
+          description: Account name
+        - name: account_id
+          in: formData
+          required: false
+          type: string
+          description: Sub-Account UUID
+        - name: first_name
+          in: formData
+          required: false
+          type: string
+          description: The contact's first name.
+        - name: last_name
+          in: formData
+          required: false
+          type: string
+          description: The contact's last name.
+        - name: email_address
+          in: formData
+          required: false
+          type: string
+          description: The contact's email address.
+        - name: your_reference
+          in: formData
+          required: false
+          type: string
+          description: User-generated reference code.
+        - name: phone_number
+          in: formData
+          required: false
+          type: string
+          description: The contact's phone number.
+        - name: login_id
+          in: formData
+          required: false
+          type: string
+          description: The contact's Currencycloud login ID.
+        - name: status
+          in: formData
+          required: false
+          type: string
+          enum:
+            - enabled
+            - not_enabled
+          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
+        - name: locale
+          in: formData
+          required: false
+          type: string
+          description: 'Locale code ("en", "en-US", "fr-FR").'
+        - name: timezone
+          in: formData
+          required: false
+          type: string
+          description: 'Timezone ("Europe/London", "America/New_York").'
+        - name: page
+          in: formData
+          required: false
+          type: string
+          description: Page number
+        - name: per_page
+          in: formData
+          required: false
+          type: string
+          description: Number of results per page.
+        - name: order
+          in: formData
+          required: false
+          type: string
+          description: Any field name to change the sort order.
+        - name: order_asc_desc
+          in: formData
+          required: false
+          type: string
+          enum:
+            - asc
+            - desc
+          default: asc
+          description: Sort records in ascending or descending order.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            properties:
+              contacts:
+                type: array
+                items:
+                  $ref: '#/definitions/Contact'
+              pagination:
+                $ref: '#/definitions/Pagination'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          schema:
+            $ref: '#/definitions/FindContactsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/contacts/{id}':
     get:
       tags:
