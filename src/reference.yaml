@@ -12854,7 +12854,7 @@ paths:
       tags:
         - Reference
       x-api-group: manage
-      summary: Return Bank Details
+      summary: Find Bank Details
       description: >-
         Returns the related bank details for the given account reference.
       operationId: FinfBankDetailsPost
