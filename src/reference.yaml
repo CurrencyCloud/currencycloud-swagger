@@ -12849,6 +12849,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /reference/bank_details/find:              
     post:
       tags:
         - Reference
