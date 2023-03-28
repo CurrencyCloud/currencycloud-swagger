@@ -8131,7 +8131,7 @@ paths:
             passport number.
         - name: unique_request_id
           in: formData
-          required: false
+          required: true
           type: string
           description: User-generated idempotency key <b>(strongly recommended)</b>.
         - name: ultimate_beneficiary_name
