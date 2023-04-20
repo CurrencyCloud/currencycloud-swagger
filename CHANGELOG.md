@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.43.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.43.0) (2023-04-20)
+- Adds POST /accounts/find
+- Adds POST /beneficiaries/find
+- Adds POST /contacts/find
+- Adds POST /reference/bank_details/find
+
 ## [2.36.2](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.2) (2022-09-13)
 - Adds new error responses to contacts/create and contacts/update
 
