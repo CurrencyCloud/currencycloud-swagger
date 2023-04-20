@@ -25,12 +25,13 @@ are not available on the API. The latest tagged release should be used instead o
 ### Releases
 **Current**
 
-- [2.36.2](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.2)
+- [2.43.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.43.0)
 
 For details on the contents of releases see [CHANGELOG](CHANGELOG.md)
 
 **Previous**
 
+- [2.36.2](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.2)
 - [2.36.1](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.1)
 - [2.36.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.36.0)
 - [2.32.0](https://github.com/CurrencyCloud/currencycloud-swagger/releases/tag/rel-2.32.0)
