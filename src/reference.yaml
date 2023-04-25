@@ -8076,8 +8076,6 @@ paths:
         Returns the information of any actions related to a conversion that have
         generated profit or loss, including the profit or loss amount.
       operationId: ConversionProfitAndLoss
-      consumes:
-        - multipart/form-data
       produces:
         - application/json
       parameters:
