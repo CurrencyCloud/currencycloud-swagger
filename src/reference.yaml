@@ -9313,6 +9313,10 @@ paths:
               category: payer_details
               message: "This account is not allowed to pass payer details"
               params: ''
+            - code: unique_request_id_is_required
+              category: unique_request_id_is_required
+              message: "unique_request_id is required"
+              params: ''
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
