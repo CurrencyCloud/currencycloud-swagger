@@ -1445,7 +1445,7 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
-   /accounts/{account_id}/payment_charges_settings:
+  /accounts/{account_id}/payment_charges_settings:
     get:
       tags:
       - Accounts
