@@ -9075,10 +9075,8 @@ paths:
           required: false
           type: string
           description: >-
-            Payment Purpose Code (Mandatory for all local INR and MYR payments, SWIFT CNY payments,
+            <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Payment Purpose Code</a> (Mandatory for all local INR and MYR payments, SWIFT CNY payments,
             and SWIFT payments in any currency to banks in Bahrain or the United Arab Emirates).
-            Visit our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Help Center</a>
-            for more information.
         - name: on_behalf_of
           in: formData
           required: false
@@ -9582,7 +9580,7 @@ paths:
             - shared
           description: >-
             Payment Charges Setting value (only applicable to SWIFT payments).
-            Limits search results scope to just payments of the specified charge type.
+            Limits the search results to payments of the specified <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430820-Selecting-payment-charges-for-SWIFT-payments-FAQ">charge type</a>.
         - name: review_status
           in: query
           required: false
@@ -10984,7 +10982,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Assign Payment Fee
-      description: 'Assigns a payment fee table to a specific sub-account.'
+      description: 'Assigns a <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> table to a specific sub-account.'
       operationId: PaymentsAssignPaymentFee
       consumes:
         - multipart/form-data
@@ -11300,7 +11298,7 @@ paths:
       x-api-group: pay
       summary: Get Payment Fees
       description: >-
-        Gets the payment fee tables for the current authenticated account.
+        Gets the <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> tables for the current authenticated account.
       operationId: GetPaymentPaymentFees
       produces:
         - application/json
@@ -11584,7 +11582,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Unassign Payment Fee
-      description: 'Unassigns the payment fee tables for a specific sub-account.'
+      description: 'Unassigns the <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> tables for a specific sub-account.'
       operationId: PaymentsUnassignPaymentFee
       consumes:
         - multipart/form-data
@@ -13681,7 +13679,7 @@ paths:
       x-api-group: manage
       summary: Get Payment Fee Rules
       description: >-
-        Gets the payment fee information based on the specific values provided.
+        Gets the <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> information set up for the account / payment type provided.
       operationId: GetPaymentFeeRules
       produces:
         - application/json
@@ -13705,7 +13703,7 @@ paths:
             - regular
           description: >-
             Payment type value.
-            Limits search results scope to just payments of the specified payment type - priority(SWIFT) or regular(local).
+            Limits the search results to payments of the specified payment type - 'priority'(SWIFT) or 'regular'(local).
         - name: charge_type
           in: query
           required: false
@@ -13714,8 +13712,8 @@ paths:
             - ours
             - shared
           description: >-
-            Payment charges value .
-            Limits search results scope to just payments of the specified charge type - ours or shared.
+            Payment charge value.
+            Limits the search results to payments of the specified <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430820-Selecting-payment-charges-for-SWIFT-payments-FAQ">charge type</a> - 'ours' or 'shared'.
       responses:
         '200':
           description: Success.

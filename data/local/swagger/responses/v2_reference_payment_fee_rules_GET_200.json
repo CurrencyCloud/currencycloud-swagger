@@ -1,3 +1,28 @@
 {
-    "payment_fee_rules": []
+    "payment_fee_rules": [
+        {
+            "payment_type":"regular",
+            "charge_type": null,
+            "fee_amount": "10.00",
+            "fee_currency":"EUR",
+            "payment_fee_id":"5c3b8754-406d-4e7e-a80e-606fa273ab80",
+            "payment_fee_name":"Fee Table EUR 10 - 20 - 30"
+        },
+        {
+            "payment_type": "priority",
+            "charge_type": "shared",
+            "fee_amount": "20.00",
+            "fee_currency": "EUR",
+            "payment_fee_id": "5c3b8754-406d-4e7e-a80e-606fa273ab80",
+            "payment_fee_name":"Fee Table EUR 10 - 20 - 30"
+        },
+        {
+            "payment_type": "priority",
+            "charge_type": "ours",
+            "fee_amount": "30.00",
+            "fee_currency": "EUR",
+            "payment_fee_id": "5c3b8754-406d-4e7e-a80e-606fa273ab80",
+            "payment_fee_name":"Fee Table EUR 10 - 20 - 30"
+        }
+    ]
 }
