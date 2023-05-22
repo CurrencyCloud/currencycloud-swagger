@@ -12725,12 +12725,13 @@ paths:
             - bsb_code
             - routing_number
             - cnaps
-          description: The type of the idenitifier used to identify the account.
+            - ifsc
+          description: The type of code used to identify the account (e.g. IBAN).
         - name: identifier_value
           in: query
           required: true
           type: string
-          description: The value of the idenitifier of the account in the format of the identifier_type.
+          description: The value for the account identifier specified in identifier_type (e.g. the account's IBAN code).
       responses:
         '200':
           description: Success.
@@ -12749,8 +12750,8 @@ paths:
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps'
-              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps" }'
+              message: 'identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps, ifsc'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps, ifsc" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
@@ -12882,12 +12883,13 @@ paths:
             - bsb_code
             - routing_number
             - cnaps
-          description: The type of the idenitifier used to identify the account.
+            - ifsc
+          description: The type of code used to identify the account (e.g. IBAN).
         - name: identifier_value
           in: formData
           required: true
           type: string
-          description: The value of the idenitifier of the account in the format of the identifier_type.
+          description: The value of the account identifier specified in identifier_type (e.g. the IBAN code).
       responses:
         '200':
           description: Success.
@@ -12906,8 +12908,8 @@ paths:
               params: ''
             - code: identifier_type_not_in_range
               category: identifier_type
-              message: '"identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps'
-              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps" }'
+              message: 'identifier_type should be in range: iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps, ifsc'
+              params: '{ "range" => "iban, bic_swift, sort_code, aba, bsb_code, routing_number, cnaps, ifsc" }'
             - code: identifier_value_is_required
               category: identifier_value
               message: identifier_value is required
@@ -17033,10 +17035,10 @@ definitions:
     properties:
       identifier_type:
         type: string
-        description: The type of the identifier used to identify the account (e.g. iban).
+        description: The type of identifier used to identify the account (e.g. IBAN).
       identifier_value:
         type: string
-        description: The value of the identifier of the account in the format of the identifier_type (e.g. iban code).
+        description: The value of the identifier of the account in the format of the identifier_type (e.g. IBAN code).
       account_number:
         type: string
         description: Account number
