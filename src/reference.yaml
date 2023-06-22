@@ -2471,9 +2471,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter ISO country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which they are based.
         - name: currency
           in: query
           required: false
@@ -2968,9 +2968,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter ISO country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which the beneficiary is based.
         - name: currency
           in: formData
           required: false
@@ -3618,9 +3618,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter ISO country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which the beneficiary is based.
         - name: account_number
           in: formData
           required: false
@@ -4272,9 +4272,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter ISO country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which the beneficiary is based.
         - name: account_number
           in: formData
           required: false
@@ -5045,9 +5045,9 @@ paths:
           required: false
           type: string
           description: >-
-            Two-letter country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which the beneficiary is based.
         - name: account_number
           in: formData
           required: false
@@ -12698,12 +12698,14 @@ paths:
               description: A unique reference for the request.
   /reference/bank_details:
     get:
+
       tags:
         - Reference
       x-api-group: manage
+      deprecated: true
       summary: Get Bank Details
       description: >-
-        Returns the related bank details for the given account reference.
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use <a href="/api-reference/#find-bank-details"> Find Bank Details </a> instead. </p><br><br> Returns the related bank details for the given account reference.
       operationId: GetBankDetails
       produces:
         - application/json
@@ -13047,9 +13049,9 @@ paths:
           required: true
           type: string
           description: >-
-            Two-letter ISO country code. If the beneficiary is a company, the
+            Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
-            individual, a country in which the beneficiary holds nationality.
+            individual, this is the country in which they are based.
       responses:
         '200':
           description: Success.
