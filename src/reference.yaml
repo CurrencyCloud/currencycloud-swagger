@@ -12702,10 +12702,9 @@ paths:
       tags:
         - Reference
       x-api-group: manage
-      deprecated: true
       summary: Get Bank Details
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use <a href="/api-reference/#find-bank-details"> Find Bank Details </a> instead. </p><br><br> Returns the related bank details for the given account reference.
+        Returns the related bank details for the given account reference.
       operationId: GetBankDetails
       produces:
         - application/json
