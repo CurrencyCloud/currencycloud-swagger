@@ -1196,7 +1196,9 @@ paths:
         - Accounts
       x-api-group: manage
       summary: Find Accounts
+      deprecated: true
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this GET request is <b>deprecated</b> and will be removed on the <b>15th of December</b>. Please use the POST request below instead. </p><br><br>
         Gets account and any sub-accounts owned by the authenticated user. Optionally filter by
         account status and other criteria.
       operationId: FindAccounts
@@ -2444,7 +2446,10 @@ paths:
         - Beneficiaries
       x-api-group: pay
       summary: Find Beneficiaries
+      deprecated: true
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this GET request is <b>deprecated</b> and will be removed on the <b>15th of December</b>. Please use the POST request below instead.</p> <br><br>
+
         Finds beneficiaries attached to the account or any sub-account owned by
         the authenticated user.
       operationId: FindBeneficiaries
@@ -5647,7 +5652,10 @@ paths:
         - Contacts
       x-api-group: manage
       summary: Find Contacts
-      description: Get contacts that match the parameters.
+      deprecated: true
+      description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this GET request is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use the POST request below instead.</p> <br><br>
+        Get contacts that match the parameters.
       operationId: FindContacts
       produces:
         - application/json
@@ -8717,7 +8725,9 @@ paths:
         - Funding
       x-api-group: collect
       summary: Find Funding Accounts
+      deprecated: true
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this GET endpoint is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use the POST method below instead. <br><br>
         Gets details of the Standard Settlement Instructions (SSIs) that can be used to settle and collect funds in each available currency.
       operationId: FindFundingAccounts
       produces:
@@ -12703,7 +12713,9 @@ paths:
         - Reference
       x-api-group: manage
       summary: Get Bank Details
+      deprecated: true
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use <a href="/api-reference/#find-bank-details"> Find Bank Details </a> instead. </p><br><br>
         Returns the related bank details for the given account reference.
       operationId: GetBankDetails
       produces:
