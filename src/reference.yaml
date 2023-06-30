@@ -8725,9 +8725,7 @@ paths:
         - Funding
       x-api-group: collect
       summary: Find Funding Accounts
-      deprecated: true
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this GET endpoint is <b>deprecated</b> and will be removed on the <b>15th of December</b>.  Please use the POST method below instead. <br><br>
         Gets details of the Standard Settlement Instructions (SSIs) that can be used to settle and collect funds in each available currency.
       operationId: FindFundingAccounts
       produces:
