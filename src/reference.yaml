@@ -9340,7 +9340,7 @@ paths:
             - code: invoice_number_missing
               category: invoice_number
               message: "Invoice number is missing for provided invoice date $invoiceDate"
-            - code: invalid_invoice_dat
+            - code: invalid_invoice_date
               category: invoice_date
               message: "Invoice date must follow YYYY-MM-DD format"
             - code: invoice_date_missing
