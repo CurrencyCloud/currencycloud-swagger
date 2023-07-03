@@ -28,5 +28,7 @@
     "charge_type": null,
     "fee_amount": null,
     "fee_currency": null,
-    "review_status": "in_review"
+    "review_status": "in_review",
+    "invoice_number": "INV01",
+    "invoice_date": "2023-07-03"
 }
