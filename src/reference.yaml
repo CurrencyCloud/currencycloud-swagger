@@ -13212,13 +13212,11 @@ paths:
       description: >-
          Provides a list of upcoming non-trading dates, such as weekends or
          public holidays, for a specified currency pair. Common use cases
-         include  situations where this information needs to be provided, or for
+         include situations where this information needs to be provided, or for
          planning upcoming conversion bookings. <br><br>
-         Many currencies are triangulated; which means that holidays affecting the intermediary
-         currency, as well as the sale and purchase currencies, will impact transactions.<br><br>
-         Please note that since APAC currencies do not support the <code>conversion_date_preference</code>
-         parameter on the conversions/create endpoint, <code>default_conversion_date</code> returned
-         in this response should be used and not the <code>first_conversion_date</code> or <code>optimize_liquidity_conversion_date</code>.
+         Many currencies are triangulated; this means that holidays affecting the intermediary
+         currency, as well as the sale and purchase currencies, will impact transactions. Find out more
+         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>  
       operationId: GetConversionDates
       produces:
         - application/json
