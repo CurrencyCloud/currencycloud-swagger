@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Paying a beneficiary using funds in a different currency"
-[_metadata_:order]:- "9"
+[_metadata_:order]:- "8"
 
 # Paying a beneficiary using funds in a different currency
 

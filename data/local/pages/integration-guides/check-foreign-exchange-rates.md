@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Checking foreign exchange rates"
-[_metadata_:order]:- "7"
+[_metadata_:order]:- "6"
 
 # Checking foreign exchange rates
 

@@ -6,7 +6,7 @@
 ​
 
 # Integration Guides
-1. [Getting started with the API](/guides/integration-guides/getting-started-with-the-api)
+1. [Getting started with the API](/guides/getting-started/getting-started-with-the-api)
 2. [How to Authenticate](/guides/integration-guides/authentication)
 3. [Checking your balances](/guides/integration-guides/checking-your-balances)
 4. [Make transfers between balances](/guides/integration-guides/transfers-between-balances)

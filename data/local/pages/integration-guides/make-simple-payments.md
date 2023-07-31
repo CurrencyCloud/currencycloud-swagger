@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Making simple payments to beneficiaries"
-[_metadata_:order]:- "6"
+[_metadata_:order]:- "5"
 
 # Making simple payments to beneficiaries
 
@@ -312,3 +312,5 @@ Content-Type: application/json
 ```
 
 Payments are processed first-in, first-out. Currencycloud will process payments on the `payment_date` specified, provided you hold enough money in the relevant currency at the time.
+
+Once the payment is released, the beneficiary is cloned and the cloned version becomes read-only. Find out more in our [Preserving Beneficiaries Details](/guides/platform-specifics/preserving-beneficiary-details) article.

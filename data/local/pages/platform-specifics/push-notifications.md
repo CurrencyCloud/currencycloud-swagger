@@ -1,5 +1,5 @@
-[_metadata_:menu_title]:- "Push Notifications"
-[_metadata_:order]:- "6"
+[_metadata_:menu_title]:- "Push Notifications / Webhooks"
+[_metadata_:order]:- "3"
 
 # Push Notifications
 

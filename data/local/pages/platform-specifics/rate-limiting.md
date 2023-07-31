@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Rate Limiting"
-[_metadata_:order]:- "7"
+[_metadata_:order]:- "2"
 
 # Rate Limiting
 
