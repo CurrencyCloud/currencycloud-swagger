@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Transferring funds between balances"
-[_metadata_:order]:- "5"
+[_metadata_:order]:- "4"
 
 # Transferring funds between balances
 

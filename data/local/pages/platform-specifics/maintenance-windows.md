@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Maintenance Windows"
-[_metadata_:order]:- "8"
+[_metadata_:order]:- "5"
 
 # Maintenance Windows
 

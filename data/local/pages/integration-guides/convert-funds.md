@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Converting funds from one currency to another"
-[_metadata_:order]:- "8"
+[_metadata_:order]:- "7"
 
 # Converting funds from one currency to another
 

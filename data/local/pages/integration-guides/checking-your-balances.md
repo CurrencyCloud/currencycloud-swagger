@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Checking your balances"
-[_metadata_:order]:- "4"
+[_metadata_:order]:- "3"
 
 # Checking your balances
 This guides explains how to check how much money you hold in various foreign currencies in your Currencycloud account.

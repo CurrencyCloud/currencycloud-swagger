@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Inbound Funds / Collections"
-[_metadata_:order]:- "10"
+[_metadata_:order]:- "9"
 
 # Inbound Funds / Collections
 

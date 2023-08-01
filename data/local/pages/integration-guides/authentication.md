@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Authenticating"
-[_metadata_:order]:- "3"
+[_metadata_:order]:- "2"
 
 # Authenticating
 
