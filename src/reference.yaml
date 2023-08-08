@@ -3810,6 +3810,16 @@ paths:
           required: false
           type: string
           description: Beneficiary external reference.
+        - name: business_nature
+          in: formData
+          required: false
+          type: string
+          description: Beneficiary nature of business.
+        - name: company_website
+          in: formData
+          required: false
+          type: string
+          description: Beneficiary company website.
       responses:
         '200':
           description: Success.
@@ -17275,6 +17285,12 @@ definitions:
       beneficiary_external_reference:
         type: string
         description: Beneficiary external reference.
+      business_nature:
+        type: string
+        description: Beneficiary nature of business.
+      company_website:
+        type: string
+        description: Beneficiary company website.
     example:
       id: a6000ce9-46b8-49a7-9f5b-325ed3f047c2
       bank_account_holder_name: Company PLC
@@ -17315,6 +17331,8 @@ definitions:
       created_at: '2020-12-31T23:59:59.000Z'
       updated_at: '2020-12-31T23:59:59.000Z'
       beneficiary_external_reference: B-5847789
+      business_nature: Government agency
+      company_website: https://www.gov.uk/
   BeneficiaryRequirements:
     type: object
     description: Beneficiary requirements.
