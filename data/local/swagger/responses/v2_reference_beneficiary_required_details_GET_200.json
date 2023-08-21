@@ -6,8 +6,8 @@
             "beneficiary_address": "^.{1,255}",
             "beneficiary_city": "^.{1,255}",
             "beneficiary_country": "^[A-z]{2}$",
-            "beneficiary_first_name": "^.{1,255}",
-            "beneficiary_last_name": "^.{1,255}",
+            "beneficiary_first_name": "^([^0-9]{1,255})$",
+            "beneficiary_last_name": "^([^0-9]{1,255})$",
             "acct_number": "^\\d{8}$",
             "sort_code": "^\\d{6}$"
         },
@@ -17,7 +17,7 @@
             "beneficiary_address": "^.{1,255}",
             "beneficiary_city": "^.{1,255}",
             "beneficiary_country": "^[A-z]{2}$",
-            "beneficiary_company_name": "^.{1,255}",
+            "beneficiary_company_name": "^(?!\d+$).{1,255}$",
             "acct_number": "^\\d{8}$",
             "sort_code": "^\\d{6}$"
         },
@@ -27,8 +27,8 @@
             "beneficiary_address": "^.{1,255}",
             "beneficiary_city": "^.{1,255}",
             "beneficiary_country": "^[A-z]{2}$",
-            "beneficiary_first_name": "^.{1,255}",
-            "beneficiary_last_name": "^.{1,255}",
+            "beneficiary_first_name": "^([^0-9]{1,255})$",
+            "beneficiary_last_name": "^([^0-9]{1,255})$",
             "iban": "([A-Z0-9]\\s*){15,34}",
             "bic_swift": "^[0-9A-Z]{8}$|^[0-9A-Z]{11}$"
         },
@@ -38,7 +38,7 @@
             "beneficiary_address": "^.{1,255}",
             "beneficiary_city": "^.{1,255}",
             "beneficiary_country": "^[A-z]{2}$",
-            "beneficiary_company_name": "^.{1,255}",
+            "beneficiary_company_name": "^(?!\d+$).{1,255}$",
             "iban": "([A-Z0-9]\\s*){15,34}",
             "bic_swift": "^[0-9A-Z]{8}$|^[0-9A-Z]{11}$"
         },

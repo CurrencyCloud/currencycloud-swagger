@@ -3588,7 +3588,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary's name
+          description: A nickname for the beneficiary.
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -3731,17 +3731,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "company".
+          description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_city
           in: formData
           required: false
@@ -3986,6 +3986,10 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
+            - code: company_name_cannot_be_only_digits
+              category: beneficiary_company_name
+              message: Beneficiary names cannot consist entirely of numbers for a company
+              params: ''
             - code: beneficiary_first_name_is_missing
               category: beneficiary_first_name
               message: Beneficiary first name is missing
@@ -3993,6 +3997,10 @@ paths:
             - code: beneficiary_last_name_is_missing
               category: beneficiary_last_name
               message: Beneficiary last name is missing
+              params: ''
+            - code: individual_name_cannot_contain_digits
+              category: beneficiary_first_name
+              message: Beneficiary names cannot contain numbers for an invididual
               params: ''
             - code: beneficiary_city_is_too_short
               category: beneficiary_city
@@ -4242,7 +4250,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: Beneficiary name
+          description: A nickname for the beneficiary.
         - name: bank_account_holder_name
           in: formData
           required: true
@@ -4373,17 +4381,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "company".
+          description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_city
           in: formData
           required: false
@@ -4637,6 +4645,10 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
+            - code: company_name_cannot_be_only_digits
+              category: beneficiary_company_name
+              message: Beneficiary names cannot consist entirely of numbers for a company
+              params: ''
             - code: beneficiary_first_name_is_missing
               category: beneficiary_first_name
               message: Beneficiary first name is missing
@@ -4644,6 +4656,10 @@ paths:
             - code: beneficiary_last_name_is_missing
               category: beneficiary_last_name
               message: Beneficiary last name is missing
+              params: ''
+            - code: individual_name_cannot_contain_digits
+              category: beneficiary_first_name
+              message: Beneficiary names cannot contain numbers for an invididual
               params: ''
             - code: beneficiary_city_is_too_short
               category: beneficiary_city
@@ -5136,17 +5152,17 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "company".
+          description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
         - name: beneficiary_city
           in: formData
           required: false
@@ -5251,6 +5267,10 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
+            - code: company_name_cannot_be_only_digits
+              category: beneficiary_company_name
+              message: Beneficiary names cannot consist entirely of numbers for a company
+              params: ''
             - code: beneficiary_first_name_is_missing
               category: beneficiary_first_name
               message: Beneficiary first name is missing
@@ -5258,6 +5278,10 @@ paths:
             - code: beneficiary_last_name_is_missing
               category: beneficiary_last_name
               message: Beneficiary last name is missing
+              params: ''
+            - code: individual_name_cannot_contain_digits
+              category: beneficiary_first_name
+              message: Beneficiary names cannot contain numbers for an invididual
               params: ''
             - code: beneficiary_state_or_province_is_missing
               category: beneficiary_state_or_province
@@ -13216,7 +13240,7 @@ paths:
          planning upcoming conversion bookings. <br><br>
          Many currencies are triangulated; this means that holidays affecting the intermediary
          currency, as well as the sale and purchase currencies, will impact transactions. Find out more
-         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>  
+         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>
       operationId: GetConversionDates
       produces:
         - application/json
