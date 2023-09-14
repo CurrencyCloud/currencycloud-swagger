@@ -27,7 +27,7 @@ You can also generate your own Postman collection by importing the Swagger/OpenA
 
 ### Terms & conditions
 
-It is really **important** that any applicant you seek to onboarding through our Onboarding APIs:
+It is really **important** that any applicant you seek to onboard through our Onboarding APIs:
 
 - has had sight of, understands and accepts [CC's terms and conditions](https://onboarding.paydirect.io/currencycloud/terms_and_conditions); and
 - understands that they are being provided with a regulated service by Currencycloud.
