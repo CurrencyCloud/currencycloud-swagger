@@ -38,7 +38,9 @@
             ],
             "created_at": "2018-11-19T11:53:13+00:00",
             "updated_at": "2018-11-19T11:53:13+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "54833001-72d6-45fe-aade-95779da7e998",
@@ -78,7 +80,9 @@
             ],
             "created_at": "2018-11-19T11:53:59+00:00",
             "updated_at": "2018-11-19T11:53:59+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "5505ec42-60e9-446c-ade6-236d1e157617",
@@ -118,7 +122,9 @@
             ],
             "created_at": "2018-11-19T11:54:00+00:00",
             "updated_at": "2018-11-19T11:54:00+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "e0d52fbc-a94e-459d-9b84-8abf681d5218",
@@ -158,7 +164,9 @@
             ],
             "created_at": "2018-11-19T11:56:24+00:00",
             "updated_at": "2018-11-19T11:56:24+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "4f9fc787-b4c4-4695-b149-7e7ecd58dbc5",
@@ -198,7 +206,9 @@
             ],
             "created_at": "2018-11-19T12:41:52+00:00",
             "updated_at": "2018-11-19T12:41:52+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "3827a5f5-ddd7-43da-834e-2a799e8c8491",
@@ -238,7 +248,9 @@
             ],
             "created_at": "2018-11-19T12:41:53+00:00",
             "updated_at": "2018-11-19T12:41:53+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "4ae7aa3b-1c02-432b-a43a-499bfca53ff5",
@@ -278,87 +290,9 @@
             ],
             "created_at": "2018-11-19T12:42:20+00:00",
             "updated_at": "2018-11-19T12:42:20+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "6ff2b0af-850e-4790-b8c0-73488e8292dd",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf2af9b3d645",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-19T12:42:20+00:00",
-            "updated_at": "2018-11-19T12:42:20+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "4a0f0a23-0ecb-47b0-be2d-734b360941db",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d454179af",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:07:58+00:00",
-            "updated_at": "2018-11-22T16:07:58+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "cf7c3e16-8c21-4e14-bfcf-c11654a3b665",
@@ -398,87 +332,9 @@
             ],
             "created_at": "2018-11-22T16:07:58+00:00",
             "updated_at": "2018-11-22T16:07:58+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "4f673757-8b8b-4789-8932-848329a8910a",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d4865c805",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:08:53+00:00",
-            "updated_at": "2018-11-22T16:08:53+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "12889524-3737-4c82-bf8a-d5b68f3d1137",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d4865c805",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:08:55+00:00",
-            "updated_at": "2018-11-22T16:08:55+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "aa49acb4-feb3-45c0-8f6b-a1773143164e",
@@ -518,7 +374,9 @@
             ],
             "created_at": "2018-11-22T16:13:00+00:00",
             "updated_at": "2018-11-22T16:13:00+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "2b66e587-30bd-42f3-a11a-7c373750de56",
@@ -558,7 +416,9 @@
             ],
             "created_at": "2018-11-22T16:13:01+00:00",
             "updated_at": "2018-11-22T16:13:01+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "2687b23d-bad2-40ce-a19f-75b59de741ef",
@@ -598,167 +458,9 @@
             ],
             "created_at": "2018-11-22T16:16:27+00:00",
             "updated_at": "2018-11-22T16:16:27+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "e2280a21-2cbc-4d82-8dc0-e2f0ac7fdbcf",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d652326e5",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:16:28+00:00",
-            "updated_at": "2018-11-22T16:16:28+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "65d62d10-7185-4d76-8eae-225fd36f4522",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d68b3dd3b",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:17:33+00:00",
-            "updated_at": "2018-11-22T16:17:33+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "145aa901-f5dc-4b06-b484-12a1d0e2d872",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d68b3dd3b",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:17:34+00:00",
-            "updated_at": "2018-11-22T16:17:34+00:00",
-            "beneficiary_external_reference": null
-        },
-        {
-            "id": "2830fc10-68a4-49d9-90a6-613abf384d3e",
-            "bank_account_holder_name": "My Test Account Holder",
-            "name": "My Test Beneficiary 5bf6d7806250e",
-            "email": null,
-            "payment_types": [],
-            "beneficiary_address": [],
-            "beneficiary_country": null,
-            "beneficiary_entity_type": null,
-            "beneficiary_company_name": null,
-            "beneficiary_first_name": null,
-            "beneficiary_last_name": null,
-            "beneficiary_city": null,
-            "beneficiary_postcode": null,
-            "beneficiary_state_or_province": null,
-            "beneficiary_date_of_birth": null,
-            "beneficiary_identification_type": null,
-            "beneficiary_identification_value": null,
-            "bank_country": "GB",
-            "bank_name": "TEST BANK NAME",
-            "bank_account_type": null,
-            "currency": "GBP",
-            "account_number": "3284734675",
-            "routing_code_type_1": "sort_code",
-            "routing_code_value_1": "101193",
-            "routing_code_type_2": null,
-            "routing_code_value_2": null,
-            "bic_swift": null,
-            "iban": null,
-            "default_beneficiary": "false",
-            "creator_contact_id": "a66ca63f-e668-47af-8bb9-74363240d781",
-            "bank_address": [
-                "TEST BANK ADDRESS",
-                " NOT USING EXTERNAL SERVICE",
-                " DEVELOPMENT ENVIRONMENT."
-            ],
-            "created_at": "2018-11-22T16:21:27+00:00",
-            "updated_at": "2018-11-22T16:21:27+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "e23367d8-8fc4-4b64-a2b0-ef90d8c5b616",
@@ -798,7 +500,9 @@
             ],
             "created_at": "2018-11-22T16:21:27+00:00",
             "updated_at": "2018-11-22T16:21:27+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "ef512a22-fa98-42db-8594-d858741a1153",
@@ -838,7 +542,9 @@
             ],
             "created_at": "2018-11-22T16:22:40+00:00",
             "updated_at": "2018-11-22T16:22:40+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "a4de2f59-340a-4ecf-8eb8-8fa61e0ce52f",
@@ -878,7 +584,9 @@
             ],
             "created_at": "2018-11-22T16:23:40+00:00",
             "updated_at": "2018-11-22T16:23:40+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "b460ff94-4291-4a9d-a502-72544dbb9828",
@@ -918,7 +626,9 @@
             ],
             "created_at": "2018-11-22T16:23:40+00:00",
             "updated_at": "2018-11-22T16:23:40+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "7b643fbd-f98a-4a2d-b0b8-38c70ef61ae4",
@@ -958,7 +668,9 @@
             ],
             "created_at": "2018-11-22T16:27:25+00:00",
             "updated_at": "2018-11-22T16:27:25+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         },
         {
             "id": "a3ef36db-a733-4b1c-900f-7b94986ef666",
@@ -998,7 +710,9 @@
             ],
             "created_at": "2018-11-22T16:27:26+00:00",
             "updated_at": "2018-11-22T16:27:26+00:00",
-            "beneficiary_external_reference": null
+            "beneficiary_external_reference": null,
+            "business_nature": "Government agency",
+            "company_website": "https://www.gov.uk/"
         }
     ],
     "pagination": {

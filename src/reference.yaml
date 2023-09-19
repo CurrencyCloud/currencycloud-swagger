@@ -5,7 +5,7 @@ info:
     converting money between currencies and making payments around the world.
     Dynamically register sub-accounts to provide white labeled money transfer
     services to your own customers.
-  version: 2.44.0
+  version: 2.43.0
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
   contact:
@@ -13236,7 +13236,7 @@ paths:
          planning upcoming conversion bookings. <br><br>
          Many currencies are triangulated; this means that holidays affecting the intermediary
          currency, as well as the sale and purchase currencies, will impact transactions. Find out more
-         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>  
+         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>
       operationId: GetConversionDates
       produces:
         - application/json
