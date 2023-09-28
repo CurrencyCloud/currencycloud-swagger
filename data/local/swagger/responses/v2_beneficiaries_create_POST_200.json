@@ -38,5 +38,7 @@
     ],
     "created_at": "2022-01-31T14:30:35+00:00",
     "updated_at": "2022-01-31T14:30:35+00:00",
-    "beneficiary_external_reference": null
+    "beneficiary_external_reference": null,
+    "business_nature": "Government agency",
+    "company_website": "https://www.gov.uk/"
 }
