@@ -9,6 +9,7 @@ paths:
       summary: Get a form's associated account usage
       tags:
       - Account Usage
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -37,6 +38,7 @@ paths:
       summary: Update a form's associated account usage
       tags:
       - Account Usage
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -82,6 +84,7 @@ paths:
       summary: Delete account usage attached to the form
       tags:
       - Account Usage
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -125,6 +128,7 @@ paths:
       summary: Get business information for specific form
       tags:
       - Business Information
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -153,6 +157,7 @@ paths:
       summary: Update business information for form
       tags:
       - Business Information
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -198,6 +203,7 @@ paths:
       summary: Delete business information attached to the form
       tags:
       - Business Information
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -241,6 +247,7 @@ paths:
       summary: List countries.
       tags:
       - Country
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       responses:
@@ -293,6 +300,7 @@ paths:
       summary: Country document types
       tags:
       - Country
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -327,6 +335,7 @@ paths:
       summary: List of supported currencies.
       tags:
       - Currency
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       responses:
@@ -365,6 +374,7 @@ paths:
       summary: Create a document image for a document in a form
       tags:
       - Document Images
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -411,6 +421,7 @@ paths:
       summary: Get all document images for a specific document
       tags:
       - Document Images
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -447,6 +458,7 @@ paths:
       summary: Delete an image attached to the document
       tags:
       - Document Images
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -500,6 +512,7 @@ paths:
       summary: Create document for a form
       tags:
       - Documents
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -545,6 +558,7 @@ paths:
       summary: Retrieve documents for a form
       tags:
       - Documents
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -576,6 +590,7 @@ paths:
       summary: Delete a document attached to the form
       tags:
       - Documents
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -624,6 +639,7 @@ paths:
       summary: Submit the form
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -653,6 +669,7 @@ paths:
       summary: Retrieve all forms for a house account
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -744,6 +761,7 @@ paths:
       summary: Create a form
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters: []
@@ -773,6 +791,7 @@ paths:
       summary: Retrieve a form
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -801,6 +820,7 @@ paths:
       summary: Update a form
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1357,6 +1377,7 @@ paths:
       summary: Delete a form
       tags:
       - Form
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1400,6 +1421,7 @@ paths:
       summary: Create a person
       tags:
       - People
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1439,6 +1461,7 @@ paths:
       summary: Retrieve all people for a form
       tags:
       - People
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1470,6 +1493,7 @@ paths:
       summary: Retrieve a person
       tags:
       - People
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1503,6 +1527,7 @@ paths:
       summary: Update a person
       tags:
       - People
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
@@ -1547,6 +1572,7 @@ paths:
       summary: Delete a person attached to the form
       tags:
       - People
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
