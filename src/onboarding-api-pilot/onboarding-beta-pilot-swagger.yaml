@@ -300,7 +300,7 @@ paths:
       summary: Country document types
       tags:
       - Country
-      x-api-group: Onboarding:
+      x-api-group: Onboarding
       security:
       - AuthToken: []
       parameters:
