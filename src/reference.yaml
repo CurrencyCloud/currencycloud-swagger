@@ -663,7 +663,7 @@ paths:
         in: query
         required: false
         type: string
-        description: A contact UUID for the sub-acccount you're acting on behalf of.
+        description: A contact UUID for the sub-account you're acting on behalf of.
     responses:
       '200':
         description: Success.
@@ -1998,7 +1998,7 @@ paths:
         in: query
         required: false
         type: string
-        description: A contact UUID for the sub-acccount you're acting on behalf of.
+        description: A contact UUID for the sub-account you're acting on behalf of.
         format: uuid
     responses:
       '200':
@@ -2128,7 +2128,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
         - name: amount_from
           in: query
@@ -2336,7 +2336,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
           format: 'UUID'
       responses:
         '200':
@@ -2465,7 +2465,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: bank_account_holder_name
           in: query
           required: false
@@ -2962,7 +2962,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -3463,7 +3463,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -4477,7 +4477,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: beneficiary_external_reference
           in: formData
           required: false
@@ -4942,7 +4942,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -5258,7 +5258,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -6927,7 +6927,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: conversion_date_preference
           in: formData
           required: false
@@ -7244,7 +7244,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -7359,7 +7359,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
@@ -9134,7 +9134,7 @@ paths:
           required: false
           type: string
           description: >-
-            A contact UUID for the sub-acccount you're acting on behalf of.
+            A contact UUID for the sub-account you're acting on behalf of.
             Payer details parameters should not be sent if using on_behalf_of,
             they will be populated using the details from the sub-account.
         - name: charge_type
@@ -9822,7 +9822,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: review_status
           in: query
           required: false
@@ -10121,7 +10121,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: charge_type
           in: formData
           required: false
@@ -10582,7 +10582,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -10838,7 +10838,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -11992,7 +11992,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: charge_type
           in: formData
           required: false
@@ -12307,7 +12307,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -12435,7 +12435,7 @@ paths:
             in: query
             required: false
             type: string
-            description: A contact UUID for the sub-acccount you're acting on behalf of.
+            description: A contact UUID for the sub-account you're acting on behalf of.
           - name: ignore_invalid_pairs
             in: query
             required: false
@@ -12599,7 +12599,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: conversion_date
           in: query
           required: false
@@ -13285,7 +13285,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -14197,7 +14197,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: description
           in: formData
           required: false
@@ -14472,7 +14472,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: description
           in: formData
           required: false
@@ -14940,7 +14940,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -15050,7 +15050,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -15166,7 +15166,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: currency
           in: query
           required: false
@@ -15520,7 +15520,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
@@ -15923,7 +15923,7 @@ paths:
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: short_reference
           in: query
           required: false
