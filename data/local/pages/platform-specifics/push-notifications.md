@@ -125,7 +125,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -168,7 +170,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -213,7 +217,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "Test Fail",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -258,7 +264,9 @@ Content-Type: text/plain
     "short_reference": "180727-GYJLVG001",
     "failure_reason": "Compliance failed 1",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 
@@ -882,7 +890,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -925,7 +935,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -970,7 +982,9 @@ Content-Type: text/plain
     "short_reference": "180430-TSLCQJ001",
     "failure_reason": "Test Fail",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 ---
@@ -1015,7 +1029,9 @@ Content-Type: text/plain
     "short_reference": "180727-GYJLVG001",
     "failure_reason": "Compliance failed 1",
     "payment_group_id":null,
-    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk"
+    "unique_request_id":"Ciu4eNcYnq582hwK_8Cu47sk",
+    "fee_amount": null,
+    "fee_currency": null
   }
 ```
 
