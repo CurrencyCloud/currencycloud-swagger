@@ -108,7 +108,7 @@ paths:
         endpoints in the Currencycloud API. Tokens expire after 30 minutes of
         inactivity.<br><br>
 
-        Token requests are limited to 10 calls per minute.<br><br>
+        Token requests are limited to 60 calls per minute.<br><br>
 
         For security, Currencycloud accounts are disabled when four unsuccessful
         login attempts are made within a short period. In these circumstances, account
