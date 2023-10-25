@@ -6,7 +6,8 @@ info:
 paths:
   "/v1/forms/{form_id}/account_usage":
     get:
-      summary: Get a form's associated account usage
+      summary: Get Account Usage
+      description: Gets the associated account usage for a form. The account usage outlines how the applicant intends to use their account.
       tags:
       - Account Usage
       x-api-group: Onboarding
@@ -14,6 +15,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -35,7 +37,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
     put:
-      summary: Update a form's associated account usage
+      summary: Update Account Usage
+      description: Updates a form's associated account usage. The account usage outlines how the applicant intends to use their account.
       tags:
       - Account Usage
       x-api-group: Onboarding
@@ -43,13 +46,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: Updates account usage when correct params are provided
+          description: Updates account usage.
           content:
             application/json:
               schema:
@@ -81,7 +85,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_account_usage_request"
     delete:
-      summary: Delete account usage attached to the form
+      summary: Delete Account Usage
+      description: Deletes the account usage for the specified application form.
       tags:
       - Account Usage
       x-api-group: Onboarding
@@ -89,6 +94,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -108,6 +114,7 @@ paths:
                         type: string
                       form_id:
                         type: string
+                        description: Form UUID
                     required:
                     - message
                     - form_id
@@ -125,7 +132,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/business_information":
     get:
-      summary: Get business information for specific form
+      summary: Get Business Information
+      description: Gets the business information for the specified application form. Business information is only relevant to corporate applications.
       tags:
       - Business Information
       x-api-group: Onboarding
@@ -133,6 +141,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -154,7 +163,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
     put:
-      summary: Update business information for form
+      summary: Update Business Information
+      description: Updates the business information for the specified application form. Business information is only relevant to corporate applications.
       tags:
       - Business Information
       x-api-group: Onboarding
@@ -162,6 +172,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -200,7 +211,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_business_information_request"
     delete:
-      summary: Delete business information attached to the form
+      summary: Delete Business Information
+      description:  Deletes the business information for the specified form.
       tags:
       - Business Information
       x-api-group: Onboarding
@@ -208,6 +220,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -227,6 +240,7 @@ paths:
                         type: string
                       form_id:
                         type: string
+                        description: Form UUID
                     required:
                     - message
                     - form_id
@@ -244,7 +258,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/countries":
     get:
-      summary: List countries.
+      summary: Get countries
+      description: Returns a list of all countries.
       tags:
       - Country
       x-api-group: Onboarding
@@ -263,31 +278,42 @@ paths:
                     properties:
                       countries:
                         type: array
+                        description: List of countries.
                         items:
                           type: object
                           properties:
                             id:
                               type: string
+                              description: Country UUID
                             iso2:
                               type: string
+                              description: Two character ISO country code.
                             iso3:
                               type: string
+                              description: Three character ISO country code.
                             name:
                               type: string
+                              description: Country name
                             dial_code:
                               type: string
+                              description: Country telephone dial code.
                             eea_country:
                               type: boolean
+                              description: Member of the EEA (European Economic Area).
                             permitted_jurisdiction:
                               type: boolean
+                              description: Is one of our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017599560">permitted jurisdictions</a>.
                             document_types:
                               type: array
+                              description: List of acceptable ID documents.
                               items:
                                 type: string
                             created_at:
                               type: string
+                              description: Date the Country entity was created.
                             updated_at:
                               type: string
+                              description: Date the Country entity was last updated.
                           required:
                           - id
                           - iso2
@@ -297,7 +323,8 @@ paths:
                           - permitted_jurisdiction
   "/v1/countries/{country_code}/document_types":
     get:
-      summary: Country document types
+      summary: Get Document Types
+      description: Returns a list of acceptable ID documents for the country specified.
       tags:
       - Country
       x-api-group: Onboarding
@@ -305,6 +332,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: country_code
+        description: Two or three character ISO code for the country.
         in: path
         required: true
         schema:
@@ -322,6 +350,7 @@ paths:
                     properties:
                       document_types:
                         type: array
+                        description: List of acceptable ID documents for the country.
                         items:
                           type: string
         '404':
@@ -332,7 +361,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/currencies/supported":
     get:
-      summary: List of supported currencies.
+      summary: Get Supported Currencies
+      description: Returns a list of supported currencies.
       tags:
       - Currency
       x-api-group: Onboarding
@@ -354,24 +384,31 @@ paths:
                           type: object
                           properties:
                             id:
+                              description: Currency UUID
                               type: string
                             iso3:
                               type: string
+                              description: Three character ISO currency code.
                             name:
                               type: string
+                              description: Currency name
                             supported:
                               type: boolean
+                              description: Supported currency
                             created_at:
                               type: string
+                              description: Date the currency entity was created.
                             updated_at:
                               type: string
+                              description: Date the currency entity was last updated.
                           required:
                           - id
                           - iso3
                           - name
   "/v1/forms/{form_id}/documents/{document_id}/document_images":
     post:
-      summary: Create a document image for a document in a form
+      summary: Create Document Image
+      description: Records an image of a document that's required for the specified application form. For more information, see the "Uploading documents" section of <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
       tags:
       - Document Images
       x-api-group: Onboarding
@@ -379,12 +416,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: document_id
         in: path
+        description: Document UUID
         required: true
         schema:
           type: string
@@ -418,7 +457,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_document_image_request"
     get:
-      summary: Get all document images for a specific document
+      summary: Get Document Images
+      description: Returns all document images for the specified document.
       tags:
       - Document Images
       x-api-group: Onboarding
@@ -426,12 +466,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: document_id
         in: path
+        description: Document UUID
         required: true
         schema:
           type: string
@@ -455,7 +497,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
     delete:
-      summary: Delete an image attached to the document
+      summary: Delete Document Image
+      description: Deletes the specified image of a document attached to the specified form.
       tags:
       - Document Images
       x-api-group: Onboarding
@@ -463,16 +506,19 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: document_id
         in: path
+        description: Document UUID
         required: true
         schema:
           type: string
       - name: document_image_id
+        description: Document Image UUID.
         in: path
         required: true
         schema:
@@ -491,6 +537,7 @@ paths:
                       message:
                         type: string
                       document_image_id:
+                        description: Document Image UUID.
                         type: string
                     required:
                     - message
@@ -509,7 +556,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/documents":
     post:
-      summary: Create document for a form
+      summary: Create Document
+      description: Adds a validation document to the specified form. For more information on uploading documents, see <a href="../guides/integration-guides/onboarding-api-pilot/#uploading-documents">our guide.</a>
       tags:
       - Documents
       x-api-group: Onboarding
@@ -517,6 +565,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -555,7 +604,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_document_request"
     get:
-      summary: Retrieve documents for a form
+      summary: Get Documents
+      description: Returns the uploaded documents for the specified application form.
       tags:
       - Documents
       x-api-group: Onboarding
@@ -563,6 +613,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -587,7 +638,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/documents/{document_id}":
     delete:
-      summary: Delete a document attached to the form
+      summary: Delete Document
+      description: Deletes a document attached to the specified application form.
       tags:
       - Documents
       x-api-group: Onboarding
@@ -595,6 +647,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -636,7 +689,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/submit":
     post:
-      summary: Submit the form
+      summary: Submit Form
+      description: Submits the application form.
       tags:
       - Form
       x-api-group: Onboarding
@@ -644,6 +698,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -666,7 +721,8 @@ paths:
                 "$ref": "#/components/schemas/validation_error_response"
   "/v1/forms":
     get:
-      summary: Retrieve all forms for a house account
+      summary: Get Forms
+      description: Retrieves all application forms for the house account.
       tags:
       - Form
       x-api-group: Onboarding
@@ -683,12 +739,14 @@ paths:
           type: string
       - name: application_status
         in: query
+        description: Filter by application_status.
         schema:
           type: string
           enum:
           - new
           - submitted
       - name: entity_type
+        description: Type of applicant - individual or corporate.
         in: query
         schema:
           type: string
@@ -696,10 +754,12 @@ paths:
           - individual
           - corporate
       - name: page
+        description: Page number
         in: query
         schema:
           type: integer
       - name: per_page
+        description: Number of results per page.
         in: query
         schema:
           type: integer
@@ -758,7 +818,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
     post:
-      summary: Create a form
+      summary: Create Form
+      description: Creates a new application form. Returns the new form entity on success.
       tags:
       - Form
       x-api-group: Onboarding
@@ -788,7 +849,8 @@ paths:
               "$ref": "#/components/schemas/create_form_request"
   "/v1/forms/{form_id}":
     get:
-      summary: Retrieve a form
+      summary: Get Form
+      description: Retrieves the application form with the given ID.
       tags:
       - Form
       x-api-group: Onboarding
@@ -796,6 +858,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -817,7 +880,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
     put:
-      summary: Update a form
+      summary: Update Form
+      description: Updates an application form.
       tags:
       - Form
       x-api-group: Onboarding
@@ -825,6 +889,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -864,9 +929,11 @@ paths:
               type: object
               properties:
                 affiliate_code:
+                  description: Client's own use, e.g. to track lead source.
                   type: string
                   nullable: true
                 country:
+                  description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
                   type: string
                   enum:
                   - AD
@@ -1358,23 +1425,29 @@ paths:
                   - ZMB
                   - ZWE
                 email:
+                  description: The applicant's email address.
                   type: string
                 entity_type:
+                  description: Type of applicant - individual or corporate.
                   type: string
                   enum:
                   - individual
                   - corporate
                 referred_by:
+                  description: How did the applicant hear about us.
                   type: string
                   nullable: true
                 phone_number:
+                  description: The applicant's phone number.
                   type: string
                   nullable: true
                 contact_name:
+                  description: The applicant's name.
                   type: string
                   nullable: true
     delete:
-      summary: Delete a form
+      summary: Delete Form
+      description: Deletes the application form with the given ID.
       tags:
       - Form
       x-api-group: Onboarding
@@ -1382,6 +1455,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -1401,6 +1475,7 @@ paths:
                         type: string
                       form_id:
                         type: string
+                        description: Form UUID
                     required:
                     - message
                     - form_id
@@ -1418,7 +1493,8 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/forms/{form_id}/people":
     post:
-      summary: Create a person
+      summary: Create Person Entity
+      description: Records a person's details associated with the specified application form. For more information, please see <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
       tags:
       - People
       x-api-group: Onboarding
@@ -1426,6 +1502,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -1458,7 +1535,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_person_request"
     get:
-      summary: Retrieve all people for a form
+      summary: Get People
+      description:  Returns all people associated with an application form.
       tags:
       - People
       x-api-group: Onboarding
@@ -1466,6 +1544,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
@@ -1488,9 +1567,10 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/people/{person_id}":
+  "/v1/forms/{form_id}/{person_id}":
     get:
-      summary: Retrieve a person
+      summary: Get Person
+      description:  Retrieves the details of the person with the specified ID.
       tags:
       - People
       x-api-group: Onboarding
@@ -1498,12 +1578,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: person_id
         in: path
+        description: Person UUID
         required: true
         schema:
           type: string
@@ -1524,7 +1606,8 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
     put:
-      summary: Update a person
+      summary: Update Person
+      description: Updates the person with the specified ID.
       tags:
       - People
       x-api-group: Onboarding
@@ -1532,12 +1615,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: person_id
         in: path
+        description: Person UUID
         required: true
         schema:
           type: string
@@ -1569,7 +1654,8 @@ paths:
             schema:
               "$ref": "#/components/schemas/create_person_request"
     delete:
-      summary: Delete a person attached to the form
+      summary: Delete Person
+      description: Deletes the details of the person with the specified ID.
       tags:
       - People
       x-api-group: Onboarding
@@ -1577,11 +1663,13 @@ paths:
       - AuthToken: []
       parameters:
       - name: form_id
+        description: Form UUID
         in: path
         required: true
         schema:
           type: string
       - name: person_id
+        description: Person UUID
         in: path
         required: true
         schema:
@@ -1633,14 +1721,19 @@ components:
       properties:
         affiliate_code:
           type: string
+          description: Client's own use, e.g. to track lead source.
           nullable: true
         agreed_to_marketing_emails:
           type: boolean
+          description: Agreed to marketing emails.
         agreed_to_terms_and_conditions:
           type: boolean
+          description: Agreed to terms and conditions.
         agreed_to_corporate_authority:
           type: boolean
+          description: Confirmed authority to act on behalf of company.
         country:
+          description: Home country for individual applicant or country of registered address for corporate applicant.
           type: string
           enum:
           - AD
@@ -2132,8 +2225,10 @@ components:
           - ZMB
           - ZWE
         email:
+          description: The applicant's email address.
           type: string
         entity_type:
+          description: Type of applicant - individual or corporate.
           type: string
           enum:
           - individual
@@ -2143,12 +2238,15 @@ components:
         brand_key:
           type: string
         referred_by:
+          description: How did the applicant hear about us.
           type: string
           nullable: true
         phone_number:
+          description: The applicant's phone number.
           type: string
           nullable: true
         contact_name:
+          description: The applicant's name.
           type: string
           nullable: true
       required:
@@ -2162,11 +2260,14 @@ components:
       type: object
       properties:
         affiliate_code:
+          description: Client's own use, e.g. to track lead source.
           type: string
           nullable: true
         agreed_to_corporate_authority:
           type: boolean
+          description: Confirmed authority to act on behalf of company.
         country:
+          description: Home country for individual applicant or country of registered address for corporate applicant.
           type: string
           enum:
           - AD
@@ -2658,19 +2759,24 @@ components:
           - ZMB
           - ZWE
         email:
+          description: The applicant's email address.
           type: string
         entity_type:
+          description: Type of applicant - individual or corporate.
           type: string
           enum:
           - individual
           - corporate
         referred_by:
+          description: How did the applicant hear about us.
           type: string
           nullable: true
         phone_number:
+          description: The applicant's phone number.
           type: string
           nullable: true
         contact_name:
+          description: The applicant's name.
           type: string
           nullable: true
     create_account_usage_request:
@@ -2678,12 +2784,15 @@ components:
       properties:
         document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
           nullable: true
         collections_account:
+          description: Does the account receive funds from third parties.
           type: boolean
         collection_currencies:
+          description: List of currencies to fund account with. Three character ISO currency codes.
           type: array
           items:
             type: string
@@ -2850,6 +2959,7 @@ components:
             - ZWL
         payment_currencies:
           type: array
+          description: List of payout currencies. Three character ISO currency codes.
           items:
             type: string
             nullable: true
@@ -3015,6 +3125,7 @@ components:
             - ZWL
         transaction_countries:
           type: array
+          description: List of countries that corporate accounts want to send/receive money to/from.
           items:
             type: string
             nullable: true
@@ -3509,16 +3620,21 @@ components:
             - ZWE
         one_off_transaction:
           type: boolean
+          description: Do corporate accounts just want to send a single one-off transaction.
         estimated_monthly_transaction_currency:
+          description: Currency of the estimated monthly transaction value.
           type: string
           nullable: true
         estimated_monthly_transaction_value:
           type: integer
+          description: Estimated monthly value of what a corporate account will transact on the platform.
           nullable: true
         estimated_monthly_transaction_volume:
+          description: How often do corporates expect to send or receive funds.
           type: integer
           nullable: true
         source_of_funds:
+          description: The source of the funds that will be sent through the platform.
           type: string
           nullable: true
           enum:
@@ -3531,6 +3647,7 @@ components:
           - other
         primary_purpose:
           type: string
+          description: The reason for opening an account with Currencycloud.
           enum:
           - intercompany_transfers
           - liquidity_or_fx
@@ -3542,6 +3659,7 @@ components:
           - property_purchase_or_sale
           - other
         purpose_details:
+          description: Additional details if primary_purpose is 'other'.
           type: string
           nullable: true
       required:
@@ -3551,11 +3669,13 @@ components:
       type: object
       properties:
         document_ids:
+          description: List of IDs for any uploaded supporting documents.
           type: array
           items:
             type: string
           nullable: true
         business_country:
+          description: ISO country code for the country the business is registered in.
           type: string
           enum:
           - AD
@@ -4047,12 +4167,15 @@ components:
           - ZMB
           - ZWE
         company_name:
+          description: The company name.
           type: string
         trading_name:
+          description: The company's trading name.
           type: string
           nullable: true
         legal_entity_type:
           type: string
+          description: Company's legal entity type.
           enum:
           - limited_liability_company
           - limited_liability_partnership
@@ -4067,6 +4190,7 @@ components:
           - unregistered_charity
         sector:
           type: string
+          description: The primary sector the company operates in.
           enum:
           - registered_charity
           - unregistered_charity
@@ -4158,17 +4282,22 @@ components:
           - mining_or_extractive_industries
         company_registration_number:
           type: string
+          description: An official number that identifies the company.
           nullable: true
         vat_number:
+          description: The company's VAT number or Tax ID  number.
           type: string
           nullable: true
         incorporation_date:
+          description: The date the company was incorporated.
           type: string
           format: date
         business_website:
+          description: The company's website URL or other online presence.
           type: string
           nullable: true
         business_activity_description:
+          description: Description of the company's activities.
           type: string
           nullable: true
         registered_address_attributes:
@@ -4240,6 +4369,7 @@ components:
       properties:
         roles:
           type: array
+          description: Ther person's role(s).
           items:
             type: string
             enum:
@@ -4248,50 +4378,65 @@ components:
             - user
         document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
           nullable: true
         first_name:
+          description: First name
           type: string
         middle_name:
+          description: Middle name
           type: string
           nullable: true
         last_name:
+          description: Surname
           type: string
         dob:
+          description: Date of Birth
           type: string
           format: date
           nullable: true
         phone_number:
+          description: Phone number
           type: string
           nullable: true
         email:
+          description: Email address
           type: string
           nullable: true
         ownership_percentage:
+          description: Percentage of company owned.
           type: number
           nullable: true
           minimum: 0
           maximum: 100
         id_number:
+          description: Social security number if home_country=US.
           type: string
           nullable: true
         home_country:
+          description: Country of permanent address.
           type: string
         passport_number:
           type: string
+          description: Passport number
           nullable: true
         passport_country_of_issue:
           type: string
+          description: Country code for where the passport was issued.
           nullable: true
         personal_address_attributes:
           type: object
           properties:
             city:
+              description: City
               type: string
             street:
+              description: Street
               type: string
             country:
+              description: Country code
               type: string
               enum:
               - AD
@@ -4784,16 +4929,21 @@ components:
               - ZWE
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
+              description: Apartment number
               type: string
               nullable: true
             building_name:
+              description: Building name
               type: string
               nullable: true
             building_number:
+              description: Building number
               type: string
               nullable: true
             state_or_province:
+              description: State or province
               type: string
               nullable: true
           required:
@@ -4810,6 +4960,7 @@ components:
       type: object
       properties:
         document_type:
+          description: The type of document.
           type: string
           enum:
           - bank_statement
@@ -4830,6 +4981,7 @@ components:
           - visa
         category:
           type: string
+          description: Category of identification documentation.
           enum:
           - proof_of_address
           - proof_of_business_activity
@@ -4846,9 +4998,11 @@ components:
       type: object
       properties:
         image:
+          description: Image encoder used e.g. base64.
           type: string
           format: byte
         side:
+          description: Image of which document side.
           type: string
           enum:
           - front
@@ -4862,30 +5016,40 @@ components:
       properties:
         id:
           type: string
+          description: The form's UUID.
         detached_document_ids:
+          description: List of IDs for any uploaded supporting documents.
           type: array
           items:
             type: string
         affiliate_code:
+          description: Client's own use, e.g. to track lead source.
           type: string
           nullable: true
         agreed_to_marketing_emails:
+          description: Agreed to marketing emails.
           type: boolean
         agreed_to_terms_and_conditions:
+          description: Agreed to terms and conditions.
           type: boolean
         agreed_to_corporate_authority:
+          description: Confirmed authority to act on behalf of company.
           type: boolean
         country:
+          description: Home country for individual applicant or country of registered address for corporate applicant.
           type: string
         email:
+          description: The applicant's email address.
           type: string
         entity_type:
+          description: Type of applicant - individual or corporate.
           type: string
         brand_name:
           type: string
         brand_key:
           type: string
         referred_by:
+          description: How did the applicant hear about us.
           type: string
           nullable: true
         products_required:
@@ -4895,15 +5059,19 @@ components:
         state:
           type: string
         phone_number:
+          description: The applicant's phone number.
           type: string
         contact_name:
           type: string
+          description: The applicant's name.
         created_at:
           type: string
           format: date-time
+          description: Date and time the form was created.
         updated_at:
           type: string
           format: date-time
+          description: Date and time the form was last updated.
       required:
       - id
       - agreed_to_marketing_emails
@@ -4919,30 +5087,40 @@ components:
       properties:
         id:
           type: string
+          description: The form's UUID.
         detached_document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
         affiliate_code:
           type: string
+          description: Client's own use, e.g. to track lead source.
           nullable: true
         agreed_to_marketing_emails:
           type: boolean
+          description: Agreed to marketing emails.
         agreed_to_terms_and_conditions:
           type: boolean
+          description: Agreed to terms and conditions.
         agreed_to_corporate_authority:
           type: boolean
+          description: Confirmed authority to act on behalf of company.
         country:
+          description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
           type: string
         email:
+          description: The applicant's email address.
           type: string
         entity_type:
           type: string
+          description: Type of applicant - individual or corporate.
         brand_name:
           type: string
         brand_key:
           type: string
         referred_by:
+          description: How did the applicant hear about us.
           type: string
           nullable: true
         products_required:
@@ -4952,20 +5130,27 @@ components:
         state:
           type: string
         phone_number:
+          description: The applicant's phone number.
           type: string
         contact_name:
+          description: The applicant's name.
           type: string
         created_at:
           type: string
           format: date-time
+          description: Date and time the form was created.
         updated_at:
           type: string
           format: date-time
+          description: Date and time the form was last updated.
         business_information:
+          description: Further information about corporate applicants.
           "$ref": "#/components/schemas/business_information"
         account_usage:
+          description: Information about the intended use of the account.
           "$ref": "#/components/schemas/account_usage"
         people:
+          description: Information about people associated with the application.
           type: array
           items:
             "$ref": "#/components/schemas/person"
@@ -4984,38 +5169,52 @@ components:
       properties:
         id:
           type: string
+          description: Unique ID for the Business Information entity.
         form_id:
           type: string
+          description: Form UUID
         document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
         business_country:
+          description: The country the business is registered in.
           type: string
         company_name:
+          description: The company name.
           type: string
         trading_name:
+          description: The company's trading name.
           type: string
           nullable: true
         legal_entity_type:
+          description: Company's legal entity type e.g. "limited_liability_company"
           type: string
         sector:
+          description: The primary sector the company operates in.
           type: string
         company_registration_number:
+          description: An official number that identifies the company.
           type: string
           nullable: true
         vat_number:
+          description: The company's VAT number or Tax ID  number.
           type: string
           nullable: true
         incorporation_date:
+          description: The date the company was incorporated.
           type: string
           format: date
         business_website:
+          description: The company's website URL or other online presence.
           type: string
           nullable: true
         business_activity_description:
+          description: Description of the company's activities.
           type: string
         registered_address:
+          description: The company's registered address.
           type: object
           properties:
             city:
@@ -5074,9 +5273,11 @@ components:
         created_at:
           type: string
           format: date-time
+          description: Date the Business Information record was created.
         updated_at:
           type: string
           format: date-time
+          description: Date the Business Information record was last updated.
       required:
       - business_country
       - company_name
@@ -5091,53 +5292,69 @@ components:
       properties:
         id:
           type: string
+          description: UUID for the Account Usage entity.
         form_id:
           type: string
+          description: Form UUID
         document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
         collections_account:
+          description: Does the account receive funds from third parties.
           type: boolean
         collection_currencies:
+          description: List of currencies to fund the account with.
           type: array
           items:
             type: string
             nullable: true
         payment_currencies:
           type: array
+          description: List of payout currencies.
           items:
             type: string
             nullable: true
         transaction_countries:
           type: array
+          description: List of countries that corporate accounts want to send/receive money to/from.
           items:
             type: string
             nullable: true
         one_off_transaction:
           type: boolean
+          description: Will it be a single one-off transaction.
         estimated_monthly_transaction_currency:
+          description: Currency of the estimated monthly transaction value.
           type: string
           nullable: true
         estimated_monthly_transaction_value:
+          description: Estimated monthly value of what a corporate account is going to transact on the platform.
           type: integer
           nullable: true
         estimated_monthly_transaction_volume:
+          description: How often do corporates expect to send or receive funds.
           type: integer
           nullable: true
         source_of_funds:
+          description: The source of money that will be sent through the platform.
           type: string
           nullable: true
         primary_purpose:
+          description: The reason for opening an account with Currencycloud.
           type: string
           nullable: true
         purpose_details:
+          description: Additional details if primary_purpose is 'other'.
           type: string
           nullable: true
         created_at:
+          description: Date the Account Usage record created.
           type: string
           format: date-time
         updated_at:
+          description: Date the Account Usage record was last updated.
           type: string
           format: date-time
       required:
@@ -5153,6 +5370,7 @@ components:
           type: string
         document_ids:
           type: array
+          description: List of IDs for any uploaded supporting documents.
           items:
             type: string
         roles:
@@ -5277,12 +5495,16 @@ components:
       properties:
         id:
           type: string
+          description: Document image UUID.
         side:
           type: string
+          description: Image of which document side.
         created_at:
+          description: Date the document image entity was created.
           type: string
           format: date-time
         updated_at:
+          description: Date the document image entity was last updated.
           type: string
           format: date-time
     validation_error_response:
