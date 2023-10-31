@@ -290,7 +290,7 @@ Attributes shown in <span style="background-color:#23CE6B; color:black;">green</
 | <span style="color:#23CE6B; ">middle_name</span> |  |  |
 | <span style="color:#23CE6B; ">last_name</span> | "Doe" |  |
 | <span style="color:#23CE6B; ">home_country</span> | "GB" | Country of current permanent address (for individual applications, this should match the 'country' of the form) |
-| <span style="color:#3EABC9;">document_ids</span>|  | If the individual's home country is anywhere other than the UK or the US, we will need a copy of their ID document -- this is referenced here. See Uploading documents below for further details.|
+| <span style="color:#3EABC9;">document_ids</span>|  | If the individual's home country is anywhere other than the UK or the US, we will need a copy of their ID document - this is referenced here. See Uploading documents below for further details.|
 | <span style="color:#3EABC9;">id_number</span> | 384738373 | This is the social security number. Only required if home_country = US |
 | <span style="color:#3EABC9;">passport_number</span> |  | Only for corporate applications. If country of registered address of the business = US, but home_country of the person NOT US, please collect this. |
 | <span style="color:#3EABC9;">passport_country_of_issue</span> |  | Only for corporate applications. If country of registered address of the business = US, but home_country of the person NOT US, please collect this. |
@@ -453,7 +453,7 @@ Structuring addresses accurately is very important as it improves the success ra
 
 Individual applications will only have **one Person** associated with them, who is both the person filling the form and the person applying for an account:
 
-- **We need to verifythis Person:** so you will need to provide full verification details for them.
+- **We need to verify this Person:** so you will need to provide full verification details for them.
 
 - **They must also be a User:** they must have **roles=["user"]** so that they are given a user account.
 
@@ -467,7 +467,7 @@ Corporate applications can have 3 kinds of Person associated with them: ultimate
 
 **Who are Ultimate Business Owners?**
 
-UBOs are natural persons (not corporates) who own some % of the business. They might hold their ownership directly, or they might hold it via some other entity or entities.
+UBOs are natural persons (not corporates) who own some percentage of the business. They might hold their ownership directly, or they might hold it via some other entity or entities.
 
 We only need to know about UBOs owning 10% or more of the corporate applicant. An explanation of how to determine this is set out below. In the example, we would need to know about Person A and Person C, since they both own more than 10% of Company A either directly or indirectly.
 

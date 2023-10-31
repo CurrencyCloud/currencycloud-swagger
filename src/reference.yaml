@@ -4244,7 +4244,6 @@ paths:
       summary: Create Beneficiary
       description: >-
         Creates a new beneficiary. Returns the new beneficiary entity on success.
-        entity.
       operationId: CreateBeneficiary
       consumes:
         - multipart/form-data
