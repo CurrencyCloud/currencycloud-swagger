@@ -3,7 +3,7 @@
 
 # Transferring funds between balances
 
-Transfers allow you to manage the movement of funds between the balances of your Currencycloud accounts. You can move funds from your house account to sub-accounts, sub-account to sub-account, and sub-account to house account.
+Transfers allow you to manage the movement of funds between the balances of your Currencycloud accounts. You can move funds from your house account to sub-accounts and from sub-account to house account.
 
 In this integration guide, we will cover how to transfer balance from one account to another. Please note that no currency conversion is performed during a transfer, the sending and receiving accounts must therefore hold money in the same currency.
 
