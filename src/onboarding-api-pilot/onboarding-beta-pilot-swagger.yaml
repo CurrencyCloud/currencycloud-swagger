@@ -4,13 +4,13 @@ info:
   title: api-onboarding
   version: v1
 paths:
-  "/v1/forms/{form_id}/account_usage":
+  "/onboarding/v1/forms/{form_id}/account_usage":
     get:
       summary: Get Account Usage
       description: Gets the associated account usage for a form. The account usage outlines how the applicant intends to use their account.
       tags:
       - Account Usage
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -41,7 +41,7 @@ paths:
       description: Updates a form's associated account usage. The account usage outlines how the applicant intends to use their account.
       tags:
       - Account Usage
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -89,7 +89,7 @@ paths:
       description: Deletes the account usage for the specified application form.
       tags:
       - Account Usage
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -130,13 +130,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/business_information":
+  "/onboarding/v1/forms/{form_id}/business_information":
     get:
       summary: Get Business Information
       description: Gets the business information for the specified application form. Business information is only relevant to corporate applications.
       tags:
       - Business Information
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -167,7 +167,7 @@ paths:
       description: Updates the business information for the specified application form. Business information is only relevant to corporate applications.
       tags:
       - Business Information
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -215,7 +215,7 @@ paths:
       description:  Deletes the business information for the specified form.
       tags:
       - Business Information
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -256,13 +256,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/countries":
+  "/onboarding/v1/countries":
     get:
       summary: Get countries
       description: Returns a list of all countries.
       tags:
       - Country
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       responses:
@@ -321,13 +321,13 @@ paths:
                           - name
                           - eea_country
                           - permitted_jurisdiction
-  "/v1/countries/{country_code}/document_types":
+  "/onboarding/v1/countries/{country_code}/document_types":
     get:
       summary: Get Document Types
       description: Returns a list of acceptable ID documents for the country specified.
       tags:
       - Country
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -359,13 +359,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/currencies/supported":
+  "/onboarding/v1/currencies/supported":
     get:
       summary: Get Supported Currencies
       description: Returns a list of supported currencies.
       tags:
       - Currency
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       responses:
@@ -405,13 +405,13 @@ paths:
                           - id
                           - iso3
                           - name
-  "/v1/forms/{form_id}/documents/{document_id}/document_images":
+  "/onboarding/v1/forms/{form_id}/documents/{document_id}/document_images":
     post:
       summary: Create Document Image
       description: Records an image of a document that's required for the specified application form. For more information, see the "Uploading documents" section of <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
       tags:
       - Document Images
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -461,7 +461,7 @@ paths:
       description: Returns all document images for the specified document.
       tags:
       - Document Images
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -495,13 +495,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
+  "/onboarding/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
     delete:
       summary: Delete Document Image
       description: Deletes the specified image of a document attached to the specified form.
       tags:
       - Document Images
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -554,13 +554,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/documents":
+  "/onboarding/v1/forms/{form_id}/documents":
     post:
       summary: Create Document
       description: Adds a validation document to the specified form. For more information on uploading documents, see <a href="../guides/integration-guides/onboarding-api-pilot/#uploading-documents">our guide.</a>
       tags:
       - Documents
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -608,7 +608,7 @@ paths:
       description: Returns the uploaded documents for the specified application form.
       tags:
       - Documents
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -636,13 +636,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/documents/{document_id}":
+  "/onboarding/v1/forms/{form_id}/documents/{document_id}":
     delete:
       summary: Delete Document
       description: Deletes a document attached to the specified application form.
       tags:
       - Documents
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -687,13 +687,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/submit":
+  "/onboarding/v1/forms/{form_id}/submit":
     post:
       summary: Submit Form
       description: Submits the application form.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -719,13 +719,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
-  "/v1/forms":
+  "/onboarding/v1/forms":
     get:
       summary: Get Forms
       description: Retrieves all application forms for the house account.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -822,7 +822,7 @@ paths:
       description: Creates a new application form. Returns the new form entity on success.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters: []
@@ -847,13 +847,13 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/create_form_request"
-  "/v1/forms/{form_id}":
+  "/onboarding/v1/forms/{form_id}":
     get:
       summary: Get Form
       description: Retrieves the application form with the given ID.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -884,7 +884,7 @@ paths:
       description: Updates an application form.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1450,7 +1450,7 @@ paths:
       description: Deletes the application form with the given ID.
       tags:
       - Form
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1491,13 +1491,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/people":
+  "/onboarding/v1/forms/{form_id}/people":
     post:
       summary: Create Person Entity
       description: Records a person's details associated with the specified application form. For more information, please see <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
       tags:
       - People
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1539,7 +1539,7 @@ paths:
       description:  Returns all people associated with an application form.
       tags:
       - People
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1567,13 +1567,13 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/{person_id}":
+  "/onboarding/v1/forms/{form_id}/{person_id}":
     get:
       summary: Get Person
       description:  Retrieves the details of the person with the specified ID.
       tags:
       - People
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1610,7 +1610,7 @@ paths:
       description: Updates the person with the specified ID.
       tags:
       - People
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1658,7 +1658,7 @@ paths:
       description: Deletes the details of the person with the specified ID.
       tags:
       - People
-      x-api-group: Onboarding
+      x-api-group: Onboard
       security:
       - AuthToken: []
       parameters:
@@ -1708,7 +1708,7 @@ servers:
 - url: https://{defaultHost}/onboarding
   variables:
     defaultHost:
-      default: devapi.currencycloud.com
+      default: wso2-api-gateway-stg1.staging.currencycloud.io
 components:
   securitySchemes:
     AuthToken:
