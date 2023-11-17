@@ -4,7 +4,7 @@ info:
   title: api-onboarding
   version: v1
 paths:
-  "/onboarding/v1/forms/{form_id}/account_usage":
+  "/v1/forms/{form_id}/account_usage":
     get:
       summary: Get Account Usage
       description: Gets the associated account usage for a form. The account usage outlines how the applicant intends to use their account.
@@ -130,7 +130,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/business_information":
+  "/v1/forms/{form_id}/business_information":
     get:
       summary: Get Business Information
       description: Gets the business information for the specified application form. Business information is only relevant to corporate applications.
@@ -256,7 +256,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/countries":
+  "/v1/countries":
     get:
       summary: Get countries
       description: Returns a list of all countries.
@@ -321,7 +321,7 @@ paths:
                           - name
                           - eea_country
                           - permitted_jurisdiction
-  "/onboarding/v1/countries/{country_code}/document_types":
+  "/v1/countries/{country_code}/document_types":
     get:
       summary: Get Document Types
       description: Returns a list of acceptable ID documents for the country specified.
@@ -359,7 +359,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/currencies/supported":
+  "/v1/currencies/supported":
     get:
       summary: Get Supported Currencies
       description: Returns a list of supported currencies.
@@ -405,7 +405,7 @@ paths:
                           - id
                           - iso3
                           - name
-  "/onboarding/v1/forms/{form_id}/documents/{document_id}/document_images":
+  "/v1/forms/{form_id}/documents/{document_id}/document_images":
     post:
       summary: Create Document Image
       description: Records an image of a document that's required for the specified application form. For more information, see the "Uploading documents" section of <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
@@ -495,7 +495,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
+  "/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
     delete:
       summary: Delete Document Image
       description: Deletes the specified image of a document attached to the specified form.
@@ -554,7 +554,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/documents":
+  "/v1/forms/{form_id}/documents":
     post:
       summary: Create Document
       description: Adds a validation document to the specified form. For more information on uploading documents, see <a href="../guides/integration-guides/onboarding-api-pilot/#uploading-documents">our guide.</a>
@@ -636,7 +636,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/documents/{document_id}":
+  "/v1/forms/{form_id}/documents/{document_id}":
     delete:
       summary: Delete Document
       description: Deletes a document attached to the specified application form.
@@ -687,7 +687,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/submit":
+  "/v1/forms/{form_id}/submit":
     post:
       summary: Submit Form
       description: Submits the application form.
@@ -719,7 +719,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
-  "/onboarding/v1/forms":
+  "/v1/forms":
     get:
       summary: Get Forms
       description: Retrieves all application forms for the house account.
@@ -847,7 +847,7 @@ paths:
           application/json:
             schema:
               "$ref": "#/components/schemas/create_form_request"
-  "/onboarding/v1/forms/{form_id}":
+  "/v1/forms/{form_id}":
     get:
       summary: Get Form
       description: Retrieves the application form with the given ID.
@@ -1491,7 +1491,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/people":
+  "/v1/forms/{form_id}/people":
     post:
       summary: Create Person Entity
       description: Records a person's details associated with the specified application form. For more information, please see <a href="../guides/integration-guides/onboarding-api-pilot">our guide.</a>
@@ -1567,7 +1567,7 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/onboarding/v1/forms/{form_id}/{person_id}":
+  "/v1/forms/{form_id}/{person_id}":
     get:
       summary: Get Person
       description:  Retrieves the details of the person with the specified ID.
@@ -1705,10 +1705,12 @@ paths:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
 servers:
-- url: https://{defaultHost}/onboarding
-  variables:
-    defaultHost:
-      default: wso2-api-gateway-stg1.staging.currencycloud.io
+  - url: /onboarding
+    description: Relative URL
+  - url: https://api.currencycloud.com/onboarding
+    description: Production server (uses live data)
+  - url: https://devapi.currencycloud.com/onboarding
+    description: Dev server (uses test data)
 components:
   securitySchemes:
     AuthToken:
