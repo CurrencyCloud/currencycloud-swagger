@@ -15197,12 +15197,10 @@ paths:
             - payment_failure
             - manual_intervention
             - manual_transaction
-            - top_up_fee
             - transfer
             - conversion_deposit
             - deposit_refund
             - payment_fee
-            - payment_unrelease
             - margin
           description: The action that triggered the transaction.
         - name: related_entity_type
