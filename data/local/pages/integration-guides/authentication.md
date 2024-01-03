@@ -17,6 +17,13 @@ Detailed instructions are given in the authentication guide below.
 
 ![authentication](/images/workflow_diagrams/1_authenticate.jpg)
 
+## Base URLs
+
+| **Environment** | **Base URL** | 
+|---|---|
+| Demo | devapi.currencycloud.com |
+| Production | api.currencycloud.com |
+
 ## Authentication guide
 
 ## 1. Login
