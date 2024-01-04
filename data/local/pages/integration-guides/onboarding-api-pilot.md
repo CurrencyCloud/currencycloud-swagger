@@ -32,45 +32,10 @@ For corporate applications, you should also be sure that the person completing t
 In both cases, the person agreeing to terms and conditions and corporate authority (i.e. the person filling the form) should be recorded on the application as the **contact_name**.
 
 ## Authentication
+To use the Onboarding API, you must first [authenticate](/api-reference/#authenticate) to Currencycloud. Rather than providing your username and API key with every request, you sign in once and receive a temporary authentication token. Please see our [Authentication guide](/guides/integration-guides/authentication) for step by step instructions for starting a new API session.
 
-All endpoints in the Currencycloud API require authentication to access. Rather than providing your username and API key with every request, you sign in once to get a temporary authentication token.
 
-### Step 1: Login
-
-Call the Login endpoint, passing in your Currencycloud login ID - which is usually your email address - and your unique API key.
-
-```
-POST /v2/authenticate/api
-Content-Type: multipart/form-data
-```
-
-| **Parameter Name** | **Parameter Type** | **Example Value** |
-| --- | --- | --- |
-| api_key | Form Data -- String | 1f6a3e944f8c4ebdc6658d6fc1103f12ebbc33f5ed05ca3549fdbc3883556544 |
-| login_id | Form Data | your.login@example.com |
-
-If your credentials are validated, the response payload will contain a fresh authentication token.
-
-```
-HTTP/1.1 200 OK\
-Content-Type: application/json\
-{ "auth_token": "ea6d13c7bc50feb46cf978d137bc01a2"}
-```
-
-### **Step 2: Keep the authentication token**
-
-Extract the auth_token from the response payload. This is your authentication token. From now on, your authentication token will be used as a proxy for your login credentials. You will need to submit your authentication token with all subsequent API calls. You do this via the X-Auth-Token header. Example:
-
-```
-POST https://api.currencycloud.com/onboarding/v1/forms HTTP/1.1
-X-Auth-Token: ****ea6d13c7bc50feb46cf978d137bc01a2
-```
-
-Authentication tokens expire after 30 minutes of inactivity. In this situation, you should request a fresh authentication token by calling the Login endpoint again. We recommend that you wait until your authentication token has expired before re-authenticating.
-
-## Getting set up
-
-### Overview
+### Onboarding
 
 Onboarding applications can be submitted by either an **individual** or a **corporate**. This is the attribute called **entity_type** set on a Form.
 
@@ -196,8 +161,18 @@ Individual and corporate applications are assembled slightly differently. An ove
 }
 ```
 
+## Base URLs
+
+| **Environment** | **Base URL** | 
+|---|---|
+| Demo | devapi.currencycloud.com/**onboarding** |
+| Production | api.currencycloud.com/**onboarding** |
+
+
+
 ## Endpoints
 
+The following endpoints are provided by the Onboarding API:
 
 GET /v1/countries  
 GET /v1/countries/{country_code}/document_types  
@@ -226,7 +201,7 @@ DELETE /v1/forms/{form_id}/business_information
 DELETE /v1/forms/{form_id}/documents/{document_id}  
 DELETE /v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}  
 
-## Form data points - explained
+## Form data points
 
 These data points record basic information about the application form itself (who's filling it in, where the application comes from, relevant permissions etc).
 
@@ -279,7 +254,7 @@ IF **`home_country`**= US:
 IF **`home_country`**= any country other than UK or US:
 -   ID document (see Uploading Documents below)
 
-## People data points explained
+## People data points 
 
 Attributes shown in <span style="background-color:#23CE6B; color:black;">green</span> are needed for persons we need to **identify**. In addition, for persons we need to **verify** we will also need to collect the attributes shown in <span style="background-color:#3EABC9; color:black;">blue</span>. Items shown in <span style="background-color:#FA4E60; color:black;">red</span> are only relevant for users with certain 'roles' (e.g. users, or ultimate beneficial owners).
 
@@ -300,7 +275,7 @@ Attributes shown in <span style="background-color:#23CE6B; color:black;">green</
 | <span style="color:#FA4E60;">email</span> | "j.doe@mail.com" | This is only required if the Person wants a user account. This is the user's email, used for logging into their account (if application approved) |
 | <span style="color:#FA4E60;">ownership_percentage</span> | 12 | Only relevant where "roles" includes "ultimate_business_owner", then this is required. |\
 
-## Account Usage data points explained
+## Account Usage data points 
 
 These data points let Currencycloud know a bit more about how the applicant plans to use their account. All these data points apply for corporate applications, but only a small subset are needed for individual applications (shown in <span style="background-color:#23CE6B; color:black;">green</span>).
 
@@ -320,7 +295,7 @@ These data points let Currencycloud know a bit more about how the applicant plan
 | <span style="color:#23CE6B;">primary_purpose</span>| "property_purchase_or_sale" | The applicant's reason for opening an account with Currencycloud. |
 | <span style="color:#23CE6B;">purpose_details</span> | "I want to open an account to send money to Spain" | Required if primary_purpose = 'other' |\
 
-## Business Information data points explained
+## Business Information data points 
 
 This is only relevant for corporate applications. These are data points relevant to collect about the business applying for an account (some are optional, others are mandatory).
 
@@ -340,7 +315,7 @@ This is only relevant for corporate applications. These are data points relevant
 | registered_address_attributes |  | The business registered address |
 | trading_address_attributes |  | The business trading address, if different |\
 
-## Address data points explained
+## Address data points 
 
 Structuring addresses accurately is very important as it improves the success rate of our automated checks. Currencycloud uses **[GBG Loqate](https://www.loqate.com/en-gb/)** to find and submit structured addresses.
 
