@@ -19085,7 +19085,7 @@ definitions:
       receiving_account_number:
         description: The transaction receiving account number.
         type: string
-      routing_code:
+      receiving_account_routing_code:
         description: The routing code.
         type: string
       sender:
