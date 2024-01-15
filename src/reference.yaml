@@ -19056,48 +19056,48 @@ definitions:
   FundingTransaction:
     description: The transaction information.
     properties:
-      additional_information:
-        description: Any additional information.
+      id:
+        description: The Related Entity UUID (related_entity_id) for the transaction.
         type: string
       amount:
         description: The transaction amount.
         type: string
-      completed_at:
-        description: The completed date in ISO-8601 format.
-        format: date-time
-        type: string
-      created_at:
-        description: The created at date in ISO-8601 format.
-        format: date-time
-        type: string
       currency:
         description: The three letter currency code.
-        type: string
-      id:
-        description: The Related Entity UUID (related_entity_id) for the transaction.
         type: string
       rail:
         description: The transaction rail.
         type: string
-      receiving_account_iban:
-        description: The transaction receiving account IBAN.
-        type: string
-      receiving_account_number:
-        description: The transaction receiving account number.
+      additional_information:
+        description: Any additional information.
         type: string
       receiving_account_routing_code:
         description: The routing code.
-        type: string
-      sender:
-        $ref: '#/definitions/SenderInformation'
-      updated_at:
-        description: The last time the transaction was updated in ISO-8601 format.
-        format: date-time
         type: string
       value_date:
         description: The value date in ISO-8601 format.
         format: date-time
         type: string
+      receiving_account_number:
+        description: The transaction receiving account number.
+        type: string
+      receiving_account_iban:
+        description: The transaction receiving account IBAN.
+        type: string
+      created_at:
+        description: The created at date in ISO-8601 format.
+        format: date-time
+        type: string
+      updated_at:
+        description: The last time the transaction was updated in ISO-8601 format.
+        format: date-time
+        type: string
+      completed_at:
+        description: The completed date in ISO-8601 format.
+        format: date-time
+        type: string
+      sender:
+        $ref: '#/definitions/SenderInformation'  
     example:
       additional_information: ABCD20231016143117
       amount: 1.11
