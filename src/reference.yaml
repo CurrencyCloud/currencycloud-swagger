@@ -8977,7 +8977,7 @@ paths:
           in: path
           required: true
           type: string
-          description: The Transaction ID.
+          description: The Related Entity UUID (related_entity_id) for the transaction.
         - name: on_behalf_of
           in: query
           required: false
@@ -19074,7 +19074,7 @@ definitions:
         description: The three letter currency code.
         type: string
       id:
-        description: The transaction ID.
+        description: The Related Entity UUID (related_entity_id) for the transaction.
         type: string
       rail:
         description: The transaction rail.
@@ -19108,7 +19108,7 @@ definitions:
       rail: SEPA
       receiving_account_iban: null
       receiving_account_number: 32847346
-      routing_code: 123456789
+      receiving_account_routing_code: 123456789
       updated_at: 2022-12-03T10:15:30+00:00
       value_date: 2022-12-03T10:00:00+00:00
       sender:
