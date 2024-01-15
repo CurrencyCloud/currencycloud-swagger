@@ -4,7 +4,7 @@
   "currency": "USD",
   "rail": "SEPA",
   "additional_information": "ABCD20231016143117",
-  "routing_code": "123456789",
+  "receiving_account_routing_code": "123456789",
   "value_date": "2023-10-16T00:00:00+00:00",
   "receiving_account_number": "32847346",
   "receiving_account_iban": null,
