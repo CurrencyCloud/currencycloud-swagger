@@ -14237,7 +14237,12 @@ paths:
           required: false
           type: string
           default: created_at
-          description: Any field name to change the sort order.
+          description: >-
+            Populate with any field name to specify the sort order.<br><br>
+            Please note that if you choose to order by 'completed_at', it's important to populate
+            the query parameter 'status' with the value 'completed' in order to ensure that transactions
+            are sequenced in the order they were processed. Without this, transactions that completed
+            within the same second may not be ordered correctly.
         - name: order_asc_desc
           in: query
           required: false
