@@ -8448,6 +8448,9 @@ paths:
             - code: invoice_date_missing
               category: invoice_date
               message: "Invoice date is missing for provided invoice number $invoiceNumber"
+            - code: incorrect_purpose_code
+              category: purpose_code
+              message: Purpose code is invalid
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
