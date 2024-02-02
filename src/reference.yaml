@@ -3665,9 +3665,9 @@ paths:
           required: false
           type: string
           description: >-
-          If "beneficiary_entity_type" is "company", date of registration.<br>
-          If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
-          ISO 8601 format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration.<br>
+            If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
+            ISO 8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
