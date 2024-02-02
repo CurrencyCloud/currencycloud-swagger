@@ -829,7 +829,7 @@ paths:
         in: formData
         required: false
         type: string
-        description: City name.
+        description: City name
       - name: state_or_province
         in: formData
         required: false
@@ -2985,12 +2985,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers or company signifiers.
         - name: beneficiary_city
           in: formData
           required: false
           type: string
-          description: City
+          description: City name, should not consist of only numbers.
         - name: beneficiary_postcode
           in: formData
           required: false
@@ -3007,9 +3007,9 @@ paths:
           required: false
           type: string
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration. If
-            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
-            format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration.<br>
+            If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
+            ISO 8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -3644,12 +3644,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers or company signifiers.
         - name: beneficiary_city
           in: formData
           required: false
           type: string
-          description: City
+          description: City name, should not consists of only numbers.
         - name: beneficiary_postcode
           in: formData
           required: false
@@ -3665,9 +3665,9 @@ paths:
           required: false
           type: string
           description: >-
-            If "beneficiary_entity_type" is "company", date of registration. If
-            "beneficiary_entity_type" is "individual", date of birth. ISO 8601
-            format YYYY-MM-DD.
+            If "beneficiary_entity_type" is "company", date of registration.<br>
+            If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
+            ISO 8601 format YYYY-MM-DD.
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -8108,12 +8108,12 @@ paths:
           in: formData
           required: false
           type: string
-          description: Required if "payer_entity_type" is "individual".
+          description: Required if "payer_entity_type" is "individual". Cannot contain any numbers or company signifiers.
         - name: payer_city
           in: formData
           required: false
           type: string
-          description: City
+          description: City name, should not consist of only numbers.
         - name: payer_address
           in: formData
           required: false
