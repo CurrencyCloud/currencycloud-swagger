@@ -829,7 +829,7 @@ paths:
         in: formData
         required: false
         type: string
-        description: City name.
+        description: City name
       - name: state_or_province
         in: formData
         required: false
@@ -2990,7 +2990,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City name - this should not consist of only numbers.
+          description: City name, should not consist of only numbers.
         - name: beneficiary_postcode
           in: formData
           required: false
@@ -3649,7 +3649,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City name - this should not consists of only numbers.
+          description: City name, should not consists of only numbers.
         - name: beneficiary_postcode
           in: formData
           required: false
@@ -8113,7 +8113,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: City name - this should not consist of only numbers.
+          description: City name, should not consist of only numbers.
         - name: payer_address
           in: formData
           required: false
