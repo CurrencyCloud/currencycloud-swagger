@@ -6000,9 +6000,10 @@ paths:
             Must be one of the following:<br>
             - 'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
             - 'next_day' for next day available conversion date - T+1.<br>
-            - 'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
+            - 'default' for conversion - T+1 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, T+2 for all others.<br>
             - 'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
-            Conversion is within 1 or 2 working days depending on currencies.
+            Conversion is T+0 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, and T+1 or T+2 for all others.
+
       responses:
         '200':
           description: Success.
@@ -11682,9 +11683,10 @@ paths:
             Available only if conversion_date is not provided. Must be one of the following:<br>
             'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
             'next_day' for next day available conversion date - T+1.<br>
-            'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
+            'default' for conversion - T+1 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, T+2 for all others.<br>
             'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
-            Conversion is within 1 or 2 working days depending on currencies.
+            Conversion is T+0 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, and T+1 or T+2 for all others.
+
       responses:
         '200':
           description: Success.
