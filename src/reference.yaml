@@ -4874,6 +4874,7 @@ paths:
         - name: payment_type
           in: formData
           type: string
+          required: true
           enum:
             - priority
             - regular
@@ -4883,11 +4884,13 @@ paths:
         - name: bank_country
           in: formData
           type: string
+          required: true
           description: >-
             Two-letter code for the country in which the beneficiary's bank account is held.
         - name: currency
           in: formData
           type: string
+          required: true
           description: >-
             Currency in which money is held in the beneficiary's bank account. Three-digit currency code.
         - name: account_number
