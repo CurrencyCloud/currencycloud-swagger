@@ -4854,12 +4854,12 @@ paths:
       summary: Verify Beneficiary Account
       description: >-
         <p style="color:#FF5000;"><strong>BETA</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please be aware that this is a beta version of this endpoint. For additional details, please contact to your Customer Success Representative.</p> <br><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please be aware that this is a beta version of this endpoint. Some response codes and reasons may change during this period but we will provide at least 10 days notice before implementing any braking changes. For additional details, please contact to your Customer Success Representative.</p> <br><br>
 
-        The Account Verification API allows you to verify the account details of a beneficiary, including their
+        The Account Verification API allows you to verify a beneficiary's account details, including their
         account number, before initiating a payment. This ensures that funds can be transferred to the intended
         payee or beneficiary.<br><br>
-        This service is currently available in the UK, where we can also match the beneficiary's name with the account details.
+        This service is currently available in the UK, where we can also match the beneficiary's name with the account details. We can support more countries on demand, please contact your Customer Success Manager to find out more.
       operationId: BeneficiaryAccountVerification
       consumes:
         - multipart/form-data
@@ -4879,7 +4879,7 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made using the SWIFT network;
+            Currencycloud supports two types of payments: "priority", made using the SWIFT network
             and "regular", made using the local bank network.
         - name: bank_country
           in: formData
@@ -4896,7 +4896,7 @@ paths:
         - name: account_number
           in: formData
           type: string
-          description: Bank account number. Required if "bank_country" is GB.
+          description: UK and ACH bank account number. Required if "bank_country" is GB.
         - name: beneficiary_entity_type
           in: formData
           type: string
@@ -5001,6 +5001,10 @@ paths:
             - code: invalid_request_data
               category: beneficiary_last_name
               message: beneficiary_last_name size must be between 0 and 140
+              params: ''
+            - code: invalid_request_data
+              category: bank_country
+              message: Country ${bank_country} is not supported
               params: ''
           schema:
             $ref: '#/definitions/BeneficiaryAccountVerificationError'
@@ -16573,17 +16577,17 @@ definitions:
     description: Beneficiary account verification result.
     properties:
       answer:
-        description: The account verification result - 'confirmed' or 'rejected'.
+        description: The account verification result - 'confirmed' if full match or 'rejected' if partial match or no match.
         type: string
         enum:
           - confirmed
           - rejected
       actual_name:
         type: string
-        description: The name attached to the bank account.
+        description: The actual name of the account holder.
       reason_code:
         type: string
-        description: Code for the reason.
+        description: Encoded reason for mismatch.
       reason:
         type: string
         description: Description of the reason.
