@@ -4856,10 +4856,10 @@ paths:
         <p style="color:#FF5000;"><strong>BETA</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please be aware that this is a beta version of this endpoint. Some response codes and reasons may change during this period but we will provide at least 10 days notice before implementing any braking changes. For additional details, please contact to your Customer Success Representative.</p> <br><br>
 
-        The Account Verification API allows you to verify a beneficiary's account details, including their
-        account number, before initiating a payment. This ensures that funds can be transferred to the intended
-        payee or beneficiary.<br><br>
-        This service is currently available in the UK, where we can also match the beneficiary's name with the account details. We can support more countries on demand, please contact your Customer Success Manager to find out more.
+        This service is currently only available to in-scope clients who provide Confirmation of Payee services to their end-users making local GBP payments in the UK.<br><br>
+        In the UK, Confirmation of Payee is a peer-to-peer network that is managed and regulated by Pay.uk. Currently, access is restricted to UK institutions and in scope clients.<br><br>
+        We plan to add more market coverage to this API in the future, thereby extending access to additional clients.<br><br>
+        If you're interested in learning more or have received notification that you're in-scope, please contact your Customer Success Manager.
       operationId: BeneficiaryAccountVerification
       consumes:
         - multipart/form-data
@@ -5006,6 +5006,10 @@ paths:
               category: bank_country
               message: Country ${bank_country} is not supported
               params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/BeneficiaryAccountVerificationError'
           headers:
