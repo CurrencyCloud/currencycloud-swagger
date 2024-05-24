@@ -4854,10 +4854,10 @@ paths:
       summary: Verify Beneficiary Account
       description: >-
         <p style="color:#FF5000;"><strong>BETA</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please be aware that this is a beta version of this endpoint. Some response codes and reasons may change during this period but we will provide at least 10 days notice before implementing any braking changes. For additional details, please contact your Customer Success Representative.</p> <br><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please be aware that this is a beta version of this endpoint. Some response codes and reasons may change during this period, but rest assured that we will provide at least 10 days notice before implementing any breaking changes. For additional details, please contact your Customer Success Representative.</p> <br><br>
 
         This service is currently only available to in-scope clients who must provide Confirmation of Payee services to their end-users making local GBP payments in the UK.<br><br>
-        In the UK, Confirmation of Payee is a peer-to-peer name-checking service designed to help reduce misdirected payments and provide greater assurance that payments are being sent, and collected from, the intended account holder for UK domestic payments. It is managed and operated by Pay.uk. <br><br>
+        In the UK, Confirmation of Payee is a peer-to-peer name-checking service designed to help reduce misdirected payments and provide greater assurance that payments are being sent, and collected from, the intended account holder for UK domestic payments. <br><br>
         Currently, access is restricted to UK institutions and in scope clients.<br><br>
         We plan to add more market coverage to this API in the future, thereby extending access to additional clients.<br><br>
         If you're interested in learning more or have received notification that you're in-scope, please contact your Customer Success Manager.
