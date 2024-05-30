@@ -687,6 +687,38 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/email_verification_tokens":
+    put:
+      summary: Update
+      description: Adds a token to email verification tokens
+      tags:
+      - Email Verification
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: form_id
+        description: Form UUID
+
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Add a token to the given form
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
+        '403':
+          description: Forbidden for api clients requests
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response"
   "/v1/forms/{form_id}/submit":
     post:
       summary: Submit Form
@@ -719,6 +751,33 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
+  "/v1/forms/{form_id}/submit_impersonation_check":
+    post:
+      summary: Submit Impersonation Check
+      description: Submit Impersonation Check
+      tags:
+      - Form
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: form_id
+        description: Form UUID
+
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: a workflow is successfully created
+        '400':
+          description: with incorrect or missing params
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/submit_impersonation_check"
   "/v1/forms":
     get:
       summary: Get Forms
@@ -730,16 +789,23 @@ paths:
       - AuthToken: []
       parameters:
       - name: order
+        description: Order by timestamp.
         in: query
         schema:
           type: string
+          enum:
+            - created_at
+            - submitted_at
       - name: order_asc_desc
+        description: Order ascending or descending
         in: query
         schema:
           type: string
+          enum:
+            - asc
+            - desc
       - name: application_status
         in: query
-        description: Filter by application_status.
         schema:
           type: string
           enum:
@@ -754,7 +820,7 @@ paths:
           - individual
           - corporate
       - name: page
-        description: Page number
+        description: The current page in the results.
         in: query
         schema:
           type: integer
@@ -926,525 +992,8 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                affiliate_code:
-                  description: Client's own use, e.g. to track lead source.
-                  type: string
-                  nullable: true
-                country:
-                  description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
-                  type: string
-                  enum:
-                  - AD
-                  - AN
-                  - AE
-                  - AF
-                  - AG
-                  - AI
-                  - AL
-                  - AM
-                  - AO
-                  - AQ
-                  - AR
-                  - AS
-                  - AT
-                  - AU
-                  - AW
-                  - AX
-                  - AZ
-                  - BA
-                  - BB
-                  - BD
-                  - BE
-                  - BF
-                  - BG
-                  - BH
-                  - BI
-                  - BJ
-                  - BL
-                  - BM
-                  - BN
-                  - BO
-                  - BQ
-                  - BR
-                  - BS
-                  - BT
-                  - BV
-                  - BW
-                  - BY
-                  - BZ
-                  - CA
-                  - CC
-                  - CD
-                  - CF
-                  - CG
-                  - CH
-                  - CI
-                  - CK
-                  - CL
-                  - CM
-                  - CN
-                  - CO
-                  - CR
-                  - CV
-                  - CW
-                  - CX
-                  - CY
-                  - CZ
-                  - DE
-                  - DJ
-                  - DK
-                  - DM
-                  - DO
-                  - DZ
-                  - EC
-                  - EE
-                  - EG
-                  - EH
-                  - ER
-                  - ES
-                  - ET
-                  - FI
-                  - FJ
-                  - FK
-                  - FM
-                  - FO
-                  - FR
-                  - GA
-                  - GB
-                  - GD
-                  - GE
-                  - GF
-                  - GG
-                  - GH
-                  - GI
-                  - GL
-                  - GM
-                  - GN
-                  - GP
-                  - GQ
-                  - GR
-                  - GS
-                  - GT
-                  - GU
-                  - GW
-                  - GY
-                  - HK
-                  - HM
-                  - HN
-                  - HR
-                  - HT
-                  - HU
-                  - ID
-                  - IE
-                  - IL
-                  - IM
-                  - IN
-                  - IO
-                  - IQ
-                  - IS
-                  - IT
-                  - JE
-                  - JM
-                  - JO
-                  - JP
-                  - KE
-                  - KG
-                  - KH
-                  - KI
-                  - KM
-                  - KN
-                  - KR
-                  - KW
-                  - KY
-                  - KZ
-                  - LA
-                  - LB
-                  - LC
-                  - LI
-                  - LK
-                  - LR
-                  - LS
-                  - LT
-                  - LU
-                  - LV
-                  - MA
-                  - MC
-                  - MD
-                  - ME
-                  - MF
-                  - MG
-                  - MH
-                  - MK
-                  - ML
-                  - MM
-                  - MN
-                  - MO
-                  - MP
-                  - MQ
-                  - MR
-                  - MS
-                  - MT
-                  - MU
-                  - MV
-                  - MW
-                  - MX
-                  - MY
-                  - MZ
-                  - NA
-                  - NC
-                  - NE
-                  - NF
-                  - NG
-                  - NI
-                  - NL
-                  - 'NO'
-                  - NP
-                  - NR
-                  - NU
-                  - NZ
-                  - OM
-                  - PA
-                  - PE
-                  - PF
-                  - PG
-                  - PH
-                  - PK
-                  - PL
-                  - PM
-                  - PN
-                  - PR
-                  - PS
-                  - PT
-                  - PW
-                  - PY
-                  - QA
-                  - RE
-                  - RO
-                  - RS
-                  - RU
-                  - RW
-                  - SA
-                  - SB
-                  - SC
-                  - SE
-                  - SG
-                  - SH
-                  - SI
-                  - SJ
-                  - SK
-                  - SL
-                  - SM
-                  - SN
-                  - SO
-                  - SR
-                  - ST
-                  - SV
-                  - SX
-                  - SZ
-                  - TC
-                  - TD
-                  - TF
-                  - TG
-                  - TH
-                  - TJ
-                  - TK
-                  - TL
-                  - TM
-                  - TN
-                  - TO
-                  - TR
-                  - TT
-                  - TV
-                  - TW
-                  - TZ
-                  - UA
-                  - UG
-                  - UM
-                  - US
-                  - UY
-                  - UZ
-                  - VA
-                  - VC
-                  - VE
-                  - VG
-                  - VI
-                  - VN
-                  - VU
-                  - WF
-                  - WS
-                  - XK
-                  - YE
-                  - YT
-                  - ZA
-                  - ZM
-                  - ZW
-                  - AND
-                  - ANT
-                  - ARE
-                  - AFG
-                  - ATG
-                  - AIA
-                  - ALB
-                  - ARM
-                  - AGO
-                  - ATA
-                  - ARG
-                  - ASM
-                  - AUT
-                  - AUS
-                  - ABW
-                  - ALA
-                  - AZE
-                  - BIH
-                  - BRB
-                  - BGD
-                  - BEL
-                  - BFA
-                  - BGR
-                  - BHR
-                  - BDI
-                  - BEN
-                  - BLM
-                  - BMU
-                  - BRN
-                  - BOL
-                  - BES
-                  - BRA
-                  - BHS
-                  - BTN
-                  - BVT
-                  - BWA
-                  - BLR
-                  - BLZ
-                  - CAN
-                  - CCK
-                  - COD
-                  - CAF
-                  - COG
-                  - CHE
-                  - CIV
-                  - COK
-                  - CHL
-                  - CMR
-                  - CHN
-                  - COL
-                  - CRI
-                  - CPV
-                  - CUW
-                  - CXR
-                  - CYP
-                  - CZE
-                  - DEU
-                  - DJI
-                  - DNK
-                  - DMA
-                  - DOM
-                  - DZA
-                  - ECU
-                  - EST
-                  - EGY
-                  - ESH
-                  - ERI
-                  - ESP
-                  - ETH
-                  - FIN
-                  - FJI
-                  - FLK
-                  - FSM
-                  - FRO
-                  - FRA
-                  - GAB
-                  - GBR
-                  - GRD
-                  - GEO
-                  - GUF
-                  - GGY
-                  - GHA
-                  - GIB
-                  - GRL
-                  - GMB
-                  - GIN
-                  - GLP
-                  - GNQ
-                  - GRC
-                  - SGS
-                  - GTM
-                  - GUM
-                  - GNB
-                  - GUY
-                  - HKG
-                  - HMD
-                  - HND
-                  - HRV
-                  - HTI
-                  - HUN
-                  - IDN
-                  - IRL
-                  - ISR
-                  - IMN
-                  - IND
-                  - IOT
-                  - IRQ
-                  - ISL
-                  - ITA
-                  - JEY
-                  - JAM
-                  - JOR
-                  - JPN
-                  - KEN
-                  - KGZ
-                  - KHM
-                  - KIR
-                  - COM
-                  - KNA
-                  - KOR
-                  - KWT
-                  - CYM
-                  - KAZ
-                  - LAO
-                  - LBN
-                  - LCA
-                  - LIE
-                  - LKA
-                  - LBR
-                  - LSO
-                  - LTU
-                  - LUX
-                  - LVA
-                  - MAR
-                  - MCO
-                  - MDA
-                  - MNE
-                  - MAF
-                  - MDG
-                  - MHL
-                  - MKD
-                  - MLI
-                  - MMR
-                  - MNG
-                  - MAC
-                  - MNP
-                  - MTQ
-                  - MRT
-                  - MSR
-                  - MLT
-                  - MUS
-                  - MDV
-                  - MWI
-                  - MEX
-                  - MYS
-                  - MOZ
-                  - NAM
-                  - NCL
-                  - NER
-                  - NFK
-                  - NGA
-                  - NIC
-                  - NLD
-                  - NOR
-                  - NPL
-                  - NRU
-                  - NIU
-                  - NZL
-                  - OMN
-                  - PAN
-                  - PER
-                  - PYF
-                  - PNG
-                  - PHL
-                  - PAK
-                  - POL
-                  - SPM
-                  - PCN
-                  - PRI
-                  - PSE
-                  - PRT
-                  - PLW
-                  - PRY
-                  - QAT
-                  - REU
-                  - ROU
-                  - SRB
-                  - RUS
-                  - RWA
-                  - SAU
-                  - SLB
-                  - SYC
-                  - SWE
-                  - SGP
-                  - SHN
-                  - SVN
-                  - SJM
-                  - SVK
-                  - SLE
-                  - SMR
-                  - SEN
-                  - SOM
-                  - SUR
-                  - STP
-                  - SLV
-                  - SXM
-                  - SWZ
-                  - TCA
-                  - TCD
-                  - ATF
-                  - TGO
-                  - THA
-                  - TJK
-                  - TKL
-                  - TLS
-                  - TKM
-                  - TUN
-                  - TON
-                  - TUR
-                  - TTO
-                  - TUV
-                  - TWN
-                  - TZA
-                  - UKR
-                  - UGA
-                  - UMI
-                  - USA
-                  - URY
-                  - UZB
-                  - VAT
-                  - VCT
-                  - VEN
-                  - VGB
-                  - VIR
-                  - VNM
-                  - VUT
-                  - WLF
-                  - WSM
-                  - UNK
-                  - YEM
-                  - MYT
-                  - ZAF
-                  - ZMB
-                  - ZWE
-                email:
-                  description: The applicant's email address.
-                  type: string
-                entity_type:
-                  description: Type of applicant - individual or corporate.
-                  type: string
-                  enum:
-                  - individual
-                  - corporate
-                referred_by:
-                  description: How did the applicant hear about us.
-                  type: string
-                  nullable: true
-                phone_number:
-                  description: The applicant's phone number.
-                  type: string
-                  nullable: true
-                contact_name:
-                  description: The applicant's name.
-                  type: string
-                  nullable: true
+              "$ref": "#/components/schemas/update_form_request"
+
     delete:
       summary: Delete Form
       description: Deletes the application form with the given ID.
@@ -2258,6 +1807,12 @@ components:
       - email
       - entity_type
       - brand_name
+    submit_impersonation_check:
+      type: object
+      properties:
+        applicant_id:
+          type: string
+          nullable: false
     update_form_request:
       type: object
       properties:
@@ -2265,15 +1820,18 @@ components:
           description: Client's own use, e.g. to track lead source.
           type: string
           nullable: true
+        agreed_to_marketing_emails:
+          type: boolean
+        agreed_to_terms_and_conditions:
+          type: boolean
         agreed_to_corporate_authority:
           type: boolean
-          description: Confirmed authority to act on behalf of company.
         country:
-          description: Home country for individual applicant or country of registered address for corporate applicant.
+          description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
           type: string
+          nullable: true
           enum:
           - AD
-          - AN
           - AE
           - AF
           - AG
@@ -2517,7 +2075,6 @@ components:
           - ZM
           - ZW
           - AND
-          - ANT
           - ARE
           - AFG
           - ATG
@@ -2763,12 +2320,20 @@ components:
         email:
           description: The applicant's email address.
           type: string
+          nullable: true
         entity_type:
           description: Type of applicant - individual or corporate.
           type: string
+          nullable: true
           enum:
           - individual
           - corporate
+        brand_name:
+          type: string
+          nullable: true
+        brand_key:
+          type: string
+          nullable: true
         referred_by:
           description: How did the applicant hear about us.
           type: string
@@ -2780,6 +2345,17 @@ components:
         contact_name:
           description: The applicant's name.
           type: string
+          nullable: true
+        products_required:
+          type: array
+          items:
+            type: string
+            enum:
+            - USD_VAN
+            - GB_VIBAN
+            - EU_VIBAN
+            - SWIFT
+            - CAD_VAN
           nullable: true
     create_account_usage_request:
       type: object
