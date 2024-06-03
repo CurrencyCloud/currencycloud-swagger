@@ -4858,7 +4858,7 @@ paths:
 
         This service is currently only available to in-scope clients who must provide Confirmation of Payee services to their end-users making local GBP payments in the UK.<br><br>
         In the UK, Confirmation of Payee is a peer-to-peer name-checking service designed to help reduce misdirected payments and provide greater assurance that payments are being sent, and collected from, the intended account holder for UK domestic payments. <br><br>
-        Currently, access is restricted to UK institutions and in scope clients.<br><br>
+        Currently, access is restricted to UK institutions and in-scope clients.<br><br>
         We plan to add more market coverage to this API in the future, thereby extending access to additional clients.<br><br>
         If you're interested in learning more or have received notification that you're in-scope, please contact your Customer Success Manager.
       operationId: BeneficiaryAccountVerification
@@ -4893,7 +4893,7 @@ paths:
           type: string
           required: true
           description: >-
-            Currency in which money is held in the beneficiary's bank account. Three-digit currency code.
+            Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
         - name: account_number
           in: formData
           type: string
@@ -4901,7 +4901,7 @@ paths:
         - name: beneficiary_entity_type
           in: formData
           type: string
-          description: Legal entity - individual or company. Required if "bank_country" is GB.
+          description: Legal entity - 'individual' or 'company'. Required if "bank_country" is GB.
           enum:
             - individual
             - company
@@ -16598,25 +16598,30 @@ definitions:
     description: Beneficiary account verification result.
     properties:
       answer:
-        description: The account verification result - 'confirmed' if full match or 'rejected' if partial match or no match.
+        description: The account verification result - 'full_match', 'close_match' or 'no_match'.
         type: string
         enum:
-          - confirmed
-          - rejected
+          - full_match
+          - close_match
+          - no_match
       actual_name:
         type: string
         description: The actual name of the account holder.
       reason_code:
         type: string
-        description: Encoded reason for mismatch.
+        description: Encoded reason.
       reason:
         type: string
         description: Description of the reason.
+      reason_type:
+        type: string
+        description: Category of reason - 'okay', 'warning' or 'rejected'.
     example:
-      answer: confirmed
+      answer: full_match
       actual_name: Joe Bloggs
-      reason_code: FMCH
+      reason_code: AV100
       reason: Full match
+      reason_type: okay
   CancelTransferError:
     type: object
     description: |
