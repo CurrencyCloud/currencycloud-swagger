@@ -16609,7 +16609,7 @@ definitions:
         description: The actual name of the account holder.
       reason_code:
         type: string
-        description: Encoded reason for mismatch.
+        description: Encoded reason.
       reason:
         type: string
         description: Description of the reason.
