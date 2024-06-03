@@ -16615,7 +16615,7 @@ definitions:
         description: Description of the reason.
       reason_type:
         type: string
-        description: Category of reason.
+        description: Category of reason - 'okay', 'warning' or 'rejected'.
     example:
       answer: full_match
       actual_name: Joe Bloggs
