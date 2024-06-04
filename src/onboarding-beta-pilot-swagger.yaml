@@ -271,60 +271,51 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      countries:
+                  type: object
+                  properties:
+                      id:
+                        type: string
+                        description: Country UUID
+                      iso2:
+                        type: string
+                        description: Two-character ISO country code.
+                      iso3:
+                        type: string
+                        description: Three-character ISO country code.
+                      name:
+                        type: string
+                        description: Country name
+                      dial_code:
+                        type: string
+                        description: Country telephone dial code.
+                      eea_country:
+                        type: boolean
+                        description: Member of the EEA (European Economic Area).
+                      permitted_jurisdiction:
+                        type: boolean
+                        description: Is one of our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017599560">permitted jurisdictions</a>.
+                      document_types:
                         type: array
-                        description: List of countries.
+                        description: List of acceptable ID documents.
                         items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              description: Country UUID
-                            iso2:
-                              type: string
-                              description: Two character ISO country code.
-                            iso3:
-                              type: string
-                              description: Three character ISO country code.
-                            name:
-                              type: string
-                              description: Country name
-                            dial_code:
-                              type: string
-                              description: Country telephone dial code.
-                            eea_country:
-                              type: boolean
-                              description: Member of the EEA (European Economic Area).
-                            permitted_jurisdiction:
-                              type: boolean
-                              description: Is one of our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017599560">permitted jurisdictions</a>.
-                            document_types:
-                              type: array
-                              description: List of acceptable ID documents.
-                              items:
-                                type: string
-                            created_at:
-                              type: string
-                              description: Date the Country entity was created.
-                            updated_at:
-                              type: string
-                              description: Date the Country entity was last updated.
-                          required:
-                          - id
-                          - iso2
-                          - iso3
-                          - name
-                          - eea_country
-                          - permitted_jurisdiction
+                          type: string
+                      created_at:
+                        type: string
+                        description: Date the Country entity was created.
+                      updated_at:
+                        type: string
+                        description: Date the Country entity was last updated.
+                  required:
+                  - id
+                  - iso2
+                  - iso3
+                  - name
+                  - eea_country
+                  - permitted_jurisdiction
   "/v1/countries/{country_code}/document_types":
     get:
       summary: Get Document Types
-      description: Returns a list of acceptable ID documents for the country specified.
+      description: Returns a list of acceptable identification documents for the country specified.
       tags:
       - Country
       x-api-group: Onboard
@@ -350,7 +341,7 @@ paths:
                     properties:
                       document_types:
                         type: array
-                        description: List of acceptable ID documents for the country.
+                        description: List of acceptable identification documents for the country.
                         items:
                           type: string
         '404':
@@ -388,7 +379,7 @@ paths:
                               type: string
                             iso3:
                               type: string
-                              description: Three character ISO currency code.
+                              description: Three-character ISO currency code.
                             name:
                               type: string
                               description: Currency name
@@ -397,10 +388,10 @@ paths:
                               description: Supported currency
                             created_at:
                               type: string
-                              description: Date the currency entity was created.
+                              description: Date and timestamp of when the currency entity was created.
                             updated_at:
                               type: string
-                              description: Date the currency entity was last updated.
+                              description: Date and timestamp of when the currency entity was last updated.
                           required:
                           - id
                           - iso3
@@ -498,7 +489,7 @@ paths:
   "/v1/forms/{form_id}/documents/{document_id}/document_images/{document_image_id}":
     delete:
       summary: Delete Document Image
-      description: Deletes the specified image of a document attached to the specified form.
+      description: Deletes the specified image of a document attached to the specified application form.
       tags:
       - Document Images
       x-api-group: Onboard
@@ -581,7 +572,7 @@ paths:
                   data:
                     "$ref": "#/components/schemas/document"
         '422':
-          description: Form is already submitted
+          description: Application form is already submitted
           content:
             application/json:
               schema:
@@ -653,6 +644,7 @@ paths:
         schema:
           type: string
       - name: document_id
+        description: Document UUID
         in: path
         required: true
         schema:
@@ -672,9 +664,10 @@ paths:
                         type: string
                       document_id:
                         type: string
-                    required:
-                    - message
-                    - document_id
+                        description: Document UUID
+                required:
+                - message
+                - document_id
         '422':
           description: Form is already submitted
           content:
@@ -751,33 +744,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
-  "/v1/forms/{form_id}/submit_impersonation_check":
-    post:
-      summary: Submit Impersonation Check
-      description: Submit Impersonation Check
-      tags:
-      - Form
-      x-api-group: Onboard
-      security:
-      - AuthToken: []
-      parameters:
-      - name: form_id
-        description: Form UUID
-
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '204':
-          description: a workflow is successfully created
-        '400':
-          description: with incorrect or missing params
-      requestBody:
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/submit_impersonation_check"
   "/v1/forms":
     get:
       summary: Get Forms
@@ -789,7 +755,7 @@ paths:
       - AuthToken: []
       parameters:
       - name: order
-        description: Order by timestamp.
+        description: Order by timestamp - created_at or submitted_at.
         in: query
         schema:
           type: string
@@ -797,7 +763,7 @@ paths:
             - created_at
             - submitted_at
       - name: order_asc_desc
-        description: Order ascending or descending
+        description: Order ascending or descending.
         in: query
         schema:
           type: string
@@ -805,6 +771,7 @@ paths:
             - asc
             - desc
       - name: application_status
+        description: Current application status - new or submitted.
         in: query
         schema:
           type: string
@@ -845,28 +812,36 @@ paths:
                     type: object
                     properties:
                       total_entries:
+                        description: Total number of forms.
                         type: integer
                         minimum: 0
                       total_pages:
+                        description: Total number of pages.
                         type: integer
                         minimum: 0
                       current_page:
+                        description: Current page number.
                         type: integer
                         minimum: 1
                       per_page:
+                        description: Number of results per page.
                         type: integer
                         minimum: 1
                       previous_page:
+                        description: Previous page number.
                         type: integer
                         minimum: 1
                         nullable: true
                       next_page:
+                        description: Next page number.
                         type: integer
                         minimum: 1
                         nullable: true
                       order:
+                        description: Order by timestamp - created_at or submitted_at.
                         type: string
                       order_asc_desc:
+                        description: Order ascending or descending.
                         type: string
                     required:
                     - total_entries
@@ -894,13 +869,13 @@ paths:
       parameters: []
       responses:
         '400':
-          description: Invalid parameter in request params
+          description: Invalid parameter in request params.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
         '201':
-          description: Creates a form when correct params are provided
+          description: Creates a form when correct params are provided.
           content:
             application/json:
               schema:
@@ -931,7 +906,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Retrieves form if the UUID exists
+          description: Retrieves form if the UUID exists.
           content:
             application/json:
               schema:
@@ -940,7 +915,7 @@ paths:
                   data:
                     "$ref": "#/components/schemas/form_with_associations"
         '404':
-          description: Record not found - Invalid UUID
+          description: Record not found - Invalid UUID.
           content:
             application/json:
               schema:
@@ -962,13 +937,13 @@ paths:
           type: string
       responses:
         '400':
-          description: Invalid parameter in request params
+          description: Invalid parameter in request params.
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
         '200':
-          description: Updates form when correct params are provided
+          description: Updates form when correct params are provided.
           content:
             application/json:
               schema:
@@ -1284,7 +1259,7 @@ components:
           type: boolean
           description: Confirmed authority to act on behalf of company.
         country:
-          description: Home country for individual applicant or country of registered address for corporate applicant.
+          description: ISO code for home country for individual applicant or country of registered address for corporate applicant.
           type: string
           enum:
           - AD
@@ -1800,6 +1775,17 @@ components:
           description: The applicant's name.
           type: string
           nullable: true
+        products_required:
+          description: Required products
+          type: array
+          items:
+            type: string
+            enum:
+            - USD_VAN
+            - GB_VIBAN
+            - EU_VIBAN
+            - SWIFT
+            - CAD_VAN
       required:
       - agreed_to_marketing_emails
       - agreed_to_terms_and_conditions
@@ -1822,12 +1808,15 @@ components:
           nullable: true
         agreed_to_marketing_emails:
           type: boolean
+          description: Agreed to marketing emails.
         agreed_to_terms_and_conditions:
           type: boolean
+          description: Agreed to terms and conditions.
         agreed_to_corporate_authority:
           type: boolean
+          description: Confirmed authority to act on behalf of company.
         country:
-          description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
+          description: ISO code for home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
           type: string
           nullable: true
           enum:
@@ -2348,6 +2337,7 @@ components:
           nullable: true
         products_required:
           type: array
+          description: Required products
           items:
             type: string
             enum:
@@ -3200,7 +3190,7 @@ components:
           type: boolean
           description: Do corporate accounts just want to send a single one-off transaction.
         estimated_monthly_transaction_currency:
-          description: Currency of the estimated monthly transaction value.
+          description: ISO code for the currency of the estimated monthly transaction.
           type: string
           nullable: true
         estimated_monthly_transaction_value:
@@ -3217,15 +3207,31 @@ components:
           nullable: true
           enum:
           - business_revenue
-          - external_investment
-          - loan
           - donations_or_grants
+          - external_investment
+          - gift
+          - inheritance
           - inter_company_transfers
-          - sale_of_assets
+          - loan
           - other
+          - property_sale
+          - rental_income
+          - salary
+          - sale_of_assets
+          - sale_of_investment_dividends
+
+        other_source_of_funds_text:
+          description: Source of funds in addition to the 'source_of_funds' field.
+          type: string
+          nullable: true
+        initial_capital:
+          description: Companies fewer than 12 months must provide this attribute, the string value must be greater than 15 characters and less than 240.
+          type: string
+          nullable: true
+
         primary_purpose:
           type: string
-          description: The reason for opening an account with Currencycloud.
+          description: The purpose of the account.
           enum:
           - intercompany_transfers
           - liquidity_or_fx
@@ -3243,6 +3249,7 @@ components:
       required:
       - collections_account
       - primary_purpose
+      - source_of_funds
     create_business_information_request:
       type: object
       properties:
@@ -3253,7 +3260,7 @@ components:
             type: string
           nullable: true
         business_country:
-          description: ISO country code for the country the business is registered in.
+          description: ISO country code for the country the business is registered in. This should be the same as the country of registered address.
           type: string
           enum:
           - AD
@@ -3745,15 +3752,15 @@ components:
           - ZMB
           - ZWE
         company_name:
-          description: The company name.
+          description: The registered name of the compnay.
           type: string
         trading_name:
-          description: The company's trading name.
+          description: The commercial name of the company (can be the same as the registered name).
           type: string
           nullable: true
         legal_entity_type:
           type: string
-          description: Company's legal entity type.
+          description: The appropriate entity type for the business.
           enum:
           - limited_liability_company
           - limited_liability_partnership
@@ -3768,7 +3775,7 @@ components:
           - unregistered_charity
         sector:
           type: string
-          description: The primary sector the company operates in.
+          description: The sector that best describes the sector the applicant operates in.
           enum:
           - registered_charity
           - unregistered_charity
@@ -3784,7 +3791,7 @@ components:
           - books_or_magazines_and_newspapers
           - casinos_or_gambling
           - forestry_and_forest_products
-          - Gaming
+          - gaming
           - music_production
           - radio_or_tv_broadcaster
           - speculative_trading
@@ -3860,22 +3867,26 @@ components:
           - mining_or_extractive_industries
         company_registration_number:
           type: string
-          description: An official number that identifies the company.
+          description: An official number that identifies the business (may be referred to as ‘company number’, ‘charity number’ etc)
           nullable: true
         vat_number:
-          description: The company's VAT number or Tax ID  number.
+          description: For US and other jurisdictions this is the Tax ID number.
           type: string
           nullable: true
         incorporation_date:
-          description: The date the company was incorporated.
+          description: The date the company was incorporated. This needs to be a date in the past.
           type: string
           format: date
         business_website:
-          description: The company's website URL or other online presence.
+          description: >-
+            The company's website address. Please note, this does not have to be a website, it can also be the business’ online presence (Instagram, Amazon store etc).
+            If there is no online presence then we will require proof of business activity (e.g. at least two sales invoice dated within the last three months, a bank statement dated within the last three months, marketing materials or contracts).
           type: string
           nullable: true
         business_activity_description:
-          description: Description of the company's activities.
+          description: >-
+            This data is only required if no online presence is provided. Note, if this value is provided, we will also require the ‘proof_of_business_activity’
+            (e.g. at least two sales invoice dated within the last three months, a bank statement dated within the last three months, marketing materials or contracts).
           type: string
           nullable: true
         registered_address_attributes:
@@ -3883,22 +3894,30 @@ components:
           properties:
             city:
               type: string
+              description: City
             street:
               type: string
+              description: Street
             country:
               type: string
+              description: Country
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
+              description: Apartment number
               type: string
               nullable: true
             building_name:
+              description: Building name
               type: string
               nullable: true
             building_number:
+              description: Building number
               type: string
               nullable: true
             state_or_province:
+              description: State or province
               type: string
               nullable: true
           required:
@@ -3911,22 +3930,30 @@ components:
           properties:
             city:
               type: string
+              description: City
             street:
               type: string
+              description: Street
             country:
               type: string
+              description: Country
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
+              description: Apartment number
               type: string
               nullable: true
             building_name:
+              description: Building name
               type: string
               nullable: true
             building_number:
+              description: Building number
               type: string
               nullable: true
             state_or_province:
+              description: State or province
               type: string
               nullable: true
           required:
@@ -3992,6 +4019,9 @@ components:
         id_number:
           description: Social security number if home_country=US.
           type: string
+          nullable: true
+        impersonation_check_required:
+          type: boolean
           nullable: true
         home_country:
           description: Country of permanent address.
@@ -4529,6 +4559,9 @@ components:
           - street
           - country
           - postal_code
+        referrer:
+          type: string
+          nullable: true
       required:
       - roles
       - first_name
@@ -4576,7 +4609,7 @@ components:
       type: object
       properties:
         image:
-          description: Image encoder used e.g. base64.
+          description: Base64 encoding of the image.
           type: string
           format: byte
         side:
@@ -4589,6 +4622,14 @@ components:
       required:
       - image
       - side
+    validity_check:
+      type: object
+      properties:
+        email_verification_code:
+          type: string
+      required:
+      - email_verification_code
+
     form:
       type: object
       properties:
@@ -4631,10 +4672,17 @@ components:
           type: string
           nullable: true
         products_required:
+          description: List of required products.
           type: array
           items:
             type: string
         state:
+          description: The current status of the application.
+          enum:
+            - new
+            - submitted
+            - approved
+            - rejected
           type: string
         phone_number:
           description: The applicant's phone number.
@@ -4650,6 +4698,13 @@ components:
           type: string
           format: date-time
           description: Date and time the form was last updated.
+        email_verification_status:
+          type: string
+        email_verified_at:
+          type: string
+          format: date-time
+          nullable: true
+
       required:
       - id
       - agreed_to_marketing_emails
@@ -4702,10 +4757,12 @@ components:
           type: string
           nullable: true
         products_required:
+          description: List of the required products.
           type: array
           items:
             type: string
         state:
+          description: State
           type: string
         phone_number:
           description: The applicant's phone number.
@@ -4796,23 +4853,31 @@ components:
           type: object
           properties:
             city:
+              description: City
               type: string
             street:
               type: string
+              description: Street
             country:
               type: string
+              description: Country
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
               type: string
+              description: Apartment number
               nullable: true
             building_name:
+              description: Building name
               type: string
               nullable: true
             building_number:
+              description: Building number
               type: string
               nullable: true
             state_or_province:
+              description: State or province
               type: string
               nullable: true
           required:
@@ -4824,23 +4889,31 @@ components:
           type: object
           properties:
             city:
+              description: City
               type: string
             street:
               type: string
+              description: Street
             country:
               type: string
+              description: Country
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
               type: string
+              description: Apartment number
               nullable: true
             building_name:
+              description: Building name
               type: string
               nullable: true
             building_number:
+              description: Building number
               type: string
               nullable: true
             state_or_province:
+              description: State or province
               type: string
               nullable: true
           required:
@@ -4896,28 +4969,36 @@ components:
             nullable: true
         transaction_countries:
           type: array
-          description: List of countries that corporate accounts want to send/receive money to/from.
+          description: For corporates - list of countries they want to send/receive money to/from.
           items:
             type: string
             nullable: true
         one_off_transaction:
           type: boolean
-          description: Will it be a single one-off transaction.
+          description: For corporates - will it be a single one-off transaction.
         estimated_monthly_transaction_currency:
-          description: Currency of the estimated monthly transaction value.
+          description: For corporates - currency of the estimated monthly transaction value.
           type: string
           nullable: true
         estimated_monthly_transaction_value:
-          description: Estimated monthly value of what a corporate account is going to transact on the platform.
+          description: For corporates - estimated monthly value of what a corporate account is going to transact on the platform.
           type: integer
           nullable: true
         estimated_monthly_transaction_volume:
-          description: How often do corporates expect to send or receive funds.
+          description: For corporates - how often do corporates expect to send or receive funds.
           type: integer
           nullable: true
         source_of_funds:
-          description: The source of money that will be sent through the platform.
+          description: Where does the money that will be sent through the platform come from.
           type: string
+          nullable: true
+        other_source_of_funds_text:
+          type: string
+          nullable: true
+          description: Any source of funds in addition to what's given in 'source_of_funds'.
+        initial_capital:
+          type: string
+          description: Companies fewer than 12 months old must provide this attribute, the string value must be greater than 15 characters and less than 240.
           nullable: true
         primary_purpose:
           description: The reason for opening an account with Currencycloud.
@@ -4943,78 +5024,103 @@ components:
       type: object
       properties:
         id:
+          description: UUID for the Person entity.
           type: string
         form_id:
           type: string
+          description: Form UUID
         document_ids:
           type: array
-          description: List of IDs for any uploaded supporting documents.
+          description: List of IDs for any uploaded supporting documents. For all Ultimate Business Owner’s, all Users and one Director, we will need a copy of their ID.
           items:
             type: string
         roles:
           type: array
           items:
             type: string
+          description: The person's roles. A single person associated with an individual form always has role 'user'.
         first_name:
           type: string
+          description: The person's first name.
         middle_name:
           type: string
           nullable: true
+          description: The person's middle name.
         last_name:
           type: string
+          description: The person's surname.
         dob:
           type: string
           format: date
           nullable: true
+          description: The person's date of birth, the person must be over 18 years of age.
         phone_number:
           type: string
           nullable: true
+          description: The person's phone number.
         email:
           type: string
           nullable: true
+          description: This is only required if the person wants a user account. This will be used for logging into the account if approved.
         ownership_percentage:
           type: number
           minimum: 0
           maximum: 100
+          description: Only relevant where 'roles' inclulde "ultimate_business_owner".
         id_number:
           type: string
           nullable: true
+          description: Social security number. Only required if home_country = "US".
         home_country:
           type: string
+          description: Country of current permanent address (for individual applications, this should match the ‘country’ of the form).
         passport_number:
+          description: Only for corporate applications. If country of registered address of the business = "US", but 'home_country' of the person NOT "US", please collect this.
           type: string
           nullable: true
         passport_country_of_issue:
           type: string
+          description: Only for corporate applications. If country of registered address of the business = "US", but 'home_country' of the person is NOT "US", please collect this.
           nullable: true
         personal_address:
+          description: Current permanent address.
           type: object
           properties:
             city:
               type: string
+              description: City
             street:
               type: string
+              description: Street
             country:
               type: string
+              description: Country
             postal_code:
               type: string
+              description: Post Code
             apartment_number:
+              description: Apartment number
               type: string
               nullable: true
             building_name:
+              description: Either 'building_name' or 'building_number' is required.
               type: string
               nullable: true
             building_number:
+              description: Either 'building_name' or 'building_number' is required.
               type: string
               nullable: true
             state_or_province:
+              description: Required for the US and Canada.
               type: string
               nullable: true
         created_at:
           type: string
+          description: Timestamp for when the person object was created.
           format: date-time
         updated_at:
           type: string
+          description: Timestamp for when the person object was last updated.
           format: date-time
       required:
       - id
@@ -5027,14 +5133,45 @@ components:
       properties:
         id:
           type: string
+          description: UUID for the Document entity.
         document_type:
           type: string
+          description: The type of document.
+          enum:
+          - bank_statement
+          - biometric_state_id
+          - driving_licence
+          - mortgage
+          - passport_number
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - residence_id
+          - state_id
+          - supporting
+          - unknown
+          - utility_bill
+          - visa
         category:
+          description: Category of identification documentation. A document attached to a person must be of category "proof_of_identity".
+          enum:
+          - proof_of_address
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_identity
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - supporting
           type: string
         created_at:
+          description: Date and timestamp for when the document entity was created.
           type: string
           format: date-time
         updated_at:
+          description: Date and timestamp for when the document entity was last updated.
           type: string
           format: date-time
       required:
@@ -5044,13 +5181,43 @@ components:
       type: object
       properties:
         id:
+          description: UUID for the Document entity
           type: string
         document_type:
           type: string
+          description: The type of document.
+          enum:
+          - bank_statement
+          - biometric_state_id
+          - driving_licence
+          - mortgage
+          - passport_number
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - residence_id
+          - state_id
+          - supporting
+          - unknown
+          - utility_bill
+          - visa
         category:
           type: string
+          description: Category of identification documentation. A document attached to a person must be of category "proof_of_identity".
+          enum:
+          - proof_of_address
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_identity
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - supporting
         document_image_ids:
           type: array
+          description: UUIDs of the document images.
           items:
             type: string
         form_section_type:
@@ -5060,9 +5227,11 @@ components:
           type: string
           nullable: true
         created_at:
+          description: Date and timestamp for when the entity was created.
           type: string
           format: date-time
         updated_at:
+          description: Date and timestamp for when the entity was last updated.
           type: string
           format: date-time
       required:
@@ -5077,12 +5246,16 @@ components:
         side:
           type: string
           description: Image of which document side.
+          enum:
+          - front
+          - back
+          - face
         created_at:
-          description: Date the document image entity was created.
+          description: Date and timestamp for when the entity was created.
           type: string
           format: date-time
         updated_at:
-          description: Date the document image entity was last updated.
+          description: Date and timestamp for when the entity was last updated.
           type: string
           format: date-time
     validation_error_response:
@@ -5091,11 +5264,14 @@ components:
         status:
           type: string
         error_code:
+          description: A code for the error.
           type: string
         reason:
           type: string
+          description: The reason for the error.
         error_messages:
           type: object
+          description: The error message returned.
       required:
       - status
       - error_code
@@ -5108,11 +5284,14 @@ components:
           type: string
         error_code:
           type: string
+          description: A code for the error.
         reason:
           type: string
+          description: The reason for the error.
         error_messages:
           type: object
           nullable: true
+          description: The error message returned.
       required:
       - status
       - error_code
