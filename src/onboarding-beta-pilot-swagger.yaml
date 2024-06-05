@@ -271,47 +271,55 @@ paths:
           content:
             application/json:
               schema:
-                  type: object
-                  properties:
-                      id:
-                        type: string
-                        description: Country UUID
-                      iso2:
-                        type: string
-                        description: Two-character ISO country code.
-                      iso3:
-                        type: string
-                        description: Three-character ISO country code.
-                      name:
-                        type: string
-                        description: Country name
-                      dial_code:
-                        type: string
-                        description: Country telephone dial code.
-                      eea_country:
-                        type: boolean
-                        description: Member of the EEA (European Economic Area).
-                      permitted_jurisdiction:
-                        type: boolean
-                        description: Is one of our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017599560">permitted jurisdictions</a>.
-                      document_types:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      countries:
                         type: array
-                        description: List of acceptable ID documents.
                         items:
-                          type: string
-                      created_at:
-                        type: string
-                        description: Date the Country entity was created.
-                      updated_at:
-                        type: string
-                        description: Date the Country entity was last updated.
-                  required:
-                  - id
-                  - iso2
-                  - iso3
-                  - name
-                  - eea_country
-                  - permitted_jurisdiction
+                          type: object
+                          properties:
+                              id:
+                                type: string
+                                description: Country UUID
+                              iso2:
+                                type: string
+                                description: Two character ISO country code.
+                              iso3:
+                                type: string
+                                description: Three character ISO country code.
+                              name:
+                                type: string
+                                description: Country name
+                              dial_code:
+                                type: string
+                                description: Country telephone dial code.
+                              eea_country:
+                                type: boolean
+                                description: Member of the EEA (European Economic Area).
+                              permitted_jurisdiction:
+                                type: boolean
+                                description: Is one of our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017599560">permitted jurisdictions</a>.
+                              document_types:
+                                type: array
+                                description: List of acceptable ID documents.
+                                items:
+                                  type: string
+                              created_at:
+                                type: string
+                                description: Date the Country entity was created.
+                              updated_at:
+                                type: string
+                                description: Date the Country entity was last updated.
+                          required:
+                          - id
+                          - iso2
+                          - iso3
+                          - name
+                          - eea_country
+                          - permitted_jurisdiction
   "/v1/countries/{country_code}/document_types":
     get:
       summary: Get Document Types
@@ -1759,10 +1767,6 @@ components:
           enum:
           - individual
           - corporate
-        brand_name:
-          type: string
-        brand_key:
-          type: string
         referred_by:
           description: How did the applicant hear about us.
           type: string
@@ -1792,7 +1796,6 @@ components:
       - country
       - email
       - entity_type
-      - brand_name
     submit_impersonation_check:
       type: object
       properties:
@@ -2317,12 +2320,6 @@ components:
           enum:
           - individual
           - corporate
-        brand_name:
-          type: string
-          nullable: true
-        brand_key:
-          type: string
-          nullable: true
         referred_by:
           description: How did the applicant hear about us.
           type: string
@@ -3879,14 +3876,17 @@ components:
           format: date
         business_website:
           description: >-
-            The company's website address. Please note, this does not have to be a website, it can also be the business’ online presence (Instagram, Amazon store etc).
-            If there is no online presence then we will require proof of business activity (e.g. at least two sales invoice dated within the last three months, a bank statement dated within the last three months, marketing materials or contracts).
+            The company's website address or any other form of online presence (such as Instagram, Amazon store, etc.).
+            Please note that this doesn't necessarily have to be a website. If there's no online presence, proof of business
+            activity will be required. This can be at least two sales invoices dated within the last three months,
+            a bank statement from the same period, or marketing materials or contracts.
           type: string
           nullable: true
         business_activity_description:
           description: >-
-            This data is only required if no online presence is provided. Note, if this value is provided, we will also require the ‘proof_of_business_activity’
-            (e.g. at least two sales invoice dated within the last three months, a bank statement dated within the last three months, marketing materials or contracts).
+            This is only necessary if you don't have an active website or online presence. If there's no fully operational website or
+            online presence, we will need additional proof of your business operations. You may provide any of the following documents as
+            evidence of business activity: marketing materials, product lists, contracts, or sales invoices from the last three months.
           type: string
           nullable: true
         registered_address_attributes:
@@ -4663,10 +4663,6 @@ components:
         entity_type:
           description: Type of applicant - individual or corporate.
           type: string
-        brand_name:
-          type: string
-        brand_key:
-          type: string
         referred_by:
           description: How did the applicant hear about us.
           type: string
@@ -4709,7 +4705,6 @@ components:
       - id
       - agreed_to_marketing_emails
       - agreed_to_terms_and_conditions
-      - brand_name
       - country
       - entity_type
       - products_required
@@ -4748,10 +4743,6 @@ components:
         entity_type:
           type: string
           description: Type of applicant - individual or corporate.
-        brand_name:
-          type: string
-        brand_key:
-          type: string
         referred_by:
           description: How did the applicant hear about us.
           type: string
@@ -4795,7 +4786,6 @@ components:
       - agreed_to_terms_and_conditions
       - country
       - entity_type
-      - brand_name
       - products_required
       - created_at
       - updated_at
@@ -4842,11 +4832,18 @@ components:
           type: string
           format: date
         business_website:
-          description: The company's website URL or other online presence.
+          description: >-
+            The company's website address or any other form of online presence (such as Instagram, Amazon store, etc.).
+            Please note that this doesn't necessarily have to be a website. If there's no online presence, proof of business
+            activity will be required. This can be at least two sales invoices dated within the last three months,
+            a bank statement from the same period, or marketing materials or contracts.
           type: string
           nullable: true
         business_activity_description:
-          description: Description of the company's activities.
+          description: >-
+            This is only necessary if you don't have an active website or online presence. If there's no fully operational website or
+            online presence, we will need additional proof of your business operations. You may provide any of the following documents as
+            evidence of business activity: marketing materials, product lists, contracts, or sales invoices from the last three months.
           type: string
         registered_address:
           description: The company's registered address.
