@@ -1,0 +1,3698 @@
+{
+  "data": {
+    "countries": [
+      {
+        "id": "0fd1de65-81f3-40c7-8f3f-e5ab2bb6287a",
+        "iso2": "AF",
+        "iso3": "AFG",
+        "name": "Afghanistan",
+        "dial_code": "+93",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.706Z",
+        "updated_at": "2021-09-08T16:34:53.706Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6009b597-34a2-4526-a363-445a1c746094",
+        "iso2": "AX",
+        "iso3": "ALA",
+        "name": "Åland Islands",
+        "dial_code": "+358",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:53.830Z",
+        "updated_at": "2021-09-08T16:34:53.830Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "5fd25c6d-0319-48b0-a6db-565f0b72aec1",
+        "iso2": "AL",
+        "iso3": "ALB",
+        "name": "Albania",
+        "dial_code": "+355",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.735Z",
+        "updated_at": "2022-02-03T21:10:48.547Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "730cd240-8e71-4040-9d82-6965dde56f69",
+        "iso2": "DZ",
+        "iso3": "DZA",
+        "name": "Algeria",
+        "dial_code": "+213",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.340Z",
+        "updated_at": "2022-02-03T21:10:48.805Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "1614c9c3-cd18-49a4-b5e6-58aceede175d",
+        "iso2": "AS",
+        "iso3": "ASM",
+        "name": "American Samoa",
+        "dial_code": "+1684",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.785Z",
+        "updated_at": "2021-09-08T16:34:53.785Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6b523ba5-4b4e-48b4-9fb2-8d295ad09aa1",
+        "iso2": "AD",
+        "iso3": "AND",
+        "name": "Andorra",
+        "dial_code": "+376",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.669Z",
+        "updated_at": "2021-09-16T13:08:33.283Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "f60b2bcf-0695-4384-8e5c-cadb4e7a88e8",
+        "iso2": "AO",
+        "iso3": "AGO",
+        "name": "Angola",
+        "dial_code": "+244",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.752Z",
+        "updated_at": "2022-02-03T21:10:48.560Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "0c9267e0-4da8-4472-a0ae-a1ae3b7b610a",
+        "iso2": "AI",
+        "iso3": "AIA",
+        "name": "Anguilla",
+        "dial_code": "+1264",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.725Z",
+        "updated_at": "2021-09-08T16:34:53.725Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "3f2fe406-f972-4709-a031-3c7712b17489",
+        "iso2": "AQ",
+        "iso3": "ATA",
+        "name": "Antarctica",
+        "dial_code": "+672",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.761Z",
+        "updated_at": "2021-09-08T16:34:53.761Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "969d0834-10b3-42de-80ac-bf441f2112f3",
+        "iso2": "AG",
+        "iso3": "ATG",
+        "name": "Antigua and Barbuda",
+        "dial_code": "+1268",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.716Z",
+        "updated_at": "2021-09-08T16:34:53.716Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "8b5a6249-57c6-41ca-9e00-8b2d74aea254",
+        "iso2": "AR",
+        "iso3": "ARG",
+        "name": "Argentina",
+        "dial_code": "+54",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.768Z",
+        "updated_at": "2022-02-03T21:10:48.573Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "1e3dc763-73dd-4396-b7d2-e0f8ede935ce",
+        "iso2": "AM",
+        "iso3": "ARM",
+        "name": "Armenia",
+        "dial_code": "+374",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.744Z",
+        "updated_at": "2021-09-16T13:08:33.340Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "4c9d5375-344c-4f75-a6d1-49012bd6c1a5",
+        "iso2": "AW",
+        "iso3": "ABW",
+        "name": "Aruba",
+        "dial_code": "+297",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.820Z",
+        "updated_at": "2021-09-08T16:34:53.820Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "c9ef3f18-a017-4792-be33-1caa467f8755",
+        "iso2": "AU",
+        "iso3": "AUS",
+        "name": "Australia",
+        "dial_code": "+61",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:53.807Z",
+        "updated_at": "2022-07-06T10:50:50.594Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "8e64cea3-072d-48fa-ada5-6267aaaa200f",
+        "iso2": "AT",
+        "iso3": "AUT",
+        "name": "Austria",
+        "dial_code": "+43",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:53.798Z",
+        "updated_at": "2022-02-03T21:10:48.581Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "dea235a4-e754-4e3d-ada6-6ab24d017094",
+        "iso2": "AZ",
+        "iso3": "AZE",
+        "name": "Azerbaijan",
+        "dial_code": "+994",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.838Z",
+        "updated_at": "2022-02-03T21:10:48.599Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "14327ab1-c557-4119-98e8-00da51c0364c",
+        "iso2": "BS",
+        "iso3": "BHS",
+        "name": "Bahamas",
+        "dial_code": "+1242",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.010Z",
+        "updated_at": "2021-09-16T13:08:33.578Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "8575b4b3-54f2-4913-92b0-51a584380fab",
+        "iso2": "BH",
+        "iso3": "BHR",
+        "name": "Bahrain",
+        "dial_code": "+973",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.909Z",
+        "updated_at": "2022-02-03T21:10:48.645Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "983ace8b-ef99-4966-9253-43f0b9f0d119",
+        "iso2": "BD",
+        "iso3": "BGD",
+        "name": "Bangladesh",
+        "dial_code": "+880",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.871Z",
+        "updated_at": "2022-02-03T21:10:48.617Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "139bee69-f2ba-4e17-9843-e65937d4fc2d",
+        "iso2": "BB",
+        "iso3": "BRB",
+        "name": "Barbados",
+        "dial_code": "+1246",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.859Z",
+        "updated_at": "2021-09-16T13:08:33.446Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "eef4d049-bc51-484e-95b5-2a56057f014f",
+        "iso2": "BY",
+        "iso3": "BLR",
+        "name": "Belarus",
+        "dial_code": "+375",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.052Z",
+        "updated_at": "2021-09-16T13:08:33.620Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2b42ce8c-9322-47a6-80c9-c07ea68584a7",
+        "iso2": "BE",
+        "iso3": "BEL",
+        "name": "Belgium",
+        "dial_code": "+32",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:53.881Z",
+        "updated_at": "2022-02-03T21:10:48.627Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "922e610c-cda5-4b9e-803c-e0c3c70c4f1b",
+        "iso2": "BZ",
+        "iso3": "BLZ",
+        "name": "Belize",
+        "dial_code": "+501",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.063Z",
+        "updated_at": "2021-09-08T16:34:54.063Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "17dda10e-fa29-45ca-8613-359828a4ee96",
+        "iso2": "BJ",
+        "iso3": "BEN",
+        "name": "Benin",
+        "dial_code": "+229",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.928Z",
+        "updated_at": "2021-09-08T16:34:53.928Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "2d3ef67c-8c58-4a88-ba6e-e5f474752828",
+        "iso2": "BM",
+        "iso3": "BMU",
+        "name": "Bermuda",
+        "dial_code": "+1441",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.953Z",
+        "updated_at": "2021-09-16T13:08:33.521Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a734780b-2d59-45f6-9971-32062f8a0531",
+        "iso2": "BT",
+        "iso3": "BTN",
+        "name": "Bhutan",
+        "dial_code": "+975",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.021Z",
+        "updated_at": "2021-09-08T16:34:54.021Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "09ce79da-c175-42c1-9647-4ee33c754365",
+        "iso2": "BO",
+        "iso3": "BOL",
+        "name": "Bolivia",
+        "dial_code": "+591",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.976Z",
+        "updated_at": "2022-02-03T21:10:48.664Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "b33e30d1-09de-4f24-aaec-5f7f9c154d08",
+        "iso2": "BQ",
+        "iso3": "BES",
+        "name": "Bonaire, Sint Eustatius and Saba",
+        "dial_code": "+5997",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.985Z",
+        "updated_at": "2021-09-08T16:34:53.985Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "1b448aff-20b5-4126-af82-a486b41434d0",
+        "iso2": "BA",
+        "iso3": "BIH",
+        "name": "Bosnia-Herzegovina",
+        "dial_code": "+387",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.850Z",
+        "updated_at": "2022-02-03T21:10:48.610Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "0f81faec-6ae9-4faf-a0d0-c4addaef0aac",
+        "iso2": "BW",
+        "iso3": "BWA",
+        "name": "Botswana",
+        "dial_code": "+267",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.041Z",
+        "updated_at": "2022-02-03T21:10:48.687Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "state_id"
+        ]
+      },
+      {
+        "id": "4a4472e9-11ed-4152-ac81-a4cb983426bf",
+        "iso2": "BV",
+        "iso3": "BVT",
+        "name": "Bouvet Island",
+        "dial_code": "+55",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.030Z",
+        "updated_at": "2022-06-30T14:37:20.563Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "5a65deec-7408-4860-b3c9-b81b779f170d",
+        "iso2": "BR",
+        "iso3": "BRA",
+        "name": "Brazil",
+        "dial_code": "+55",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.997Z",
+        "updated_at": "2022-02-03T21:10:48.673Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2c04bff7-6a24-4954-8bb2-e54a35c8d212",
+        "iso2": "IO",
+        "iso3": "IOT",
+        "name": "British Indian Ocean Territory",
+        "dial_code": "+246",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.821Z",
+        "updated_at": "2021-09-08T16:34:54.821Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "7d3c0a2c-b247-421a-8ed5-c88547848538",
+        "iso2": "VG",
+        "iso3": "VGB",
+        "name": "British Virgin Islands",
+        "dial_code": "+1284",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.180Z",
+        "updated_at": "2021-09-08T16:34:56.180Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "e4d7986a-e438-4283-a930-1aebf89c217c",
+        "iso2": "BN",
+        "iso3": "BRN",
+        "name": "Brunei Darussalam",
+        "dial_code": "+673",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.963Z",
+        "updated_at": "2022-02-03T21:10:48.658Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "dd13521a-4ace-49e7-b17c-df35ec6dcae8",
+        "iso2": "BG",
+        "iso3": "BGR",
+        "name": "Bulgaria",
+        "dial_code": "+359",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:53.901Z",
+        "updated_at": "2022-02-03T21:10:48.636Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "8fa06c74-4de0-44bf-a7f7-d64bfea1d06f",
+        "iso2": "BF",
+        "iso3": "BFA",
+        "name": "Burkina Faso",
+        "dial_code": "+226",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.892Z",
+        "updated_at": "2021-09-08T16:34:53.892Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "a7f79d37-a44a-4a69-8a43-f494102d66eb",
+        "iso2": "BI",
+        "iso3": "BDI",
+        "name": "Burundi",
+        "dial_code": "+257",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.919Z",
+        "updated_at": "2021-09-08T16:34:53.919Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "fb365343-c991-41e0-87ee-894e3cf74c9e",
+        "iso2": "KH",
+        "iso3": "KHM",
+        "name": "Cambodia",
+        "dial_code": "+855",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.923Z",
+        "updated_at": "2021-09-08T16:34:54.923Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "0eeb7290-88d7-4e93-817a-d422d8709a5f",
+        "iso2": "CM",
+        "iso3": "CMR",
+        "name": "Cameroon",
+        "dial_code": "+237",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.184Z",
+        "updated_at": "2022-02-03T21:10:48.739Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "3df846e0-e47e-4c2a-9333-7a58e36dc754",
+        "iso2": "CA",
+        "iso3": "CAN",
+        "name": "Canada",
+        "dial_code": "+1",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.077Z",
+        "updated_at": "2022-02-03T21:10:48.697Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "b26b8d60-4e3c-4826-b7f6-d11d36b342ce",
+        "iso2": "CV",
+        "iso3": "CPV",
+        "name": "Cape Verde",
+        "dial_code": "+238",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.229Z",
+        "updated_at": "2021-09-08T16:34:54.229Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "a87dd875-6fc8-4062-9e96-feeace41e665",
+        "iso2": "KY",
+        "iso3": "CYM",
+        "name": "Cayman Islands",
+        "dial_code": "+1345",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.985Z",
+        "updated_at": "2022-07-06T10:50:50.897Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "cf7cf7eb-3d32-4ca0-9fc9-9f6f1b84502c",
+        "iso2": "CF",
+        "iso3": "CAF",
+        "name": "Central African Rep",
+        "dial_code": "+236",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.114Z",
+        "updated_at": "2021-09-08T16:34:54.114Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "4f1c071f-0cee-4e0f-9b69-602c378df1c6",
+        "iso2": "TD",
+        "iso3": "TCD",
+        "name": "Chad",
+        "dial_code": "+235",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.945Z",
+        "updated_at": "2021-09-08T16:34:55.945Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "802ceca2-ae1e-4a26-930c-b948f3f6757c",
+        "iso2": "CL",
+        "iso3": "CHL",
+        "name": "Chile",
+        "dial_code": "+56",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.170Z",
+        "updated_at": "2022-02-03T21:10:48.731Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "f56ed7a1-0740-4668-be6d-3bff173773ef",
+        "iso2": "CN",
+        "iso3": "CHN",
+        "name": "China",
+        "dial_code": "+86",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.193Z",
+        "updated_at": "2022-07-06T10:50:50.671Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "09681b84-bcfd-4b53-bad4-949224ae4edb",
+        "iso2": "CX",
+        "iso3": "CXR",
+        "name": "Christmas Island",
+        "dial_code": "+61",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.252Z",
+        "updated_at": "2021-09-08T16:34:54.252Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "b7aee829-d819-4a15-9dcf-1bea7b3b475a",
+        "iso2": "CC",
+        "iso3": "CCK",
+        "name": "Cocos (Keeling) Islands",
+        "dial_code": "+61",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.091Z",
+        "updated_at": "2021-09-08T16:34:54.091Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "bd7b3b5b-f61d-418f-9bdd-6151c6b6d880",
+        "iso2": "CO",
+        "iso3": "COL",
+        "name": "Colombia",
+        "dial_code": "+57",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.210Z",
+        "updated_at": "2022-02-03T21:10:48.751Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "928a46eb-d03b-49aa-a6d1-3b9346db964e",
+        "iso2": "KM",
+        "iso3": "COM",
+        "name": "Comoros",
+        "dial_code": "+269",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.940Z",
+        "updated_at": "2021-09-08T16:34:54.940Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "4c82c667-9b50-4162-9a65-dd923d207420",
+        "iso2": "CD",
+        "iso3": "COD",
+        "name": "Congo, the Democratic Republic",
+        "dial_code": "+243",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.102Z",
+        "updated_at": "2021-09-08T16:34:54.102Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d0d05eff-dd64-459d-8b07-542f87b4d7a9",
+        "iso2": "CK",
+        "iso3": "COK",
+        "name": "Cook Islands",
+        "dial_code": "+682",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.159Z",
+        "updated_at": "2021-09-08T16:34:54.159Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "353ed8e4-c498-4333-8adb-a08f695b892d",
+        "iso2": "CR",
+        "iso3": "CRI",
+        "name": "Costa Rica",
+        "dial_code": "+506",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.218Z",
+        "updated_at": "2022-02-03T21:10:48.756Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "4c27ba0d-561f-49a9-8a9a-c7fdd796ecc3",
+        "iso2": "CI",
+        "iso3": "CIV",
+        "name": "Cote D'Ivoire",
+        "dial_code": "+225",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.149Z",
+        "updated_at": "2022-02-03T21:10:48.723Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "39e39ecf-4ec6-4006-889b-ba42afde9cb8",
+        "iso2": "HR",
+        "iso3": "HRV",
+        "name": "Croatia",
+        "dial_code": "+385",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.736Z",
+        "updated_at": "2022-02-03T21:10:48.947Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "d26d1c29-e4b1-4952-b6ba-af340fb4c023",
+        "iso2": "CW",
+        "iso3": "CUW",
+        "name": "Curacao",
+        "dial_code": "+599",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.237Z",
+        "updated_at": "2021-09-08T16:34:54.237Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "53f50031-81a1-4548-908e-365139972274",
+        "iso2": "CY",
+        "iso3": "CYP",
+        "name": "Cyprus",
+        "dial_code": "+357",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.263Z",
+        "updated_at": "2022-02-03T21:10:48.767Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "92067f09-414c-4235-8261-b02b14115bc8",
+        "iso2": "CZ",
+        "iso3": "CZE",
+        "name": "Czech Republic",
+        "dial_code": "+420",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.275Z",
+        "updated_at": "2022-02-03T21:10:48.773Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "7f001cdf-23cc-4d8b-af40-02b17985a2ea",
+        "iso2": "DK",
+        "iso3": "DNK",
+        "name": "Denmark",
+        "dial_code": "+45",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.307Z",
+        "updated_at": "2022-02-03T21:10:48.790Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "5aac4233-78ef-4356-a1e1-7caf982779cd",
+        "iso2": "DJ",
+        "iso3": "DJI",
+        "name": "Djibouti",
+        "dial_code": "+253",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.297Z",
+        "updated_at": "2021-09-08T16:34:54.297Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "cbd8e26d-46df-4e56-be1a-3cd6e686a953",
+        "iso2": "DM",
+        "iso3": "DMA",
+        "name": "Dominica",
+        "dial_code": "+1767",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.320Z",
+        "updated_at": "2021-09-08T16:34:54.320Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d26a5a36-748b-4357-909a-f0cf33d9804a",
+        "iso2": "DO",
+        "iso3": "DOM",
+        "name": "Dominican Republic",
+        "dial_code": "+1809",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.329Z",
+        "updated_at": "2022-02-03T21:10:48.800Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "04d6ea94-26b8-4968-9f03-7bd6ed90cbe5",
+        "iso2": "EC",
+        "iso3": "ECU",
+        "name": "Ecuador",
+        "dial_code": "+593",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.352Z",
+        "updated_at": "2022-02-03T21:10:48.811Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "9022814a-2e0a-436c-bdab-983421b7293c",
+        "iso2": "EG",
+        "iso3": "EGY",
+        "name": "Egypt",
+        "dial_code": "+20",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.371Z",
+        "updated_at": "2021-09-16T13:08:33.864Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "f2a95c97-1ce9-44ca-9a32-5e8016ea9a21",
+        "iso2": "SV",
+        "iso3": "SLV",
+        "name": "El Salvador",
+        "dial_code": "+503",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.900Z",
+        "updated_at": "2022-02-03T21:10:49.462Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a4ac6528-a178-4241-83d3-f66bce8eeb1f",
+        "iso2": "GQ",
+        "iso3": "GNQ",
+        "name": "Equatorial Guinea",
+        "dial_code": "+240",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.629Z",
+        "updated_at": "2021-09-08T16:34:54.629Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "31b18a87-a2d0-4a45-aeab-1125b5fecc85",
+        "iso2": "ER",
+        "iso3": "ERI",
+        "name": "Eritrea",
+        "dial_code": "+291",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.389Z",
+        "updated_at": "2021-09-08T16:34:54.389Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "34012d93-654a-4e79-931f-a11c2bba5b2a",
+        "iso2": "EE",
+        "iso3": "EST",
+        "name": "Estonia",
+        "dial_code": "+372",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.362Z",
+        "updated_at": "2022-02-03T21:10:48.816Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "477327bd-4641-47f3-b967-0b3fdcbbae20",
+        "iso2": "ET",
+        "iso3": "ETH",
+        "name": "Ethiopia",
+        "dial_code": "+251",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.412Z",
+        "updated_at": "2022-02-03T21:10:48.833Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "f530b145-882e-447c-9640-2f737a33baa8",
+        "iso2": "FK",
+        "iso3": "FLK",
+        "name": "Falkland Islands (Malvinas)",
+        "dial_code": "+500",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.443Z",
+        "updated_at": "2021-09-08T16:34:54.443Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "db04dd57-bdab-46f9-96d7-a03cbb2f35e0",
+        "iso2": "FO",
+        "iso3": "FRO",
+        "name": "Faroe islands",
+        "dial_code": "+298",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.469Z",
+        "updated_at": "2021-09-16T13:08:33.930Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "8855c6de-cfe4-4695-9d3e-03c7d83105af",
+        "iso2": "FJ",
+        "iso3": "FJI",
+        "name": "Fiji",
+        "dial_code": "+679",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.433Z",
+        "updated_at": "2021-09-16T13:08:33.911Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a8dcb9ef-2d0d-4312-8205-a6acb1eaaba2",
+        "iso2": "FI",
+        "iso3": "FIN",
+        "name": "Finland",
+        "dial_code": "+358",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.424Z",
+        "updated_at": "2022-02-03T21:10:48.840Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "2e0d1020-01b5-4e76-93e8-8be3cd06c1aa",
+        "iso2": "FR",
+        "iso3": "FRA",
+        "name": "France",
+        "dial_code": "+33",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.480Z",
+        "updated_at": "2022-02-03T21:10:48.853Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "7d4d8cac-76fd-4ffb-b356-5b1c61a0ccf9",
+        "iso2": "GF",
+        "iso3": "GUF",
+        "name": "French Guiana",
+        "dial_code": "+594",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.539Z",
+        "updated_at": "2021-09-08T16:34:54.539Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6e81d94c-6d45-40e0-8683-d0853ec45812",
+        "iso2": "PF",
+        "iso3": "PYF",
+        "name": "French Polynesia",
+        "dial_code": "+689",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.505Z",
+        "updated_at": "2021-09-16T13:08:34.849Z",
+        "document_types": [
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "f2c79bcc-b7cb-4f9b-9fae-63052425613e",
+        "iso2": "TF",
+        "iso3": "ATF",
+        "name": "French Southern Territories and Antarctic Lands",
+        "dial_code": "+262",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.957Z",
+        "updated_at": "2022-06-30T14:37:21.114Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "ba12e6c0-111c-400f-b5a4-ae5985ab7a5c",
+        "iso2": "GA",
+        "iso3": "GAB",
+        "name": "Gabon",
+        "dial_code": "+241",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.490Z",
+        "updated_at": "2021-09-08T16:34:54.490Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "4a3b1bf3-660a-4316-b7bf-c51c0c92d59b",
+        "iso2": "GM",
+        "iso3": "GMB",
+        "name": "Gambia",
+        "dial_code": "+220",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.594Z",
+        "updated_at": "2021-09-08T16:34:54.594Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "a47dfb40-22c7-45b9-9638-ff40e40dc302",
+        "iso2": "GE",
+        "iso3": "GEO",
+        "name": "Georgia",
+        "dial_code": "+995",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.530Z",
+        "updated_at": "2022-02-03T21:10:48.869Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a34f67e5-eb4f-4dee-9570-62e6d25ce87b",
+        "iso2": "DE",
+        "iso3": "DEU",
+        "name": "Germany",
+        "dial_code": "+49",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.286Z",
+        "updated_at": "2022-02-03T21:10:48.780Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "9686c11e-0d57-4886-ba9e-2636e0f1e64e",
+        "iso2": "GH",
+        "iso3": "GHA",
+        "name": "Ghana",
+        "dial_code": "+233",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.560Z",
+        "updated_at": "2022-02-03T21:10:48.879Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2bd2a1b6-c200-45e1-add1-01f776eeb27a",
+        "iso2": "GI",
+        "iso3": "GIB",
+        "name": "Gibraltar",
+        "dial_code": "+350",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.572Z",
+        "updated_at": "2022-02-03T21:10:48.886Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "f6908c55-f102-4bce-90dc-bcec460c4b50",
+        "iso2": "GR",
+        "iso3": "GRC",
+        "name": "Greece",
+        "dial_code": "+30",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.644Z",
+        "updated_at": "2022-02-03T21:10:48.901Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "04109f56-0ad3-418b-b81e-2e151e838a74",
+        "iso2": "GL",
+        "iso3": "GRL",
+        "name": "Greenland",
+        "dial_code": "+299",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.580Z",
+        "updated_at": "2021-09-08T16:34:54.580Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "42f54872-1d86-4a5b-8045-ea1fee159dc8",
+        "iso2": "GD",
+        "iso3": "GRD",
+        "name": "Grenada",
+        "dial_code": "+1473",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.515Z",
+        "updated_at": "2021-09-08T16:34:54.515Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "36dc2b87-0ae5-460e-939b-81f161c671e1",
+        "iso2": "GP",
+        "iso3": "GLP",
+        "name": "Guadeloupe",
+        "dial_code": "+590",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.617Z",
+        "updated_at": "2021-09-08T16:34:54.617Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "9130b154-9173-458a-87f3-111419d3a21c",
+        "iso2": "GU",
+        "iso3": "GUM",
+        "name": "Guam",
+        "dial_code": "+1671",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.676Z",
+        "updated_at": "2021-09-08T16:34:54.676Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d6106572-4896-436b-afcc-64cbc1150bec",
+        "iso2": "GT",
+        "iso3": "GTM",
+        "name": "Guatemala",
+        "dial_code": "+502",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.667Z",
+        "updated_at": "2022-02-03T21:10:48.925Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "3e9aec0b-5b48-40ee-8dc6-2daf4cba4919",
+        "iso2": "GG",
+        "iso3": "GGY",
+        "name": "Guernsey",
+        "dial_code": "+44",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.551Z",
+        "updated_at": "2022-07-06T10:50:50.740Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "43c0430c-8c95-49ef-97ec-df1a7320f6c8",
+        "iso2": "GN",
+        "iso3": "GIN",
+        "name": "Guinea",
+        "dial_code": "+224",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.604Z",
+        "updated_at": "2021-09-08T16:34:54.604Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "9f918ec7-2524-4312-8784-d3280d2cefda",
+        "iso2": "GW",
+        "iso3": "GNB",
+        "name": "Guinea Bissau",
+        "dial_code": "+245",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.687Z",
+        "updated_at": "2021-09-08T16:34:54.687Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "83649863-b6bd-4cf9-982b-a878d955b0a9",
+        "iso2": "GY",
+        "iso3": "GUY",
+        "name": "Guyana",
+        "dial_code": "+592",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.695Z",
+        "updated_at": "2021-09-08T16:34:54.695Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6506b49e-f337-419d-9bd1-18a5fb44240e",
+        "iso2": "HT",
+        "iso3": "HTI",
+        "name": "Haiti",
+        "dial_code": "+509",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.746Z",
+        "updated_at": "2021-09-08T16:34:54.746Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "17575193-b5d5-429c-a562-8788fc5670c0",
+        "iso2": "HM",
+        "iso3": "HMD",
+        "name": "Heard Island and McDonald Islands",
+        "dial_code": "+672",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.717Z",
+        "updated_at": "2022-06-30T14:37:20.744Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "288d2601-815d-4747-9e97-8bb32019895f",
+        "iso2": "HN",
+        "iso3": "HND",
+        "name": "Honduras",
+        "dial_code": "+504",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.727Z",
+        "updated_at": "2021-09-08T16:34:54.727Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6848c578-aa59-40d1-9b3f-ca64de80f1e2",
+        "iso2": "HK",
+        "iso3": "HKG",
+        "name": "Hong Kong",
+        "dial_code": "+852",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.707Z",
+        "updated_at": "2022-07-06T10:50:50.774Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "d8e34066-56a8-4927-995e-e383e7f6c148",
+        "iso2": "HU",
+        "iso3": "HUN",
+        "name": "Hungary",
+        "dial_code": "+36",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.756Z",
+        "updated_at": "2022-02-03T21:10:48.956Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "db8f5225-bc1f-40a1-83e0-da4c2150afa8",
+        "iso2": "IS",
+        "iso3": "ISL",
+        "name": "Iceland",
+        "dial_code": "+354",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.841Z",
+        "updated_at": "2022-02-03T21:10:49.002Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "visa"
+        ]
+      },
+      {
+        "id": "3057890a-29ea-4143-9f63-b32c1b78958a",
+        "iso2": "IN",
+        "iso3": "IND",
+        "name": "India",
+        "dial_code": "+91",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.809Z",
+        "updated_at": "2022-07-06T10:50:50.817Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "105cca39-86ae-4761-9ec5-e917a5b8ae1c",
+        "iso2": "ID",
+        "iso3": "IDN",
+        "name": "Indonesia",
+        "dial_code": "+62",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.769Z",
+        "updated_at": "2022-02-03T21:10:48.966Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "64f458f9-1d09-47a1-816d-28a8dc175ef1",
+        "iso2": "IQ",
+        "iso3": "IRQ",
+        "name": "Iraq",
+        "dial_code": "+964",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.831Z",
+        "updated_at": "2021-09-08T16:34:54.831Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "5dd21b49-798d-42fb-8fa3-8654f108eb8f",
+        "iso2": "IE",
+        "iso3": "IRL",
+        "name": "Ireland",
+        "dial_code": "+353",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.779Z",
+        "updated_at": "2022-02-03T21:10:48.978Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "1ef70361-7d5d-4ad4-98fe-7584a25518a6",
+        "iso2": "IM",
+        "iso3": "IMN",
+        "name": "Isle Of Man",
+        "dial_code": "+44",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.800Z",
+        "updated_at": "2022-07-06T10:50:50.808Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a616810e-108c-422c-8640-703dafd89b67",
+        "iso2": "IL",
+        "iso3": "ISR",
+        "name": "Israel",
+        "dial_code": "+972",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.791Z",
+        "updated_at": "2022-07-06T10:50:50.800Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "fb0d3612-d109-4e88-b68b-ecbd8ab9e113",
+        "iso2": "IT",
+        "iso3": "ITA",
+        "name": "Italy",
+        "dial_code": "+39",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.849Z",
+        "updated_at": "2022-02-03T21:10:49.008Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "16717eec-6dbf-4b79-8eaf-b7544ad76e0d",
+        "iso2": "JM",
+        "iso3": "JAM",
+        "name": "Jamaica",
+        "dial_code": "+1876",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.872Z",
+        "updated_at": "2021-09-16T13:08:34.327Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "89155467-6e38-4ba8-9a76-90958bfecd2b",
+        "iso2": "JP",
+        "iso3": "JPN",
+        "name": "Japan",
+        "dial_code": "+81",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.892Z",
+        "updated_at": "2022-07-06T10:50:50.867Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "4e5e7b60-ac72-4b90-9bd1-63140f24e03c",
+        "iso2": "JE",
+        "iso3": "JEY",
+        "name": "Jersey",
+        "dial_code": "+44",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.860Z",
+        "updated_at": "2022-07-06T10:50:50.848Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "be8d565a-f276-4b80-8b32-75a0b810efc1",
+        "iso2": "JO",
+        "iso3": "JOR",
+        "name": "Jordan",
+        "dial_code": "+962",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.881Z",
+        "updated_at": "2022-02-03T21:10:49.021Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "410f05e7-f310-4d56-8213-e7c8ecb9e3ca",
+        "iso2": "KZ",
+        "iso3": "KAZ",
+        "name": "Kazakhstan",
+        "dial_code": "+76",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.993Z",
+        "updated_at": "2021-09-08T16:34:54.993Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "47a4d86c-5b30-4bab-acad-678bf806cf2a",
+        "iso2": "KE",
+        "iso3": "KEN",
+        "name": "Kenya",
+        "dial_code": "+254",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.901Z",
+        "updated_at": "2022-02-03T21:10:49.034Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "58c65f36-05a0-476d-a162-9febcfb291cf",
+        "iso2": "KI",
+        "iso3": "KIR",
+        "name": "Kiribati",
+        "dial_code": "+686",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.931Z",
+        "updated_at": "2021-09-08T16:34:54.931Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "f0fd32a8-d43b-4249-9466-6fc2fc781fc1",
+        "iso2": "XK",
+        "iso3": "UNK",
+        "name": "Kosovo",
+        "dial_code": "+383",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.236Z",
+        "updated_at": "2021-09-08T16:34:56.236Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "2286c0b9-9c5a-4f53-96aa-c0d9465ac61e",
+        "iso2": "KW",
+        "iso3": "KWT",
+        "name": "Kuwait",
+        "dial_code": "+965",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.974Z",
+        "updated_at": "2022-02-03T21:10:49.051Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "a4db76d2-70e3-4a87-aa8c-88930f39cb7a",
+        "iso2": "KG",
+        "iso3": "KGZ",
+        "name": "Kyrgyzstan",
+        "dial_code": "+996",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.913Z",
+        "updated_at": "2021-09-08T16:34:54.913Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d6e32a2c-044f-4c21-823b-86c6be95b765",
+        "iso2": "LA",
+        "iso3": "LAO",
+        "name": "Lao People's Democratic Republic",
+        "dial_code": "+856",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.011Z",
+        "updated_at": "2021-09-08T16:34:55.011Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "dda40f14-d155-4be3-a79b-9be47190e980",
+        "iso2": "LV",
+        "iso3": "LVA",
+        "name": "Latvia",
+        "dial_code": "+371",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.101Z",
+        "updated_at": "2022-02-03T21:10:49.105Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "047f15c6-978f-48b9-b591-f125f9b1760d",
+        "iso2": "LB",
+        "iso3": "LBN",
+        "name": "Lebanon",
+        "dial_code": "+961",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.020Z",
+        "updated_at": "2021-09-08T16:34:55.020Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "52231b39-ff58-4b77-b320-e89d91e23ad1",
+        "iso2": "LS",
+        "iso3": "LSO",
+        "name": "Lesotho",
+        "dial_code": "+266",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.068Z",
+        "updated_at": "2022-02-03T21:10:49.079Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "d1f653ec-0a7c-4941-b339-f6c01074804d",
+        "iso2": "LR",
+        "iso3": "LBR",
+        "name": "Liberia",
+        "dial_code": "+231",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.059Z",
+        "updated_at": "2021-09-08T16:34:55.059Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d99d2950-b92c-45a4-ab4e-08dcf4cffa3c",
+        "iso2": "LI",
+        "iso3": "LIE",
+        "name": "Liechtenstein",
+        "dial_code": "+423",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.041Z",
+        "updated_at": "2022-02-03T21:10:49.066Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "4b5df98d-82c7-40a0-95da-0ad978fc0c78",
+        "iso2": "LT",
+        "iso3": "LTU",
+        "name": "Lithuania",
+        "dial_code": "+370",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.077Z",
+        "updated_at": "2022-02-03T21:10:49.089Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "c8f93095-0e7b-41a8-b5b6-c1ac392e18a2",
+        "iso2": "LU",
+        "iso3": "LUX",
+        "name": "Luxembourg",
+        "dial_code": "+352",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.090Z",
+        "updated_at": "2022-02-03T21:10:49.097Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "2f7073a8-85a7-4a14-8cb4-9f8a33b9cd64",
+        "iso2": "MO",
+        "iso3": "MAC",
+        "name": "Macau",
+        "dial_code": "+853",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.232Z",
+        "updated_at": "2022-02-03T21:10:49.182Z",
+        "document_types": [
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "4ee91376-3e21-41ee-9fa1-8e8a2013ffb9",
+        "iso2": "MK",
+        "iso3": "MKD",
+        "name": "Macedonia",
+        "dial_code": "+389",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.189Z",
+        "updated_at": "2022-02-03T21:10:49.167Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "ee37e1c8-5d6f-4ab8-aae1-98a634f8814d",
+        "iso2": "MG",
+        "iso3": "MDG",
+        "name": "Madagascar",
+        "dial_code": "+261",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.158Z",
+        "updated_at": "2021-09-08T16:34:55.158Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6193f94d-aee9-49b2-9d52-8f3e27f93262",
+        "iso2": "MW",
+        "iso3": "MWI",
+        "name": "Malawi",
+        "dial_code": "+265",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.318Z",
+        "updated_at": "2022-02-03T21:10:49.214Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "4374149f-49ed-4f23-b05a-1b8dd7d1f4a8",
+        "iso2": "MY",
+        "iso3": "MYS",
+        "name": "Malaysia",
+        "dial_code": "+60",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.338Z",
+        "updated_at": "2022-02-03T21:10:49.231Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "d2f212b6-5d50-4a7e-bf6f-bc34cadff4f2",
+        "iso2": "MV",
+        "iso3": "MDV",
+        "name": "Maldives",
+        "dial_code": "+960",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.309Z",
+        "updated_at": "2021-09-08T16:34:55.309Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "7fa65110-08b9-486e-a736-abd7da0caf6a",
+        "iso2": "ML",
+        "iso3": "MLI",
+        "name": "Mali",
+        "dial_code": "+223",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.198Z",
+        "updated_at": "2021-09-08T16:34:55.198Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "26b9ef17-b8ff-40c3-9fb6-d175cfead756",
+        "iso2": "MT",
+        "iso3": "MLT",
+        "name": "Malta",
+        "dial_code": "+356",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.288Z",
+        "updated_at": "2022-02-03T21:10:49.197Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "bdefca14-e2b5-4b32-9970-6bda4d4c0ad6",
+        "iso2": "MH",
+        "iso3": "MHL",
+        "name": "Marshall Islands",
+        "dial_code": "+692",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.179Z",
+        "updated_at": "2021-09-08T16:34:55.179Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d903c02e-7827-4e0f-921f-4108a7996c93",
+        "iso2": "MQ",
+        "iso3": "MTQ",
+        "name": "Martinique",
+        "dial_code": "+596",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.255Z",
+        "updated_at": "2021-09-08T16:34:55.255Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "c3b3e7b2-35af-44f8-a0cd-dfda45f108ea",
+        "iso2": "MR",
+        "iso3": "MRT",
+        "name": "Mauritania",
+        "dial_code": "+222",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.266Z",
+        "updated_at": "2021-09-08T16:34:55.266Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "838ebbed-3d5a-4530-9b85-00250dbb92b0",
+        "iso2": "MU",
+        "iso3": "MUS",
+        "name": "Mauritius",
+        "dial_code": "+230",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.297Z",
+        "updated_at": "2022-02-03T21:10:49.204Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "ac0a6c62-13d3-440e-8f7c-76dc63ed35b4",
+        "iso2": "YT",
+        "iso3": "MYT",
+        "name": "Mayotte",
+        "dial_code": "+262",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:56.255Z",
+        "updated_at": "2021-09-08T16:34:56.255Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d1c5bffa-0a51-4c7b-b6a1-b574a3c2988c",
+        "iso2": "MX",
+        "iso3": "MEX",
+        "name": "Mexico",
+        "dial_code": "+52",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.328Z",
+        "updated_at": "2021-09-16T13:08:34.698Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "9bd7898a-9a87-41cc-82a0-fd5692899181",
+        "iso2": "FM",
+        "iso3": "FSM",
+        "name": "Micronesia",
+        "dial_code": "+691",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.457Z",
+        "updated_at": "2021-09-08T16:34:54.457Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "35c53a57-3790-4c11-8184-dbdb906d551a",
+        "iso2": "MD",
+        "iso3": "MDA",
+        "name": "Moldova",
+        "dial_code": "+373",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.128Z",
+        "updated_at": "2022-02-03T21:10:49.140Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "8b50fd41-1ecf-483b-82b9-cc4f595a8284",
+        "iso2": "MC",
+        "iso3": "MCO",
+        "name": "Monaco",
+        "dial_code": "+377",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.119Z",
+        "updated_at": "2022-02-03T21:10:49.130Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "0aa6726f-74f8-4e38-960f-214a74aeff56",
+        "iso2": "MN",
+        "iso3": "MNG",
+        "name": "Mongolia",
+        "dial_code": "+976",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.223Z",
+        "updated_at": "2021-09-16T13:08:34.633Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "ccf2d8cf-e643-4e81-8b09-30b6557038b1",
+        "iso2": "ME",
+        "iso3": "MNE",
+        "name": "Montenegro",
+        "dial_code": "+382",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.138Z",
+        "updated_at": "2022-02-03T21:10:49.150Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "8458d773-ab34-4e4f-a1b2-af66082dfaff",
+        "iso2": "MS",
+        "iso3": "MSR",
+        "name": "Montserrat",
+        "dial_code": "+1664",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.275Z",
+        "updated_at": "2021-09-08T16:34:55.275Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "d75cab43-1d75-4654-9a7a-586a9b39dad9",
+        "iso2": "MA",
+        "iso3": "MAR",
+        "name": "Morocco",
+        "dial_code": "+212",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.111Z",
+        "updated_at": "2022-02-03T21:10:49.121Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "bf1d04c1-2a7b-4d26-aaf0-6cae7125af2a",
+        "iso2": "MZ",
+        "iso3": "MOZ",
+        "name": "Mozambique",
+        "dial_code": "+258",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.349Z",
+        "updated_at": "2022-02-03T21:10:49.237Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "039c3692-bbae-495e-945d-aa4dbb7cb9d8",
+        "iso2": "MM",
+        "iso3": "MMR",
+        "name": "Myanmar (Burma)",
+        "dial_code": "+95",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.209Z",
+        "updated_at": "2021-09-08T16:34:55.209Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "eedce059-9238-4906-81d0-e98c0e2010d9",
+        "iso2": "NA",
+        "iso3": "NAM",
+        "name": "Namibia",
+        "dial_code": "+264",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.356Z",
+        "updated_at": "2022-02-03T21:10:49.244Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2561f290-f904-4b97-8118-3e70a51750c6",
+        "iso2": "NR",
+        "iso3": "NRU",
+        "name": "Nauru",
+        "dial_code": "+674",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.446Z",
+        "updated_at": "2021-09-08T16:34:55.446Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "5abb091f-1911-4469-81c5-383181762979",
+        "iso2": "NP",
+        "iso3": "NPL",
+        "name": "Nepal",
+        "dial_code": "+977",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.437Z",
+        "updated_at": "2021-09-08T16:34:55.437Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "afe69df8-63c8-4188-9989-1df124f33023",
+        "iso2": "NL",
+        "iso3": "NLD",
+        "name": "Netherlands",
+        "dial_code": "+31",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.417Z",
+        "updated_at": "2022-02-03T21:10:49.266Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "d6c31f16-b206-4e9d-81f4-0fff55e5d6a3",
+        "iso2": "NC",
+        "iso3": "NCL",
+        "name": "New Caledonia",
+        "dial_code": "+687",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.365Z",
+        "updated_at": "2021-09-08T16:34:55.365Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "22fde497-9050-4da6-80a2-d89f636ee679",
+        "iso2": "NZ",
+        "iso3": "NZL",
+        "name": "New Zealand",
+        "dial_code": "+64",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.464Z",
+        "updated_at": "2022-07-06T10:50:50.994Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "7321367d-7088-4464-a4ef-257c5fac55e9",
+        "iso2": "NI",
+        "iso3": "NIC",
+        "name": "Nicaragua",
+        "dial_code": "+505",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.407Z",
+        "updated_at": "2021-09-08T16:34:55.407Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "9597e467-57aa-43c6-8fe3-b1a55cf82f4b",
+        "iso2": "NE",
+        "iso3": "NER",
+        "name": "Niger",
+        "dial_code": "+227",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.376Z",
+        "updated_at": "2021-09-08T16:34:55.376Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "1c102730-2b9d-41ec-a16b-7066df0e0ba6",
+        "iso2": "NG",
+        "iso3": "NGA",
+        "name": "Nigeria",
+        "dial_code": "+234",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.398Z",
+        "updated_at": "2022-02-03T21:10:49.256Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "3b615068-c105-41a5-8ac8-358847c06689",
+        "iso2": "NU",
+        "iso3": "NIU",
+        "name": "Niue",
+        "dial_code": "+683",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.455Z",
+        "updated_at": "2021-09-08T16:34:55.455Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "89c77f3a-c91b-4926-8966-f21ee36fedd2",
+        "iso2": "NF",
+        "iso3": "NFK",
+        "name": "Norfolk Island",
+        "dial_code": "+672",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.388Z",
+        "updated_at": "2021-09-08T16:34:55.388Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "5973ee20-c964-426d-a2e8-91d7d0ef00a1",
+        "iso2": "MP",
+        "iso3": "MNP",
+        "name": "North Mariana Islands",
+        "dial_code": "+1670",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.246Z",
+        "updated_at": "2021-09-08T16:34:55.246Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "96daf82a-78fa-4b0d-b7ac-c2cf18f7e2d9",
+        "iso2": "NO",
+        "iso3": "NOR",
+        "name": "Norway",
+        "dial_code": "+47",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.426Z",
+        "updated_at": "2022-02-03T21:10:49.273Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "d85cb310-fe22-4bb5-b4cc-da7b043f42cb",
+        "iso2": "OM",
+        "iso3": "OMN",
+        "name": "Oman",
+        "dial_code": "+968",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.473Z",
+        "updated_at": "2022-02-03T21:10:49.290Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "97c9a750-e68f-4ddc-997d-89c4513dc45c",
+        "iso2": "PK",
+        "iso3": "PAK",
+        "name": "Pakistan",
+        "dial_code": "+92",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.536Z",
+        "updated_at": "2022-02-03T21:10:49.315Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "b3a03a8b-bee6-433a-bff6-d7fd620114b7",
+        "iso2": "PW",
+        "iso3": "PLW",
+        "name": "Palau",
+        "dial_code": "+680",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.623Z",
+        "updated_at": "2021-09-08T16:34:55.623Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "63750600-996f-42cc-ae82-4bbba7ecf14d",
+        "iso2": "PA",
+        "iso3": "PAN",
+        "name": "Panama",
+        "dial_code": "+507",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.482Z",
+        "updated_at": "2021-09-08T16:34:55.482Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "aa203a5c-3c33-471b-bdb5-df4178cfd26c",
+        "iso2": "PG",
+        "iso3": "PNG",
+        "name": "Papua New Guinea",
+        "dial_code": "+675",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.518Z",
+        "updated_at": "2021-09-08T16:34:55.518Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "9799840e-6237-452b-a731-636fafe7f5f1",
+        "iso2": "PY",
+        "iso3": "PRY",
+        "name": "Paraguay",
+        "dial_code": "+595",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.634Z",
+        "updated_at": "2022-02-03T21:10:49.354Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "1f603ea8-9db3-4866-b255-279ed1bd25c2",
+        "iso2": "PE",
+        "iso3": "PER",
+        "name": "Peru",
+        "dial_code": "+51",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.493Z",
+        "updated_at": "2022-02-03T21:10:49.297Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "259ad0a4-b9ee-43c6-85e4-48e77278f2c1",
+        "iso2": "PH",
+        "iso3": "PHL",
+        "name": "Philippines",
+        "dial_code": "+63",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.526Z",
+        "updated_at": "2022-02-03T21:10:49.309Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "c155ebdf-a474-443c-9de7-2c3bf0cee6cd",
+        "iso2": "PN",
+        "iso3": "PCN",
+        "name": "Pitcairn",
+        "dial_code": "+64",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.566Z",
+        "updated_at": "2021-09-08T16:34:55.566Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "2cf49db2-21aa-46ed-92da-f1007a77b00f",
+        "iso2": "PL",
+        "iso3": "POL",
+        "name": "Poland",
+        "dial_code": "+48",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.545Z",
+        "updated_at": "2022-02-03T21:10:49.324Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "0ab40fb6-be14-46be-9842-4a0dfa9711de",
+        "iso2": "PT",
+        "iso3": "PRT",
+        "name": "Portugal",
+        "dial_code": "+351",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.609Z",
+        "updated_at": "2022-02-03T21:10:49.346Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "e06a0b89-1ae4-47e5-a6ea-58bb44f26817",
+        "iso2": "PR",
+        "iso3": "PRI",
+        "name": "Puerto Rico",
+        "dial_code": "+1787",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.575Z",
+        "updated_at": "2022-02-03T21:10:49.335Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "924a68f4-b1b2-4595-8b13-1b905a001ea3",
+        "iso2": "QA",
+        "iso3": "QAT",
+        "name": "Qatar",
+        "dial_code": "+974",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.644Z",
+        "updated_at": "2022-02-03T21:10:49.363Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "7d748225-31bc-443c-9192-422180f3f106",
+        "iso2": "CG",
+        "iso3": "COG",
+        "name": "Republic of the Congo (Brazzavile)",
+        "dial_code": "+242",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.123Z",
+        "updated_at": "2021-09-08T16:34:54.123Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "cd04b009-34c9-4925-994b-f14ec2ca0072",
+        "iso2": "RE",
+        "iso3": "REU",
+        "name": "Réunion",
+        "dial_code": "+262",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.653Z",
+        "updated_at": "2021-09-08T16:34:55.653Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "054bf81c-04de-4dbe-a69e-acccd99ce569",
+        "iso2": "RO",
+        "iso3": "ROU",
+        "name": "Romania",
+        "dial_code": "+40",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.663Z",
+        "updated_at": "2022-02-03T21:10:49.371Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "d37d7e6e-6437-467f-bdd0-1dbbedb8f6cc",
+        "iso2": "RU",
+        "iso3": "RUS",
+        "name": "Russian Federation",
+        "dial_code": "+7",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.688Z",
+        "updated_at": "2021-09-16T13:08:35.033Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "ed6c3b81-d3a9-43a0-a0eb-8a4e0a72c34b",
+        "iso2": "RW",
+        "iso3": "RWA",
+        "name": "Rwanda",
+        "dial_code": "+250",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.720Z",
+        "updated_at": "2022-02-03T21:10:49.388Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2560f8d5-b33f-4dc2-b156-5b988cd4b410",
+        "iso2": "BL",
+        "iso3": "BLM",
+        "name": "Saint Berthélemy",
+        "dial_code": "+590",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.939Z",
+        "updated_at": "2021-09-08T16:34:53.939Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "053cde95-b448-49c3-84dd-679fdf3f8250",
+        "iso2": "SH",
+        "iso3": "SHN",
+        "name": "Saint Helena, Ascension and Tristan",
+        "dial_code": "+290",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.787Z",
+        "updated_at": "2021-09-08T16:34:55.787Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "fd6610c9-7461-42db-9821-be0015aaa30c",
+        "iso2": "MF",
+        "iso3": "MAF",
+        "name": "Saint Martin (French part)",
+        "dial_code": "+590",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.147Z",
+        "updated_at": "2021-09-16T13:08:34.592Z",
+        "document_types": [
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "071a5bd7-3141-4811-9ce6-c4b9063d71b6",
+        "iso2": "PM",
+        "iso3": "SPM",
+        "name": "Saint Pierre and Miquelon",
+        "dial_code": "+508",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.554Z",
+        "updated_at": "2021-09-08T16:34:55.554Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "a6cdb531-a117-443f-bc21-cb942b34f102",
+        "iso2": "WS",
+        "iso3": "WSM",
+        "name": "Samoa",
+        "dial_code": "+685",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.228Z",
+        "updated_at": "2021-09-08T16:34:56.228Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "7bcfbd44-133c-4666-a28f-6d422785414d",
+        "iso2": "SM",
+        "iso3": "SMR",
+        "name": "San Marino",
+        "dial_code": "+378",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.843Z",
+        "updated_at": "2021-09-08T16:34:55.843Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "7d267b60-d867-4aa1-a858-c10e482de0c2",
+        "iso2": "ST",
+        "iso3": "STP",
+        "name": "São Tomé and Principe",
+        "dial_code": "+239",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.889Z",
+        "updated_at": "2021-09-08T16:34:55.889Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "87ccd7de-780f-4922-abb9-a90a909916da",
+        "iso2": "SA",
+        "iso3": "SAU",
+        "name": "Saudi Arabia",
+        "dial_code": "+966",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.730Z",
+        "updated_at": "2022-02-03T21:10:49.400Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "19f9a3cb-1605-431a-940c-3516ad537aa8",
+        "iso2": "SN",
+        "iso3": "SEN",
+        "name": "Senegal",
+        "dial_code": "+221",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.855Z",
+        "updated_at": "2022-02-03T21:10:49.443Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "a96ae9fb-a8c3-422d-94f6-263f996f4827",
+        "iso2": "RS",
+        "iso3": "SRB",
+        "name": "Serbia",
+        "dial_code": "+381",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.673Z",
+        "updated_at": "2022-02-03T21:10:49.380Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "69c6082b-995b-406b-9a01-d24e4f7611cc",
+        "iso2": "SC",
+        "iso3": "SYC",
+        "name": "Seychelles",
+        "dial_code": "+248",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.749Z",
+        "updated_at": "2021-09-08T16:34:55.749Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "eb15d62e-df1e-45ca-b2a3-a7844f2ea43b",
+        "iso2": "SL",
+        "iso3": "SLE",
+        "name": "Sierra Leone",
+        "dial_code": "+232",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.834Z",
+        "updated_at": "2021-09-08T16:34:55.834Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "ead5f650-a7a8-4623-a815-664bb875f271",
+        "iso2": "SG",
+        "iso3": "SGP",
+        "name": "Singapore",
+        "dial_code": "+65",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.774Z",
+        "updated_at": "2022-07-06T10:50:51.052Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "901d2502-7e1a-47da-8660-335283c13f83",
+        "iso2": "SK",
+        "iso3": "SVK",
+        "name": "Slovakia",
+        "dial_code": "+421",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.823Z",
+        "updated_at": "2022-02-03T21:10:49.431Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "c0b57723-7ae0-405b-8cb4-4e6cc28acda7",
+        "iso2": "SI",
+        "iso3": "SVN",
+        "name": "Slovenia",
+        "dial_code": "+386",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.799Z",
+        "updated_at": "2021-09-08T16:34:55.799Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "4353e8fa-2c7f-44fb-a497-c43be78b6039",
+        "iso2": "SB",
+        "iso3": "SLB",
+        "name": "Solomon Islands",
+        "dial_code": "+677",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.740Z",
+        "updated_at": "2021-09-08T16:34:55.740Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "9eeb36fe-4b7a-4053-a4bb-b680b7301bff",
+        "iso2": "SO",
+        "iso3": "SOM",
+        "name": "Somalia",
+        "dial_code": "+252",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.865Z",
+        "updated_at": "2021-09-08T16:34:55.865Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "132dedf8-b6c7-4727-9025-47a375dfcba6",
+        "iso2": "ZA",
+        "iso3": "ZAF",
+        "name": "South Africa",
+        "dial_code": "+27",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:56.265Z",
+        "updated_at": "2022-07-06T10:50:51.167Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "2e179548-b6fd-4d33-ab67-118f7092dfc1",
+        "iso2": "GS",
+        "iso3": "SGS",
+        "name": "South Georgia and the South Sandwich Islands",
+        "dial_code": "+500",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.652Z",
+        "updated_at": "2021-09-08T16:34:54.652Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "c32c7e82-0122-479a-9ea8-f9d8bb898f57",
+        "iso2": "KR",
+        "iso3": "KOR",
+        "name": "South Korea",
+        "dial_code": "+82",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.964Z",
+        "updated_at": "2022-07-06T10:50:50.886Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "6033aa0c-c7c2-49f3-8c23-7cf45d9dc5f3",
+        "iso2": "ES",
+        "iso3": "ESP",
+        "name": "Spain",
+        "dial_code": "+34",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.400Z",
+        "updated_at": "2022-02-03T21:10:48.828Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "760ab75a-53a3-4996-8542-bb20eb9fc397",
+        "iso2": "LK",
+        "iso3": "LKA",
+        "name": "Sri Lanka",
+        "dial_code": "+94",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.050Z",
+        "updated_at": "2021-09-16T13:08:34.461Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "81137b3b-fc67-4a6a-9ef8-58a7c5efb93c",
+        "iso2": "KN",
+        "iso3": "KNA",
+        "name": "St Kitts & Nevis",
+        "dial_code": "+1869",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.954Z",
+        "updated_at": "2021-09-08T16:34:54.954Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "15c65281-fc5f-4929-b3e8-16c9de3cc15e",
+        "iso2": "LC",
+        "iso3": "LCA",
+        "name": "St Lucia",
+        "dial_code": "+1758",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.030Z",
+        "updated_at": "2021-09-08T16:34:55.030Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "86fe670a-128d-4047-8f7f-44849e1cacf8",
+        "iso2": "SX",
+        "iso3": "SXM",
+        "name": "St Maarten",
+        "dial_code": "+1721",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.910Z",
+        "updated_at": "2021-09-08T16:34:55.910Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "3f1153a8-e2ce-467f-8f97-97ddfba778a3",
+        "iso2": "VC",
+        "iso3": "VCT",
+        "name": "St. Vincent and the Grenadines",
+        "dial_code": "+1784",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.155Z",
+        "updated_at": "2021-09-08T16:34:56.155Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "1f602b98-12aa-435c-912c-b1c62cc13f84",
+        "iso2": "SR",
+        "iso3": "SUR",
+        "name": "Suriname",
+        "dial_code": "+597",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.877Z",
+        "updated_at": "2021-09-08T16:34:55.877Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "f989e329-bbfc-4a99-abb4-fc06f33181eb",
+        "iso2": "SJ",
+        "iso3": "SJM",
+        "name": "Svalbard and Mayen",
+        "dial_code": "+4779",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.812Z",
+        "updated_at": "2021-09-08T16:34:55.812Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "e495391c-5461-4100-943d-3359a9ae5c77",
+        "iso2": "SZ",
+        "iso3": "SWZ",
+        "name": "Swaziland",
+        "dial_code": "+268",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.922Z",
+        "updated_at": "2022-02-03T21:10:49.473Z",
+        "document_types": [
+          "passport",
+          "state_id"
+        ]
+      },
+      {
+        "id": "f4fbd6ca-5ef2-465e-8ee3-9df228dfdb65",
+        "iso2": "SE",
+        "iso3": "SWE",
+        "name": "Sweden",
+        "dial_code": "+46",
+        "eea_country": true,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:55.761Z",
+        "updated_at": "2022-02-03T21:10:49.411Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "02977493-5f72-4d00-a60f-440ecd134961",
+        "iso2": "CH",
+        "iso3": "CHE",
+        "name": "Switzerland",
+        "dial_code": "+41",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.133Z",
+        "updated_at": "2022-02-03T21:10:48.712Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "53744a82-dca9-4c7e-bd1e-e2ae367b38ef",
+        "iso2": "TW",
+        "iso3": "TWN",
+        "name": "Taiwan",
+        "dial_code": "+886",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:56.070Z",
+        "updated_at": "2022-07-06T10:50:51.115Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "29088e4c-5d42-4b75-bb2e-b3ccf0de77d3",
+        "iso2": "TJ",
+        "iso3": "TJK",
+        "name": "Tajikistan",
+        "dial_code": "+992",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.985Z",
+        "updated_at": "2021-09-08T16:34:55.985Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "b249ec22-b27b-463b-92e5-1ac159d1ea58",
+        "iso2": "TZ",
+        "iso3": "TZA",
+        "name": "Tanzania",
+        "dial_code": "+255",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.079Z",
+        "updated_at": "2022-02-03T21:10:49.532Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "92199c01-938b-43fd-a8dc-e5c5e70f2178",
+        "iso2": "TH",
+        "iso3": "THA",
+        "name": "Thailand",
+        "dial_code": "+66",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.977Z",
+        "updated_at": "2022-02-03T21:10:49.490Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "be081fa7-adeb-491b-92c4-c74e168607ab",
+        "iso2": "TL",
+        "iso3": "TLS",
+        "name": "Timor-Leste",
+        "dial_code": "+670",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.005Z",
+        "updated_at": "2021-09-08T16:34:56.005Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "15f0f15d-65e9-4922-9e5d-5fb16a975cd8",
+        "iso2": "TG",
+        "iso3": "TGO",
+        "name": "Togo",
+        "dial_code": "+228",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.967Z",
+        "updated_at": "2021-09-08T16:34:55.967Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "4c84f418-ebe3-418c-96d5-5078a6f3a39d",
+        "iso2": "TK",
+        "iso3": "TKL",
+        "name": "Tokelau",
+        "dial_code": "+690",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.994Z",
+        "updated_at": "2021-09-08T16:34:55.994Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "ddecb9b7-c290-47be-b8a2-11b49668318c",
+        "iso2": "TO",
+        "iso3": "TON",
+        "name": "Tonga",
+        "dial_code": "+676",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.033Z",
+        "updated_at": "2021-09-08T16:34:56.033Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "74d2898b-d074-4100-81e9-561d61129ad0",
+        "iso2": "TT",
+        "iso3": "TTO",
+        "name": "Trinidad & Tobago",
+        "dial_code": "+1868",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.051Z",
+        "updated_at": "2022-02-03T21:10:49.516Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "d4c2dac1-225c-4923-8da8-10cf99a2bb1d",
+        "iso2": "TN",
+        "iso3": "TUN",
+        "name": "Tunisia",
+        "dial_code": "+216",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.024Z",
+        "updated_at": "2021-09-16T13:08:35.252Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "cadcd016-6af5-4094-b9eb-ff3d60b28729",
+        "iso2": "TR",
+        "iso3": "TUR",
+        "name": "Turkey",
+        "dial_code": "+90",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.041Z",
+        "updated_at": "2022-02-03T21:10:49.509Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "731845ac-44ab-48d1-8340-4e45b70862f2",
+        "iso2": "TM",
+        "iso3": "TKM",
+        "name": "Turkmenistan",
+        "dial_code": "+993",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.015Z",
+        "updated_at": "2021-09-08T16:34:56.015Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "f5c052a4-4787-42c8-ba6a-b0861079c2bb",
+        "iso2": "TC",
+        "iso3": "TCA",
+        "name": "Turks & Caicos",
+        "dial_code": "+1649",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.935Z",
+        "updated_at": "2021-09-08T16:34:55.935Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "12048312-9a16-487c-9138-884b1c3db315",
+        "iso2": "TV",
+        "iso3": "TUV",
+        "name": "Tuvalu",
+        "dial_code": "+688",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.060Z",
+        "updated_at": "2021-09-08T16:34:56.060Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "c7cae49e-797e-403c-8946-328035925b14",
+        "iso2": "UG",
+        "iso3": "UGA",
+        "name": "Uganda",
+        "dial_code": "+256",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.097Z",
+        "updated_at": "2022-02-03T21:10:49.546Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "4500d36c-8544-4650-9e3b-22ee0eee8610",
+        "iso2": "UA",
+        "iso3": "UKR",
+        "name": "Ukraine",
+        "dial_code": "+380",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.088Z",
+        "updated_at": "2022-02-03T21:10:49.540Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "ed05e096-5b01-48f3-ac3d-7980629cdd9f",
+        "iso2": "AE",
+        "iso3": "ARE",
+        "name": "United Arab Emirates",
+        "dial_code": "+971",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:53.693Z",
+        "updated_at": "2022-02-03T21:10:48.529Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id"
+        ]
+      },
+      {
+        "id": "9d358274-99a1-4596-b3f7-f3d67ee2f81e",
+        "iso2": "GB",
+        "iso3": "GBR",
+        "name": "United Kingdom",
+        "dial_code": "+44",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:54.506Z",
+        "updated_at": "2022-02-03T21:10:48.861Z",
+        "document_types": [
+          "passport",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "2f7c7f37-3dbb-4596-8092-236786710aef",
+        "iso2": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "dial_code": "+1",
+        "eea_country": false,
+        "permitted_jurisdiction": true,
+        "created_at": "2021-09-08T16:34:56.117Z",
+        "updated_at": "2022-02-03T21:10:49.555Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence",
+          "biometric_state_id",
+          "visa"
+        ]
+      },
+      {
+        "id": "0b7f158e-6f58-49c2-87d3-e68d2a868ba8",
+        "iso2": "UM",
+        "iso3": "UMI",
+        "name": "United States Minor Outlying Islands",
+        "dial_code": "+246",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.107Z",
+        "updated_at": "2022-06-30T14:37:21.177Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "644e17ad-8883-4ac7-bddc-561c660b3e81",
+        "iso2": "VI",
+        "iso3": "VIR",
+        "name": "United States Virgin Islands",
+        "dial_code": "+1 340",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.189Z",
+        "updated_at": "2021-09-08T16:34:56.189Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "cbcd955b-689e-476f-a9a7-aa4b60c32195",
+        "iso2": "UY",
+        "iso3": "URY",
+        "name": "Uruguay",
+        "dial_code": "+598",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.127Z",
+        "updated_at": "2022-02-03T21:10:49.561Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "cf6cccef-8fae-4b1f-b4f6-8afcc2f94cff",
+        "iso2": "UZ",
+        "iso3": "UZB",
+        "name": "Uzbekistan",
+        "dial_code": "+998",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.135Z",
+        "updated_at": "2022-02-03T21:10:49.566Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "94c3dd1a-d39c-47d6-9178-bea752904ef2",
+        "iso2": "VU",
+        "iso3": "VUT",
+        "name": "Vanuatu",
+        "dial_code": "+678",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.208Z",
+        "updated_at": "2021-09-08T16:34:56.208Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "81dc2aa3-8ad2-4348-814c-81f6f203f2f0",
+        "iso2": "VA",
+        "iso3": "VAT",
+        "name": "Vatican City State (Holy See)",
+        "dial_code": "+379",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.145Z",
+        "updated_at": "2021-09-08T16:34:56.145Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "cbfbf76a-80e8-4d7c-b801-5e6cae9909a0",
+        "iso2": "VE",
+        "iso3": "VEN",
+        "name": "Venezuela",
+        "dial_code": "+58",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.166Z",
+        "updated_at": "2022-02-03T21:10:49.577Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "794a3b86-f4dc-46b7-8dee-89a5de1a66c8",
+        "iso2": "VN",
+        "iso3": "VNM",
+        "name": "Vietnam",
+        "dial_code": "+84",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.200Z",
+        "updated_at": "2022-02-03T21:10:49.588Z",
+        "document_types": [
+          "passport",
+          "state_id",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "bf12adea-5f2f-4713-8802-ac32e872d532",
+        "iso2": "WF",
+        "iso3": "WLF",
+        "name": "Wallis and Futuna",
+        "dial_code": "+681",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.218Z",
+        "updated_at": "2021-09-08T16:34:56.218Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "55c90282-88d6-4c02-aae8-a8a2cb62cc8c",
+        "iso2": "PS",
+        "iso3": "PSE",
+        "name": "West Bank (Palestinian Territory, Occupied)",
+        "dial_code": "+970",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:55.590Z",
+        "updated_at": "2021-09-08T16:34:55.590Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "20fd3f7b-3c73-4691-b682-0e5c1061df87",
+        "iso2": "EH",
+        "iso3": "ESH",
+        "name": "Western Sahara",
+        "dial_code": "+212",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:54.380Z",
+        "updated_at": "2021-09-08T16:34:54.380Z",
+        "document_types": [
+          "passport"
+        ]
+      },
+      {
+        "id": "454ae190-38e4-4798-b700-248064e34886",
+        "iso2": "YE",
+        "iso3": "YEM",
+        "name": "Yemen",
+        "dial_code": "+967",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.245Z",
+        "updated_at": "2021-09-16T13:08:35.489Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "d848c391-9198-46e4-94cb-689d35d4b20d",
+        "iso2": "ZM",
+        "iso3": "ZMB",
+        "name": "Zambia",
+        "dial_code": "+260",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.275Z",
+        "updated_at": "2021-09-16T13:08:35.522Z",
+        "document_types": [
+          "passport",
+          "driving_licence"
+        ]
+      },
+      {
+        "id": "4eccef25-cb1c-4d02-af15-8f843b47cdb9",
+        "iso2": "ZW",
+        "iso3": "ZWE",
+        "name": "Zimbabwe",
+        "dial_code": "+263",
+        "eea_country": false,
+        "permitted_jurisdiction": false,
+        "created_at": "2021-09-08T16:34:56.284Z",
+        "updated_at": "2021-09-08T16:34:56.284Z",
+        "document_types": [
+          "passport"
+        ]
+      }
+    ]
+  }
+}
