@@ -286,10 +286,10 @@ paths:
                                 description: Country UUID
                               iso2:
                                 type: string
-                                description: Two character ISO country code.
+                                description: Two-character ISO country code.
                               iso3:
                                 type: string
-                                description: Three character ISO country code.
+                                description: Three-character ISO country code.
                               name:
                                 type: string
                                 description: Country name
@@ -331,14 +331,14 @@ paths:
       - AuthToken: []
       parameters:
       - name: country_code
-        description: Two or three character ISO code for the country.
+        description: Two-character ISO code for the country.
         in: path
         required: true
         schema:
           type: string
       responses:
         '200':
-          description: Get country document types (ISO3).
+          description: Document types for country.
           content:
             application/json:
               schema:
@@ -556,7 +556,7 @@ paths:
   "/v1/forms/{form_id}/documents":
     post:
       summary: Create Document
-      description: Adds a validation document to the specified form. For more information on uploading documents, see <a href="../guides/integration-guides/onboarding-api-pilot/#uploading-documents">our guide.</a>
+      description: Creates a Document entity and adds it to the application form. For more information on uploading documents, see <a href="../guides/integration-guides/onboarding-api-pilot/#uploading-documents">our guide.</a>
       tags:
       - Documents
       x-api-group: Onboard
@@ -779,13 +779,15 @@ paths:
             - asc
             - desc
       - name: application_status
-        description: Current application status - new or submitted.
+        description: Current application status - new, submitted, approved or rejected.
         in: query
         schema:
           type: string
           enum:
           - new
           - submitted
+          - approved
+          - rejected
       - name: entity_type
         description: Type of applicant - individual or corporate.
         in: query
@@ -1514,250 +1516,6 @@ components:
           - ZA
           - ZM
           - ZW
-          - AND
-          - ANT
-          - ARE
-          - AFG
-          - ATG
-          - AIA
-          - ALB
-          - ARM
-          - AGO
-          - ATA
-          - ARG
-          - ASM
-          - AUT
-          - AUS
-          - ABW
-          - ALA
-          - AZE
-          - BIH
-          - BRB
-          - BGD
-          - BEL
-          - BFA
-          - BGR
-          - BHR
-          - BDI
-          - BEN
-          - BLM
-          - BMU
-          - BRN
-          - BOL
-          - BES
-          - BRA
-          - BHS
-          - BTN
-          - BVT
-          - BWA
-          - BLR
-          - BLZ
-          - CAN
-          - CCK
-          - COD
-          - CAF
-          - COG
-          - CHE
-          - CIV
-          - COK
-          - CHL
-          - CMR
-          - CHN
-          - COL
-          - CRI
-          - CPV
-          - CUW
-          - CXR
-          - CYP
-          - CZE
-          - DEU
-          - DJI
-          - DNK
-          - DMA
-          - DOM
-          - DZA
-          - ECU
-          - EST
-          - EGY
-          - ESH
-          - ERI
-          - ESP
-          - ETH
-          - FIN
-          - FJI
-          - FLK
-          - FSM
-          - FRO
-          - FRA
-          - GAB
-          - GBR
-          - GRD
-          - GEO
-          - GUF
-          - GGY
-          - GHA
-          - GIB
-          - GRL
-          - GMB
-          - GIN
-          - GLP
-          - GNQ
-          - GRC
-          - SGS
-          - GTM
-          - GUM
-          - GNB
-          - GUY
-          - HKG
-          - HMD
-          - HND
-          - HRV
-          - HTI
-          - HUN
-          - IDN
-          - IRL
-          - ISR
-          - IMN
-          - IND
-          - IOT
-          - IRQ
-          - ISL
-          - ITA
-          - JEY
-          - JAM
-          - JOR
-          - JPN
-          - KEN
-          - KGZ
-          - KHM
-          - KIR
-          - COM
-          - KNA
-          - KOR
-          - KWT
-          - CYM
-          - KAZ
-          - LAO
-          - LBN
-          - LCA
-          - LIE
-          - LKA
-          - LBR
-          - LSO
-          - LTU
-          - LUX
-          - LVA
-          - MAR
-          - MCO
-          - MDA
-          - MNE
-          - MAF
-          - MDG
-          - MHL
-          - MKD
-          - MLI
-          - MMR
-          - MNG
-          - MAC
-          - MNP
-          - MTQ
-          - MRT
-          - MSR
-          - MLT
-          - MUS
-          - MDV
-          - MWI
-          - MEX
-          - MYS
-          - MOZ
-          - NAM
-          - NCL
-          - NER
-          - NFK
-          - NGA
-          - NIC
-          - NLD
-          - NOR
-          - NPL
-          - NRU
-          - NIU
-          - NZL
-          - OMN
-          - PAN
-          - PER
-          - PYF
-          - PNG
-          - PHL
-          - PAK
-          - POL
-          - SPM
-          - PCN
-          - PRI
-          - PSE
-          - PRT
-          - PLW
-          - PRY
-          - QAT
-          - REU
-          - ROU
-          - SRB
-          - RUS
-          - RWA
-          - SAU
-          - SLB
-          - SYC
-          - SWE
-          - SGP
-          - SHN
-          - SVN
-          - SJM
-          - SVK
-          - SLE
-          - SMR
-          - SEN
-          - SOM
-          - SUR
-          - STP
-          - SLV
-          - SXM
-          - SWZ
-          - TCA
-          - TCD
-          - ATF
-          - TGO
-          - THA
-          - TJK
-          - TKL
-          - TLS
-          - TKM
-          - TUN
-          - TON
-          - TUR
-          - TTO
-          - TUV
-          - TWN
-          - TZA
-          - UKR
-          - UGA
-          - UMI
-          - USA
-          - URY
-          - UZB
-          - VAT
-          - VCT
-          - VEN
-          - VGB
-          - VIR
-          - VNM
-          - VUT
-          - WLF
-          - WSM
-          - UNK
-          - YEM
-          - MYT
-          - ZAF
-          - ZMB
-          - ZWE
         email:
           description: The applicant's email address.
           type: string
@@ -1819,7 +1577,7 @@ components:
           type: boolean
           description: Confirmed authority to act on behalf of company.
         country:
-          description: ISO code for home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
+          description: ISO code for home country for individual applicants or country of registered address for corporate applicants. Two-character ISO country code.
           type: string
           nullable: true
           enum:
@@ -2066,249 +1824,6 @@ components:
           - ZA
           - ZM
           - ZW
-          - AND
-          - ARE
-          - AFG
-          - ATG
-          - AIA
-          - ALB
-          - ARM
-          - AGO
-          - ATA
-          - ARG
-          - ASM
-          - AUT
-          - AUS
-          - ABW
-          - ALA
-          - AZE
-          - BIH
-          - BRB
-          - BGD
-          - BEL
-          - BFA
-          - BGR
-          - BHR
-          - BDI
-          - BEN
-          - BLM
-          - BMU
-          - BRN
-          - BOL
-          - BES
-          - BRA
-          - BHS
-          - BTN
-          - BVT
-          - BWA
-          - BLR
-          - BLZ
-          - CAN
-          - CCK
-          - COD
-          - CAF
-          - COG
-          - CHE
-          - CIV
-          - COK
-          - CHL
-          - CMR
-          - CHN
-          - COL
-          - CRI
-          - CPV
-          - CUW
-          - CXR
-          - CYP
-          - CZE
-          - DEU
-          - DJI
-          - DNK
-          - DMA
-          - DOM
-          - DZA
-          - ECU
-          - EST
-          - EGY
-          - ESH
-          - ERI
-          - ESP
-          - ETH
-          - FIN
-          - FJI
-          - FLK
-          - FSM
-          - FRO
-          - FRA
-          - GAB
-          - GBR
-          - GRD
-          - GEO
-          - GUF
-          - GGY
-          - GHA
-          - GIB
-          - GRL
-          - GMB
-          - GIN
-          - GLP
-          - GNQ
-          - GRC
-          - SGS
-          - GTM
-          - GUM
-          - GNB
-          - GUY
-          - HKG
-          - HMD
-          - HND
-          - HRV
-          - HTI
-          - HUN
-          - IDN
-          - IRL
-          - ISR
-          - IMN
-          - IND
-          - IOT
-          - IRQ
-          - ISL
-          - ITA
-          - JEY
-          - JAM
-          - JOR
-          - JPN
-          - KEN
-          - KGZ
-          - KHM
-          - KIR
-          - COM
-          - KNA
-          - KOR
-          - KWT
-          - CYM
-          - KAZ
-          - LAO
-          - LBN
-          - LCA
-          - LIE
-          - LKA
-          - LBR
-          - LSO
-          - LTU
-          - LUX
-          - LVA
-          - MAR
-          - MCO
-          - MDA
-          - MNE
-          - MAF
-          - MDG
-          - MHL
-          - MKD
-          - MLI
-          - MMR
-          - MNG
-          - MAC
-          - MNP
-          - MTQ
-          - MRT
-          - MSR
-          - MLT
-          - MUS
-          - MDV
-          - MWI
-          - MEX
-          - MYS
-          - MOZ
-          - NAM
-          - NCL
-          - NER
-          - NFK
-          - NGA
-          - NIC
-          - NLD
-          - NOR
-          - NPL
-          - NRU
-          - NIU
-          - NZL
-          - OMN
-          - PAN
-          - PER
-          - PYF
-          - PNG
-          - PHL
-          - PAK
-          - POL
-          - SPM
-          - PCN
-          - PRI
-          - PSE
-          - PRT
-          - PLW
-          - PRY
-          - QAT
-          - REU
-          - ROU
-          - SRB
-          - RUS
-          - RWA
-          - SAU
-          - SLB
-          - SYC
-          - SWE
-          - SGP
-          - SHN
-          - SVN
-          - SJM
-          - SVK
-          - SLE
-          - SMR
-          - SEN
-          - SOM
-          - SUR
-          - STP
-          - SLV
-          - SXM
-          - SWZ
-          - TCA
-          - TCD
-          - ATF
-          - TGO
-          - THA
-          - TJK
-          - TKL
-          - TLS
-          - TKM
-          - TUN
-          - TON
-          - TUR
-          - TTO
-          - TUV
-          - TWN
-          - TZA
-          - UKR
-          - UGA
-          - UMI
-          - USA
-          - URY
-          - UZB
-          - VAT
-          - VCT
-          - VEN
-          - VGB
-          - VIR
-          - VNM
-          - VUT
-          - WLF
-          - WSM
-          - UNK
-          - YEM
-          - MYT
-          - ZAF
-          - ZMB
-          - ZWE
         email:
           description: The applicant's email address.
           type: string
@@ -2357,7 +1872,7 @@ components:
           description: Does the account receive funds from third parties.
           type: boolean
         collection_currencies:
-          description: List of currencies to fund account with. Three character ISO currency codes.
+          description: List of currencies to fund account with. Three-character ISO currency codes.
           type: array
           items:
             type: string
@@ -2524,7 +2039,7 @@ components:
             - ZWL
         payment_currencies:
           type: array
-          description: List of payout currencies. Three character ISO currency codes.
+          description: List of payout currencies. Three-character ISO currency codes.
           items:
             type: string
             nullable: true
@@ -3240,7 +2755,7 @@ components:
           - property_purchase_or_sale
           - other
         purpose_details:
-          description: Additional details if primary_purpose is 'other'.
+          description: Free text field to explain the primary purpose of opening the account in the case that 'other' has been selected in the 'primary_purpose' field.
           type: string
           nullable: true
       required:
@@ -3504,250 +3019,6 @@ components:
           - ZA
           - ZM
           - ZW
-          - AND
-          - ANT
-          - ARE
-          - AFG
-          - ATG
-          - AIA
-          - ALB
-          - ARM
-          - AGO
-          - ATA
-          - ARG
-          - ASM
-          - AUT
-          - AUS
-          - ABW
-          - ALA
-          - AZE
-          - BIH
-          - BRB
-          - BGD
-          - BEL
-          - BFA
-          - BGR
-          - BHR
-          - BDI
-          - BEN
-          - BLM
-          - BMU
-          - BRN
-          - BOL
-          - BES
-          - BRA
-          - BHS
-          - BTN
-          - BVT
-          - BWA
-          - BLR
-          - BLZ
-          - CAN
-          - CCK
-          - COD
-          - CAF
-          - COG
-          - CHE
-          - CIV
-          - COK
-          - CHL
-          - CMR
-          - CHN
-          - COL
-          - CRI
-          - CPV
-          - CUW
-          - CXR
-          - CYP
-          - CZE
-          - DEU
-          - DJI
-          - DNK
-          - DMA
-          - DOM
-          - DZA
-          - ECU
-          - EST
-          - EGY
-          - ESH
-          - ERI
-          - ESP
-          - ETH
-          - FIN
-          - FJI
-          - FLK
-          - FSM
-          - FRO
-          - FRA
-          - GAB
-          - GBR
-          - GRD
-          - GEO
-          - GUF
-          - GGY
-          - GHA
-          - GIB
-          - GRL
-          - GMB
-          - GIN
-          - GLP
-          - GNQ
-          - GRC
-          - SGS
-          - GTM
-          - GUM
-          - GNB
-          - GUY
-          - HKG
-          - HMD
-          - HND
-          - HRV
-          - HTI
-          - HUN
-          - IDN
-          - IRL
-          - ISR
-          - IMN
-          - IND
-          - IOT
-          - IRQ
-          - ISL
-          - ITA
-          - JEY
-          - JAM
-          - JOR
-          - JPN
-          - KEN
-          - KGZ
-          - KHM
-          - KIR
-          - COM
-          - KNA
-          - KOR
-          - KWT
-          - CYM
-          - KAZ
-          - LAO
-          - LBN
-          - LCA
-          - LIE
-          - LKA
-          - LBR
-          - LSO
-          - LTU
-          - LUX
-          - LVA
-          - MAR
-          - MCO
-          - MDA
-          - MNE
-          - MAF
-          - MDG
-          - MHL
-          - MKD
-          - MLI
-          - MMR
-          - MNG
-          - MAC
-          - MNP
-          - MTQ
-          - MRT
-          - MSR
-          - MLT
-          - MUS
-          - MDV
-          - MWI
-          - MEX
-          - MYS
-          - MOZ
-          - NAM
-          - NCL
-          - NER
-          - NFK
-          - NGA
-          - NIC
-          - NLD
-          - NOR
-          - NPL
-          - NRU
-          - NIU
-          - NZL
-          - OMN
-          - PAN
-          - PER
-          - PYF
-          - PNG
-          - PHL
-          - PAK
-          - POL
-          - SPM
-          - PCN
-          - PRI
-          - PSE
-          - PRT
-          - PLW
-          - PRY
-          - QAT
-          - REU
-          - ROU
-          - SRB
-          - RUS
-          - RWA
-          - SAU
-          - SLB
-          - SYC
-          - SWE
-          - SGP
-          - SHN
-          - SVN
-          - SJM
-          - SVK
-          - SLE
-          - SMR
-          - SEN
-          - SOM
-          - SUR
-          - STP
-          - SLV
-          - SXM
-          - SWZ
-          - TCA
-          - TCD
-          - ATF
-          - TGO
-          - THA
-          - TJK
-          - TKL
-          - TLS
-          - TKM
-          - TUN
-          - TON
-          - TUR
-          - TTO
-          - TUV
-          - TWN
-          - TZA
-          - UKR
-          - UGA
-          - UMI
-          - USA
-          - URY
-          - UZB
-          - VAT
-          - VCT
-          - VEN
-          - VGB
-          - VIR
-          - VNM
-          - VUT
-          - WLF
-          - WSM
-          - UNK
-          - YEM
-          - MYT
-          - ZAF
-          - ZMB
-          - ZWE
         company_name:
           description: The registered name of the compnay.
           type: string
@@ -4735,7 +4006,7 @@ components:
           type: boolean
           description: Confirmed authority to act on behalf of company.
         country:
-          description: Home country for individual applicants or country of registered address for corporate applicants. Two or three character ISO country code.
+          description: Home country for individual applicants or country of registered address for corporate applicants. Two-character ISO country code.
           type: string
         email:
           description: The applicant's email address.
@@ -5002,7 +4273,7 @@ components:
           type: string
           nullable: true
         purpose_details:
-          description: Additional details if primary_purpose is 'other'.
+          description: Free text field to explain the primary purpose of opening the account in the case that 'other' has been selected in the 'primary_purpose' field.
           type: string
           nullable: true
         created_at:

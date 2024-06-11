@@ -1,0 +1,10 @@
+{
+  "data": {
+    "document_types": [
+      "passport",
+      "driving_licence",
+      "biometric_state_id",
+      "visa"
+    ]
+  }
+}
