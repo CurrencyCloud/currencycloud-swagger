@@ -1,0 +1,113 @@
+{
+  "forms": [
+    {
+      "id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+      "detached_document_ids": [],
+      "affiliate_code": null,
+      "agreed_to_marketing_emails": true,
+      "agreed_to_terms_and_conditions": true,
+      "agreed_to_corporate_authority": false,
+      "country": "GB",
+      "email": "simon.jenkins@btinternet.com",
+      "entity_type": "individual",
+      "brand_name": null,
+      "brand_key": null,
+      "referred_by": null,
+      "products_required": null,
+      "state": "new",
+      "phone_number": 07532564367,
+      "contact_name": null,
+      "created_at": "2024-02-26T10:56:20Z",
+      "updated_at": "2024-02-26T10:56:20Z",
+      "business_information": null,
+      "account_usage": {
+        "id": "8874481d-fa7d-4062-9aa6-e6b8cc8e7648",
+        "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+        "document_ids": [],
+        "collections_account": true,
+        "collection_currencies": [
+          "EUR",
+          "AUD"
+        ],
+        "payment_currencies": null,
+        "transaction_countries": null,
+        "one_off_transaction": false,
+        "estimated_monthly_transaction_currency": null,
+        "estimated_monthly_transaction_value": null,
+        "estimated_monthly_transaction_volume": null,
+        "source_of_funds": "business_revenue",
+        "other_source_of_funds_text": null,
+        "initial_capital": null,
+        "primary_purpose": "liquidity_or_fx",
+        "purpose_details": null,
+        "created_at": "2024-02-26T11:33:12Z",
+        "updated_at": "2024-03-28T13:06:13Z"
+      },
+      "people": [
+        {
+          "id": "51b924ae-beb7-44e8-bf48-98692b3dc622",
+          "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+          "document_ids": [],
+          "roles": [
+            "director",
+            "user"
+          ],
+          "first_name": "John",
+          "middle_name": null,
+          "last_name": "Richards",
+          "dob": null,
+          "phone_number": null,
+          "email": "john.richards@gmail.com",
+          "ownership_percentage": null,
+          "id_number": null,
+          "impersonation_check_required": null,
+          "home_country": "GB",
+          "passport_number": null,
+          "passport_country_of_issue": null,
+          "personal_address": null,
+          "applicant_id": null,
+          "workflow_id": null,
+          "token": null,
+          "created_at": "2024-04-08T10:34:54Z",
+          "updated_at": "2024-04-08T10:34:54Z"
+        },
+        {
+          "id": "527f76c1-cc7e-4323-9645-fd834804a8f8",
+          "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+          "document_ids": [],
+          "roles": [
+            "user"
+          ],
+          "first_name": "Louis",
+          "middle_name": null,
+          "last_name": "Bernard",
+          "dob": null,
+          "phone_number": null,
+          "email": "louis.bernard@gmail.com",
+          "ownership_percentage": null,
+          "id_number": null,
+          "impersonation_check_required": null,
+          "home_country": "FR",
+          "passport_number": null,
+          "passport_country_of_issue": null,
+          "personal_address": null,
+          "applicant_id": null,
+          "workflow_id": null,
+          "token": null,
+          "created_at": "2024-04-08T10:43:32Z",
+          "updated_at": "2024-04-08T10:43:32Z"
+        },
+      ]
+    }
+  ],
+  "pagination": {
+    "total_entries": 1,
+    "total_pages": 1,
+    "current_page": 1,
+    "per_page": 20,
+    "previous_page": null,
+    "next_page": null,
+    "order": "created_at",
+    "order_asc_desc": "asc"
+  }
+}

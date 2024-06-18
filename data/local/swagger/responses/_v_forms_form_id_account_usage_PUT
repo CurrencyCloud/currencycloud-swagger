@@ -1,0 +1,25 @@
+{
+  "data": {
+    "id": "8874481d-fa7d-4062-9aa6-e6b8cc8e7648",
+    "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+    "document_ids": [],
+    "collections_account": true,
+    "collection_currencies": null,
+    "payment_currencies": [
+      "GBP",
+      "EUR"
+    ],
+    "transaction_countries": null,
+    "one_off_transaction": false,
+    "estimated_monthly_transaction_currency": null,
+    "estimated_monthly_transaction_value": null,
+    "estimated_monthly_transaction_volume": null,
+    "source_of_funds": "business_revenue",
+    "other_source_of_funds_text": null,
+    "initial_capital": null,
+    "primary_purpose": "liquidity_or_fx",
+    "purpose_details": null,
+    "created_at": "2024-02-26T11:33:12Z",
+    "updated_at": "2024-06-17T16:20:46Z"
+  }
+}

@@ -5952,8 +5952,8 @@ paths:
           required: true
           type: boolean
           enum:
-            - true
-            - false
+            - 'true'
+            - 'false'
           description: Indicates agreement to terms and conditions.
         - name: conversion_date
           in: formData

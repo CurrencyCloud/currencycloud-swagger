@@ -1,0 +1,28 @@
+{
+  "data": {
+    "id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+    "detached_document_ids": [],
+    "affiliate_code": null,
+    "agreed_to_marketing_emails": true,
+    "agreed_to_terms_and_conditions": true,
+    "agreed_to_corporate_authority": false,
+    "business_role": null,
+    "country": "GB",
+    "email": "simon.jenkins@btinternet.com",
+    "entity_type": "individual",
+    "brand_name": null,
+    "brand_key": null,
+    "referred_by": null,
+    "products_required": [
+      "SWIFT",
+      "USD_VAN"
+    ],
+    "state": "new",
+    "phone_number": null,
+    "contact_name": null,
+    "created_at": "2024-02-26T10:56:20Z",
+    "updated_at": "2024-06-17T15:31:31Z",
+    "email_verification_status": "pending",
+    "email_verified_at": null
+  }
+}

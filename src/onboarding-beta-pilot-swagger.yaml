@@ -258,7 +258,7 @@ paths:
                 "$ref": "#/components/schemas/not_found_response"
   "/v1/countries":
     get:
-      summary: Get countries
+      summary: Get Countries
       description: Returns a list of all countries.
       tags:
       - Country
@@ -1872,7 +1872,7 @@ components:
           description: Does the account receive funds from third parties.
           type: boolean
         collection_currencies:
-          description: List of currencies to fund account with. Three-character ISO currency codes.
+          description: List of currencies to fund the account with. Three-character ISO currency codes.
           type: array
           items:
             type: string
