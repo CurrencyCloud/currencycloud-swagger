@@ -1,0 +1,278 @@
+{
+  "data": {
+    "currencies": [
+      {
+        "id": "b7e98a7b-0d6c-43c0-8ae3-999de3f153bd",
+        "iso3": "AED",
+        "name": "United Arab Emirates Dirham",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:20.651Z",
+        "updated_at": "2021-09-08T16:34:20.651Z"
+      },
+      {
+        "id": "500e8397-184e-4011-a65e-0f9b72dfbd14",
+        "iso3": "AUD",
+        "name": "Australian Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:20.771Z",
+        "updated_at": "2021-09-08T16:34:20.771Z"
+      },
+      {
+        "id": "96030723-0994-4251-a9e3-ca5312eb2578",
+        "iso3": "BGN",
+        "name": "Bulgarian Lev",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:20.890Z",
+        "updated_at": "2021-09-08T16:34:20.890Z"
+      },
+      {
+        "id": "c12f887f-c0cc-4fdb-b3d3-c50425b73d54",
+        "iso3": "BHD",
+        "name": "Bahraini Dinar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:20.899Z",
+        "updated_at": "2021-09-08T16:34:20.899Z"
+      },
+      {
+        "id": "dd4272f6-5031-4a50-bec7-8ee368725750",
+        "iso3": "CAD",
+        "name": "Canadian Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.031Z",
+        "updated_at": "2021-09-08T16:34:21.031Z"
+      },
+      {
+        "id": "82040021-8566-4ac3-a339-e70d884a0f3b",
+        "iso3": "CHF",
+        "name": "Swiss Franc",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.054Z",
+        "updated_at": "2021-09-08T16:34:21.054Z"
+      },
+      {
+        "id": "25aa7875-51be-4e29-9480-dffbd427526d",
+        "iso3": "CNY",
+        "name": "Chinese Yuan",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.085Z",
+        "updated_at": "2021-09-08T16:34:21.085Z"
+      },
+      {
+        "id": "03870258-0ed8-43b2-8374-70385b41c1ea",
+        "iso3": "CZK",
+        "name": "Czech Koruna",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.148Z",
+        "updated_at": "2021-09-08T16:34:21.148Z"
+      },
+      {
+        "id": "dc425317-1e2f-4472-b86c-c4a88ea30876",
+        "iso3": "DKK",
+        "name": "Danish Krone",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.166Z",
+        "updated_at": "2021-09-08T16:34:21.166Z"
+      },
+      {
+        "id": "e0dbd241-d2d6-4178-b65d-bb080608fce3",
+        "iso3": "EUR",
+        "name": "Euro",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.238Z",
+        "updated_at": "2021-09-08T16:34:21.238Z"
+      },
+      {
+        "id": "372e81b0-96e3-4257-886d-f8315dff926b",
+        "iso3": "GBP",
+        "name": "British Pound",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.272Z",
+        "updated_at": "2021-09-08T16:34:21.272Z"
+      },
+      {
+        "id": "cd7df2d4-b1f2-4d94-9105-89a3b77f845d",
+        "iso3": "HKD",
+        "name": "Hong Kong Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.368Z",
+        "updated_at": "2021-09-08T16:34:21.368Z"
+      },
+      {
+        "id": "5912d77b-932e-4a27-a3df-1bccf717f18b",
+        "iso3": "HRK",
+        "name": "Croatian Kuna",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.391Z",
+        "updated_at": "2021-09-08T16:34:21.391Z"
+      },
+      {
+        "id": "b03aa384-b3b6-4a44-a0c9-a9c4055831de",
+        "iso3": "HUF",
+        "name": "Hungarian Forint",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.410Z",
+        "updated_at": "2021-09-08T16:34:21.410Z"
+      },
+      {
+        "id": "cf5bde95-70db-4f8e-bd89-b37518d8144b",
+        "iso3": "ILS",
+        "name": "Israeli New Sheqel",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.439Z",
+        "updated_at": "2021-09-08T16:34:21.439Z"
+      },
+      {
+        "id": "9aa7a6c5-a3d7-43f6-9f3c-9235e75d50d2",
+        "iso3": "JPY",
+        "name": "Japanese Yen",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.546Z",
+        "updated_at": "2021-09-08T16:34:21.546Z"
+      },
+      {
+        "id": "7a31d00e-8fcd-44f5-9625-1d6b16d289da",
+        "iso3": "KES",
+        "name": "Kenyan Shilling",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.573Z",
+        "updated_at": "2021-09-08T16:34:21.573Z"
+      },
+      {
+        "id": "38702a85-03ba-4dc8-9eb1-e8abf27b61b6",
+        "iso3": "KWD",
+        "name": "Kuwaiti Dinar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.682Z",
+        "updated_at": "2021-09-08T16:34:21.682Z"
+      },
+      {
+        "id": "1f66d55f-7ad9-4a32-b32d-7b5ee0741845",
+        "iso3": "MXN",
+        "name": "Mexican Peso",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.904Z",
+        "updated_at": "2021-09-08T16:34:21.904Z"
+      },
+      {
+        "id": "d463b00b-b8ec-4cb0-b32d-b523b337ed49",
+        "iso3": "NOK",
+        "name": "Norwegian Krone",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.962Z",
+        "updated_at": "2021-09-08T16:34:21.962Z"
+      },
+      {
+        "id": "e85c085e-9187-428c-9ddf-a6423c6c476e",
+        "iso3": "NZD",
+        "name": "New Zealand Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.986Z",
+        "updated_at": "2021-09-08T16:34:21.986Z"
+      },
+      {
+        "id": "1ebe3429-b065-4fb0-bd25-1eebefca4f87",
+        "iso3": "OMR",
+        "name": "Omani Rial",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:21.997Z",
+        "updated_at": "2021-09-08T16:34:21.997Z"
+      },
+      {
+        "id": "ba782f76-d8a1-44bb-afb7-54260625b6cd",
+        "iso3": "PLN",
+        "name": "Polish Zloty",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.072Z",
+        "updated_at": "2021-09-08T16:34:22.072Z"
+      },
+      {
+        "id": "2faf0131-56e7-4c10-b6ce-90e7be542b21",
+        "iso3": "QAR",
+        "name": "Qatari Rial",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.101Z",
+        "updated_at": "2021-09-08T16:34:22.101Z"
+      },
+      {
+        "id": "1cc12380-9515-46dd-8d7f-fb5283384ec2",
+        "iso3": "RON",
+        "name": "Romanian New Leu",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.118Z",
+        "updated_at": "2021-09-08T16:34:22.118Z"
+      },
+      {
+        "id": "eb1e82d0-7d53-4940-9cd5-06ab15b23a93",
+        "iso3": "RUB",
+        "name": "Russian Rouble",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.136Z",
+        "updated_at": "2021-09-08T16:34:22.136Z"
+      },
+      {
+        "id": "e124055d-76fe-4d0a-af53-dacd44d8431e",
+        "iso3": "SAR",
+        "name": "Saudi Riyal",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.156Z",
+        "updated_at": "2021-09-08T16:34:22.156Z"
+      },
+      {
+        "id": "408e9b16-a545-459b-a32e-1e702c9d8cd5",
+        "iso3": "SEK",
+        "name": "Swedish Krona",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.201Z",
+        "updated_at": "2021-09-08T16:34:22.201Z"
+      },
+      {
+        "id": "6133590f-017e-47a3-8821-54fec236b9a0",
+        "iso3": "SGD",
+        "name": "Singapore Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.210Z",
+        "updated_at": "2021-09-08T16:34:22.210Z"
+      },
+      {
+        "id": "c27ac3b3-e252-4e85-bba3-ae59e7537659",
+        "iso3": "THB",
+        "name": "Thai Baht",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.313Z",
+        "updated_at": "2021-09-08T16:34:22.313Z"
+      },
+      {
+        "id": "71f4beb8-a509-4a45-8879-8302d722ff39",
+        "iso3": "TRY",
+        "name": "Turkish Lira",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.363Z",
+        "updated_at": "2021-09-08T16:34:22.363Z"
+      },
+      {
+        "id": "7a0d91bb-24bb-4d79-b232-574dc6e3f7ff",
+        "iso3": "UGX",
+        "name": "Ugandan Shilling",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.405Z",
+        "updated_at": "2021-09-08T16:34:22.405Z"
+      },
+      {
+        "id": "50708a2c-71ae-47ab-a64e-b0f97b7d1662",
+        "iso3": "USD",
+        "name": "United States Dollar",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.422Z",
+        "updated_at": "2021-09-08T16:34:22.422Z"
+      },
+      {
+        "id": "35352a4b-123c-45da-9f60-2f2ace99570c",
+        "iso3": "ZAR",
+        "name": "South African Rand",
+        "supported": true,
+        "created_at": "2021-09-08T16:34:22.529Z",
+        "updated_at": "2021-09-08T16:34:22.529Z"
+      }
+    ]
+  }
+}
