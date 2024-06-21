@@ -4875,7 +4875,7 @@ paths:
         - name: payment_type
           in: formData
           type: string
-          required: true
+          required: false
           enum:
             - priority
             - regular
@@ -4891,16 +4891,18 @@ paths:
         - name: currency
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
         - name: account_number
           in: formData
+          required: true
           type: string
           description: UK and ACH bank account number. Required if "bank_country" is GB.
         - name: beneficiary_entity_type
           in: formData
           type: string
+          required: true
           description: Legal entity - 'individual' or 'company'. Required if "bank_country" is GB.
           enum:
             - individual
