@@ -4903,39 +4903,31 @@ paths:
           in: formData
           type: string
           required: true
-          description: Legal entity - 'individual' or 'company'. Required if "bank_country" is GB.
+          description: Legal entity - 'individual' or 'company'. If 'individual' then "beneficiary_first_name" and "beneficiary_last_name" are required. If 'company' then "beneficiary_company_name" is required.
           enum:
             - individual
             - company
         - name: beneficiary_company_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
+          description: Required if "beneficiary_entity_type" is "company".
         - name: beneficiary_first_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: beneficiary_last_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          description: Required if "beneficiary_entity_type" is "individual".
         - name: routing_code_type_1
           in: formData
           type: string
-          enum:
-            - sort_code
-            - aba
-            - bsb_code
-            - institution_no
-            - bank_code
-            - branch_code
-            - clabe
-            - cnaps
-          description: Local payment routing system. If supplied, routing_code_value_1 should also be supplied. Required if "bank_country" is GB.
+          description: Local payment routing system. Defaults to 'sort_code'.
         - name: routing_code_value_1
           in: formData
+          required: true
           type: string
-          description: Routing code for routing_code_type_1. If supplied, routing_code_type_1 should also be supplied.
+          description: Routing system vale i.e. the account's sort code.
         - name: routing_code_type_2
           in: formData
           type: string
