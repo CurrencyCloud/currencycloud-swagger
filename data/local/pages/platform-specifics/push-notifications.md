@@ -95,7 +95,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -140,7 +140,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -187,7 +187,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -234,7 +234,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -283,7 +283,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -342,7 +342,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -397,7 +397,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -451,7 +451,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -506,7 +506,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -564,7 +564,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -608,7 +608,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -652,7 +652,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -700,7 +700,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -748,7 +748,7 @@ Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -818,16 +818,56 @@ Content-Type: text/plain
 
 ---
 
+#### Notification Type: **End Client Application Decisioned Notification**
+
+#### Message Header
+
+```
+Content-Length: 369
+Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+Accept: */*
+User-Agent: Ruby
+Host: WS00CC014:8000
+Content-Type: application/json
+```
+
+#### Push Notification
+
+```
+{
+   "header":{
+      "message_type":"onboarding",
+      "notification_type":"end_client_decisioned_webhook”
+   },
+   "body":{
+      “entity_type”:”Corporate”,
+      "individual_applicant_name":"John Smith",
+      "company_name":"ABC Ltd",
+      “trading_name:”ABC Ltd”,
+      ”applicant_jurisdiction”:”US”,
+      “contact_email":"john.smith@google.com",
+      “contact_telephone”:”07777777777”,
+      “Decision”:”Approved”,
+      "sub_account_id":"xyz123"
+      "sub_account_UUID”:”xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”
+   }
+
+}
+```
+
+---
+
 #### Notification Type: **Bank Account Verified Notification**
 
 #### Message Header
+
 ```
 Content-Length: 270
 Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
 Accept: */*
 User-Agent: Ruby
 Host: WS00CC014:8000
-Content-Type: text/plain
+Content-Type: application/json
 ```
 
 #### Push Notification
@@ -848,8 +888,6 @@ Content-Type: text/plain
 
 
 ## Version 2021 01 01
-
-We have updated the header content-type to JSON in this version. All other details remain the same.
 
 #### Notification Type: **Ready To Send Notification**
 #### Message Header
@@ -1578,6 +1616,44 @@ Content-Type: text/plain
       "form_id":"xyz123",
       "sub_account_id":"xyz123"
    }
+}
+```
+---
+
+#### Notification Type: **End Client Application Decisioned Notification**
+
+#### Message Header
+
+```
+Content-Length: 369
+Accept-Encoding: gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+Accept: */*
+User-Agent: Ruby
+Host: WS00CC014:8000
+Content-Type: text/plain
+```
+
+#### Push Notification
+
+```
+{
+   "header":{
+      "message_type":"onboarding",
+      "notification_type":"end_client_decisioned_webhook”
+   },
+   "body":{
+      “entity_type”:”Corporate”,
+      "individual_applicant_name":"John Smith",
+      "company_name":"ABC Ltd",
+      “trading_name:”ABC Ltd”,
+      ”applicant_jurisdiction”:”US”,
+      “contact_email":"john.smith@google.com",
+      “contact_telephone”:”07777777777”,
+      “Decision”:”Approved”,
+      "sub_account_id":"xyz123"
+      "sub_account_UUID”:”xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”
+   }
+
 }
 ```
 
