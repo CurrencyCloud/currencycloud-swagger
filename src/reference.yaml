@@ -2256,7 +2256,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code
+          description: BIC/Swift code
         - name: iban
           in: formData
           required: false
@@ -2926,12 +2926,12 @@ paths:
           default:
             - regular
           description: >-
-            Currencycloud supports two types of payment - "priority" (SWIFT) made using the SWIFT network, and "regular" (local) made using the local bank network.
+            Currencycloud supports two types of payment - "priority" (Swift) made using the Swift network, and "regular" (local) made using the local bank network.
         - name: bic_swift
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code
+          description: BIC/Swift code
         - name: iban
           in: formData
           required: false
@@ -3154,11 +3154,11 @@ paths:
               params: ''
             - code: bic_swift_is_missing
               category: bic_swift
-              message: BIC/SWIFT is missing
+              message: BIC/Swift is missing
               params: ''
             - code: bic_swift_is_invalid
               category: bic_swift
-              message: BIC/SWIFT is in invalid format
+              message: BIC/Swift is in invalid format
               params: ''
             - code: bank_address_is_missing
               category: bank_address
@@ -3590,7 +3590,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code
+          description: BIC/Swift code
         - name: iban
           in: formData
           required: false
@@ -3715,7 +3715,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: on_behalf_of
           in: formData
           required: false
@@ -3822,11 +3822,11 @@ paths:
               params: ''
             - code: bic_swift_is_missing
               category: bic_swift
-              message: BIC/SWIFT is missing
+              message: BIC/Swift is missing
               params: ''
             - code: bic_swift_is_invalid
               category: bic_swift
-              message: BIC/SWIFT is in invalid format
+              message: BIC/Swift is in invalid format
               params: ''
             - code: bank_address_is_missing
               category: bank_address
@@ -4379,7 +4379,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: BIC/SWIFT code
+          description: BIC/Swift code
         - name: iban
           in: formData
           required: false
@@ -4496,7 +4496,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: on_behalf_of
           in: formData
           required: false
@@ -4620,11 +4620,11 @@ paths:
               params: ''
             - code: bic_swift_is_missing
               category: bic_swift
-              message: BIC/SWIFT is missing
+              message: BIC/Swift is missing
               params: ''
             - code: bic_swift_is_invalid
               category: bic_swift
-              message: BIC/SWIFT is in invalid format
+              message: BIC/Swift is in invalid format
               params: ''
             - code: bank_address_is_missing
               category: bank_address
@@ -4880,7 +4880,7 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority", made using the SWIFT network
+            Currencycloud supports two types of payments: "priority", made using the Swift network
             and "regular", made using the local bank network.
         - name: bank_country
           in: formData
@@ -4941,7 +4941,7 @@ paths:
         - name: bic_swift
           in: formData
           type: string
-          description: BIC/SWIFT code
+          description: BIC/Swift code
         - name: iban
           in: formData
           type: string
@@ -8087,7 +8087,7 @@ paths:
           required: false
           type: string
           description: >-
-            The type of SSI to be returned, priority (SWIFT) or regular (local).
+            The type of SSI to be returned, priority (Swift) or regular (local).
             A null value returns all payment types.
           enum:
             - priority
@@ -8324,7 +8324,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: conversion_id
           in: formData
           required: false
@@ -8429,8 +8429,8 @@ paths:
           required: false
           type: string
           description: >-
-            <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Payment Purpose Code</a> (Mandatory for all local INR and MYR payments, SWIFT CNY payments,
-            and SWIFT payments in any currency to banks in Bahrain or the United Arab Emirates).
+            <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Payment Purpose Code</a> (Mandatory for all local INR and MYR payments, Swift CNY payments,
+            and Swift payments in any currency to banks in Bahrain or the United Arab Emirates).
         - name: on_behalf_of
           in: formData
           required: false
@@ -8447,7 +8447,7 @@ paths:
           - ours
           - shared
           description: >-
-            Payment Charges Setting value (only applicable to SWIFT payments).
+            Payment Charges Setting value (only applicable to Swift payments).
             If this is left empty, the account's default value is used.
             Do not specify for regular (local) payments.
         - name: fee_amount
@@ -8959,7 +8959,7 @@ paths:
             - ours
             - shared
           description: >-
-            Payment Charges Setting value (only applicable to SWIFT payments).
+            Payment Charges Setting value (only applicable to Swift payments).
             Limits the search results to payments of the specified <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430820-Selecting-payment-charges-for-SWIFT-payments-FAQ">charge type</a>.
         - name: review_status
           in: query
@@ -9312,7 +9312,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: reference
           in: formData
           required: false
@@ -9435,7 +9435,7 @@ paths:
           - ours
           - shared
           description: >-
-            Payment Charges Setting value (only applicable to SWIFT payments).
+            Payment Charges Setting value (only applicable to Swift payments).
             If empty, the account's default value is used.
             Do not specify for regular (local) payments.
         - name: fee_amount
@@ -9868,7 +9868,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Get Payment Submission
-      description: Gets the MT103 information for a SWIFT payment.
+      description: Gets the MT103 information for a Swift payment.
       operationId: GetPaymentSubmission
       produces:
         - application/json
@@ -10555,7 +10555,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: currency
           in: query
           required: true
@@ -10852,7 +10852,7 @@ paths:
           enum:
             - priority
             - regular
-          description: Type of payment - priority(SWIFT) or regular(local).
+          description: Type of payment - priority(Swift) or regular(local).
         - name: charge_type
           in: query
           required: false
@@ -11183,7 +11183,7 @@ paths:
             - regular
           description: >-
             Currencycloud supports two types of payments: "priority", made using
-            the SWIFT network; and "regular", made using the local bank network.
+            the Swift network; and "regular", made using the local bank network.
         - name: conversion_id
           in: formData
           required: false
@@ -11306,7 +11306,7 @@ paths:
             - ours
             - shared
           description: >-
-            Payment Charges Setting value (only applicable to SWIFT payments).
+            Payment Charges Setting value (only applicable to Swift payments).
             If empty - then account's default value is used.
             Do not specify for regular (local) payments.
         - name: fee_amount
@@ -12164,7 +12164,7 @@ paths:
               params: ''
             - code: invalid_bic
               category: base
-              message: BIC_SWIFT is invalid
+              message: BIC_Swift is invalid
               params: ''
             - code: invalid_aba
               category: base
@@ -12680,8 +12680,8 @@ paths:
             - priority
             - regular
           description: >-
-            Currencycloud supports two types of payments: "priority" (SWIFT), made using
-            the SWIFT network; and "regular" (local), made using the local bank network.
+            Currencycloud supports two types of payments: "priority" (Swift), made using
+            the Swift network; and "regular" (local), made using the local bank network.
         - name: currency
           in: query
           required: false
@@ -12943,7 +12943,7 @@ paths:
             - regular
           description: >-
             Payment type value.
-            Limits the search results to payments of the specified payment type - 'priority'(SWIFT) or 'regular'(local).
+            Limits the search results to payments of the specified payment type - 'priority'(Swift) or 'regular'(local).
         - name: charge_type
           in: query
           required: false
@@ -16287,7 +16287,7 @@ definitions:
         description: Account number
       bic_swift:
         type: string
-        description: BIC/SWIFT code.
+        description: BIC/Swift code.
       bank_name:
         type: string
         description: Bank name
@@ -16349,7 +16349,7 @@ definitions:
         type: array
         items:
           type: string
-          description: The payment type - regular (local) or priority (SWIFT).
+          description: The payment type - regular (local) or priority (Swift).
           enum:
             - regular
             - priority
@@ -16430,7 +16430,7 @@ definitions:
         description: Value for "routing_code_type_2".
       bic_swift:
         type: string
-        description: BIC/SWIFT code
+        description: BIC/Swift code
       iban:
         type: string
         description: IBAN code
@@ -16512,7 +16512,7 @@ definitions:
     description: Beneficiary requirements.
     properties:
       payment_type:
-        description: The type of payment - 'priority' (SWIFT) or 'regular' (local).
+        description: The type of payment - 'priority' (Swift) or 'regular' (local).
         type: string
         enum:
           - priority
@@ -16522,7 +16522,7 @@ definitions:
         description: An account number is required.
       bic_swift:
         type: string
-        description: BIC / SWIFT code is required.
+        description: BIC / Swift code is required.
       beneficiary_address:
         type: string
         description: Beneficiary's address
@@ -18073,7 +18073,7 @@ definitions:
         description: >-
           The type of payment that can be made into the account details provided.
           Regular - a local scheme such as Faster Payments in the UK.
-          Priority - a priority payment e.g. FEDwire or SWIFT.
+          Priority - a priority payment e.g. FEDwire or Swift.
         enum:
           - regular
           - priority
@@ -19771,7 +19771,7 @@ definitions:
           - individual
         type: string
       payment_type:
-        description: Type of payment - regular (local) or priority (SWIFT).
+        description: Type of payment - regular (local) or priority (Swift).
         enum:
           - regular
           - priority
@@ -19830,7 +19830,7 @@ definitions:
         description: Contact UUID of payment creator.
       payment_type:
         type: string
-        description: Type of payment - priority(SWIFT) or regular(local).
+        description: Type of payment - priority(Swift) or regular(local).
       transferred_at:
         type: string
         description: Date of payment processing.
@@ -20028,7 +20028,7 @@ definitions:
         description: Calculated cut-off date and time.
       payment_type:
         type: string
-        description: Type of payment - priority (SWIFT) or regular (local).
+        description: Type of payment - priority (Swift) or regular (local).
       currency:
         type: string
         description: The 3-letter ISO code for the currency of the payment.
@@ -20160,7 +20160,7 @@ definitions:
     properties:
       payment_type:
         type: string
-        description: The payment type the fee is applicable to, priority(SWIFT) or regular(local).
+        description: The payment type the fee is applicable to, priority(Swift) or regular(local).
       charge_type:
         type: string
         description: The charge type the fee is applicable to.
@@ -20454,7 +20454,7 @@ definitions:
         description: Two-letter ISO country code for the payment's destination country.
       payment_type:
         type: string
-        description: The payment type the fee is applicable to, priority(SWIFT) or regular(local).
+        description: The payment type the fee is applicable to, priority(Swift) or regular(local).
       charge_type:
         type: string
         description: The charge type the fee is applicable.
@@ -20739,7 +20739,7 @@ definitions:
         description: Payment currency
         type: string
       bic_swift:
-        description: BIC / SWIFT code
+        description: BIC / Swift code
         type: string
       iban:
         description: IBAN number

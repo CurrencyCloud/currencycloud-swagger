@@ -133,7 +133,7 @@ The following response shows that you hold £10,750.00, US$1,500.24 and €15,45
 Currencycloud supports two types of payments:
 
 -   **Regular (local) payments**: Made using the local bank network. Regular payments are normally received by beneficiaries within five working days of the settlement date. This is a good choice for low-value, non-urgent transactions.
--   **Priority (SWIFT) payments**: Made using the SWIFT network. Payments can be made to over 212 countries, and 95% of payments arrive within one working day.
+-   **Priority (Swift) payments**: Made using the Swift network. Payments can be made to over 212 countries, and 95% of payments arrive within one working day.
 
 As an example, consider the situation where you need to make regular (local) payments to a supplier based in Germany. You have enough funds in your Euros balance to make the payment, there is therefore no need to top-up your Euros balance beforehand.
 
@@ -147,7 +147,7 @@ First, check what details are required to make a regular (local) payment in Euro
 | `bank_account_country` | Query String | `DE` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
-The following response tells us that, to make a regular payment to a German bank account in Euros, we need two pieces of information: the IBAN and BIC/SWIFT numbers for the beneficiary. The beneficiary could be either a company or an individual. Either way, the same information is required.
+The following response tells us that, to make a regular payment to a German bank account in Euros, we need two pieces of information: the IBAN and BIC/Swift numbers for the beneficiary. The beneficiary could be either a company or an individual. Either way, the same information is required.
 
 ```
 HTTP/1.1 200 OK
