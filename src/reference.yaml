@@ -4898,7 +4898,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: UK and ACH bank account number. Required if "bank_country" is GB.
+          description: Bank account number.
         - name: beneficiary_entity_type
           in: formData
           type: string
@@ -4927,7 +4927,7 @@ paths:
           in: formData
           required: true
           type: string
-          description: Routing system vale i.e. the account's sort code.
+          description: Routing system value i.e. the account's sort code.
         - name: routing_code_type_2
           in: formData
           type: string
