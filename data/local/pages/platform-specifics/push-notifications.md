@@ -837,19 +837,19 @@ Content-Type: application/json
 {
    "header":{
       "message_type":"onboarding",
-      "notification_type":"end_client_decisioned_webhook”
+      "notification_type":"end_client_decisioned_webhook"
    },
    "body":{
-      “entity_type”:”Corporate”,
+      "entity_type":"Corporate",
       "individual_applicant_name":"John Smith",
       "company_name":"ABC Ltd",
-      “trading_name:”ABC Ltd”,
-      ”applicant_jurisdiction”:”US”,
-      “contact_email":"john.smith@google.com",
-      “contact_telephone”:”07777777777”,
-      “Decision”:”Approved”,
-      "sub_account_id":"xyz123"
-      "sub_account_UUID”:”xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”
+      "trading_name":"ABC Ltd",
+      "applicant_jurisdiction":"US",
+      "contact_email":"john.smith@google.com",
+      "contact_telephone":"07777777777",
+      "Decision":"Approved",
+      "sub_account_id":"xyz123",
+      "sub_account_UUID":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
    }
 
 }
@@ -1639,24 +1639,24 @@ Content-Type: text/plain
 {
    "header":{
       "message_type":"onboarding",
-      "notification_type":"end_client_decisioned_webhook”
+      "notification_type":"end_client_decisioned_webhook"
    },
    "body":{
-      “entity_type”:”Corporate”,
+      "entity_type":"Corporate",
       "individual_applicant_name":"John Smith",
       "company_name":"ABC Ltd",
-      “trading_name:”ABC Ltd”,
-      ”applicant_jurisdiction”:”US”,
-      “contact_email":"john.smith@google.com",
-      “contact_telephone”:”07777777777”,
-      “Decision”:”Approved”,
-      "sub_account_id":"xyz123"
-      "sub_account_UUID”:”xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx”
+      "trading_name":"ABC Ltd",
+      "applicant_jurisdiction":"US",
+      "contact_email":"john.smith@google.com",
+      "contact_telephone":"07777777777",
+      "Decision":"Approved",
+      "sub_account_id":"xyz123",
+      "sub_account_UUID":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
    }
 
 }
-```
 
+```
 ---
 
 #### Notification Type: **Bank Account Verified Notification**
