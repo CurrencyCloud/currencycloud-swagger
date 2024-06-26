@@ -80,9 +80,9 @@ The `unique_request_id` is available as a parameter on the [Create Conversion](/
 
 Yes, the[ Validate Beneficiary](/api-reference/#validate-beneficiary) endpoint will provide feedback on whether the data entered matches the requirements to create the beneficiary. We verify the beneficiary details when creating a payment.
 
-### What is the default SWIFT charge type?
+### What is the default Swift charge type?
 
-The initial default applied to an account is SWIFT Shared. The default can be configured to be either Shared (SHA) or Ours (OUR) depending on your specific needs. When making a payment, if no payment charge type is selected, then the default charge type of the account applies to the payment.
+The initial default applied to an account is Swift Shared. The default can be configured to be either Shared (SHA) or Ours (OUR) depending on your specific needs. When making a payment, if no payment charge type is selected, then the default charge type of the account applies to the payment.
 
 More information can be found in our [Help Center.](https://support.currencycloud.com/hc/en-gb/articles/360017430820)
 

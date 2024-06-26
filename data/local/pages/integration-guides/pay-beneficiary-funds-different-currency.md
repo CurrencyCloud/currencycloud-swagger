@@ -235,7 +235,7 @@ Check what details are required to make a regular (local) payment in Euros to a 
 | `bank_account_country` | Query String | `DE` |
 | `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
-The following response tells us that, to make a regular payment to a German bank account in Euros, we need two pieces of information: the IBAN and BIC/SWIFT numbers for the beneficiary. The beneficiary could be either a company or an individual. Either way, the same information is required.
+The following response tells us that, to make a regular payment to a German bank account in Euros, we need two pieces of information: the IBAN and BIC/Swift numbers for the beneficiary. The beneficiary could be either a company or an individual. Either way, the same information is required.
 
 ```
 HTTP/1.1 200 OK
