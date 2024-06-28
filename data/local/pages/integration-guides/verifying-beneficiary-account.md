@@ -1,11 +1,11 @@
-[_metadata_:menu_title]:- "Verifying a Beneficiary's Account"
+[_metadata_:menu_title]:- "Confirmation of Payee Outbound (UK)"
 [_metadata_:order]:- "10"
 
-# Verifying a Beneficiary's Account
+# Confirmation of Payee Outbound (UK)
 
 ## Introduction
 
-**Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.**  
+####Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
 
 This guide is designed to help you verify beneficiary bank account details for outbound local GBP payments, via the Verify Beneficiary our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
 
@@ -130,7 +130,7 @@ The following parameters are included in the JSON response body:
 | reason | string | Full match | Metadata for reason_code. Only populated if reason_code is present. Values correspond to description for the reason_code. |
 | reason_type | string | okay | Metadata for reason. Only populated if reason_code is present. Type corresponds to suggested warning message requirements in client UI. Possible values are 'okay', 'rejected' and 'warning'. |
 
-## Guidance on reflecting API responses in the UI
+### Guidance on reflecting API responses in the UI
 
 When integrating with our Verify Beneficiary Account API, it is important to handle the various responses effectively in order to provide a seamless user experience. Below are suggestions for implementing each response in your interface, with copy and UX handling suggestions.
 
@@ -655,7 +655,6 @@ After verifying the details, you can set up a beneficiary record. Make a POST re
 Remember, if there's a 'close match' during Account Verification and the user picks the account name from the response, you need to use those details when setting up the beneficiary.
 
 `POST /v2/beneficiaries/create`
-`Content-Type: multipart/form-data`
 
 
 If the beneficiary is successfully created, the response message will contain the full details about the beneficiary as recorded in your Currencycloud account.
