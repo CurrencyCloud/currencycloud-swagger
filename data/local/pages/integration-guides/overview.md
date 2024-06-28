@@ -57,3 +57,8 @@ This guide demonstrates how to use [push notifications](/guides/getting-started/
 ​
 Sub-accounts (or named accounts) refer to the multi-currency eWallets you can establish for your customers, which sit within your House Account. This guide explains how to execute transactions on behalf of your customers when sub-accounts are in use.   
 [`Read guide`](/guides/integration-guides/sub-account-activity/)
+
+## Verifying Beneficiary Accounts
+​
+Learn how to verify a beneficiary's bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
+[`Read guide`](/guides/integration-guides/verifying-beneficiary-account/)

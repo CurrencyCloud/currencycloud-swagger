@@ -299,21 +299,11 @@ The following response shows that your customer is holding £557,685.00, and €
 
 ## Step 2: Add a beneficiary at the sub-account level
 
+If you are a client under the Sponsored or Treasury service model and contracted with The Currency Cloud Limited, then you must [verify the beneficiary's account](/guides/integration-guides/verifying-beneficiary-account) details before creating a beneficiary.
+
 If you and your customer know the required details, you can go ahead and create a record for the beneficiary via the [Create Beneficiary](/api-reference/#create-beneficiary) endpoint.
 
 **`POST /v2/beneficiaries/create`**
-
-| **Parameter Name** | **Parameter Type** | **Example Value** |
-| --- | --- | --- |
-| name | Form Data | Joe Bob |
-| bank_account_holder_name | Form Data | Joe Bob |
-| currency | Form Data | EUR |
-| beneficiary_country | Form Data | DE |
-| bank_country | Form Data | DE |
-| bic_swift | Form Data | COBADEFF |
-| on_behalf_of | Form Data | ce404ead-1936-4f54-ac2a-b26ec03d5560 |
-| iban | Form Data | DE89370400440532013000 |
-| X-Auth-Token | Header | ea6d13c7bc50feb46cf978d137bc01a2 |
 
 If the beneficiary is successfully created, the response message will contain full details about the beneficiary as recorded in your customer's Currencycloud sub-account. Note the beneficiary's unique ID (`id`). You'll need this to make a payment to the beneficiary, in the next step.
 

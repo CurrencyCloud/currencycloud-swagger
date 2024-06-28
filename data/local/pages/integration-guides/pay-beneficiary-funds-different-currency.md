@@ -283,21 +283,13 @@ Content-Type: application/json
 
 ## Step 5: Add a beneficiary
 
+If you are a client under the Sponsored or Treasury service model and contracted with The Currency Cloud Limited, then you must [verify the beneficiary's account](/guides/integration-guides/verifying-beneficiary-account) details before creating a beneficiary.
+
 If you know the required details, you can go ahead and create a record for the beneficiary via the [Create Beneficiary](/api-reference/#create-beneficiary) endpoint.
 
 `POST /v2/beneficiaries/create`\
 `Content-Type: multipart/form-data`
 
-| Parameter Name | Parameter Type | Example Value |
-| --- | --- | --- |
-| `name` | Form Data | `Acme GmbH` |
-| `bank_account_holder_name` | Form Data | `Acme GmbH` |
-| `currency` | Form Data | `EUR` |
-| `beneficiary_country` | Form Data | `DE` |
-| `bank_country` | Form Data | `DE` |
-| `bic_swift` | Form Data | `COBADEFF` |
-| `iban` | Form Data | `DE89370400440532013000` |
-| `X-Auth-Token` | Header | `ea6d13c7bc50feb46cf978d137bc01a2` |
 
 If the beneficiary is successfully created, the response message will contain full details about the beneficiary as recorded in your Currencycloud account. Note the beneficiary's unique ID (`id`). You'll need this to make a payment to the beneficiary, in the next step.
 

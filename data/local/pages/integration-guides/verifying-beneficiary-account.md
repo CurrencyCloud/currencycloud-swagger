@@ -657,16 +657,6 @@ Remember, if there's a 'close match' during Account Verification and the user pi
 `POST /v2/beneficiaries/create`
 `Content-Type: multipart/form-data`
 
-| Parameter Name |  Parameter Type | Example Value |
-|---|---|---|
-| name | Form Data | Ricardo Sousa |
-| bank_account_holder_name | Form Data | Ricardo Sousa |
-| currency | Form Data| GBP|
-| beneficiary_country | Form Data | GB |
-| bank_country | Form Data | GB |
-| account_number | Form Data | 73515966 |
-| routing_code_type_1 | Form Data | sort_code |
-| routing_code_value_1 | Form Data | 015561 |
 
 If the beneficiary is successfully created, the response message will contain the full details about the beneficiary as recorded in your Currencycloud account.
 
