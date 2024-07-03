@@ -4946,6 +4946,13 @@ paths:
           in: formData
           type: string
           description: IBAN code
+        - name: secondary_reference_data
+          in: formData
+          type: string
+          description: >-
+            For customer accounts that are not uniquely addressable by a sort code and account number,
+            but instead rely on their PSP to credit their account via SRD – i.e. using the reference
+            field in the payment with a further unique identifier.
       responses:
         '200':
           description: Success.
