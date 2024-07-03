@@ -658,4 +658,3 @@ By following these guidelines you can seamlessly integrate the Verify Beneficiar
 Here is an example:
 
 ![user journey](/images/account_verification/account_verification_user_journey.png)
- d
