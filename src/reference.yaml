@@ -4950,7 +4950,7 @@ paths:
           in: formData
           type: string
           description: >-
-            Customer accounts that are not uniquely addressable by a sort code and account number,
+            For customer accounts that are not uniquely addressable by a sort code and account number,
             but instead rely on their PSP to credit their account via SRD – i.e. using the reference
             field in the payment with a further unique identifier.
       responses:
