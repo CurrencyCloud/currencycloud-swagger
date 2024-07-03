@@ -7,7 +7,7 @@
 
 #### Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
 
-This guide is designed to help you verify beneficiary bank account details for outbound local GBP payments, via the  [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) API, our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
+This guide is designed to help you verify a beneficiary's bank account details for outbound local GBP payments, via the [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) API, our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
 
 For clients under the Sponsored and Treasury service model and contracted with The Currency Cloud Limited, it is a **mandatory** requirement to integrate with this API if you offer local GBP payments to your end-customers.
 
