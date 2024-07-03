@@ -5,7 +5,7 @@
 
 ## Introduction
 
-####Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
+#### Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
 
 This guide is designed to help you verify beneficiary bank account details for outbound local GBP payments, via the Verify Beneficiary our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
 
@@ -19,7 +19,7 @@ Please be aware that this API is in beta. Some response codes and reasons may ch
 
 The Verify Beneficiary Account API can be used to verify a beneficiary's bank account number and, in some markets, check the name of the individual or company provided.
 
-How does it work?
+**How does it work?**
 
 1.  The end-customer inputs the beneficiary's account details.
 2.  Currencycloud forwards this request to the beneficiary's bank or cross-references it against a dataset.
@@ -68,6 +68,7 @@ The request body includes the following  parameters: 
 | routing_code_value_2 | Form Data | No |   | Routing code for routing_code_type_2  |
 | bic_swift | Form Data | No |   |  BIC/Swift Code |
 | iban | Form Data | No |   | IBAN |
+| secondary_reference_data | Form Data | No | | Customer accounts that are not uniquely addressable by a sort code and account number, but instead rely on their PSP to credit their account via SRD – i.e. using the reference field in the payment with a further unique identifier.|
 
 
 
@@ -172,13 +173,13 @@ Response:
 }
 ```
 
-API Reason: Full Match  
+**API Reason**: Full Match<br><br>
 
-Description: The beneficiary's bank was able to confirm a full name and account match.  
+**Description:** The beneficiary's bank was able to confirm a full name and account match.  <br><br>
 
-Handling: The end-customer can proceed with creating the beneficiary.  
+**Handling:** The end-customer can proceed with creating the beneficiary.  <br><br>
 
-UI Suggestion:  
+**UI Suggestion:** <br><br>
 
 <img src="/images/account_verification/account_verification_full_match.png" width=100%>
 
@@ -218,15 +219,15 @@ Response:
 }
 ```
 
-API Response: AV300  
+**API Response:** AV300<br><br>  
 
-Description: This is a close match. Display a message highlighting the error, and the risk of proceeding with creation. The actual account_name will be provided in the response.  
+**Description:** This is a close match. Display a message highlighting the error, and the risk of proceeding with creation. The actual account_name will be provided in the response.  <br><br>
 
-Handling: In the event of a close match, display the actual `account_name` to the end-customer. Consider providing a call to action or button to nudge the user into submitting the correct details. This reduces cognitive load and makes it easier for them to adjust their choice.  
+**Handling:** In the event of a close match, display the actual `account_name` to the end-customer. Consider providing a call to action or button to nudge the user into submitting the correct details. This reduces cognitive load and makes it easier for them to adjust their choice.  
 
 In the event of a close match, it's important that you explain the problem and solution clearly. However, if the end-customer decides to proceed, present a dialogue box with a secondary warning indicating that they do so at their own discretion and risk.  
 
-UI Suggestion:  
+**UI Suggestion:**<br><br>
 
 <img src="/images/account_verification/account_verification_close_match.png" width=100%>
 
@@ -269,13 +270,13 @@ Response:
 
 API Response: AV201  
 
-Response: String does not match the account name.   
+**Response:** String does not match the account name. <br><br>  
 
-Handling: There is no match. Display a negative notice highlighting the error. The actual account_name will not be provided in the response. Create a button to give the end-customer the choice to edit the account details or keep what they entered.  
+**Handling:** There is no match. Display a negative notice highlighting the error. The actual account_name will not be provided in the response. Create a button to give the end-customer the choice to edit the account details or keep what they entered. <br><br>
 
 In the event of a no match, it's important that you explain the problem clearly. However, if the end-customer decides to proceed, present a dialogue box with a secondary warning indicating that they do so at their own discretion and risk.  
 
-UI Suggestion:  
+**UI Suggestion:** <br><br>
 
 <img src="/images/account_verification/account_verification_no_match.png" width=100%>
 
@@ -302,7 +303,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>Full match</td>
     <td>Okay</td>
     <td><img src="/images/account_verification/check.svg"> <b>Beneficiary details confirmed</b><br><br>
-      The details entered for the beneficiary have been confirmed as an exact match. Please proceed with beneficiary creation.  
+      The details entered for the beneficiary have been confirmed as an exact match. Please proceed with beneficiary creation.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]  
@@ -314,14 +315,14 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td><span style="color:#BB271A">AV200</span></td>
     <td>There is no account with the given account number.</td>
     <td>Rejected</td>
-    <td><img src="/images/account_verification/error.svg"> <b>Unable to confirm the account details</b><br><br>
-      The account number and sort code provided for the beneficiary do not match those on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+    <td><img src="/images/error.svg"> <b>Unable to confirm the account details</b><br><br>
+      The account number and sort code provided for the beneficiary do not match those on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create beneficiary]<br>
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -337,13 +338,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String does not match the account name. </td>
     <td>Rejected</td>
     <td><img src="/images/account_verification/error.svg"> <b>No match for beneficiary name</b><br><br>
-      The name you have provided for the beneficiary does not match that on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The name you have provided for the beneficiary does not match that on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]<br>
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -355,17 +356,17 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
   </tr>
   <tr>
     <td><span style="color:#BB271A">no_match</span></td>
-    <td><span style="color:#BB271A">AV202</span></td>
+    <td><span style="color:#BB271A">AV202<br> AV203<br> AV204<br> AV205</span></td>
     <td>Unable to check account details.</td>
     <td>Rejected</td>
     <td><img src="/images/account_verification/error.svg"> <b>Unable to check provided details</b><br><br>
-      It has not been possible to check the beneficiary details you have provided. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      It has not been possible to check the beneficiary details you have provided. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]<br>
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -374,83 +375,20 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
        3. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.<br>
        4. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.</td>
   </tr>
-  <tr>
-    <td><span style="color:#BB271A">no_match</span></td>
-    <td><span style="color:#BB271A">AV203</span></td>
-    <td>Unable to check account details.</td>
-    <td>Rejected</td>
-    <td><img src="/images/account_verification/error.svg"> <b>Unable to check provided details </b><br><br>
-      It has not been possible to check the beneficiary details you have provided. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
-      [Back] <br>
-      [Cancel] <br>
-      [Create Beneficiary]<br>
-      <hr>
-      <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
-      [Cancel]<br>
-      [Continue Anyway] <br>
-    </td>
-    <td>1. Display a negative notice highlighting the error. <br>
-       2. Create a button to give the end-customer the choice to go Back, Cancel or Create Beneficiary.<br>
-       3. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.<br>
-       4. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.
-    </td>
-  </tr>
-  <tr>
-    <td><span style="color:#BB271A">no_match</span></td>
-    <td><span style="color:#BB271A">AV204</span></td>
-    <td>Unable to check account details.</td>
-    <td>Rejected</td>
-    <td><img src="/images/account_verification/error.svg"> <b>Unable to check provided details </b><br><br>
-      It has not been possible to check the beneficiary details you have provided. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
-      [Back] <br>
-      [Cancel] <br>
-      [Create Beneficiary]<br>
-      <hr>
-      <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
-      [Cancel]<br>
-      [Continue Anyway] <br>
-    </td>
-    <td> 1. Display a negative notice highlighting the error. <br>
-       2. Create a button to give the end-customer the choice to go Back, Cancel or Create Beneficiary.<br>
-       3. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.<br>
-       4. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.</td>
-  </tr>
-  <tr>
-    <td><span style="color:#BB271A">no_match</span></td>
-    <td><span style="color:#BB271A">AV205</span></td>
-    <td>Unable to check the account details.</td>
-    <td>Rejected</td>
-    <td><img src="/images/account_verification/error.svg"> <b>Unable to check provided details </b><br><br>
-      It has not been possible to check the beneficiary details you have provided. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
-      [Back] <br>
-      [Cancel] <br>
-      [Create Beneficiary]<br>
-      <hr>
-      <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
-      [Cancel]<br>
-      [Continue Anyway] <br>
-    </td>
-    <td>1. Display a negative notice highlighting the error. <br>
-       2. Create a button to give the end-customer the choice to go Back, Cancel or Create Beneficiary.<br>
-       3. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.<br>
-       4. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.</td>
-  </tr>
+
   <tr>
     <td><span style="color:#BB271A">no_match</span></td>
     <td><span style="color:#BB271A">AV206</span></td>
     <td>Invalid secondary customer reference data.</td>
     <td>Rejected</td>
     <td><img src="/images/account_verification/error.svg"> <b>No match for provided details</b><br><br>
-      The reference details you have provided for the beneficiary do not match those on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The reference details you have provided for the beneficiary do not match those on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]  
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -466,13 +404,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String is a close match to the account name</td>
     <td>Warning</td>
     <td><img src="/images/account_verification/warning.svg"> <b>Incorrect beneficiary name</b><br><br>
-      The details you have provided for the beneficiary closely match those on record, however the name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Beneficiary Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The details you have provided for the beneficiary closely match those on record, however the name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Beneficiary Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary] (disabled until selection is made)<br>
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -489,13 +427,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String is a close match to the account name. The type of account is Business when Personal was indicated in the request.</td>
     <td>Warning</td>
     <td><img src="/images/account_verification/warning.svg"> <b>Incorrect company name</b><br><br>
-      The details you have provided for the beneficiary closely match those on record, however the company name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Company Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The details you have provided for the beneficiary closely match those on record, however the company name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Company Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary] (disabled until selection is made)
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -513,13 +451,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String is a close match to the account name. The type of account is Personal when Business was indicated in the request.</td>
     <td>Warning</td>
     <td><img src="/images/account_verification/warning.svg"> <b>Incorrect beneficiary name</b><br><br>
-      The details you have provided for the beneficiary closely match those on record, however the name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Beneficiary Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.
+      The details you have provided for the beneficiary closely match those on record, however the name is '[actual_name]'. Please check the information you have entered and click 'Back' to update the Beneficiary Name to '[actual_name]' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary] (disabled until selection is made)
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br></td>
       <td>1. Display a negative notice highlighting the error. <br>
@@ -535,13 +473,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String is a match to the account name, but the type of account is Business when Personal was indicated in the request.</td>
     <td>Warning</td>
     <td><img src="/images/account_verification/warning.svg"> <b>Incorrect beneficiary type</b><br><br>
-      The details you have provided for the beneficiary closely match those on record, however the beneficiary is recognised as a company not an individual. Please check the information you have entered and click 'Back' to update the Beneficiary Type to 'Company' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The details you have provided for the beneficiary closely match those on record, however the beneficiary is recognised as a company not an individual. Please check the information you have entered and click 'Back' to update the Beneficiary Type to 'Company' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]  
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -556,13 +494,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>String is a close match to the account name, but the type of account is Personal when Business was indicated in the request.</td>
     <td>Warning</td>
     <td><img src="/images/account_verification/warning.svg"> <b>Incorrect beneficiary type</b><br><br>
-    The details you have provided for the beneficiary closely match those on record, however it is recognised as an individual not a company. Please check the information you have entered and click 'Back' to update the Beneficiary Type to 'Individual' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+    The details you have provided for the beneficiary closely match those on record, however it is recognised as an individual not a company. Please check the information you have entered and click 'Back' to update the Beneficiary Type to 'Individual' if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
     [Back] <br>
     [Cancel] <br>
     [Create Beneficiary] <br>
     <hr>
     <b>Are you sure you want to continue? </b><br><br>
-    Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+    Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
     [Cancel]<br>
     [Continue Anyway] <br></td>
     <td>1. Display a negative notice highlighting the error. <br>
@@ -578,13 +516,13 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td>Warning</td>
     <td>
       <img src="/images/account_verification/warning.svg"> <b>Account has been switched</b><br><br>
-      The details you have provided for the beneficiary closely match those on record, however the account has been switched to a different organisation. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      The details you have provided for the beneficiary closely match those on record, however the account has been switched to a different organisation. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]  
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
@@ -603,22 +541,22 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
 
 <table style="width:100%">
   <tr>
-    <td style="width:20%">Error Code</th>
+    <td style="width:21%">Error Code</th>
     <td style="width:15%">Error<br> Reason</td>
-    <td style="width:33%">Required Copy</td>
+    <td style="width:32%">Required Copy</td>
     <td style="width:32%">How to handle</td>
   </tr>
   <tr>
     <td><span style="color:#BB271A;">service_unavailable</span></td>
     <td>Service is temporarily unavailable</td>
     <td><img src="/images/account_verification/error.svg"> <b>Unable to check provided details</b><br><br>
-      It has not been possible to check the beneficiary details you have provided at this time. Please try creating the beneficiary again later, or click 'Create Beneficiary' if you are sure the details are correct.<br>
+      It has not been possible to check the beneficiary details you have provided at this time. Please try creating the beneficiary again later, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
       [Create Beneficiary]  
       <hr>
       <b>Are you sure you want to continue? </b><br><br>
-      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br>
+      Paying this person or business may lead to your money being sent to the wrong account. We may not be able to recover the money for you.<br><br>
       [Cancel]<br>
       [Continue Anyway] <br>
     </td>
