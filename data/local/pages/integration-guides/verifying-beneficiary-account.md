@@ -181,7 +181,7 @@ Response:
 
 **UI Suggestion:** <br><br>
 
-<img src="/images/account_verification/account_verification_full_match2.png" width=100%>
+<img src="/images/account_verification/account_verification_full_match.png" width=100%>
 
 ### 2. AV300 (Close match)
 
@@ -229,7 +229,7 @@ In the event of a close match, it's important that you explain the problem and s
 
 **UI Suggestion:**<br><br>
 
-<img src="/images/account_verification/account_verification_close_match2.png" width=100%>
+<img src="/images/account_verification/account_verification_close_match.png" width=100%>
 
 
 ### 3. AV201 (No match)
@@ -278,7 +278,7 @@ In the event of a no match, it's important that you explain the problem clearly.
 
 **UI Suggestion:** <br><br>
 
-<img src="/images/account_verification/account_verification_no_match2.png" width=100%>
+<img src="/images/account_verification/account_verification_no_match.png" width=100%>
 
 ### Reason codes
 
@@ -657,5 +657,5 @@ By following these guidelines you can seamlessly integrate the Verify Beneficiar
 
 Here is an example:
 
-![user journey](/images/account_verification/account_verification_user_journey2.png)
+![user journey](/images/account_verification/account_verification_user_journey.png)
  d
