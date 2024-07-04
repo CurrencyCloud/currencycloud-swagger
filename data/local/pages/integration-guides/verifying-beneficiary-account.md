@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Confirmation of Payee Outbound (UK)"
-[_metadata_:order]:- "10"
+[_metadata_:order]:- "11"
 
 # Confirmation of Payee Outbound (UK)
 
@@ -7,7 +7,7 @@
 
 #### Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
 
-This guide is designed to help you verify beneficiary bank account details for outbound local GBP payments, via the Verify Beneficiary our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
+This guide is designed to help you verify a beneficiary's bank account details for outbound local GBP payments, via the [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) API, our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
 
 For clients under the Sponsored and Treasury service model and contracted with The Currency Cloud Limited, it is a **mandatory** requirement to integrate with this API if you offer local GBP payments to your end-customers.
 
@@ -43,7 +43,7 @@ Please refer to the [Authentication guide](https://developer.currencycloud.com/
 
 ### Requests
 
-To verify a beneficiary's bank account details in the UK, make a POST request to the [Account Verification](/api-reference/#verify-beneficiary-account) endpoint.
+To verify a beneficiary's bank account details in the UK, make a POST request to the [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) endpoint.
 
 `POST /v2/beneficiaries/account_verification.`
 
@@ -89,7 +89,8 @@ The request body includes the following  parameters: 
   "routing_code_type_2": null,
   "routing_code_value_2": null,
   "bic_swift": null,
-  "iban": null
+  "iban": null,
+  "secondary_reference_data": null
 }
 
 ```
@@ -156,7 +157,8 @@ Request:
   "routing_code_type_2": null,
   "routing_code_value_2": null,
   "bic_swift": null,
-  "iban": null
+  "iban": null,
+  "secondary_reference_data": null
 }
 ```
 
@@ -202,7 +204,8 @@ Request:
   "routing_code_type_2": null,
   "routing_code_value_2": null,
   "bic_swift": null,
-  "iban": null
+  "iban": null,
+  "secondary_reference_data": null
 }
 ```
 
@@ -223,7 +226,7 @@ Response:
 
 **Description:** This is a close match. Display a message highlighting the error, and the risk of proceeding with creation. The actual account_name will be provided in the response.  <br><br>
 
-**Handling:** In the event of a close match, display the actual `account_name` to the end-customer. Consider providing a call to action or button to nudge the user into submitting the correct details. This reduces cognitive load and makes it easier for them to adjust their choice.  
+**Handling:** In the event of a close match, display the `actual_name` to the end-customer. Consider providing a call to action or button to nudge the user into submitting the correct details. This reduces cognitive load and makes it easier for them to adjust their choice.   <br><br>
 
 In the event of a close match, it's important that you explain the problem and solution clearly. However, if the end-customer decides to proceed, present a dialogue box with a secondary warning indicating that they do so at their own discretion and risk.  
 
@@ -251,7 +254,8 @@ Request:
   "routing_code_type_2": null,
   "routing_code_value_2": null,
   "bic_swift": null,
-  "iban": null
+  "iban": null,
+  "secondary_reference_data": null
 }
 ```
 
@@ -272,7 +276,7 @@ API Response: AV201
 
 **Response:** String does not match the account name. <br><br>  
 
-**Handling:** There is no match. Display a negative notice highlighting the error. The actual account_name will not be provided in the response. Create a button to give the end-customer the choice to edit the account details or keep what they entered. <br><br>
+**Handling:** There is no match. Display a negative notice highlighting the error. The  `actual_name` will not be provided in the response. Create a button to give the end-customer the choice to edit the account details or keep what they entered. <br><br>
 
 In the event of a no match, it's important that you explain the problem clearly. However, if the end-customer decides to proceed, present a dialogue box with a secondary warning indicating that they do so at their own discretion and risk.  
 
@@ -315,7 +319,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     <td><span style="color:#BB271A">AV200</span></td>
     <td>There is no account with the given account number.</td>
     <td>Rejected</td>
-    <td><img src="/images/error.svg"> <b>Unable to confirm the account details</b><br><br>
+    <td><img src="/images/account_verification/error.svg"> <b>Unable to confirm the account details</b><br><br>
       The account number and sort code provided for the beneficiary do not match those on record. Please check the information you have entered and click 'Back' to update if necessary, or click 'Create Beneficiary' if you are sure the details are correct.<br><br>
       [Back] <br>
       [Cancel] <br>
@@ -415,7 +419,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
       [Continue Anyway] <br>
     </td>
     <td>   1. Display a negative notice highlighting the error. <br>
-      2. The actual account_name will be provided. Wrap the provided copy around the [actual_name].<br>
+      2. The <code>actual_name</code> will be provided. Wrap the provided copy around the [actual_name].<br>
       3. Create a button to give the end-customer the choice to go Back, Cancel or Create Beneficiary.<br>
       4. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.
       5. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.
@@ -439,7 +443,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     </td>
     <td>
       1. Display a negative notice highlighting the error. <br>
-      2. The actual account_name will be provided. Wrap the provided copy around the [actual_name].<br>
+      2. The <code>actual_name</code> will be provided. Wrap the provided copy around the [actual_name].<br>
       3. Create a button to give the end-customer the choice to go Back, Cancel or Create Beneficiary.<br>
       4. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.
       5. If the user clicks/taps 'Create Beneficiary', end-customer should receive a secondary warning via a dialogue box.
@@ -461,7 +465,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
       [Cancel]<br>
       [Continue Anyway] <br></td>
       <td>1. Display a negative notice highlighting the error. <br>
-        2. The actual account_name will be provided. Wrap the provided copy around the [actual_name].<br>
+        2. The <code>actual_name</code> will be provided. Wrap the provided copy around the [actual_name].<br>
         3. Create a button to give the end-client the choice to go Back, Cancel or Create Beneficiary. <br>
         4. If the user clicks/taps 'Back' a new API request must be submitted to check the new details.
         5. If the user clicks/taps 'Create Beneficiary', the end-customer should receive s secondary warning via a dialogue box.

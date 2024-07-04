@@ -16,6 +16,8 @@
 8. [Paying a beneficiary using funds in a different currency](/guides/integration-guides/pay-beneficiary-funds-different-currency)
 9. [Inbound Funds/Collections](/guides/integration-guides/collections)
 10. [Sub-Account Activity (on_behalf_of)](/guides/integration-guides/sub-account-activity)  
+11. [Confirmation of Payee Outbound (UK)](/guides/integration-guides/verifying-beneficiary-account/)
+
 <!--- 8. [Adding an FX spread](/guides/integration-guides/adding-an-fx-spread) --->
 
 # Quick Links
