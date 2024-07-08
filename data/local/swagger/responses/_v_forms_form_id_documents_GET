@@ -1,24 +1,16 @@
 {
   "documents": [
     {
-      "id": "419a6291-2096-4351-8658-73dc2f394e0f",
+      "id": "fae55c3f-85c1-4a59-a9ae-6868335d13fc",
       "document_type": "driving_licence",
       "category": "proof_of_identity",
-      "document_image_ids": [],
-      "form_section_type": "FormIndividual",
+      "document_image_ids": [
+        "4ad405fb-df27-4f60-8b13-6a2e26b7276d"
+      ],
+      "form_section_type": "FormCorporate",
       "form_section_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
-      "created_at": "2024-06-18T19:33:08Z",
-      "updated_at": "2024-06-18T19:33:08Z"
-    },
-    {
-      "id": "feee134d-4f24-414f-a224-ceb19f50b76c",
-      "document_type": "bank_statement",
-      "category": "proof_of_address",
-      "document_image_ids": [],
-      "form_section_type": "FormIndividual",
-      "form_section_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
-      "created_at": "2024-06-18T19:43:46Z",
-      "updated_at": "2024-06-18T19:43:46Z"
+      "created_at": "2024-07-08T15:49:45Z",
+      "updated_at": "2024-07-08T15:49:45Z"
     }
   ]
 }

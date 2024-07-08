@@ -4099,7 +4099,7 @@ components:
           type: string
           nullable: true
         incorporation_date:
-          description: The date the company was incorporated.
+          description: The date the company was incorporated. Format YYYY-MM-DD.
           type: string
           format: date
         business_website:

@@ -1,0 +1,30 @@
+{
+  "data": {
+    "id": "039407b2-1c87-4dbd-b6d9-b3e50fe17ac7",
+    "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+    "document_ids": [],
+    "business_country": "GB",
+    "company_name": "Balanced Books Ltd",
+    "trading_name": null,
+    "legal_entity_type": "limited_liability_company",
+    "sector": "accountancy",
+    "company_registration_number": "12345678",
+    "vat_number": "GB123456789",
+    "incorporation_date": "2022-03-01",
+    "business_website": null,
+    "business_activity_description": null,
+    "registered_address": {
+      "apartment_number": null,
+      "building_name": null,
+      "building_number": "12",
+      "city": "London",
+      "country": "GB",
+      "postal_code": "SW12 2AA",
+      "state_or_province": null,
+      "street": "Brighton Road"
+    },
+    "trading_address": null,
+    "created_at": "2024-07-08T15:21:13Z",
+    "updated_at": "2024-07-08T15:21:13Z"
+  }
+}
