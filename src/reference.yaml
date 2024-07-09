@@ -14412,13 +14412,13 @@ paths:
           format: date
           description: >-
             Earliest processing date. Any valid ISO 8601 format, e.g.
-            "2023-12-31".
+            "e.g. "2023-12-31T23:59:59Z".
         - name: settles_at_to
           in: query
           required: false
           type: string
           format: date
-          description: 'Latest processing date. Any valid ISO 8601 format, e.g. "2023-12-31".'
+          description: 'Latest processing date. Any valid ISO 8601 format, e.g. "e.g. "2023-12-31T23:59:59Z".'
         - name: created_at_from
           in: query
           required: false
