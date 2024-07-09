@@ -5,7 +5,7 @@
 
 ## Introduction
 
-#### Learn how to verify beneficiary bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.
+#### Improve customer experience and decrease misdirected UK payments by verifying the beneficiary's bank account details before creating or updating a beneficiary.
 
 This guide is designed to help you verify a beneficiary's bank account details for outbound local GBP payments, via the [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) API, our Confirmation of Payee service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
 
@@ -590,16 +590,13 @@ Required copy and handling requirements are not applicable for HTTP 400 errors a
 | <span style="color:#BB271A;">missing_individual_names</span> |beneficiary_first_name and beneficiary_last_name are required when beneficiary_entity_type is individual. |
 | <span style="color:#BB271A;">missing_company_name</span> |beneficiary_company_name is required when beneficiary_entity_type is company. |
 
-## Step 3: Create Beneficiary
+## Step 3: Create or Update Beneficiary
 
-After verifying the details, you can set up a beneficiary record. Make a POST request to the [Create Beneficiary](/api-reference/#create-beneficiary) endpoint.
+After successfully verifying the details, you can set up a new beneficiary record or update an existing one using the Beneficiaries API. Make a POST request to the [Create Beneficiary](/api-reference/#create-beneficiary) endpoint to create a new beneficiary or to the [Update Beneficiary](/api-reference/#update-beneficiary) endpoint to update an existing one.
 
-Remember, if there's a 'close match' during Account Verification and the user picks the account name from the response, you need to use those details when setting up the beneficiary.
+Remember, if there's a 'close match' during Account Verification and the user picks the account name from the response, you need to use those details when creating or updating a beneficiary.
 
-`POST /v2/beneficiaries/create`
-
-
-If the beneficiary is successfully created, the response message will contain the full details about the beneficiary as recorded in your Currencycloud account.
+If the beneficiary is successfully created or updated, the response message will contain the full details about the beneficiary as recorded in your Currencycloud account.
 
 Note the beneficiary's unique ID (`id`). You'll need this to make a payment to the beneficiary.
 
