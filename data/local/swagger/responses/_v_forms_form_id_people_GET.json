@@ -1,0 +1,68 @@
+{
+  "people": [
+    {
+      "id": "12fc6b89-4af3-47b9-8529-47990d8f515c",
+      "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+      "document_ids": [],
+      "roles": [
+        "director",
+        "user"
+      ],
+      "first_name": "Brian",
+      "middle_name": null,
+      "last_name": "Lloyd",
+      "dob": null,
+      "phone_number": null,
+      "email": null,
+      "ownership_percentage": null,
+      "id_number": null,
+      "impersonation_check_required": null,
+      "home_country": "GB",
+      "passport_number": null,
+      "passport_country_of_issue": null,
+      "personal_address": null,
+      "applicant_id": null,
+      "workflow_id": null,
+      "token": null,
+      "created_at": "2024-06-18T13:59:24Z",
+      "updated_at": "2024-06-18T13:59:24Z"
+    },
+    {
+      "id": "fecd34a3-300a-4467-8e5d-a4cc7b73f0b0",
+      "form_id": "affa837f-a624-4b1c-9f42-ab5dcd25b5ca",
+      "document_ids": [],
+      "roles": [
+        "director",
+        "ultimate_business_owner",
+        "user"
+      ],
+      "first_name": "Simon",
+      "middle_name": null,
+      "last_name": "Jenkins",
+      "dob": null,
+      "phone_number": null,
+      "email": null,
+      "ownership_percentage": 70,
+      "id_number": null,
+      "impersonation_check_required": null,
+      "home_country": "GB",
+      "passport_number": null,
+      "passport_country_of_issue": null,
+      "personal_address": {
+        "apartment_number": null,
+        "building_name": null,
+        "building_number": "32",
+        "city": "London",
+        "country": "GB",
+        "postal_code": "SW1A 1AA",
+        "state_or_province": null,
+        "street": "Brighton Road"
+      },
+      "applicant_id": null,
+      "workflow_id": null,
+      "token": null,
+      "created_at": "2024-07-10T09:23:13Z",
+      "updated_at": "2024-07-10T12:38:55Z"
+    }
+  ]
+}
