@@ -1,0 +1,25 @@
+{
+  "data": {
+    "id": "2fed44ae-a0a9-455c-9c1c-424edfdfeb6d",
+    "detached_document_ids": [],
+    "affiliate_code": null,
+    "agreed_to_marketing_emails": true,
+    "agreed_to_terms_and_conditions": true,
+    "agreed_to_corporate_authority": false,
+    "business_role": null,
+    "country": "GB",
+    "email": "simon.jenkins@balancedbooks.com",
+    "entity_type": "corporate",
+    "brand_name": currencycloud,
+    "brand_key": null,
+    "referred_by": null,
+    "products_required": null,
+    "state": "new",
+    "phone_number": null,
+    "contact_name": null,
+    "created_at": "2024-07-12T12:59:43Z",
+    "updated_at": "2024-07-12T12:59:43Z",
+    "email_verification_status": "pending",
+    "email_verified_at": null
+  }
+}
