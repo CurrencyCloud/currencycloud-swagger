@@ -670,38 +670,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
-  "/v1/forms/{form_id}/email_verification_tokens":
-    put:
-      summary: Update
-      description: Adds a token to email verification tokens
-      tags:
-      - Email Verification
-      x-api-group: Onboard
-      security:
-      - AuthToken: []
-      parameters:
-      - name: form_id
-        description: Form UUID
-
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '204':
-          description: Add a token to the given form
-        '404':
-          description: Form not found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/not_found_response"
-        '403':
-          description: Forbidden for api clients requests
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/validation_error_response"
   "/v1/forms/{form_id}/submit":
     post:
       summary: Submit Form
