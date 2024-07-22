@@ -5004,6 +5004,10 @@ paths:
               category: beneficiary_last_name
               message: beneficiary_last_name size must be between 0 and 140
               params: ''
+            - code: invalid_field_bank_country
+              category: bank_country
+              message: bank_country must match \”^[A-Z]{2}$
+              params: ''
             - code: missing_individual_names
               category: beneficiary_last_name
               message: beneficiary_first_name and beneficiary_last_name are required when beneficiary_entity_type is individual.
