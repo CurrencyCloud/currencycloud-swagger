@@ -16124,12 +16124,6 @@ definitions:
       process_third_party_funds:
         description: Is the account enabled for third party funds?
         type: boolean
-      settlement_type:
-        description: The settlement type - bulk or net.
-        enum:
-          - bulk
-          - net
-        type: string
       terms_and_conditions_accepted:
         description: Have the terms and conditions been accepted?
         type: boolean
@@ -16165,7 +16159,6 @@ definitions:
       online_trading: true
       phone_trading: true
       process_third_party_funds: false
-      settlement_type: bulk
       terms_and_conditions_accepted: true
       agent_or_reliance: true
       bank_account_verified: no
