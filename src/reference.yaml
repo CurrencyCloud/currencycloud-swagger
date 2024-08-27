@@ -1450,7 +1450,7 @@ paths:
       tags:
       - Accounts
       x-api-group: manage
-      summary: Get the Payment Charges Settings for a given account
+      summary: Get Payment Charges Settings
       description: Retrieves the Payment Charges Settings for the given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
@@ -1564,7 +1564,7 @@ paths:
       tags:
       - Accounts
       x-api-group: manage
-      summary: Manage Account Payment Charges Settings
+      summary: Manage Payment Charges Settings
       description: Manage a given account's Payment Charge Settings (enable, disable, set as default).
       operationId: ManageAccountPaymentChargesSettings
       produces:
