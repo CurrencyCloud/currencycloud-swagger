@@ -20801,7 +20801,7 @@ definitions:
       bank_country: GB
       currency: GBP
       bic_swift: BARCGB22
-      iban: GB06 BARC 2006 0513 0714 72
+      iban: GB33 BUKB 2020 1555 5555 55
       account_number: '13071472'
       routing_code_type_1: sort_code
       routing_code_value_1: '200605'
