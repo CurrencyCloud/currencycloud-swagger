@@ -403,6 +403,15 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
     </td>
   </tr>
   <tr>
+    <td><span style="color:#BB271A">no_match</span></td>
+    <td><span style="color:#BB271A">AV207</span></td>
+    <td>Unable to check account details.</td>
+    <td>Rejected</td>
+    <td></td>
+    <td>Using data not included in our test pack results in this response in our demo environment. If this occurs in the production environment, please report to <a href= "mailto: support@currencycloud.com"> support@currencycloud.com</a>.</td>
+  </tr>
+
+  <tr>
     <td><span style="color:orange">close_match</span></td>
     <td><span style="color:orange">AV300</td>
     <td>String is a close match to the account name</td>
