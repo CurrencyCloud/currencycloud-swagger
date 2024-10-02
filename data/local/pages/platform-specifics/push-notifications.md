@@ -1637,25 +1637,23 @@ Content-Type: text/plain
 
 ```
 {
-   "header":{
-      "message_type":"onboarding",
-      "notification_type":"end_client_decisioned_webhook"
-   },
-   "body":{
-      "entity_type":"Corporate",
-      "individual_applicant_name":"John Smith",
-      "company_name":"ABC Ltd",
-      "trading_name":"ABC Ltd",
-      "applicant_jurisdiction":"US",
-      "contact_email":"john.smith@google.com",
-      "contact_telephone":"07777777777",
-      "Decision":"Approved",
-      "sub_account_id":"xyz123",
-      "sub_account_UUID":"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-   }
-
+ "header": {
+  "message_type": "end_client_application_decisioned",
+  "notification_type": "end_client_application_decisioned_notification"
+ },
+ "body": {
+  "entity_type": "corporate",
+  "applicant_jurisdiction": "US",
+  "individual_applicant_name": "John Smith",
+  "company_name": "ABC Ltd",
+  "trading_name": "ABC Ltd",
+  "contact_email": "john.smith@hotmail.com",
+  "contact_telephone": "0121123123123",
+  "decision": "approved",
+  "form_id": "a0123122e-4f38-407e-9294-12312a34eaf3",
+  "sub_account_id": "97123123123-b572-123123-93ef-e80c387be0cf"
+ }
 }
-
 ```
 ---
 
