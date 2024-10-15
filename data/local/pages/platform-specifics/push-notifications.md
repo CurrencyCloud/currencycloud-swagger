@@ -1587,7 +1587,7 @@ Content-Type: text/plain
 ```
 ---
 
-#### Notification Type: **End Client Application Received Notification**
+#### Notification Type: **End Client Application Submitted Notification**
 
 #### Message Header
 
@@ -1605,16 +1605,16 @@ Content-Type: text/plain
 ```
 {
    "header":{
-      "message_type":"onboarding",
-      "notification_type":"end_client_application_received"
+      "message_type":"end_client_application_submitted",
+      "notification_type":"end_client_application_submitted_notification"
    },
    "body":{
-      "submitted_at":"2022_04_12T10:15:48 00:00",
-      "individual_applicant_name":"John Smith",
-      "company_name":"ABC Ltd",
-      "email":"john.smith@google.com",
-      "form_id":"xyz123",
-      "sub_account_id":"xyz123"
+      "submitted_at":"2024-10-11T11:21:21.000Z",
+      "individual_applicant_name":null,
+      "company_name":"Company Name Ltd",
+      "email":"firstname.lastname@company.com",
+      "form_id":"a12b123ce-1ab2-123c-a21b-12a12b123c12",
+      "sub_account_id":"c23d234df-2bc3-234d-b32c-23b23c234d23"
    }
 }
 ```
@@ -1643,15 +1643,15 @@ Content-Type: text/plain
  },
  "body": {
   "entity_type": "corporate",
-  "applicant_jurisdiction": "US",
-  "individual_applicant_name": "John Smith",
-  "company_name": "ABC Ltd",
-  "trading_name": "ABC Ltd",
-  "contact_email": "john.smith@hotmail.com",
-  "contact_telephone": "0121123123123",
+  "applicant_jurisdiction": "IE",
+  "individual_applicant_name": null,
+  "company_name": "Company Name Ltd",
+  "trading_name": "",
+  "contact_email": "firstname.lastname@company.com",
+  "contact_telephone": "00353123123123",
   "decision": "approved",
-  "form_id": "a0123122e-4f38-407e-9294-12312a34eaf3",
-  "sub_account_id": "97123123123-b572-123123-93ef-e80c387be0cf"
+  "form_id": "a12b123ce-1ab2-123c-a21b-12a12b123c12",
+  "sub_account_id": "c23d234df-2bc3-234d-b32c-23b23c234d23"
  }
 }
 ```
