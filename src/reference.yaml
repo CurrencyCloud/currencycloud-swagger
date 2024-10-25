@@ -380,9 +380,9 @@ paths:
           required: false
           type: string
           enum:
+            - disabled
             - enabled
             - enabled_no_trading
-            - disabled
           default: enabled
           description: Account status.
         - name: state_or_province
@@ -416,23 +416,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
-            - others
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
+            - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
@@ -815,9 +815,9 @@ paths:
         required: false
         type: string
         enum:
+          - disabled
           - enabled
           - enabled_no_trading
-          - disabled
         default: enabled
         description: Status of the account.
       - name: street
@@ -876,23 +876,23 @@ paths:
         required: false
         type: string
         enum:
-          - none
-          - drivers_license
-          - social_security_number
-          - green_card
-          - passport
-          - visa
-          - matricula_consular
-          - registro_federal_de_contribuyentes
-          - credential_de_elector
-          - social_insurance_number
           - citizenship_papers
+          - credential_de_elector
+          - drivers_license
           - drivers_license_canadian
-          - existing_credit_card_details
           - employer_identification_number
-          - national_id
-          - others
+          - existing_credit_card_details
+          - green_card
           - incorporation_number
+          - matricula_consular
+          - national_id
+          - none
+          - others
+          - passport
+          - registro_federal_de_contribuyentes
+          - social_insurance_number
+          - social_security_number
+          - visa
         description: A legal document that verifies the identity of the account owner.
       - name: identification_value
         in: formData
@@ -1230,9 +1230,9 @@ paths:
           required: false
           type: string
           enum:
+            - disabled
             - enabled
             - enabled_no_trading
-            - disabled
           description: Account status.
         - name: street
           in: formData
@@ -1895,9 +1895,9 @@ paths:
           required: false
           type: string
           enum:
+            - all
             - clients
             - own
-            - all
           default: own
           description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
@@ -1917,10 +1917,10 @@ paths:
           default: created_at
           description: A field name to change the sort order - "created_at", "amount", "updated_at" or "currency".
           enum:
-            - created_at
             - amount
-            - updated_at
+            - created_at
             - currency
+            - updated_at
         - name: order_asc_desc
           in: query
           required: false
@@ -2237,15 +2237,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
-            - bsb_code
-            - institution_no
+            - aba
             - bank_code
             - branch_code
-            - aba
+            - bsb_code
             - clabe
             - cnaps
             - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system. If supplied, a value for routing_code_value[0] must also be supplied.
         - name: 'routing_code_value[0]'
           in: formData
@@ -2292,8 +2292,8 @@ paths:
           required: false
           type: string
           enum:
-            - individual
             - company
+            - individual
           description: Beneficiary's legal entity type - individual or company.
         - name: beneficiary_company_name
           in: formData
@@ -2339,9 +2339,9 @@ paths:
           required: false
           type: string
           enum:
-            - own
-            - clients
             - all
+            - clients
+            - own
           default: own
           description: 'Search "own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
@@ -2880,15 +2880,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
             - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system.
         - name: routing_code_value_1
           in: formData
@@ -2900,14 +2900,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
+            - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system.
         - name: routing_code_value_2
           in: formData
@@ -2968,8 +2969,8 @@ paths:
           required: false
           type: string
           enum:
-            - individual
             - company
+            - individual
           description: Legal entity
         - name: beneficiary_company_name
           in: formData
@@ -3015,24 +3016,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - clave_unica_de_registro_de_poblacion
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
             - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
@@ -3551,15 +3551,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
             - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system. If supplied, routing_code_value_1 should also be supplied.
         - name: routing_code_value_1
           in: formData
@@ -3571,15 +3571,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
             - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system. If supplied, routing_code_value_2 should also be supplied.
         - name: routing_code_value_2
           in: formData
@@ -3627,8 +3627,8 @@ paths:
           required: false
           type: string
           enum:
-            - individual
             - company
+            - individual
           description: Legal entity
         - name: beneficiary_company_name
           in: formData
@@ -3673,24 +3673,23 @@ paths:
           required: false
           type: string
           enum:
-          - none
-          - drivers_license
-          - social_security_number
-          - green_card
-          - passport
-          - visa
-          - matricula_consular
-          - registro_federal_de_contribuyentes
-          - clave_unica_de_registro_de_poblacion
-          - credential_de_elector
-          - social_insurance_number
-          - citizenship_papers
-          - drivers_license_canadian
-          - existing_credit_card_details
-          - employer_identification_number
-          - national_id
-          - incorporation_number
-          - others
+            - citizenship_papers
+            - credential_de_elector
+            - drivers_license
+            - drivers_license_canadian
+            - employer_identification_number
+            - existing_credit_card_details
+            - green_card
+            - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
+            - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
@@ -4342,14 +4341,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
+            - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system. If supplied, routing_code_value_1 should also be supplied.
         - name: routing_code_value_1
           in: formData
@@ -4361,14 +4361,15 @@ paths:
           required: false
           type: string
           enum:
-            - sort_code
             - aba
-            - bsb_code
-            - institution_no
             - bank_code
             - branch_code
+            - bsb_code
             - clabe
             - cnaps
+            - ifsc
+            - institution_no
+            - sort_code
           description: Local payment routing system. If supplied, routing_code_value_2 should also be supplied.
         - name: routing_code_value_2
           in: formData
@@ -4408,8 +4409,8 @@ paths:
           required: false
           type: string
           enum:
-            - individual
             - company
+            - individual
           description: Legal entity
         - name: beneficiary_company_name
           in: formData
@@ -4454,24 +4455,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - clave_unica_de_registro_de_poblacion
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
             - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the beneficiary.
             Required documentation will vary depending on the country in which
@@ -4905,8 +4905,8 @@ paths:
           required: true
           description: Legal entity - 'individual' or 'company'. If 'individual' then "beneficiary_first_name" and "beneficiary_last_name" are required. If 'company' then "beneficiary_company_name" is required.
           enum:
-            - individual
             - company
+            - individual
         - name: beneficiary_company_name
           in: formData
           type: string
@@ -6245,9 +6245,9 @@ paths:
           required: false
           type: string
           enum:
+            - default
             - earliest
             - next_day
-            - default
             - optimize_liquidity
           description: >-
             Available and required only if conversion_date is not provided. Not currently supported for APAC currencies.<br>
@@ -6684,10 +6684,10 @@ paths:
           type: string
           enum:
             - awaiting_funds
-            - funds_sent
-            - funds_arrived
-            - trade_settled
             - closed
+            - funds_arrived
+            - funds_sent
+            - trade_settled
           description: Conversion status.
         - name: buy_currency
           in: query
@@ -7513,9 +7513,9 @@ paths:
             'clients' - search profit and losses of account sub-accounts <br>
             'all' - search profit and losses of main account and sub-accounts.
           enum:
-            - own
-            - client
             - all
+            - client
+            - own
         - name: page
           in: query
           required: false
@@ -8402,23 +8402,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
-            - others
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
+            - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the payer. Required
             documentation will vary depending on the nationality or registered
@@ -8825,16 +8825,16 @@ paths:
           required: false
           type: string
           enum:
+            - awaiting_authorisation
+            - authorised
+            - completed
+            - deleted
+            - failed
             - new
             - ready_to_send
-            - completed
-            - failed
             - released
-            - suspended
-            - awaiting_authorisation
             - submitted
-            - authorised
-            - deleted
+            - suspended
           description: Payment status
         - name: reason
           in: query
@@ -8929,8 +8929,8 @@ paths:
           type: string
           enum:
             - all
-            - own
             - clients
+            - own
           default: own
           description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: bulk_upload_id
@@ -8977,8 +8977,8 @@ paths:
           required: false
           type: string
           enum:
-            - passed
             - in_review
+            - passed
             - rejected
           description: Compliance review status.
       responses:
@@ -9144,8 +9144,8 @@ paths:
           required: false
           type: string
           enum:
-            - passed
             - in_review
+            - passed
             - rejected
           description: Compliance review status.
       responses:
@@ -9395,23 +9395,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
-            - others
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
+            - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the payer. Required
             documentation will vary depending on the nationality or registered
@@ -11261,23 +11261,23 @@ paths:
           required: false
           type: string
           enum:
-            - none
-            - drivers_license
-            - social_security_number
-            - green_card
-            - passport
-            - visa
-            - matricula_consular
-            - registro_federal_de_contribuyentes
-            - credential_de_elector
-            - social_insurance_number
             - citizenship_papers
+            - credential_de_elector
+            - drivers_license
             - drivers_license_canadian
-            - existing_credit_card_details
             - employer_identification_number
-            - national_id
-            - others
+            - existing_credit_card_details
+            - green_card
             - incorporation_number
+            - matricula_consular
+            - national_id
+            - none
+            - others
+            - passport
+            - registro_federal_de_contribuyentes
+            - social_insurance_number
+            - social_security_number
+            - visa
           description: >-
             A legal document that verifies the identity of the payer. Required
             documentation will vary depending on the nationality or registered
@@ -11351,9 +11351,9 @@ paths:
             x-sca-type:
               type: string
               enum:
-                - sms
-                - oneTouch
                 - NONE
+                - oneTouch
+                - sms
               description: Type of SCA applied to the request.
         '400':
           description: Client error.
@@ -11929,9 +11929,9 @@ paths:
           required: false
           type: string
           enum:
+            - default
             - earliest
             - next_day
-            - default
             - optimize_liquidity
           description: >-
             Available only if conversion_date is not provided. Must be one of the following:<br>
@@ -12127,14 +12127,15 @@ paths:
           required: true
           type: string
           enum:
-            - iban
-            - bic_swift
-            - sort_code
             - aba
+            - bank_code
+            - branch_code
             - bsb_code
-            - routing_number
+            - clabe
             - cnaps
             - ifsc
+            - institution_no
+            - sort_code
           description: The type of code used to identify the account (e.g. IBAN).
         - name: identifier_value
           in: formData
@@ -13490,9 +13491,9 @@ paths:
           required: false
           type: string
           enum:
-            - own
             - all
             - clients
+            - own
           description: Specify which account level will be used - 'own' is the default.
       responses:
         '200':
@@ -13917,18 +13918,18 @@ paths:
           type: string
           description: Status of the report.
           enum:
-            - processing
             - completed
             - expired
             - failed
+            - processing
         - name: report_type
           in: query
           required: false
           type: string
           enum:
+            - beneficiary
             - conversion
             - payment
-            - beneficiary
             - transaction
           description: 'Type of reports, that we expect to receive in search results.'
         - name: page
@@ -13961,9 +13962,9 @@ paths:
           required: false
           type: string
           enum:
-              - own
               - all
               - clients
+              - own
           description: Specify which account level will be used; 'own' is the default value.
       responses:
         '200':
@@ -14348,19 +14349,19 @@ paths:
           required: false
           type: string
           enum:
-            - funding
             - conversion
-            - payment
-            - payment_failure
-            - manual_intervention
-            - manual_transaction
-            - top_up_fee
-            - transfer
             - conversion_deposit
             - deposit_refund
+            - funding
+            - margin
+            - manual_intervention
+            - manual_transaction
+            - payment
+            - payment_failure
             - payment_fee
             - payment_unrelease
-            - margin
+            - top_up_fee
+            - transfer
           description: The action that triggered the transaction.
         - name: related_entity_type
           in: query
@@ -14368,9 +14369,9 @@ paths:
           type: string
           enum:
             - conversion
-            - payment
-            - inbound_funds
             - deposit
+            - inbound_funds
+            - payment
             - transfer
           description: >-
             The related entity that created the transaction.<br>
@@ -14393,16 +14394,16 @@ paths:
           type: string
           enum:
             - completed
-            - pending
             - deleted
+            - pending
           description: Transaction status.
         - name: type
           in: query
           required: false
           type: string
           enum:
-            - debit
             - credit
+            - debit
           description: Whether the transaction debits or credits the account balance.
         - name: reason
           in: query
@@ -14477,8 +14478,8 @@ paths:
           type: string
           enum:
             - all
-            - own
             - clients
+            - own
           default: own
           description: '"Own" account, "clients" sub-accounts, or "all" accounts.'
         - name: page
@@ -15105,9 +15106,9 @@ paths:
           required: false
           type: string
           enum:
+            - cancelled
             - completed
             - pending
-            - cancelled
           description: Transfer status
         - name: currency
           in: query
@@ -16050,9 +16051,9 @@ definitions:
       status:
         type: string
         enum:
+          - disabled
           - enabled
           - enabled_no_trading
-          - disabled
         description: Account status
       street:
         type: string
@@ -16087,23 +16088,23 @@ definitions:
         type: string
         description: The legal document that verifies the identity of the account owner, e.g. passport.
         enum:
-          - none
-          - drivers_license
-          - social_security_number
-          - green_card
-          - passport
-          - visa
-          - matricula_consular
-          - registro_federal_de_contribuyentes
-          - credential_de_elector
-          - social_insurance_number
           - citizenship_papers
+          - credential_de_elector
+          - drivers_license
           - drivers_license_canadian
-          - existing_credit_card_details
           - employer_identification_number
-          - national_id
-          - others
+          - existing_credit_card_details
+          - green_card
           - incorporation_number
+          - matricula_consular
+          - national_id
+          - none
+          - others
+          - passport
+          - registro_federal_de_contribuyentes
+          - social_insurance_number
+          - social_security_number
+          - visa
       identification_value:
         type: string
         description: >-
@@ -16182,8 +16183,8 @@ definitions:
       charge_type:
         description: The charge type - shared or ours.
         enum:
-          - shared
           - ours
+          - shared
         type: string
       enabled:
         description: Is this charge type enabled for this account?
@@ -16362,8 +16363,8 @@ definitions:
           type: string
           description: The payment type - regular (local) or priority (Swift).
           enum:
-            - regular
             - priority
+            - regular
       beneficiary_address:
         type: array
         items:
@@ -16606,8 +16607,8 @@ definitions:
         description: The account verification result - 'full_match', 'close_match' or 'no_match'.
         type: string
         enum:
-          - full_match
           - close_match
+          - full_match
           - no_match
       actual_name:
         type: string
@@ -16767,14 +16768,14 @@ definitions:
         type: string
         description: Current conversion status.
         enum:
+          - awaiting_authorisation
           - awaiting_funds
-          - funds_sent
+          - closed
           - funds_arrived
           - funds_being_processed
-          - trade_settling
+          - funds_sent
           - trade_settled
-          - closed
-          - awaiting_authorisation
+          - trade_settling
       currency_pair:
         description: Concatenated string of the two currencies traded, eg. "USDEUR".
         type: string
@@ -16830,9 +16831,9 @@ definitions:
         type: string
         description: Deposit status
         enum:
-          - not_required
           - awaiting_deposit
           - deposit_received
+          - not_required
       deposit_required_at:
         type: string
         description: Date by which deposit is required, format YYYY-MM-DDThh:mm:ss.SSSZ.
@@ -17111,14 +17112,14 @@ definitions:
         type: string
         description: Status of the related trade.
         enum:
+          - awaiting_authorisation
           - awaiting_funds
-          - funds_sent
+          - closed
           - funds_arrived
           - funds_being_processed
-          - trade_settling
+          - funds_sent
           - trade_settled
-          - closed
-          - awaiting_authorisation
+          - trade_settling
   ConversionSplit:
     type: object
     properties:
@@ -17171,10 +17172,10 @@ definitions:
         type: string
         description: The status of the report
         enum:
-          - processing
           - completed
           - expired
           - failed
+          - processing
       expiration_date:
         type: string
         format: date
@@ -18086,9 +18087,9 @@ definitions:
           Regular - a local scheme such as Faster Payments in the UK.
           Priority - a priority payment e.g. FEDwire or Swift.
         enum:
-          - regular
-          - priority
           - any
+          - priority
+          - regular
       routing_code:
         type: string
         description: The particular routing card for this account number.
@@ -18096,9 +18097,9 @@ definitions:
         type: string
         description: The type of routing number.
         enum:
+          - ach_routing_code
           - bic_swift
           - sort_code
-          - ach_routing_code
       created_at:
         type: string
         description: The date-time the SSI was added to the account.
@@ -19784,8 +19785,8 @@ definitions:
       payment_type:
         description: Type of payment - regular (local) or priority (Swift).
         enum:
-          - regular
           - priority
+          - regular
         type: string
       required_fields:
         description: The required payer fields for the payment.
@@ -19903,8 +19904,8 @@ definitions:
         type: string
         description: Compliance review status - 'passed', 'in_review' or 'rejected'.
         enum:
-          - passed
           - in_review
+          - passed
           - rejected
       invoice_number:
         type: string
@@ -20762,30 +20763,30 @@ definitions:
         description: Routing system for regular (local) payments.
         type: string
         enum:
-          - sort_code
           - aba
-          - bsb_code
-          - institution_no
           - bank_code
           - branch_code
+          - bsb_code
           - clabe
           - cnaps
           - ifsc
+          - institution_no
+          - sort_code
       routing_code_value_1:
         type: string
         description: Value for routing system 'routing_code_type_1'.
       routing_code_type_2:
         type: string
         enum:
-          - sort_code
           - aba
-          - bsb_code
-          - institution_no
           - bank_code
           - branch_code
+          - bsb_code
           - clabe
           - cnaps
           - ifsc
+          - institution_no
+          - sort_code
         description: Local payment routing system.
       routing_code_value_2:
         type: string
@@ -20901,35 +20902,35 @@ definitions:
         type: string
         description: Type (debit or credit).
         enum:
-          - debit
           - credit
+          - debit
       action:
         type: string
         description: The action that triggered the transaction.
         enum:
-          - funding
           - conversion
-          - payment
-          - payment_failure
-          - manual_intervention
-          - manual_transaction
-          - top_up_fee
-          - transfer
           - conversion_deposit
           - deposit_refund
+          - funding
+          - margin
+          - manual_intervention
+          - manual_transaction
+          - payment
+          - payment_failure
           - payment_fee
           - pyament_unrelease
-          - margin
+          - top_up_fee
+          - transfer
       related_entity_type:
         type: string
         description: The related entity type.
         enum:
-          - conversion
-          - payment
-          - inbound_funds
-          - deposit
           - balance_transfer
+          - conversion
+          - deposit
+          - inbound_funds
           - margin_transaction
+          - payment
       related_entity_id:
         type: string
       related_entity_short_reference:
@@ -20940,8 +20941,9 @@ definitions:
         description: Transaction status
         enum:
           - completed
-          - depending
           - deleted
+          - depending
+
       reason:
         description: Reason
         type: string
