@@ -6250,7 +6250,7 @@ paths:
             - next_day
             - optimize_liquidity
           description: >-
-            Available and required only if conversion_date is not provided. Not currently supported for APAC currencies.<br>
+            Available and required only if conversion_date is not provided.<br>
             Must be one of the following:<br>
             - 'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
             - 'next_day' for next day available conversion date - T+1.<br>
@@ -12128,13 +12128,12 @@ paths:
           type: string
           enum:
             - aba
-            - bank_code
-            - branch_code
+            - bic_swift
             - bsb_code
-            - clabe
             - cnaps
+            - iban
             - ifsc
-            - institution_no
+            - routing_number
             - sort_code
           description: The type of code used to identify the account (e.g. IBAN).
         - name: identifier_value
