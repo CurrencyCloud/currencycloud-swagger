@@ -1450,7 +1450,7 @@ paths:
       tags:
       - Accounts
       x-api-group: manage
-      summary: Get the Payment Charges Settings for a given account
+      summary: Get Payment Charges Settings
       description: Retrieves the Payment Charges Settings for the given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
@@ -1715,6 +1715,148 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /terms_and_conditions/accept:
+    post:
+      tags:
+        - Accounts
+      x-api-group: manage
+      summary: Accept Terms and Conditions
+      description: Endpoint for accounts using our Outsourced KYC model to accept terms and conditions.
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          type: string
+          required: true
+          description: Authentication token
+        - name: type
+          in: formData
+          type: string
+          description: The type of terms and conditions the user is accepting.
+          required: true
+          enum:
+            - VGSI
+        - name: version
+          in: formData
+          type: string
+          description: The version of the terms and conditions the user is accepting.
+          required: true
+          enum:
+            - '1.0'
+        - name: reference_type
+          in: formData
+          type: string
+          description: The type of reference accepting the terms and conditions.
+          required: true
+          enum:
+            - account
+        - name: reference_id
+          in: formData
+          type: string
+          description: The account / sub-account UUID that the terms and conditions are being accepted for.
+          required: true
+        - name: first_name
+          in: formData
+          type: string
+          description: >-
+            The first name of the user accepting the terms and conditions.
+            Must be between 1 and 100 characters long and not contain < or >.
+          required: true
+        - name: last_name
+          in: formData
+          type: string
+          description: >-
+            The last name of the user accepting the terms and conditions.
+            Must be between 1 and 100 characters long and not contain < or >.
+          required: true
+        - name: email
+          in: formData
+          type: string
+          description: >-
+            The email of the user accepting the terms and conditions.
+            Length must be between 1 and 255 characters. <br>
+            Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
+          required: true
+      responses:
+        200:
+          description: Success.
+          schema:
+            $ref: '#/definitions/AcceptTermsResponse'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        400:
+          description: Client error.
+          x-errors:
+            - code: accept_terms_and_conditions_invalid
+              message: Parameters are invalid or missing when required
+              params: ''
+        401:
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        404:
+          description: "Contact ID or Terms And Conditions type not found"
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        429:
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        500:
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        503:
+          description: Service is temporary unavailable.
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
+
   /balances/{currency}:
    get:
     tags:
@@ -16029,6 +16171,17 @@ paths:
               type: string
               description: A unique reference for the request.
 definitions:
+  AcceptTermsResponse:
+    type: object
+    description: Accept terms and conditions response.
+    properties:
+      acceptance_id:
+        type: string
+        description: The id of the acceptance.
+      accepted_at:
+        type: string
+        format: date-time
+        description: The date & time that the terms & conditions were accepted.
   Account:
     type: object
     description: Account.
