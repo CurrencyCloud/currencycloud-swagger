@@ -1720,8 +1720,8 @@ paths:
       tags:
         - Accounts
       x-api-group: manage
-      summary: Accept Terms and Conditions
-      description: Endpoint for accounts using our Outsourced KYC model to accept terms and conditions.
+      summary: Accept Terms of Use
+      description: Endpoint for accounts using our Outsourced KYC model to accept Terms of Use.
       produces:
         - application/json
       parameters:
@@ -1750,7 +1750,7 @@ paths:
           description: The type of reference accepting the terms and conditions.
           required: true
           enum:
-            - account
+            - ACCOUNT
         - name: reference_id
           in: formData
           type: string
