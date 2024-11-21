@@ -1733,48 +1733,48 @@ paths:
         - name: type
           in: formData
           type: string
-          description: The type of terms and conditions the user is accepting.
+          description: The type of Terms of Use the user is accepting.
           required: true
           enum:
             - VGSI
         - name: version
           in: formData
           type: string
-          description: The version of the terms and conditions the user is accepting.
+          description: The version of the Terms of Use the user is accepting.
           required: true
           enum:
             - '1.0'
         - name: reference_type
           in: formData
           type: string
-          description: The type of reference accepting the terms and conditions.
+          description: The type of reference accepting the Terms of Use.
           required: true
           enum:
             - ACCOUNT
         - name: reference_id
           in: formData
           type: string
-          description: The account / sub-account UUID that the terms and conditions are being accepted for.
+          description: The account / sub-account UUID that the Terms of Use are being accepted for.
           required: true
         - name: first_name
           in: formData
           type: string
           description: >-
-            The first name of the user accepting the terms and conditions.
-            Must be between 1 and 100 characters long and not contain < or >.
+            The first name of the user accepting the Terms of Use.
+            Must be between 1 and 100 characters in length and not contain < or >.
           required: true
         - name: last_name
           in: formData
           type: string
           description: >-
-            The last name of the user accepting the terms and conditions.
-            Must be between 1 and 100 characters long and not contain < or >.
+            The last name of the user accepting the Terms of Use.
+            Must be between 1 and 100 characters in length and not contain < or >.
           required: true
         - name: email
           in: formData
           type: string
           description: >-
-            The email of the user accepting the terms and conditions.
+            The email of the user accepting the Terms of Use.
             Length must be between 1 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
@@ -1807,7 +1807,7 @@ paths:
               type: string
               description: A unique reference for the request.
         404:
-          description: "Contact ID or Terms And Conditions type not found"
+          description: "Contact ID or Terms of Use type not found"
           headers:
             X-Request-Id:
               type: string
@@ -16173,15 +16173,15 @@ paths:
 definitions:
   AcceptTermsResponse:
     type: object
-    description: Accept terms and conditions response.
+    description: Accept Terms of Use response.
     properties:
       acceptance_id:
         type: string
-        description: The id of the acceptance.
+        description: The ID of the acceptance.
       accepted_at:
         type: string
         format: date-time
-        description: The date & time that the terms & conditions were accepted.
+        description: The date and time that the Terms of Use were accepted.
   Account:
     type: object
     description: Account.
