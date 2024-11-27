@@ -9,7 +9,7 @@ This guide demonstrates how to use push notifications and API calls to reconcile
 2.  Once funds have been settled to a Currencycloud account, you can ingest funding push notifications to be notified that funds have arrived. This messaging can be customized and displayed within your application. Please refer to our [push notifications page](/guides/getting-started/push-notifications) for more details. 
 3.  To see the transaction details, call the [Find Transactions](/api-reference/#find-transactions) endpoint.
 4.  The [Get Sender Details](/api-reference/#get-sender-details) endpoint gives you more information about the sender and the payment rail.
-5.  The Screen Inbound Transaction endpoint gives you the ability to screen an inbound transaction if you have opted in to the service.   
+5.  The Accept Inbound Transaction endpoint gives you the ability to screen an inbound transaction if you have opted in to the service.   
 
 
 Detailed instructions are given in the integration guide below.
@@ -19,7 +19,7 @@ Detailed instructions are given in the integration guide below.
 ![collections](/images/workflow_diagrams/2_find_funding_account_collections-and-settlements.jpg)
 
 ## Integration guide
-This guide assumes that you are utilizing our Currencycloud Spark product, where your customers provide settlement details to their customers and where you are supporting sub-accounts. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
+This guide assumes that you are utilizing our Currencycloud Spark product, where your customers provide local/SWIFT collection details to individuals/businesses they wish to receive payments from and where you are supporting sub-accounts. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
 
 ## Step 1: Login
 
@@ -275,16 +275,21 @@ Further explanation for some of the information that can be obtained from the ab
 | `receiving_account_number` | The virtual bank account details the payment was made to. In the above example, an IBAN was used instead of an account number. The response will show as "null" in this case.  |
 | `receiving_account_iban` | The virtual account the payment was made to. In the above example, funds were sent to account:  GB41TCCL04140419897139 |
 
-## Step 6 (optional): Screen Inbound Transaction
+## Step 6 (optional): Accept Inbound Transaction
 
-Screening Inbound Transactions is an opt-in service that allows you to review and decide on inbound transactions. You have 23.5 hours to respond. If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening. Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are credited to the beneficiary's account. If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails below. For other payment rails, the funds should be manually returned.
+Accepting inbound transactions is an opt-in service that allows you to review and decide on inbound transactions. It applies to the payment rails listed below:
 
 | Currency | Rail |
 | --- | --- |
-| EUR | SEPA |
-| USD | ACH |
-| CAD | EFT |
-| GBP | FPS |
+| EUR | SEPA Credit Transfer (SCT) |
+| USD | Fed ACH |
+| CAD | Electronic Funds Transfers (EFT) |
+| GBP | Faster Payment Service (FPS) |
+
+
+You have 23.5 hours to respond. If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening. Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are credited to the beneficiary's account. If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned.
+
+
 
 ### Push notifications
 
