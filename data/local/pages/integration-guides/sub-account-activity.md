@@ -63,7 +63,6 @@ Response:
     "online_trading": true,
     "phone_trading": true,
     "process_third_party_funds": false,
-    "settlement_type": "net",
     "agent_or_reliance": false,
     "terms_and_conditions_accepted": null
 }
