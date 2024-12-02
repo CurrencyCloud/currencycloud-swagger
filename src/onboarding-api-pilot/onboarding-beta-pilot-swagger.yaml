@@ -719,30 +719,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response"
-  "/v1/forms/{form_id}/submit_impersonation_check":
-    post:
-      summary: Submit Impersonation Check
-      description: Submits the application form for impersonation check.
-      tags:
-        - Form
-      security:
-        - JWT: [ ]
-      parameters:
-        - name: form_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Impersonation Check successfully started
-        '400':
-          description: The server could not understand the request due to invalid syntax
-      requestBody:
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/submit_impersonation_check"
   "/v1/forms":
     get:
       summary: Get Forms
@@ -1507,6 +1483,47 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response"
+  "/v1/forms/{form_id}/people/{person_id}/impersonation_checks":
+    post:
+      summary: Create Impersonation Check Applicant
+      description: Create Impersonation Check Applicant for a person with the specified
+        UUID.
+      tags:
+        - Impersonation Check Applicants
+      security:
+        - JWT: []
+      parameters:
+        - name: form_id
+          description: Form UUID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: person_id
+          description: Person UUID
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: referrer
+          description: Referrer UUID
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Impersonation Check Applicant successfully created
+        '400':
+          description: The server could not understand the request due to invalid
+            syntax
+        '410':
+          description: Form is expired
+        '404':
+          description: Form not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response"
 servers:
   - url: /onboarding
     description: Relative URL
@@ -2103,12 +2120,6 @@ components:
           description: The applicant's name.
           type: string
           nullable: true
-        submit_impersonation_check:
-          type: object
-          properties:
-            applicant_id:
-              type: string
-              nullable: false
     create_account_usage_request:
       type: object
       properties:
