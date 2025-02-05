@@ -14546,11 +14546,6 @@ paths:
             - credit
             - debit
           description: Whether the transaction debits or credits the account balance.
-        - name: reason
-          in: query
-          required: false
-          type: string
-          description: User-generated reason for payment - freeform text.
         - name: settles_at_from
           in: query
           required: false
@@ -21100,7 +21095,6 @@ definitions:
           - completed
           - deleted
           - depending
-
       reason:
         description: Reason
         type: string
