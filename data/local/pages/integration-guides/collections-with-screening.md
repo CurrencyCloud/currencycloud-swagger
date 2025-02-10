@@ -9,20 +9,19 @@ This guide demonstrates how to use push notifications and API calls to reconcile
 2.  Once funds have been settled to a Currencycloud account, you can ingest funding push notifications to be notified that funds have arrived. This messaging can be customized and displayed within your application. Please refer to our [push notifications page](/guides/getting-started/push-notifications) for more details. 
 3.  To see the transaction details, call the [Find Transactions](/api-reference/#find-transactions) endpoint.
 4.  The [Get Sender Details](/api-reference/#get-sender-details) endpoint gives you more information about the sender and the payment rail.
-5.  The Accept Inbound Transaction endpoint gives you the ability to screen an inbound transaction if you have opted in to the service.   
+5.  If you have opted in to the service, the Submit Inbound Screening Decision endpoint gives you the ability to submit the result of your screening of inbound transactions.
 
 
 Detailed instructions are given in the integration guide below.
 
 ## Workflow diagram
 
-![collections](/images/workflow_diagrams/2_find_funding_account_collections-and-settlements.jpg)
+![collections workflow](/images/workflow_diagrams/12_funding_account_collections_with_screening.jpg)
 
 ## Integration guide
-This guide assumes that you are utilizing our Currencycloud Spark product, where your customers provide local/SWIFT collection details to individuals/businesses they wish to receive payments from and where you are supporting sub-accounts. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
+This guide assumes that you are supporting sub-accounts and that your customers provide local/SWIFT collection details to individuals/businesses they wish to receive payments from. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
 
 ## Step 1: Login
-
 
 Please refer to the [authentication guide](/guides/integration-guides/authentication) for instructions on how to start a new API session.
 
@@ -275,9 +274,9 @@ Further explanation for some of the information that can be obtained from the ab
 | `receiving_account_number` | The virtual bank account details the payment was made to. In the above example, an IBAN was used instead of an account number. The response will show as "null" in this case.  |
 | `receiving_account_iban` | The virtual account the payment was made to. In the above example, funds were sent to account:  GB41TCCL04140419897139 |
 
-## Step 6 (optional): Accept Inbound Transaction
+## Step 6 (optional): Submit inbound screening decision
 
-Accepting inbound transactions is an opt-in service that allows you to review and decide on inbound transactions. It applies to the payment rails listed below:
+This is an opt-in service that allows you to submit the result of your screening of an inbound transaction. It applies to the payment rails listed below:
 
 | Currency | Rail |
 | --- | --- |
@@ -286,9 +285,9 @@ Accepting inbound transactions is an opt-in service that allows you to review an
 | CAD | Electronic Funds Transfers (EFT) |
 | GBP | Faster Payment Service (FPS) |
 
+If no response is received within 23.5 hours, the default action is to accept the transaction. The transaction will then undergo our internal screening.
 
-You have 23.5 hours to respond. If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening. Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are credited to the beneficiary's account. If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned.
-
+Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are credited to the beneficiary's account. If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned.
 
 
 ### Push notifications
@@ -297,28 +296,54 @@ The result of compliance checks made by Currencycloud and you determine whether 
 
 ![push notifications screening](/images/push_notifications/pn_funding_transactions_with_screening.png)
 
-### Workflow diagram
 
-You should notify us of the result of your screening using the Screen Inbound Transaction endpoint.
+### Endpoint Reference Information
 
-![workflow diagram screening](/images/workflow_diagrams/12_funding_account_collections_with_screening.jpg)
+You should notify us of the result of your screening using the Submit Inbound Screening Decision endpoint.
 
-### Screen Inbound Transaction Endpoint Reference Information
+*Name:* Submit Inbound Screening Decision  
+*Path:*  `/collections_screening/{transaction_id}/complete`  
+<br>
 
-*Path:*  `/collections_screening/{transaction_id}/complete`
+**Request:**    
 
-**Request:**  
+<table style="width:100%">
+    <tr>
+      <td>Parameter Name</td>
+      <td>Parameter Location</td>
+      <td>Parameter Type</td>
+      <td style="width: 40%;">Description</td>
+    </tr>
+    <tr>
+      <td>X-Auth-Token * </td>
+      <td>Header</td>
+      <td>string</td>
+      <td>Authentication Token</td>
+    </tr>
+    <tr>
+      <td>transaction_id * </td>
+      <td>Path</td>
+      <td>string</td>
+      <td>Transaction UUID</td>
+    </tr>
+    <tr>
+      <td>accepted * </td>
+      <td>formData</td>
+      <td>boolean</td>
+      <td>Should the transaction be accepted? true or false</td>
+    </tr>
+    <tr>
+      <td>reason * </td>
+      <td>formData</td>
+      <td>string</td>
+      <td>Reason for acceptance / rejection <br> Valid Acceptance options:<br> - accepted <br><br> Rejection reasons: <br> - sanctioned_match <br> - unsupported_currency <br> - insufficient_transaction_information <br> - suspected_fraud <br> - internal_watchlist_match <br> - suspected_money_laundering_activity</td>
+    </tr>
+</table>
 
-| **Parameter Name** | **Parameter Location** | **Parameter Type** | **Description** |
-| --- | --- | --- | --- |
-| X-Auth-Token * | Header | string | Authentication Token |
-| transaction_id *| Path | string | Transaction UUID |
-| accepted *| formData | boolean | Should the transaction be accepted? true or false |
-| reason *| formData | string | Reason for acceptance / rejection <br> Valid Acceptance options:<br> - Accepted <br><br> Rejection reasons: <br> - Sanctioned Match <br> - Unsupported Currency <br> - Insufficient Trnasaction Information <br> - Suspected Fraud <br> - Internal Watchlist Match <br> - Suspected Money Laundering Activity |
+\* Required field  
 
-\* Required field
 
-**Example Success Response:**
+**Example Success Response:**  
 
 ```
 {
@@ -332,7 +357,7 @@ You should notify us of the result of your screening using the Screen Inbound Tr
 }
 ```
 
-**Response Fields**
+**Response fields**  
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
@@ -340,4 +365,4 @@ You should notify us of the result of your screening using the Screen Inbound Tr
 |account_id|string|House account or sub-account UUID|
 |house_account_id|string|House account UUID|
 |reason|string|Reason for acceptance / rejection|
-|accepted|boolean|Accepted -- true or false.|
+|accepted|boolean|Accepted - true or false.|
