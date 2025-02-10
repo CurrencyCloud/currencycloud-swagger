@@ -18244,14 +18244,19 @@ definitions:
           - regular
       routing_code:
         type: string
-        description: The particular routing card for this account number.
+        description: The particular routing code for this account number.
       routing_code_type:
         type: string
         description: The type of routing number.
         enum:
-          - ach_routing_code
-          - bic_swift
+          - routing_code
+          - giro_routing_code
+          - ach_routing_number
+          - fast_routing_code
           - sort_code
+          - wire_routing_number
+          - bic_swift
+          - meps_routing_code
       created_at:
         type: string
         description: The date-time the SSI was added to the account.
