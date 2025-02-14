@@ -62,3 +62,8 @@ Sub-accounts (or named accounts) refer to the multi-currency eWallets you can es
 ​
 Learn how to verify a beneficiary's bank account details before creating a beneficiary in order to improve customer experience and reduce misdirected payments in the UK.  
 [`Read guide`](/guides/integration-guides/verifying-beneficiary-account/)
+
+## SCA for API Payments
+
+Sponsored model clients are required to apply Strong Customer Authentication (SCA) when making payments on behalf of their customers. If you are in-scope, this guide outlines the changes needed to your payment workflow to accommodate the additional authentication.  
+[`Read guide`](/guides/integration-guides/sca_sponsored_api_payments/)
