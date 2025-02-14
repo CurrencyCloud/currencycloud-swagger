@@ -1,7 +1,8 @@
-[_metadata_:unlisted]:-
-# SCA for API Payments
+[_metadata_:menu_title]:- "SCA for API Payments"
+[_metadata_:order]:- "12"
+# Strong Customer Authentication for API Payments
 
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"> This guide is intended for sponsored model clients.</p>  
+<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"> This guide is only relevant to sponsored model clients.</p>  
 
 To make payments using our API, sponsored model clients are required to apply
 Strong Customer Authentication (SCA) when making payments on behalf of their
