@@ -8418,7 +8418,10 @@ paths:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: 'Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.'
+      description: 'Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.'<br><br>
+        Sponsored model clients who are implementing Strong Customer Authentication (SCA)
+        for payments should refer to our
+        <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -11273,7 +11276,10 @@ paths:
       description: >-
         Validates the details of a new payment without creating a
         record of the payment. On success, returns an object containing
-        a string validation_result with value "success".
+        a string validation_result with value "success".<br><br>
+        Sponsored model clients who are implementing Strong Customer Authentication (SCA)
+        for payments should refer to our
+        <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: ValidatePayment
       consumes:
         - multipart/form-data
@@ -11285,11 +11291,6 @@ paths:
           required: true
           type: string
           description: Authentication token
-        - name: x-sca-force-sms
-          in: header
-          required: false
-          type: boolean
-          description: Defines whether SMS should be enforced as the SCA message mediator.
         - name: id
           in: formData
           required: false
