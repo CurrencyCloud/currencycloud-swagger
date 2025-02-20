@@ -1,0 +1,9 @@
+{
+    "transaction_id": "a35c9c49-fb52-466d-9172-afbde1532c82",
+    "account_id": "7a116d7d-6310-40ae-8d54-0ffbe41dc1c9",
+    "house_account_id": "7a116d7d-6310-40ae-8d54-0ffbe41dc1c9",
+    "result": {
+        "reason": "Accepted",
+        "accepted": true
+    }
+}
