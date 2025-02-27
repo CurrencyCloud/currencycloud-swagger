@@ -14551,7 +14551,8 @@ paths:
           in: query
           required: false
           type: string
-          description: User-generated reason for payment - freeform text.
+          deprecated: true
+          description: User-generated reason for payment - freeform text. Be aware that this field is deprecated and will be removed.
         - name: settles_at_from
           in: query
           required: false
