@@ -16177,7 +16177,12 @@ paths:
           - Transaction Approval
         x-api-group: collect
         summary: Accept or Reject Inbound Transaction
-        description: >
+        description: >-
+          <p style="color:#FF5000;"><strong>BETA</strong></p><br>
+          <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+          Please be aware that this is a beta version of this endpoint. For additional details,
+          please contact your Account Manager.</p> <br><br>
+
           Allows you to accept or reject an inbound transaction before the funds are credited to the
           beneficiary’s account.
         operationId: CompleteCollectionsScreening
@@ -16209,8 +16214,8 @@ paths:
             required: true
             type: string
             description: >
-              Reason for acceptance or rejection. If "accepted" is true, value should be "accepted".
-              If "accepted" is false, value should be one of the other values.
+              Reason for acceptance or rejection. If "accepted" is true, the value should be "accepted".
+              If "accepted" is false, the value should be one of the other values.
             enum:
               - accepted
               - sanctioned_match
