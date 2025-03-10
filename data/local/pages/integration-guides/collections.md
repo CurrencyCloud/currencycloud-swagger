@@ -10,6 +10,7 @@ This guide demonstrates how to use push notifications and API calls to reconcile
 2.  Once funds have been settled to a Currencycloud account, you can ingest funding push notifications to be notified that funds have arrived. This messaging can be customized and displayed within your application. Please refer to our [push notifications page](/guides/getting-started/push-notifications) for more details. 
 3.  To see the transaction details, call the [Find Transactions](/api-reference/#find-transactions) endpoint.
 4.  The [Get Sender Details](/api-reference/#get-sender-details) endpoint gives you more information about the sender and the payment rail.
+5.  The [Accept or Reject Inbound Transaction](/api-reference/#transaction-approval) endpoint gives you the ability to screen an inbound transaction if you have opted in to the service.   
 
 
 Detailed instructions are given in the integration guide below.
@@ -19,16 +20,14 @@ Detailed instructions are given in the integration guide below.
 ![collections](/images/workflow_diagrams/2_find_funding_account_collections-and-settlements.jpg)
 
 
-
 ## Integration guide
-This guide assumes that you are utilizing our Currencycloud Spark product, where your customers provide settlement details to their customers and where you are supporting sub-accounts. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
+This guide assumes that your customers provide settlement details to their customers and where you are supporting sub-accounts. For more information on sub-account activity, please reference our [sub-account activity guide.](/guides/integration-guides/sub-account-activity)
 
-## Step 1: Login
-
+## Step 1: Login  
 
 Please refer to the [authentication guide](/guides/integration-guides/authentication) for instructions on how to start a new API session.
 
-## Step 2: Locate funding/SSI details
+## Step 2: Locate funding/SSI details  
 
 Find the necessary settlement account details for the specific currency your customer will want to receive funds in by calling the [Find Funding Accounts](/api-reference/#find-funding-accounts) endpoint. 
 
@@ -276,3 +275,80 @@ Further explanation for some of the information that can be obtained from the ab
 | `sender` | The sending IBAN, BIC, Name and Address presented in the format   "sender":"{sender.name};{sender.address};{sender.country};{sender.account_number} or {sender.iban};{sender.bic};{sender.routing_code}"  Not all of these fields will be provided depending on the data received from the sending bank.|
 | `receiving_account_number` | The virtual bank account details the payment was made to. In the above example, an IBAN was used instead of an account number. The response will show as "null" in this case.  |
 | `receiving_account_iban` | The virtual account the payment was made to. In the above example, funds were sent to account:  GB41TCCL04140419897139 |
+
+## Step 6 (optional): Accept or reject inbound transaction
+
+<p style="color:#FF5000;"><strong>BETA</strong></p><br>
+<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+Please be aware that this is a beta version of the endpoint and it is
+subject to change during this period. We will provide at least 10 days'
+notice before implementing any breaking changes, which will be highlighted
+in this box. If you are interested in using this endpoint before it is
+out of beta, please contact your Account Manager. </p>
+
+This is an opt-in service that allows you to review and decide on inbound transactions. It applies to the payment rails listed below:
+
+| Currency | Rail |
+| --- | --- |
+| EUR | SEPA |
+| USD | ACH |
+| CAD | EFT |
+| GBP | FPS |
+
+ You have 23.5 hours to respond from when the “pending cash manager transaction notification” is triggered (‘pending’ status).  If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening.  
+
+ Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are processed and the “cash manager transaction notification” is triggered when the funds are credited to the beneficiary's account (‘completed’ status). If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned. In the case of a rejection, the “rejected cash manager transaction notification” is triggered (‘deleted’ status).
+
+
+### Push notifications
+
+The result of compliance checks made by Currencycloud and you determine whether the transaction is processed or not and which push notification is triggered.
+
+![push notifications screening](/images/push_notifications/pn_funding_transactions_with_screening.png)
+
+### Workflow diagram
+
+You should notify us of the result of your screening using the Accept or Reject Inbound Transaction endpoint.
+
+![workflow diagram screening](/images/workflow_diagrams/12_funding_account_collections_with_screening.jpg)
+
+### Endpoint Reference Information
+
+*Name:* Accept or Reject Inbound Transaction
+
+*Path:*  `/collections_screening/{transaction_id}/complete`
+
+**Request:**  
+
+| **Parameter Name** | **Parameter Location** | **Parameter Type** | **Description** |
+| --- | --- | --- | --- |
+| X-Auth-Token * | Header | string | Authentication Token |
+| transaction_id *| Path | string | Transaction UUID |
+| accepted *| formData | boolean | Should the transaction be accepted? true or false |
+| reason *| formData | string | Reason for acceptance / rejection <br> Valid Acceptance options:<br> - Accepted <br><br> Rejection reasons: <br> - Sanctioned Match <br> - Unsupported Currency <br> - Insufficient Trnasaction Information <br> - Suspected Fraud <br> - Internal Watchlist Match <br> - Suspected Money Laundering Activity |
+
+\* Required field
+
+**Example Success Response:**
+
+```
+{
+    "transaction_id": "a35c9c49-fb52-466d-9172-afbde1532c82",
+    "account_id": "7a116d7d-6310-40ae-8d54-0ffbe41dc1c9",
+    "house_account_id": "7a116d7d-6310-40ae-8d54-0ffbe41dc1c9",
+    "result": {
+        "reason": "Accepted",
+        "accepted": true
+    }
+}
+```
+
+**Response Fields**
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+|transaction_id|string|Transaction UUID|
+|account_id|string|House account or sub-account UUID|
+|house_account_id|string|House account UUID|
+|reason|string|Reason for acceptance / rejection|
+|accepted|boolean|Accepted -- true or false.|
