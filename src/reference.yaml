@@ -400,17 +400,17 @@ paths:
           in: formData
           required: false
           type: boolean
-          description: Allows the account to make trades via the Currencycloud API.
+          description: Allow the account to make trades via the Currencycloud API.
         - name: online_trading
           in: formData
           required: false
           type: boolean
-          description: Allows the account to make trades via Currencycloud Direct.
+          description: Allow the account to make trades via Currencycloud Direct.
         - name: phone_trading
           in: formData
           required: false
           type: boolean
-          description: Allows the account to make trades via phone.
+          description: Allow the account to make trades via phone.
         - name: identification_type
           in: formData
           required: false
@@ -864,13 +864,13 @@ paths:
         required: false
         type: boolean
         default: true
-        description: Whether online trading is to be enabled on the account.
+        description: Enable online trading on the account.
       - name: phone_trading
         in: formData
         required: false
         default: true
         type: boolean
-        description: Whether phone trading is to be enabled on the account.
+        description: Enable phone trading on the account.
       - name: identification_type
         in: formData
         required: false
@@ -15013,6 +15013,10 @@ paths:
               message: >-
                 The accounts would require a transfer between two hub banks which is not permitted
               params: ''
+            - code: amount_is_too_big
+              category: amount
+              message: Amount must be lower than ${limit}
+              params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
@@ -16189,6 +16193,192 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+  /collections_screening/{transactionId}/complete:
+      put:
+        tags:
+          - Transaction Approval
+        x-api-group: collect
+        summary: Accept or Reject Inbound Transaction
+        description: >-
+          <p style="color:#FF5000;"><strong>BETA</strong></p><br>
+          <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+          Please be aware that this is a beta version of the endpoint and it is
+          subject to change during this period. We will provide at least 10 days'
+          notice before implementing any breaking changes, which will be highlighted
+          in this box. If you are interested in using this endpoint before it is
+          out of beta, please contact your Account Manager. </p> <br><br>
+
+          Allows you to accept or reject an inbound transaction before the funds are credited to the
+          beneficiary’s account.
+        operationId: CompleteCollectionsScreening
+        consumes:
+          - application/x-www-form-urlencoded
+        produces:
+          - application/json
+        parameters:
+          - name: X-Auth-Token
+            in: header
+            required: true
+            type: string
+            description: Authentication token.
+          - name: transactionId
+            in: path
+            required: true
+            type: string
+            description: The UUID of the transaction.
+          - name: accepted
+            in: formData
+            required: true
+            type: boolean
+            description: Should the transaction be accepted - true or false.
+            enum:
+              - true
+              - false
+          - name: reason
+            in: formData
+            required: true
+            type: string
+            description: >
+              Reason for acceptance or rejection. If "accepted" is true, the value should be "accepted".
+              If "accepted" is false, the value should be one of the other values.
+            enum:
+              - accepted
+              - sanctioned_match
+              - unsupported_currency
+              - insufficient_transaction_information
+              - suspected_fraud
+              - internal_watchlist_match
+              - suspected_money_laundering_activity
+        responses:
+          '200':
+            description: Success.
+            schema:
+              type: object
+              properties:
+                transaction_id:
+                  description: The transaction UUID
+                  type: string
+                  example: bdcca5e6-32fe-45f6-9476-6f8f518e6270
+                account_id:
+                  type: string
+                  description: Account UUID
+                  example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+                house_account_id:
+                  description: House Account UUID
+                  type: string
+                  example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+                result:
+                  type: object
+                  properties:
+                    reason:
+                      description: The reason why the transaction was accepted or rejected.
+                      type: string
+                      example: Accepted
+                    accepted:
+                      description: Was the transaction accepted? True or false.
+                      type: boolean
+                      example: true
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '400':
+            description: Client error.
+            x-errors:
+              - code: screening_already_expired
+                category: base
+                message: Screening is already expired.
+                params: { }
+            schema:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  example: '400'
+                error_messages:
+                  type: object
+                  properties:
+                    base:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: '400'
+                        message:
+                          type: string
+                          example: Screening is already expired.
+                        params:
+                          type: object
+                          example: { }
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '401':
+            description: Authentication failed.
+            schema:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  example: auth_failed
+                error_messages:
+                  type: object
+                  properties:
+                    username:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: invalid_supplied_credentials
+                          message:
+                            type: string
+                            example: Authentication failed with the supplied credentials
+                          params:
+                            type: object
+                            example: { }
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          '404':
+            description: Resource not found.
+            schema:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  example: '404'
+                error_messages:
+                  type: object
+                  properties:
+                    base:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          example: '404'
+                        message:
+                          type: string
+                          example: Unable to find the resource.
+                        params:
+                          type: object
+                          example: { }
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+          default:
+            description: Unexpected error.
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request.
+
+
+
 definitions:
   AcceptTermsResponse:
     type: object
