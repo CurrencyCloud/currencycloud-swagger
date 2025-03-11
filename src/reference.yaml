@@ -864,13 +864,13 @@ paths:
         required: false
         type: boolean
         default: true
-        description: Is online trading is to be enabled on the account.
+        description: Enable online trading on the account.
       - name: phone_trading
         in: formData
         required: false
         default: true
         type: boolean
-        description: Is phone trading is to be enabled on the account.
+        description: Enable phone trading on the account.
       - name: identification_type
         in: formData
         required: false
