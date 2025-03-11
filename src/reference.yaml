@@ -16264,13 +16264,30 @@ paths:
               X-Request-Id:
                 type: string
                 description: A unique reference for the request.
+
           '400':
             description: Client error.
             x-errors:
               - code: screening_already_expired
                 category: base
                 message: Screening is already expired.
-                params: { }
+                params: ''
+              - code: transaction_id_is_not_valid_uuid
+                category: base
+                message: transaction_id should be in UUID format
+                params: ''
+              - code: accepted_type_is_wrong
+                category: base
+                message: accepted should be of boolean type
+                params: ''
+              - code: 400
+                category: base
+                message: "Invalid reason provided, expected one of: sanctioned_match, unsupported_currency, insufficient_transaction_information, suspected_fraud, internal_watchlist_match, suspected_money_laundering_activity"
+                params: ''
+            headers:
+              X-Request-Id:
+                type: string
+                description: A unique reference for the request
             schema:
               type: object
               properties:
@@ -16292,12 +16309,13 @@ paths:
                         params:
                           type: object
                           example: { }
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
           '401':
             description: Authentication failed.
+            x-errors:
+              - code: invalid_supplied_credentials
+                category: base
+                message: Authentication failed with the supplied credentials
+                params: ''
             schema:
               type: object
               properties:
@@ -16327,6 +16345,11 @@ paths:
                 description: A unique reference for the request.
           '404':
             description: Resource not found.
+            x-errors:
+              - code: 404
+                category: base
+                message: Unable to find the resource.
+                params: ''
             schema:
               type: object
               properties:
