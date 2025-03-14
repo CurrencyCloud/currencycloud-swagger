@@ -382,7 +382,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           default: enabled
           description: Account status.
         - name: state_or_province
@@ -492,8 +491,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: legal_entity_type_not_in_range
               category: legal_entity_type
               message: 'legal_entity_type should be in range: individual, company'
@@ -817,7 +816,6 @@ paths:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         default: enabled
         description: Status of the account.
       - name: street
@@ -969,8 +967,8 @@ paths:
             params: '{ "range" => "individual, company" }'
           - code: status_not_in_range
             category: status
-            message: 'status should be in range: enabled, disabled, enabled_no_trading'
-            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            message: 'status should be in range: enabled, disabled'
+            params: '{ "range" => "enabled, disabled" }'
           - code: street_is_too_long
             category: street
             message: street can not be longer than 150 character(s)
@@ -1232,7 +1230,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           description: Account status.
         - name: street
           in: formData
@@ -1343,8 +1340,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: invalid_extra_parameters
               category: legal_entity_type
               message: 'Invalid extra parameters: ${legal_entity_type}'
@@ -16437,7 +16434,6 @@ definitions:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         description: Account status
       street:
         type: string
