@@ -16298,7 +16298,7 @@ paths:
                 category: base
                 message: accepted should be of boolean type
                 params: ''
-              - code: 400
+              - code: invalid_request
                 category: base
                 message: "Invalid reason provided, expected one of: sanctioned_match, unsupported_currency, insufficient_transaction_information, suspected_fraud, internal_watchlist_match, suspected_money_laundering_activity"
                 params: ''
@@ -16364,7 +16364,7 @@ paths:
           '404':
             description: Resource not found.
             x-errors:
-              - code: 404
+              - code: resource_not_found
                 category: base
                 message: Unable to find the resource.
                 params: ''
