@@ -4684,9 +4684,13 @@ paths:
               category: beneficiary_last_name
               message: Beneficiary last name is missing
               params: ''
-            - code: individual_name_cannot_contain_digits
+            - code: first_name_contains_numbers
               category: beneficiary_first_name
-              message: Beneficiary names cannot contain numbers for an invididual
+              message: Beneficiary names cannot contain numbers for an individual
+              params: ''
+            - code: last_name_contains_numbers
+              category: beneficiary_last_name
+              message: Beneficiary names cannot contain numbers for an individual
               params: ''
             - code: beneficiary_state_or_province_is_missing
               category: beneficiary_state_or_province
