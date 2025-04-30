@@ -14265,6 +14265,10 @@ paths:
               category: id
               message: Account was not found for this id
               params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
           schema:
             $ref: '#/definitions/GetReportRequestError'
           headers:
