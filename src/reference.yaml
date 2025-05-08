@@ -14566,7 +14566,7 @@ paths:
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: >-
             Earliest processing date. Any valid ISO 8601 format, e.g.
             "e.g. "2023-12-31T23:59:59Z".
@@ -14574,43 +14574,43 @@ paths:
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Latest processing date. Any valid ISO 8601 format, e.g. "e.g. "2023-12-31T23:59:59Z".'
         - name: created_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: created_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: completed_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: completed_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
         - name: beneficiary_id
           in: query
@@ -15285,6 +15285,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z". <br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint
@@ -15293,6 +15294,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint
@@ -15301,6 +15303,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint
@@ -15309,6 +15312,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint
@@ -15317,6 +15321,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint
@@ -15325,6 +15330,7 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
             Be aware that from 28 May 2025, when using any date filter, the endpoint

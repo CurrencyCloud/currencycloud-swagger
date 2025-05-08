@@ -14183,50 +14183,50 @@ paths:
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: >-
             最早處理日期。任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。
         - name: settles_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '最晚處理日期。任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: created_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: created_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: updated_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: updated_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: completed_at_from
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: completed_at_to
           in: query
           required: false
           type: string
-          format: date
+          format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
         - name: beneficiary_id
           in: query
@@ -14884,36 +14884,42 @@ paths:
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: created_at_to
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: updated_at_from
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: updated_at_to
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: completed_at_from
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: completed_at_to
           in: query
           required: false
           type: string
+          format: date-time
           description: >-
             任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。<br>請注意，自 2025 年 5 月 28 日起，當使用任何日期篩選條件時，端點只會返回過去兩年的轉賬記錄。
         - name: creator_contact_id
