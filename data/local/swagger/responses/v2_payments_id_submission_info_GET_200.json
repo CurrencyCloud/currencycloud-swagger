@@ -1,0 +1,6 @@
+{
+    "status": null,
+    "submission_ref": null,
+    "format": "PACS008",
+    "message": "<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02"> ..."
+}

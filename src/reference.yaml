@@ -10029,11 +10029,16 @@ paths:
               description: A unique reference for the request.
   '/payments/{id}/submission':
     get:
+      deprecated: true
       tags:
         - Payments
       x-api-group: pay
       summary: Get Payment Submission
-      description: Gets the MT103 information for a Swift payment.
+      description: >-
+        <p style="color:#FF5000;"><strong>DEPRECATED</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is <b>deprecated</b> and will be removed on <b>1 October 2025</b>. It will be replaced by the new endpoint below.</p> <br><br>
+        Gets the MT103 information for a Swift payment.
+
       operationId: GetPaymentSubmission
       produces:
         - application/json
@@ -10162,6 +10167,150 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+
+  '/payments/{id}/submission_info':
+    get:
+      tags:
+        - Payments
+      x-api-group: pay
+      summary: Get Payment Submission Information
+      description: >-
+        <p style="color:#FF5000;"><strong>AVAILABLE SOON</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint replaces the one above and will be available in our Demo environment from <b>19 May 2025</b>
+        .</p> <br><br>
+        Gets the MT103 or pacs.008 information for a Swift payment.
+      operationId: GetNewPaymentSubmission
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/PaymentSubmissionInformation'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: ID should be in UUID format
+              params: ''
+
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: on_behalf_of_is_not_valid_UUID
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: Invalid extra parameters extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentSubmissionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          x-errors:
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
   /payments/authorise:
     post:
       tags:
@@ -14564,8 +14713,7 @@ paths:
           in: query
           required: false
           type: string
-          deprecated: true
-          description: User-generated reason for payment - freeform text. Be aware that this field is deprecated and will be removed on 28 May 2025.
+          description: <strong style="color:#FF5000;">DEPRECATED</strong>User-generated reason for payment - freeform text. Be aware that this field is deprecated and will be removed on 28 May 2025.
         - name: settles_at_from
           in: query
           required: false
@@ -20752,6 +20900,29 @@ definitions:
         group: 0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
+  PaymentSubmissionInformation:
+    type: object
+    description: Payment submission.
+    properties:
+      status:
+        type: string
+        description: The status of the submission.
+      submission_ref:
+        type: string
+      format:
+        type: string
+        description: MT103 or PACS008
+      message:
+        type: string
+        description: The Swift message
+
+    example:
+
+      status: pending
+      submission_ref: MXGGYAGJULIIQKDV
+      format: PACS008
+      message: '<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02"> ...'
+
   PaymentTrackingInfo:
     type: object
     description: PaymentTrackingInfo
