@@ -1,6 +1,15 @@
+// Example Response 1
 {
     "status": null,
     "submission_ref": null,
     "format": "PACS008",
     "message": "<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02"> ..."
+}
+
+// Example Response 2
+{
+    "status": null,
+    "submission_ref": null,
+    "format": "MT103",
+    "message": "{1:F01TCCLGB22AXXX4226136150}{2:I103BARCDEFFXXXXN}{3:{111:001}..."
 }

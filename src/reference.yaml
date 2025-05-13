@@ -10029,14 +10029,11 @@ paths:
               description: A unique reference for the request.
   '/payments/{id}/submission':
     get:
-      deprecated: true
       tags:
         - Payments
       x-api-group: pay
       summary: Get Payment Submission
       description: >-
-        <p style="color:#FF5000;"><strong>DEPRECATED</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is <b>deprecated</b> and will be removed on <b>1 October 2025</b>. It will be replaced by the new endpoint below.</p> <br><br>
         Gets the MT103 information for a Swift payment.
 
       operationId: GetPaymentSubmission
@@ -10176,9 +10173,9 @@ paths:
       summary: Get Payment Submission Information
       description: >-
         <p style="color:#FF5000;"><strong>AVAILABLE SOON</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint replaces the one above and will be available in our Demo environment from <b>19 May 2025</b>
-        .</p> <br><br>
-        Gets the MT103 or pacs.008 information for a Swift payment.
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint replaces the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
+        </p> <br><br>
+        Gets the pacs.008 or MT103 information for a Swift payment.
       operationId: GetNewPaymentSubmission
       produces:
         - application/json
@@ -20907,6 +20904,16 @@ definitions:
       status:
         type: string
         description: The status of the submission.
+        enum:
+          - canceled
+          - closed
+          - completed_manually
+          - duplicated
+          - failed
+          - pending
+          - processing
+          - success
+          - waiting_to_process
       submission_ref:
         type: string
       format:
