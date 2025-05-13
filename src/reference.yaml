@@ -6204,7 +6204,7 @@ paths:
       x-api-group: manage
       summary: Generate HMAC Key for Contact
       description: >-
-        Generates a new HMAC key for the current contact.
+        Generates a new account HMAC key for the current contact.
       operationId: GenrateHMACKey
       consumes:
         - multipart/form-data
