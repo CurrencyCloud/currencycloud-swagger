@@ -10173,7 +10173,7 @@ paths:
       summary: Get Payment Submission Information
       description: >-
         <p style="color:#FF5000;"><strong>AVAILABLE SOON</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint replaces the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint will replace the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
         </p> <br><br>
         Gets the pacs.008 or MT103 information for a Swift payment.
       operationId: GetNewPaymentSubmission
