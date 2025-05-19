@@ -14174,11 +14174,6 @@ paths:
             - credit
             - debit
           description: 交易是借记还是贷记账户余额。
-        - name: reason
-          in: query
-          required: false
-          type: string
-          description: 用户生成的付款原因 - 自由格式文本。请注意，此字段已被弃用，并将在 2025 年 5 月 28 日 移除。
         - name: settles_at_from
           in: query
           required: false

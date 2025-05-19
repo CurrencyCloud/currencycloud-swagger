@@ -14706,11 +14706,6 @@ paths:
             - credit
             - debit
           description: Whether the transaction debits or credits the account balance.
-        - name: reason
-          in: query
-          required: false
-          type: string
-          description: <strong style="color:#FF5000;">DEPRECATED</strong>User-generated reason for payment - freeform text. Be aware that this field is deprecated and will be removed on 28 May 2025.
         - name: settles_at_from
           in: query
           required: false
