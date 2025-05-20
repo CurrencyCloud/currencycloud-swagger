@@ -3294,8 +3294,12 @@ paths:
               category: beneficiary_last_name
               message: 收款人姓氏缺失
               params: ''
-            - code: individual_name_cannot_contain_digits
+            - code: first_name_contains_numbers
               category: beneficiary_first_name
+              message: 收款人个人名称不能包含数字
+              params: ''
+            - code: last_name_contains_numbers
+              category: beneficiary_last_name
               message: 收款人个人名称不能包含数字
               params: ''
             - code: beneficiary_city_is_too_short
@@ -3933,10 +3937,15 @@ paths:
               category: beneficiary_last_name
               message: 收款人姓氏缺失
               params: ''
-            - code: individual_name_cannot_contain_digits
+            - code: first_name_contains_numbers
               category: beneficiary_first_name
               message: 收款人个人名称不能包含数字
               params: ''
+            - code: last_name_contains_numbers
+              category: beneficiary_last_name
+              message: 收款人个人名称不能包含数字
+              params: ''
+
             - code: beneficiary_city_is_too_short
               category: beneficiary_city
               message: beneficiary_city 不可少于 1 个字符
@@ -4539,8 +4548,12 @@ paths:
               category: beneficiary_last_name
               message: 收款人姓氏缺失
               params: ''
-            - code: individual_name_cannot_contain_digits
+            - code: first_name_contains_numbers
               category: beneficiary_first_name
+              message: 收款人个人名称不能包含数字
+              params: ''
+            - code: last_name_contains_numbers
+              category: beneficiary_last_name
               message: 收款人个人名称不能包含数字
               params: ''
             - code: beneficiary_state_or_province_is_missing
@@ -9873,6 +9886,153 @@ paths:
             X-Request-Id:
               type: string
               description: 请求的唯一参考。
+  '/payments/{id}/submission_info':
+    get:
+      tags:
+        - 支付
+      x-api-group: pay
+      summary: Get Payment Submission Information
+      description: >-
+        <p style="color:#FF5000;"><strong>AVAILABLE SOON</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint will replace the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
+        </p> <br><br>
+        Gets the pacs.008 or MT103 information for a Swift payment.
+      operationId: GetNewPaymentSubmission
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 验证令牌
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 支付 UUID
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子账户的联系人 UUID。
+      responses:
+        '200':
+          description: 成功。
+          schema:
+            $ref: '#/definitions/PaymentSubmissionInformation'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '400':
+          description: 客户端错误。
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: 应为 UUID 格式
+              params: ''
+
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: 您不能代表您自己的联系人进行操作
+              params: ''
+            - code: on_behalf_of_is_not_valid_UUID
+              category: on_behalf_of
+              message: on_behalf_of 应为 UUID 格式
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: 未找到此 id 的支付
+              params: ''
+            - code: invalid_extra_parameters
+              category: base
+              message: 无效的额外参数 extra_parameter
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentSubmissionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
+        '401':
+          description: 未经授权。
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 提供的凭据验证失败
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+
+        '404':
+          description: 未找到资源。
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          x-errors:
+            - code: contact_not_found
+              category: on_behalf_of
+              message: 此 id 未找到联系人
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+
+        '429':
+          description: 请求次数太多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                已向 API 发送过多请求。请参阅开发者中心以获取更多信息
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+
+        '500':
+          description: 内部服务器错误
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 内部服务器错误
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '503':
+          description: 服务暂时不可用
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服务暂时不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        default:
+          description: 意外错误。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+
+
   /payments/authorise:
     post:
       tags:
@@ -14178,7 +14338,8 @@ paths:
           in: query
           required: false
           type: string
-          description: 用户生成的付款原因 - 自由格式文本。请注意，此字段已被弃用，并将在 2025 年 5 月 28 日 移除。
+          description: >-
+            用户生成的付款原因 - 自由格式文本。请注意，此字段已被弃用，并将在 2025 年 5 月 28 日 移除。
         - name: settles_at_from
           in: query
           required: false
@@ -15885,7 +16046,7 @@ paths:
                 category: base
                 message: accepted 类型应为 boolean
                 params: ''
-              - code: 400
+              - code: invalid_request
                 category: base
                 message: "提供的原因无效，应为以下之一：sanctioned_match、unsupported_currency、insufficient_transaction_information、suspected_fraud、internal_watchlist_match、suspected_money_laundering_activity"
                 params: ''
@@ -15951,7 +16112,7 @@ paths:
           '404':
             description: 未找到资源。
             x-errors:
-              - code: 404
+              - code: resource_not_found
                 category: base
                 message: 无法找到资源
                 params: ''
@@ -20034,6 +20195,28 @@ definitions:
         {1:F01TCCLGB20AXXX0090000004}{2:I103BARCGB22XXXXN}{4: :20:20160617-ZSYWVY :23B:CRED :32A:160617GBP3000,0 :33B:GBP3000,0 :50K:/150618-00026 PCOMAPNY address New-York Province 555222 GB :53B:/20060513071472 :57C://SC200605 :59:/200605000 First Name Last Name e03036bf6c325dd12c58 London GB :70:test reference Test reason Payment group:0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
+  PaymentSubmissionInformation:
+    type: object
+    description: Payment submission.
+    properties:
+      status:
+        type: string
+        description: The status of the submission.
+      submission_ref:
+        type: string
+      format:
+        type: string
+        description: MT103 or PACS008
+      message:
+        type: string
+        description: The Swift message
+
+    example:
+
+      status: pending
+      submission_ref: MXGGYAGJULIIQKDV
+      format: PACS008
+      message: '<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.02"> ...'
   PaymentTrackingInfo:
     type: object
     description: 付款跟踪信息
