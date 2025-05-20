@@ -10165,6 +10165,132 @@ paths:
               type: string
               description: A unique reference for the request.
 
+  '/payments/{id}/new_submission':
+    get:
+      tags:
+        - Payments
+      x-throttling-tier: Unlimited
+      x-api-group: pay
+      summary: Get New Payment Submission
+      description: Get MT103 or PACS008 information for a SWIFT payment.
+      operationId: GetNewPaymentSubmission
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Payment UUID.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-acccount you're acting on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/NewPaymentSubmission'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_id
+              category: id
+              message: ID has invalid format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Payment was not found for this id
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetPaymentSubmissionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporary unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
   '/payments/{id}/submission_info':
     get:
       tags:
@@ -10176,7 +10302,7 @@ paths:
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint replaces the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
         </p> <br><br>
         Gets the pacs.008 or MT103 information for a Swift payment.
-      operationId: GetNewPaymentSubmission
+      operationId: GetPaymentSubmissionInfo
       produces:
         - application/json
       parameters:
@@ -20897,6 +21023,29 @@ definitions:
         group: 0160617-ZSYWVY :71A:SHA -}
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
+  NewPaymentSubmission:
+    type: object
+    description: Payment submission.
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+      submission_ref:
+        type: string
+      format:
+        type: string
+    example:
+      message: >-
+        {1:F01TCCLGB20AXXX0090000004}{2:I103BARCGB22XXXXN}{4:
+        :20:20160617-ZSYWVY :23B:CRED :32A:160617GBP3000,0 :33B:GBP3000,0
+        :50K:/150618-00026 PCOMAPNY address New-York Province 555222 GB
+        :53B:/20060513071472 :57C://SC200605 :59:/200605000 First Name Last Name
+        e03036bf6c325dd12c58 London GB :70:test reference Test reason Payment
+        group: 0160617-ZSYWVY :71A:SHA -}
+      status: pending
+      submission_ref: MXGGYAGJULIIQKDV
+      format: MT103
   PaymentSubmissionInformation:
     type: object
     description: Payment submission.
