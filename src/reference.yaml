@@ -10069,7 +10069,7 @@ paths:
           x-errors:
             - code: id_is_not_valid_uuid
               category: id
-              message: is should be in UUID format
+              message: id should be in UUID format
               params: ''
 
             - code: on_behalf_of_self
