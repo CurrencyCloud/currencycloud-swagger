@@ -9758,7 +9758,14 @@ paths:
         - 支付
       x-api-group: pay
       summary: 获取付款提交
-      description: 获取 Swift 支付的 MT103 信息。
+      description: >-
+        <p style="color:#FF5000;"><strong>DEPRECATED</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint
+        is deprecated and will be removed on 1 October 2025. Please use the Get Payment Submission Information
+        endpoint below instead.</p> <br><br>
+        获取 Swift 支付的 MT103 信息。
+
+      deprecated: true
       operationId: GetPaymentSubmission
       produces:
         - application/json
@@ -9893,10 +9900,7 @@ paths:
       x-api-group: pay
       summary: Get Payment Submission Information
       description: >-
-        <p style="color:#FF5000;"><strong>AVAILABLE SOON</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint will replace the Get Payment Submission one above and will be available in our Demo environment from <b>26 May 2025</b>.
-        </p> <br><br>
-        Gets the pacs.008 or MT103 information for a Swift payment.
+        获取 Swift 支付的 pacs.008 或 MT103 信息。
       operationId: GetNewPaymentSubmission
       produces:
         - application/json
@@ -14326,7 +14330,7 @@ paths:
             - deleted
             - pending
           description: 交易状态。
-        - name: 类型
+        - name: type
           in: query
           required: false
           type: string
