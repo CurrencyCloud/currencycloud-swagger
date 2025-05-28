@@ -14338,11 +14338,6 @@ paths:
             - credit
             - debit
           description: 交易是扣除還是存入賬戶餘額。
-        - name: reason
-          in: query
-          required: false
-          type: string
-          description: 使用者生成的支付原因 - 自由格式文本。請注意，此欄位已棄用，並將於 2025 年 5 月 28 日移除。
         - name: settles_at_from
           in: query
           required: false
