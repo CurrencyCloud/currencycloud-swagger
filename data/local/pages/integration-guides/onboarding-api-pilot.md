@@ -235,6 +235,7 @@ For People we need to identify, only limited information is required:
 -   **`last_name`**
 -   **`roles`**
 -   **`home_country`**
+-   **`dob`**
 
 ### **Verification**
 
@@ -246,13 +247,12 @@ For People we need to verify, we require more information (and this varies depen
 -   **`home_country`**
 -   **`dob`**
 -   **`personal_address_attributes`**
-    (must match home country)  
-
+    (must match home country)
+-   **`document_id`**
+  
 IF **`home_country`**= US:
 -   **`id_number`** (this is their social security number)  
 
-IF **`home_country`**= any country other than UK or US:
--   ID document (see Uploading Documents below)
 
 ## People data points 
 
@@ -444,13 +444,12 @@ Corporate applications can have 3 kinds of Person associated with them: ultimate
 
 UBOs are natural persons (not corporates) who own some percentage of the business. They might hold their ownership directly, or they might hold it via some other entity or entities.
 
-We only need to know about UBOs owning 10% or more of the corporate applicant. An explanation of how to determine this is set out below. In the example, we would need to know about Person A and Person C, since they both own more than 10% of Company A either directly or indirectly.
+We only need to know about UBOs owning 10% or more of the corporate applicant. An explanation of how to determine this is set out below. 
 
-We would not need to know about:
+In the below example, we would need to know about Person A and Person C, since they both own more than 10% of Company A either directly or indirectly. 
+We would also need to know about companies B and C as they are within the ownership structure.
 
--   Companies B, C and D, since there are corporates rather than people.
--   Person B, since they own less than 10% of Company A.
--   Any person owning Company D, as even if Company D was wholly owned by one person, the maximum amount they could own of Company A would be 7.5% which is below 10%.
+
 
 ![](/images/onboarding/business_owners.png)
 
@@ -470,15 +469,14 @@ For corporate applications, we need to collect the following:
 
 - The application must have **at least one director**.
 - Each director of the company must be added as a Person with **roles: ["director"]**
-- For **one** director, we need **verification details**.
+- For **one** director, we need **verification details**. For that director we will require an image of them holding their ID to fulfill our Impersonation Check requirement.
 - For all the rest, we need **identification details**.
 
 **Ultimate business owners (UBOs):**
 
 - Each UBO owning 10% or more of the company, directly or indirectly, must be added as a Person with **roles: ["ultimate_business_owner"]**
 - An application *may* not have any ultimate_business_owner, if no one person owns 10% or more.
-- For **one** UBO, we need **verification details**.
-- For all the rest, we need **identification details**.
+- For **all** UBOs, we need **verification details**.
 
 **Users:**
 - The application must have **at least one user**.
