@@ -21529,7 +21529,6 @@ definitions:
           - completed
           - deleted
           - depending
-
       reason:
         description: Reason
         type: string
