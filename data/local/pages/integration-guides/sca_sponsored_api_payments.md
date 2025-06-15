@@ -20,7 +20,7 @@ a one-time password (OTP) via SMS to your customer that you will need to provide
 in a subsequent request header. It is therefore crucial that we have the correct
 mobile phone numbers for your customers.
 
-To update contact details, please contact support through the Currencycloud Direct platform. We encourage you to raise a single ticket to update the contact details for your customers.
+To update their contact details, please contact support through the Currencycloud Direct platform. We encourage you to raise a single ticket to update the contact details for your customers.
 
 ## Step 2: Validate the Payment
 Before initiating a payment, call the [Validate Payment](/api-reference/#validate-payment)
