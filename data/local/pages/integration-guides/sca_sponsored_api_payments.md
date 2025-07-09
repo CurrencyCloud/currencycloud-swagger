@@ -2,7 +2,7 @@
 [_metadata_:order]:- "12"
 # Strong Customer Authentication for API Payments
 
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"> This guide is only relevant to sponsored model clients servicing EU customers and treasury clients contracted with Currencycloud BV.</p>  
+<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This guide is currently only relevant to sponsored model clients servicing EU customers and treasury clients contracted with Currencycloud BV.</p>  
 
 To make payments using our API, in-scope clients are required to apply Strong Customer Authentication (SCA). This guide outlines the changes needed to your payment workflow to accommodate the additional authentication.
 
