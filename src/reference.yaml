@@ -15433,54 +15433,42 @@ paths:
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z". <br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: completed_at_from
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: completed_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: >-
-            Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".<br>
-            Be aware that from 28 May 2025, when using any date filter, the endpoint
-            will return transfers from the past two years only.
+            Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
         - name: creator_contact_id
           in: query
           required: false
@@ -15507,8 +15495,11 @@ paths:
           type: string
           default: created_at
           description: >-
-            Any field name to change the sort order.<br>
-            Be aware that from 28 May 2025, the only fields supported for sorting will be 'created_at', 'updated_at' and 'completed_at'.
+            The field name to sort by - "created_at", "updated_at" or "completed_at". Defaults to "created_at" if not specified..<br>
+          enum:
+            - created_at
+            - updated_at
+            - completed_at
         - name: order_asc_desc
           in: query
           required: false
