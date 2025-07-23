@@ -8436,6 +8436,7 @@ paths:
         notice before implementing any breaking changes, which will be highlighted
         in this box. If you are interested in using this endpoint before it is
         out of beta, please contact your Account Manager. </p> <br><br>
+        Gets the details of an approved funding transaction with the given ID.
 
       operationId: GetFundingTransaction
       produces:
