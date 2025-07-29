@@ -11566,9 +11566,10 @@ paths:
         Validates the details of a new payment without creating a
         record of the payment. On success, returns an object containing
         a string validation_result with value "success".<br><br>
-        Sponsored model clients who are implementing Strong Customer Authentication (SCA)
+
+        Clients who are implementing Strong Customer Authentication (SCA)
         for payments should refer to our
-        <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
+        <strong><a href="../guides/integration-guides/sca_sponsored_api_payments">SCA for payments integration guide</a></strong>.
       operationId: ValidatePayment
       consumes:
         - multipart/form-data
