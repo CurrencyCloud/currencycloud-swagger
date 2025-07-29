@@ -11,19 +11,26 @@ To make payments using our API, in-scope clients are required to apply Strong Cu
 
 ![collections](/images/workflow_diagrams/13_sca_api_payments.jpg)
 
-## Step 1: Ensure that we have the correct phone number
-When you initiate the payment process on behalf of your customers, we will send
-a one-time password (OTP) via SMS to your customer that you will need to provide
-in a subsequent request header. It is therefore crucial that we have the correct
-mobile phone numbers for your customers.
+## Step 1: Ensure that we have the correct phone numbers
+When you initiate the payment process, we will send a one-time password (OTP) via SMS. You will need to provide this OTP in a subsequent request header.
 
-To update their contact details, please contact support through the Currencycloud Direct platform. We encourage you to raise a single ticket to update the contact details for your customers.
+Who receives the OTP depends on the circumstances:
+
+- If you are making your own payments, the OTP will be sent to your registered mobile number.
+
+- If you are making payments on behalf of your customers, the OTP will be sent to your customer’s registered mobile number.
+
+- If you are making payments on behalf of your customers and **Currencycloud is responsible for onboarding your customers**, you may include the optional `x-sca-to-authenticated-user` header (set to true). This will send the OTP to your registered mobile number instead of your customer’s.
+
+It is essential that the registered mobile phone numbers for OTP recipients are accurate and up to date. To update contact details, please contact support through the Currencycloud Direct platform. We encourage you to raise a single ticket to update the contact details for your customers.
 
 ## Step 2: Validate the Payment
 Before initiating a payment, call the [Validate Payment](/api-reference/#validate-payment)
-endpoint, passing the payment details. Set the Boolean header, `x-sca-opt-in`,
-to `true` if you have been informed by Currencycloud that your service model is
-in-scope for SCA for API payments. If the payment passes the validation and you
+endpoint, passing the payment details. If Currencycloud is responsible for onboarding your customers, you may include the optional `x-sca-to-authenticated-user` header. Setting this to true will send the OTP  to the authenticated user instead of your customer.
+
+Note: If you set the `x-sca-to-authenticated-user` header to true but your account is not configured for Currencycloud-led onboarding, the API request will be rejected with an error.
+
+If the payment passes the validation and you
 are in-scope for SCA then your customer will receive a OTP via SMS to their
 phone which is valid for 10 minutes. The response object will contain the
 following headers:
@@ -94,7 +101,6 @@ When you are ready to [make the payment](/guides/integration-guides/make-simple-
 
 | **Header Name**   | **Description**                                                                                                         |
 |-------------------|-------------------------------------------------------------------------------------------------------------------------|
-| `x-sca-opt-in`      | Set to true if you have been informed by Currencycloud that your service model is in-scope for SCA for API payments.     |
 | `x-sca-id`          | The UUID returned by the Validate Payment request (step 2 above).                                                       |
 | `x-sca-token`       | The OTP received following the Validate Payment request.                                                                |
 
