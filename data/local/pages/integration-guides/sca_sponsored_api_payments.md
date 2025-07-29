@@ -16,7 +16,7 @@ When you initiate the payment process, we will send a one-time password (OTP) vi
 
 Who receives the OTP depends on the circumstances:
 
-- If you are making your own payments, the OTP will be sent to your registered mobile number.
+- If you are making your own payments, the OTP will be sent to the authenticated user's registered mobile number.
 
 - If you are making payments on behalf of your customers, the OTP will be sent to your customer’s registered mobile number.
 
@@ -26,13 +26,14 @@ It is essential that the registered mobile phone numbers for OTP recipients are 
 
 ## Step 2: Validate the Payment
 Before initiating a payment, call the [Validate Payment](/api-reference/#validate-payment)
-endpoint, passing the payment details. If Currencycloud is responsible for onboarding your customers, you may include the optional `x-sca-to-authenticated-user` header. Setting this to true will send the OTP  to the authenticated user instead of your customer.
+endpoint, passing the payment details.
+
+If Currencycloud is responsible for onboarding your customers, you may include the optional `x-sca-to-authenticated-user` header. Setting this to true will send the OTP to the authenticated user instead of your customer.
 
 Note: If you set the `x-sca-to-authenticated-user` header to true but your account is not configured for Currencycloud-led onboarding, the API request will be rejected with an error.
 
 If the payment passes the validation and you
-are in-scope for SCA then your customer will receive a OTP via SMS to their
-phone which is valid for 10 minutes. The response object will contain the
+are in-scope for SCA then a OTP will be sent via SMS and is valid for 10 minutes. The response object will contain the
 following headers:
 
 | **Header Name** | **Description**|
@@ -59,18 +60,20 @@ x-sca-required: true
 ### Error Codes (sca_check_failed)
 
 **HTTP 400**
-
 | **Error Code**            | **Error Message**                                              | **Description**                                                |
 |---------------------------|---------------------------------------------------------------|----------------------------------------------------------------|
 | invalid_beneficiary       | Beneficiary could not be found for given id.                  | Beneficiary not found.                                          |
 | invalid_extra_x_sca_id    | Validate request should not include `x-sca-id` in header.   | `x-sca-id` header provided in request during validate process.   |
 | missing_account           | Account could not be found for given id.                      | Account data could not be found.                                |
-| amount_type_is_wrong      | Amount should be of numeric type.                             | Amount in request body is not a numeric.                       |
+| amount_type_is_wrong      | Amount should be of numeric type.                             | Amount in request body is not a numeric.       |
+| x-sca-to-authenticated-user | Cannot use x-sca-to-authenticated-user for this account. | Your account cannot use the x-sca-to-authenticated-user. |
+
+
 
 **HTTP 401**
 | **Error Code**            | **Error Message**                                              | **Description**                                                |
 |---------------------------|---------------------------------------------------------------|----------------------------------------------------------------|
-| internal_server_error | Authentication failed with the supplied credentials | Couldn’t authenticate with the provided `x-auth-token` header.
+| internal_server_error | Authentication failed with the supplied credentials | Couldn’t authenticate with the provided `x-auth-token` header. |
 
 **HTTP 422**
 | **Error Code**            | **Error Message**                                              | **Description**                                                |
