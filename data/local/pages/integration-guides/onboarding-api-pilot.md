@@ -163,7 +163,7 @@ Individual and corporate applications are assembled slightly differently. An ove
 
 ## Base URLs
 
-| **Environment** | **Base URL** | 
+| **Environment** | **Base URL** |
 |---|---|
 | Demo | devapi.currencycloud.com/**onboarding** |
 | Production | api.currencycloud.com/**onboarding** |
@@ -249,12 +249,12 @@ For People we need to verify, we require more information (and this varies depen
 -   **`personal_address_attributes`**
     (must match home country)
 -   **`document_id`**
-  
+
 IF **`home_country`**= US:
 -   **`id_number`** (this is their social security number)  
 
 
-## People data points 
+## People data points
 
 Attributes shown in <span style="background-color:#23CE6B; color:black;">green</span> are needed for persons we need to **identify**. In addition, for persons we need to **verify** we will also need to collect the attributes shown in <span style="background-color:#3EABC9; color:black;">blue</span>. Items shown in <span style="background-color:#FA4E60; color:black;">red</span> are only relevant for users with certain 'roles' (e.g. users, or ultimate beneficial owners).
 
@@ -271,11 +271,12 @@ Attributes shown in <span style="background-color:#23CE6B; color:black;">green</
 | <span style="color:#3EABC9;">passport_country_of_issue</span> |  | Only for corporate applications. If country of registered address of the business = US, but home_country of the person NOT US, please collect this. |
 | <span style="color:#3EABC9;">dob</span> | "1991-07-20" | This is date of birth |
 | <span style="color:#3EABC9;">personal_address_attributes</span>|  | Current permanent address, please "Address data points -- explained" |
+| <span style="color:#3EABC9; ">citizenship</span> | "GB" | ISO 2 code for the country of citizenship. If multiple citizenships exist, the one the person most identifies with should be used. |
 | <span style="color:#FA4E60;">phone_number</span> | "+44 7746 822 112" |  |
 | <span style="color:#FA4E60;">email</span> | "j.doe@mail.com" | This is only required if the Person wants a user account. This is the user's email, used for logging into their account (if application approved) |
 | <span style="color:#FA4E60;">ownership_percentage</span> | 12 | Only relevant where "roles" includes "ultimate_business_owner", then this is required. |\
 
-## Account Usage data points 
+## Account Usage data points
 
 These data points let Currencycloud know a bit more about how the applicant plans to use their account. All these data points apply for corporate applications, but only a small subset are needed for individual applications (shown in <span style="background-color:#23CE6B; color:black;">green</span>).
 
@@ -295,7 +296,7 @@ These data points let Currencycloud know a bit more about how the applicant plan
 | <span style="color:#23CE6B;">primary_purpose</span>| "property_purchase_or_sale" | The applicant's reason for opening an account with Currencycloud. |
 | <span style="color:#23CE6B;">purpose_details</span> | "I want to open an account to send money to Spain" | Required if primary_purpose = 'other' |\
 
-## Business Information data points 
+## Business Information data points
 
 This is only relevant for corporate applications. These are data points relevant to collect about the business applying for an account (some are optional, others are mandatory).
 
@@ -315,7 +316,7 @@ This is only relevant for corporate applications. These are data points relevant
 | registered_address_attributes |  | The business registered address |
 | trading_address_attributes |  | The business trading address, if different |\
 
-## Address data points 
+## Address data points
 
 Structuring addresses accurately is very important as it improves the success rate of our automated checks. Currencycloud uses **[GBG Loqate](https://www.loqate.com/en-gb/)** to find and submit structured addresses.
 
@@ -444,9 +445,9 @@ Corporate applications can have 3 kinds of Person associated with them: ultimate
 
 UBOs are natural persons (not corporates) who own some percentage of the business. They might hold their ownership directly, or they might hold it via some other entity or entities.
 
-We only need to know about UBOs owning 10% or more of the corporate applicant. An explanation of how to determine this is set out below. 
+We only need to know about UBOs owning 10% or more of the corporate applicant. An explanation of how to determine this is set out below.
 
-In the below example, we would need to know about Person A and Person C, since they both own more than 10% of Company A either directly or indirectly. 
+In the below example, we would need to know about Person A and Person C, since they both own more than 10% of Company A either directly or indirectly.
 We would also need to know about companies B and C as they are within the ownership structure.
 
 
