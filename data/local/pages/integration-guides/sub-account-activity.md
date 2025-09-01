@@ -54,8 +54,8 @@ Response:
     "postal_code": "80209",
     "spread_table": "flat_0.00",
     "legal_entity_type": "company",
-    "created_at": "2021-03-25T15:22:47.276+00:00",
-    "updated_at": "2021-03-25T15:22:47.275+00:00",
+    "created_at": "2025-03-25T15:22:47.276+00:00",
+    "updated_at": "2025-03-25T15:22:47.275+00:00",
     "identification_type": "incorporation_number",
     "identification_value": "123456789",
     "short_reference": "210325-03783",
@@ -112,8 +112,8 @@ Response: 
     "phone_number": "99999999",
     "your_reference": "123456789",
     "date_of_birth": "1993-01-01",
-    "created_at": "2021-03-25T15:45:22.325+00:00",
-    "updated_at": "2021-03-25T15:45:22.320+00:00"
+    "created_at": "2025-03-25T15:45:22.325+00:00",
+    "updated_at": "2025-03-25T15:45:22.320+00:00"
 }
 
 ```
@@ -144,7 +144,7 @@ On success, the response payload will contain details of Currencycloud's quotati
 ```
 {
 
-    "settlement_cut_off_time": "2021-03-29T14:30:00Z",
+    "settlement_cut_off_time": "2025-03-29T14:30:00Z",
     "currency_pair": "EURGBP",
     "client_buy_currency": "EUR",
     "client_sell_currency": "GBP",
@@ -186,8 +186,8 @@ On success, the payload of the response message will contain full details of the
 ```
 {
     "id": "0e716494-3688-499a-8391-38096582aad5",
-    "settlement_date": "2021-03-29T14:30:00+00:00",
-    "conversion_date": "2021-03-29T00:00:00+00:00",
+    "settlement_date": "2025-03-29T14:30:00+00:00",
+    "conversion_date": "2025-03-29T00:00:00+00:00",
     "short_reference": "20210325-XPWDTQ",
     "creator_contact_id": "ce404ead-1936-4f54-ac2a-b26ec03d5560",
     "account_id": "53d15949-b1e9-4335-a4e4-56ae8adef95e",
@@ -211,8 +211,8 @@ On success, the payload of the response message will contain full details of the
     "payment_ids": [],
     "unallocated_funds": "10000.00",
     "unique_request_id": null,
-    "created_at": "2021-03-25T20:53:47+00:00",
-    "updated_at": "2021-03-25T20:53:48+00:00",
+    "created_at": "2025-03-25T20:53:47+00:00",
+    "updated_at": "2025-03-25T20:53:48+00:00",
     "mid_market_rate": "0.8036"
 }
 ```
@@ -246,8 +246,8 @@ Content-Type: application/json
     "account_id": "53d15949-b1e9-4335-a4e4-56ae8adef95e",
     "currency": "EUR",
     "amount": "987456.00",
-    "created_at": "2021-03-25T21:17:08+00:00",
-    "updated_at": "2021-03-25T22:02:57+00:00"
+    "created_at": "2025-03-25T21:17:08+00:00",
+    "updated_at": "2025-03-25T22:02:57+00:00"
 }
 ```
 
@@ -271,16 +271,16 @@ The following response shows that your customer is holding £557,685.00, and €
             "account_id": "53d15949-b1e9-4335-a4e4-56ae8adef95e",
             "currency": "EUR",
             "amount": "987456.00",
-            "created_at": "2021-03-25T21:17:08+00:00",
-            "updated_at": "2021-03-25T22:02:57+00:00"
+            "created_at": "2025-03-25T21:17:08+00:00",
+            "updated_at": "2025-03-25T22:02:57+00:00"
         },
         {
             "id": "e08bdda0-18b0-4425-aabe-2c3da28cca89",
             "account_id": "53d15949-b1e9-4335-a4e4-56ae8adef95e",
             "currency": "GBP",
             "amount": "557685.00",
-            "created_at": "2021-03-25T21:18:22+00:00",
-            "updated_at": "2021-03-25T22:02:58+00:00"
+            "created_at": "2025-03-25T21:18:22+00:00",
+            "updated_at": "2025-03-25T22:02:58+00:00"
         }
     ],
     "pagination": {
@@ -348,8 +348,8 @@ Response:
         " NOT USING EXTERNAL SERVICE",
         " DEVELOPMENT ENVIRONMENT."
     ],
-    "created_at": "2021-03-25T22:52:30+00:00",
-    "updated_at": "2021-03-25T22:52:30+00:00",
+    "created_at": "2025-03-25T22:52:30+00:00",
+    "updated_at": "2025-03-25T22:52:30+00:00",
     "beneficiary_external_reference": null
 }
 ```
@@ -387,7 +387,7 @@ Response:
     "status": "ready_to_send",
     "creator_contact_id": "ce404ead-1936-4f54-ac2a-b26ec03d5560",
     "payment_type": "regular",
-    "payment_date": "2021-03-29",
+    "payment_date": "2025-03-29",
     "transferred_at": "",
     "authorisation_steps_required": "0",
     "last_updater_contact_id": "ce404ead-1936-4f54-ac2a-b26ec03d5560",
@@ -396,8 +396,8 @@ Response:
     "failure_reason": "",
     "payer_id": "45cc568d-a837-4538-b1d8-882a367c8d46",
     "payer_details_source": "account",
-    "created_at": "2021-03-26T20:32:59+00:00",
-    "updated_at": "2021-03-26T20:32:59+00:00",
+    "created_at": "2025-03-26T20:32:59+00:00",
+    "updated_at": "2025-03-26T20:32:59+00:00",
     "payment_group_id": null,
     "unique_request_id": "5f022044-1277-4f7e-a68e-c68783647748",
     "failure_returned_amount": "0.00",
