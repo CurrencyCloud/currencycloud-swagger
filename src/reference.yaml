@@ -8569,6 +8569,18 @@ paths:
           required: true
           type: string
           description: Authentication token
+        - name: x-sca-id
+          in: header
+          required: false
+          type: string
+          description: >-
+            UUID to correlate to the SCA request generated when payments/validate was called
+        - name: x-sca-token
+          in: header
+          required: false
+          type: string
+          description: >-
+            The OTP received following the Validate Payment request when SCA was required
         - name: currency
           in: formData
           required: true
@@ -11576,6 +11588,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+        - name: x-sca-to-authenticated-user
+          in: header
+          required: false
+          type: boolean
+          description: >-
+            Setting this to true will send the OTP to the authenticated user instead of the on-behalf-of customer.
+            This option is only available for customers on specific licensing models.
         - name: id
           in: formData
           required: false
