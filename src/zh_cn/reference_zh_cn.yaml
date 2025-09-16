@@ -2481,10 +2481,6 @@ paths:
               category: bank_name
               message: bank_name 不可少于 1 个字符
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
             - code: bank_account_type_not_in_range
               category: bank_account_type
               message: 'bank_account_type 应在此范围内：checking, savings'
@@ -3222,10 +3218,7 @@ paths:
               category: bank_name
               message: bank_name 不可少于 1 个字符
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
+
             - code: bank_name_is_missing
               category: bank_name
               message: 银行名称缺失
@@ -3865,10 +3858,6 @@ paths:
               category: bank_name
               message: bank_name 不可少于 1 个字符
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
               category: bank_name
               message: 银行名称缺失
@@ -4652,10 +4641,6 @@ paths:
               category: bank_name
               message: bank_name 不可少于 1 个字符
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
               category: bank_name
               message: 银行名称缺失

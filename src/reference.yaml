@@ -2554,10 +2554,6 @@ paths:
               category: bank_name
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
             - code: bank_account_type_not_in_range
               category: bank_account_type
               message: 'bank_account_type should be in range: checking, savings'
@@ -3318,10 +3314,6 @@ paths:
               category: bank_name
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
               category: bank_name
               message: Bank name is missing
@@ -3989,10 +3981,6 @@ paths:
               category: bank_name
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
               category: bank_name
               message: Bank name is missing
@@ -4796,10 +4784,6 @@ paths:
               category: bank_name
               message: bank_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
-            - code: bank_name_is_too_long
-              category: bank_name
-              message: bank_name can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
             - code: bank_name_is_missing
               category: bank_name
               message: Bank name is missing
@@ -14924,7 +14908,7 @@ paths:
           type: string
           default: created_at
           description: >-
-            Populate with any field name to specify the sort order.<br><br>
+            The field to sort by. Defaults to 'created_at' if not specified.<br><br>
             Please note that if you choose to order by 'completed_at', it's important to populate
             the query parameter 'status' with the value 'completed' in order to ensure that transactions
             are sequenced in the order they were processed. Without this, transactions that completed
