@@ -8555,7 +8555,7 @@ paths:
       x-api-group: pay
       summary: Create Payment
       description: Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br>
-        Sponsored model clients who are implementing Strong Customer Authentication (SCA)
+        Clients who are implementing Strong Customer Authentication (SCA)
         for payments should refer to our
         <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: CreatePayment
@@ -8574,13 +8574,13 @@ paths:
           required: false
           type: string
           description: >-
-            UUID to correlate to the SCA request generated when payments/validate was called
+            UUID to correlate to the SCA request generated when Validate Payment was called.
         - name: x-sca-token
           in: header
           required: false
           type: string
           description: >-
-            The OTP received following the Validate Payment request when SCA was required
+            The OTP received following the Validate Payment request when SCA was required.
         - name: currency
           in: formData
           required: true
@@ -11594,7 +11594,7 @@ paths:
           type: boolean
           description: >-
             Setting this to true will send the OTP to the authenticated user instead of the on-behalf-of customer.
-            This option is only available for customers on specific licensing models.
+            This option is only available to clients on specific licensing models.
         - name: id
           in: formData
           required: false
