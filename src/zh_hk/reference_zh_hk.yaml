@@ -9736,146 +9736,6 @@ paths:
             X-Request-Id:
               type: string
               description: 請求的唯一參考。
-  '/payments/{id}/submission':
-    get:
-      tags:
-        - 支付
-      x-api-group: pay
-      summary: 獲取支付提交
-      description: >-
-        <p style="color:#FF5000;"><strong>DEPRECATED</strong></p><br>
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">This endpoint
-        is deprecated and will be removed on 1 October 2025. Please use the Get Payment Submission Information
-        endpoint below instead.</p> <br><br>
-        獲取 Swift 支付的 MT103 資訊。
-      deprecated: true
-      operationId: GetPaymentSubmission
-      produces:
-        - application/json
-      parameters:
-        - name: X-Auth-Token
-          in: header
-          required: true
-          type: string
-          description: 身份驗證令牌
-        - name: id
-          in: path
-          required: true
-          type: string
-          description: 支付 UUID
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: 您所代表的子賬戶的聯絡人 UUID。
-      responses:
-        '200':
-          description: 成功。
-          schema:
-            $ref: '#/definitions/PaymentSubmission'
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '400':
-          description: 客戶錯誤。
-          x-errors:
-            - code: id_is_not_valid_uuid
-              category: id
-              message: is 應採用 UUID 格式
-              params: ''
-
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: 您不能代表自己的聯絡人操作
-              params: ''
-            - code: on_behalf_of_is_not_valid_UUID
-              category: on_behalf_of
-              message: on_behalf_of 應採用 UUID 格式
-              params: ''
-            - code: payment_not_found
-              category: id
-              message: 未找到此 id 對應的支付
-              params: ''
-            - code: invalid_extra_parameters
-              category: base
-              message: 無效的額外參數 extra_parameter
-              params: '{ "parameters" => "extra_parameter" }'
-
-          schema:
-            $ref: '#/definitions/GetPaymentSubmissionError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '401':
-          description: 未授權。
-          x-errors:
-            - code: invalid_supplied_credentials
-              category: username
-              message: 使用提供的憑證進行身份驗證失敗
-              params: ''
-          schema:
-            $ref: '#/definitions/UnauthorizedError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '404':
-          description: 未找到資源。
-          schema:
-            $ref: '#/definitions/NotFoundError'
-          x-errors:
-            - code: contact_not_found
-              category: on_behalf_of
-              message: 未找到此 id 對應的聯絡人
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '429':
-          description: 請求過多。
-          x-errors:
-            - code: too_many_requests
-              category: base
-              message: >-
-                向該 API 發送的請求數量過多。請參閱開發人員中心以獲取更多資訊
-              params: ''
-          schema:
-            $ref: '#/definitions/RateLimitError'
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '500':
-          description: 伺服器內部錯誤
-          x-errors:
-            - code: internal_server_error
-              category: base
-              message: 伺服器內部錯誤
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        '503':
-          description: 服務暫時不可用
-          x-errors:
-            - code: service_unavailable
-              category: base
-              message: 服務暫時不可用
-              params: ''
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
-        default:
-          description: 意外錯誤。
-          headers:
-            X-Request-Id:
-              type: string
-              description: 請求的唯一參考。
   /payments/{id}/submission_info:
     get:
       tags:
@@ -20160,23 +20020,6 @@ definitions:
       created_at: '2014-01-12T00:00:00+00:00'
       updated_at: '2014-01-12T00:00:00+00:00'
       expires_at: '2014-02-12T00:00:00+00:00'
-  PaymentSubmission:
-    type: object
-    description: 支付提交。
-    properties:
-      mt103:
-        type: string
-        description: MT103 訊息。
-      status:
-        type: string
-        description: 提交的狀態。
-      submission_ref:
-        type: string
-    example:
-      mt103: >-
-        {1:F01TCCLGB20AXXX0090000004}{2:I103BARCGB22XXXXN}{4: :20:20160617-ZSYWVY :23B:CRED :32A:160617GBP3000,0 :33B:GBP3000,0 :50K:/150618-00026 PCOMAPNY 地址 紐約 省 555222 GB :53B:/20060513071472 :57C://SC200605 :59:/200605000 名字 姓氏 e03036bf6c325dd12c58 倫敦 GB :70:測試參考 測試原因 支付組:0160617-ZSYWVY :71A:SHA -}
-      status: pending
-      submission_ref: MXGGYAGJULIIQKDV
   PaymentSubmissionInformation:
     type: object
     description: Payment submission.
@@ -20192,9 +20035,7 @@ definitions:
       message:
         type: string
         description: The Swift message
-
     example:
-
       status: pending
       submission_ref: MXGGYAGJULIIQKDV
       format: PACS008
