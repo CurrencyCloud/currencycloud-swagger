@@ -6945,11 +6945,6 @@ paths:
           required: false
           type: string
           description: User-generated idempotency key.
-        - name: bulk_upload_id
-          in: query
-          required: false
-          type: string
-          description: Bulk upload reference code.
         - name: page
           in: query
           required: false
