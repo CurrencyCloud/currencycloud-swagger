@@ -6743,11 +6743,6 @@ paths:
           required: false
           type: string
           description: 使用者生成的冪等性密鑰。
-        - name: bulk_upload_id
-          in: query
-          required: false
-          type: string
-          description: 批量上載參考代碼。
         - name: page
           in: query
           required: false

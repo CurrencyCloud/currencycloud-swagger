@@ -6744,11 +6744,6 @@ paths:
           required: false
           type: string
           description: 用户生成的幂等密钥。
-        - name: bulk_upload_id
-          in: query
-          required: false
-          type: string
-          description: 批量上传参考代码。
         - name: page
           in: query
           required: false
