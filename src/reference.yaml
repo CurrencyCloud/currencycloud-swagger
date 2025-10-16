@@ -6392,7 +6392,11 @@ paths:
             - 'default' for conversion - T+1 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, T+2 for all others.<br>
             - 'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is T+0 for <a href="https://support.currencycloud.com/hc/en-gb/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">APAC restricted currencies</a>, and T+1 or T+2 for all others.
-
+        - name: conversion_quote_id
+          in: formData
+          required: false
+          type: string
+          description: The UUID of a previously created conversion quote.
       responses:
         '200':
           description: Success.
