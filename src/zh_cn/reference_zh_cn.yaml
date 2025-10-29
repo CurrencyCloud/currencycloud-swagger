@@ -15914,8 +15914,7 @@ paths:
         x-api-group: collect
         summary: 接受或拒绝入站交易
         description: >-
-          <p style="color:#FF5000;"><strong>BETA</strong></p><br> <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding:1em;"> 请注意，此端点仍是 Beta 版本，在此期间可能会发生变更。在实施任何重大变更之前，我们将至少提前 10 天通知，这些变更将在此框中突出显示。如果您希望在 Beta 版本正式发布前使用此端点，请联系您的客户经理。</p> <br><br>
-
+        
           允许您在资金记入收款人账户之前接受或拒绝入站交易。
         operationId: CompleteCollectionsScreening
         consumes:
