@@ -16079,8 +16079,7 @@ paths:
         x-api-group: collect
         summary: Aceitar ou rejeitar a transação de entrada
         description: >-
-          <p style="color:#FF5000;"><strong>BETA</strong></p><br> <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"> Lembre-se de que esta é uma versão beta do endpoint e está sujeita a alterações durante este período. Avisaremos com antecedência de pelo menos 10 dias antes de implementar quaisquer alterações significativas, que serão destacadas nesta caixa. Caso tenha interesse em usar este endpoint antes que ele esteja fora de versão beta, entre em contato com seu Gestor de Conta. </p> <br><br>
-
+          
           Permite que você aceite ou rejeite uma transação de entrada antes que os fundos sejam creditados na conta do beneficiário.
         operationId: CompleteCollectionsScreening
         consumes:

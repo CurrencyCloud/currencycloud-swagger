@@ -1,22 +1,18 @@
-[_metadata_:unlisted]:-
-
-<!--- [_metadata_:menu_title]:- "Adding an FX Spread/Markup"
-[_metadata_:order]:- "9" --->
 
 # Adding an FX Spread/Markup
 
-Adding a markup to an indicative rate enables you to earn a profit on a forex trade. This guide demonstrates how to add a markup to the indicative rate requested for an end customer. The calculated markup is passed in the conversion request to lock in the desired rate. Please note that markup is only supported when executing conversions on behalf of a sub-account (also known as a named account). Please refer to our [sub-account activity guide](/guides/integration-guides/sub-account-activity) for more information on how to conduct activity at the sub-account level.
+Adding a markup to an indicative rate enables you to earn a profit on a forex trade. This guide demonstrates how to add a markup to the indicative rate requested for an end customer. The calculated markup is passed in the conversion request to lock in the desired rate. Please note that markup is only supported when executing conversions on behalf of a sub-account (also known as a named account). Please refer to our [sub-account activity guide](https://developer.currencycloud.com/guides/integration-guides/sub-account-activity) for more information on how to conduct activity at the sub-account level.
 
 Any profit earned on conversions is generated at the sub-account level and aggregated to your house account. These profits are reconciled and paid out as a monthly commission. Please contact your dedicated Sales Representative or Account Manager for more detail on commission payouts. 
 
 
 ## Step 1: Login
 
-Please refer to the [authentication guide](/guides/integration-guides/authentication) for instructions for establishing a new API session.
+Please refer to the [authentication guide](https://developer.currencycloud.com/guides/integration-guides/authentication) for instructions for establishing a new API session.
 
 ## Step 2: Get a quote
 
-As an example, let's check how much it will cost to buy 10,000 EUR using funds from your customer's GBP balance, by making a call to the [Get Detailed Rates](/api-reference/#get-detailed-rates) endpoint.
+As an example, let's check how much it will cost to buy 10,000 EUR using funds from your customer's GBP balance, by making a call to the [Get Detailed Rates](https://developer.currencycloud.com/api-reference/#get-detailed-rates) endpoint.
 
 `GET /v2/rates/detailed`
 
@@ -76,10 +72,13 @@ Bear in mind that if setting the `fixed_side` to "buy", you should adjust and 
 
 ## Step 4: Submit the conversion
 
-Once your customer is happy with the quote, you can create the conversion by calling the [Create Conversion](/api-reference/#create-conversion) endpoint, factoring in the calculated FX markup from step 3 by passing in and fixing the `client_sell_amount` parameter. Passing in the value, rather than the marked-up rate, allows you to honor the amounts with your customers, while managing the risk of rate fluctuation.
+Once your customer is happy with the quote, you can create the conversion by calling the [Create Conversion](https://developer.currencycloud.com/api-reference/#create-conversion) endpoint, factoring in the calculated FX markup from step 3 by passing in and fixing the `client_sell_amount` parameter. Passing in the value, rather than the marked-up rate, allows you to honor the amounts with your customers, while managing the risk of rate fluctuation.
 
+```
 POST /v2/conversions/create
 Content-Type: multipart/form-data
+```
+
 
 | Parameter Name | Parameter Type | Example Value |
 | --- | --- | --- |

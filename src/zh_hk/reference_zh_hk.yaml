@@ -15913,8 +15913,7 @@ paths:
         x-api-group: collect
         summary: 接受或拒絕入金交易
         description: >-
-          <p style="color:#FF5000;"><strong>測試版</strong></p><br> <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding:1em;"> 請注意，此為端點的測試版，在此期間可能會變更。在實施任何突發性變更之前，我們會至少提前 10 天發出通知，並在此方塊中突出標示。若您有興趣在測試版期間使用此端點，請聯絡您的賬戶經理。</p><br><br>
-
+          
           允許您在資金記入收款人賬戶之前，接受或拒絕入金交易。
         operationId: CompleteCollectionsScreening
         consumes:
