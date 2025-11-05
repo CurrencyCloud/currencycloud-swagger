@@ -275,14 +275,6 @@ Further explanation for some of the information that can be obtained from the ab
 
 ## Step 6 (optional): Accept or reject inbound transaction
 
-<p style="color:#FF5000;"><strong>BETA</strong></p><br>
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-Please be aware that this is a beta version of the endpoint and it is
-subject to change during this period. We will provide at least 10 days'
-notice before implementing any breaking changes, which will be highlighted
-in this box. If you are interested in using this endpoint before it is
-out of beta, please contact your Account Manager. </p>
-
 This is an opt-in service that allows you to review and decide on inbound transactions. It applies to the payment rails listed below:
 
 | Currency | Rail |
@@ -292,7 +284,7 @@ This is an opt-in service that allows you to review and decide on inbound transa
 | CAD | EFT |
 | GBP | FPS |
 
- You have 23.5 hours to respond from when the “pending cash manager transaction notification” is triggered (‘pending’ status).  If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening.  
+ You have 23.5 hours to respond from when the “pending cash manager transaction notification” is triggered (‘pending’ status). If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening.  
 
  Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are processed and the “cash manager transaction notification” is triggered when the funds are credited to the beneficiary's account (‘completed’ status). If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned. In the case of a rejection, the “rejected cash manager transaction notification” is triggered (‘deleted’ status).
 
