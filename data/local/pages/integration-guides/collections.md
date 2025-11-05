@@ -278,14 +278,6 @@ Further explanation for some of the information that can be obtained from the ab
 
 ## Step 6 (optional): Accept or reject inbound transaction
 
-<p style="color:#FF5000;"><strong>BETA</strong></p><br>
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-Please be aware that this is a beta version of the endpoint and it is
-subject to change during this period. We will provide at least 10 days'
-notice before implementing any breaking changes, which will be highlighted
-in this box. If you are interested in using this endpoint before it is
-out of beta, please contact your Account Manager. </p>
-
 This is an opt-in service that allows you to review and decide on inbound transactions. It applies to the payment rails listed below:
 
 | Currency | Rail |
