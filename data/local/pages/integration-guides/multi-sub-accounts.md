@@ -70,7 +70,7 @@ Response:
 }
 ```
 
-From the response payload, you will need to parse and retain the account UUID (`id`) parametere from the above example. This value will be used in the next API call to create a second sub account for this specific end-client.
+From the response payload, you will need to parse and retain the account UUID (`id`) parameter from the above example. This value will be used in the next API call to create a subsequent sub-account for this specific end-client.
 
 ## Step 2:  Create another sub-account for the same customer 
 
