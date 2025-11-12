@@ -12290,11 +12290,6 @@ paths:
           required: true
           type: string
           description: Authentication token.
-        - name: on_behalf_of
-          in: query
-          required: false
-          type: string
-          description: A contact UUID for the sub-account you're acting on behalf of.
         - name: buy_currency
           in: formData
           required: true
@@ -12346,6 +12341,11 @@ paths:
             - 'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
             - 'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
             Conversion is within 1 or 2 working days depending on currencies.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
       responses:
         '200':
           description: Success.
