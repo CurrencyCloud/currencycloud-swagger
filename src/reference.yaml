@@ -416,23 +416,43 @@ paths:
           required: false
           type: string
           enum:
+            - none
+            - others
+            - asylum_registration_card
             - citizenship_papers
+            - consular_id
             - credential_de_elector
             - drivers_license
             - drivers_license_canadian
             - employer_identification_number
             - existing_credit_card_details
             - green_card
-            - incorporation_number
+            - immigration_status_document
+            - indigenous_card
+            - international_driving_licence
             - matricula_consular
+            - municipality_identity_card
+            - national_health_insurance_card
             - national_id
-            - none
-            - others
+            - national_identity_card
             - passport
+            - passport_card
+            - postal_identity_card
+            - private_operators_card
+            - professional_qualification_card
+            - proof_of_citizenship
             - registro_federal_de_contribuyentes
+            - residence_permit
+            - residence_status_document
+            - service_id_card
             - social_insurance_number
+            - social_security_card
             - social_security_number
+            - tax_id
             - visa
+            - voter_id
+            - work_permit
+            - incorporation_number
           description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
@@ -1017,23 +1037,43 @@ paths:
         required: false
         type: string
         enum:
+          - none
+          - others
+          - asylum_registration_card
           - citizenship_papers
+          - consular_id
           - credential_de_elector
           - drivers_license
           - drivers_license_canadian
           - employer_identification_number
           - existing_credit_card_details
           - green_card
-          - incorporation_number
+          - immigration_status_document
+          - indigenous_card
+          - international_driving_licence
           - matricula_consular
+          - municipality_identity_card
+          - national_health_insurance_card
           - national_id
-          - none
-          - others
+          - national_identity_card
           - passport
+          - passport_card
+          - postal_identity_card
+          - private_operators_card
+          - professional_qualification_card
+          - proof_of_citizenship
           - registro_federal_de_contribuyentes
+          - residence_permit
+          - residence_status_document
+          - service_id_card
           - social_insurance_number
+          - social_security_card
           - social_security_number
+          - tax_id
           - visa
+          - voter_id
+          - work_permit
+          - incorporation_number
         description: A legal document that verifies the identity of the account owner.
       - name: identification_value
         in: formData
