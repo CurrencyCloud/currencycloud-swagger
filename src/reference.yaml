@@ -112,8 +112,7 @@ paths:
 
         For security, Currencycloud accounts are disabled when four unsuccessful
         login attempts are made within a short period. In these circumstances, account
-        holders must <a href="mailto:support@currencycloud.com">contact support</a>
-        to
+        holders must <a href="mailto:support@currencycloud.com">contact support</a>  to
         reactivate their account.
       operationId: Login
       consumes:
@@ -250,7 +249,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: >-
@@ -343,7 +343,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_name
         in: formData
         required: true
@@ -697,7 +698,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -706,7 +708,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -716,7 +719,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -837,7 +841,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -846,7 +851,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_name
         in: formData
         required: false
@@ -1214,7 +1220,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -1308,7 +1315,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_name
         in: formData
         required: false
@@ -1586,7 +1594,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: path
         required: true
@@ -1596,7 +1605,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -1711,7 +1721,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: path
         required: true
@@ -1720,7 +1731,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: charge_settings_id
         in: path
         required: true
@@ -1730,7 +1742,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: enabled
         in: formData
         required: false
@@ -1921,7 +1934,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: first_name
         in: formData
         type: string
@@ -2051,7 +2065,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: path
         required: true
@@ -2070,7 +2085,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -2198,7 +2214,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -2208,7 +2225,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount_from
         in: query
         required: false
@@ -2411,7 +2429,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: formData
         required: true
@@ -2436,7 +2455,8 @@ paths:
         format: 'UUID'
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -2560,7 +2580,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -2570,7 +2591,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: bank_account_holder_name
         in: formData
         required: false
@@ -3124,7 +3146,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -3133,7 +3156,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -3143,7 +3167,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -3263,7 +3288,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -3272,7 +3298,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: name
         in: formData
         required: false
@@ -3551,7 +3578,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: beneficiary_external_reference
         in: formData
         required: false
@@ -4015,7 +4043,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: name
         in: formData
         required: true
@@ -4299,7 +4328,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: beneficiary_external_reference
         in: formData
         required: false
@@ -4768,7 +4798,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -4777,7 +4808,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -4787,7 +4819,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -4910,7 +4943,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: bank_country
         in: formData
         required: true
@@ -5160,7 +5194,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -5540,7 +5575,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_type
         in: formData
         type: string
@@ -5824,7 +5860,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -5915,7 +5952,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_name
         in: formData
         required: false
@@ -5932,7 +5970,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: first_name
         in: formData
         required: false
@@ -6131,7 +6170,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -6140,7 +6180,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -6263,7 +6304,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -6272,7 +6314,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: first_name
         in: query
         required: false
@@ -6583,7 +6626,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: first_name
         in: formData
         required: true
@@ -7079,7 +7123,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -7415,7 +7460,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -7595,7 +7641,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: created_at_from
         in: query
         required: false
@@ -7730,7 +7777,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: page
         in: query
         required: false
@@ -7875,7 +7923,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -7885,7 +7934,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -8001,7 +8051,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8011,7 +8062,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: notes
         required: false
         type: string
@@ -8136,7 +8188,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8146,7 +8199,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: new_settlement_date
         in: query
         required: true
@@ -8271,7 +8325,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8280,7 +8335,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: new_settlement_date
         required: true
         type: string
@@ -8416,7 +8472,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: query
         required: false
@@ -8425,7 +8482,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: contact_id
         in: query
         required: false
@@ -8434,7 +8492,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: conversion_id
         in: query
         required: false
@@ -8443,7 +8502,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: event_type
         in: query
         required: false
@@ -8652,7 +8712,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8662,7 +8723,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount
         required: true
         type: string
@@ -8841,7 +8903,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8852,7 +8915,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount
         required: true
         type: string
@@ -8988,7 +9052,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -8998,7 +9063,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -9127,7 +9193,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_type
         in: query
         required: false
@@ -9157,7 +9224,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -9167,7 +9235,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: page
         in: query
         required: false
@@ -9348,7 +9417,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -9358,7 +9428,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -9368,7 +9439,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success
@@ -9492,7 +9564,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: x-sca-id
         in: header
         required: false
@@ -9503,7 +9576,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: x-sca-token
         in: header
         required: false
@@ -9531,7 +9605,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount
         in: formData
         required: true
@@ -9560,7 +9635,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_date
         in: formData
         required: false
@@ -9592,7 +9668,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payer_entity_type
         in: formData
         required: false
@@ -9734,7 +9811,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: charge_type
         in: formData
         required: false
@@ -10100,7 +10178,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -10110,7 +10189,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: short_reference
         in: query
         required: false
@@ -10237,7 +10317,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: conversion_id
         in: query
         required: false
@@ -10246,7 +10327,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: with_deleted
         in: query
         required: false
@@ -10268,7 +10350,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: scope
         in: query
         required: false
@@ -10483,7 +10566,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -10492,7 +10576,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: with_deleted
         in: query
         required: false
@@ -10507,7 +10592,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: review_status
         in: query
         required: false
@@ -10652,7 +10738,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -10661,7 +10748,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: formData
         required: false
@@ -10681,7 +10769,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount
         in: formData
         required: false
@@ -10729,7 +10818,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payer_entity_type
         in: formData
         required: false
@@ -10867,7 +10957,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: charge_type
         in: formData
         required: false
@@ -11221,7 +11312,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -11230,7 +11322,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11364,7 +11457,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -11373,7 +11467,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -11383,7 +11478,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11518,7 +11614,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: 'payment_ids[]'
         in: query
         required: true
@@ -11529,7 +11626,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11646,7 +11744,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -11655,7 +11754,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -11665,7 +11765,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11787,7 +11888,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -11796,7 +11898,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11926,7 +12029,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_fee_id
         in: formData
         required: true
@@ -11936,7 +12040,8 @@ paths:
           account.
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: formData
         required: true
@@ -11946,7 +12051,8 @@ paths:
           assigned.
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -12089,7 +12195,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_date
         in: query
         required: true
@@ -12270,7 +12377,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: page
         in: query
         required: false
@@ -12403,7 +12511,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: query
         required: false
@@ -12413,7 +12522,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_currency
         in: query
         required: true
@@ -12579,7 +12689,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: formData
         required: true
@@ -12589,7 +12700,8 @@ paths:
           un-assigned.
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -12734,7 +12846,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: x-sca-to-authenticated-user
         in: header
         required: false
@@ -12751,7 +12864,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: formData
         required: true
@@ -12770,7 +12884,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: amount
         in: formData
         required: true
@@ -12818,7 +12933,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payer_entity_type
         in: formData
         required: false
@@ -12938,7 +13054,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: ultimate_beneficiary_name
         in: formData
         required: false
@@ -12962,7 +13079,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: charge_type
         in: formData
         required: false
@@ -13406,7 +13524,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -13415,7 +13534,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -13425,7 +13545,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -13549,7 +13670,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency_pair
         in: query
         required: true
@@ -13568,7 +13690,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: ignore_invalid_pairs
         in: query
         required: false
@@ -13712,7 +13835,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: buy_currency
         in: query
         required: true
@@ -13754,7 +13878,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: conversion_date
         in: query
         required: false
@@ -13970,7 +14095,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: identifier_type
         in: formData
         required: true
@@ -14138,7 +14264,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: query
         required: true
@@ -14297,7 +14424,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: conversion_pair
         in: query
         required: true
@@ -14320,7 +14448,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -14454,7 +14583,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -14556,7 +14686,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payer_country
         in: query
         required: true
@@ -14715,7 +14846,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: query
         required: true
@@ -14850,7 +14982,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: query
         required: false
@@ -14859,7 +14992,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: payment_type
         in: query
         required: false
@@ -15004,7 +15138,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: query
         required: true
@@ -15146,7 +15281,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: query
         required: false
@@ -15164,7 +15300,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -15292,7 +15429,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -15302,7 +15440,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: description
         in: formData
         required: false
@@ -15467,7 +15606,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: scope
         in: formData
         required: false
@@ -15615,7 +15755,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: formData
         required: false
@@ -15625,7 +15766,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: description
         in: formData
         required: false
@@ -15731,7 +15873,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: conversion_id
         in: formData
         required: false
@@ -15740,7 +15883,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: with_deleted
         in: formData
         required: false
@@ -15761,7 +15905,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: scope
         in: formData
         required: false
@@ -15900,7 +16045,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: short_reference
         in: query
         required: false
@@ -16147,7 +16293,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -16156,7 +16303,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -16166,7 +16314,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16274,7 +16423,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -16284,7 +16434,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -16294,7 +16445,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16409,7 +16561,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -16419,7 +16572,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: query
         required: false
@@ -16490,7 +16644,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: related_entity_short_reference
         in: query
         required: false
@@ -16580,7 +16735,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency_pair
         in: query
         required: false
@@ -16808,7 +16964,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -16817,7 +16974,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -16827,7 +16985,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16943,7 +17102,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: source_account_id
         in: formData
         required: true
@@ -16952,7 +17112,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: destination_account_id
         in: formData
         required: true
@@ -16961,7 +17122,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: currency
         in: formData
         required: true
@@ -16993,7 +17155,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17136,7 +17299,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -17146,7 +17310,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -17156,7 +17321,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17274,7 +17440,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: on_behalf_of
         in: query
         required: false
@@ -17284,7 +17451,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: short_reference
         in: query
         required: false
@@ -17300,7 +17468,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: destination_account_id
         in: query
         required: false
@@ -17309,7 +17478,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: status
         in: query
         required: false
@@ -17394,7 +17564,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: creator_account_id
         in: query
         required: false
@@ -17403,7 +17574,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: page
         in: query
         required: false
@@ -17447,7 +17619,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17616,7 +17789,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: path
         required: true
@@ -17625,7 +17799,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17767,7 +17942,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: account_id
         in: query
         required: false
@@ -17779,7 +17955,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17909,7 +18086,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: withdrawal_account_id
         in: path
         required: true
@@ -17921,7 +18099,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: reference
         in: formData
         required: true
@@ -18094,7 +18273,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: id
         in: formData
         required: true
@@ -18104,7 +18284,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: sender_name
         in: formData
         required: false
@@ -18197,7 +18378,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -18378,7 +18560,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: transactionId
         in: path
         required: true
@@ -18387,7 +18570,8 @@ paths:
         format: uuid
         minLength: 36
         maxLength: 36
-        pattern: ^[0-9a-fA-F-]{36}$
+        pattern: 
+          ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       - name: accepted
         in: formData
         required: true
