@@ -2,12 +2,12 @@
 
 # Multiple Sub-Accounts 
 
-Our multiple sub-accounts feature enables you to provide your customers with more
-than one account, each with its own unique account details. This is especially useful for merchants who sell on multiple marketplaces and need a separate account for each marketplace or sales channel. 
+Our multiple sub-account feature enables you to provide your customers with more
+than one account, each with its own unique account details. This is particularly useful for merchant clients who want to list their products on multiple marketplaces and require a separate account for each marketplace or sales channel. 
 
 ## Key Points 
 
--   The number of sub-accounts a customer can have varies, your account manager will confirm the number for your configuration. 
+-   The number of sub-accounts a client can have varies, your account manager will confirm the number for your configuration. Account creation attempts beyond the allocated limit will be denied.
 
 -   Each sub-account has its own account details. 
 
@@ -19,7 +19,7 @@ than one account, each with its own unique account details. This is especially u
 
 ## Step 1:  Create the first sub-account
 
-After you complete your own KYC processes on your customer, create the initial sub-account in the Currencycloud ecosystem using the [Create Account](https://developer.currencycloud.com/api-reference/#create-account) endpoint. An example of a successful request and response looks like this:
+After you complete your own KYC processes on your customer, you can create the initial sub-account in the Currencycloud ecosystem using the [Create Account](https://developer.currencycloud.com/api-reference/#create-account) endpoint. An example of a successful request and response looks like this:
 
 `POST /v2/accounts/create `
 
@@ -70,13 +70,13 @@ Response:
 }
 ```
 
-From the response, parse and retain the account UUID - the `id` field. You’ll use this value in the next call to create a contact on that specific sub-account.
+From the response payload, you will need to parse and retain the account UUID (`id`) parameter from the above example. This value will be used in the next API call to create a subsequent sub-account for this specific end-client.
 
 ## Step 2:  Create another sub-account for the same customer 
 
-To successfully create a subsequent sub-account for the same customer, you will need to send additional details in the [Create Account](https://developer.currencycloud.com/api-reference/#create-account) request.  
+To successfully create a subsequent sub-account for the same customer, you will need to send additional details in the [Create Account](https://developer.currencycloud.com/api-reference/#create-account) request. You can use the existing ‘your_reference’ field to distinguish between the accounts.
 
-In addition to the fields documented in Step 1, the following fields are mandatory for subsequent sub-accounts. 
+In addition to the fields documented in Step 1, the fields in the table below are mandatory for multiple sub-account creation. 
 
 | Parameter Name | Parameter Type | Example Value  | Notes |
 | --- | --- | --- | --- |
@@ -84,11 +84,18 @@ In addition to the fields documented in Step 1, the following fields are mandato
 | identification_value | Form Data | 123456789 | Must be the actual incorporation number.|
 | industry_type* | Form Data | 'shoe  store' | There is a character limit of 255. |
 | business_website_URL* | Form Data | http:// www.mycompany.com | There is a character limit of 400 for this field. |
-| linked_account_id | Form Data | 66f51c98-1ef8-4e48-97de-aac0353ba2b4 | This is an undocumented field but is essential to open multiple accounts for a customer.  It must  always be the account UUID of the FIRST  sub-account  created for the customer. |
+| linked_account_id | Form Data | 66f51c98-1ef8-4e48-97de-aac0353ba2b4 | This is an undocumented field but is **essential** to open multiple accounts for a customer.  It **must** always be the account UUID of the **FIRST**  sub-account  created for the customer. |
 
-* You will be able to update `business_website_URL` and `industry_type` fields using our [Update Account](https://developer.currencycloud.com/api-reference/#update-account) endpoint.
+You will be able to update some of this data using our [Update Account](https://developer.currencycloud.com/api-reference/#update-account) endpoint.
 
-You will NOT be able to update Linked Account ID.  
+You will be able to update the following new fields:
+-	Business Website URL
+-	Industry Type
+
+You will not be able to update or delete Linked Account ID via the API. Please get in touch with us to do this.
+
+None of the newly created fields are available from the GET endpoint at this point.
+
 
 An example of a successful request and response is below. Please note, the new fields, `linked_account_id`, `business_website_URL` and `industry_type` won’t show in the response.
 
@@ -139,4 +146,6 @@ Response:
     "terms_and_conditions_accepted": null
 }
 ```
-A successful response confirms the new sub-account has been created. Repeat Step 2 for every additional sub-account required.
+A successful response confirms the new sub-account has been created.  
+
+Repeat Step 2 for every additional sub-account required.
