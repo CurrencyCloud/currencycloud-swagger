@@ -1852,7 +1852,7 @@ paths:
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
       responses:
         200:
@@ -3137,7 +3137,7 @@ paths:
           type: string
           description: Beneficiary's email address.
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
         - name: beneficiary_address
           in: formData
@@ -3853,7 +3853,7 @@ paths:
           type: string
           description: Email address
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
         - name: beneficiary_address
           in: formData
@@ -5652,7 +5652,7 @@ paths:
           type: string
           description: The contact's email address.
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
         - name: your_reference
           in: formData
@@ -5981,7 +5981,7 @@ paths:
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
         - name: your_reference
           in: query
@@ -6275,7 +6275,7 @@ paths:
           type: string
           description: The contact's email address.
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
-          minLength: 5
+          minLength: 6
           maxLength: 255
         - name: phone_number
           in: formData
