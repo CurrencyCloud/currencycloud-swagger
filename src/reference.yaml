@@ -1848,7 +1848,7 @@ paths:
           type: string
           description: >-
             The email of the user accepting the Terms of Use.
-            Length must be between 1 and 255 characters. <br>
+            Length must be between 6 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
