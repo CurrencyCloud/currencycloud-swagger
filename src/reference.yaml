@@ -112,7 +112,7 @@ paths:
 
         For security, Currencycloud accounts are disabled when four unsuccessful
         login attempts are made within a short period. In these circumstances, account
-        holders must <a href="mailto:support@currencycloud.com">contact support</a>  to
+        holders must <a href="mailto:support@currencycloud.com">contact support</a> to
         reactivate their account.
       operationId: Login
       consumes:
@@ -134,8 +134,6 @@ paths:
           required: true
           type: string
           description: The unique API key for the Currencycloud account.
-          minLength: 64
-          maxLength: 64
           pattern: ^[a-f0-9]{64}$
       responses:
         '200':
@@ -247,9 +245,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: >-
@@ -340,17 +335,14 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_name
           in: formData
           required: true
           type: string
           description: Account name.
+          pattern: \S+
           minLength: 1
           maxLength: 150
-          pattern: \S+
         - name: legal_entity_type
           in: formData
           required: true
@@ -383,8 +375,6 @@ paths:
           type: string
           description: Two-letter ISO country code.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: brand
           in: formData
@@ -686,27 +676,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Account UUID, returned by the create account endpoint.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -824,26 +805,20 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Account UUID, returned by the create account endpoint.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_name
           in: formData
           required: false
           type: string
           description: Account name.
+          pattern: \S+
           minLength: 1
           maxLength: 150
-          pattern: \S+
         - name: legal_entity_type
           in: formData
           required: false
@@ -908,8 +883,6 @@ paths:
           type: string
           description: Two-letter ISO country code.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: spread_table
           in: formData
@@ -1189,9 +1162,6 @@ paths:
           required: true
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -1282,17 +1252,14 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_name
           in: formData
           required: false
           type: string
           description: Account name.
+          pattern: \S+
           minLength: 1
           maxLength: 150
-          pattern: \S+
         - name: brand
           in: formData
           required: false
@@ -1348,8 +1315,6 @@ paths:
           type: string
           description: Two-letter country code.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: spread_table
           in: formData
@@ -1559,18 +1524,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: path
           required: true
           type: string
           description: A UUID of a sub-account or house account visible to the authenticated user.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -1681,27 +1640,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: path
           required: true
           type: string
           description: Account UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: charge_settings_id
           in: path
           required: true
           type: string
           description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for the given Account UUID.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: enabled
           in: formData
           required: false
@@ -1848,8 +1798,6 @@ paths:
           required: true
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: type
           in: formData
           type: string
@@ -1877,9 +1825,6 @@ paths:
           description: The account / sub-account UUID that the Terms of Use are being accepted for.
           required: true
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: first_name
           in: formData
           type: string
@@ -1906,9 +1851,9 @@ paths:
             Length must be between 1 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
       responses:
         200:
           description: Success.
@@ -2007,17 +1952,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: path
           required: true
           type: string
           description: Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: on_behalf_of
           in: query
@@ -2025,9 +1965,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -2153,18 +2090,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount_from
           in: query
           required: false
@@ -2364,17 +2295,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: formData
           required: true
           type: string
           description: Three-letter ISO currency code for the currency to top up.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount
           in: formData
@@ -2388,8 +2314,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: 'UUID'
-          minLength: 36
-          maxLength: 36
           pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
@@ -2512,18 +2436,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -2549,8 +2467,6 @@ paths:
             Currency in which money is held in the beneficiary's bank account.
             Three-letter currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: account_number
           in: formData
@@ -2592,8 +2508,6 @@ paths:
           required: false
           type: string
           description: IBAN code
-          minLength: 1
-          maxLength: 34
           pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
@@ -2621,9 +2535,9 @@ paths:
           required: false
           type: string
           description: Beneficiary's name.
+          pattern: \S+
           minLength: 1
           maxLength: 100
-          pattern: \S+
         - name: beneficiary_entity_type
           in: formData
           required: false
@@ -2682,7 +2596,6 @@ paths:
             If "beneficiary_entity_type" is "company", date of registration. If
             "beneficiary_entity_type" is "individual", date of birth. ISO 8601
             format YYYY-MM-DD.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: scope
           in: formData
           required: false
@@ -3050,27 +2963,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -3187,26 +3091,20 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: name
           in: formData
           required: false
           type: string
           description: A nickname for the beneficiary.
+          pattern: \S+
           minLength: 1
           maxLength: 100
-          pattern: \S+
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -3222,8 +3120,6 @@ paths:
             Country in which the beneficiary's bank account is held. Two-letter
             ISO country code.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
@@ -3233,17 +3129,15 @@ paths:
             Currency in which money is held in the beneficiary's bank account.
             Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: email
           in: formData
           required: false
           type: string
           description: Beneficiary's email address.
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
         - name: beneficiary_address
           in: formData
           required: false
@@ -3336,8 +3230,6 @@ paths:
           required: false
           type: string
           description: IBAN code
-          minLength: 1
-          maxLength: 34
           pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
@@ -3416,8 +3308,6 @@ paths:
           type: string
           format: date
           description: State or province.
-          minLength: 1
-          maxLength: 255
         - name: beneficiary_date_of_birth
           in: formData
           required: false
@@ -3427,7 +3317,6 @@ paths:
             If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
             ISO 8601 format YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -3469,9 +3358,6 @@ paths:
           type: string
           description: Contact UUID.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: beneficiary_external_reference
           in: formData
           required: false
@@ -3927,17 +3813,14 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: name
           in: formData
           required: true
           type: string
           description: A nickname for the beneficiary.
+          pattern: \S+
           minLength: 1
           maxLength: 100
-          pattern: \S+
         - name: bank_account_holder_name
           in: formData
           required: true
@@ -3953,8 +3836,6 @@ paths:
             Two-letter code for the country in which the beneficiary's bank
             account is held.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
@@ -3964,17 +3845,15 @@ paths:
             Currency in which money is held in the beneficiary's bank account.
             Three-letter IDO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: email
           in: formData
           required: false
           type: string
           description: Email address
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
         - name: beneficiary_address
           in: formData
           required: false
@@ -4054,8 +3933,6 @@ paths:
           required: false
           type: string
           description: IBAN code
-          minLength: 1
-          maxLength: 34
           pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
@@ -4144,7 +4021,6 @@ paths:
             If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
             ISO 8601 format YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -4200,9 +4076,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: beneficiary_external_reference
           in: formData
           required: false
@@ -4663,27 +4536,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -4804,9 +4668,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: bank_country
           in: formData
           required: true
@@ -4815,8 +4676,6 @@ paths:
             Two-letter code for the country in which the beneficiary's bank
             account is held.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
@@ -4826,8 +4685,6 @@ paths:
             Currency in which money is held in the beneficiary's bank account.
             Three-digit currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: beneficiary_address
           in: formData
@@ -4908,8 +4765,6 @@ paths:
           required: false
           type: string
           description: IBAN code
-          minLength: 1
-          maxLength: 34
           pattern: ([A-Z0-9]\s*){15,34}
         - name: bank_address
           in: formData
@@ -4990,7 +4845,6 @@ paths:
             "beneficiary_entity_type" is "individual", date of birth. ISO 8601
             format YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -5046,9 +4900,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -5417,9 +5268,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_type
           in: formData
           type: string
@@ -5437,8 +5285,6 @@ paths:
           description: >-
             Two-letter code for the country in which the beneficiary's bank account is held.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
@@ -5447,8 +5293,6 @@ paths:
           description: >-
             Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: account_number
           in: formData
@@ -5515,8 +5359,6 @@ paths:
           in: formData
           type: string
           description: IBAN code
-          minLength: 1
-          maxLength: 34
           pattern: ([A-Z0-9]\s*){15,34}
         - name: secondary_reference_data
           in: formData
@@ -5687,9 +5529,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -5778,26 +5617,20 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_name
           in: formData
           required: false
           type: string
           description: Account name
+          pattern: \S+
           minLength: 1
           maxLength: 150
-          pattern: \S+
         - name: account_id
           in: formData
           required: false
           type: string
           description: Sub-Account UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: first_name
           in: formData
           required: false
@@ -5817,9 +5650,9 @@ paths:
           required: false
           type: string
           description: The contact's email address.
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
         - name: your_reference
           in: formData
           required: false
@@ -5993,18 +5826,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Contact UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -6123,18 +5950,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Contact UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: first_name
           in: query
           required: false
@@ -6158,9 +5979,9 @@ paths:
             Instead, an email change request flow is initiated, sending notifications to both the old and new
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
         - name: your_reference
           in: query
           required: false
@@ -6427,17 +6248,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: account_id
           in: formData
           required: true
           type: string
           description: Account UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: first_name
           in: formData
           required: true
@@ -6457,9 +6273,9 @@ paths:
           required: true
           type: string
           description: The contact's email address.
+          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
           minLength: 1
           maxLength: 255
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
         - name: phone_number
           in: formData
           required: true
@@ -6516,7 +6332,6 @@ paths:
           type: string
           description: The contact's date of birth. ISO 8601 format YYYY-MM-DD. <b>Required if account type is individual</b>.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
       responses:
         '200':
           description: Success.
@@ -6735,8 +6550,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
       responses:
         '200':
           description: Success.
@@ -6851,16 +6664,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: buy_currency
           in: formData
           required: true
           type: string
           description: Three-character ISO code for currency purchased.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: formData
@@ -6868,8 +6677,6 @@ paths:
           type: string
           description: Three-character ISO code for currency sold.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: fixed_side
           in: formData
@@ -6924,17 +6731,12 @@ paths:
           type: string
           description: User-generated idempotency key. Beneficial for request tracking / management.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: conversion_date_preference
           in: formData
           required: false
@@ -7244,25 +7046,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
       responses:
         '200':
           description: Success.
@@ -7374,16 +7169,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
         - name: short_reference
           in: query
           required: false
@@ -7408,8 +7199,6 @@ paths:
           type: string
           description: The currency purchased- three character ISO code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: query
@@ -7417,8 +7206,6 @@ paths:
           type: string
           description: The currency sold - three character ISO code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: 'conversion_ids[]'
           in: query
@@ -7428,58 +7215,47 @@ paths:
             type: string
           description: One or more conversion UUIDs to filter out of results.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: created_at_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: conversion_date_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: conversion_date_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: currency_pair
           in: query
           required: false
           type: string
           description: 'Concatenated string of the two currencies traded, e.g. "USDEUR".'
-          minLength: 6
-          maxLength: 6
           pattern: ^[A-Z]{6}$
         - name: partner_buy_amount_from
           in: query
@@ -7547,7 +7323,6 @@ paths:
             Earliest date when sold currency debited. Any valid ISO 8601 format,
             e.g. "2023-12-31T23:59:59+00:00".
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: settlement_date_to
           in: query
           required: false
@@ -7556,16 +7331,12 @@ paths:
             Latest date when sold currency debited. Any valid ISO 8601 format,
             e.g. "2023-12-31T23:59:59+00:00".
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: unique_request_id
           in: query
           required: false
           type: string
           description: User-generated idempotency key.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: page
           in: query
           required: false
@@ -7707,18 +7478,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -7832,18 +7597,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: notes
           required: false
           type: string
@@ -7966,25 +7725,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: new_settlement_date
           in: query
           required: true
           type: string
           description: Desired new settlement date of conversion, format YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
       responses:
         '200':
           description: Success.
@@ -8099,25 +7851,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: The UUID of the conversion that is being changed.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: new_settlement_date
           required: true
           type: string
           in: formData
           description: New conversion settlement date, format YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
       responses:
         '200':
           description: Success.
@@ -8243,36 +7988,24 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: query
           required: false
           type: string
           description: UUID of the Account that the Conversion belongs to.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: contact_id
           in: query
           required: false
           type: string
           description: UUID of the Contact that performed the action.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: conversion_id
           in: query
           required: false
           type: string
           description: UUID of the conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: event_type
           in: query
           required: false
@@ -8286,7 +8019,6 @@ paths:
             Allows you to return profit and losses that will be made from on or after
             a defined date/time. ISO 8601 standard.
           format: date-time
-          pattern: ^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$
         - name: event_date_time_to
           in: query
           required: false
@@ -8295,7 +8027,6 @@ paths:
             Allows you to return profit and losses that will be made from on or
             before a defined date/time. ISO 8601 standard.
           format: date-time
-          pattern: ^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$
         - name: amount_from
           in: query
           required: false
@@ -8318,8 +8049,6 @@ paths:
           type: string
           description: The currency of the profit and loss. ISO 4217 standard.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: scope
           in: query
@@ -8478,18 +8207,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: The UUID of the conversion to be split, the UUID is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount
           required: true
           type: string
@@ -8662,18 +8385,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: UUID of the conversion that is being split. The conversion UUID is returned by a successful trade request when creating a conversion."
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount
           required: true
           type: string
@@ -8805,18 +8522,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID - the UUID is returned by a successful trade request when creating a conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -8941,9 +8652,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_type
           in: query
           required: false
@@ -8960,8 +8668,6 @@ paths:
           type: string
           description: The currency of the account details required, ISO 4217 standard.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: account_id
           in: query
@@ -8969,18 +8675,12 @@ paths:
           type: string
           description: UUID of a specific sub-account you want to see the SSIs for.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: page
           in: query
           required: false
@@ -9159,27 +8859,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: The Related Entity UUID (related_entity_id) for the transaction.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success
@@ -9295,9 +8986,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: x-sca-id
           in: header
           required: false
@@ -9305,17 +8993,12 @@ paths:
           description: >-
             UUID to correlate to the SCA request generated when Validate Payment was called.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: x-sca-token
           in: header
           required: false
           type: string
           description: >-
             The OTP received following the Validate Payment request when SCA was required.
-          minLength: 6
-          maxLength: 6
           pattern: ^\d{6}$
         - name: currency
           in: formData
@@ -9323,8 +9006,6 @@ paths:
           type: string
           description: Currency in which payment is made. Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
@@ -9332,9 +9013,6 @@ paths:
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount
           in: formData
           required: true
@@ -9361,9 +9039,6 @@ paths:
           type: string
           description: User-generated idempotency key.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_date
           in: formData
           required: false
@@ -9373,7 +9048,6 @@ paths:
             to the scheme. If the payment cannot be submitted before the cut-off (i.e. due to lack of funding), we will re-attempt
             on the next working day. Defaults to the earliest possible date if not passed as parameter. Any valid ISO 8601 format, e.g. "2023-12-31.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payment_type
           in: formData
           required: false
@@ -9390,9 +9064,6 @@ paths:
           type: string
           description: Conversion UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payer_entity_type
           in: formData
           required: false
@@ -9466,7 +9137,6 @@ paths:
             "payer_entity_type" is "individual", this is date of birth. ISO 8601 format
             YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payer_identification_type
           in: formData
           required: false
@@ -9527,9 +9197,6 @@ paths:
             Payer details parameters should not be sent if using on_behalf_of,
             they will be populated using the details from the sub-account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: charge_type
           in: formData
           required: false
@@ -9553,16 +9220,12 @@ paths:
           type: string
           description: Currency fee is paid in.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: invoice_number
           in: formData
           required: false
           type: string
           description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if supplying `invoice_date`.
-          minLength: 1
-          maxLength: 30
           pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
@@ -9571,7 +9234,6 @@ paths:
           description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if supplying `invoice_number`.
 
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
       responses:
         '200':
           description: Success.
@@ -9881,18 +9543,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: short_reference
           in: query
           required: false
@@ -9906,8 +9562,6 @@ paths:
           type: string
           description: Currency in which payment was made. Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount
           in: query
@@ -9988,46 +9642,36 @@ paths:
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: beneficiary_id
           in: query
           required: false
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: conversion_id
           in: query
           required: false
           type: string
           description: Conversion UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: with_deleted
           in: query
           required: false
@@ -10047,9 +9691,6 @@ paths:
           type: string
           description: User-generated idempotency key.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: scope
           in: query
           required: false
@@ -10258,18 +9899,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: with_deleted
           in: query
           required: false
@@ -10281,9 +9916,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: review_status
           in: query
           required: false
@@ -10426,18 +10058,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: formData
           required: false
@@ -10446,8 +10072,6 @@ paths:
             Currency in which the payment is being made. Three-letter ISO currency
             code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
@@ -10455,9 +10079,6 @@ paths:
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount
           in: formData
           required: false
@@ -10472,7 +10093,6 @@ paths:
             Instructed date of payment. Any valid ISO 8601 format, e.g.
             "2023-12-31".
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: reason
           in: formData
           required: false
@@ -10503,9 +10123,6 @@ paths:
           type: string
           description: Conversion UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payer_entity_type
           in: formData
           required: false
@@ -10579,7 +10196,6 @@ paths:
             the "payer_entity_type" is "individual", this is the payer's date of birth. ISO 8601 format
             YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payer_identification_type
           in: formData
           required: false
@@ -10635,9 +10251,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: charge_type
           in: formData
           required: false
@@ -10661,16 +10274,12 @@ paths:
           type: string
           description: The currency the fee is paid in.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: invoice_number
           in: formData
           required: false
           type: string
           description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if `invoice_date` is supplied.
-          minLength: 1
-          maxLength: 30
           pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
@@ -10678,7 +10287,6 @@ paths:
           type: string
           description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if `invoice_number` is supplied.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
       responses:
         '200':
           description: Success.
@@ -10966,18 +10574,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11109,27 +10711,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11262,9 +10855,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: 'payment_ids[]'
           in: query
           required: true
@@ -11273,9 +10863,6 @@ paths:
             type: string
           description: One or more payment UUID identifiers to be authorised.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11389,27 +10976,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11529,18 +11107,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11666,27 +11238,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_fee_id
           in: formData
           required: true
           type: string
           format: uuid
           description: ID of the payment fee entity that will be assigned to the account.
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: formData
           required: true
           format: uuid
           type: string
           description: ID of the account to which the payment fee will be assigned.
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -11826,16 +11389,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_date
           in: query
           required: true
           type: string
           description: The date when the payment will be released. Any valid ISO 8601 format, e.g. "2023-12-31".
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payment_type
           in: query
           required: true
@@ -11852,8 +11411,6 @@ paths:
           type: string
           description: The three-letter ISO code of the currency of the payment.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: bank_country
           in: query
@@ -11861,8 +11418,6 @@ paths:
           type: string
           description: The two-letter ISO code of the country where the payment is sent.
           format: iso3166-1-alpha-2
-          minLength: 2
-          maxLength: 2
           pattern: ^[A-Z]{2}$
       responses:
         '200':
@@ -12004,9 +11559,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: page
           in: query
           required: false
@@ -12137,18 +11689,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: query
           required: false
           type: string
           description: Account UUID. If this is left empty, the account that is making the API call is used.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_currency
           in: query
           required: true
@@ -12310,18 +11856,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: formData
           required: true
           format: uuid
           type: string
           description: Sub-account UUID for which the payment level fee will be un-assigned.
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -12462,9 +12002,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: x-sca-to-authenticated-user
           in: header
           required: false
@@ -12478,17 +12015,12 @@ paths:
           type: string
           description: Payment UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: formData
           required: true
           type: string
           description: Currency in which payment is made. Three-digit currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
@@ -12496,9 +12028,6 @@ paths:
           type: string
           description: Beneficiary UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: amount
           in: formData
           required: true
@@ -12527,7 +12056,6 @@ paths:
             Instructed date of payment. Any valid ISO 8601 format, e.g.
             "2023-12-31".
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payment_type
           in: formData
           required: false
@@ -12544,9 +12072,6 @@ paths:
           type: string
           description: Conversion UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payer_entity_type
           in: formData
           required: false
@@ -12620,7 +12145,6 @@ paths:
             "payer_entity_type" is "individual", this is the individual's date of birth. ISO 8601 format
             YYYY-MM-DD.
           format: date
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: payer_identification_type
           in: formData
           required: false
@@ -12662,9 +12186,6 @@ paths:
           type: string
           description: User-generated idempotency key.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: ultimate_beneficiary_name
           in: formData
           required: false
@@ -12685,9 +12206,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: charge_type
           in: formData
           required: false
@@ -12711,8 +12229,6 @@ paths:
           type: string
           description: Currency fee is paid in.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
       responses:
         '200':
@@ -12998,11 +12514,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          format: uuid
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
         - name: notification_type
           in: query
           required: true
@@ -13119,27 +12637,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Payer UUID.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -13256,16 +12765,11 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency_pair
           in: query
           required: true
           type: string
           description: 'Concatenated string of the two currencies traded, e.g. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
-          minLength: 6
-          maxLength: 6
           pattern: ^[A-Z]{6}$
         - name: on_behalf_of
           in: query
@@ -13273,9 +12777,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: ignore_invalid_pairs
           in: query
           required: false
@@ -13413,17 +12914,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: buy_currency
           in: query
           required: true
           type: string
           description: Currency purchased - three-letter ISO code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: query
@@ -13431,8 +12927,6 @@ paths:
           type: string
           description: Currency sold - three-letter ISO code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: fixed_side
           in: query
@@ -13454,9 +12948,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: conversion_date
           in: query
           required: false
@@ -13664,9 +13155,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: identifier_type
           in: formData
           required: true
@@ -13829,9 +13317,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: query
           required: true
@@ -13840,8 +13325,6 @@ paths:
             Currency in which money is held in the beneficiary's bank account.
             Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: bank_account_country
           in: query
@@ -13986,9 +13469,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: conversion_pair
           in: query
           required: true
@@ -14007,9 +13487,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -14141,9 +13618,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -14243,9 +13717,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payer_country
           in: query
           required: true
@@ -14277,8 +13748,6 @@ paths:
           type: string
           description: Three-letter ISO 4217 currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
       responses:
         '200':
@@ -14399,17 +13868,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: query
           required: true
           type: string
           description: Currency in which payment made. Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: start_date
           in: query
@@ -14531,18 +13995,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: query
           required: false
           type: string
           description: Account UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: payment_type
           in: query
           required: false
@@ -14683,9 +14141,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: query
           required: true
@@ -14694,8 +14149,6 @@ paths:
             Three-letter ISO currency code for the currency in which payment will be made.
             No purpose codes will be returned if an invalid currency code is given.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: entity_type
           in: query
@@ -14824,17 +14277,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: query
           required: false
           type: string
           description: Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: account_id
           in: query
@@ -14842,9 +14290,6 @@ paths:
           type: string
           description: Account UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -14970,18 +14415,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: description
           in: formData
           required: false
@@ -14995,8 +14434,6 @@ paths:
           type: string
           description: Three-letter ISO 4217 currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: formData
@@ -15004,8 +14441,6 @@ paths:
           type: string
           description: Three-letter ISO 4217 currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: client_buy_amount_from
           in: formData
@@ -15080,65 +14515,54 @@ paths:
           type: string
           format: date
           description: ISO 8601 Date/time for start of range for when buy currency was delivered.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: conversion_date_to
           in: formData
           required: false
           format: date
           type: string
           description: ISO 8601 Date/time for end of range for when buy currency was delivered.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: settlement_date_from
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for start of date range for when the sell_currency was debited.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: settlement_date_to
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for end of date range for when the sell_currency was debited.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_from
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for start of date range for when the conversion was created.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for end of date range for when the conversion was created.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for start of date range for when the conversion was updated.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 Date/time for end of date range for when the conversion was updated.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: unique_request_id
           in: formData
           required: false
           type: string
           description: Unique request ID of conversion.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: scope
           in: formData
           required: false
@@ -15279,18 +14703,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: description
           in: formData
           required: false
@@ -15304,8 +14722,6 @@ paths:
           type: string
           description: Three-letter ISO 4217 currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount_from
           in: formData
@@ -15361,46 +14777,36 @@ paths:
           type: string
           format: date
           description: ISO 8601 format date/time for earliest payment creation to include.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 format date/time for latest payment creation to include.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 format date/time for earliest payment updated to include.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
           description: ISO 8601 format date/time for latest payment updated to include.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: beneficiary_id
           in: formData
           required: false
           type: string
           description: ID of the beneficiary.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: conversion_id
           in: formData
           required: false
           type: string
           description: Conversion unique ID.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: with_deleted
           in: formData
           required: false
@@ -15419,9 +14825,6 @@ paths:
           type: string
           description: Unique request ID of payment.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: scope
           in: formData
           required: false
@@ -15556,9 +14959,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: short_reference
           in: query
           required: false
@@ -15579,28 +14979,24 @@ paths:
           type: string
           format: date
           description: Start date (for range), in ISO 8601 format, for when the reports were created.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date
           description: End date (for range), in ISO 8601 format, for when the reports were created.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date
           description: Start date (for range), in ISO 8601 format, for when the reports were updated.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date
           description: End date (for range), in ISO 8601 format, for when the reports were updated.
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: expiration_date_from
           in: query
           required: false
@@ -15794,27 +15190,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: ID of the report.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -15920,27 +15307,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: The Related Entity UUID (related_entity_id) for the Transaction.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16053,26 +15431,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: query
           required: false
           type: string
           description: Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount
           in: query
@@ -16132,9 +15502,6 @@ paths:
           type: string
           description: UUID of the related entity.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: related_entity_short_reference
           in: query
           required: false
@@ -16179,28 +15546,24 @@ paths:
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: query
           required: false
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: completed_at_from
           in: query
           required: false
@@ -16219,9 +15582,6 @@ paths:
           type: string
           description: Beneficiary UUID. Required if "related_entity_type" is "payment".
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency_pair
           in: query
           required: false
@@ -16229,8 +15589,6 @@ paths:
           description: >-
             Concatenated string of the two currencies traded, e.g. "USDEUR".
             Required if "related_entity_type" is "conversion".
-          minLength: 6
-          maxLength: 6
           pattern: ^[A-Z]{6}$
         - name: scope
           in: query
@@ -16438,27 +15796,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Transaction UUID
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16571,35 +15920,24 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: source_account_id
           in: formData
           required: true
           type: string
           description: Account UUID of the paying account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: destination_account_id
           in: formData
           required: true
           type: string
           description: Account UUID of the receiving account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: currency
           in: formData
           required: true
           type: string
           description: Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount
           in: formData
@@ -16620,9 +15958,6 @@ paths:
           type: string
           description: User-generated idempotency key. The value must be 100 characters or fewer.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16761,27 +16096,18 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: Transfer UUID, this was returned when the transfer was created.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -16897,18 +16223,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: short_reference
           in: query
           required: false
@@ -16922,18 +16242,12 @@ paths:
           type: string
           description: Account UUID of the paying account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: destination_account_id
           in: query
           required: false
           type: string
           description: Account UUID of the receiving account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: status
           in: query
           required: false
@@ -16949,8 +16263,6 @@ paths:
           type: string
           description: Three-letter ISO currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: amount_from
           in: query
@@ -16971,7 +16283,6 @@ paths:
           format: date-time
           description: >-
             Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: created_at_to
           in: query
           required: false
@@ -16979,7 +16290,6 @@ paths:
           format: date-time
           description: >-
             Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_from
           in: query
           required: false
@@ -16987,7 +16297,6 @@ paths:
           format: date-time
           description: >-
             Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: updated_at_to
           in: query
           required: false
@@ -16995,7 +16304,6 @@ paths:
           format: date-time
           description: >-
             Any valid ISO 8601 format, no older than two years e.g. "2024-12-31T23:59:59Z".
-          pattern: ^\\d{4}-\\d{2}-\\d{2}$
         - name: completed_at_from
           in: query
           required: false
@@ -17016,18 +16324,12 @@ paths:
           type: string
           description: Contact UUID of transfer instructor.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: creator_account_id
           in: query
           required: false
           type: string
           description: Account UUID of transfer instructor.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: page
           in: query
           required: false
@@ -17068,9 +16370,6 @@ paths:
           type: string
           description: User-generated idempotency key.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17237,18 +16536,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: path
           required: true
           type: string
           description: ID of the transfer to be cancelled.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17387,9 +16680,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: account_id
           in: query
           required: false
@@ -17398,9 +16688,6 @@ paths:
             The UUID of a sub-account you want to see the withdrawal accounts for. If omitted the withdrawal accounts
             for the house account and all sub-accounts are returned.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17527,9 +16814,6 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: withdrawal_account_id
           in: path
           required: true
@@ -17538,9 +16822,6 @@ paths:
             The withdrawal account ID you want to pull the funds from.
             The funds will be pulled into the account ID related to this withdrawal account.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: reference
           in: formData
           required: true
@@ -17709,18 +16990,12 @@ paths:
           type: string
           description: Authentication token
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: id
           in: formData
           required: true
           type: string
           description: Unique value in UUID format, user-generated with each request.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: sender_name
           in: formData
           required: false
@@ -17790,8 +17065,6 @@ paths:
           type: string
           description: Three-digit currency code.
           format: iso-4217
-          minLength: 3
-          maxLength: 3
           pattern: ^[A-Z]{3}$
         - name: action
           in: formData
@@ -17808,9 +17081,6 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
       responses:
         '200':
           description: Success.
@@ -17987,18 +17257,12 @@ paths:
           type: string
           description: Authentication token.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: transactionId
           in: path
           required: true
           type: string
           description: The related_entity_id from the Cash Manager notification.
           format: uuid
-          minLength: 36
-          maxLength: 36
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
         - name: accepted
           in: formData
           required: true
