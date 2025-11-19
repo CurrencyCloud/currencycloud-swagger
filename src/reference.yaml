@@ -1851,8 +1851,8 @@ paths:
             Length must be between 1 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
       responses:
         200:
@@ -2314,7 +2314,8 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: 'UUID'
-          pattern: ^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$
+          minLength: 36
+          maxLength: 36
       responses:
         '200':
           description: Success.
@@ -3135,8 +3136,8 @@ paths:
           required: false
           type: string
           description: Beneficiary's email address.
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
         - name: beneficiary_address
           in: formData
@@ -3851,8 +3852,8 @@ paths:
           required: false
           type: string
           description: Email address
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
         - name: beneficiary_address
           in: formData
@@ -5650,8 +5651,8 @@ paths:
           required: false
           type: string
           description: The contact's email address.
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
         - name: your_reference
           in: formData
@@ -5979,8 +5980,8 @@ paths:
             Instead, an email change request flow is initiated, sending notifications to both the old and new
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
         - name: your_reference
           in: query
@@ -6273,8 +6274,8 @@ paths:
           required: true
           type: string
           description: The contact's email address.
-          pattern: ^[\\w\\.\\_\\%\\-\\+]+@([\\w\\-]+\\.)+\\w{2,}$
-          minLength: 1
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 5
           maxLength: 255
         - name: phone_number
           in: formData
