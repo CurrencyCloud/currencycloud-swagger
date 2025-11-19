@@ -87,7 +87,7 @@ field_info_fallback = {
     'x-sca-token': { 'minLength': 6, 'maxLength': 6, 'pattern': '^\d{6}$' },
     'creator_contact_id': {'format': 'uuid', 'minLength': 36, 'maxLength': 36, 'pattern': '^[0-9a-fA-F-]{36}$'},
     'payment_destination_country': {'pattern': '^[A-Z]{2}$', 'format': 'iso3166-1-alpha-2'},
-    'unique_request_id': {'format': 'uuid', 'minLength': 36, 'maxLength': 36, 'pattern': '^[0-9a-fA-F-]{36}$'},
+    'unique_request_id': { 'minLength': 1, 'maxLength': 255 },
     'related_entity_id': {'format': 'uuid', 'minLength': 36, 'maxLength': 36, 'pattern': '^[0-9a-fA-F-]{36}$'},
     'beneficiary_address': { 'minLength': 1, 'maxLength': 255 },
     'beneficiary_date_of_birth':{'format': 'date'},
