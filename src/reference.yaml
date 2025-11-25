@@ -244,7 +244,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
       responses:
         '200':
           description: >-
@@ -334,7 +334,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_name
           in: formData
           required: true
@@ -675,7 +675,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -804,7 +804,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -1161,7 +1161,7 @@ paths:
           type: string
           required: true
           description: Authentication token
-          format: uuid
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -1251,7 +1251,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_name
           in: formData
           required: false
@@ -1523,7 +1523,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: path
           required: true
@@ -1639,7 +1639,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: path
           required: true
@@ -1797,7 +1797,7 @@ paths:
           type: string
           required: true
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: type
           in: formData
           type: string
@@ -1951,7 +1951,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: path
           required: true
@@ -2089,7 +2089,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -2294,7 +2294,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: formData
           required: true
@@ -2436,7 +2436,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
@@ -2963,7 +2963,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -3091,7 +3091,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -3813,7 +3813,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: name
           in: formData
           required: true
@@ -4536,7 +4536,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -4668,7 +4668,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: bank_country
           in: formData
           required: true
@@ -5268,7 +5268,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: payment_type
           in: formData
           type: string
@@ -5529,7 +5529,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -5617,7 +5617,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_name
           in: formData
           required: false
@@ -5826,7 +5826,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -5950,7 +5950,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -6248,7 +6248,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: formData
           required: true
@@ -6550,7 +6550,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -6664,7 +6664,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: buy_currency
           in: formData
           required: true
@@ -7047,7 +7047,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -7170,7 +7170,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -7480,7 +7480,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -7599,7 +7599,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -7727,7 +7727,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -7853,7 +7853,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -7990,7 +7990,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: query
           required: false
@@ -8209,7 +8209,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -8387,7 +8387,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -8524,7 +8524,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -8654,7 +8654,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: payment_type
           in: query
           required: false
@@ -8861,7 +8861,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -8988,7 +8988,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: x-sca-id
           in: header
           required: false
@@ -9546,7 +9546,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -9903,7 +9903,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -10062,7 +10062,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -10578,7 +10578,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -10715,7 +10715,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -10859,7 +10859,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: 'payment_ids[]'
           in: query
           required: true
@@ -10980,7 +10980,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -11111,7 +11111,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -11242,7 +11242,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: payment_fee_id
           in: formData
           required: true
@@ -11393,7 +11393,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: payment_date
           in: query
           required: true
@@ -11563,7 +11563,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: page
           in: query
           required: false
@@ -11693,7 +11693,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: query
           required: false
@@ -11860,7 +11860,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: formData
           required: true
@@ -12006,7 +12006,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: x-sca-to-authenticated-user
           in: header
           required: false
@@ -12520,7 +12520,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -12642,7 +12642,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -12770,7 +12770,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency_pair
           in: query
           required: true
@@ -12919,7 +12919,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: buy_currency
           in: query
           required: true
@@ -13160,7 +13160,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: identifier_type
           in: formData
           required: true
@@ -13322,7 +13322,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: query
           required: true
@@ -13474,7 +13474,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: conversion_pair
           in: query
           required: true
@@ -13623,7 +13623,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -13722,7 +13722,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: payer_country
           in: query
           required: true
@@ -13873,7 +13873,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: query
           required: true
@@ -14000,7 +14000,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: query
           required: false
@@ -14146,7 +14146,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: query
           required: true
@@ -14282,7 +14282,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: currency
           in: query
           required: false
@@ -14420,7 +14420,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
@@ -14709,7 +14709,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
@@ -14966,7 +14966,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: short_reference
           in: query
           required: false
@@ -15197,7 +15197,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -15314,7 +15314,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -15438,7 +15438,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -15803,7 +15803,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -15927,7 +15927,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: source_account_id
           in: formData
           required: true
@@ -16104,7 +16104,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -16231,7 +16231,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -16545,7 +16545,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -16689,7 +16689,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: account_id
           in: query
           required: false
@@ -16823,7 +16823,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: withdrawal_account_id
           in: path
           required: true
@@ -16999,7 +16999,7 @@ paths:
           required: true
           type: string
           description: Authentication token
-          format: uuid
+          minLength: 32
         - name: id
           in: formData
           required: true
@@ -17266,7 +17266,7 @@ paths:
           required: true
           type: string
           description: Authentication token.
-          format: uuid
+          minLength: 32
         - name: transactionId
           in: path
           required: true
@@ -17638,8 +17638,8 @@ definitions:
       auth_token:
         type: string
         description: >-
-          A randomly-generated 64-digit authentication token. Clients must store
-          this securely and destroy it when it is no longer needed.
+          Currently a randomly-generated 32-digit authentication token. Clients must store
+          this securely and destroy it when it is no longer needed. 
     example:
       auth_token: 043cc6069f5e32757647641460d1d5ed
   AvailableCurrencies:
