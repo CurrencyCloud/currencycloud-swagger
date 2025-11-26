@@ -476,7 +476,7 @@ paths:
           required: false
           type: string
           description: >-
-            A fully qualified URL (Including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
+            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
         - name: identification_expiration
           in: formData
           required: false
@@ -489,26 +489,26 @@ paths:
           required: false
           type: string
           description: >-
-            ISO Country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+            ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            ISO Country code indicating the citizenship of the individual the account belongs too. Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts.
+            ISO country code indicating the citizenship of the individual the account belongs to. Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: country_of_incorporation
           in: formData
           required: false
           type: string
           description: >-
-            ISO Country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts.
+            ISO country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: date_of_incorporation
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            Date of the companies incorporation. Part of extended compliance for "legal_entity_type: company" accounts.
+            Date of the company's incorporation. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -1099,7 +1099,7 @@ paths:
         required: false
         type: string
         description: >-
-          ISO Country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+          ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
       - name: legal_entity_sub_type
         in: formData
         required: false
@@ -1521,7 +1521,7 @@ paths:
           required: false
           type: string
           description: >-
-            A Tax identification value for company in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts.
+            A tax identification value for companies in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts.
         - name: national_identification
           in: formData
           required: false
@@ -17529,7 +17529,7 @@ definitions:
       business_website_url:
         type: string
         description: >-
-          A fully qualified URL (Including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
+          A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
       expected_transaction_countries:
         type: array
         description: Array of ISO-3166 country codes that these accounts will transact to/from.
@@ -17549,7 +17549,7 @@ definitions:
       tax_identification:
         type: string
         description: >-
-          A Tax identification value for company in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
+          A tax identification value for companies in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
       national_identification:
         type: string
         description: >-
