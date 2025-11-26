@@ -470,51 +470,51 @@ paths:
           in: formData
           required: false
           type: string
-          description: The industry the account operates in. Required if "linked_account_id" is present. Required if extended compliance fields are present
+          description: The industry the account operates in. Required if "linked_account_id" is present. Required if extended compliance fields are present.
         - name: business_website_url
           in: formData
           required: false
           type: string
           description: >-
-            A fully qualified URL (Including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'
+            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
         - name: identification_expiration
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            The expiration date for the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+            The expiration date for the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: identification_issuer
           in: formData
           required: false
           type: string
           description: >-
-            ISO Country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+            ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            ISO Country code indicating the citizenship of the individual the account belongs too; Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts
+            ISO country code indicating the citizenship of the individual the account belongs to. Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: country_of_incorporation
           in: formData
           required: false
           type: string
           description: >-
-            ISO Country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts
+            ISO country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: date_of_incorporation
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            Date of the companies incorporation. Part of extended compliance for "legal_entity_type: company" accounts
+            Date of the company's incorporation. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: legal_entity_sub_type
           in: formData
           required: false
           type: string
           description: >-
-            The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts
+            The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts.
           enum:
             - sole_trader
             - limited_liability_company
@@ -532,43 +532,43 @@ paths:
           required: false
           type: string
           description: >-
-            The street portion of the companies trading address. Part of extended compliance for "legal_entity_type: company" accounts
+            The street portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
-            The city portion of the companies trading address. Part of extended compliance for "legal_entity_type: company" accounts
+            The city portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: trading_address_state
           in: formData
           required: false
           type: string
           description: >-
-            The state portion of the companies trading address. Part of extended compliance for "legal_entity_type: company" accounts
+            The state portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: trading_address_postalcode
           in: formData
           required: false
           type: string
           description: >-
-            The postal code portion of the companies trading address. Part of extended compliance for "legal_entity_type: company" accounts
+            The postal code portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: trading_address_country
           in: formData
           required: false
           type: string
           description: >-
-            The ISO country code portion of the companies trading address. Part of extended compliance for "legal_entity_type: company" accounts
+            The ISO country code portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
         - name: tax_identification
           in: formData
           required: false
           type: string
           description: >-
-            Tax identification number for the company. Part of extended compliance for "legal_entity_type: company" accounts. Required for "US" based companies
+            Tax identification number for the company. Part of extended compliance for "legal_entity_type: company" accounts. Required for "US" based companies.
         - name: national_identification
           in: formData
           required: false
           type: string
           description: >-
-            National identification e.g SSN for the individual. Part of extended compliance for "legal_entity_type: individual" accounts. Required for "US" based companies
+            National identification e.g SSN for the individual. Part of extended compliance for "legal_entity_type: individual" accounts. Required for "US" based companies.
         - name: customer_risk
           in: formData
           required: false
@@ -1099,7 +1099,7 @@ paths:
         required: false
         type: string
         description: >-
-          ISO Country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+          ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
       - name: legal_entity_sub_type
         in: formData
         required: false
@@ -1321,8 +1321,8 @@ paths:
         - Accounts
       x-throttling-tier: Unlimited
       x-api-group: manage
-      summary: Get Account's Compliance settings
-      description: Get the compliance settings for the ID given in the URL.
+      summary: Get Account's Compliance Settings
+      description: Gets the compliance settings for the account with the given ID.
       operationId: GetAccountComplianceSettings
       produces:
         - application/json
@@ -1447,7 +1447,7 @@ paths:
       x-api-group: manage
       summary: Update Account's Compliance Settings
       description: >-
-        Update an accounts compliance settings sub-account owned by the authenticating user. On success,
+        Update the compliance settings for a sub-account owned by the authenticating user. On success,
         returns the updated account entity.
       operationId: UpdateAccountComplianceSettings
       consumes:
@@ -1469,26 +1469,26 @@ paths:
           in: formData
           required: false
           type: string
-          description: String describing the accounts main industry. See merchant category codes for examples
+          description: String describing the account's main industry. See merchant category codes for examples.
         - name: country_of_incorporation
           in: formData
           required: false
           type: string
           description: >-
-            An ISO-3166 Country Code indicating the country the account is incorporated in. Should only be present for 'legal_entity_type: company' accounts
+            An ISO-3166 Country Code indicating the country the account is incorporated in. Should only be present for 'legal_entity_type: company' accounts.
         - name: date_of_incorporation
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            The date of the accounts incorporation. Should only be present for 'legal_entity_type: company' accounts
+            The date of the account's incorporation. Should only be present for 'legal_entity_type: company' accounts.
         - name: business_website_url
           in: formData
           required: false
           type: string
           description: >-
-            A fully qualified URL (Including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'
+            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
         - name: expected_transaction_countries
           in: formData
           required: false
@@ -1515,59 +1515,59 @@ paths:
           type: number
           format: float
           description: >-
-            The value of transactions this account is expected to conduct. The currency for this is the single item in 'expected_transaction_currencies'
+            The value of transactions this account is expected to conduct. The currency for this is the single item in 'expected_transaction_currencies'.
         - name: tax_identification
           in: formData
           required: false
           type: string
           description: >-
-            A Tax identification value for company in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
+            A tax identification value for companies in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts.
         - name: national_identification
           in: formData
           required: false
           type: string
           description: >-
-            A National identification value for an individual in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: individual' accounts
+            A national identification value for an individual in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: individual' accounts.
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            An ISO-3166 country code for an individuals citizenship. Should only be present for 'legal_entity_type: individual' accounts
+            An ISO-3166 country code for an individual's citizenship. Should only be present for 'legal_entity_type: individual' accounts.
         - name: trading_address_street
           in: formData
           required: false
           type: string
           description: >-
-            The street address of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+            The street address of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
-            The city of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+            The city of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
         - name: trading_address_state
           in: formData
           required: false
           type: string
           description: >-
-            The state of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+            The state of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
         - name: trading_address_postalcode
           in: formData
           required: false
           type: string
           description: >-
-            The postal code of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+            The postal code of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
         - name: trading_address_country
           in: formData
           required: false
           type: string
           description: >-
-            The ISO-3166 country code of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+            The ISO-3166 country code of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
         - name: customer_risk
           in: formData
           required: false
-          description: How risky this accounts behaviour is
+          description: Risk level of this account's behavior
           type: string
           enum:
             - LOW
@@ -17134,7 +17134,7 @@ paths:
         x-api-group: collect
         summary: Accept or Reject Inbound Transaction
         description: >-
-          
+
           Allows you to accept or reject an inbound transaction before the funds are credited to the
           beneficiary’s account.
         operationId: CompleteCollectionsScreening
@@ -17529,7 +17529,7 @@ definitions:
       business_website_url:
         type: string
         description: >-
-          A fully qualified URL (Including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'
+          A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
       expected_transaction_countries:
         type: array
         description: Array of ISO-3166 country codes that these accounts will transact to/from.
@@ -17549,7 +17549,7 @@ definitions:
       tax_identification:
         type: string
         description: >-
-          A Tax identification value for company in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
+          A tax identification value for companies in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
       national_identification:
         type: string
         description: >-
