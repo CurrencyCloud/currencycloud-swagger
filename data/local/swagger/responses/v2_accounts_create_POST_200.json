@@ -11,10 +11,12 @@
     "postal_code": "Example Code",
     "spread_table": "flat_0.00",
     "legal_entity_type": "company",
-    "created_at": "2022-01-31T14:30:29.000Z",
-    "updated_at": "2022-01-31T14:30:29.000Z",
-    "identification_type": null,
-    "identification_value": null,
+    "created_at": "2025-01-31T14:30:29.000Z",
+    "updated_at": "2025-01-31T14:30:29.000Z",
+    "identification_type": "green_card",
+    "identification_value": "123456789",
+    "identification_issuer": "US",
+    "identification_expiration": '2023-12-31',
     "short_reference": "220131-27603",
     "api_trading": true,
     "online_trading": true,
@@ -23,5 +25,6 @@
     "settlement_type": "net",
     "agent_or_reliance": false,
     "terms_and_conditions_accepted": null,
+    "agent_or_reliance": true,
     "bank_account_verified": "not required"
 }
