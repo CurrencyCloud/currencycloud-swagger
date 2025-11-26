@@ -18,7 +18,7 @@
             "identification_type": "green_card",
             "identification_value": "111111111",
             "identification_issuer": "US",
-            "identification_expiration": '2023-12-31',
+            "identification_expiration": "2023-12-31",
             "short_reference": "180426-00018",
             "api_trading": true,
             "online_trading": true,

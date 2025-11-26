@@ -232,7 +232,7 @@
             "identification_type": "green_card",
             "identification_value": "987654321",
             "identification_issuer": "US",
-            "identification_expiration": '2023-12-21',
+            "identification_expiration": "2023-12-21",
             "short_reference": "180426-00018",
             "api_trading": true,
             "online_trading": true,
