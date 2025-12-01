@@ -550,7 +550,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
 
 #### Technical Errors
 
-##### HTTP 503 - Service Unavailable**
+##### HTTP 503 - Service Unavailable
 
 <table style="width:100%">
   <tr>
