@@ -4050,7 +4050,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
@@ -4717,7 +4717,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
@@ -5344,7 +5344,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
