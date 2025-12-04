@@ -1,3 +1,5 @@
+[_metadata_:menu_title]:- "Adding an FX Spread"
+[_metadata_:order]:- "11"
 
 # Adding an FX Spread/Markup
 
