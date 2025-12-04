@@ -5667,11 +5667,17 @@ paths:
       x-api-group: pay
       summary: Verify Beneficiary Account
       description: >-
-        This service is currently only available to in-scope clients who must provide Confirmation of Payee services to their end-users making local GBP payments in the UK.<br><br>
-        In the UK, Confirmation of Payee is a peer-to-peer name-checking service designed to help reduce misdirected payments and provide greater assurance that payments are being sent, and collected from, the intended account holder for UK domestic payments. <br><br>
-        Currently, access is restricted to UK institutions and in-scope clients.<br><br>
-        We plan to add more market coverage to this API in the future, thereby extending access to additional clients.<br><br>
-        If you're interested in learning more or have received notification that you're in-scope, please contact your Customer Success Manager.
+        This service is currently only available to in-scope clients who must provide
+        Confirmation of Payee (CoP) or Verification of Payee (VoP) services to their end-users
+        making local GBP payments in the UK or SEPA EUR payments.<br><br>
+        CoP and VoP are both peer-to-peer name-checking service designed to help
+        reduce misdirected payments and provide greater assurance that payments are
+        being sent, and collected from, the intended account holder for domestic payments. <br><br>
+        Currently, access is restricted to UK and EU institutions and in-scope clients.<br><br>
+        We plan to add more market coverage to this API in the future, thereby extending
+        access to additional clients.<br><br>
+        If you're interested in learning more or have received notification that you're in-scope,
+        please contact your Account Manager or our support team.
       operationId: BeneficiaryAccountVerification
       consumes:
         - multipart/form-data
@@ -5696,18 +5702,18 @@ paths:
         - name: bank_country
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             Two-letter code for the country in which the beneficiary's bank account is held.
         - name: currency
           in: formData
           type: string
-          required: false
+          required: true
           description: >-
             Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
         - name: account_number
           in: formData
-          required: true
+          required: false
           type: string
           description: Bank account number.
         - name: beneficiary_entity_type
@@ -5736,7 +5742,7 @@ paths:
           description: Local payment routing system. Defaults to 'sort_code'.
         - name: routing_code_value_1
           in: formData
-          required: true
+          required: false
           type: string
           description: Routing system value i.e. the account's sort code.
         - name: routing_code_type_2
@@ -5756,7 +5762,7 @@ paths:
         - name: iban
           in: formData
           type: string
-          description: IBAN code
+          description: IBAN code. Required when currency is EUR. Must match ^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$
         - name: secondary_reference_data
           in: formData
           type: string
