@@ -1,4 +1,5 @@
-[_metadata_:unlisted]:-
+[_metadata_:menu_title]:- "Verification of Payee Outbound (EU)"
+[_metadata_:order]:- "13"
 
 # Verification of Payee (EU)
 
@@ -6,7 +7,7 @@
 
 ## Introduction
 
-**Learn how to verify beneficiary bank account details before creating a beneficiary to improve customer experience and reduce misdirected payments.**  
+**Learn how to verify beneficiary bank account details before creating a beneficiary to improve customer experience and reduce misdirected payments.**  <br><br>
 
 
 This guide is designed to help you verify beneficiary bank account details for outbound EUR SEPA payments, via the Verify Beneficiary Account API on our Verification of Payee Outbound service. Verifying beneficiaries helps avoid payments being sent to the wrong account and adds another layer of protection in the fight against fraud and scams.
@@ -14,7 +15,7 @@ This guide is designed to help you verify beneficiary bank account details for o
 For clients under the Sponsored or Treasury service model and contracted with Currencycloud BV, it is a **mandatory** requirement to integrate with this API if you offer EUR SEPA payments to your customers.
 
 
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Beta notice:<br><br>
+<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"><strong>Beta notice</strong> <br><br>
 Please be aware this API is in beta. Some response codes and reasons may change during this period. We will always provide at least 10 days notice before implementing any changes that may be breaking during the beta period.</p> <br><br>
 
 

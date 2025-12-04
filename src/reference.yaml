@@ -5709,13 +5709,18 @@ paths:
           in: formData
           type: string
           required: true
+          default: GBP
+          enum:
+            - GBP
+            - EUR
           description: >-
-            Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
+            Currency in which money will be sent to the beneficiary's bank account.
+            Three-character currency code. 'GBP' for Confirmation of Payee, 'EUR' for Verification of Payee.
         - name: account_number
           in: formData
           required: false
           type: string
-          description: Bank account number.
+          description: Bank account number. Required when currency is 'GBP' (Confirmation of Payee).
         - name: beneficiary_entity_type
           in: formData
           type: string
@@ -5727,15 +5732,15 @@ paths:
         - name: beneficiary_company_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "company".
+          description: Required if "beneficiary_entity_type" is 'company'.
         - name: beneficiary_first_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is 'individual'.
         - name: beneficiary_last_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is "individual".
+          description: Required if "beneficiary_entity_type" is 'individual'.
         - name: routing_code_type_1
           in: formData
           type: string
@@ -5744,7 +5749,7 @@ paths:
           in: formData
           required: false
           type: string
-          description: Routing system value i.e. the account's sort code.
+          description: Routing system value i.e. the account's sort code. Required when currency is 'GBP' (Confirmation of Payee).
         - name: routing_code_type_2
           in: formData
           type: string
@@ -5762,8 +5767,9 @@ paths:
         - name: iban
           in: formData
           type: string
-          description: IBAN code. Required when currency is EUR. Must match ^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$
+          description: IBAN code. Required when currency is 'EUR' (Verification of Payee). Must match <code>^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$</code>
         - name: secondary_reference_data
+          pattern: ^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$
           in: formData
           type: string
           description: >-
