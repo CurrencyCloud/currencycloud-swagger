@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Confirmation of Payee Outbound (UK)"
-[_metadata_:order]:- "11"
+[_metadata_:order]:- "12"
 
 # Confirmation of Payee Outbound (UK)
 
