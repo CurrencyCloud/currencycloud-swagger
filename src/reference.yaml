@@ -5694,11 +5694,12 @@ paths:
           type: string
           required: false
           enum:
-            - priority
             - regular
+            - priority (not supported for this endpoint)
           description: >-
-            Currencycloud supports two types of payments: "priority", made using the Swift network
-            and "regular", made using the local bank network.
+            Currencycloud supports two types of payments: 'priority', made using the Swift network
+            and 'regular', made using the local bank network. Confirmation of Payee and Verification of
+            Payee checks only apply to local transactions so this field should always be set to 'regular'.
         - name: bank_country
           in: formData
           type: string
@@ -22643,7 +22644,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: Reason
