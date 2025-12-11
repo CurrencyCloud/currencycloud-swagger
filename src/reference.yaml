@@ -22644,7 +22644,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: Reason
