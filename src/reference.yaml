@@ -435,23 +435,43 @@ paths:
           required: false
           type: string
           enum:
+            - none
+            - others
+            - asylum_registration_card
             - citizenship_papers
+            - consular_id
             - credential_de_elector
             - drivers_license
             - drivers_license_canadian
             - employer_identification_number
             - existing_credit_card_details
             - green_card
-            - incorporation_number
+            - immigration_status_document
+            - indigenous_card
+            - international_driving_licence
             - matricula_consular
+            - municipality_identity_card
+            - national_health_insurance_card
             - national_id
-            - none
-            - others
+            - national_identity_card
             - passport
+            - passport_card
+            - postal_identity_card
+            - private_operators_card
+            - professional_qualification_card
+            - proof_of_citizenship
             - registro_federal_de_contribuyentes
+            - residence_permit
+            - residence_status_document
+            - service_id_card
             - social_insurance_number
+            - social_security_card
             - social_security_number
+            - tax_id
             - visa
+            - voter_id
+            - work_permit
+            - incorporation_number
           description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
         - name: identification_value
           in: formData
@@ -467,6 +487,147 @@ paths:
           required: false
           type: boolean
           description: Acceptance of the terms and conditions. Required for sub-accounts that are on our Outsourced KYC model, optional otherwise.
+        - name: industry_type
+          in: formData
+          required: false
+          type: string
+          description: The industry the account operates in. Required if "linked_account_id" is present. Required if extended compliance fields are present.
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'. Required if extended compliance fields are present
+        - name: identification_expiration
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            The expiration date for the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+        - name: identification_issuer
+          in: formData
+          required: false
+          type: string
+          description: >-
+            ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          description: >-
+            ISO country code indicating the citizenship of the individual the account belongs to. Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts.
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          description: >-
+            ISO country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            Date of the company's incorporation. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: legal_entity_sub_type
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts.
+          enum:
+            - sole_trader
+            - limited_liability_company
+            - public_limited_company
+            - limited_liability_partnership
+            - unincorporated_partnership
+            - unregistered_charity
+            - registered_charity
+            - trust
+            - company_with_nominee_shareholders_or_shares_in_bearer_form
+            - scottish_limited_partnership
+            - other
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The street portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The city portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: trading_address_state
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The state portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The postal code portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: trading_address_country
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The ISO country code portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Tax identification number for the company. Part of extended compliance for "legal_entity_type: company" accounts. Required for companies based in "US" or "AU".
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          description: >-
+            National identification e.g SSN for the individual. Part of extended compliance for "legal_entity_type: individual" accounts. Required for "US" based companies.
+        - name: customer_risk
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The level of risk posed by this account. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: number
+          description: >-
+            The expected number of money moving actions this account will conduct monthly. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          description: >-
+            The expected sum value of money moving actions this account will conduct monthly. The currency basis of the value is submitted as part of "expected_transaction_currencies". Part of extended compliance for "legal_entity_type: individual | company" accounts.
+        - name: expected_transaction_currencies
+          in: formData
+          required: false
+          description: >-
+            An array holding a single ISO currency code for the expected currency this account will mainly transact in. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+          type: array
+          items:
+            type: string
+        - name: expected_transaction_countries
+          in: formData
+          required: false
+          description: >-
+            An array holding one or more ISO country codes for the expected countries this account will transact too or from. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+          type: array
+          items:
+            type: string
       responses:
         '200':
           description: Success.
@@ -660,13 +821,530 @@ paths:
               type: string
               description: A unique reference for the request.
   /accounts/{id}:
+   get:
+    tags:
+      - Accounts
+    x-api-group: manage
+    summary: Get Account
+    description: Gets an account or sub-account owned by the authenticated user.
+    operationId: GetAccount
+    produces:
+      - application/json
+    parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Account UUID, returned by the create account endpoint.
+      - name: on_behalf_of
+        in: query
+        required: false
+        type: string
+        description: A contact UUID for the sub-account you're acting on behalf of.
+    responses:
+      '200':
+        description: Success.
+        schema:
+          $ref: '#/definitions/Account'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '400':
+        description: Client error.
+        x-errors:
+          - code: id_is_not_valid_uuid
+            category: id
+            message: id should be in UUID format
+            params: ''
+          - code: account_not_found
+            category: id
+            message: Account was not found for this id
+            params: ''
+          - code: on_behalf_of_self
+            category: on_behalf_of
+            message: You cannot act on behalf of your own contact
+            params: ''
+          - code: contact_not_found
+            category: on_behalf_of
+            message: Contact was not found for this id
+            params: ''
+        schema:
+          $ref: '#/definitions/GetAccountError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '401':
+        description: Unauthorized
+        x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials
+            params: ''
+        schema:
+          $ref: '#/definitions/UnauthorizedError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '404':
+        description: Resource not found.
+        schema:
+          $ref: '#/definitions/NotFoundError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '429':
+        description: Too many requests.
+        x-errors:
+          - code: too_many_requests
+            category: base
+            message: >-
+              Too many requests have been made to the api. Please refer to the
+              Developer Center for more information
+            params: ''
+        schema:
+          $ref: '#/definitions/RateLimitError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '500':
+        description: Internal server error
+        x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '503':
+        description: Service is temporary unavailable.
+        x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporarily unavailable
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      default:
+        description: Unexpected error.
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+   post:
+    tags:
+      - Accounts
+    x-api-group: manage
+    summary: Update Account
+    description: >-
+      Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
+    operationId: UpdateAccount
+    consumes:
+      - multipart/form-data
+    produces:
+      - application/json
+    parameters:
+      - name: X-Auth-Token
+        in: header
+        required: true
+        type: string
+        description: Authentication token
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Account UUID, returned by the create account endpoint.
+      - name: account_name
+        in: formData
+        required: false
+        type: string
+        description: Account name.
+      - name: legal_entity_type
+        in: formData
+        required: false
+        type: string
+        enum:
+          - company
+          - individual
+        description: Legal entity.
+      - name: brand
+        in: formData
+        required: false
+        type: string
+        description: >-
+          The value of this field is used for white labeling the Currencycloud
+          user interface.
+      - name: your_reference
+        in: formData
+        required: false
+        type: string
+        description: User-generated reference code.
+      - name: status
+        in: formData
+        required: false
+        type: string
+        enum:
+          - disabled
+          - enabled
+          - enabled_no_trading
+        default: enabled
+        description: Status of the account.
+      - name: street
+        in: formData
+        required: false
+        type: string
+        description: First line of address.
+      - name: city
+        in: formData
+        required: false
+        type: string
+        description: City name
+      - name: state_or_province
+        in: formData
+        required: false
+        type: string
+        description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+      - name: postal_code
+        in: formData
+        required: false
+        type: string
+        description: Postal code.
+      - name: country
+        in: formData
+        required: false
+        type: string
+        description: Two-letter ISO country code.
+      - name: spread_table
+        in: formData
+        required: false
+        type: string
+        default: fxcg_rfx_default
+        description: The name of the spread table assigned to the account.
+      - name: api_trading
+        in: formData
+        required: false
+        type: boolean
+        default: true
+        description: >-
+          Whether trading via the Currencycloud API is to be enabled on the
+          account.
+      - name: online_trading
+        in: formData
+        required: false
+        type: boolean
+        default: true
+        description: Enable online trading on the account.
+      - name: phone_trading
+        in: formData
+        required: false
+        default: true
+        type: boolean
+        description: Enable phone trading on the account.
+      - name: identification_type
+        in: formData
+        required: false
+        type: string
+        enum:
+          - none
+          - others
+          - asylum_registration_card
+          - citizenship_papers
+          - consular_id
+          - credential_de_elector
+          - drivers_license
+          - drivers_license_canadian
+          - employer_identification_number
+          - existing_credit_card_details
+          - green_card
+          - immigration_status_document
+          - indigenous_card
+          - international_driving_licence
+          - matricula_consular
+          - municipality_identity_card
+          - national_health_insurance_card
+          - national_id
+          - national_identity_card
+          - passport
+          - passport_card
+          - postal_identity_card
+          - private_operators_card
+          - professional_qualification_card
+          - proof_of_citizenship
+          - registro_federal_de_contribuyentes
+          - residence_permit
+          - residence_status_document
+          - service_id_card
+          - social_insurance_number
+          - social_security_card
+          - social_security_number
+          - tax_id
+          - visa
+          - voter_id
+          - work_permit
+          - incorporation_number
+        description: A legal document that verifies the identity of the account owner.
+      - name: identification_value
+        in: formData
+        required: false
+        type: string
+        description: >-
+          A unique reference code for the identification document, such as a
+          passport number.
+      - name: terms_and_conditions_accepted
+        in: formData
+        required: false
+        type: boolean
+        description: Acceptance of the terms and conditions.
+      - name: identification_expiration
+        in: formData
+        required: false
+        type: string
+        format: date
+        description: >-
+          The expiration date for the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+      - name: identification_issuer
+        in: formData
+        required: false
+        type: string
+        description: >-
+          ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts
+      - name: legal_entity_sub_type
+        in: formData
+        required: false
+        type: string
+        description: >-
+          The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
+    responses:
+      '200':
+        description: Success.
+        schema:
+          $ref: '#/definitions/Account'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '400':
+        description: Client error.
+        x-errors:
+          - code: at_least_one_parameter
+            category: base
+            message: >-
+              At least one parameter should be present: account_name, brand,
+              your_reference, status, street, city, state_or_province, postal_code,
+              country, spread_table, legal_entity_type, identification_type,
+              identification_value, api_trading, online_trading, phone_trading
+              or terms_and_conditions_accepted.
+            params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
+          - code: id_is_not_valid_uuid
+            category: id
+            message: id should be in UUID format
+            params: ''
+          - code: account_name_is_too_short
+            category: account_name
+            message: account_name can not be shorter than 1 character(s)
+            params: '{ "minlength" => 1}'
+          - code: account_name_is_too_long
+            category: account_name
+            message: account_name can not be longer than 150 character(s)
+            params: '{ "maxlength" => 150 }'
+          - code: account_name_is_in_invalid_format
+            category: account_name
+            message: account_name is in invalid format
+            params: ''
+          - code: brand_is_too_long
+            category: brand
+            message: brand can not be longer than 255 character(s)
+            params: '{ "maxlength" => 255 }'
+          - code: brand_not_found
+            category: brand
+            message: Brand non_existing_brand wasn't found
+            params: '{ "brand" => "non_existing_brand" }'
+          - code: brand_account_not_broker
+            category: brand
+            message: Account doesn't have broker permissions
+            params: '{ "brand" => "wrong_brand" }'
+          - code: permission_denied
+            category: permissions
+            message: Permission denied
+            params: ''
+          - code: your_reference_is_too_long
+            category: your_reference
+            message: your_reference can not be longer than 25 character(s)
+            params: '{ "maxlength" => 25 }'
+          - code: legal_entity_type_not_in_range
+            category: legal_entity_type
+            message: 'legal_entity_type should be in range: individual, company'
+            params: '{ "range" => "individual, company" }'
+          - code: status_not_in_range
+            category: status
+            message: 'status should be in range: enabled, disabled, enabled_no_trading'
+            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+          - code: street_is_too_long
+            category: street
+            message: street can not be longer than 150 character(s)
+            params: '{ "maxlength" => 150 }'
+          - code: city_is_too_long
+            category: city
+            message: city can not be longer than 100 character(s)
+            params: '{ "maxlength" => 100 }'
+          - code: postal_code_is_too_long
+            category: postal_code
+            message: postal_code can not be longer than 20 character(s)
+            params: '{ "maxlength" => 20 }'
+          - code: state_or_province_is_too_long
+            category: state_or_province
+            message: state_or_province can not be longer than 100 character(s)
+            params: '{ "maxlength" => 100 }'
+          - code: country_is_in_invalid_format
+            category: country
+            message: country is not a valid ISO 3166-1 Alpha-2 country code
+            params: '{ "type" => "country_code" }'
+          - code: spread_table_is_too_long
+            category: spread_table
+            message: spread_table can not be longer than 100 character(s)
+            params: '{ "maxlength" => 100 }'
+          - code: identification_type_is_missing
+            category: identification_type
+            message: identification_type is missing
+            params: ''
+          - code: identification_type_not_in_range
+            category: identification_type
+            message: >-
+              identification_type should be in range: none, drivers_license,
+              social_security_number, green_card, passport, visa, matricula_consular,
+              registro_federal_de_contribuyentes, credential_de_elector,
+              social_insurance_number, citizenship_papers, drivers_license_canadian,
+              existing_credit_card_details, employer_identification_number, national_id,
+              others, incorporation_number, clave_unica_de_registro_de_poblacion
+            params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
+          - code: identification_type_is_invalid
+            category: identification_type
+            message: identification_type is invalid
+            params: ''
+          - code: identification_value_is_missing
+            message: identification_value is missing
+            category: identification_value
+            params: ''
+          - code: identification_value_is_invalid
+            category: identification_value
+            message: identification_value is invalid
+            params: ''
+          - code: identification_value_is_too_short
+            category: identification_value
+            message: identification_value can not be shorter than 1 character(s)
+            params: ' { "minlength": 1 }'
+          - code: editing_address_not_allowed
+            category: address
+            message: You cannot edit address information. Please contact support for additional information
+            params: ''
+          - code: editing_country_not_allowed
+            category: country
+            message: You cannot edit country. Please contact support for additional information
+            params: ''
+        schema:
+          $ref: '#/definitions/UpdateAccountError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '401':
+        description: Unauthorized.
+        x-errors:
+          - code: invalid_supplied_credentials
+            category: username
+            message: Authentication failed with the supplied credentials
+            params: ''
+        schema:
+          $ref: '#/definitions/UnauthorizedError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '404':
+        description: Resource not found.
+        schema:
+          $ref: '#/definitions/NotFoundError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '429':
+        description: Too many requests.
+        x-errors:
+          - code: too_many_requests
+            category: base
+            message: >-
+              Too many requests have been made to the api. Please refer to the
+              Developer Center for more information
+            params: ''
+        schema:
+          $ref: '#/definitions/RateLimitError'
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '500':
+        description: Internal server error
+        x-errors:
+          - code: internal_server_error
+            category: base
+            message: Internal server error
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      '503':
+        description: Service is temporary unavailable
+        x-errors:
+          - code: service_unavailable
+            category: base
+            message: Service is temporarily unavailable
+            params: ''
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+      default:
+        description: Unexpected error.
+        headers:
+          X-Request-Id:
+            type: string
+            description: A unique reference for the request.
+  '/accounts/{id}/compliance_settings':
     get:
       tags:
         - Accounts
+      x-throttling-tier: Unlimited
       x-api-group: manage
-      summary: Get Account
-      description: Gets an account or sub-account owned by the authenticated user.
-      operationId: GetAccount
+      summary: Get Account's Compliance Settings
+      description: Gets the compliance settings for the account with the given ID.
+      operationId: GetAccountComplianceSettings
       produces:
         - application/json
       parameters:
@@ -692,7 +1370,7 @@ paths:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Account'
+            $ref: '#/definitions/AccountComplianceSettings'
           headers:
             X-Request-Id:
               type: string
@@ -717,7 +1395,7 @@ paths:
               message: Contact was not found for this id
               params: ''
           schema:
-            $ref: '#/definitions/GetAccountError'
+            $ref: '#/definitions/GetAccountComplianceSettingsError'
           headers:
             X-Request-Id:
               type: string
@@ -789,11 +1467,13 @@ paths:
     post:
       tags:
         - Accounts
+      x-throttling-tier: Unlimited
       x-api-group: manage
-      summary: Update Account
+      summary: Update Account's Compliance Settings
       description: >-
-        Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
-      operationId: UpdateAccount
+        Update the compliance settings for a sub-account owned by the authenticating user. On success,
+        returns the updated account entity.
+      operationId: UpdateAccountComplianceSettings
       consumes:
         - multipart/form-data
       produces:
@@ -809,150 +1489,120 @@ paths:
           in: path
           required: true
           type: string
-          description: Account UUID, returned by the create account endpoint.
-          format: uuid
-        - name: account_name
+          description: Account UUID.
+        - name: industry_type
           in: formData
           required: false
           type: string
-          description: Account name.
-          pattern: \S+
-          minLength: 1
-          maxLength: 150
-        - name: legal_entity_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - company
-            - individual
-          description: Legal entity.
-        - name: brand
+          description: String describing the account's main industry. See merchant category codes for examples.
+        - name: country_of_incorporation
           in: formData
           required: false
           type: string
           description: >-
-            The value of this field is used for white labeling the Currencycloud
-            user interface.
-          minLength: 1
-          maxLength: 255
-        - name: your_reference
+            An ISO-3166 Country Code indicating the country the account is incorporated in. Should only be present for 'legal_entity_type: company' accounts.
+        - name: date_of_incorporation
           in: formData
           required: false
           type: string
-          description: User-generated reference code.
-          minLength: 1
-          maxLength: 255
-        - name: status
-          in: formData
-          required: false
-          type: string
-          enum:
-            - disabled
-            - enabled
-            - enabled_no_trading
-          default: enabled
-          description: Status of the account.
-        - name: street
-          in: formData
-          required: false
-          type: string
-          description: First line of address.
-          maxLength: 150
-        - name: city
-          in: formData
-          required: false
-          type: string
-          description: City name
-          maxLength: 100
-        - name: state_or_province
-          in: formData
-          required: false
-          type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
-          maxLength: 100
-        - name: postal_code
-          in: formData
-          required: false
-          type: string
-          description: Postal code.
-          maxLength: 20
-        - name: country
-          in: formData
-          required: false
-          type: string
-          description: Two-letter ISO country code.
-          format: iso3166-1-alpha-2
-          pattern: ^[A-Z]{2}$
-        - name: spread_table
-          in: formData
-          required: false
-          type: string
-          default: fxcg_rfx_default
-          description: The name of the spread table assigned to the account.
-          maxLength: 100
-        - name: api_trading
-          in: formData
-          required: false
-          type: boolean
-          default: true
+          format: date
           description: >-
-            Whether trading via the Currencycloud API is to be enabled on the
-            account.
-        - name: online_trading
-          in: formData
-          required: false
-          type: boolean
-          default: true
-          description: Enable online trading on the account.
-        - name: phone_trading
-          in: formData
-          required: false
-          default: true
-          type: boolean
-          description: Enable phone trading on the account.
-        - name: identification_type
-          in: formData
-          required: false
-          type: string
-          enum:
-            - citizenship_papers
-            - credential_de_elector
-            - drivers_license
-            - drivers_license_canadian
-            - employer_identification_number
-            - existing_credit_card_details
-            - green_card
-            - incorporation_number
-            - matricula_consular
-            - national_id
-            - none
-            - others
-            - passport
-            - registro_federal_de_contribuyentes
-            - social_insurance_number
-            - social_security_number
-            - visa
-          description: A legal document that verifies the identity of the account owner.
-        - name: identification_value
+            The date of the account's incorporation. Should only be present for 'legal_entity_type: company' accounts.
+        - name: business_website_url
           in: formData
           required: false
           type: string
           description: >-
-            A unique reference code for the identification document, such as a
-            passport number.
-          minLength: 1
-          maxLength: 255
-        - name: terms_and_conditions_accepted
+            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
+        - name: expected_transaction_countries
           in: formData
           required: false
-          type: boolean
-          description: Acceptance of the terms and conditions.
+          type: array
+          description: Array of ISO-3166 country codes that these accounts will transact to/from.
+          items:
+            type: string
+        - name: expected_transaction_currencies
+          in: formData
+          required: false
+          type: array
+          description: Array of ISO-4217 currency codes that these accounts will transact with. Limited to a single item.
+          items:
+            type: string
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: integer
+          format: int32
+          description: The number of transactions this account is expected to conduct.
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          format: float
+          description: >-
+            The value of transactions this account is expected to conduct. The currency for this is the single item in 'expected_transaction_currencies'.
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A tax identification value for companies in the United States or Australia; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts.
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A national identification value for an individual in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: individual' accounts.
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          description: >-
+            An ISO-3166 country code for an individual's citizenship. Should only be present for 'legal_entity_type: individual' accounts.
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The street address of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The city of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
+        - name: trading_address_state
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The state of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The postal code of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
+        - name: trading_address_country
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The ISO-3166 country code of the company's trading location. Should only be present for 'legal_entity_type: company' accounts.
+        - name: customer_risk
+          in: formData
+          required: false
+          description: Risk level of this account's behavior
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
       responses:
         '200':
           description: Success.
           schema:
-            $ref: '#/definitions/Account'
+            $ref: '#/definitions/AccountComplianceSettings'
           headers:
             X-Request-Id:
               type: string
@@ -960,123 +1610,132 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: at_least_one_parameter
-              category: base
-              message: >-
-                At least one parameter should be present: account_name, brand,
-                your_reference, status, street, city, state_or_province, postal_code,
-                country, spread_table, legal_entity_type, identification_type,
-                identification_value, api_trading, online_trading, phone_trading
-                or terms_and_conditions_accepted.
-              params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
-            - code: id_is_not_valid_uuid
-              category: id
-              message: id should be in UUID format
+            - code: business_website_url_is_required
+              category: business_website_url
+              message: business_website_url is required
               params: ''
-            - code: account_name_is_too_short
-              category: account_name
-              message: account_name can not be shorter than 1 character(s)
-              params: '{ "minlength" => 1}'
-            - code: account_name_is_too_long
-              category: account_name
-              message: account_name can not be longer than 150 character(s)
-              params: '{ "maxlength" => 150 }'
-            - code: account_name_is_in_invalid_format
-              category: account_name
-              message: account_name is in invalid format
+            - code: business_website_url_is_not_permitted
+              category: business_website_url
+              message: business_website_url is not permitted
               params: ''
-            - code: brand_is_too_long
-              category: brand
-              message: brand can not be longer than 255 character(s)
-              params: '{ "maxlength" => 255 }'
-            - code: brand_not_found
-              category: brand
-              message: Brand non_existing_brand wasn't found
-              params: '{ "brand" => "non_existing_brand" }'
-            - code: brand_account_not_broker
-              category: brand
-              message: Account doesn't have broker permissions
-              params: '{ "brand" => "wrong_brand" }'
-            - code: permission_denied
-              category: permissions
-              message: Permission denied
+            - code: date_of_incorporation_is_required
+              category: date_of_incorporation
+              message: date_of_incorporation is required
               params: ''
-            - code: your_reference_is_too_long
-              category: your_reference
-              message: your_reference can not be longer than 25 character(s)
-              params: '{ "maxlength" => 25 }'
-            - code: legal_entity_type_not_in_range
-              category: legal_entity_type
-              message: 'legal_entity_type should be in range: individual, company'
-              params: '{ "range" => "individual, company" }'
-            - code: status_not_in_range
-              category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
-            - code: street_is_too_long
-              category: street
-              message: street can not be longer than 150 character(s)
-              params: '{ "maxlength" => 150 }'
-            - code: city_is_too_long
-              category: city
-              message: city can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: postal_code_is_too_long
-              category: postal_code
-              message: postal_code can not be longer than 20 character(s)
-              params: '{ "maxlength" => 20 }'
-            - code: state_or_province_is_too_long
-              category: state_or_province
-              message: state_or_province can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: country_is_in_invalid_format
-              category: country
-              message: country is not a valid ISO 3166-1 Alpha-2 country code
-              params: '{ "type" => "country_code" }'
-            - code: spread_table_is_too_long
-              category: spread_table
-              message: spread_table can not be longer than 100 character(s)
-              params: '{ "maxlength" => 100 }'
-            - code: identification_type_is_missing
-              category: identification_type
-              message: identification_type is missing
+            - code: date_of_incorporation_is_not_permitted
+              category: date_of_incorporation
+              message: date_of_incorporation is not permitted
               params: ''
-            - code: identification_type_not_in_range
-              category: identification_type
-              message: >-
-                identification_type should be in range: none, drivers_license,
-                social_security_number, green_card, passport, visa, matricula_consular,
-                registro_federal_de_contribuyentes, credential_de_elector,
-                social_insurance_number, citizenship_papers, drivers_license_canadian,
-                existing_credit_card_details, employer_identification_number, national_id,
-                others, incorporation_number, clave_unica_de_registro_de_poblacion
-              params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
-            - code: identification_type_is_invalid
-              category: identification_type
-              message: identification_type is invalid
+            - code: country_of_incorporation_is_required
+              category: country_of_incorporation
+              message: country_of_incorporation is required
               params: ''
-            - code: identification_value_is_missing
-              message: identification_value is missing
-              category: identification_value
+            - code: country_of_incorporation_is_not_permitted
+              category: country_of_incorporation
+              message: country_of_incorporation is not permitted
               params: ''
-            - code: identification_value_is_invalid
-              category: identification_value
-              message: identification_value is invalid
+            - code: country_of_citizenship_is_required
+              category: country_of_citizenship
+              message: country_of_citizenship is required
               params: ''
-            - code: identification_value_is_too_short
-              category: identification_value
-              message: identification_value can not be shorter than 1 character(s)
-              params: ' { "minlength": 1 }'
-            - code: editing_address_not_allowed
-              category: address
-              message: You cannot edit address information. Please contact support for additional information
+            - code: country_of_citizenship_is_not_permitted
+              category: country_of_citizenship
+              message: country_of_citizenship is not permitted
               params: ''
-            - code: editing_country_not_allowed
-              category: country
-              message: You cannot edit country. Please contact support for additional information
+            - code: expected_monthly_activity_volume_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_volume_
+              message: expected_monthly_activity_volume must be a number greater than zero
+              params: ''
+            - code: expected_monthly_activity_value_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_value
+              message: expected_monthly_activity_value must be a number greater than zero
+              params: ''
+            - code: expected_transaction_currencies_is_required
+              category: expected_transaction_currencies
+              message: expected_transaction_currencies is required
+              params: ''
+            - code: expected_transaction_countries_is_required
+              category: expected_transaction_countries
+              message: expected_transaction_countries is required
+              params: ''
+            - code: industry_type_is_required
+              category: industry_type
+              message: industry_type is required
+              params: ''
+            - code: industry_type_is_not_permitted
+              category: industry_type
+              message: industry_type is not permitted
+              params: ''
+            - code: trading_address_street_is_required
+              category: trading_address_street
+              message: trading_address_street is required
+              params: ''
+            - code: trading_address_city_is_required
+              category: trading_address_city
+              message: trading_address_city is required
+              params: ''
+            - code: trading_address_postalcode_is_required
+              category: trading_address_postalcode
+              message: trading_address_postalcode is required
+              params: ''
+            - code: trading_address_state_is_required
+              category: trading_address_state
+              message: trading_address_state is required
+              params: ''
+            - code: trading_address_country_is_required
+              category: trading_address_country
+              message: trading_address_country is required
+              params: ''
+            - code: trading_address_street_is_not_permitted
+              category: trading_address_street
+              message: trading_address_street is not permitted
+              params: ''
+            - code: trading_address_city_is_not_permitted
+              category: trading_address_city
+              message: trading_address_city is not permitted
+              params: ''
+            - code: trading_address_postalcode_is_not_permitted
+              category: trading_address_postalcode
+              message: trading_address_postalcode is not permitted
+              params: ''
+            - code: trading_address_state_is_not_permitted
+              category: trading_address_state
+              message: trading_address_state is not permitted
+              params: ''
+            - code: trading_address_country_is_not_permitted
+              category: trading_address_country
+              message: trading_address_country is not permitted
+              params: ''
+            - code: trading_address_state_invalid_state
+              category: trading_address_state
+              message: trading_address_state invalid state
+              params: ''
+            - code: tax_identification_is_required
+              category: tax_identification
+              message: tax_identification is required
+              params: ''
+            - code: tax_identification_is_not_permitted
+              category: tax_identification
+              message: tax_identification is not permitted
+              params: ''
+            - code: national_identification_is_required
+              category: national_identification
+              message: national_identification is required
+              params: ''
+            - code: national_identification_is_not_permitted
+              category: national_identification
+              message: national_identification is not permitted
+              params: ''
+            - code: customer_risk_is_required
+              category: customer_risk
+              message: customer_risk is required
+              params: ''
+            - code: customer_risk_invalid_value
+              category: customer_risk
+              message: customer_risk invalid value
               params: ''
           schema:
-            $ref: '#/definitions/UpdateAccountError'
+            $ref: '#/definitions/UpdateAccountComplianceSettingsError'
           headers:
             X-Request-Id:
               type: string
@@ -3550,7 +4209,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
@@ -4264,7 +4923,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
@@ -4929,7 +5588,7 @@ paths:
               category: beneficiary_company_name
               message: Beneficiary company name is missing
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: Beneficiary names cannot consist entirely of numbers for a company
               params: ''
@@ -5252,11 +5911,17 @@ paths:
       x-api-group: pay
       summary: Verify Beneficiary Account
       description: >-
-        This service is currently only available to in-scope clients who must provide Confirmation of Payee services to their end-users making local GBP payments in the UK.<br><br>
-        In the UK, Confirmation of Payee is a peer-to-peer name-checking service designed to help reduce misdirected payments and provide greater assurance that payments are being sent, and collected from, the intended account holder for UK domestic payments. <br><br>
-        Currently, access is restricted to UK institutions and in-scope clients.<br><br>
-        We plan to add more market coverage to this API in the future, thereby extending access to additional clients.<br><br>
-        If you're interested in learning more or have received notification that you're in-scope, please contact your Customer Success Manager.
+        This service is currently only available to in-scope clients who must provide
+        Confirmation of Payee (CoP) or Verification of Payee (VoP) services to their end-users
+        making local GBP payments in the UK or SEPA EUR payments.<br><br>
+        CoP and VoP are both peer-to-peer name-checking service designed to help
+        reduce misdirected payments and provide greater assurance that payments are
+        being sent, and collected from, the intended account holder for domestic payments. <br><br>
+        Currently, access is restricted to UK and EU institutions and in-scope clients.<br><br>
+        We plan to add more market coverage to this API in the future, thereby extending
+        access to additional clients.<br><br>
+        If you're interested in learning more or have received notification that you're in-scope,
+        please contact your Account Manager or our support team.
       operationId: BeneficiaryAccountVerification
       consumes:
         - multipart/form-data
@@ -5274,15 +5939,16 @@ paths:
           type: string
           required: false
           enum:
-            - priority
             - regular
+            - priority (not supported for this endpoint)
           description: >-
-            Currencycloud supports two types of payments: "priority", made using the Swift network
-            and "regular", made using the local bank network.
+            Currencycloud supports two types of payments: 'priority', made using the Swift network
+            and 'regular', made using the local bank network. Confirmation of Payee and Verification of
+            Payee checks only apply to local transactions so this field should always be set to 'regular'.
         - name: bank_country
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             Two-letter code for the country in which the beneficiary's bank account is held.
           format: iso3166-1-alpha-2
@@ -5290,18 +5956,23 @@ paths:
         - name: currency
           in: formData
           type: string
-          required: false
+          required: true
+          default: GBP
+          enum:
+            - GBP
+            - EUR
           description: >-
-            Currency in which money will be sent to the beneficiary's bank account. Three-digit currency code.
+            Currency in which money will be sent to the beneficiary's bank account.
+            Three-character currency code. 'GBP' for Confirmation of Payee, 'EUR' for Verification of Payee.
           format: iso-4217
           pattern: ^[A-Z]{3}$
         - name: account_number
           in: formData
-          required: true
+          required: false
           type: string
-          description: Bank account number.
           minLength: 1
           maxLength: 50
+          description: Bank account number. Required when currency is 'GBP' (Confirmation of Payee).
         - name: beneficiary_entity_type
           in: formData
           type: string
@@ -5334,11 +6005,11 @@ paths:
           description: Local payment routing system. Defaults to 'sort_code'.
         - name: routing_code_value_1
           in: formData
-          required: true
+          required: false
           type: string
-          description: Routing system value i.e. the account's sort code.
           minLength: 1
           maxLength: 50
+          description: Routing system value i.e. the account's sort code. Required when currency is 'GBP' (Confirmation of Payee).
         - name: routing_code_type_2
           in: formData
           type: string
@@ -5359,9 +6030,10 @@ paths:
         - name: iban
           in: formData
           type: string
-          description: IBAN code
           pattern: ([A-Z0-9]\s*){15,34}
+          description: IBAN code. Required when currency is 'EUR' (Verification of Payee). Must match <code>^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$</code>
         - name: secondary_reference_data
+          pattern: ^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$
           in: formData
           type: string
           description: >-
@@ -17509,6 +18181,20 @@ definitions:
       legal_entity_type:
         type: string
         description: The type of entity - individual or company.
+      legal_entity_sub_type:
+        type: string
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
       created_at:
         type: string
         description: The date/time the account was created.
@@ -17543,6 +18229,15 @@ definitions:
         description: >-
           The unique reference code for the identification document, e.g.
           passport number.
+      identification_issuer:
+        type: string
+        description: >-
+          ISO-3116 country code for the issuer of the identification document
+      identification_expiration:
+        type: string
+        format: date
+        description: >-
+          Date of expiration for the identification document
       short_reference:
         description: The account's reference number.
         type: string
@@ -17590,10 +18285,13 @@ definitions:
       postal_code: AB12 CD1
       spread_table: flat_0.5_percent
       legal_entity_type: company
+      legal_entity_sub_type: limited_liability_company
       created_at: '2023-12-31T23:59:59.000Z'
       updated_at: '2023-12-31T23:59:59.000Z'
       identification_type: green_card
       identification_value: 123456789
+      identification_issuer: US
+      identification_expiration: '2020-12-31'
       short_reference: 110104-00004
       api_trading: true
       online_trading: true
@@ -17603,6 +18301,103 @@ definitions:
       terms_and_conditions_accepted: true
       agent_or_reliance: true
       bank_account_verified: no
+  AccountComplianceSettings:
+    type: object
+    description: Account compliance settings.
+    properties:
+      account_id:
+        type: string
+        description: Account UUID.
+      industry_type:
+        type: string
+        description: String describing the accounts main industry. See merchant category codes for examples
+      country_of_incorporation:
+        type: string
+        description: >-
+          An ISO-3166 Country Code indicating the country the account is incorporated in. Should only be present for 'legal_entity_type: company' accounts
+      date_of_incorporation:
+        type: string
+        format: date
+        description: >-
+          The date of the accounts incorporation. Should only be present for 'legal_entity_type: company' accounts
+      business_website_url:
+        type: string
+        description: >-
+          A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
+      expected_transaction_countries:
+        type: array
+        description: Array of ISO-3166 country codes that these accounts will transact to/from.
+        items:
+          type: string
+      expected_transaction_currencies:
+        type: array
+        description: Array of ISO-4217 currency codes that these accounts will transact with. Limited to a single item.
+        items:
+          type: string
+      expected_monthly_activity_volume:
+        type: integer
+        description: The number of transactions this account is expected to conduct.
+      expected_monthly_activity_value:
+        type: number
+        description: The value of transactions this account is expected to conduct. The currency for this is the single item in 'expected_transaction_currencies'
+      tax_identification:
+        type: string
+        description: >-
+          A tax identification value for companies in the United States or Australia; determined by 'accounts.country'. Should only be present for 'legal_entity_type: company' accounts
+      national_identification:
+        type: string
+        description: >-
+          A National identification value for an individual in the United States; determined by 'accounts.country'. Should only be present for 'legal_entity_type: individual' accounts
+      country_of_citizenship:
+        type: string
+        description: >-
+          An ISO-3166 country code for an individuals citizenship. Should only be present for 'legal_entity_type: individual' accounts
+      trading_address_street:
+        type: string
+        description: >-
+          The street address of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+      trading_address_city:
+        type: string
+        description: >-
+          The city of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+      trading_address_state:
+        type: string
+        description: >-
+          The state of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+      trading_address_postalcode:
+        type: string
+        description: >-
+          The postal code of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+      trading_address_country:
+        type: string
+        description: >-
+          The ISO-3166 country code of the companies trading location. Should only be present for 'legal_entity_type: company' accounts
+      customer_risk:
+        description: How risky this accounts behaviour is
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+    example:
+      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
+      industry_type: Telecom Services
+      country_of_incorporation: US
+      date_of_incorporation: 2020-01-30
+      business_website_url: https://currencycloud.com
+      expected_transaction_countries: ["US", "GB"]
+      expected_transaction_currencies: ["USD"]
+      expected_monthly_activity_volume: 10
+      expected_monthly_activity_value: 30.00
+      tax_identification: some-tax-id
+      national_identification: some-national-id
+      country_of_citizenship: US
+      trading_address_street: some-street
+      trading_address_city: some-city
+      trading_address_state: NY
+      trading_address_postalcode: 90210
+      trading_address_country: US
+      customer_risk: LOW
   AccountPaymentChargesSetting:
     type: object
     description: Account Payment Charges Setting.
@@ -19767,6 +20562,96 @@ definitions:
     type: object
     description: |
       Client error information for the Get Account endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  GetAccountComplianceSettingsError:
+    type: object
+    description: |
+      Client error information for the Get Compliance Settings endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  UpdateAccountComplianceSettingsError:
+    type: object
+    description: |
+      Client error information for the Get Compliance Settings endpoint.
     required:
       - error_code
       - error_messages
@@ -22540,7 +23425,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: Reason

@@ -1,5 +1,5 @@
 [_metadata_:menu_title]:- "Confirmation of Payee Outbound (UK)"
-[_metadata_:order]:- "11"
+[_metadata_:order]:- "12"
 
 # Confirmation of Payee Outbound (UK)
 
@@ -550,7 +550,7 @@ The style and tone of the Currencycloud Direct platform serves as the basis for 
 
 #### Technical Errors
 
-##### HTTP 503 - Service Unavailable**
+##### HTTP 503 - Service Unavailable
 
 <table style="width:100%">
   <tr>
