@@ -506,7 +506,7 @@ paths:
           type: string
           format: date
           description: >-
-            The expiration date for the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+            The expiration date for the identification information provided. Format YYYY-MM-DD. Part of extended compliance for "legal_entity_type: individual" accounts.
         - name: identification_issuer
           in: formData
           maxLength: 255
