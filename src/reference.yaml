@@ -22620,7 +22620,7 @@ definitions:
           - payment
           - payment_failure
           - payment_fee
-          - pyament_unrelease
+          - payment_unrelease
           - top_up_fee
           - transfer
       related_entity_type:
