@@ -127,11 +127,14 @@ paths:
           description: >-
             The login ID for a Currencycloud account, this is usually an email
             address.
+          minLength: 1
+          maxLength: 50
         - name: api_key
           in: formData
           required: true
           type: string
           description: The unique API key for the Currencycloud account.
+          pattern: ^[a-f0-9]{64}$
       responses:
         '200':
           description: Success.
@@ -241,6 +244,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
       responses:
         '200':
           description: >-
@@ -330,11 +334,15 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_name
           in: formData
           required: true
           type: string
           description: Account name.
+          pattern: \S+
+          minLength: 1
+          maxLength: 150
         - name: legal_entity_type
           in: formData
           required: true
@@ -348,21 +356,26 @@ paths:
           required: true
           type: string
           description: First line of address.
+          maxLength: 150
         - name: city
           in: formData
           required: true
           type: string
           description: City
+          maxLength: 100
         - name: postal_code
           in: formData
           required: false
           type: string
           description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country code = "US", "CA" or "MX".
+          maxLength: 20
         - name: country
           in: formData
           required: true
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: brand
           in: formData
           required: false
@@ -370,11 +383,15 @@ paths:
           description: >-
             The value of this field is used for white labeling the Currencycloud
             user interface. If nothing is specified then the account will inherit the house account's brand.
+          minLength: 1
+          maxLength: 255
         - name: your_reference
           in: formData
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: status
           in: formData
           required: false
@@ -390,12 +407,14 @@ paths:
           required: false
           type: string
           description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country code = "US", "CA" or "MX".
+          maxLength: 100
         - name: spread_table
           in: formData
           required: false
           type: string
           default: flat_0.00
           description: The name of the spread table assigned to the account. This is needed if they intend to apply markup.
+          maxLength: 100
         - name: api_trading
           in: formData
           required: false
@@ -461,6 +480,8 @@ paths:
           description: >-
             Unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
+          minLength: 1
+          maxLength: 255
         - name: terms_and_conditions_accepted
           in: formData
           required: false
@@ -1331,17 +1352,20 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Account UUID, returned by the create account endpoint.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
-          description: A contact UUID for the sub-acccount you're acting on behalf of.
+          description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -1364,7 +1388,7 @@ paths:
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
+              message: You cannot act on behalf of your own contact
               params: ''
             - code: contact_not_found
               category: on_behalf_of
@@ -1377,7 +1401,7 @@ paths:
               type: string
               description: A unique reference for the request.
         '401':
-          description: Unauthorized.
+          description: Unauthorized
           x-errors:
             - code: invalid_supplied_credentials
               category: username
@@ -1424,11 +1448,11 @@ paths:
               type: string
               description: A unique reference for the request.
         '503':
-          description: Service is temporary unavailable
+          description: Service is temporary unavailable.
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable
               params: ''
           headers:
             X-Request-Id:
@@ -1459,7 +1483,8 @@ paths:
           in: header
           required: true
           type: string
-          description: Authentication token.
+          description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
@@ -1767,7 +1792,7 @@ paths:
           x-errors:
             - code: service_unavailable
               category: base
-              message: Service is temporary unavailable
+              message: Service is temporarily unavailable
               params: ''
           headers:
             X-Request-Id:
@@ -1795,6 +1820,7 @@ paths:
           type: string
           required: true
           description: Authentication token
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -1884,11 +1910,15 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_name
           in: formData
           required: false
           type: string
           description: Account name.
+          pattern: \S+
+          minLength: 1
+          maxLength: 150
         - name: brand
           in: formData
           required: false
@@ -1896,11 +1926,15 @@ paths:
           description: >-
             The value of this field is used for white labeling the Currencycloud
             user interface.
+          minLength: 1
+          maxLength: 255
         - name: your_reference
           in: formData
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: status
           in: formData
           required: false
@@ -1915,31 +1949,38 @@ paths:
           required: false
           type: string
           description: First line of address.
+          maxLength: 150
         - name: city
           in: formData
           required: false
           type: string
           description: City.
+          maxLength: 100
         - name: state_or_province
           in: formData
           required: false
           type: string
           description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+          maxLength: 100
         - name: postal_code
           in: formData
           required: false
           type: string
           description: Postal code.
+          maxLength: 20
         - name: country
           in: formData
           required: false
           type: string
           description: Two-letter country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: spread_table
           in: formData
           required: false
           type: string
           description: The name of the spread table assigned to the account.
+          maxLength: 100
         - name: bank_account_verified
           in: formData
           required: false
@@ -1954,16 +1995,20 @@ paths:
           required: false
           type: integer
           description: Page number.
+          pattern: ^\d+$
         - name: per_page
           in: formData
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: formData
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: formData
           required: false
@@ -2027,7 +2072,7 @@ paths:
               params: ''
             - code: street_is_too_long
               category: street
-              message:  street can not be longer than 150 character(s)
+              message: street can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
             - code: city_is_too_long
               category: city
@@ -2124,24 +2169,26 @@ paths:
   /accounts/{account_id}/payment_charges_settings:
     get:
       tags:
-      - Accounts
+        - Accounts
       x-api-group: manage
       summary: Get Payment Charges Settings
       description: Retrieves the Payment Charges Settings for the given account.
       operationId: GetAccountPaymentChargesSettings
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: A UUID of a sub-account or house account visible to the authenticated user.
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+          minLength: 32
+        - name: account_id
+          in: path
+          required: true
+          type: string
+          description: A UUID of a sub-account or house account visible to the authenticated user.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -2159,14 +2206,14 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
+            - code: id_is_not_valid_uuid
+              category: account_id
+              message: id should be in UUID format
+              params: ''
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
+              params: ''
           schema:
             $ref: '#/definitions/GetAccountPaymentChargesSettingsError'
           headers:
@@ -2176,10 +2223,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -2197,10 +2244,10 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -2210,10 +2257,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -2221,10 +2268,10 @@ paths:
         '503':
           description: Service is temporary unavailable.
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporarily unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -2238,39 +2285,42 @@ paths:
   /accounts/{account_id}/payment_charges_settings/{charge_settings_id}:
     post:
       tags:
-      - Accounts
+        - Accounts
       x-api-group: manage
       summary: Manage Account Payment Charges Settings
       description: Manage a given account's Payment Charge Settings (enable, disable, set as default).
       operationId: ManageAccountPaymentChargesSettings
       produces:
-      - application/json
+        - application/json
       parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token
-      - name: account_id
-        in: path
-        required: true
-        type: string
-        description: Account UUID
-      - name: charge_settings_id
-        in: path
-        required: true
-        type: string
-        description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for the given Account UUID.
-      - name: enabled
-        in: formData
-        required: false
-        type: boolean
-        description: Enable or disable the given Account Payment Charges Setting.
-      - name: default
-        in: formData
-        required: false
-        type: boolean
-        description: Set the given Account Payment Charges Setting as default. This will be used when the 'charge_type' parameter is not specified for a payment.
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+          minLength: 32
+        - name: account_id
+          in: path
+          required: true
+          type: string
+          description: Account UUID
+          format: uuid
+        - name: charge_settings_id
+          in: path
+          required: true
+          type: string
+          description: Account Payment Charges Setting UUID. Can be retrieved via appropriate GET call for the given Account UUID.
+          format: uuid
+        - name: enabled
+          in: formData
+          required: false
+          type: boolean
+          description: Enable or disable the given Account Payment Charges Setting.
+        - name: default
+          in: formData
+          required: false
+          type: boolean
+          description: Set the given Account Payment Charges Setting as default. This will be used when the 'charge_type' parameter is not specified for a payment.
       responses:
         '200':
           description: Success.
@@ -2283,46 +2333,46 @@ paths:
         '400':
           description: Client error.
           x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: Account was not found for this id
-            params: ''
-          - code: permission_denied
-            category: permissions
-            message: You do not have permission 'payment_charges_management' to perform this operation
-            params: ''
-          - code: edit_not_allowed
-            category: permission
-            message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
-            params: ''
-          - code: banking_charges_settings_not_found
-            category: charge_settings_id
-            message: Bank Charges Settings were not found for the provided ChargeSettingsId
-            params: ''
-          - code: unavailable_charge_type
-            category: permission
-            message: You are not enabled to switch on these type of charges. In order to be enabled for this option - please contact Customer Support
-            params: ''
-          - code: disable_and_default_charge_not_allowed
-            category: invalid_value
-            message: You cannot disable and then default setting
-            params: ''
-          - code: default_disabled_charge_not_allowed
-            category: invalid_value
-            message: You cannot default disabled setting
-            params: ''
-          - code: disable_default_charge_not_allowed
-            category: invalid_value
-            message: You can not disable default settings
-            params: ''
-          - code: set_default_to_false_not_allowed
-            category: invalid_value
-            message: You cannot disable a default charge type. Please update the charge type not to be default and then disable it
-            params: ''
+            - code: id_is_not_valid_uuid
+              category: account_id
+              message: id should be in UUID format
+              params: ''
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
+              params: ''
+            - code: permission_denied
+              category: permissions
+              message: You do not have permission 'payment_charges_management' to perform this operation
+              params: ''
+            - code: edit_not_allowed
+              category: permission
+              message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
+              params: ''
+            - code: banking_charges_settings_not_found
+              category: charge_settings_id
+              message: Bank Charges Settings were not found for the provided ChargeSettingsId
+              params: ''
+            - code: unavailable_charge_type
+              category: permission
+              message: You are not enabled to switch on these type of charges. In order to be enabled for this option - please contact Customer Support
+              params: ''
+            - code: disable_and_default_charge_not_allowed
+              category: invalid_value
+              message: You cannot disable and then default setting
+              params: ''
+            - code: default_disabled_charge_not_allowed
+              category: invalid_value
+              message: You cannot default disabled setting
+              params: ''
+            - code: disable_default_charge_not_allowed
+              category: invalid_value
+              message: You can not disable default settings
+              params: ''
+            - code: set_default_to_false_not_allowed
+              category: invalid_value
+              message: You cannot disable a default charge type. Please update the charge type not to be default and then disable it
+              params: ''
           schema:
             $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
           headers:
@@ -2332,10 +2382,10 @@ paths:
         '401':
           description: Unauthorized.
           x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
           schema:
             $ref: '#/definitions/UnauthorizedError'
           headers:
@@ -2353,10 +2403,10 @@ paths:
         '429':
           description: Too many requests.
           x-errors:
-          - code: too_many_requests
-            category: base
-            message: Too many requests have been made to the api. Please refer to the Developer Center for more information
-            params: ''
+            - code: too_many_requests
+              category: base
+              message: Too many requests have been made to the api. Please refer to the Developer Center for more information
+              params: ''
           schema:
             $ref: '#/definitions/RateLimitError'
           headers:
@@ -2366,10 +2416,10 @@ paths:
         '500':
           description: Internal server error
           x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -2377,10 +2427,10 @@ paths:
         '503':
           description: Service is temporary unavailable
           x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporarily unavailable
-            params: ''
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
           headers:
             X-Request-Id:
               type: string
@@ -2406,6 +2456,7 @@ paths:
           type: string
           required: true
           description: Authentication token
+          minLength: 32
         - name: type
           in: formData
           type: string
@@ -2432,6 +2483,7 @@ paths:
           type: string
           description: The account / sub-account UUID that the Terms of Use are being accepted for.
           required: true
+          format: uuid
         - name: first_name
           in: formData
           type: string
@@ -2439,6 +2491,8 @@ paths:
             The first name of the user accepting the Terms of Use.
             Must be between 1 and 100 characters in length and not contain < or >.
           required: true
+          minLength: 1
+          maxLength: 100
         - name: last_name
           in: formData
           type: string
@@ -2446,14 +2500,19 @@ paths:
             The last name of the user accepting the Terms of Use.
             Must be between 1 and 100 characters in length and not contain < or >.
           required: true
+          minLength: 1
+          maxLength: 100
         - name: email
           in: formData
           type: string
           description: >-
             The email of the user accepting the Terms of Use.
-            Length must be between 1 and 255 characters. <br>
+            Length must be between 6 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
       responses:
         200:
           description: Success.
@@ -2534,140 +2593,143 @@ paths:
 
 
   /balances/{currency}:
-   get:
-    tags:
-      - Balances
-    x-api-group: manage
-    summary: Get Balance
-    description: >-
-      Gets the balance for a currency from the account of the authenticated
-      user.
-    operationId: GetBalance
-    produces:
-      - application/json
-    parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token
-      - name: currency
-        in: path
-        required: true
-        type: string
-        description: Three-letter ISO currency code.
-      - name: on_behalf_of
-        in: query
-        required: false
-        type: string
-        description: A contact UUID for the sub-account you're acting on behalf of.
-        format: uuid
-    responses:
-      '200':
-        description: Success.
-        schema:
-          $ref: '#/definitions/Balance'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '400':
-        description: Client error.
-        x-errors:
-          - code: invalid_currency
-            category: currency
-            message: XYZ is not a valid ISO 4217 currency code
-            params: '{ "currency" => "XYZ" }'
-          - code: currency_is_in_invalid_format
-            category: currency
-            message: currency is not a valid ISO 4217 currency code
-            params: '{ "type" => "currency" }'
-          - code: on_behalf_of_is_not_valid_uuid
-            category: on_behalf_of
-            message: on_behalf_of should be in UUID format
-            params: ''
-          - code: on_behalf_of_self
-            category: on_behalf_of
-            message: You cannot act on behalf of your own Contact
-            params: ''
-          - code: contact_not_found
-            category: on_behalf_of
-            message: Contact was not found for this id
-            params: ''
-          - code: unsupported_currency
-            category: currency
-            message: Unsupported currency XYZ
-            params: '{ "currency": "UAH" }'
-        schema:
-          $ref: '#/definitions/GetBalanceError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '401':
-        description: Unauthorized.
-        x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
-        schema:
-          $ref: '#/definitions/UnauthorizedError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '404':
-        description: Resource not found.
-        schema:
-          $ref: '#/definitions/NotFoundError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '429':
-        description: Too many requests.
-        x-errors:
-          - code: too_many_requests
-            category: base
-            message: >-
-              Too many requests have been made to the api. Please refer to the
-              Developer Center for more information
-            params: ''
-        schema:
-          $ref: '#/definitions/RateLimitError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '500':
-        description: Internal server error
-        x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '503':
-        description: Service is temporary unavailable
-        x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporarily unavailable
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      default:
-        description: Unexpected error.
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
+    get:
+      tags:
+        - Balances
+      x-api-group: manage
+      summary: Get Balance
+      description: >-
+        Gets the balance for a currency from the account of the authenticated
+        user.
+      operationId: GetBalance
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+          minLength: 32
+        - name: currency
+          in: path
+          required: true
+          type: string
+          description: Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Balance'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: invalid_currency
+              category: currency
+              message: XYZ is not a valid ISO 4217 currency code
+              params: '{ "currency" => "XYZ" }'
+            - code: currency_is_in_invalid_format
+              category: currency
+              message: currency is not a valid ISO 4217 currency code
+              params: '{ "type" => "currency" }'
+            - code: on_behalf_of_is_not_valid_uuid
+              category: on_behalf_of
+              message: on_behalf_of should be in UUID format
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: unsupported_currency
+              category: currency
+              message: Unsupported currency XYZ
+              params: '{ "currency": "UAH" }'
+          schema:
+            $ref: '#/definitions/GetBalanceError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /balances/find:
     get:
       tags:
@@ -2686,6 +2748,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
@@ -2697,11 +2760,13 @@ paths:
           required: false
           type: number
           description: Minimum balance amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: query
           required: false
           type: number
           description: Maximum balance amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: as_at_date
           in: query
           required: false
@@ -2723,11 +2788,13 @@ paths:
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
@@ -2739,6 +2806,8 @@ paths:
             - created_at
             - currency
             - updated_at
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -2884,22 +2953,28 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: currency
           in: formData
           required: true
           type: string
           description: Three-letter ISO currency code for the currency to top up.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount
           in: formData
           required: true
           type: string
           description: Amount to top up.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: 'UUID'
+          minLength: 36
+          maxLength: 36
       responses:
         '200':
           description: Success.
@@ -3020,16 +3095,20 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: bank_account_holder_name
           in: formData
           required: false
           type: string
           description: Bank account holder's name.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_country
           in: formData
           required: false
@@ -3038,6 +3117,8 @@ paths:
             Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
             individual, this is the country in which the beneficiary is based.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
           required: false
@@ -3045,11 +3126,15 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-letter currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: account_number
           in: formData
           required: false
           type: string
           description: Bank account number.
+          minLength: 1
+          maxLength: 50
         - name: 'routing_code_type[0]'
           in: formData
           required: false
@@ -3070,16 +3155,20 @@ paths:
           required: false
           type: string
           description: The value for any routing system specified in routing_code_type[0]. If supplied, a value for routing_code_type[0] must also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: bic_swift
           in: formData
           required: false
           type: string
           description: BIC/Swift code
+          pattern: ^(\w{8}|\w{11})$
         - name: iban
           in: formData
           required: false
           type: string
           description: IBAN code
+          pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
           required: false
@@ -3092,6 +3181,7 @@ paths:
           required: false
           type: string
           description: Bank name
+          minLength: 1
         - name: bank_account_type
           in: formData
           required: false
@@ -3105,6 +3195,9 @@ paths:
           required: false
           type: string
           description: Beneficiary's name.
+          pattern: \S+
+          minLength: 1
+          maxLength: 100
         - name: beneficiary_entity_type
           in: formData
           required: false
@@ -3118,31 +3211,42 @@ paths:
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "company".
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_city
           in: formData
           required: false
           type: string
           description: City
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
           description: Post code
+          maxLength: 12
         - name: beneficiary_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_date_of_birth
           in: formData
           required: false
@@ -3167,16 +3271,20 @@ paths:
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: formData
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: formData
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: formData
           required: false
@@ -3191,6 +3299,8 @@ paths:
           required: false
           type: string
           description: Beneficiary external reference.
+          minLength: 1
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -3512,16 +3622,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -3637,21 +3750,28 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: name
           in: formData
           required: false
           type: string
           description: A nickname for the beneficiary.
+          pattern: \S+
+          minLength: 1
+          maxLength: 100
         - name: bank_account_holder_name
           in: formData
           required: false
           type: string
           description: Bank account holder's name.
+          minLength: 1
+          maxLength: 255
         - name: bank_country
           in: formData
           required: false
@@ -3659,6 +3779,8 @@ paths:
           description: >-
             Country in which the beneficiary's bank account is held. Two-letter
             ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
           required: false
@@ -3666,16 +3788,23 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: email
           in: formData
           required: false
           type: string
           description: Beneficiary's email address.
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
         - name: beneficiary_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_country
           in: formData
           required: false
@@ -3684,11 +3813,15 @@ paths:
             Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
             individual, this is the country in which the beneficiary is based.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: account_number
           in: formData
           required: false
           type: string
           description: Bank account number.
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_1
           in: formData
           required: false
@@ -3709,6 +3842,8 @@ paths:
           required: false
           type: string
           description: Routing code for "routing_code_type_1".
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_2
           in: formData
           required: false
@@ -3729,6 +3864,8 @@ paths:
           required: false
           type: string
           description: Routing code for "routing_code_type_2".
+          minLength: 1
+          maxLength: 50
         - name: 'payment_types[]'
           in: formData
           required: false
@@ -3747,11 +3884,13 @@ paths:
           required: false
           type: string
           description: BIC/Swift code
+          pattern: ^(\w{8}|\w{11})$
         - name: iban
           in: formData
           required: false
           type: string
           description: IBAN code
+          pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
           required: false
@@ -3765,11 +3904,14 @@ paths:
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 100
         - name: bank_name
           in: formData
           required: false
           type: string
           description: Bank name
+          minLength: 1
         - name: bank_account_type
           in: formData
           required: false
@@ -3791,26 +3933,35 @@ paths:
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers or company signifiers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_city
           in: formData
           required: false
           type: string
           description: City name, should not consist of only numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          maxLength: 12
         - name: beneficiary_state_or_province
           in: formData
           required: false
@@ -3825,6 +3976,7 @@ paths:
             If "beneficiary_entity_type" is "company", date of registration.<br>
             If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
             ISO 8601 format YYYY-MM-DD.
+          format: date
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -3858,26 +4010,33 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: Contact UUID.
+          format: uuid
         - name: beneficiary_external_reference
           in: formData
           required: false
           type: string
           description: Beneficiary external reference.
+          minLength: 1
+          maxLength: 255
         - name: business_nature
           in: formData
           required: false
           type: string
           description: Beneficiary nature of business.
+          maxLength: 255
         - name: company_website
           in: formData
           required: false
           type: string
           description: Beneficiary company website.
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -4313,16 +4472,22 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: name
           in: formData
           required: true
           type: string
           description: A nickname for the beneficiary.
+          pattern: \S+
+          minLength: 1
+          maxLength: 100
         - name: bank_account_holder_name
           in: formData
           required: true
           type: string
           description: Bank account holder's name.
+          minLength: 1
+          maxLength: 255
         - name: bank_country
           in: formData
           required: true
@@ -4330,6 +4495,8 @@ paths:
           description: >-
             Two-letter code for the country in which the beneficiary's bank
             account is held.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
           required: true
@@ -4337,16 +4504,23 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-letter IDO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: email
           in: formData
           required: false
           type: string
           description: Email address
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
         - name: beneficiary_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_country
           in: formData
           required: false
@@ -4355,11 +4529,15 @@ paths:
             Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
             individual, this is the country in which the beneficiary is based.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: account_number
           in: formData
           required: false
           type: string
           description: Bank account number.
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_1
           in: formData
           required: false
@@ -4380,6 +4558,8 @@ paths:
           required: false
           type: string
           description: Routing code for routing_code_type_1. If supplied, routing_code_type_1 should also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_2
           in: formData
           required: false
@@ -4400,16 +4580,20 @@ paths:
           required: false
           type: string
           description: Routing code for routing_code_type_2. If supplied, routing_code_type_2 should also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: bic_swift
           in: formData
           required: false
           type: string
           description: BIC/Swift code
+          pattern: ^(\w{8}|\w{11})$
         - name: iban
           in: formData
           required: false
           type: string
           description: IBAN code
+          pattern: ([A-Z0-9]\s*){15,34}
         - name: default_beneficiary
           in: formData
           required: false
@@ -4423,11 +4607,14 @@ paths:
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 100
         - name: bank_name
           in: formData
           required: false
           type: string
           description: Bank name
+          minLength: 1
         - name: bank_account_type
           in: formData
           required: false
@@ -4449,31 +4636,42 @@ paths:
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers or company signifiers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_city
           in: formData
           required: false
           type: string
           description: City name, should not consists of only numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          maxLength: 12
         - name: beneficiary_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_date_of_birth
           in: formData
           required: false
@@ -4482,6 +4680,7 @@ paths:
             If "beneficiary_entity_type" is "company", date of registration.<br>
             If "beneficiary_entity_type" is "individual", date of birth. The date of birth for the individual should not exceed 125 years and cannot be a date in the future.<br>
             ISO 8601 format YYYY-MM-DD.
+          format: date
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -4515,6 +4714,8 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: 'payment_types[]'
           in: formData
           required: false
@@ -4534,21 +4735,26 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: beneficiary_external_reference
           in: formData
           required: false
           type: string
           description: Beneficiary external reference.
+          minLength: 1
+          maxLength: 255
         - name: business_nature
           in: formData
           required: false
           type: string
           description: Beneficiary nature of business.
+          maxLength: 255
         - name: company_website
           in: formData
           required: false
           type: string
           description: Beneficiary company website.
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -4989,16 +5195,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -5118,6 +5327,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: bank_country
           in: formData
           required: true
@@ -5125,6 +5335,8 @@ paths:
           description: >-
             Two-letter code for the country in which the beneficiary's bank
             account is held.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
           required: true
@@ -5132,11 +5344,15 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-digit currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: beneficiary_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_country
           in: formData
           required: false
@@ -5145,11 +5361,15 @@ paths:
             Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
             individual, this is the country in which the beneficiary is based.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: account_number
           in: formData
           required: false
           type: string
           description: Bank account number.
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_1
           in: formData
           required: false
@@ -5170,6 +5390,8 @@ paths:
           required: false
           type: string
           description: Routing code for routing_code_type_1. If supplied, routing_code_type_1 should also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: routing_code_type_2
           in: formData
           required: false
@@ -5190,26 +5412,33 @@ paths:
           required: false
           type: string
           description: Routing code for routing_code_type_2. If supplied, routing_code_type_2 should also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: bic_swift
           in: formData
           required: false
           type: string
           description: BIC/Swift code
+          pattern: ^(\w{8}|\w{11})$
         - name: iban
           in: formData
           required: false
           type: string
           description: IBAN code
+          pattern: ([A-Z0-9]\s*){15,34}
         - name: bank_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 100
         - name: bank_name
           in: formData
           required: false
           type: string
           description: Bank name
+          minLength: 1
         - name: bank_account_type
           in: formData
           required: false
@@ -5231,31 +5460,42 @@ paths:
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "company". Company names cannot consist entirely of numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_first_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_last_name
           in: formData
           required: false
           type: string
           description: Required if "beneficiary_entity_type" is "individual". Individual names cannot contain any numbers.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_city
           in: formData
           required: false
           type: string
           description: City
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          maxLength: 12
         - name: beneficiary_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_date_of_birth
           in: formData
           required: false
@@ -5264,6 +5504,7 @@ paths:
             If "beneficiary_entity_type" is "company", date of registration. If
             "beneficiary_entity_type" is "individual", date of birth. ISO 8601
             format YYYY-MM-DD.
+          format: date
         - name: beneficiary_identification_type
           in: formData
           required: false
@@ -5297,6 +5538,8 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: 'payment_types[]'
           in: formData
           required: false
@@ -5316,6 +5559,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -5689,6 +5933,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: payment_type
           in: formData
           type: string
@@ -5706,6 +5951,8 @@ paths:
           required: false
           description: >-
             Two-letter code for the country in which the beneficiary's bank account is held.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: currency
           in: formData
           type: string
@@ -5717,10 +5964,14 @@ paths:
           description: >-
             Currency in which money will be sent to the beneficiary's bank account.
             Three-character currency code. 'GBP' for Confirmation of Payee, 'EUR' for Verification of Payee.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: account_number
           in: formData
           required: false
           type: string
+          minLength: 1
+          maxLength: 50
           description: Bank account number. Required when currency is 'GBP' (Confirmation of Payee).
         - name: beneficiary_entity_type
           in: formData
@@ -5733,15 +5984,21 @@ paths:
         - name: beneficiary_company_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is 'company'.
+          description: Required if "beneficiary_entity_type" is "company".
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_first_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is 'individual'.
+          description: Required if "beneficiary_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: beneficiary_last_name
           in: formData
           type: string
-          description: Required if "beneficiary_entity_type" is 'individual'.
+          description: Required if "beneficiary_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: routing_code_type_1
           in: formData
           type: string
@@ -5750,6 +6007,8 @@ paths:
           in: formData
           required: false
           type: string
+          minLength: 1
+          maxLength: 50
           description: Routing system value i.e. the account's sort code. Required when currency is 'GBP' (Confirmation of Payee).
         - name: routing_code_type_2
           in: formData
@@ -5761,13 +6020,17 @@ paths:
           in: formData
           type: string
           description: Routing code for routing_code_type_2. If supplied, routing_code_type_2 should also be supplied.
+          minLength: 1
+          maxLength: 50
         - name: bic_swift
           in: formData
           type: string
           description: BIC/Swift code
+          pattern: ^(\w{8}|\w{11})$
         - name: iban
           in: formData
           type: string
+          pattern: ([A-Z0-9]\s*){15,34}
           description: IBAN code. Required when currency is 'EUR' (Verification of Payee). Must match <code>^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$</code>
         - name: secondary_reference_data
           pattern: ^[a-zA-Z]{2}[0-9]{2}[a-zA-Z0-9]{1,30}$
@@ -5797,9 +6060,7 @@ paths:
               category: beneficiary_entity_type
               message: Beneficiary_entity_type must be either 'individual' or 'company'.
               params: '{ "range" => "individual, company" }'
-              enum:
-                individual
-                company
+              enum: individual company
             - code: invalid_field_routing_code_value_1
               category: routing_code_value_1
               message: routing_code_value_1 must match \"^[0-9]{6}$\"
@@ -5940,6 +6201,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -6027,46 +6289,64 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_name
           in: formData
           required: false
           type: string
           description: Account name
+          pattern: \S+
+          minLength: 1
+          maxLength: 150
         - name: account_id
           in: formData
           required: false
           type: string
           description: Sub-Account UUID
+          format: uuid
         - name: first_name
           in: formData
           required: false
           type: string
           description: The contact's first name.
+          minLength: 1
+          maxLength: 100
         - name: last_name
           in: formData
           required: false
           type: string
           description: The contact's last name.
+          minLength: 1
+          maxLength: 100
         - name: email_address
           in: formData
           required: false
           type: string
           description: The contact's email address.
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
         - name: your_reference
           in: formData
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: phone_number
           in: formData
           required: false
           type: string
           description: The contact's phone number.
+          minLength: 1
+          maxLength: 100
         - name: login_id
           in: formData
           required: false
           type: string
           description: The contact's Currencycloud login ID.
+          minLength: 1
+          maxLength: 50
         - name: status
           in: formData
           required: false
@@ -6080,26 +6360,34 @@ paths:
           required: false
           type: string
           description: 'Locale code ("en", "en-US", "fr-FR").'
+          minLength: 2
+          maxLength: 5
         - name: timezone
           in: formData
           required: false
           type: string
           description: 'Timezone ("Europe/London", "America/New_York").'
+          minLength: 7
+          maxLength: 35
         - name: page
           in: formData
           required: false
           type: string
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: formData
           required: false
           type: string
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: formData
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: formData
           required: false
@@ -6210,11 +6498,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Contact UUID
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -6332,21 +6622,27 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Contact UUID
+          format: uuid
         - name: first_name
           in: query
           required: false
           type: string
           description: The contact's first name.
+          minLength: 1
+          maxLength: 100
         - name: last_name
           in: query
           required: false
           type: string
           description: The contact's last name.
+          minLength: 1
+          maxLength: 100
         - name: email_address
           in: query
           required: false
@@ -6356,26 +6652,37 @@ paths:
             Instead, an email change request flow is initiated, sending notifications to both the old and new
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
         - name: your_reference
           in: query
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: phone_number
           in: query
           required: false
           type: string
           description: The contact's phone number.
+          minLength: 1
+          maxLength: 100
         - name: mobile_phone_number
           in: query
           required: false
           type: string
           description: The contact's mobile phone number.
+          minLength: 1
+          maxLength: 100
         - name: login_id
           in: query
           required: false
           type: string
           description: The contact's Currencycloud login ID.
+          minLength: 1
+          maxLength: 50
         - name: status
           in: query
           required: false
@@ -6389,11 +6696,15 @@ paths:
           required: false
           type: string
           description: 'Locale code ("en", "en-US", "fr-FR").'
+          minLength: 2
+          maxLength: 5
         - name: timezone
           in: query
           required: false
           type: string
           description: 'Timezone ("Europe/London", "America/New_York").'
+          minLength: 7
+          maxLength: 35
         - name: date_of_birth
           in: query
           required: false
@@ -6609,46 +6920,63 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: formData
           required: true
           type: string
           description: Account UUID
+          format: uuid
         - name: first_name
           in: formData
           required: true
           type: string
           description: The contact's first name.
+          minLength: 1
+          maxLength: 100
         - name: last_name
           in: formData
           required: true
           type: string
           description: The contact's last name.
+          minLength: 1
+          maxLength: 100
         - name: email_address
           in: formData
           required: true
           type: string
           description: The contact's email address.
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          minLength: 6
+          maxLength: 255
         - name: phone_number
           in: formData
           required: true
           type: string
           description: The contact's phone number.
+          minLength: 1
+          maxLength: 100
         - name: your_reference
           in: formData
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: mobile_phone_number
           in: formData
           required: false
           type: string
           description: The contact's mobile phone number.
+          minLength: 1
+          maxLength: 100
         - name: login_id
           in: formData
           required: false
           type: string
           description: The contact's Currencycloud login ID, allows the contact to login and conduct activity on the sub-account.
+          minLength: 1
+          maxLength: 50
         - name: status
           in: formData
           required: false
@@ -6662,16 +6990,21 @@ paths:
           required: false
           type: string
           description: 'Locale code ("en", "en-US", "fr-FR").'
+          minLength: 2
+          maxLength: 5
         - name: timezone
           in: formData
           required: false
           type: string
           description: 'Timezone ("Europe/London", "America/New_York").'
+          minLength: 7
+          maxLength: 35
         - name: date_of_birth
           in: formData
           required: false
           type: string
           description: The contact's date of birth. ISO 8601 format YYYY-MM-DD. <b>Required if account type is individual</b>.
+          format: date
       responses:
         '200':
           description: Success.
@@ -6889,6 +7222,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -7002,16 +7336,21 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: buy_currency
           in: formData
           required: true
           type: string
           description: Three-character ISO code for currency purchased.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: formData
           required: true
           type: string
           description: Three-character ISO code for currency sold.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: fixed_side
           in: formData
           required: true
@@ -7025,6 +7364,7 @@ paths:
           required: true
           type: string
           description: Amount of the fixed buy or sell currency.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: term_agreement
           in: formData
           required: true
@@ -7044,26 +7384,33 @@ paths:
           required: false
           type: string
           description: Client buy amount.
+          pattern: ^\d+(\.\d{1,2})?$
         - name: client_sell_amount
           in: formData
           required: false
           type: string
           description: Client sell amount.
+          pattern: ^\d+(\.\d{1,2})?$
         - name: reason
           in: formData
           required: false
           type: string
           description: User-generated reason for conversion - freeform text.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: formData
           required: false
           type: string
           description: User-generated idempotency key. Beneficial for request tracking / management.
+          minLength: 1
+          maxLength: 255
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: conversion_date_preference
           in: formData
           required: false
@@ -7372,16 +7719,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -7492,16 +7842,20 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: short_reference
           in: query
           required: false
           type: string
           description: Short reference code.
+          minLength: 1
+          maxLength: 25
         - name: status
           in: query
           required: false
@@ -7518,11 +7872,15 @@ paths:
           required: false
           type: string
           description: The currency purchased- three character ISO code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: query
           required: false
           type: string
           description: The currency sold - three character ISO code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: 'conversion_ids[]'
           in: query
           required: false
@@ -7530,81 +7888,97 @@ paths:
           items:
             type: string
           description: One or more conversion UUIDs to filter out of results.
+          format: uuid
         - name: created_at_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: created_at_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: updated_at_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: updated_at_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: conversion_date_from
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: conversion_date_to
           in: query
           required: false
           type: string
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59+00:00".'
+          format: date
         - name: currency_pair
           in: query
           required: false
           type: string
           description: 'Concatenated string of the two currencies traded, e.g. "USDEUR".'
+          pattern: ^[A-Z]{6}$
         - name: partner_buy_amount_from
           in: query
           required: false
           type: string
           description: Minimum buy amount (sub-accounts).
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_buy_amount_to
           in: query
           required: false
           type: string
           description: Maximum buy amount (sub-accounts).
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_sell_amount_from
           in: query
           required: false
           type: string
           description: Minimum sell amount (sub-accounts).
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_sell_amount_to
           in: query
           required: false
           type: string
           description: Maximum sell amount (sub-accounts).
+          pattern: ^\d+(\.\d{1,3})?$
         - name: buy_amount_from
           in: query
           required: false
           type: string
           description: Minimum buy amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: buy_amount_to
           in: query
           required: false
           type: string
           description: Maximum buy amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: sell_amount_from
           in: query
           required: false
           type: string
           description: Minimum sell amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: sell_amount_to
           in: query
           required: false
           type: string
           description: Maximum sell amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: scope
           in: query
           required: false
@@ -7622,6 +7996,7 @@ paths:
           description: >-
             Earliest date when sold currency debited. Any valid ISO 8601 format,
             e.g. "2023-12-31T23:59:59+00:00".
+          format: date
         - name: settlement_date_to
           in: query
           required: false
@@ -7629,26 +8004,33 @@ paths:
           description: >-
             Latest date when sold currency debited. Any valid ISO 8601 format,
             e.g. "2023-12-31T23:59:59+00:00".
+          format: date
         - name: unique_request_id
           in: query
           required: false
           type: string
           description: User-generated idempotency key.
+          minLength: 1
+          maxLength: 255
         - name: page
           in: query
           required: false
           type: integer
           description: Page number.
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -7770,11 +8152,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -7887,16 +8271,20 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: UUID of the conversion that is being cancelled. The UUID is returned by a successful trade request when creating a conversion.
+          format: uuid
         - name: notes
           required: false
           type: string
           in: formData
           description: Notes describing the reason for cancellation.
+          minLength: 1
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -8011,16 +8399,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID, this is returned by a successful trade request when creating a conversion.
+          format: uuid
         - name: new_settlement_date
           in: query
           required: true
           type: string
           description: Desired new settlement date of conversion, format YYYY-MM-DD.
+          format: date
       responses:
         '200':
           description: Success.
@@ -8134,16 +8525,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: The UUID of the conversion that is being changed.
+          format: uuid
         - name: new_settlement_date
           required: true
           type: string
           in: formData
           description: New conversion settlement date, format YYYY-MM-DD.
+          format: date
       responses:
         '200':
           description: Success.
@@ -8268,21 +8662,25 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: query
           required: false
           type: string
           description: UUID of the Account that the Conversion belongs to.
+          format: uuid
         - name: contact_id
           in: query
           required: false
           type: string
           description: UUID of the Contact that performed the action.
+          format: uuid
         - name: conversion_id
           in: query
           required: false
           type: string
           description: UUID of the conversion.
+          format: uuid
         - name: event_type
           in: query
           required: false
@@ -8295,6 +8693,7 @@ paths:
           description: >-
             Allows you to return profit and losses that will be made from on or after
             a defined date/time. ISO 8601 standard.
+          format: date-time
         - name: event_date_time_to
           in: query
           required: false
@@ -8302,6 +8701,7 @@ paths:
           description: >-
             Allows you to return profit and losses that will be made from on or
             before a defined date/time. ISO 8601 standard.
+          format: date-time
         - name: amount_from
           in: query
           required: false
@@ -8309,6 +8709,7 @@ paths:
           description: >-
             Allows you to return profit and losses based on a minimum profit or
             loss amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: query
           required: false
@@ -8316,11 +8717,14 @@ paths:
           description: >-
             Allows you to return profit and losses based on a maximum profit or
             loss amount.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: currency
           in: query
           required: false
           type: string
           description: The currency of the profit and loss. ISO 4217 standard.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: scope
           in: query
           required: false
@@ -8340,16 +8744,20 @@ paths:
           required: false
           type: string
           description: Returns a specific page within the results of a search.
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: string
           description: Maximum number of entries to return per page of results.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           description: The field to order entries by.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -8463,8 +8871,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Split Preview
-      description: Gets a preview of the details of each part of a split conversion
-        specified by the provided unique conversion ID {id}.
+      description: Gets a preview of the details of each part of a split conversion specified by the provided unique conversion ID {id}.
       operationId: GetConversionSplitPreview
       produces:
         - application/json
@@ -8474,16 +8881,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: The UUID of the conversion to be split, the UUID is returned by a successful trade request when creating a conversion.
+          format: uuid
         - name: amount
           required: true
           type: string
           in: formData
           description: The amount at which to split this conversion.
+          pattern: ^\d+(\.\d{1,3})?$
       responses:
         '200':
           description: Success.
@@ -8637,8 +9047,7 @@ paths:
         - Conversions
       x-api-group: convert
       summary: Conversion Split
-      description: Splits the conversion specified by the unique ID {id}. Upon success,
-          it returns the details of the parent and new child conversions.
+      description: Splits the conversion specified by the unique ID {id}. Upon success, it returns the details of the parent and new child conversions.
       operationId: SplitConversion
       consumes:
         - multipart/form-data
@@ -8650,16 +9059,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: UUID of the conversion that is being split. The conversion UUID is returned by a successful trade request when creating a conversion."
+          format: uuid
         - name: amount
           required: true
           type: string
           in: formData
           description: The amount at which to split this conversion.
+          pattern: ^\d+(\.\d{1,3})?$
       responses:
         '200':
           description: Success.
@@ -8784,11 +9196,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Conversion UUID - the UUID is returned by a successful trade request when creating a conversion.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -8912,6 +9326,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: payment_type
           in: query
           required: false
@@ -8927,31 +9342,39 @@ paths:
           required: true
           type: string
           description: The currency of the account details required, ISO 4217 standard.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: account_id
           in: query
           required: false
           type: string
           description: UUID of a specific sub-account you want to see the SSIs for.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: page
           in: query
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -9097,7 +9520,7 @@ paths:
         - Funding
       x-api-group: collect
       summary: Get Funding Transaction
-      description: >-
+      description: >2-
 
         Gets the details of an approved funding transaction with the given ID.
 
@@ -9110,16 +9533,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: The Related Entity UUID (related_entity_id) for the transaction.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success
@@ -9222,10 +9648,7 @@ paths:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br>
-        Clients who are implementing Strong Customer Authentication (SCA)
-        for payments should refer to our
-        <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
+      description: Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br> Clients who are implementing Strong Customer Authentication (SCA) for payments should refer to our <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -9237,48 +9660,61 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: x-sca-id
           in: header
           required: false
           type: string
           description: >-
             UUID to correlate to the SCA request generated when Validate Payment was called.
+          format: uuid
         - name: x-sca-token
           in: header
           required: false
           type: string
           description: >-
             The OTP received following the Validate Payment request when SCA was required.
+          pattern: ^\d{6}$
         - name: currency
           in: formData
           required: true
           type: string
           description: Currency in which payment is made. Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
           required: true
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: amount
           in: formData
           required: true
           type: string
           description: Amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: reason
           in: formData
           required: true
           type: string
           description: User-generated reason for payment - freeform text.
+          minLength: 1
+          maxLength: 255
         - name: reference
           in: formData
           required: true
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: formData
           required: true
           type: string
           description: User-generated idempotency key.
+          minLength: 1
+          maxLength: 255
         - name: payment_date
           in: formData
           required: false
@@ -9287,6 +9723,7 @@ paths:
             Instructed date of payment - on this date we will attempt to debit funds on the account and submit the payment
             to the scheme. If the payment cannot be submitted before the cut-off (i.e. due to lack of funding), we will re-attempt
             on the next working day. Defaults to the earliest possible date if not passed as parameter. Any valid ISO 8601 format, e.g. "2023-12-31.
+          format: date
         - name: payment_type
           in: formData
           required: false
@@ -9302,6 +9739,7 @@ paths:
           required: false
           type: string
           description: Conversion UUID
+          format: uuid
         - name: payer_entity_type
           in: formData
           required: false
@@ -9315,41 +9753,57 @@ paths:
           required: false
           type: string
           description: Required if "payer_entity_type" is "company".
+          minLength: 1
+          maxLength: 255
         - name: payer_first_name
           in: formData
           required: false
           type: string
           description: Required if "payer_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: payer_last_name
           in: formData
           required: false
           type: string
           description: Required if "payer_entity_type" is "individual". Cannot contain any numbers or company signifiers.
+          minLength: 1
+          maxLength: 255
         - name: payer_city
           in: formData
           required: false
           type: string
           description: City name, should not consist of only numbers.
+          minLength: 1
+          maxLength: 255
         - name: payer_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: payer_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          minLength: 1
+          maxLength: 255
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: payer_country
           in: formData
           required: false
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: payer_date_of_birth
           in: formData
           required: false
@@ -9358,6 +9812,7 @@ paths:
             If "payer_entity_type" is "company", this is the company registration date. If
             "payer_entity_type" is "individual", this is date of birth. ISO 8601 format
             YYYY-MM-DD.
+          format: date
         - name: payer_identification_type
           in: formData
           required: false
@@ -9391,11 +9846,15 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: ultimate_beneficiary_name
           in: formData
           required: false
           type: string
           description: The name of the ultimate beneficiary if different.
+          minLength: 1
+          maxLength: 255
         - name: purpose_code
           in: formData
           required: false
@@ -9403,6 +9862,8 @@ paths:
           description: >-
             <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">Payment Purpose Code</a> (Mandatory for all local INR and MYR payments, Swift CNY payments,
             and Swift payments in any currency to banks in Bahrain or the United Arab Emirates).
+          minLength: 1
+          maxLength: 255
         - name: on_behalf_of
           in: formData
           required: false
@@ -9411,13 +9872,14 @@ paths:
             A contact UUID for the sub-account you're acting on behalf of.
             Payer details parameters should not be sent if using on_behalf_of,
             they will be populated using the details from the sub-account.
+          format: uuid
         - name: charge_type
           in: formData
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to Swift payments).
             If this is left empty, the account's default value is used.
@@ -9427,22 +9889,27 @@ paths:
           required: false
           type: string
           description: Fee amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: fee_currency
           in: formData
           required: false
           type: string
           description: Currency fee is paid in.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: invoice_number
           in: formData
           required: false
           type: string
           description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if supplying `invoice_date`.
+          pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
           required: false
           type: string
           description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if supplying `invoice_number`.
 
+          format: date
       responses:
         '200':
           description: Success.
@@ -9599,7 +10066,7 @@ paths:
               params: '{ "charge_type" => "shared, ours" }'
             - code: invalid_charge_type
               category: charge_type
-              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              message: Invalid banking_charges supplied, must be in range [ours, shared]
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -9751,36 +10218,45 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: short_reference
           in: query
           required: false
           type: string
           description: Short reference code.
+          minLength: 1
+          maxLength: 25
         - name: currency
           in: query
           required: false
           type: string
           description: Currency in which payment was made. Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount
           in: query
           required: false
           type: string
           description: Exact amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_from
           in: query
           required: false
           type: string
           description: Minimum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: query
           required: false
           type: string
           description: Maximum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: status
           in: query
           required: false
@@ -9802,6 +10278,8 @@ paths:
           required: false
           type: string
           description: User-generated reason for payment. Freeform text.
+          minLength: 1
+          maxLength: 255
         - name: payment_date_from
           in: query
           required: false
@@ -9863,11 +10341,13 @@ paths:
           required: false
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: conversion_id
           in: query
           required: false
           type: string
           description: Conversion UUID
+          format: uuid
         - name: with_deleted
           in: query
           required: false
@@ -9879,11 +10359,15 @@ paths:
           required: false
           type: string
           description: Payment group.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: query
           required: false
           type: string
           description: User-generated idempotency key.
+          minLength: 1
+          maxLength: 255
         - name: scope
           in: query
           required: false
@@ -9899,21 +10383,27 @@ paths:
           required: false
           type: string
           description: Bulk upload reference code.
+          minLength: 1
+          maxLength: 255
         - name: page
           in: query
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -9971,7 +10461,7 @@ paths:
               params: '{ "charge_type" => "shared, ours" }'
             - code: invalid_charge_type
               category: charge_type
-              message:  Invalid banking_charges supplied, must be in range [ours, shared]
+              message: Invalid banking_charges supplied, must be in range [ours, shared]
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -10085,11 +10575,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
         - name: with_deleted
           in: query
           required: false
@@ -10100,6 +10592,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: review_status
           in: query
           required: false
@@ -10241,11 +10734,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
         - name: currency
           in: formData
           required: false
@@ -10253,16 +10748,20 @@ paths:
           description: >-
             Currency in which the payment is being made. Three-letter ISO currency
             code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
           required: false
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: amount
           in: formData
           required: false
           type: string
           description: Payment amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: payment_date
           in: formData
           required: false
@@ -10270,11 +10769,14 @@ paths:
           description: >-
             Instructed date of payment. Any valid ISO 8601 format, e.g.
             "2023-12-31".
+          format: date
         - name: reason
           in: formData
           required: false
           type: string
           description: User-generated reason for payment - freeform text.
+          minLength: 1
+          maxLength: 255
         - name: payment_type
           in: formData
           required: false
@@ -10290,11 +10792,14 @@ paths:
           required: false
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: conversion_id
           in: formData
           required: false
           type: string
           description: Conversion UUID
+          format: uuid
         - name: payer_entity_type
           in: formData
           required: false
@@ -10308,41 +10813,57 @@ paths:
           required: false
           type: string
           description: Required if "payer_entity_type" is "company".
+          minLength: 1
+          maxLength: 255
         - name: payer_first_name
           in: formData
           required: false
           type: string
           description: Required if "payer_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: payer_last_name
           in: formData
           required: false
           type: string
           description: Required if payer_entity_type is "individual".
+          minLength: 1
+          maxLength: 255
         - name: payer_city
           in: formData
           required: false
           type: string
           description: City
+          minLength: 1
+          maxLength: 255
         - name: payer_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: payer_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          minLength: 1
+          maxLength: 255
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: payer_country
           in: formData
           required: false
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: payer_date_of_birth
           in: formData
           required: false
@@ -10351,6 +10872,7 @@ paths:
             If the "payer_entity_type" is "company", this is the company registration date. If
             the "payer_entity_type" is "individual", this is the payer's date of birth. ISO 8601 format
             YYYY-MM-DD.
+          format: date
         - name: payer_identification_type
           in: formData
           required: false
@@ -10384,28 +10906,35 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: ultimate_beneficiary_name
           in: formData
           required: false
           type: string
           description: The name of the ultimate beneficiary if different.
+          minLength: 1
+          maxLength: 255
         - name: purpose_code
           in: formData
           required: false
           type: string
           description: Payment Purpose Code (Mandatory for all INR payments). See our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> for more information.
+          minLength: 1
+          maxLength: 255
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: charge_type
           in: formData
           required: false
           type: string
           enum:
-          - ours
-          - shared
+            - ours
+            - shared
           description: >-
             Payment Charges Setting value (only applicable to Swift payments).
             If empty, the account's default value is used.
@@ -10415,21 +10944,26 @@ paths:
           required: false
           type: string
           description: Fee amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: fee_currency
           in: formData
           required: false
           type: string
           description: The currency the fee is paid in.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: invoice_number
           in: formData
           required: false
           type: string
           description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if `invoice_date` is supplied.
+          pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
           required: false
           type: string
           description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if `invoice_number` is supplied.
+          format: date
       responses:
         '200':
           description: Success.
@@ -10573,7 +11107,7 @@ paths:
               params: '{ "charge_type" => "shared, ours" }'
             - code: charge_type_not_in_range
               category: charge_type
-              message:  'charge_type should be in range: ours, shared'
+              message: 'charge_type should be in range: ours, shared'
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -10716,11 +11250,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -10851,16 +11387,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -10992,6 +11531,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: 'payment_ids[]'
           in: query
           required: true
@@ -10999,6 +11539,7 @@ paths:
           items:
             type: string
           description: One or more payment UUID identifiers to be authorised.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -11111,16 +11652,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID.
+          format: uuid
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -11239,11 +11783,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -11368,6 +11914,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: payment_fee_id
           in: formData
           required: true
@@ -11518,11 +12065,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: payment_date
           in: query
           required: true
           type: string
           description: The date when the payment will be released. Any valid ISO 8601 format, e.g. "2023-12-31".
+          format: date
         - name: payment_type
           in: query
           required: true
@@ -11538,11 +12087,15 @@ paths:
           required: true
           type: string
           description: The three-letter ISO code of the currency of the payment.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: bank_country
           in: query
           required: true
           type: string
           description: The two-letter ISO code of the country where the payment is sent.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
       responses:
         '200':
           description: Success.
@@ -11682,21 +12235,26 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: page
           in: query
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -11807,21 +12365,27 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: query
           required: false
           type: string
           description: Account UUID. If this is left empty, the account that is making the API call is used.
+          format: uuid
         - name: payment_currency
           in: query
           required: true
           type: string
           description: Currency of the payment.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: payment_destination_country
           in: query
           required: true
           type: string
           description: Destination Country of the payment.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: payment_type
           in: query
           required: true
@@ -11968,6 +12532,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: formData
           required: true
@@ -12113,6 +12678,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: x-sca-to-authenticated-user
           in: header
           required: false
@@ -12125,31 +12691,40 @@ paths:
           required: false
           type: string
           description: Payment UUID
+          format: uuid
         - name: currency
           in: formData
           required: true
           type: string
           description: Currency in which payment is made. Three-digit currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: beneficiary_id
           in: formData
           required: true
           type: string
           description: Beneficiary UUID
+          format: uuid
         - name: amount
           in: formData
           required: true
           type: string
           description: Amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: reason
           in: formData
           required: true
           type: string
           description: User-generated reason for payment - freeform text.
+          minLength: 1
+          maxLength: 255
         - name: reference
           in: formData
           required: true
           type: string
           description: User-generated reference code.
+          minLength: 1
+          maxLength: 255
         - name: payment_date
           in: formData
           required: false
@@ -12157,6 +12732,7 @@ paths:
           description: >-
             Instructed date of payment. Any valid ISO 8601 format, e.g.
             "2023-12-31".
+          format: date
         - name: payment_type
           in: formData
           required: false
@@ -12172,6 +12748,7 @@ paths:
           required: false
           type: string
           description: Conversion UUID
+          format: uuid
         - name: payer_entity_type
           in: formData
           required: false
@@ -12185,41 +12762,57 @@ paths:
           required: false
           type: string
           description: Required if "payer_entity_type" is "company".
+          minLength: 1
+          maxLength: 255
         - name: payer_first_name
           in: formData
           required: false
           type: string
           description: Required if "payer_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: payer_last_name
           in: formData
           required: false
           type: string
           description: Required if "payer_entity_type" is "individual".
+          minLength: 1
+          maxLength: 255
         - name: payer_city
           in: formData
           required: false
           type: string
           description: City
+          minLength: 1
+          maxLength: 255
         - name: payer_address
           in: formData
           required: false
           type: string
           description: First line of address.
+          minLength: 1
+          maxLength: 255
         - name: payer_postcode
           in: formData
           required: false
           type: string
           description: Postal code
+          minLength: 1
+          maxLength: 255
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
           description: State or province.
+          minLength: 1
+          maxLength: 255
         - name: payer_country
           in: formData
           required: false
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: payer_date_of_birth
           in: formData
           required: false
@@ -12228,6 +12821,7 @@ paths:
             If "payer_entity_type" is "company", this is the company registration date. If
             "payer_entity_type" is "individual", this is the individual's date of birth. ISO 8601 format
             YYYY-MM-DD.
+          format: date
         - name: payer_identification_type
           in: formData
           required: false
@@ -12261,26 +12855,35 @@ paths:
           description: >-
             A unique reference code for the identification document, such as a
             passport number.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: formData
           required: false
           type: string
           description: User-generated idempotency key.
+          minLength: 1
+          maxLength: 255
         - name: ultimate_beneficiary_name
           in: formData
           required: false
           type: string
           description: The name of the ultimate beneficiary if different.
+          minLength: 1
+          maxLength: 255
         - name: purpose_code
           in: formData
           required: false
           type: string
           description: Payment Purpose Code (Mandatory for all INR payments).
+          minLength: 1
+          maxLength: 255
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: charge_type
           in: formData
           required: false
@@ -12297,11 +12900,14 @@ paths:
           required: false
           type: string
           description: Fee amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: fee_currency
           in: formData
           required: false
           type: string
           description: Currency fee is paid in.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
       responses:
         '200':
           description: Success.
@@ -12451,7 +13057,7 @@ paths:
               params: '{ "charge_type" => "shared, ours" }'
             - code: charge_type_not_in_range
               category: charge_type
-              message:  'charge_type should be in range: ours, shared'
+              message: 'charge_type should be in range: ours, shared'
               params: ''
             - code: on_behalf_of_self
               category: on_behalf_of
@@ -12586,11 +13192,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payment UUID
+          format: uuid
         - name: notification_type
           in: query
           required: true
@@ -12706,16 +13314,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Payer UUID.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -12815,148 +13426,148 @@ paths:
               type: string
               description: A unique reference for the request.
   /rates/find:
-      get:
-        tags:
-          - Rates
-        x-api-group: convert
-        summary: Get Basic Rates
-        description: Gets indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br>
-              This endpoint is intended to provide an indication of the rate available in the
-              market and can support requests for multiple currency pairs, so is good for polling
-              requirements such as live FX ticker widgets. This endpoint should be used where speed,
-              availability and the ability to request multiple currency pairs is important.
-        operationId: GetBasicRates
-        produces:
-          - application/json
-        parameters:
-          - name: X-Auth-Token
-            in: header
-            required: true
-            type: string
-            description: Authentication token
-          - name: currency_pair
-            in: query
-            required: true
-            type: string
-            description: 'Concatenated string of the two currencies traded, e.g. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
-          - name: on_behalf_of
-            in: query
-            required: false
-            type: string
-            description: A contact UUID for the sub-account you're acting on behalf of.
-          - name: ignore_invalid_pairs
-            in: query
-            required: false
-            type: boolean
-            description: Ignore the validation of currency pairs.
-        responses:
-          '200':
-            description: Success.
-            schema:
-              $ref: '#/definitions/RatesBasic'
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '400':
-            description: Client error.
-            x-errors:
-              - code: currency_pair_is_too_long
-                category: currency_pair
-                message: currency_pair can not be longer than 2450 character(s)
-                params: '{ "maxlength" => 2450 }'
-              - code: currency_pair_is_too_short
-                category: currency_pair
-                message: currency_pair can not be shorter than 6 letter(s)
-                params: '{ "minlength" => 6 }'
-              - code: currency_pair_is_required
-                category: currency_pair
-                message: currency_pair is required
-                params: ''
-              - code: invalid_currency_pair
-                category: currency_pair
-                message: Invalid currency pair
-                params: '{ "currency_pair" => ["AAABBB"] }'
-              - code: ignore_invalid_pairs_type_is_wrong
-                category: currency_pair
-                message: ignore_invalid_pairs should be of boolean type
-                params: '{ "ignore_invalid_pairs": "not_true" }'
-              - code: on_behalf_of_self
-                category: on_behalf_of
-                message: You cannot act on behalf of your own Contact
-                params: ''
-              - code: contact_not_found
-                category: on_behalf_of
-                message: Contact was not found for this id
-                params: ''
-            schema:
-              $ref: '#/definitions/GetBasicRatesError'
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '401':
-            description: Unauthorized.
-            x-errors:
-              - code: invalid_supplied_credentials
-                category: username
-                message: Authentication failed with the supplied credentials
-                params: ''
-            schema:
-              $ref: '#/definitions/UnauthorizedError'
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '404':
-            description: Resource not found.
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '429':
-            description: Too many requests.
-            x-errors:
-              - code: too_many_requests
-                category: base
-                message: >-
-                  Too many requests have been made to the api. Please refer to the
-                  Developer Center for more information
-                params: ''
-            schema:
-              $ref: '#/definitions/RateLimitError'
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '500':
-            description: Internal server error
-            x-errors:
-              - code: internal_server_error
-                category: base
-                message: Internal server error
-                params: ''
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          '503':
-            description: Service is temporary unavailable
-            x-errors:
-              - code: service_unavailable
-                category: base
-                message: Service is temporarily unavailable
-                params: ''
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
-          default:
-            description: Unexpected error.
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
+    get:
+      tags:
+        - Rates
+      x-api-group: convert
+      summary: Get Basic Rates
+      description: Gets indicative foreign exchange rate information for one or more currency pairs in a single request. <br><br> This endpoint is intended to provide an indication of the rate available in the market and can support requests for multiple currency pairs, so is good for polling requirements such as live FX ticker widgets. This endpoint should be used where speed, availability and the ability to request multiple 
+        currency pairs is important.
+      operationId: GetBasicRates
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+          minLength: 32
+        - name: currency_pair
+          in: query
+          required: true
+          type: string
+          description: 'Concatenated string of the two currencies traded, e.g. "USDEUR". More than one pair can be entered, separated by a comma e.g. "EURGBP,GBPUSD,EURUSD".'
+          pattern: ^[A-Z]{6}$
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
+        - name: ignore_invalid_pairs
+          in: query
+          required: false
+          type: boolean
+          description: Ignore the validation of currency pairs.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/RatesBasic'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: currency_pair_is_too_long
+              category: currency_pair
+              message: currency_pair can not be longer than 2450 character(s)
+              params: '{ "maxlength" => 2450 }'
+            - code: currency_pair_is_too_short
+              category: currency_pair
+              message: currency_pair can not be shorter than 6 letter(s)
+              params: '{ "minlength" => 6 }'
+            - code: currency_pair_is_required
+              category: currency_pair
+              message: currency_pair is required
+              params: ''
+            - code: invalid_currency_pair
+              category: currency_pair
+              message: Invalid currency pair
+              params: '{ "currency_pair" => ["AAABBB"] }'
+            - code: ignore_invalid_pairs_type_is_wrong
+              category: currency_pair
+              message: ignore_invalid_pairs should be of boolean type
+              params: '{ "ignore_invalid_pairs": "not_true" }'
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetBasicRatesError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   /rates/detailed:
     get:
       tags:
@@ -12980,16 +13591,21 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: buy_currency
           in: query
           required: true
           type: string
           description: Currency purchased - three-letter ISO code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: query
           required: true
           type: string
           description: Currency sold - three-letter ISO code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: fixed_side
           in: query
           required: true
@@ -13003,11 +13619,13 @@ paths:
           required: true
           type: string
           description: Amount of the fixed buy or sell currency.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: conversion_date
           in: query
           required: false
@@ -13214,6 +13832,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: identifier_type
           in: formData
           required: true
@@ -13233,6 +13852,8 @@ paths:
           required: true
           type: string
           description: The value of the account identifier specified in identifier_type (e.g. the IBAN code).
+          minLength: 1
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -13373,6 +13994,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: currency
           in: query
           required: true
@@ -13380,11 +14002,15 @@ paths:
           description: >-
             Currency in which money is held in the beneficiary's bank account.
             Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: bank_account_country
           in: query
           required: true
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: beneficiary_country
           in: query
           required: true
@@ -13393,6 +14019,8 @@ paths:
             Two-letter ISO country code. If the beneficiary is a company, this is the
             country in which the company is registered. If the beneficiary is an
             individual, this is the country in which they are based.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
       responses:
         '200':
           description: Success.
@@ -13502,13 +14130,13 @@ paths:
       x-api-group: manage
       summary: Get Conversion Dates
       description: >-
-         Provides a list of upcoming non-trading dates, such as weekends or
-         public holidays, for a specified currency pair. Common use cases
-         include situations where this information needs to be provided, or for
-         planning upcoming conversion bookings. <br><br>
-         Many currencies are triangulated; this means that holidays affecting the intermediary
-         currency, as well as the sale and purchase currencies, will impact transactions. Find out more
-         at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>
+        Provides a list of upcoming non-trading dates, such as weekends or
+        public holidays, for a specified currency pair. Common use cases
+        include situations where this information needs to be provided, or for
+        planning upcoming conversion bookings. <br><br>
+        Many currencies are triangulated; this means that holidays affecting the intermediary
+        currency, as well as the sale and purchase currencies, will impact transactions. Find out more
+        at our <a href="https://support.currencycloud.com/hc/en-gb/articles/5223342659484-Currency-Triangulation">support article.</a>
       operationId: GetConversionDates
       produces:
         - application/json
@@ -13518,11 +14146,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: conversion_pair
           in: query
           required: true
           type: string
           description: 'Concatenated string of the currency codes for the two currencies involved, e.g. "USDEUR".'
+          pattern: ^[A-Z]{6}$
         - name: start_date
           in: query
           required: false
@@ -13534,6 +14164,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -13664,6 +14295,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
       responses:
         '200':
           description: Success.
@@ -13762,11 +14394,14 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: payer_country
           in: query
           required: true
           type: string
           description: Two-letter ISO country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: payer_entity_type
           in: query
           required: false
@@ -13790,6 +14425,8 @@ paths:
           required: false
           type: string
           description: Three-letter ISO 4217 currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
       responses:
         '200':
           description: Success.
@@ -13908,11 +14545,14 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: currency
           in: query
           required: true
           type: string
           description: Currency in which payment made. Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: start_date
           in: query
           required: false
@@ -14032,11 +14672,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: query
           required: false
           type: string
           description: Account UUID
+          format: uuid
         - name: payment_type
           in: query
           required: false
@@ -14176,6 +14818,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: currency
           in: query
           required: true
@@ -14183,6 +14826,8 @@ paths:
           description: >-
             Three-letter ISO currency code for the currency in which payment will be made.
             No purpose codes will be returned if an invalid currency code is given.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: entity_type
           in: query
           required: false
@@ -14196,6 +14841,8 @@ paths:
           required: true
           type: string
           description: Two-letter ISO country code of the bank account.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
       responses:
         '200':
           description: Success.
@@ -14307,16 +14954,20 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: currency
           in: query
           required: false
           type: string
           description: Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: account_id
           in: query
           required: false
           type: string
           description: Account UUID
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -14441,26 +15092,34 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: description
           in: formData
           required: false
           type: string
           description: Description that will be applied to the report.
+          minLength: 1
+          maxLength: 255
         - name: buy_currency
           in: formData
           required: false
           type: string
           description: Three-letter ISO 4217 currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: sell_currency
           in: formData
           required: false
           type: string
           description: Three-letter ISO 4217 currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: client_buy_amount_from
           in: formData
           required: false
@@ -14491,24 +15150,28 @@ paths:
           type: string
           description: Minimum buy amount (sub-accounts).
           format: numeric
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_buy_amount_to
           in: formData
           required: false
           type: string
           description: Maximum buy amount (sub-accounts).
           format: numeric
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_sell_amount_from
           in: formData
           required: false
           type: string
           description: Minimum sell amount (sub-accounts).
           format: numeric
+          pattern: ^\d+(\.\d{1,3})?$
         - name: partner_sell_amount_to
           in: formData
           required: false
           type: string
           description: Maximum sell amount (sub-accounts).
           format: numeric
+          pattern: ^\d+(\.\d{1,3})?$
         - name: client_status
           in: formData
           required: false
@@ -14577,6 +15240,8 @@ paths:
           required: false
           type: string
           description: Unique request ID of conversion.
+          minLength: 1
+          maxLength: 255
         - name: scope
           in: formData
           required: false
@@ -14716,36 +15381,46 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: formData
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: description
           in: formData
           required: false
           type: string
           description: Description that will be applied to report.
+          minLength: 1
+          maxLength: 255
         - name: currency
           in: formData
           required: false
           type: string
           description: Three-letter ISO 4217 currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount_from
           in: formData
           required: false
           type: number
           description: Minimum payment amount to 2 decimal places.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: formData
           required: false
           type: number
           description: Maximum payment amount to 2 decimal places.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: bulk_upload_reference
           in: formData
           required: false
           type: string
           description: Reference to Bulk Upload.
+          minLength: 1
+          maxLength: 255
         - name: status
           in: formData
           required: false
@@ -14804,11 +15479,13 @@ paths:
           required: false
           type: string
           description: ID of the beneficiary.
+          format: uuid
         - name: conversion_id
           in: formData
           required: false
           type: string
           description: Conversion unique ID.
+          format: uuid
         - name: with_deleted
           in: formData
           required: false
@@ -14819,11 +15496,15 @@ paths:
           required: false
           type: string
           description: ID of the payment group.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: formData
           required: false
           type: string
           description: Unique request ID of payment.
+          minLength: 1
+          maxLength: 255
         - name: scope
           in: formData
           required: false
@@ -14957,16 +15638,21 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: short_reference
           in: query
           required: false
           type: string
           description: Your unique short reference.
+          minLength: 1
+          maxLength: 25
         - name: description
           in: query
           required: false
           type: string
           description: 'Description that was provided during the report creation process.'
+          minLength: 1
+          maxLength: 255
         - name: created_at_from
           in: query
           required: false
@@ -15028,17 +15714,21 @@ paths:
           required: false
           type: integer
           description: Page number.
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
           type: string
           default: created_at
           description: Any field name to change the sort order.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -15053,9 +15743,9 @@ paths:
           required: false
           type: string
           enum:
-              - all
-              - clients
-              - own
+            - all
+            - clients
+            - own
           description: Specify which account level will be used; 'own' is the default value.
       responses:
         '200':
@@ -15179,16 +15869,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: ID of the report.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -15293,16 +15986,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: The Related Entity UUID (related_entity_id) for the Transaction.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -15414,31 +16110,38 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: currency
           in: query
           required: false
           type: string
           description: Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount
           in: query
           required: false
           type: string
           description: Amount the transaction is for.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_from
           in: query
           required: false
           type: string
           description: Minimum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: query
           required: false
           type: string
           description: Maximum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: action
           in: query
           required: false
@@ -15478,11 +16181,14 @@ paths:
           required: false
           type: string
           description: UUID of the related entity.
+          format: uuid
         - name: related_entity_short_reference
           in: query
           required: false
           type: string
           description: Short reference code.
+          minLength: 1
+          maxLength: 25
         - name: status
           in: query
           required: false
@@ -15555,6 +16261,7 @@ paths:
           required: false
           type: string
           description: Beneficiary UUID. Required if "related_entity_type" is "payment".
+          format: uuid
         - name: currency_pair
           in: query
           required: false
@@ -15562,6 +16269,7 @@ paths:
           description: >-
             Concatenated string of the two currencies traded, e.g. "USDEUR".
             Required if "related_entity_type" is "conversion".
+          pattern: ^[A-Z]{6}$
         - name: scope
           in: query
           required: false
@@ -15577,11 +16285,13 @@ paths:
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
@@ -15593,6 +16303,8 @@ paths:
             the query parameter 'status' with the value 'completed' in order to ensure that transactions
             are sequenced in the order they were processed. Without this, transactions that completed
             within the same second may not be ordered correctly.
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -15763,16 +16475,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Transaction UUID
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -15884,36 +16599,46 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: source_account_id
           in: formData
           required: true
           type: string
           description: Account UUID of the paying account.
+          format: uuid
         - name: destination_account_id
           in: formData
           required: true
           type: string
           description: Account UUID of the receiving account.
+          format: uuid
         - name: currency
           in: formData
           required: true
           type: string
           description: Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount
           in: formData
           required: true
           type: number
           description: Amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: reason
           in: formData
           required: false
           type: string
           description: User-generated reason for transfer, freeform text.
+          minLength: 1
+          maxLength: 255
         - name: unique_request_id
           in: formData
           required: false
           type: string
           description: User-generated idempotency key. The value must be 100 characters or fewer.
+          minLength: 1
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -16051,16 +16776,19 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: Transfer UUID, this was returned when the transfer was created.
+          format: uuid
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -16175,26 +16903,32 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: on_behalf_of
           in: query
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: short_reference
           in: query
           required: false
           type: string
           description: Short reference code.
+          minLength: 1
+          maxLength: 25
         - name: source_account_id
           in: query
           required: false
           type: string
           description: Account UUID of the paying account.
+          format: uuid
         - name: destination_account_id
           in: query
           required: false
           type: string
           description: Account UUID of the receiving account.
+          format: uuid
         - name: status
           in: query
           required: false
@@ -16209,16 +16943,20 @@ paths:
           required: false
           type: string
           description: Three-letter ISO currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: amount_from
           in: query
           required: false
           type: number
           description: Minimum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: amount_to
           in: query
           required: false
           type: number
           description: Maximum amount
+          pattern: ^\d+(\.\d{1,3})?$
         - name: created_at_from
           in: query
           required: false
@@ -16266,21 +17004,25 @@ paths:
           required: false
           type: string
           description: Contact UUID of transfer instructor.
+          format: uuid
         - name: creator_account_id
           in: query
           required: false
           type: string
           description: Account UUID of transfer instructor.
+          format: uuid
         - name: page
           in: query
           required: false
           type: integer
           description: Page number
+          pattern: ^\d+$
         - name: per_page
           in: query
           required: false
           type: integer
           description: Number of results per page.
+          pattern: ^\d+$
         - name: order
           in: query
           required: false
@@ -16292,6 +17034,8 @@ paths:
             - created_at
             - updated_at
             - completed_at
+          minLength: 1
+          maxLength: 255
         - name: order_asc_desc
           in: query
           required: false
@@ -16306,6 +17050,8 @@ paths:
           required: false
           type: string
           description: User-generated idempotency key.
+          minLength: 1
+          maxLength: 255
       responses:
         '200':
           description: Success.
@@ -16471,11 +17217,13 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: path
           required: true
           type: string
           description: ID of the transfer to be cancelled.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -16613,6 +17361,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: account_id
           in: query
           required: false
@@ -16620,6 +17369,7 @@ paths:
           description: >-
             The UUID of a sub-account you want to see the withdrawal accounts for. If omitted the withdrawal accounts
             for the house account and all sub-accounts are returned.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -16745,6 +17495,7 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: withdrawal_account_id
           in: path
           required: true
@@ -16752,16 +17503,20 @@ paths:
           description: >-
             The withdrawal account ID you want to pull the funds from.
             The funds will be pulled into the account ID related to this withdrawal account.
+          format: uuid
         - name: reference
           in: formData
           required: true
           type: string
           description: The reference you want on the statement.
+          minLength: 1
+          maxLength: 255
         - name: amount
           in: formData
           required: true
           type: number
           description: The amount of funds to pull in USD.
+          pattern: ^\d+(\.\d{1,3})?$
       responses:
         '200':
           description: Success.
@@ -16916,62 +17671,83 @@ paths:
           required: true
           type: string
           description: Authentication token
+          minLength: 32
         - name: id
           in: formData
           required: true
           type: string
           description: Unique value in UUID format, user-generated with each request.
+          format: uuid
         - name: sender_name
           in: formData
           required: false
           type: string
           default: Test sender
           description: Sender's name.
+          minLength: 1
+          maxLength: 255
         - name: sender_address
           in: formData
           required: false
           type: string
           description: Sender's address.
+          minLength: 1
+          maxLength: 255
         - name: sender_country
           in: formData
           required: false
           type: string
           description: Two character ISO sender country code.
+          format: iso3166-1-alpha-2
+          pattern: ^[A-Z]{2}$
         - name: sender_reference
           in: formData
           required: false
           type: string
           description: Sender reference.
+          minLength: 1
+          maxLength: 255
         - name: sender_account_number
           in: formData
           required: false
           type: string
           description: Sender account number.
+          minLength: 1
+          maxLength: 255
         - name: sender_routing_code
           in: formData
           required: false
           type: string
           description: Sender routing code.
+          minLength: 1
+          maxLength: 255
         - name: receiver_account_number
           in: formData
           required: true
           type: string
           description: A client's virtual account number or its sub-account (as seen in Find Funding Accounts).
+          minLength: 1
+          maxLength: 255
         - name: receiver_routing_code
           in: formData
           required: false
           type: string
           description: A client's virtual account routing code or its sub-account (as seen in Find Funding Accounts).
+          minLength: 1
+          maxLength: 255
         - name: amount
           in: formData
           required: true
           type: number
           description: Amount of the emulated transaction.
+          pattern: ^\d+(\.\d{1,3})?$
         - name: currency
           in: formData
           required: true
           type: string
           description: Three-digit currency code.
+          format: iso-4217
+          pattern: ^[A-Z]{3}$
         - name: action
           in: formData
           required: false
@@ -16986,6 +17762,7 @@ paths:
           required: false
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
       responses:
         '200':
           description: Success.
@@ -17141,204 +17918,208 @@ paths:
               type: string
               description: A unique reference for the request.
   /collections_screening/{transactionId}/complete:
-      put:
-        tags:
-          - Transaction Approval
-        x-api-group: collect
-        summary: Accept or Reject Inbound Transaction
-        description: >-
+    put:
+      tags:
+        - Transaction Approval
+      x-api-group: collect
+      summary: Accept or Reject Inbound Transaction
+      description: >2-
 
-          Allows you to accept or reject an inbound transaction before the funds are credited to the
-          beneficiary’s account.
-        operationId: CompleteCollectionsScreening
-        consumes:
-          - application/x-www-form-urlencoded
-        produces:
-          - application/json
-        parameters:
-          - name: X-Auth-Token
-            in: header
-            required: true
-            type: string
-            description: Authentication token.
-          - name: transactionId
-            in: path
-            required: true
-            type: string
-            description: The related_entity_id from the Cash Manager notification.
-          - name: accepted
-            in: formData
-            required: true
-            type: boolean
-            description: Should the transaction be accepted - true or false.
-            enum:
-              - true
-              - false
-          - name: reason
-            in: formData
-            required: true
-            type: string
-            description: >
-              Reason for acceptance or rejection. If "accepted" is true, the value should be "accepted".
-              If "accepted" is false, the value should be one of the other values.
-            enum:
-              - accepted
-              - sanctioned_match
-              - unsupported_currency
-              - insufficient_transaction_information
-              - suspected_fraud
-              - internal_watchlist_match
-              - suspected_money_laundering_activity
-        responses:
-          '200':
-            description: Success.
-            schema:
-              type: object
-              properties:
-                transaction_id:
-                  description: The transaction UUID
-                  type: string
-                  example: bdcca5e6-32fe-45f6-9476-6f8f518e6270
-                account_id:
-                  type: string
-                  description: Account UUID
-                  example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
-                house_account_id:
-                  description: House Account UUID
-                  type: string
-                  example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
-                result:
-                  type: object
-                  properties:
-                    reason:
-                      description: The reason why the transaction was accepted or rejected.
-                      type: string
-                      example: Accepted
-                    accepted:
-                      description: Was the transaction accepted? True or false.
-                      type: boolean
-                      example: true
-            headers:
-              X-Request-Id:
+        Allows you to accept or reject an inbound transaction before the funds are credited to the
+        beneficiary’s account.
+      operationId: CompleteCollectionsScreening
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+          minLength: 32
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: The related_entity_id from the Cash Manager notification.
+          format: uuid
+        - name: accepted
+          in: formData
+          required: true
+          type: boolean
+          description: Should the transaction be accepted - true or false.
+          enum:
+            - true
+            - false
+        - name: reason
+          in: formData
+          required: true
+          type: string
+          description: >
+            Reason for acceptance or rejection. If "accepted" is true, the value should be "accepted".
+            If "accepted" is false, the value should be one of the other values.
+          enum:
+            - accepted
+            - sanctioned_match
+            - unsupported_currency
+            - insufficient_transaction_information
+            - suspected_fraud
+            - internal_watchlist_match
+            - suspected_money_laundering_activity
+          minLength: 1
+          maxLength: 255
+      responses:
+        '200':
+          description: Success.
+          schema:
+            type: object
+            properties:
+              transaction_id:
+                description: The transaction UUID
                 type: string
-                description: A unique reference for the request.
+                example: bdcca5e6-32fe-45f6-9476-6f8f518e6270
+              account_id:
+                type: string
+                description: Account UUID
+                example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+              house_account_id:
+                description: House Account UUID
+                type: string
+                example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+              result:
+                type: object
+                properties:
+                  reason:
+                    description: The reason why the transaction was accepted or rejected.
+                    type: string
+                    example: Accepted
+                  accepted:
+                    description: Was the transaction accepted? True or false.
+                    type: boolean
+                    example: true
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
 
-          '400':
-            description: Client error.
-            x-errors:
-              - code: screening_already_expired
-                category: base
-                message: Screening is already expired.
-                params: ''
-              - code: transaction_id_is_not_valid_uuid
-                category: base
-                message: transaction_id should be in UUID format
-                params: ''
-              - code: accepted_type_is_wrong
-                category: base
-                message: accepted should be of boolean type
-                params: ''
-              - code: invalid_request
-                category: base
-                message: "Invalid reason provided, expected one of: sanctioned_match, unsupported_currency, insufficient_transaction_information, suspected_fraud, internal_watchlist_match, suspected_money_laundering_activity"
-                params: ''
-            headers:
-              X-Request-Id:
+        '400':
+          description: Client error.
+          x-errors:
+            - code: screening_already_expired
+              category: base
+              message: Screening is already expired.
+              params: ''
+            - code: transaction_id_is_not_valid_uuid
+              category: base
+              message: transaction_id should be in UUID format
+              params: ''
+            - code: accepted_type_is_wrong
+              category: base
+              message: accepted should be of boolean type
+              params: ''
+            - code: invalid_request
+              category: base
+              message: "Invalid reason provided, expected one of: sanctioned_match, unsupported_currency, insufficient_transaction_information, suspected_fraud, internal_watchlist_match, suspected_money_laundering_activity"
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request
+          schema:
+            type: object
+            properties:
+              error_code:
                 type: string
-                description: A unique reference for the request
-            schema:
-              type: object
-              properties:
-                error_code:
-                  type: string
-                  example: '400'
-                error_messages:
-                  type: object
-                  properties:
-                    base:
-                      type: object
-                      properties:
-                        code:
-                          type: string
-                          example: '400'
-                        message:
-                          type: string
-                          example: Screening is already expired.
-                        params:
-                          type: object
-                          example: { }
-          '401':
-            description: Authentication failed.
-            x-errors:
-              - code: invalid_supplied_credentials
-                category: base
-                message: Authentication failed with the supplied credentials
-                params: ''
-            schema:
-              type: object
-              properties:
-                error_code:
-                  type: string
-                  example: auth_failed
-                error_messages:
-                  type: object
-                  properties:
-                    username:
-                      type: array
-                      items:
+                example: '400'
+              error_messages:
+                type: object
+                properties:
+                  base:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: '400'
+                      message:
+                        type: string
+                        example: Screening is already expired.
+                      params:
                         type: object
-                        properties:
-                          code:
-                            type: string
-                            example: invalid_supplied_credentials
-                          message:
-                            type: string
-                            example: Authentication failed with the supplied credentials
-                          params:
-                            type: object
-                            example: { }
-            headers:
-              X-Request-Id:
+                        example: {}
+        '401':
+          description: Authentication failed.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: base
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            type: object
+            properties:
+              error_code:
                 type: string
-                description: A unique reference for the request.
-          '404':
-            description: Resource not found.
-            x-errors:
-              - code: resource_not_found
-                category: base
-                message: Unable to find the resource.
-                params: ''
-            schema:
-              type: object
-              properties:
-                error_code:
-                  type: string
-                  example: '404'
-                error_messages:
-                  type: object
-                  properties:
-                    base:
+                example: auth_failed
+              error_messages:
+                type: object
+                properties:
+                  username:
+                    type: array
+                    items:
                       type: object
                       properties:
                         code:
                           type: string
-                          example: '404'
+                          example: invalid_supplied_credentials
                         message:
                           type: string
-                          example: Unable to find the resource.
+                          example: Authentication failed with the supplied credentials
                         params:
                           type: object
-                          example: { }
-            headers:
-              X-Request-Id:
+                          example: {}
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          x-errors:
+            - code: resource_not_found
+              category: base
+              message: Unable to find the resource.
+              params: ''
+          schema:
+            type: object
+            properties:
+              error_code:
                 type: string
-                description: A unique reference for the request.
-          default:
-            description: Unexpected error.
-            headers:
-              X-Request-Id:
-                type: string
-                description: A unique reference for the request.
+                example: '404'
+              error_messages:
+                type: object
+                properties:
+                  base:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: '404'
+                      message:
+                        type: string
+                        example: Unable to find the resource.
+                      params:
+                        type: object
+                        example: {}
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
 
 
 
@@ -17652,8 +18433,8 @@ definitions:
       auth_token:
         type: string
         description: >-
-          A randomly-generated 64-digit authentication token. Clients must store
-          this securely and destroy it when it is no longer needed.
+          Currently a randomly-generated 32-digit authentication token. Clients must store
+          this securely and destroy it when it is no longer needed. 
     example:
       auth_token: 043cc6069f5e32757647641460d1d5ed
   AvailableCurrencies:
@@ -18012,7 +18793,7 @@ definitions:
 
       sort_code:
         type: string
-        description:  A sort code is required.
+        description: A sort code is required.
       aba:
         type: string
         description: An ABA (American Bankers Association) routing number is required.
@@ -19582,7 +20363,7 @@ definitions:
                 description: An explanation of the error in English.
               params:
                 type: object
-                default: { }
+                default: {}
                 description: >-
                   Relevant validation rules that failed. This can be used for
                   translations.
@@ -19962,8 +20743,8 @@ definitions:
     description: >
       Client error information for the Get Account Payment Charges Settings endpoint.
     required:
-    - error_code
-    - error_messages
+      - error_code
+      - error_messages
     properties:
       error_code:
         type: string
@@ -19982,8 +20763,8 @@ definitions:
               An object that represents one of the reasons why the input
               parameter failed.
             required:
-            - code
-            - message
+              - code
+              - message
             properties:
               code:
                 type: string
@@ -20007,8 +20788,8 @@ definitions:
     description: >
       Client error information for the Manage Account Payment Charges Settings endpoint.
     required:
-    - error_code
-    - error_messages
+      - error_code
+      - error_messages
     properties:
       error_code:
         type: string
@@ -20027,8 +20808,8 @@ definitions:
               An object that represents one of the reasons why the input
               parameter failed.
             required:
-            - code
-            - message
+              - code
+              - message
             properties:
               code:
                 type: string
@@ -22142,13 +22923,13 @@ definitions:
         type: string
         description: Three-letter ISO currency code for the fee's currency.
     example:
-       account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
-       payment_currency: USD
-       payment_destination_country: US
-       payment_type: regular
-       charge_type: null
-       fee_amount: '10.00'
-       fee_currency: EUR
+      account_id: 0534aaf2-2egg-0134-2f36-10b11cd33cfb
+      payment_currency: USD
+      payment_destination_country: US
+      payment_type: regular
+      charge_type: null
+      fee_amount: '10.00'
+      fee_currency: EUR
   RatesBasic:
     properties:
       rates:
@@ -22171,11 +22952,11 @@ definitions:
           A list of valid currency pairs that are not currently available.
     example:
       EURUSD:
-          - '1.3803'
-          - '1.3809'
+        - '1.3803'
+        - '1.3809'
       GBPZAR:
-          - '17.5271'
-          - '17.5279'
+        - '17.5271'
+        - '17.5279'
   RateDetailed:
     type: object
     description: Detailed rate information.
@@ -23112,49 +23893,49 @@ definitions:
                   minlength: 1
                   maxlength: 255
   RetryNotificationError:
-      type: object
-      description: Client error information for the retry payment notification endpoint.
-      required:
-        - error_code
-        - error_messages
-      properties:
-        error_code:
-          type: string
-          description: A high-level error code for the whole request.
-        error_messages:
-          type: object
-          description: >-
-            Detailed error information for  input parameters that failed
-            validation. Object keys are the names of the invalid input parameters.
-            Each parameter may have one or more reasons why it failed.
-          additionalProperties:
-            type: array
-            items:
-              type: object
-              description: >-
-                An object that represents one of the reasons why the input
-                parameter failed.
-              required:
-                - code
-                - message
-              properties:
-                code:
-                  type: string
-                  description: >-
-                    A unique code that identifies this error. It can be used for
-                    translations.
-                message:
-                  type: string
-                  description: An explanation of the error in English.
-                params:
-                  type: object
-                  default: {}
-                  description: >-
-                    Relevant validation rules that failed. This can be used for
-                    translations.
-                  example:
-                    minlength: 1
-                    maxlength: 255
+    type: object
+    description: Client error information for the retry payment notification endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for  input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
   ForbiddenError:
     type: object
     description: Permission error.
