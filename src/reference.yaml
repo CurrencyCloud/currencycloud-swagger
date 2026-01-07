@@ -15214,9 +15214,6 @@ paths:
             - funds_sent
             - funds_arrived
             - trade_settled
-            - awaiting_authorisation
-            - funds_being_processed
-            - trade_settling
             - closed
           description: >-
             The current status of the conversion.
@@ -19029,14 +19026,11 @@ definitions:
         type: string
         description: Current conversion status.
         enum:
-          - awaiting_authorisation
           - awaiting_funds
           - closed
           - funds_arrived
-          - funds_being_processed
           - funds_sent
           - trade_settled
-          - trade_settling
       currency_pair:
         description: Concatenated string of the two currencies traded, eg. "USDEUR".
         type: string
@@ -19373,14 +19367,11 @@ definitions:
         type: string
         description: Status of the related trade.
         enum:
-          - awaiting_authorisation
           - awaiting_funds
           - closed
           - funds_arrived
-          - funds_being_processed
           - funds_sent
           - trade_settled
-          - trade_settling
   ConversionSplit:
     type: object
     properties:
