@@ -9,12 +9,13 @@ You must implement suitable error handling for HTTP 429 response codes in your A
 
 Different rate limits apply to different resources depending on whether an API client is making an authenticated request or not, as listed below.
 
-| Request Type | Request Path | Rate Limit (Production)| Rate Limit (Demo) |
-| --- | --- | --- | --- |
-| Authenticate | `/v2/authenticate/api` | 60 requests per minute | 60 requests per minute |
-| Rate Requests | `/v2/rates/find` , `/v2/rates/detailed` | 200 requests per minute | 150 requests per minute |
-| All other authenticated requests | `/v2/*` | 500 requests per minute | 150 requests per minute |
-| All other unauthenticated requests | `/v2/*` | 200 requests per minute | 200 requests per minute |
+| Request Type                       | Request Path                            | Rate Limit (Production) | Rate Limit (Demo)       |
+|------------------------------------|-----------------------------------------|-------------------------|-------------------------|
+| Authenticate                       | `/v2/authenticate/api`                  | 60 requests per minute  | 60 requests per minute  |
+| Rate Requests                      | `/v2/rates/find` , `/v2/rates/detailed` | 200 requests per minute | 150 requests per minute |
+| Account Creation                   | `/v2/accounts/create`                   | No Specific Limit       | 1000 requests per day   |
+| All authenticated requests         | `/v2/*`                                 | 500 requests per minute | 150 requests per minute |
+| All unauthenticated requests       | `/v2/*`                                 | 200 requests per minute | 200 requests per minute |
 
 ### Exceeding the rate limit
 
