@@ -16684,47 +16684,126 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: duplicate_unique_request_id
-              category: unique_request_id
-              message: >-
-                The unique_request_id provided for this transfer has already been used,
-                please provide a new one to successfully submit this transfer
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
               params: ''
+
+            - code: amount_is_too_big
+              category: amount
+              message: Amount cannot be greater than 10000000000
+              params: ''
+
+            - code: amount_type_is_wrong
+              category: amount
+              message: Amount should be of numeric_greater_than_zero type
+              params: ''
+
+            - code: cash_workflow_unknown
+              category: account_id
+              message: Could not retrieve cash workflow for account {account_id}
+              params: ''
+
+            - code: cash_workflow_unknown
+              category: account_id
+              message: Could not retrieve cash workflow for account {account_id}
+              params: ''
+
+            - code: cross_hub_transfer_not_permitted
+              category: unique_request_id
+              message: The accounts would require a transfer between two hub banks which is not permitted
+              params: ''
+
             - code: currency_is_in_invalid_format
               category: currency
-              message: 'currency is not a valid ISO 4217 currency code'
-              params: '{ "type" => "currency" }'
-            - code: source_account_id_is_not_valid_uuid
-              category: account_id
-              message: source_account_id should be in UUID format
+              message: '{currency} currency is not a valid ISO 4217 currency code'
               params: ''
+
+            - code: currency_is_not_supported
+              category: currency
+              message: '{currency} currency is restricted'
+              params: ''
+
+            - code: destination_account_disabled
+              category:
+              message: The transfer was not created successfully because the destination account is disabled. Ensure that both source and destination accounts are enabled before making a transfer.
+              params: ''
+
             - code: destination_account_id_is_not_valid_uuid
               category: account_id
               message: destination_account_id should be in UUID format
               params: ''
-            - code: amount_type_is_wrong
+
+            - code: destination_bank_account_verified_error
+              category: account_id
+              message: Destination bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
+              params: ''
+
+            - code: duplicate_unique_request_id
+              category: unique_request_id
+              message: The unique_request_id provided for this transfer has already been used, please provide a new one to successfully submit this transfer
+              params: ''
+
+            - code: invalid_amount_format
               category: amount
-              message: amount should be of numeric_greater_than_zero type
-              params: '{"type" => "numeric_greater_than_zero" }'
+              message: '{currency} does not support any decimal places'
+              params: ''
+
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} only supports up to 1 decimal place'
+              params: ''
+
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} only supports up to %d decimal places'
+              params: ''
+
+            - code: invalid_extra_parameters
+              category: invalid_extra_parameters
+              message: 'Invalid extra parameters:{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+
+            - code: not_allowed_currency
+              category: currency
+              message: 'You cannot perform this operation in {currency} currency'
+              params: ''
+
             - code: reason_too_long
               category: reason
               message: Reason longer than 255 symbols
               params: ''
+
+            - code: same_source_and_destination_accounts
+              category: account_id
+              message: Source and Destination accounts cannot be the same
+              params: ''
+
+            - code: source_account_disabled
+              category: account_id
+              message: The transfer was not created successfully because the source account is disabled. Ensure that both source and destination accounts are enabled before making a transfer.
+              params: ''
+
+            - code: source_account_id_is_not_valid_uuid
+              category: source_account_id
+              message: source_account_id should be in UUID format
+              params: ''
+
+            - code: source_bank_account_verified_error
+              category: source_account_id
+              message: Source bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
+              params: ''
+
+            - code: transfer_not_permitted
+              category: account_id
+              message: The transfer is not permitted between the source and destination accounts defined.
+              params: ''
+
             - code: unique_request_id_too_long
               category: unique_request_id
-              message: >-
-                The unique_request_id provided for this transfer is longer than 100 characters,
-                please provide a shorter one
+              message: The unique_request_id provided is longer than 100 characters, please provide a shorter one
               params: ''
-            - code: cross_hub_transfer_not_permitted
-              category: unique_request_id
-              message: >-
-                The accounts would require a transfer between two hub banks which is not permitted
-              params: ''
-            - code: amount_is_too_big
-              category: amount
-              message: Amount must be lower than ${limit}
-              params: ''
+
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
@@ -16835,20 +16914,18 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: id
+              category:
               message: id should be in UUID format
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
+
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: Invalid extra parameters:'{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+
             - code: transfer_not_found
-              category: id
+              category:
               message: Transfer was not found for this ID
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
               params: ''
           schema:
             $ref: '#/definitions/GetTransferError'
@@ -17104,66 +17181,107 @@ paths:
         '400':
           description: Client error.
           x-errors:
-            - code: source_account_id_is_not_valid_uuid
-              category: source_account_id
-              message: source_account_id should be in UUID format
+
+            - code: amount_from_type_is_wrong
+              category: amount_from
+              message: amount_from should be of numeric type
               params: ''
+
+            - code: amount_to_type_is_wrong
+              category: amount_to
+              message: amount_to should be of numeric type
+              params: ''
+
+            - code: completed_at_from_is_in_invalid_format
+              category: completed_at_from
+              message: completed_at_from should be in ISO 8601 format
+              params: ''
+
+            - code: completed_at_from_is_too_old
+              category: completed_at_from
+              message: completed_at_from is set to a date too far back
+              params: ''
+
+            - code: completed_at_to_is_in_invalid_format
+              category: completed_at_to
+              message: completed_at_from should be in ISO 8601 format
+              params: ''
+
+            - code: created_at_from_is_in_invalid_format
+              category: created_at_from
+              message: created_at_from should be in ISO 8601 format
+              params: ''
+
+            - code: created_at_from_is_too_old
+              category: created_at_from
+              message: created_at_from is set to a date too far back
+              params: ''
+
+            - code: created_at_to_is_in_invalid_format
+              category: created_at_to
+              message: created_at_from should be in ISO 8601 format
+              params: ''
+
             - code: destination_account_id_is_not_valid_uuid
               category: destination_account_id
               message: destination_account_id should be in UUID format
               params: ''
-            - code: amount_from_type_is_wrong
-              category: amount_from
-              message: amount_from should be of numeric type
-              params: '{ "type" => "numeric" }'
-            - code: amount_to_type_is_wrong
-              category: amount_to
-              message: amount_to should be of numeric type
-              params: '{ "type" => "numeric" }'
+
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: Invalid extra parameters:'{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+
+            - code: page_is_too_small
+              category: page
+              message: page can not be smaller than 1
+              params: ''
+
+            - code: page_type_is_wrong
+              category: page
+              message: page should be of integer type
+              params: ''
+
+            - code: per_page_is_too_big
+              category: per_page
+              message: per_page can not be bigger than %i
+              params: ''
+
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page can not be smaller than 1
+              params: ''
+
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page should be of integer type
+              params: ''
+
+            - code: source_account_id_is_not_valid_uuid
+              category: source_account_id
+              message: source_account_id should be in UUID format
+              params: ''
+
             - code: status_not_in_range
               category: status
               message: 'status should be in range: pending, completed, cancelled'
-              params: '{ "range" => "pending, completed, cancelled" }'
-            - code: created_at_from_is_in_invalid_format
-              category: created_at_from
-              message: created_at_from should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
-            - code: created_at_to_is_in_invalid_format
-              category: created_at_to
-              message: created_at_to should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
+              params: ''
+
             - code: updated_at_from_is_in_invalid_format
               category: updated_at_from
               message: updated_at_from should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
+              params: ''
+
+            - code: updated_at_from_is_too_old
+              category: updated_at_from
+              message: updated_at_from is set to a date too far back
+              params: ''
+
             - code: updated_at_to_is_in_invalid_format
               category: updated_at_to
-              message: updated_at_to should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
-            - code: completed_at_from_is_in_invalid_format
-              category: completed_at_from
-              message: completed_at_from should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
-            - code: completed_at_to_is_in_invalid_format
-              category: completed_at_to
-              message: completed_at_to should be in ISO 8601 format
-              params: '{ "type" => "datetime" }'
-            - code: creator_contact_id_is_not_valid_uuid
-              category: creator_contact_id
-              message: creator_contact_id should be in UUID format
+              message: updated_at_from should be in ISO 8601 format
               params: ''
-            - code: creator_account_id_is_not_valid_uuid
-              category: creator_account_id
-              message: creator_account_id should be in UUID format
-              params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: You cannot act on behalf of your own Contact
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: Contact was not found for this id
-              params: ''
+
           schema:
             $ref: '#/definitions/FindTransfersError'
           headers:
@@ -17270,33 +17388,34 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category: id
+              category: account_id
               message: id should be in UUID format
               params: ''
+
+            - code: invalid_extra_parameters
+              category: invalid_extra_parameters
+              message: Invalid extra parameters:'{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+
+            - code: transfer_cannot_be_cancelled
+              category: short_reference
+              message: 'Transfer {short_reference} cannot be cancelled'
+              params: ''
+
+            - code: transfer_is_already_cancelled
+              category: short_reference
+              message: 'Transfer {short_reference} is already cancelled'
+              params: ''
+
+            - code: transfer_is_already_completed
+              category: short_reference
+              message: 'Transfer {short_reference} cannot be cancelled since it is already completed'
+              params: ''
+
             - code: transfer_not_found
               category: id
               message: Transfer was not found for this ID
               params: ''
-            - code: transfer_is_already_cancelled
-              category: status
-              message: Transfer is already cancelled
-              params: ''
-            - code: transfer_is_already_completed
-              category: status
-              message: Transfer has already completed (settled)
-              params: ''
-            - code: invalid_status
-              category: status
-              message: Transfer is already cancelled
-              params: ''
-            - code: invalid_status
-              category: status
-              message: Transfer cannot be cancelled since it is already completed
-              params: ''
-            - code: invalid_extra_parameters
-              category: base
-              message: Invalid extra parameters extra_parameter
-              params: '{ "parameters" => "extra_parameter" }'
           schema:
             $ref: '#/definitions/CancelTransferError'
           headers:
