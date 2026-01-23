@@ -16685,43 +16685,43 @@ paths:
           description: Client error.
           x-errors:
             - code: account_not_found
-              category:
+              category: account_id
               message: Account was not found for this id
               params: ''
 
             - code: amount_is_too_big
-              category:
-              message: amount cannot be greater than 10000000000
+              category: amount
+              message: Amount cannot be greater than 10000000000
               params: ''
 
             - code: amount_type_is_wrong
-              category:
-              message: amount should be of numeric_greater_than_zero type
+              category: amount
+              message: Amount should be of numeric_greater_than_zero type
               params: ''
 
             - code: cash_workflow_unknown
-              category:
+              category: account_id
               message: Could not retrieve cash workflow for account {account_id}
               params: ''
 
             - code: cash_workflow_unknown
-              category:
+              category: account_id
               message: Could not retrieve cash workflow for account {account_id}
               params: ''
 
             - code: cross_hub_transfer_not_permitted
-              category:
+              category: unique_request_id
               message: The accounts would require a transfer between two hub banks which is not permitted
               params: ''
 
             - code: currency_is_in_invalid_format
-              category:
-              message: '{currency}' currency is not a valid ISO 4217 currency code
+              category: currency
+              message: '{currency} currency is not a valid ISO 4217 currency code'
               params: ''
 
             - code: currency_is_not_supported
-              category:
-              message: '{currency}' currency is restricted
+              category: currency
+              message: '{currency} currency is restricted'
               params: ''
 
             - code: destination_account_disabled
@@ -16730,77 +16730,77 @@ paths:
               params: ''
 
             - code: destination_account_id_is_not_valid_uuid
-              category:
+              category: account_id
               message: destination_account_id should be in UUID format
               params: ''
 
             - code: destination_bank_account_verified_error
-              category:
-              message: destination bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
+              category: account_id
+              message: Destination bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
               params: ''
 
             - code: duplicate_unique_request_id
-              category:
+              category: unique_request_id
               message: The unique_request_id provided for this transfer has already been used, please provide a new one to successfully submit this transfer
               params: ''
 
             - code: invalid_amount_format
-              category:
-              message: {currency} does not support any decimal places
+              category: amount
+              message: '{currency} does not support any decimal places'
               params: ''
 
             - code: invalid_amount_format
-              category:
-              message: {currency} only supports up to 1 decimal place
+              category: amount
+              message: '{currency} only supports up to 1 decimal place'
               params: ''
 
             - code: invalid_amount_format
-              category:
-              message: {currency} only supports up to %d decimal places
+              category: amount
+              message: '{currency} only supports up to %d decimal places'
               params: ''
 
             - code: invalid_extra_parameters
-              category:
-              message: Invalid extra parameters:'{parameter}'
-              params: { "parameters" => "extra_parameter" }
+              category: invalid_extra_parameters
+              message: 'Invalid extra parameters:{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
 
             - code: not_allowed_currency
-              category:
-              message: You cannot perform this operation in {currency} currency
+              category: currency
+              message: 'You cannot perform this operation in {currency} currency'
               params: ''
 
             - code: reason_too_long
-              category:
+              category: reason
               message: Reason longer than 255 symbols
               params: ''
 
             - code: same_source_and_destination_accounts
-              category:
+              category: account_id
               message: Source and Destination accounts cannot be the same
               params: ''
 
             - code: source_account_disabled
-              category:
+              category: account_id
               message: The transfer was not created successfully because the source account is disabled. Ensure that both source and destination accounts are enabled before making a transfer.
               params: ''
 
             - code: source_account_id_is_not_valid_uuid
-              category:
+              category: source_account_id
               message: source_account_id should be in UUID format
               params: ''
 
             - code: source_bank_account_verified_error
-              category:
-              message: source bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
+              category: source_account_id
+              message: Source bank account is not verified. Ensure that both source and destination bank accounts are verified before making a transfer.
               params: ''
 
             - code: transfer_not_permitted
-              category:
+              category: account_id
               message: The transfer is not permitted between the source and destination accounts defined.
               params: ''
 
             - code: unique_request_id_too_long
-              category:
+              category: unique_request_id
               message: The unique_request_id provided is longer than 100 characters, please provide a shorter one
               params: ''
 
@@ -16921,7 +16921,7 @@ paths:
             - code: invalid_extra_parameters
               category: extra_parameter
               message: Invalid extra parameters:'{parameter}'
-              params: { "parameters" => "extra_parameter" }
+              params: '{ "parameters" => "extra_parameter" }'
 
             - code: transfer_not_found
               category:
@@ -17230,7 +17230,7 @@ paths:
             - code: invalid_extra_parameters
               category: extra_parameter
               message: Invalid extra parameters:'{parameter}'
-              params: { "parameters" => "extra_parameter" }
+              params: '{ "parameters" => "extra_parameter" }'
 
             - code: page_is_too_small
               category: page
@@ -17264,7 +17264,7 @@ paths:
 
             - code: status_not_in_range
               category: status
-              message: status should be in range: pending, completed, cancelled
+              message: 'status should be in range: pending, completed, cancelled'
               params: ''
 
             - code: updated_at_from_is_in_invalid_format
@@ -17282,7 +17282,7 @@ paths:
               message: updated_at_from should be in ISO 8601 format
               params: ''
 
-       schema:
+          schema:
             $ref: '#/definitions/FindTransfersError'
           headers:
             X-Request-Id:
@@ -17388,32 +17388,32 @@ paths:
           description: Client error.
           x-errors:
             - code: id_is_not_valid_uuid
-              category:
+              category: account_id
               message: id should be in UUID format
               params: ''
 
             - code: invalid_extra_parameters
-              category:
+              category: invalid_extra_parameters
               message: Invalid extra parameters:'{parameter}'
-              params: { "parameters" => "extra_parameter" }
+              params: '{ "parameters" => "extra_parameter" }'
 
             - code: transfer_cannot_be_cancelled
-              category:
-              message: Transfer {short_reference} cannot be cancelled
+              category: short_reference
+              message: 'Transfer {short_reference} cannot be cancelled'
               params: ''
 
             - code: transfer_is_already_cancelled
-              category:
-              message: Transfer {short_reference} is already cancelled
+              category: short_reference
+              message: 'Transfer {short_reference} is already cancelled'
               params: ''
 
             - code: transfer_is_already_completed
-              category:
-              message: Transfer {short_reference} cannot be cancelled since it is already completed
+              category: short_reference
+              message: 'Transfer {short_reference} cannot be cancelled since it is already completed'
               params: ''
 
             - code: transfer_not_found
-              category:
+              category: id
               message: Transfer was not found for this ID
               params: ''
           schema:
