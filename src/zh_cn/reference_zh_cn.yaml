@@ -4882,8 +4882,11 @@ paths:
         - name: beneficiary_entity_type
           in: formData
           type: string
-          required: true
-          description: "法人实体 - “个人”或“公司”。如果为“个人”，则 \"beneficiary_first_name\" 和 \"beneficiary_last_name\" 为必填。如果为“公司”，则 \"beneficiary_company_name\" 为必填。"
+          required: false
+          description: >-
+            "法人实体 - “个人”或“公司”。如果为“个人”，则 \"beneficiary_first_name\" 和 \"beneficiary_last_name\" 为必填。如果为“公司”，则 \"beneficiary_company_name\" 为必填。"<br>
+            Required when currency is 'GBP' (Confirmation of Payee).<br>
+            Not required when currency is 'EUR' (Verification of Payee).
           enum:
             - company
             - individual
@@ -15914,7 +15917,7 @@ paths:
         x-api-group: collect
         summary: 接受或拒绝入站交易
         description: >-
-        
+
           允许您在资金记入收款人账户之前接受或拒绝入站交易。
         operationId: CompleteCollectionsScreening
         consumes:

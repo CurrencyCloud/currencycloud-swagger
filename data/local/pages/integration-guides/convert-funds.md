@@ -36,6 +36,8 @@ Please refer to the [Authentication guide](/guides/integration-guides/authentic
 
 Check how much it will cost to buy 10,000 Euros using funds from your Pound Sterling balance, by making a call to the [Get Detailed Rates ](/api-reference/#get-detailed-rates)endpoint.
 
+Please be aware that FX rates in our Demo environment are static and are refreshed periodically.
+
 `GET /v2/rates/detailed`
 
 | Parameter Name | Parameter Type | Example Value |

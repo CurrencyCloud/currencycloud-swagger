@@ -6009,8 +6009,13 @@ paths:
         - name: beneficiary_entity_type
           in: formData
           type: string
-          required: true
-          description: Legal entity - 'individual' or 'company'. If 'individual' then "beneficiary_first_name" and "beneficiary_last_name" are required. If 'company' then "beneficiary_company_name" is required.
+          required: false
+          description: >-
+            Legal entity - 'individual' or 'company'. If 'individual' then "beneficiary_first_name" and
+            "beneficiary_last_name" are required. If 'company' then "beneficiary_company_name" is required.<br>
+            Required when currency is 'GBP' (Confirmation of Payee).<br>
+            Not required when currency is 'EUR' (Verification of Payee).
+  
           enum:
             - company
             - individual
