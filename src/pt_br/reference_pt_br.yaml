@@ -4896,8 +4896,12 @@ paths:
         - name: "beneficiary_entity_type"
           in: formData
           type: string
-          required: true
-          description: "Entidade jurídica - 'individual' ou 'company'. Se for 'individual', então \"beneficiary_first_name\" e \"beneficiary_last_name\" são obrigatórios. Se for 'company', então \"beneficiary_company_name\" é obrigatório."
+          required: false
+          description: >-
+            "Entidade jurídica - 'individual' ou 'company'. Se for 'individual', então \"beneficiary_first_name\" e \"beneficiary_last_name\" são
+            obrigatórios. Se for 'company', então \"beneficiary_company_name\" é obrigatório."<br>
+            Required when currency is 'GBP' (Confirmation of Payee).<br>
+            Not required when currency is 'EUR' (Verification of Payee).
           enum:
             - company
             - individual
@@ -16079,7 +16083,7 @@ paths:
         x-api-group: collect
         summary: Aceitar ou rejeitar a transação de entrada
         description: >-
-          
+
           Permite que você aceite ou rejeite uma transação de entrada antes que os fundos sejam creditados na conta do beneficiário.
         operationId: CompleteCollectionsScreening
         consumes:
