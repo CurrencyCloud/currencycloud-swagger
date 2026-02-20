@@ -8369,7 +8369,10 @@ paths:
           in: formData
           required: false
           type: string
-          description: "與支付相關的發票號碼。在進行與業務相關的 INR 支付時必不可少，請查看我們的<a href=\"https://support.currencycloud.com/hc/zh-hk/articles/360017430000-Payment-Purpose-Codes\">支援文章</a>，了解這是否適用於您的用途編碼。最多可以為 30 個字符。如果提供「invoice_date」，則為必填項。"
+          description: >-
+            "與支付相關的發票號碼。在進行與業務相關的 INR 支付時必不可少，請查看我們的<a href=\"https://support.currencycloud.com/hc/zh-hk/articles/360017430000-Payment-Purpose-Codes\">支援文章</a>，
+            了解這是否適用於您的用途編碼。最多可以為 30 個字符。如果提供「invoice_date」，則為必填項。"<br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
         - name: invoice_date
           in: formData
           required: false
@@ -9334,7 +9337,10 @@ paths:
           in: formData
           required: false
           type: string
-          description: "與支付相關的發票號碼。在進行與業務相關的 INR 支付時必不可少，請查看我們的<a href=\"https://support.currencycloud.com/hc/zh-hk/articles/360017430000-Payment-Purpose-Codes\">支援文章</a>，了解這是否適用於您的用途編碼。最多可以為 30 個字符。如果提供「invoice_date」，則為必填項。"
+          description: >-
+            "與支付相關的發票號碼。在進行與業務相關的 INR 支付時必不可少，請查看我們的<a href=\"https://support.currencycloud.com/hc/zh-hk/articles/360017430000-Payment-Purpose-Codes\">支援文章</a>，
+            了解這是否適用於您的用途編碼。最多可以為 30 個字符。如果提供「invoice_date」，則為必填項。" <br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
         - name: invoice_date
           in: formData
           required: false
@@ -14253,13 +14259,11 @@ paths:
             - deposit_refund
             - funding
             - margin
-            - manual_intervention
             - manual_transaction
             - payment
             - payment_failure
             - payment_fee
             - payment_unrelease
-            - top_up_fee
             - transfer
           description: 觸發交易的操作。
         - name: related_entity_type
@@ -14463,9 +14467,9 @@ paths:
             - code: action_not_in_range
               category: action
               message: >-
-                action 應在以下範圍內選擇：funding、conversion、payment、payment_failure、manual_intervention、manual_transaction、top_up_fee、transfer、conversion_deposit、deposit_refund、payment_unrelease、payment_fee、margin
+                action 應在以下範圍內選擇：funding、conversion、payment、payment_failure、manual_transaction、transfer、conversion_deposit、deposit_refund、payment_unrelease、payment_fee、margin
               params: >-
-                { "range" => "funding, conversion, payment, payment_failure, manual_intervention, manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease, payment_fee, margin" }
+                { "range" => "funding, conversion, payment, payment_failure,  manual_transaction,  transfer, conversion_deposit, deposit_refund, payment_unrelease, payment_fee, margin" }
             - code: scope_not_in_range
               category: scope
               message: "scope 應在以下範圍內選擇：own、all、clients"
@@ -20716,13 +20720,11 @@ definitions:
           - deposit_refund
           - funding
           - margin
-          - manual_intervention
           - manual_transaction
           - payment
           - payment_failure
           - payment_fee
           - pyament_unrelease
-          - top_up_fee
           - transfer
       related_entity_type:
         type: string

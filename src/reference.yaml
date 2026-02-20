@@ -6011,11 +6011,12 @@ paths:
           type: string
           required: false
           description: >-
-            Legal entity - 'individual' or 'company'. If 'individual' then "beneficiary_first_name" and
-            "beneficiary_last_name" are required. If 'company' then "beneficiary_company_name" is required.<br>
-            Required when currency is 'GBP' (Confirmation of Payee).<br>
-            Not required when currency is 'EUR' (Verification of Payee).
-  
+            Legal entity - 'individual' or 'company'.<br>
+            - If 'individual' then 'beneficiary_first_name' and 'beneficiary_last_name' are required.<br>
+            - If 'company' then 'beneficiary_company_name' is required.<br>
+            - Required when currency is 'GBP' (Confirmation of Payee).<br>
+            - Not required when currency is 'EUR' (Verification of Payee).
+
           enum:
             - company
             - individual
@@ -9939,7 +9940,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if supplying `invoice_date`.
+          description: >-
+            The invoice number related to the payment. Necessary when making business-related INR payments,
+            check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a>
+            to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if supplying `invoice_date`.<br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
           pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
@@ -10994,13 +10999,22 @@ paths:
           in: formData
           required: false
           type: string
-          description: The invoice number related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if `invoice_date` is supplied.
+          description: >-
+            The invoice number related to the payment. Necessary when making business-related INR payments,
+            check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a>
+            to see if this applies to your purpose code. Can be up to 30 characters. Mandatory if `invoice_date` is supplied.<br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
           pattern: ^[a-zA-Z0-9]{1,30}$
         - name: invoice_date
           in: formData
           required: false
           type: string
-          description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if `invoice_number` is supplied.
+          description: >-
+            The date of the invoice related to the payment. Necessary when making business-related INR payments,
+            check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a>
+            to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if `invoice_number` is
+            supplied.
+
           format: date
       responses:
         '200':
@@ -16190,13 +16204,11 @@ paths:
             - deposit_refund
             - funding
             - margin
-            - manual_intervention
             - manual_transaction
             - payment
             - payment_failure
             - payment_fee
             - payment_unrelease
-            - top_up_fee
             - transfer
           description: The action that triggered the transaction.
         - name: related_entity_type
@@ -16418,12 +16430,12 @@ paths:
             - code: action_not_in_range
               category: action
               message: >-
-                action should be in range: funding, conversion, payment, payment_failure, manual_intervention,
-                manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease,
+                action should be in range: funding, conversion, payment, payment_failure,
+                manual_transaction, transfer, conversion_deposit, deposit_refund, payment_unrelease,
                 payment_fee, margin
               params: >-
-                { "range" => "funding, conversion, payment, payment_failure, manual_intervention,
-                manual_transaction, top_up_fee, transfer, conversion_deposit, deposit_refund, payment_unrelease,
+                { "range" => "funding, conversion, payment, payment_failure,
+                manual_transaction,  transfer, conversion_deposit, deposit_refund, payment_unrelease,
                 payment_fee, margin" }
             - code: scope_not_in_range
               category: scope
@@ -23553,13 +23565,11 @@ definitions:
           - deposit_refund
           - funding
           - margin
-          - manual_intervention
           - manual_transaction
           - payment
           - payment_failure
           - payment_fee
           - payment_unrelease
-          - top_up_fee
           - transfer
       related_entity_type:
         type: string
