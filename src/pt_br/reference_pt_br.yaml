@@ -8516,7 +8516,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: "O número da fatura relacionada ao pagamento. Necessário ao fazer pagamentos comerciais em INR. Consulte nosso <a href=\"https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes\">artigo de suporte</a> para ver se isso se aplica ao seu código de finalidade. Pode ter até 30 caracteres. Obrigatório se estiver fornecendo `invoice_date`."
+          description: >-
+            "O número da fatura relacionada ao pagamento. Necessário ao fazer pagamentos comerciais em INR.
+            Consulte nosso <a href=\"https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes\">artigo de suporte</a>
+            para ver se isso se aplica ao seu código de finalidade. Pode ter até 30 caracteres. Obrigatório se estiver fornecendo `invoice_date`."<br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
         - name: "invoice_date"
           in: formData
           required: false
@@ -9481,7 +9485,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: "O número da fatura relacionada ao pagamento. Necessário ao fazer pagamentos comerciais em INR. Consulte nosso <a href=\"https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes\">artigo de suporte</a> para ver se isso se aplica ao seu código de finalidade. Pode ter até 30 caracteres. Obrigatório se a `invoice_date` for fornecida."
+          description: >-
+            "O número da fatura relacionada ao pagamento. Necessário ao fazer pagamentos comerciais em INR.
+            Consulte nosso <a href=\"https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes\">artigo de suporte</a>
+            para ver se isso se aplica ao seu código de finalidade. Pode ter até 30 caracteres. Obrigatório se a `invoice_date` for fornecida."<br>
+            For NOK payments, this field can optionally be used to provide the KID (Kundle ID). If supplied, the KID should be 2-25 digits.
         - name: "invoice_date"
           in: formData
           required: false
@@ -14416,13 +14424,11 @@ paths:
             - "deposit_refund"
             - funding
             - margin
-            - "manual_intervention"
             - "manual_transaction"
             - payment
             - "payment_failure"
             - "payment_fee"
             - "payment_unrelease"
-            - "top_up_fee"
             - transfer
           description: A ação que desencadeou a transação.
         - name: "related_entity_type"
@@ -21056,13 +21062,11 @@ definitions:
           - "deposit_refund"
           - funding
           - margin
-          - "manual_intervention"
           - "manual_transaction"
           - payment
           - "payment_failure"
           - "payment_fee"
           - "pyament_unrelease"
-          - "top_up_fee"
           - transfer
       related_entity_type:
         type: string
