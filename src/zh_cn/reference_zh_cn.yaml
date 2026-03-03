@@ -3439,6 +3439,19 @@ paths:
               category: beneficiary_external_reference
               message: beneficiary_external_reference 不可超过 255 个字符
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/UpdateBeneficiaryError'
           headers:
@@ -4097,6 +4110,19 @@ paths:
               category: beneficiary_external_reference
               message: beneficiary_external_reference 不可超过 255 个字符
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/CreateBeneficiaryError'
           headers:
@@ -4767,6 +4793,19 @@ paths:
               category: on_behalf_of
               message: 此 id 未找到联系人
               params: ''
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/ValidateBeneficiaryError'
           headers:
@@ -8379,6 +8418,13 @@ paths:
           required: false
           type: string
           description: "与付款相关的发票日期。在进行与业务相关的 INR 付款时需要提供，查看我们的<a href=\"https://support.currencycloud.com/hc/zh-cn/articles/360017430000-Payment-Purpose-Codes\">支持文章</a>，了解是否适用于您的用途编码。ISO 8601 格式 YYYY-MM-DD。如果提供 `invoice_number`，则为必填。"
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
 
       responses:
         '200':
@@ -8601,6 +8647,19 @@ paths:
             - code: incorrect_purpose_code
               category: purpose_code
               message: 用途编码无效
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
@@ -9347,6 +9406,13 @@ paths:
           required: false
           type: string
           description: "与付款相关的发票日期。在进行与业务相关的 INR 付款时需要提供，查看我们的<a href=\"https://support.currencycloud.com/hc/zh-cn/articles/360017430000-Payment-Purpose-Codes\">支持文章</a>，了解是否适用于您的用途编码。ISO 8601 格式 YYYY-MM-DD。如果提供 invoice_number，则为必填。"
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: 成功。
@@ -9532,6 +9598,19 @@ paths:
             - code: invoice_date_missing
               category: invoice_date
               message: "所提供的发票号码 $invoiceNumber 缺少发票日期"
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
@@ -11182,6 +11261,13 @@ paths:
           required: false
           type: string
           description: 支付费用的货币。
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: 成功。
@@ -11374,6 +11460,19 @@ paths:
               category: base
               message: 无效的额外参数 extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '#/definitions/ValidatePaymentError'
           headers:
