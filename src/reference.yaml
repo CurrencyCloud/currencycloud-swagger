@@ -625,7 +625,7 @@ paths:
           type: number
           description: >-
             The expected sum value of money moving actions this account will conduct monthly. The currency basis of the value is submitted as part of "expected_transaction_currencies". Part of extended compliance for "legal_entity_type: individual | company" accounts.
-        - name: expected_transaction_currencies
+        - name: 'expected_transaction_currencies[]'
           in: formData
           required: false
           description: >-
@@ -633,7 +633,7 @@ paths:
           type: array
           items:
             type: string
-        - name: expected_transaction_countries
+        - name: 'expected_transaction_countries[]'
           in: formData
           required: false
           type: array
@@ -1534,7 +1534,7 @@ paths:
           maxLength: 400
           description: >-
             A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
-        - name: expected_transaction_countries
+        - name: 'expected_transaction_countries[]'
           in: formData
           required: false
           type: array
@@ -1543,7 +1543,7 @@ paths:
             type: string
             minLength: 2
             maxLength: 2
-        - name: expected_transaction_currencies
+        - name: 'expected_transaction_currencies[]'
           in: formData
           required: false
           type: array
