@@ -3446,6 +3446,19 @@ paths:
               category: "beneficiary_external_reference"
               message: "beneficiary_external_reference não pode ter mais de 255 caractere(s)"
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/UpdateBeneficiaryError'
           headers:
@@ -4107,6 +4120,19 @@ paths:
               category: "beneficiary_external_reference"
               message: "beneficiary_external_reference não pode ter mais de 255 caractere(s)"
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/CreateBeneficiaryError'
           headers:
@@ -4781,6 +4807,19 @@ paths:
               category: "on_behalf_of"
               message: Não foi encontrado o contato para este id
               params: ''
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/ValidateBeneficiaryError'
           headers:
@@ -8526,7 +8565,13 @@ paths:
           required: false
           type: string
           description: "A data da fatura relacionada ao pagamento. Necessário ao fazer pagamentos comerciais em INR. Consulte nosso <a href=\"https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes\">artigo de suporte</a> para ver se isso se aplica ao seu código de finalidade. Formato ISO 8601 AAAA-MM-DD. Obrigatório se estiver fornecendo `invoice_number`."
-
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: Sucesso.
@@ -8748,6 +8793,19 @@ paths:
             - code: "incorrect_purpose_code"
               category: "purpose_code"
               message: O código de finalidade não é válido
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/CreatePaymentError'
           headers:
@@ -9181,6 +9239,13 @@ paths:
             - passed
             - rejected
           description: Status de revisão de conformidade.
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: Sucesso.
@@ -9680,6 +9745,19 @@ paths:
             - code: "invoice_date_missing"
               category: "invoice_date"
               message: "Falta a data da fatura para o número de fatura $invoiceNumber informado"
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/UpdatePaymentError'
           headers:
@@ -11464,6 +11542,13 @@ paths:
           required: false
           type: string
           description: A taxa de câmbio é paga em.
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: Sucesso.
@@ -11656,6 +11741,19 @@ paths:
               category: base
               message: "Parâmetros extras extra_parameter inválidos"
               params: '{ "parameters" => "extra\_parameter" }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
+
           schema:
             $ref: '\#/definitions/ValidatePaymentError'
           headers:

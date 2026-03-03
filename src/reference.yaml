@@ -4418,6 +4418,18 @@ paths:
               category: beneficiary_external_reference
               message: beneficiary_external_reference can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/UpdateBeneficiaryError'
           headers:
@@ -4788,6 +4800,7 @@ paths:
           type: string
           description: Beneficiary company website.
           maxLength: 255
+
       responses:
         '200':
           description: Success.
@@ -5140,6 +5153,18 @@ paths:
               category: beneficiary_external_reference
               message: beneficiary_external_reference can not be longer than 255 character(s)
               params: '{ "maxlength" => 255 }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/CreateBeneficiaryError'
           headers:
@@ -5869,6 +5894,18 @@ paths:
               category: on_behalf_of
               message: Contact was not found for this id
               params: ''
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/ValidateBeneficiaryError'
           headers:
@@ -9951,8 +9988,14 @@ paths:
           required: false
           type: string
           description: The date of the invoice related to the payment. Necessary when making business-related INR payments, check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a> to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if supplying `invoice_number`.
-
           format: date
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
       responses:
         '200':
           description: Success.
@@ -10177,6 +10220,18 @@ paths:
             - code: incorrect_purpose_code
               category: purpose_code
               message: Purpose code is invalid
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/CreatePaymentError'
           headers:
@@ -11014,8 +11069,16 @@ paths:
             check our <a href="https://support.currencycloud.com/hc/en-gb/articles/360017430000-Payment-Purpose-Codes">support article</a>
             to see if this applies to your purpose code. ISO 8601 format YYYY-MM-DD. Mandatory if `invoice_number` is
             supplied.
-
           format: date
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          maxLength: 35
+          type: string
+          description: >-
+            The payer's payment account number.
+
+
       responses:
         '200':
           description: Success.
@@ -11209,6 +11272,18 @@ paths:
             - code: invoice_date_missing
               category: invoice_date
               message: "Invoice date is missing for provided invoice number $invoiceNumber"
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/UpdatePaymentError'
           headers:
@@ -12960,6 +13035,14 @@ paths:
           description: Currency fee is paid in.
           format: iso-4217
           pattern: ^[A-Z]{3}$
+        - name: payer_ultimate_account_number
+          in: formData
+          required: false
+          type: string
+          maxLength: 35
+          description: >-
+            The payer's payment account number.
+
       responses:
         '200':
           description: Success.
@@ -13155,6 +13238,18 @@ paths:
               category: base
               message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/ValidatePaymentError'
           headers:
@@ -15606,6 +15701,18 @@ paths:
               category: with_deleted
               message: with_deleted should be of boolean type
               params: '{"type": "boolean"}'
+            - code: field_contains_invalid_characters
+              category: base
+              message: Field contains invalid characters
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: The information provided for this request eceeds our field length limits
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: This request contains fields that are not permitted for this route
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/GenerateReportError'
           headers:
