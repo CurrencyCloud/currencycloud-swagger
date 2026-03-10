@@ -4424,7 +4424,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -5159,7 +5159,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -5900,7 +5900,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -10226,7 +10226,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -11278,7 +11278,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -13244,7 +13244,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
@@ -15713,7 +15713,7 @@ paths:
               params: '{ ${field_name}: ${character_range} }'
             - code: field_is_too_long
               category: base
-              message: The information provided for this request eceeds our field length limits
+              message: The information provided for this request exceeds our field length limits
               params: '{ ${field_name}: ${max_field_length} }'
             - code: request_contains_blocked_fields
               category: base
