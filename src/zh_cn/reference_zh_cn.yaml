@@ -12337,6 +12337,12 @@ paths:
           required: true
           type: string
           description: 两个字母的 ISO 国家/地区代码。
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子账户的联系人 UUID。
+          format: uuid
         - name: beneficiary_country
           in: query
           required: true
@@ -15940,6 +15946,7 @@ paths:
               category: on_behalf_of
               message: 您不能代表您自己的联系人进行操作
               params: ''
+
           schema:
             $ref: '#/definitions/CreateSimulateFundingError'
           headers:

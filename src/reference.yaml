@@ -625,7 +625,7 @@ paths:
           type: number
           description: >-
             The expected sum value of money moving actions this account will conduct monthly. The currency basis of the value is submitted as part of "expected_transaction_currencies". Part of extended compliance for "legal_entity_type: individual | company" accounts.
-        - name: expected_transaction_currencies
+        - name: 'expected_transaction_currencies[]'
           in: formData
           required: false
           description: >-
@@ -633,7 +633,7 @@ paths:
           type: array
           items:
             type: string
-        - name: expected_transaction_countries
+        - name: 'expected_transaction_countries[]'
           in: formData
           required: false
           type: array
@@ -1534,7 +1534,7 @@ paths:
           maxLength: 400
           description: >-
             A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'.
-        - name: expected_transaction_countries
+        - name: 'expected_transaction_countries[]'
           in: formData
           required: false
           type: array
@@ -1543,7 +1543,7 @@ paths:
             type: string
             minLength: 2
             maxLength: 2
-        - name: expected_transaction_currencies
+        - name: 'expected_transaction_currencies[]'
           in: formData
           required: false
           type: array
@@ -14158,6 +14158,12 @@ paths:
           description: Two-letter ISO country code.
           format: iso3166-1-alpha-2
           pattern: ^[A-Z]{2}$
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+          format: uuid
         - name: beneficiary_country
           in: query
           required: true
@@ -15590,37 +15596,37 @@ paths:
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for earliest payment transfer date.
+          description: ISO 8601 format date for earliest payment transfer date.
         - name: transferred_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for latest payment transfer date.
+          description: ISO 8601 format date for latest payment transfer date.
         - name: created_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for earliest payment creation to include.
+          description: ISO 8601 format date for earliest payment creation to include.
         - name: created_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for latest payment creation to include.
+          description: ISO 8601 format date for latest payment creation to include.
         - name: updated_at_from
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for earliest payment updated to include.
+          description: ISO 8601 format date for earliest payment updated to include.
         - name: updated_at_to
           in: formData
           required: false
           type: string
           format: date
-          description: ISO 8601 format date/time for latest payment updated to include.
+          description: ISO 8601 format date for latest payment updated to include.
         - name: beneficiary_id
           in: formData
           required: false
@@ -18118,6 +18124,10 @@ paths:
             - code: on_behalf_of_self
               category: on_behalf_of
               message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: id_has_already_been_taken
+              category: id
+              message: "ID was already used in a previous request"
               params: ''
           schema:
             $ref: '#/definitions/CreateSimulateFundingError'

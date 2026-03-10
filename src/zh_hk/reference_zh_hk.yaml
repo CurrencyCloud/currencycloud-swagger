@@ -12342,6 +12342,12 @@ paths:
           required: true
           type: string
           description: 兩個字母的 ISO 國家/地區代碼。
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子賬戶的聯絡人 UUID。
+          format: uuid
         - name: beneficiary_country
           in: query
           required: true
@@ -15945,6 +15951,11 @@ paths:
               category: on_behalf_of
               message: 您不能代表自己的聯絡人操作
               params: ''
+            - code: id_has_already_been_taken
+              category: id
+              message: "ID was already used in a previous request"
+              params: ''
+              
           schema:
             $ref: '#/definitions/CreateSimulateFundingError'
           headers:
