@@ -8637,6 +8637,10 @@ paths:
               category: "payer_entity_type"
               message: 'payer\_entity\_type deve estar entre os valores: individual, company'
               params: ''
+            - code: "payer_details_are_missing"
+              category: "payer_entity_type"
+              message: 'Estão faltando os seguintes detalhes do pagador: payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number'
+              params: '{"missing\_details" => "payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number"}'
             - code: "payer_entity_type_is_missing"
               category: "payer_entity_type"
               message: O tipo de entidade pagadora está faltando
@@ -9655,8 +9659,8 @@ paths:
 
             - code: "payer_details_are_missing"
               category: "payer_entity_type"
-              message: 'Estão faltando os seguintes detalhes do pagador: payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value'
-              params: '{"missing\_details" => "payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value"}'
+              message: 'Estão faltando os seguintes detalhes do pagador: payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number'
+              params: '{"missing\_details" => "payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number"}'
             - code: "payer_date_of_birth_type_is_wrong"
               category: "payer_date_of_birth"
               message: "payer_date_of_birth deve ser do tipo data"
@@ -11628,8 +11632,8 @@ paths:
               params: ''
             - code: "payer_details_are_missing"
               category: "payer_entity_type"
-              message: 'Estão faltando os seguintes detalhes do pagador: payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value'
-              params: '{"missing\_details" => "payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value"}'
+              message: 'Estão faltando os seguintes detalhes do pagador: payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number'
+              params: '{"missing\_details" => "payer\_entity\_type, payer\_company\_name, payer\_first\_name, payer\_last\_name, payer\_city, payer\_address, payer\_state\_or\_province, payer\_postcode, payer\_country, payer\_date\_of\_birth, payer\_identification\_type, payer\_identification\_value, payer\_ultimate\_account\_number"}'
             - code: "unsupported_payer_country_code"
               category: "payer_country_code"
               message: O país do pagador não é suportado
