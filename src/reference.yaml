@@ -10062,6 +10062,10 @@ paths:
               category: payer_entity_type
               message: 'payer_entity_type should be in range: individual, company'
               params: ''
+            - code: payer_details_are_missing
+              category: payer_entity_type
+              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: payer_entity_type_is_missing
               category: payer_entity_type
               message: Payer entity type is missing
@@ -11182,8 +11186,8 @@ paths:
 
             - code: payer_details_are_missing
               category: payer_entity_type
-              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
-              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: payer_date_of_birth_type_is_wrong
               category: payer_date_of_birth
               message: payer_date_of_birth should be of date type
@@ -13123,8 +13127,8 @@ paths:
               params: ''
             - code: payer_details_are_missing
               category: payer_entity_type
-              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
-              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+              message: 'Following payer details are missing: payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: unsupported_payer_country_code
               category: payer_country_code
               message: Payer country is not supported

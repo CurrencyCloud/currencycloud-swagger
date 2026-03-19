@@ -8491,6 +8491,10 @@ paths:
               category: payer_entity_type
               message: 'payer_entity_type 应在此范围内：individual, company'
               params: ''
+            - code: payer_details_are_missing
+              category: payer_entity_type
+              message: '以下付款人详细信息缺失：payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: payer_entity_type_is_missing
               category: payer_entity_type
               message: payer_entity_type 缺失
@@ -9508,8 +9512,8 @@ paths:
 
             - code: payer_details_are_missing
               category: payer_entity_type
-              message: '以下付款人详细信息缺失：payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
-              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+              message: '以下付款人详细信息缺失：payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: payer_date_of_birth_type_is_wrong
               category: payer_date_of_birth
               message: payer_date_of_birth 类型应为日期
@@ -11347,8 +11351,8 @@ paths:
               params: ''
             - code: payer_details_are_missing
               category: payer_entity_type
-              message: '以下付款人详细信息缺失：payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value'
-              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value"}'
+              message: '以下付款人详细信息缺失：payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number'
+              params: '{"missing_details" => "payer_entity_type, payer_company_name, payer_first_name, payer_last_name, payer_city, payer_address, payer_state_or_province, payer_postcode, payer_country, payer_date_of_birth, payer_identification_type, payer_identification_value, payer_ultimate_account_number"}'
             - code: unsupported_payer_country_code
               category: payer_country_code
               message: 付款人国家/地区不支持
