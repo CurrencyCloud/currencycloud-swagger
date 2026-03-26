@@ -87,7 +87,7 @@ schemes:
 host: devapi.currencycloud.com
 basePath: /v2
 consumes:
-  - multipart/form-data
+  - application/x-www-form-urlencoded
 produces:
   - application/json
 paths:
@@ -116,7 +116,7 @@ paths:
         reactivate their account.
       operationId: Login
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -235,7 +235,7 @@ paths:
         to time out.
       operationId: Logout
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -325,7 +325,7 @@ paths:
       description: 'Creates a new sub-account. Returns the new account entity on success.'
       operationId: CreateAccount
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -835,523 +835,523 @@ paths:
               type: string
               description: A unique reference for the request.
   /accounts/{id}:
-   get:
-    tags:
-      - Accounts
-    x-api-group: manage
-    summary: Get Account
-    description: Gets an account or sub-account owned by the authenticated user.
-    operationId: GetAccount
-    produces:
-      - application/json
-    parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: Account UUID, returned by the create account endpoint.
-      - name: on_behalf_of
-        in: query
-        required: false
-        type: string
-        description: A contact UUID for the sub-account you're acting on behalf of.
-    responses:
-      '200':
-        description: Success.
-        schema:
-          $ref: '#/definitions/Account'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '400':
-        description: Client error.
-        x-errors:
-          - code: id_is_not_valid_uuid
-            category: id
-            message: id should be in UUID format
-            params: ''
-          - code: account_not_found
-            category: id
-            message: Account was not found for this id
-            params: ''
-          - code: on_behalf_of_self
-            category: on_behalf_of
-            message: You cannot act on behalf of your own contact
-            params: ''
-          - code: contact_not_found
-            category: on_behalf_of
-            message: Contact was not found for this id
-            params: ''
-        schema:
-          $ref: '#/definitions/GetAccountError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '401':
-        description: Unauthorized
-        x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
-        schema:
-          $ref: '#/definitions/UnauthorizedError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '404':
-        description: Resource not found.
-        schema:
-          $ref: '#/definitions/NotFoundError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '429':
-        description: Too many requests.
-        x-errors:
-          - code: too_many_requests
-            category: base
-            message: >-
-              Too many requests have been made to the api. Please refer to the
-              Developer Center for more information
-            params: ''
-        schema:
-          $ref: '#/definitions/RateLimitError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '500':
-        description: Internal server error
-        x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '503':
-        description: Service is temporary unavailable.
-        x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporarily unavailable
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      default:
-        description: Unexpected error.
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-   post:
-    tags:
-      - Accounts
-    x-api-group: manage
-    summary: Update Account
-    description: >-
-      Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
-    operationId: UpdateAccount
-    consumes:
-      - multipart/form-data
-    produces:
-      - application/json
-    parameters:
-      - name: X-Auth-Token
-        in: header
-        required: true
-        type: string
-        description: Authentication token
-      - name: id
-        in: path
-        required: true
-        type: string
-        description: Account UUID, returned by the create account endpoint.
-      - name: account_name
-        in: formData
-        required: false
-        type: string
-        description: Account name.
-      - name: legal_entity_type
-        in: formData
-        required: false
-        type: string
-        enum:
-          - company
-          - individual
-        description: Legal entity.
-      - name: brand
-        in: formData
-        required: false
-        type: string
-        description: >-
-          The value of this field is used for white labeling the Currencycloud
-          user interface.
-      - name: your_reference
-        in: formData
-        required: false
-        type: string
-        description: User-generated reference code.
-      - name: status
-        in: formData
-        required: false
-        type: string
-        enum:
-          - disabled
-          - enabled
-          - enabled_no_trading
-        default: enabled
-        description: Status of the account.
-      - name: street
-        in: formData
-        required: false
-        type: string
-        description: First line of address.
-      - name: city
-        in: formData
-        required: false
-        type: string
-        description: City name
-      - name: state_or_province
-        in: formData
-        required: false
-        type: string
-        description: State or province two-letter ISO 3166 code. Only applicable to some countries.
-      - name: postal_code
-        in: formData
-        required: false
-        type: string
-        description: Postal code.
-      - name: country
-        in: formData
-        required: false
-        type: string
-        description: Two-letter ISO country code.
-      - name: spread_table
-        in: formData
-        required: false
-        type: string
-        default: fxcg_rfx_default
-        description: The name of the spread table assigned to the account.
-      - name: api_trading
-        in: formData
-        required: false
-        type: boolean
-        default: true
-        description: >-
-          Whether trading via the Currencycloud API is to be enabled on the
-          account.
-      - name: online_trading
-        in: formData
-        required: false
-        type: boolean
-        default: true
-        description: Enable online trading on the account.
-      - name: phone_trading
-        in: formData
-        required: false
-        default: true
-        type: boolean
-        description: Enable phone trading on the account.
-      - name: identification_type
-        in: formData
-        required: false
-        type: string
-        enum:
-          - none
-          - others
-          - asylum_registration_card
-          - citizenship_papers
-          - consular_id
-          - credential_de_elector
-          - drivers_license
-          - drivers_license_canadian
-          - employer_identification_number
-          - existing_credit_card_details
-          - green_card
-          - immigration_status_document
-          - indigenous_card
-          - international_driving_licence
-          - matricula_consular
-          - municipality_identity_card
-          - national_health_insurance_card
-          - national_id
-          - national_identity_card
-          - passport
-          - passport_card
-          - postal_identity_card
-          - private_operators_card
-          - professional_qualification_card
-          - proof_of_citizenship
-          - registro_federal_de_contribuyentes
-          - residence_permit
-          - residence_status_document
-          - service_id_card
-          - social_insurance_number
-          - social_security_card
-          - social_security_number
-          - tax_id
-          - visa
-          - voter_id
-          - work_permit
-          - incorporation_number
-        description: A legal document that verifies the identity of the account owner.
-      - name: identification_value
-        in: formData
-        required: false
-        type: string
-        description: >-
-          A unique reference code for the identification document, such as a
-          passport number.
-        maxLength: 255
-      - name: terms_and_conditions_accepted
-        in: formData
-        required: false
-        type: boolean
-        description: Acceptance of the terms and conditions.
-      - name: identification_expiration
-        in: formData
-        required: false
-        type: string
-        format: date
-        description: >-
-          The expiration date for the identification information provided. Format YYYY-MM-DD. Part of extended compliance for "legal_entity_type: individual" accounts.
-      - name: identification_issuer
-        in: formData
-        required: false
-        type: string
-        maxLength: 255
-        description: >-
-          ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
-      - name: legal_entity_sub_type
-        in: formData
-        required: false
-        type: string
-        description: >-
-          The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts
-        enum:
-          - sole_trader
-          - limited_liability_company
-          - public_limited_company
-          - limited_liability_partnership
-          - unincorporated_partnership
-          - unregistered_charity
-          - registered_charity
-          - trust
-          - company_with_nominee_shareholders_or_shares_in_bearer_form
-          - scottish_limited_partnership
-          - other
-    responses:
-      '200':
-        description: Success.
-        schema:
-          $ref: '#/definitions/Account'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '400':
-        description: Client error.
-        x-errors:
-          - code: at_least_one_parameter
-            category: base
-            message: >-
-              At least one parameter should be present: account_name, brand,
-              your_reference, status, street, city, state_or_province, postal_code,
-              country, spread_table, legal_entity_type, identification_type,
-              identification_value, api_trading, online_trading, phone_trading
-              or terms_and_conditions_accepted.
-            params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
-          - code: id_is_not_valid_uuid
-            category: id
-            message: id should be in UUID format
-            params: ''
-          - code: account_name_is_too_short
-            category: account_name
-            message: account_name can not be shorter than 1 character(s)
-            params: '{ "minlength" => 1}'
-          - code: account_name_is_too_long
-            category: account_name
-            message: account_name can not be longer than 150 character(s)
-            params: '{ "maxlength" => 150 }'
-          - code: account_name_is_in_invalid_format
-            category: account_name
-            message: account_name is in invalid format
-            params: ''
-          - code: brand_is_too_long
-            category: brand
-            message: brand can not be longer than 255 character(s)
-            params: '{ "maxlength" => 255 }'
-          - code: brand_not_found
-            category: brand
-            message: Brand non_existing_brand wasn't found
-            params: '{ "brand" => "non_existing_brand" }'
-          - code: brand_account_not_broker
-            category: brand
-            message: Account doesn't have broker permissions
-            params: '{ "brand" => "wrong_brand" }'
-          - code: permission_denied
-            category: permissions
-            message: Permission denied
-            params: ''
-          - code: your_reference_is_too_long
-            category: your_reference
-            message: your_reference can not be longer than 25 character(s)
-            params: '{ "maxlength" => 25 }'
-          - code: legal_entity_type_not_in_range
-            category: legal_entity_type
-            message: 'legal_entity_type should be in range: individual, company'
-            params: '{ "range" => "individual, company" }'
-          - code: status_not_in_range
-            category: status
-            message: 'status should be in range: enabled, disabled, enabled_no_trading'
-            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
-          - code: street_is_too_long
-            category: street
-            message: street can not be longer than 150 character(s)
-            params: '{ "maxlength" => 150 }'
-          - code: city_is_too_long
-            category: city
-            message: city can not be longer than 100 character(s)
-            params: '{ "maxlength" => 100 }'
-          - code: postal_code_is_too_long
-            category: postal_code
-            message: postal_code can not be longer than 20 character(s)
-            params: '{ "maxlength" => 20 }'
-          - code: state_or_province_is_too_long
-            category: state_or_province
-            message: state_or_province can not be longer than 100 character(s)
-            params: '{ "maxlength" => 100 }'
-          - code: country_is_in_invalid_format
-            category: country
-            message: country is not a valid ISO 3166-1 Alpha-2 country code
-            params: '{ "type" => "country_code" }'
-          - code: spread_table_is_too_long
-            category: spread_table
-            message: spread_table can not be longer than 100 character(s)
-            params: '{ "maxlength" => 100 }'
-          - code: identification_type_is_missing
-            category: identification_type
-            message: identification_type is missing
-            params: ''
-          - code: identification_type_not_in_range
-            category: identification_type
-            message: >-
-              identification_type should be in range: none, drivers_license,
-              social_security_number, green_card, passport, visa, matricula_consular,
-              registro_federal_de_contribuyentes, credential_de_elector,
-              social_insurance_number, citizenship_papers, drivers_license_canadian,
-              existing_credit_card_details, employer_identification_number, national_id,
-              others, incorporation_number, clave_unica_de_registro_de_poblacion
-            params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
-          - code: identification_type_is_invalid
-            category: identification_type
-            message: identification_type is invalid
-            params: ''
-          - code: identification_value_is_missing
-            message: identification_value is missing
-            category: identification_value
-            params: ''
-          - code: identification_value_is_invalid
-            category: identification_value
-            message: identification_value is invalid
-            params: ''
-          - code: identification_value_is_too_short
-            category: identification_value
-            message: identification_value can not be shorter than 1 character(s)
-            params: ' { "minlength": 1 }'
-          - code: editing_address_not_allowed
-            category: address
-            message: You cannot edit address information. Please contact support for additional information
-            params: ''
-          - code: editing_country_not_allowed
-            category: country
-            message: You cannot edit country. Please contact support for additional information
-            params: ''
-        schema:
-          $ref: '#/definitions/UpdateAccountError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '401':
-        description: Unauthorized.
-        x-errors:
-          - code: invalid_supplied_credentials
-            category: username
-            message: Authentication failed with the supplied credentials
-            params: ''
-        schema:
-          $ref: '#/definitions/UnauthorizedError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '404':
-        description: Resource not found.
-        schema:
-          $ref: '#/definitions/NotFoundError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '429':
-        description: Too many requests.
-        x-errors:
-          - code: too_many_requests
-            category: base
-            message: >-
-              Too many requests have been made to the api. Please refer to the
-              Developer Center for more information
-            params: ''
-        schema:
-          $ref: '#/definitions/RateLimitError'
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '500':
-        description: Internal server error
-        x-errors:
-          - code: internal_server_error
-            category: base
-            message: Internal server error
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      '503':
-        description: Service is temporary unavailable
-        x-errors:
-          - code: service_unavailable
-            category: base
-            message: Service is temporarily unavailable
-            params: ''
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
-      default:
-        description: Unexpected error.
-        headers:
-          X-Request-Id:
-            type: string
-            description: A unique reference for the request.
+    get:
+      tags:
+        - Accounts
+      x-api-group: manage
+      summary: Get Account
+      description: Gets an account or sub-account owned by the authenticated user.
+      operationId: GetAccount
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Account UUID, returned by the create account endpoint.
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Account'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: account_not_found
+              category: id
+              message: Account was not found for this id
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetAccountError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable.
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+    post:
+      tags:
+        - Accounts
+      x-api-group: manage
+      summary: Update Account
+      description: >-
+        Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
+      operationId: UpdateAccount
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: Account UUID, returned by the create account endpoint.
+        - name: account_name
+          in: formData
+          required: false
+          type: string
+          description: Account name.
+        - name: legal_entity_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - company
+            - individual
+          description: Legal entity.
+        - name: brand
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The value of this field is used for white labeling the Currencycloud
+            user interface.
+        - name: your_reference
+          in: formData
+          required: false
+          type: string
+          description: User-generated reference code.
+        - name: status
+          in: formData
+          required: false
+          type: string
+          enum:
+            - disabled
+            - enabled
+            - enabled_no_trading
+          default: enabled
+          description: Status of the account.
+        - name: street
+          in: formData
+          required: false
+          type: string
+          description: First line of address.
+        - name: city
+          in: formData
+          required: false
+          type: string
+          description: City name
+        - name: state_or_province
+          in: formData
+          required: false
+          type: string
+          description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+        - name: postal_code
+          in: formData
+          required: false
+          type: string
+          description: Postal code.
+        - name: country
+          in: formData
+          required: false
+          type: string
+          description: Two-letter ISO country code.
+        - name: spread_table
+          in: formData
+          required: false
+          type: string
+          default: fxcg_rfx_default
+          description: The name of the spread table assigned to the account.
+        - name: api_trading
+          in: formData
+          required: false
+          type: boolean
+          default: true
+          description: >-
+            Whether trading via the Currencycloud API is to be enabled on the
+            account.
+        - name: online_trading
+          in: formData
+          required: false
+          type: boolean
+          default: true
+          description: Enable online trading on the account.
+        - name: phone_trading
+          in: formData
+          required: false
+          default: true
+          type: boolean
+          description: Enable phone trading on the account.
+        - name: identification_type
+          in: formData
+          required: false
+          type: string
+          enum:
+            - none
+            - others
+            - asylum_registration_card
+            - citizenship_papers
+            - consular_id
+            - credential_de_elector
+            - drivers_license
+            - drivers_license_canadian
+            - employer_identification_number
+            - existing_credit_card_details
+            - green_card
+            - immigration_status_document
+            - indigenous_card
+            - international_driving_licence
+            - matricula_consular
+            - municipality_identity_card
+            - national_health_insurance_card
+            - national_id
+            - national_identity_card
+            - passport
+            - passport_card
+            - postal_identity_card
+            - private_operators_card
+            - professional_qualification_card
+            - proof_of_citizenship
+            - registro_federal_de_contribuyentes
+            - residence_permit
+            - residence_status_document
+            - service_id_card
+            - social_insurance_number
+            - social_security_card
+            - social_security_number
+            - tax_id
+            - visa
+            - voter_id
+            - work_permit
+            - incorporation_number
+          description: A legal document that verifies the identity of the account owner.
+        - name: identification_value
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A unique reference code for the identification document, such as a
+            passport number.
+          maxLength: 255
+        - name: terms_and_conditions_accepted
+          in: formData
+          required: false
+          type: boolean
+          description: Acceptance of the terms and conditions.
+        - name: identification_expiration
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            The expiration date for the identification information provided. Format YYYY-MM-DD. Part of extended compliance for "legal_entity_type: individual" accounts.
+        - name: identification_issuer
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: >-
+            ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+        - name: legal_entity_sub_type
+          in: formData
+          required: false
+          type: string
+          description: >-
+            The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts
+          enum:
+            - sole_trader
+            - limited_liability_company
+            - public_limited_company
+            - limited_liability_partnership
+            - unincorporated_partnership
+            - unregistered_charity
+            - registered_charity
+            - trust
+            - company_with_nominee_shareholders_or_shares_in_bearer_form
+            - scottish_limited_partnership
+            - other
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/Account'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: at_least_one_parameter
+              category: base
+              message: >-
+                At least one parameter should be present: account_name, brand,
+                your_reference, status, street, city, state_or_province, postal_code,
+                country, spread_table, legal_entity_type, identification_type,
+                identification_value, api_trading, online_trading, phone_trading
+                or terms_and_conditions_accepted.
+              params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id should be in UUID format
+              params: ''
+            - code: account_name_is_too_short
+              category: account_name
+              message: account_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1}'
+            - code: account_name_is_too_long
+              category: account_name
+              message: account_name can not be longer than 150 character(s)
+              params: '{ "maxlength" => 150 }'
+            - code: account_name_is_in_invalid_format
+              category: account_name
+              message: account_name is in invalid format
+              params: ''
+            - code: brand_is_too_long
+              category: brand
+              message: brand can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: brand_not_found
+              category: brand
+              message: Brand non_existing_brand wasn't found
+              params: '{ "brand" => "non_existing_brand" }'
+            - code: brand_account_not_broker
+              category: brand
+              message: Account doesn't have broker permissions
+              params: '{ "brand" => "wrong_brand" }'
+            - code: permission_denied
+              category: permissions
+              message: Permission denied
+              params: ''
+            - code: your_reference_is_too_long
+              category: your_reference
+              message: your_reference can not be longer than 25 character(s)
+              params: '{ "maxlength" => 25 }'
+            - code: legal_entity_type_not_in_range
+              category: legal_entity_type
+              message: 'legal_entity_type should be in range: individual, company'
+              params: '{ "range" => "individual, company" }'
+            - code: status_not_in_range
+              category: status
+              message: 'status should be in range: enabled, disabled, enabled_no_trading'
+              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            - code: street_is_too_long
+              category: street
+              message: street can not be longer than 150 character(s)
+              params: '{ "maxlength" => 150 }'
+            - code: city_is_too_long
+              category: city
+              message: city can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: postal_code_is_too_long
+              category: postal_code
+              message: postal_code can not be longer than 20 character(s)
+              params: '{ "maxlength" => 20 }'
+            - code: state_or_province_is_too_long
+              category: state_or_province
+              message: state_or_province can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: country_is_in_invalid_format
+              category: country
+              message: country is not a valid ISO 3166-1 Alpha-2 country code
+              params: '{ "type" => "country_code" }'
+            - code: spread_table_is_too_long
+              category: spread_table
+              message: spread_table can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: identification_type_is_missing
+              category: identification_type
+              message: identification_type is missing
+              params: ''
+            - code: identification_type_not_in_range
+              category: identification_type
+              message: >-
+                identification_type should be in range: none, drivers_license,
+                social_security_number, green_card, passport, visa, matricula_consular,
+                registro_federal_de_contribuyentes, credential_de_elector,
+                social_insurance_number, citizenship_papers, drivers_license_canadian,
+                existing_credit_card_details, employer_identification_number, national_id,
+                others, incorporation_number, clave_unica_de_registro_de_poblacion
+              params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
+            - code: identification_type_is_invalid
+              category: identification_type
+              message: identification_type is invalid
+              params: ''
+            - code: identification_value_is_missing
+              message: identification_value is missing
+              category: identification_value
+              params: ''
+            - code: identification_value_is_invalid
+              category: identification_value
+              message: identification_value is invalid
+              params: ''
+            - code: identification_value_is_too_short
+              category: identification_value
+              message: identification_value can not be shorter than 1 character(s)
+              params: ' { "minlength": 1 }'
+            - code: editing_address_not_allowed
+              category: address
+              message: You cannot edit address information. Please contact support for additional information
+              params: ''
+            - code: editing_country_not_allowed
+              category: country
+              message: You cannot edit country. Please contact support for additional information
+              params: ''
+          schema:
+            $ref: '#/definitions/UpdateAccountError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '429':
+          description: Too many requests.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Too many requests have been made to the api. Please refer to the
+                Developer Center for more information
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporary unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
   '/accounts/{id}/compliance_settings':
     get:
       tags:
@@ -1491,7 +1491,7 @@ paths:
         returns the updated account entity.
       operationId: UpdateAccountComplianceSettings
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -2019,9 +2019,9 @@ paths:
           required: false
           type: string
           enum:
-            - yes
-            - no
-            - not required
+            - 'yes'
+            - 'no'
+            - 'not required'
           description: Has the bank account been verified?
         - name: page
           in: formData
@@ -2543,7 +2543,7 @@ paths:
             Length must be between 6 and 255 characters. <br>
             Regex:  /^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$/
           required: true
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
       responses:
@@ -2977,7 +2977,7 @@ paths:
         Tops up the margin balance.
       operationId: TopUpMarginBalance
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -3774,7 +3774,7 @@ paths:
         by an update. To achieve this, you should create a new beneficiary.
       operationId: UpdateBeneficiary
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -3828,7 +3828,7 @@ paths:
           required: false
           type: string
           description: Beneficiary's email address.
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
         - name: beneficiary_address
@@ -4508,7 +4508,7 @@ paths:
         Creates a new beneficiary. Returns the new beneficiary entity on success.
       operationId: CreateBeneficiary
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -4556,7 +4556,7 @@ paths:
           required: false
           type: string
           description: Email address
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
         - name: beneficiary_address
@@ -5244,7 +5244,7 @@ paths:
         successful, the beneficiary's final state is returned.
       operationId: DeleteBeneficiary
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -5376,7 +5376,7 @@ paths:
         the entity that would be created if the beneficiary was saved.
       operationId: ValidateBeneficiary
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -5994,7 +5994,7 @@ paths:
         please contact your Account Manager or our support team.
       operationId: BeneficiaryAccountVerification
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -6399,7 +6399,7 @@ paths:
           required: false
           type: string
           description: The contact's email address.
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
         - name: your_reference
@@ -6689,7 +6689,7 @@ paths:
         entity on success.
       operationId: UpdateContact
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -6728,7 +6728,7 @@ paths:
             Instead, an email change request flow is initiated, sending notifications to both the old and new
             email addresses. The value will be updated when the change is confirmed via a link sent to the new
             email address.
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
         - name: your_reference
@@ -6987,7 +6987,7 @@ paths:
         the new contact entity on success.
       operationId: CreateContact
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -7022,7 +7022,7 @@ paths:
           required: true
           type: string
           description: The contact's email address.
-          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
+          pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}$
           minLength: 6
           maxLength: 255
         - name: phone_number
@@ -7287,9 +7287,9 @@ paths:
       summary: Generate HMAC Key for Contact
       description: >-
         Generates a new account HMAC key for the current contact.
-      operationId: GenrateHMACKey
+      operationId: GenerateHMACKey
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -7321,7 +7321,7 @@ paths:
                 Brand #{brand} should be configured first
               params: ''
           schema:
-            $ref: '#/definitions/GenrateHMACKeyError'
+            $ref: '#/definitions/GenerateHMACKeyError'
           headers:
             X-Request-Id:
               type: string
@@ -7403,7 +7403,7 @@ paths:
       description: 'Creates a new conversion. Returns the details of the created conversion on success.'
       operationId: CreateConversion
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -8338,7 +8338,7 @@ paths:
       description: 'Cancels the conversion identified by the provided unique ID {id}.'
       operationId: CancelConversion
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -8592,7 +8592,7 @@ paths:
         Changes the date of the conversion identified by the provided unique ID {id}.
       operationId: ConversionDateChange
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -8967,7 +8967,7 @@ paths:
         - name: amount
           required: true
           type: string
-          in: formData
+          in: query
           description: The amount at which to split this conversion.
           pattern: ^\d+(\.\d{1,3})?$
       responses:
@@ -9126,7 +9126,7 @@ paths:
       description: Splits the conversion specified by the unique ID {id}. Upon success, it returns the details of the parent and new child conversions.
       operationId: SplitConversion
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -9727,7 +9727,7 @@ paths:
       description: Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br> Clients who are implementing Strong Customer Authentication (SCA) for payments should refer to our <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: CreatePayment
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -10827,7 +10827,7 @@ paths:
       description: 'Updates a payment. On success, returns the updated payment entity.'
       operationId: UpdatePayment
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -11653,7 +11653,7 @@ paths:
       description: Authorises a payment pending authorisation.
       operationId: AuthorisePayment
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -11774,7 +11774,7 @@ paths:
       description: 'Delete a payment. On success, returns the final payment record state.'
       operationId: DeletePayment
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -12036,7 +12036,7 @@ paths:
       description: 'Assigns a <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> table to a specific sub-account.'
       operationId: PaymentsAssignPaymentFee
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -12654,7 +12654,7 @@ paths:
       description: 'Unassigns the <a href="https://support.currencycloud.com/hc/en-gb/articles/360017471459-Applying-fees-to-individual-payments-FAQ">payment fee</a> tables for a specific sub-account.'
       operationId: PaymentsUnassignPaymentFee
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -12800,7 +12800,7 @@ paths:
         <strong><a href="../guides/integration-guides/sca_sponsored_api_payments">SCA for payments integration guide</a></strong>.
       operationId: ValidatePayment
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -13974,7 +13974,7 @@ paths:
       summary: Find Bank Details
       description: >-
         Returns the related bank details for the given account reference.
-      operationId: FinfBankDetailsPost
+      operationId: FindBankDetailsPost
       produces:
         - application/json
       parameters:
@@ -15240,7 +15240,7 @@ paths:
         requested.
       operationId: GenerateConversionReport
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -15529,7 +15529,7 @@ paths:
       description: Returns a JSON structure with details of the payments report requested.
       operationId: GeneratePaymentReport
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -15798,7 +15798,7 @@ paths:
       x-api-group: manage
       summary: Find Report Requests
       description: Searches for report requests made. Returns a JSON structure with details of matching report requests.
-      operationId: Find Report Requests
+      operationId: FindReportRequests
       produces:
         - application/json
       parameters:
@@ -16029,7 +16029,7 @@ paths:
       x-api-group: manage
       summary: Retrieves a Report Request with the given ID
       description: Searches for a report by ID. Returns a JSON structure with details of the specified report request.
-      operationId: Retrieve a Report Request
+      operationId: RetrieveReportRequest
       produces:
         - application/json
       parameters:
@@ -16757,7 +16757,7 @@ paths:
         money in the same currency.
       operationId: CreateTransfer
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -17493,7 +17493,7 @@ paths:
       description: Requests that a transfer be cancelled.
       operationId: CancelTransfer
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -17638,7 +17638,7 @@ paths:
       summary: Find Withdrawal Account
       description: >-
         Lists all withdrawal accounts assigned to an account.
-      operationId: FindWithdrawlAccount
+      operationId: FindWithdrawalAccount
       produces:
         - application/json
       parameters:
@@ -17948,7 +17948,7 @@ paths:
         not implemented in the Production environment.
       operationId: SimulateFunding
       consumes:
-        - multipart/form-data
+        - application/x-www-form-urlencoded
       produces:
         - application/json
       parameters:
@@ -18559,9 +18559,9 @@ definitions:
         description: Has the bank account been verified?
         type: string
         enum:
-          - yes
-          - no
-          - not required
+          - 'yes'
+          - 'no'
+          - 'not required'
     example:
       id: B7DE235A-FF5D-4252-83C2-06A605267FEA
       account_name: Company PLC
@@ -19642,20 +19642,24 @@ definitions:
     type: object
     properties:
       parent_conversion:
-        $ref: '#/definitions/ConversionSplitDetails'
         description: The parent conversion.
+        allOf:
+          - $ref: '#/definitions/ConversionSplitDetails'
       child_conversion:
-        $ref: '#/definitions/ConversionSplitDetails'
         description: The child conversion.
+        allOf:
+          - $ref: '#/definitions/ConversionSplitDetails'
   ConversionSplitHistory:
     type: object
     properties:
       origin_conversion:
-        $ref: '#/definitions/ConversionSplitDetails'
         description: The original conversion (before split).
+        allOf:
+          - $ref: '#/definitions/ConversionSplitDetails'
       parent_conversion:
-        $ref: '#/definitions/ConversionSplitDetails'
         description: The parent conversion (after split).
+        allOf:
+          - $ref: '#/definitions/ConversionSplitDetails'
       child_conversions:
         type: array
         items:
@@ -20758,7 +20762,7 @@ definitions:
       routing_code_type: bic_swift
       created_at: '2018-05-14T14:18:30+00:00'
       updated_at: '2018-05-14T14:18:30+00:00'
-  GenrateHMACKeyError:
+  GenerateHMACKeyError:
     type: object
     description: |
       Client error information for the Contacts Generate HMAC Key endpoint.
@@ -23238,6 +23242,8 @@ definitions:
               number is the bid SPOT rate and the second is the ask SPOT rate.
       unavailable:
         type: array
+        items:
+          type: string
         description: >-
           A list of valid currency pairs that are not currently available.
     example:
