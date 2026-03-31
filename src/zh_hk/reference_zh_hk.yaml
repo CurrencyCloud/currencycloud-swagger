@@ -6252,6 +6252,12 @@ paths:
             - optimize_liquidity
           description: >-
             僅當未提供 conversion_date 時才可用且為必填項。<br> 必須是以下之一：<br> - 「earliest」表示最早可兌換日期。確保有足夠的時間將資金發送到 Currencycloud。<br> - 「next_day」表示次日為可兌換日期 - T+1。<br> - 「default」表示預設按以下方式兌換 - <a href="https://support.currencycloud.com/hc/zh-hk/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">亞太地區受限貨幣</a>為 T+1，所有其他貨幣為 T+2。<br> - 「optimize_liquidity」表示最大限度地提高獲得成功匯率的機會。與外來貨幣對最為相關。對於<a href="https://support.currencycloud.com/hc/zh-hk/articles/360017419080-Making-payments-to-India-Indonesia-Malaysia-and-the-Philippines-INR-IDR-MYR-PHP-FAQ">亞太地區受限貨幣</a>，兌換方式為 T+0；對於其他所有貨幣，兌換方式為 T+1 或 T+2。
+        - name: quote_id
+          in: formData
+          required: false
+          type: string
+          description: The UUID of a previously created conversion quote.
+
       responses:
         '200':
           description: 成功。
@@ -12161,6 +12167,217 @@ paths:
             X-Request-Id:
               type: string
               description: 請求的唯一參考。
+  /quotes/create:
+    post:
+      tags:
+        - Quotes
+      x-throttling-tier: Unlimited
+      x-api-group: convert
+      summary: Create Held Rate Quote
+      description: >-
+        <p style="color:#FF5000;"><strong>BETA</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">Please note that this endpoint is currently in beta. For additional details, please contact your Account Manager or our
+        <a href="mailto:support@currencycloud.com">support team</a>.</p><br>
+        Requests a new quote for the specified held-rate period and returns the details of the quote on success.
+      operationId: CreateQuoteConversion
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Authentication token.
+        - name: buy_currency
+          in: formData
+          required: true
+          type: string
+          description: Three-character ISO code of the currency being purchased.
+        - name: sell_currency
+          in: formData
+          required: true
+          type: string
+          description: Three-character ISO code of the currency being sold.
+        - name: fixed_side
+          in: formData
+          required: true
+          type: string
+          enum:
+            - buy
+            - sell
+          description: Fix the buy or sell currency.
+        - name: amount
+          in: formData
+          required: true
+          type: string
+          description: Amount of the fixed buy or sell currency.
+        - name: hold_period
+          in: formData
+          required: true
+          type: string
+          description: The time window (period) for which the quote should be valid.
+        - name: conversion_date
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: Earliest delivery date in UTC time zone. Format YYYY-MM-DD.
+        - name: conversion_date_preference
+          in: formData
+          required: false
+          type: string
+          enum:
+            - earliest
+            - next_day
+            - default
+            - optimize_liquidity
+          description: >-
+            Available and required only if conversion_date is not provided. Not currently supported for APAC currencies.<br>
+            Must be one of the following:<br>
+            - 'earliest' for earliest available conversion date. Make sure there is sufficient time to send funds to Currencycloud.<br>
+            - 'next_day' for next day available conversion date - T+1.<br>
+            - 'default' for conversion - T+1 for APAC, T+2 for everywhere else.<br>
+            - 'optimize_liquidity' for maximizing chances of getting a successful rate. Most relevant for exotic pairs.
+            Conversion is within one or two working days depending on currencies.
+        - name: on_behalf_of
+          in: formData
+          required: false
+          type: string
+          description: A contact UUID for the sub-account you're acting on behalf of.
+      responses:
+        '200':
+          description: Success.
+          schema:
+            $ref: '#/definitions/HeldRateQuote'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '400':
+          description: Client error.
+          x-errors:
+            - code: unique_value_parameters
+              category: base
+              message: >-
+                Following parameters should not have same values: sell_currency,
+                buy_currency
+              params: '{ "parameters" => "sell_currency, buy_currency" }'
+            - code: fixed_side_not_in_range
+              category: fixed_side
+              message: 'fixed_side should be in range: sell, buy'
+              params: '{ "range" => "sell, buy" }'
+            - code: fixed_side_is_required
+              category: fixed_side
+              message: fixed_side is required
+              params: ''
+            - code: conversion_date_type_is_wrong
+              category: conversion_date
+              message: conversion_date should be of date type
+              params: '{ "type" => "date" }'
+            - code: sell_currency_is_in_invalid_format
+              category: sell_currency
+              message: sell_currency is in invalid format
+              params: ''
+            - code: sell_currency_is_required
+              category: sell_currency
+              message: sell_currency is required
+              params: ''
+            - code: amount_type_is_wrong
+              category: amount
+              message: amount should be of numeric type
+              params: '{ "type" => "numeric" }'
+            - code: amount_is_required
+              category: amount
+              message: amount is required
+              params: ''
+            - code: amount_is_too_small
+              category: amount
+              message: amount can not be smaller than 1
+              params: '{ "minvalue" => 1 }'
+            - code: buy_currency_is_in_invalid_format
+              category: buy_currency
+              message: buy_currency is in invalid format
+              params: ''
+            - code: buy_currency_is_required
+              category: buy_currency
+              message: buy_currency is required
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: You cannot act on behalf of your own Contact
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Contact was not found for this id
+              params: ''
+            - code: amount_is_in_invalid_format
+              category: amount
+              message: amount should be of numeric type with 2 dp
+              params: '{ "type" => "numeric_with_precision", "precision" => 2 }'
+            - code: invalid_conversion_date_preference
+              category: base
+              message: not a valid conversion date preference, possible options are earliest, optimize_liquidity, default, next_day
+              params: ''
+            - code: hold_period_is_required
+              category: hold_period
+              message: hold_period is required
+              params: ''
+          schema:
+            $ref: '#/definitions/HeldRateQuoteError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '401':
+          description: Unauthorized.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Authentication failed with the supplied credentials
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '404':
+          description: Resource not found.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '500':
+          description: Internal server error
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Internal server error
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        '503':
+          description: Service is temporarily unavailable
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: Service is temporarily unavailable
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+        default:
+          description: Unexpected error.
+          headers:
+            X-Request-Id:
+              type: string
+              description: A unique reference for the request.
+
   /reference/bank_details/find:
     post:
       tags:
@@ -17744,6 +17961,114 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  HeldRateQuote:
+    type: object
+    description: Detailed held rate quote information.
+    properties:
+      buy_currency:
+        type: string
+      client_buy_amount:
+        type: string
+      client_rate:
+        type: string
+      client_sell_amount:
+        type: string
+      core_rate:
+        type: string
+      created_at:
+        type: string
+      currency_pair:
+        type: string
+      deposit_amount:
+        type: string
+      deposit_currency:
+        type: string
+      deposit_required:
+        type: string
+      expires_at:
+        type: string
+      fixed_side:
+        type: string
+      mid_market_rate:
+        type: string
+      partner_buy_amount:
+        type: string
+      partner_rate:
+        type: string
+      partner_sell_amount:
+        type: string
+      quote_id:
+        type: string
+      sell_currency:
+        type: string
+      settlement_cut_off_time:
+        type: string
+    example:
+      buy_currency: 'USD'
+      client_buy_amount: '118.56'
+      client_rate: '1.1856'
+      client_sell_amount: '100.0'
+      core_rate: '1.1858'
+      created_at: '2025-08-11T08:10:21Z'
+      currency_pair: 'EURUSD'
+      deposit_amount: '0.0'
+      deposit_currency: 'EUR'
+      deposit_required: false
+      expires_at: '2025-08-11T08:15:21Z'
+      fixed_side: 'sell'
+      mid_market_rate: '1.0146'
+      partner_buy_amount: '118.56'
+      partner_rate: '1.1856'
+      partner_sell_amount: '100.0'
+      quote_id: '3c25ce4a-3552-45bb-869e-406c795052aa'
+      sell_currency: 'EUR'
+      settlement_cut_off_time: '2025-08-13T15:30:00Z'
+  HeldRateQuoteError:
+    type: object
+    description: |
+      Client error information for the Create Quote endpoint.
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: A high-level error code for the whole request.
+      error_messages:
+        type: object
+        description: >-
+          Detailed error information for individual input parameters that failed
+          validation. Object keys are the names of the invalid input parameters.
+          Each parameter may have one or more reasons why it failed.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              An object that represents one of the reasons why the input
+              parameter failed.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  A unique code that identifies this error. It can be used for
+                  translations.
+              message:
+                type: string
+                description: An explanation of the error in English.
+              params:
+                type: object
+                default: { }
+                description: >-
+                  Relevant validation rules that failed. This can be used for
+                  translations.
+                example:
+                  minlength: 1
+                  maxlength: 255
+
   DeletePaymentError:
     type: object
     description: |
