@@ -49,7 +49,7 @@ This request is similar to creating a conversion, with the addition of the **`ho
 | `sell_currency` | string | ISO currency code being sold |
 | `fixed_side` | string | Currency to fix (`buy` or `sell`) |
 | `amount` | string | Amount of the fixed currency |
-| `hold_period` | string | Duration the quote is valid for (e.g. `5m`, `1h`) |
+| `hold_period` | string | Duration the quote is valid for. Must be pre-configured for your account and be provided using one of the supported units - seconds (s) or minutes (m), e.g. `30s`, `3m` |
 | `conversion_date` | string | Earliest delivery date (`YYYY-MM-DD`) |
 | `conversion_date_preference` | string | `default`, `earliest`, `next_day`, or `optimize_liquidity` |
 | `on_behalf_of` | string | Sub-account contact UUID |

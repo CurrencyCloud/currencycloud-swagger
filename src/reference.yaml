@@ -7512,7 +7512,7 @@ paths:
           required: false
           type: string
           description: The UUID of a previously created conversion quote.
-      
+
       responses:
         '200':
           description: Success.
@@ -13777,7 +13777,11 @@ paths:
           in: formData
           required: true
           type: string
-          description: The time window (period) for which the quote should be valid.
+          description: >-
+            The length of time for which the quote should remain valid.
+            This value must be pre-configured for your account and should
+            be provided using one of the supported units: seconds (s) or 
+            minutes (m). For example: 30s, 3m.
         - name: conversion_date
           in: formData
           required: false
