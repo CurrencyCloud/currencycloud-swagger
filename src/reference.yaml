@@ -13888,6 +13888,46 @@ paths:
               category: hold_period
               message: hold_period is required
               params: ''
+            - code: ccy_pair_is_not_tradeable
+              category: currency_pair
+              message: Given currency pair is not tradeable
+              params: ''
+            - code: crossing_cutoff_time
+              category: base
+              message: Hold period extends beyond the cut-off-time for the requested delivery date
+              params: ''
+            - code: held_rate_not_enabled
+              category: base
+              message: Held Rates Product is not enabled for this account
+              params: ''
+            - code: invalid_conversion_date
+              category: base
+              message: Conversion date is not valid for this currency pair
+              params: ''
+            - code: invalid_conversion_date_combination
+              category: base
+              message: One of conversion_date or conversion_date_preference must be specified
+              params: ''
+            - code: invalid_decimals
+              category: base
+              message: amount should be specified with a valid number of decimal places
+              params: ''
+            - code: invalid_delivery_date
+              category: base
+              message: The delivery date you have requested cannot be met for this currency pair
+              params: ''
+            - code: invalid_hold_period
+              category: base
+              message: Requested hold_period is invalid for this account
+              params: ''
+            - code: missing_client_spread_table_data
+              category: base
+              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up - please contact us
+              params: ''
+            - code: quote_could_not_be_created
+              category: base
+              message: Quote could not be created
+              params: ''
           schema:
             $ref: '#/definitions/HeldRateQuoteError'
           headers:
@@ -20412,7 +20452,7 @@ definitions:
       deposit_currency:
         type: string
       deposit_required:
-        type: string
+        type: boolean
       expires_at:
         type: string
       fixed_side:
