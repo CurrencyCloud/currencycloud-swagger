@@ -14,11 +14,6 @@ This guide is designed to help you verify beneficiary bank account details for o
 
 For clients under the Sponsored or Treasury service model and contracted with Currencycloud BV, it is a **mandatory** requirement to integrate with this API if you offer EUR SEPA payments to your customers.
 
-
-<p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;"><strong>Beta notice</strong> <br><br>
-Please be aware this API is in beta. Some response codes and reasons may change during this period. We will always provide at least 10 days notice before implementing any changes that may be breaking during the beta period.</p> <br><br>
-
-
 **What is it?**
 
 The [Verify Beneficiary Account](/api-reference/#verify-beneficiary-account) API endpoint can be used to verify a beneficiary's bank account details, and in the SEPA Euro market verify the name of the individual or company provided.
