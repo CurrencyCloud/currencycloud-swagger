@@ -23798,6 +23798,9 @@ definitions:
       sender_name:
         description: The sender name
         type: string
+      ultimate_sender_name:
+        description: The ultimate sender name
+        type: string
       sender_routing_code:
         description: The sender routing code
         type: string
@@ -23809,6 +23812,7 @@ definitions:
       sender_iban: null
       sender_id: 5c675fa4-fdf0-4ee6-b5bb-156b36765433
       sender_name: Test sender
+      ultimate_sender_name: Test sender
       sender_routing_code: null
     type: object
   Settlement:
