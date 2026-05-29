@@ -17,9 +17,10 @@
       "sender_address": "31 High Street, Brighton, East Sussex. BN12NW",
       "sender_country":"GB",
       "sender_name":"David Jenkins",
+      "ultimate_sender_name": "David Jenkins",
       "sender_bic": null,
       "sender_iban": null,
       "sender_account_number": null,
-      "sender_routing_code": null,
+      "sender_routing_code": null
       }
     }
