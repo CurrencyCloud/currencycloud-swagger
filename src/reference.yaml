@@ -402,7 +402,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           default: enabled
           description: Account status.
         - name: state_or_province
@@ -691,8 +690,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: legal_entity_type_not_in_range
               category: legal_entity_type
               message: 'legal_entity_type should be in range: individual, company'
@@ -1016,7 +1015,6 @@ paths:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         default: enabled
         description: Status of the account.
       - name: street
@@ -1221,8 +1219,8 @@ paths:
             params: '{ "range" => "individual, company" }'
           - code: status_not_in_range
             category: status
-            message: 'status should be in range: enabled, disabled, enabled_no_trading'
-            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            message: 'status should be in range: enabled, disabled'
+            params: '{ "range" => "enabled, disabled" }'
           - code: street_is_too_long
             category: street
             message: street can not be longer than 150 character(s)
@@ -1978,7 +1976,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           description: Account status.
         - name: street
           in: formData
@@ -2100,8 +2097,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status should be in range: enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: invalid_extra_parameters
               category: legal_entity_type
               message: 'Invalid extra parameters: ${legal_entity_type}'
@@ -3771,6 +3768,10 @@ paths:
       x-api-group: pay
       summary: Update Beneficiary
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request fields <strong>email</strong> and <strong>business_nature</strong> are deprecated and should no longer be used.
+        They will be removed on 26 November 2026<br></p><br>
+
         Updates an existing beneficiary. Returns the updated
         beneficiary entity on success. <br>
         Please note that it's not possible to change a beneficiary's entity type (company or individual)
@@ -3830,7 +3831,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary's email address.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            Beneficiary's email address.
+          deprecated: true
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
           minLength: 6
           maxLength: 255
@@ -4065,7 +4070,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary nature of business.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            Beneficiary nature of business.
+          deprecated: true
           maxLength: 255
         - name: company_website
           in: formData
@@ -4508,6 +4517,9 @@ paths:
       x-api-group: pay
       summary: Create Beneficiary
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request fields <strong>email</strong> and <strong>business_nature</strong> are deprecated and should no longer be used.
+        They will be removed on 26 November 2026<br></p><br>
         Creates a new beneficiary. Returns the new beneficiary entity on success.
       operationId: CreateBeneficiary
       consumes:
@@ -4558,7 +4570,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Email address
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            Email address
+          deprecated: true
           pattern: ^[\w\.\_\%\-\+]+@([\w-]+\.)+\w{2,}+$
           minLength: 6
           maxLength: 255
@@ -4795,7 +4811,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary nature of business.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            Beneficiary nature of business.
+          deprecated: true
           maxLength: 255
         - name: company_website
           in: formData
@@ -9732,7 +9752,12 @@ paths:
         - Payments
       x-api-group: pay
       summary: Create Payment
-      description: Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br> Clients who are implementing Strong Customer Authentication (SCA) for payments should refer to our <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
+      description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request field <strong>ultimate_beneficiary_name</strong> is deprecated and should no longer be used.
+        It will be removed on 26 November 2026<br></p><br>
+
+        Submits a payment. On success, returns the new payment record. Use the <a href="/api-reference/#get-payer-requirements">Get Payer Requirements</a> endpoint to find out what payer information needs to be provided.<br><br> Clients who are implementing Strong Customer Authentication (SCA) for payments should refer to our <a href="../guides/integration-guides/sca_sponsored_api_payments">integration guide</a>.
       operationId: CreatePayment
       consumes:
         - multipart/form-data
@@ -9936,7 +9961,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: The name of the ultimate beneficiary if different.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            The name of the ultimate beneficiary if different.
+          deprecated: true
           minLength: 1
           maxLength: 255
         - name: purpose_code
@@ -10832,7 +10861,11 @@ paths:
         - Payments
       x-api-group: pay
       summary: Update Payment
-      description: 'Updates a payment. On success, returns the updated payment entity.'
+      description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request field <strong>ultimate_beneficiary_name</strong> is deprecated and should no longer be used.
+        It will be removed on 26 November 2026<br></p><br>
+        'Updates a payment. On success, returns the updated payment entity.'
       operationId: UpdatePayment
       consumes:
         - multipart/form-data
@@ -11022,7 +11055,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: The name of the ultimate beneficiary if different.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            The name of the ultimate beneficiary if different.
+          deprecated: true
           minLength: 1
           maxLength: 255
         - name: purpose_code
@@ -12799,6 +12836,10 @@ paths:
       x-api-group: pay
       summary: Validate Payment
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request field <strong>ultimate_beneficiary_name</strong> is deprecated and should no longer be used.
+        It will be removed on 26 November 2026<br></p><br>
+
         Validates the details of a new payment without creating a
         record of the payment. On success, returns an object containing
         a string validation_result with value "success".<br><br>
@@ -13007,7 +13048,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: The name of the ultimate beneficiary if different.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 26 November 2026.<br>
+            The name of the ultimate beneficiary if different.
+          deprecated: true
           minLength: 1
           maxLength: 255
         - name: purpose_code
@@ -15789,7 +15834,8 @@ paths:
         - Reporting
       x-api-group: manage
       summary: Generate Payment Report
-      description: Returns a JSON structure with details of the payments report requested.
+      description: >-
+        Returns a JSON structure with details of the payments report requested.
       operationId: GeneratePaymentReport
       consumes:
         - multipart/form-data
@@ -18711,7 +18757,6 @@ definitions:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         description: Account status
       street:
         type: string

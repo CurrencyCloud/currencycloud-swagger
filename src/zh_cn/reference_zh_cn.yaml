@@ -346,7 +346,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           default: enabled
           description: 账户状态。
         - name: state_or_province
@@ -455,8 +454,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status 应在此范围内：enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status 应在此范围内：enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: legal_entity_type_not_in_range
               category: legal_entity_type
               message: 'legal_entity_type 应在此范围内：individual, company'
@@ -777,7 +776,6 @@ paths:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         default: enabled
         description: 账户状态。
       - name: street
@@ -923,8 +921,8 @@ paths:
             params: '{ "range" => "individual, company" }'
           - code: status_not_in_range
             category: status
-            message: 'status 应在此范围内：enabled, disabled, enabled_no_trading'
-            params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+            message: 'status 应在此范围内：enabled, disabled'
+            params: '{ "range" => "enabled, disabled" }'
           - code: street_is_too_long
             category: street
             message: street 长度不可超过 150 个字符
@@ -1177,7 +1175,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - enabled_no_trading
           description: 账户状态。
         - name: street
           in: formData
@@ -1288,8 +1285,8 @@ paths:
               params: '{ "maxlength" => 25 }'
             - code: status_not_in_range
               category: status
-              message: 'status 应在此范围内：enabled, disabled, enabled_no_trading'
-              params: '{ "range" => "enabled, disabled, enabled_no_trading" }'
+              message: 'status 应在此范围内：enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
             - code: invalid_extra_parameters
               category: legal_entity_type
               message: '无效的额外参数：${legal_entity_type}'
@@ -2906,7 +2903,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 收款人的电子邮件地址。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            收款人的电子邮件地址。
+          deprecated: true
         - name: beneficiary_address
           in: formData
           required: false
@@ -3100,7 +3101,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 收款人业务性质。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            收款人业务性质。
+          deprecated: true
         - name: company_website
           in: formData
           required: false
@@ -3564,7 +3569,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 电子邮件地址
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            电子邮件地址
+          deprecated: true
         - name: beneficiary_address
           in: formData
           required: false
@@ -3757,7 +3766,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 收款人业务性质。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            收款人业务性质。
+          deprecated: true
         - name: company_website
           in: formData
           required: false
@@ -8379,7 +8392,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 最终收款人的名称（如果不同）。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            最终收款人的名称（如果不同）。
+          deprecated: true
         - name: purpose_code
           in: formData
           required: false
@@ -9373,7 +9390,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 最终收款人的名称（如果不同）。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            最终收款人的名称（如果不同）。
+          deprecated: true
         - name: purpose_code
           in: formData
           required: false
@@ -11241,7 +11262,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 最终收款人的名称（如果不同）。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2026年11月26日移除<br>
+            最终收款人的名称（如果不同）。
+          deprecated: true
         - name: purpose_code
           in: formData
           required: false
@@ -16476,7 +16501,6 @@ definitions:
         enum:
           - disabled
           - enabled
-          - enabled_no_trading
         description: 账户状态
       street:
         type: string

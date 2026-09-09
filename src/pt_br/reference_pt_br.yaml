@@ -346,7 +346,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - "enabled_no_trading"
           default: enabled
           description: Status da conta.
         - name: "state_or_province"
@@ -777,7 +776,6 @@ paths:
         enum:
           - disabled
           - enabled
-          - "enabled_no_trading"
         default: enabled
         description: Status da conta.
       - name: street
@@ -1177,7 +1175,6 @@ paths:
           enum:
             - disabled
             - enabled
-            - "enabled_no_trading"
           description: Status da conta.
         - name: street
           in: formData
@@ -2910,7 +2907,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Endereço de e-mail do beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            Endereço de e-mail do beneficiário.
+          deprecated: true
         - name: "beneficiary_address"
           in: formData
           required: false
@@ -3104,7 +3105,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Natureza do negócio do beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            Natureza do negócio do beneficiário.
+          deprecated: true
         - name: "company_website"
           in: formData
           required: false
@@ -3571,7 +3576,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Endereço de e-mail
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            Endereço de e-mail
+          deprecated: true
         - name: "beneficiary_address"
           in: formData
           required: false
@@ -3764,7 +3773,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Natureza do negócio do beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            Natureza do negócio do beneficiário.
+          deprecated: true
         - name: "company_website"
           in: formData
           required: false
@@ -8525,7 +8538,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: "O nome do beneficiário final, se for diferente."
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            O nome do beneficiário final, se for diferente.
+          deprecated: true
         - name: "purpose_code"
           in: formData
           required: false
@@ -9526,7 +9543,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: "O nome do beneficiário final, se for diferente."
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            O nome do beneficiário final, se for diferente.
+          deprecated: true
         - name: "purpose_code"
           in: formData
           required: false
@@ -11522,7 +11543,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: "O nome do beneficiário final, se for diferente."
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 26 de novembro de 2026.<br>
+            O nome do beneficiário final, se for diferente.
+          deprecated: true
         - name: "purpose_code"
           in: formData
           required: false
@@ -16648,7 +16673,6 @@ definitions:
         enum:
           - disabled
           - enabled
-          - "enabled_no_trading"
         description: Status da conta
       street:
         type: string
