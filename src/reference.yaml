@@ -325,7 +325,12 @@ paths:
         - Accounts
       x-api-group: manage
       summary: Create Account
-      description: 'Creates a new sub-account. Returns the new account entity on success.'
+      description: >-
+        <p style="color:#FF5000;"><strong>UPCOMING CHANGES</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        As part of our Future-Ready programme, this endpoint will be updated on 30 October 2026.
+        The changes to field requirements are detailed in the field documentation below.</p> <br><br>
+        Creates a new sub-account. Returns the new account entity on success.
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -474,7 +479,10 @@ paths:
             - voter_id
             - work_permit
             - incorporation_number
-          description: A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
+          description: >-
+            A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory with an expanded list of identification types available.</p>
         - name: identification_value
           in: formData
           required: false
@@ -482,8 +490,42 @@ paths:
           description: >-
             Unique reference code for the identification document, such as a
             passport number. Required if "identification_type" is provided.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory.</p>
           minLength: 1
           maxLength: 255
+        - name: identification_expiration
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            The expiration date for the identification information provided. Format YYYY-MM-DD.
+            Part of extended compliance for "legal_entity_type: individual" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026, this field will be required for all ID types except the following:<br>
+            - drivers_license <br>
+            - driving_licence <br>
+            - immigration_status_document <br>
+            - national_health_insurance_card <br>
+            - national_identity_card <br>
+            - private_operators_card <br>
+            - proof_of_citizenship <br>
+            - residence_permit <br>
+            - residence_status_document <br>
+            - service_id_card <br>
+            - social_security_card <br>
+            - tax_id <br>
+            - voter_id</p>
+        - name: identification_issuer
+          in: formData
+          maxLength: 255
+          required: false
+          type: string
+          description: >-
+            ISO country code indicating the issuer of the identification information provided.
+            Part of extended compliance for "legal_entity_type: individual" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for individuals.</p>
         - name: terms_and_conditions_accepted
           in: formData
           required: false
@@ -494,34 +536,33 @@ paths:
           required: false
           maxLength: 255
           type: string
-          description: The industry the account operates in. Required if "linked_account_id" is present. Required if extended compliance fields are present.
+          description: >-
+             The industry the account operates in. Required if "linked_account_id" is present.
+             Required if extended compliance fields are present.
+             <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+             this field will be mandatory for companies.</p>
         - name: business_website_url
           in: formData
           required: false
           type: string
           maxLength: 400
           description: >-
-            A fully qualified URL (including scheme) indicating a marketplace homepage, a link to a government page concerning the company or the literal string 'no_website_available'. Required if extended compliance fields are present.
-        - name: identification_expiration
-          in: formData
-          required: false
-          type: string
-          format: date
-          description: >-
-            The expiration date for the identification information provided. Format YYYY-MM-DD. Part of extended compliance for "legal_entity_type: individual" accounts.
-        - name: identification_issuer
-          in: formData
-          maxLength: 255
-          required: false
-          type: string
-          description: >-
-            ISO country code indicating the issuer of the identification information provided. Part of extended compliance for "legal_entity_type: individual" accounts.
+            A fully qualified URL (including scheme) indicating a marketplace homepage,
+            a link to a government page concerning the company or the literal string
+            'no_website_available'. Required if extended compliance fields are present.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
+
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            ISO country code indicating the citizenship of the individual the account belongs to. Provide the longest held citizenship for individuals with multiple. Part of extended compliance for "legal_entity_type: individual" accounts.
+            ISO country code indicating the citizenship of the individual the account belongs to.
+            Provide the longest held citizenship for individuals with multiple.
+            Part of extended compliance for "legal_entity_type: individual" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for individuals.</p>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -529,20 +570,29 @@ paths:
           maxLength: 2
           minLength: 2
           description: >-
-            Two-letter ISO country code indicating the country the company is incorpated in. Part of extended compliance for "legal_entity_type: company" accounts.
+            Two-letter ISO country code indicating the country the company is incorpated in.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
         - name: date_of_incorporation
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            Date of the company's incorporation. Part of extended compliance for "legal_entity_type: company" accounts.
+            Date of the company's incorporation.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
         - name: legal_entity_sub_type
           in: formData
           required: false
           type: string
           description: >-
-            The type of company this account represents. Part of extended compliance for "legal_entity_type: company" accounts.
+            The type of company this account represents.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
           enum:
             - sole_trader
             - limited_liability_company
@@ -561,27 +611,38 @@ paths:
           type: string
           maxLength: 150
           description: >-
-            The street portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+            The street portion of the company's trading address.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies and will be validated using Loqate.</p>
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
             The city portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
         - name: trading_address_state
           in: formData
           required: false
           type: string
           maxLength: 100
           description: >-
-            The state portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+            The state portion of the company's trading address.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies where `trading_address_country` is "US", "CA" or "MX".</p>
         - name: trading_address_postalcode
           in: formData
           required: false
           type: string
           maxLength: 20
           description: >-
-            The postal code portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
+            The postal code portion of the company's trading address.
+            Part of extended compliance for "legal_entity_type: company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
         - name: trading_address_country
           in: formData
           required: false
@@ -591,26 +652,35 @@ paths:
           description: >-
             Two-letter ISO country code representing the country portion of the company's trading address.
             Part of extended compliance for accounts with "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for companies.</p>
         - name: tax_identification
           in: formData
           required: false
           type: string
           maxLength: 100
           description: >-
-            Tax identification number for the company. Part of extended compliance for accounts with "legal_entity_type: company". Required for companies based in "US" or "AU".
+            Tax identification number for the company. Part of extended compliance for accounts with "legal_entity_type: company".
+            Required for companies based in "US" or "AU".
         - name: national_identification
           in: formData
           required: false
           type: string
           maxLength: 100
           description: >-
-            National identification (e.g SSN for U.S. individuals). Part of extended compliance for "legal_entity_type: individual" accounts. Required for "US" based companies.
+            National identification (e.g Social Security Number for U.S. individuals).
+            Part of extended compliance for "legal_entity_type: individual" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for individuals where `country` or `country_of_citizenship` is "US".</p>
         - name: customer_risk
           in: formData
           required: false
           type: string
           description: >-
-            The risk classification for this account's expected behaviour. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            The risk classification for this account's expected behaviour.
+            Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory for individuals and companies on our Correspondent or OKYC service models.</p>
           enum:
             - LOW
             - MEDIUM
@@ -620,18 +690,29 @@ paths:
           required: false
           type: number
           description: >-
-            The expected number of money moving actions this account will conduct monthly. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            The expected number of money moving actions this account will conduct monthly.
+            Part of extended compliance for "legal_entity_type: individual | company" accounts.
+              <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+              this field will be mandatory.</p>
         - name: expected_monthly_activity_value
           in: formData
           required: false
           type: number
           description: >-
-            The expected sum value of money moving actions this account will conduct monthly. The currency basis of the value is submitted as part of "expected_transaction_currencies". Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            The expected sum value of money moving actions this account will conduct monthly.
+            The currency basis of the value is submitted as part of "expected_transaction_currencies".
+            Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory.</p>
         - name: 'expected_transaction_currencies[]'
           in: formData
           required: false
           description: >-
-            An array holding a single ISO currency code for the expected currency this account will mainly transact in. Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            An array holding a single ISO currency code for the expected currency this
+            account will mainly transact in.
+            Part of extended compliance for "legal_entity_type: individual | company" accounts.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory.</p>
           type: array
           items:
             type: string
@@ -639,7 +720,11 @@ paths:
           in: formData
           required: false
           type: array
-          description: Array of two-letter ISO-3166 country codes indicating the countries this account is expected to transact to and from.
+          description: >-
+            Array of two-letter ISO-3166 country codes indicating the countries this account
+            is expected to transact to and from.
+            <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+            this field will be mandatory.</p>
           items:
             type: string
             minLength: 2
@@ -966,7 +1051,7 @@ paths:
     x-api-group: manage
     summary: Update Account
     description: >-
-      Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
+        Updates a sub-account owned by the authenticated user. The updated account entity is returned on success.
     operationId: UpdateAccount
     consumes:
       - multipart/form-data
@@ -1110,7 +1195,10 @@ paths:
           - voter_id
           - work_permit
           - incorporation_number
-        description: A legal document that verifies the identity of the account owner.
+        description: >-
+          A legal document that verifies the identity of the account owner.
+          <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
+          the list of identification types will be expanded.</p>
       - name: identification_value
         in: formData
         required: false
@@ -1130,7 +1218,9 @@ paths:
         type: string
         format: date
         description: >-
-          The expiration date for the identification information provided. Format YYYY-MM-DD. Part of extended compliance for "legal_entity_type: individual" accounts.
+          The expiration date for the identification information provided. Format YYYY-MM-DD.
+          Part of extended compliance for "legal_entity_type: individual" accounts.
+
       - name: identification_issuer
         in: formData
         required: false
