@@ -1,7 +1,8 @@
 swagger: '2.0'
 info:
   description: >-
-    A API Currencycloud é uma API robusta, previsível e fácil de usar para converter dinheiro entre moedas e fazer pagamentos em todo o mundo. Registre dinamicamente subcontas para fornecer serviços de transferência de dinheiro white label (de marca própria) aos seus próprios clientes.
+    A API Currencycloud é uma API robusta, previsível e fácil de usar para converter dinheiro entre moedas e fazer pagamentos em todo o mundo. Registre dinamicamente subcontas para fornecer serviços de transferência de dinheiro white label (de marca própria) aos seus próprios clientes.<br>
+    <b>Aviso Legal: </b>Este conteúdo pode ter sido traduzido com o auxílio de inteligência artificial. Embora sejam feitos esforços para garantir a precisão, as traduções podem conter erros. Em caso de qualquer inconsistência ou ambiguidade entre a versão traduzida e a versão em inglês, a versão em inglês prevalecerá.
   version: 2.43.0
   title: API Currencycloud
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
@@ -283,7 +284,12 @@ paths:
         - Contas
       x-api-group: manage
       summary: Criar Conta
-      description: 'Cria uma nova subconta. Retorna a nova entidade de conta em caso de sucesso.'
+      description: >-
+        <p style="color:#FF5000;"><strong>PRÓXIMAS ALTERAÇÕES</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Como parte do nosso programa Future-Ready, este endpoint será atualizado em 30 de outubro de 2026.
+        As alterações nos requisitos dos campos estão detalhadas na documentação dos campos abaixo.</p> <br><br>
+        Cria uma nova subconta. Retorna a nova entidade de conta em caso de sucesso.
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -396,18 +402,252 @@ paths:
             - "social_insurance_number"
             - "social_security_number"
             - visa
-          description: "Um documento legal que verifica a identidade do proprietário da conta. Obrigatório para subcontas individuais em nosso modelo KYC terceirizado, opcional em outros casos."
+          description: >-
+            Um documento legal que verifica a identidade do proprietário da conta. Obrigatório para subcontas individuais em nosso modelo KYC terceirizado, opcional em outros casos.
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório, com uma lista expandida de tipos de identificação disponíveis.</p>
         - name: "identification_value"
           in: formData
           required: false
           type: string
           description: >-
             Código de referência exclusivo para o documento de identificação, como o número do passaporte. Obrigatório se "identification\_type" for fornecido.
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório.</p>
+        - name: identification_expiration
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            A data de validade das informações de identificação fornecidas. Formato AAAA-MM-DD.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026, este campo será obrigatório para todos os tipos de identificação, exceto os seguintes:<br>
+            - drivers_license <br>
+            - driving_licence <br>
+            - immigration_status_document <br>
+            - national_health_insurance_card <br>
+            - national_identity_card <br>
+            - private_operators_card <br>
+            - proof_of_citizenship <br>
+            - residence_permit <br>
+            - residence_status_document <br>
+            - service_id_card <br>
+            - social_security_card <br>
+            - tax_id <br>
+            - voter_id</p>
+        - name: identification_issuer
+          in: formData
+          maxLength: 255
+          required: false
+          type: string
+          description: >-
+            Código de país ISO que indica o emissor das informações de identificação fornecidas.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para pessoas físicas.</p>
         - name: "terms_and_conditions_accepted"
           in: formData
           required: false
           type: boolean
           description: "Aceite dos termos e condições. Obrigatório para subcontas que estejam em nosso modelo KYC terceirizado; caso contrário, opcional."
+        - name: industry_type
+          in: formData
+          required: false
+          maxLength: 255
+          type: string
+          description: >-
+            O setor em que a conta opera. Obrigatório se "linked_account_id" estiver presente.
+            Obrigatório se os campos de conformidade estendida estiverem presentes.
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          maxLength: 400
+          description: >-
+            Uma URL totalmente qualificada (incluindo o esquema) indicando a página inicial de um marketplace,
+            um link para uma página governamental referente à empresa, ou a string literal
+            'no_website_available'. Obrigatório se os campos de conformidade estendida estiverem presentes.
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          description: >-
+            Código de país ISO que indica a cidadania do indivíduo ao qual a conta pertence.
+            Informe a cidadania detida há mais tempo para indivíduos com múltiplas cidadanias.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para pessoas físicas.</p>
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            Código de país ISO de duas letras que indica o país em que a empresa foi constituída.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            Data de constituição da empresa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: legal_entity_sub_type
+          in: formData
+          required: false
+          type: string
+          description: >-
+            O tipo de empresa que esta conta representa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+          enum:
+            - sole_trader
+            - limited_liability_company
+            - public_limited_company
+            - limited_liability_partnership
+            - unincorporated_partnership
+            - unregistered_charity
+            - registered_charity
+            - trust
+            - company_with_nominee_shareholders_or_shares_in_bearer_form
+            - scottish_limited_partnership
+            - other
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          maxLength: 150
+          description: >-
+            A parte referente à rua do endereço comercial da empresa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas e será validado usando o Loqate.</p>
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A parte referente à cidade do endereço comercial da empresa. Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: trading_address_state
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            A parte referente ao estado do endereço comercial da empresa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas quando `trading_address_country` for "US", "CA" ou "MX".</p>
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          maxLength: 20
+          description: >-
+            A parte referente ao código postal do endereço comercial da empresa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: trading_address_country
+          in: formData
+          required: false
+          maxLength: 2
+          minLength: 2
+          type: string
+          description: >-
+            Código de país ISO de duas letras que representa a parte referente ao país do endereço comercial da empresa.
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para empresas.</p>
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            Número de identificação fiscal da empresa. Parte da conformidade estendida para contas com "legal_entity_type: company".
+            Obrigatório para empresas com sede nos "US" ou "AU".
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            Identificação nacional (por exemplo, Número de Seguro Social para indivíduos nos EUA).
+            Parte da conformidade estendida para contas com "legal_entity_type: individual".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para pessoas físicas quando `country` ou `country_of_citizenship` for "US".</p>
+        - name: customer_risk
+          in: formData
+          required: false
+          type: string
+          description: >-
+            A classificação de risco para o comportamento esperado desta conta.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório para pessoas físicas e empresas em nossos modelos de serviço Correspondent ou OKYC.</p>
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: number
+          description: >-
+            O número esperado de ações de movimentação de dinheiro que esta conta realizará mensalmente.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório.</p>
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          description: >-
+            O valor total esperado das ações de movimentação de dinheiro que esta conta realizará mensalmente.
+            A moeda de referência do valor é enviada como parte de "expected_transaction_currencies".
+            Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório.</p>
+        - name: 'expected_transaction_currencies[]'
+          in: formData
+          required: false
+          description: >-
+            Um array contendo um único código de moeda ISO referente à moeda esperada na qual esta
+            conta transacionará principalmente.
+            Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório.</p>
+          type: array
+          items:
+            type: string
+        - name: 'expected_transaction_countries[]'
+          in: formData
+          required: false
+          type: array
+          description: >-
+            Array de códigos de país ISO-3166 de duas letras indicando os países com os quais esta conta
+            deverá transacionar (envio e recebimento).
+            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
+            este campo será obrigatório.</p>
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
       responses:
         '200':
           description: Sucesso.
@@ -862,6 +1102,39 @@ paths:
         required: false
         type: boolean
         description: Aceite dos termos e condições.
+      - name: identification_expiration
+        in: formData
+        required: false
+        type: string
+        format: date
+        description: >-
+          A data de validade das informações de identificação fornecidas. Formato AAAA-MM-DD.
+          Parte da conformidade estendida para contas com "legal_entity_type: individual".
+      - name: identification_issuer
+        in: formData
+        required: false
+        type: string
+        maxLength: 255
+        description: >-
+          Código de país ISO que indica o emissor das informações de identificação fornecidas. Parte da conformidade estendida para contas com "legal_entity_type: individual".
+      - name: legal_entity_sub_type
+        in: formData
+        required: false
+        type: string
+        description: >-
+          O tipo de empresa que esta conta representa. Parte da conformidade estendida para contas com "legal_entity_type: company"
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
     responses:
       '200':
         description: Sucesso.

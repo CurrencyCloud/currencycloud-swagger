@@ -1,7 +1,8 @@
 swagger: '2.0'
 info:
   description: >-
-    Currencycloud API 是一個強大、可預測、易於使用的 API，用於在全球範圍內進行貨幣兌換和支付。動態註冊子賬戶，為您自己的客戶提供白標資金轉賬服務。
+    Currencycloud API 是一個強大、可預測、易於使用的 API，用於在全球範圍內進行貨幣兌換和支付。動態註冊子賬戶，為您自己的客戶提供白標資金轉賬服務。<br>
+    免責聲明：此內容可能使用人工智慧進行翻譯。儘管我們已盡力確保準確性，但翻譯內容仍可能存在錯誤。若翻譯版本與英文版本之間存在任何不一致或歧義，應以英文版本為準。
   version: 2.43.0
   title: Currencycloud API
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
@@ -283,7 +284,12 @@ paths:
         - 賬戶
       x-api-group: manage
       summary: 創建賬戶
-      description: '創建一個新的子賬戶。若操作成功，將返回新的賬戶實體。'
+      description: >-
+        <p style="color:#FF5000;"><strong>即將發生的變更</strong></p><br>
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        作為我們 Future-Ready 計劃的一部分，此端點將於 2026 年 10 月 30 日更新。
+        欄位要求的變更詳情見下方欄位文檔。</p> <br><br>
+        創建一個新的子賬戶。若操作成功，將返回新的賬戶實體。
       operationId: CreateAccount
       consumes:
         - multipart/form-data
@@ -396,18 +402,232 @@ paths:
             - social_insurance_number
             - social_security_number
             - visa
-          description: 核實賬戶所有者身份的法律文檔。對於採用我們的外包 KYC 模式的個人子賬戶為必填項，否則為選填項。
+          description: >-
+            核實賬戶所有者身份的法律文檔。對於採用我們的外包 KYC 模式的個人子賬戶為必填項，否則為選填項。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項，
+            並提供擴展後的身分識別類型清單。</p>
         - name: identification_value
           in: formData
           required: false
           type: string
           description: >-
             用於識別文檔的唯一參考代碼，比如護照號碼。若提供了「identification_type」，則此項必填。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+        - name: identification_expiration
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            所提供身分識別資料的到期日期。格式為 YYYY-MM-DD。
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，除下列身分識別類型外，此欄位將成為必填項：<br>
+            - drivers_license <br>
+            - driving_licence <br>
+            - immigration_status_document <br>
+            - national_health_insurance_card <br>
+            - national_identity_card <br>
+            - private_operators_card <br>
+            - proof_of_citizenship <br>
+            - residence_permit <br>
+            - residence_status_document <br>
+            - service_id_card <br>
+            - social_security_card <br>
+            - tax_id <br>
+            - voter_id</p>
+        - name: identification_issuer
+          in: formData
+          maxLength: 255
+          required: false
+          type: string
+          description: >-
+            表示所提供身分識別資料簽發方的 ISO 國家/地區代碼。
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對個人賬戶將成為必填項。</p>
         - name: terms_and_conditions_accepted
           in: formData
           required: false
           type: boolean
           description: 對條款與條件的接受。對於採用我們的外包 KYC 模式的子賬戶為必填項，否則為選填項。
+        - name: industry_type
+          in: formData
+          required: false
+          maxLength: 255
+          type: string
+          description: >-
+            賬戶所屬的行業。若存在「linked_account_id」，則為必填項。
+            若存在擴展合規欄位，則為必填項。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          maxLength: 400
+          description: >-
+            一個完整的 URL（包括協議），指向市場主頁、與該公司相關的政府頁面，或字面字串
+            'no_website_available'。若存在擴展合規欄位，則為必填項。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          description: >-
+            表示賬戶所屬個人國籍的 ISO 國家/地區代碼。對於擁有多重國籍的個人，請提供持有時間最長的國籍。
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對個人賬戶將成為必填項。</p>
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示公司註冊成立所在國家/地區的兩個字母 ISO 國家/地區代碼。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            公司的成立日期。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: legal_entity_sub_type
+          in: formData
+          required: false
+          type: string
+          description: >-
+            此賬戶所代表的公司類型。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+          enum:
+            - sole_trader
+            - limited_liability_company
+            - public_limited_company
+            - limited_liability_partnership
+            - unincorporated_partnership
+            - unregistered_charity
+            - registered_charity
+            - trust
+            - company_with_nominee_shareholders_or_shares_in_bearer_form
+            - scottish_limited_partnership
+            - other
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          maxLength: 150
+          description: >-
+            公司經營地址中的街道部分。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項，
+            並將使用 Loqate 進行驗證。</p>
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          description: >-
+            公司經營地址中的城市部分。屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: trading_address_state
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            公司經營地址中的州/省部分。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，當 `trading_address_country`
+            為「US」、「CA」或「MX」時，此欄位對公司賬戶將成為必填項。</p>
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          maxLength: 20
+          description: >-
+            公司經營地址中的郵政編碼部分。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: trading_address_country
+          in: formData
+          required: false
+          maxLength: 2
+          minLength: 2
+          type: string
+          description: >-
+            表示公司經營地址中國家/地區部分的兩個字母 ISO 國家/地區代碼。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            公司的稅務識別號碼。屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            對於總部位於「US」或「AU」的公司為必填項。
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            國民身分識別號碼（例如美國個人的社會安全號碼）。
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，當 `country` 或
+            `country_of_citizenship` 為「US」時，此欄位對個人賬戶將成為必填項。</p>
+        - name: customer_risk
+          in: formData
+          required: false
+          type: string
+          description: >-
+            該賬戶預期行為的風險分類。
+            屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對採用
+            Correspondent 或 OKYC 服務模式的個人及公司賬戶將成為必填項。</p>
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: number
+          description: >-
+            該賬戶每月預計進行的資金轉移操作次數。
+            屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          description: >-
+            該賬戶每月預計進行資金轉移操作的總金額。該金額所對應的貨幣基準透過「expected_transaction_currencies」提交。
+            屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+        - name: 'expected_transaction_currencies[]'
+          in: formData
+          required: false
+          description: >-
+            一個陣列，包含此賬戶主要交易預期貨幣的單一 ISO 貨幣代碼。
+            屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+          type: array
+          items:
+            type: string
+        - name: 'expected_transaction_countries[]'
+          in: formData
+          required: false
+          type: array
+          description: >-
+            由兩個字母的 ISO-3166 國家/地區代碼組成的陣列，表示此賬戶預期進行收付交易的國家/地區。
+            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
       responses:
         '200':
           description: 成功。
@@ -862,6 +1082,39 @@ paths:
         required: false
         type: boolean
         description: 對條款與條件的接受。
+      - name: identification_expiration
+        in: formData
+        required: false
+        type: string
+        format: date
+        description: >-
+          所提供身分識別資料的到期日期。格式為 YYYY-MM-DD。
+          屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+      - name: identification_issuer
+        in: formData
+        required: false
+        type: string
+        maxLength: 255
+        description: >-
+          表示所提供身分識別資料簽發方的 ISO 國家/地區代碼。屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
+      - name: legal_entity_sub_type
+        in: formData
+        required: false
+        type: string
+        description: >-
+          此賬戶所代表的公司類型。屬於「legal_entity_type: company」賬戶擴展合規要求的一部分
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
     responses:
       '200':
         description: 成功。
