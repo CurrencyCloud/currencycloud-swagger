@@ -16759,6 +16759,18 @@ paths:
               - "suspected_fraud"
               - "internal_watchlist_match"
               - "suspected_money_laundering_activity"
+          - name: payment_rail
+            in: formData
+            required: false
+            type: string
+            description: >
+              O canal de pagamento no qual o pagamento de entrada simulado deve parecer ter chegado. O padrão é FPS se não for informado.
+          - name: provider
+            in: formData
+            required: false
+            type: string
+            description: >
+              O provedor pelo qual o pagamento de entrada simulado deve parecer ter chegado. O padrão é starling_bank se não for informado.
         responses:
           '200':
             description: Sucesso.
@@ -16777,6 +16789,14 @@ paths:
                   description: UUID da conta interna
                   type: string
                   example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+                payment_rail:
+                  description: O canal de pagamento no qual o pagamento de entrada simulado parece ter chegado.
+                  type: string
+                  example: FPS
+                provider:
+                  description: O provedor pelo qual o pagamento de entrada simulado parece ter chegado.
+                  type: string
+                  example: starling_bank
                 result:
                   type: object
                   properties:

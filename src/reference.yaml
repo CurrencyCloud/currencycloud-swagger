@@ -329,7 +329,7 @@ paths:
         <p style="color:#FF5000;"><strong>UPCOMING CHANGES</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
         As part of our Future-Ready programme, this endpoint will be updated on 30 October 2026.
-        The changes to field requirements are detailed in the field documentation below.</p> <br><br>
+        The changes to field requirements are detailed in the field documentation below. </p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.
       operationId: CreateAccount
       consumes:
@@ -18659,6 +18659,20 @@ paths:
             - suspected_money_laundering_activity
           minLength: 1
           maxLength: 255
+        - name: payment_rail
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: >
+            The payment rail the simulated inbound payment should appear to arrive on. Defaults to FPS if not supplied.
+        - name: provider
+          in: formData
+          required: false
+          maxLength: 255
+          type: string
+          description: >
+            The provider the simulated inbound payment should appear to arrive via. Defaults to starling_bank if not supplied.
       responses:
         '200':
           description: Success.
@@ -18677,6 +18691,14 @@ paths:
                 description: House Account UUID
                 type: string
                 example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
+              payment_rail:
+                description: The payment rail the simulated inbound payment appears to have arrived on.
+                type: string
+                example: FPS
+              provider:
+                description: The provider the simulated inbound payment appears to have arrived via.
+                type: string
+                example: starling_bank
               result:
                 type: object
                 properties:
