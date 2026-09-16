@@ -329,7 +329,7 @@ paths:
         <p style="color:#FF5000;"><strong>UPCOMING CHANGES</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
         As part of our Future-Ready programme, this endpoint will be updated on 30 October 2026.
-        The changes to field requirements are detailed in the field documentation below. They do not</p> <br><br>
+        The changes to field requirements are detailed in the field documentation below. </p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.
       operationId: CreateAccount
       consumes:
