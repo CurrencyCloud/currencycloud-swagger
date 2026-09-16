@@ -18663,11 +18663,13 @@ paths:
           in: formData
           required: false
           type: string
+          maxLength: 255
           description: >
             The payment rail the simulated inbound payment should appear to arrive on. Defaults to FPS if not supplied.
         - name: provider
           in: formData
           required: false
+          maxLength: 255
           type: string
           description: >
             The provider the simulated inbound payment should appear to arrive via. Defaults to starling_bank if not supplied.
