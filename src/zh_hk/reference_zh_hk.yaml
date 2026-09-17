@@ -16370,6 +16370,18 @@ paths:
           required: false
           type: string
           description: 您所代表的子賬戶的聯絡人 UUID。
+        - name: payment_rail
+          in: formData
+          required: false
+          type: string
+          description: >
+            模擬入賬付款應顯示為透過其到達的付款通道。如未提供，預設為 FPS。
+        - name: provider
+          in: formData
+          required: false
+          type: string
+          description: >
+            模擬入賬付款應顯示為透過其到達的提供商。如未提供，預設為 starling_bank。
       responses:
         '200':
           description: 成功。
@@ -16576,18 +16588,6 @@ paths:
               - suspected_fraud
               - internal_watchlist_match
               - suspected_money_laundering_activity
-          - name: payment_rail
-            in: formData
-            required: false
-            type: string
-            description: >
-              模擬入賬付款應顯示為透過其到達的付款通道。如未提供，預設為 FPS。
-          - name: provider
-            in: formData
-            required: false
-            type: string
-            description: >
-              模擬入賬付款應顯示為透過其到達的提供商。如未提供，預設為 starling_bank。
         responses:
           '200':
             description: 成功。
@@ -16606,14 +16606,6 @@ paths:
                   description: 主賬戶 UUID
                   type: string
                   example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
-                payment_rail:
-                  description: 模擬入賬付款似乎已透過其到達的付款通道。
-                  type: string
-                  example: FPS
-                provider:
-                  description: 模擬入賬付款似乎已透過其到達的提供商。
-                  type: string
-                  example: starling_bank
                 result:
                   type: object
                   properties:
@@ -22144,6 +22136,8 @@ definitions:
       - short_reference
       - updated_at
       - created_at
+      - payment_rail
+      - provider
     additionalProperties: false
     properties:
       id:
@@ -22202,6 +22196,14 @@ definitions:
         type: string
         description: 賬戶中 SSI 上次更新的日期-時間。
         format: date-time
+      payment_rail:
+        description: 模擬入賬付款似乎已透過其到達的付款通道。
+        type: string
+        example: FPS
+      provider:
+        description: 模擬入賬付款似乎已透過其到達的提供商。
+        type: string
+        example: starling_bank
     example:
       id: 2090939e-b2f7-3f2b-1363-jfy28d74kc72
       account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
@@ -22220,6 +22222,8 @@ definitions:
       short_reference: REF-22122
       created_at: '2018-05-14T14:18:30+00:00'
       updated_at: '2018-05-14T14:18:30+00:00'
+      payment_rail: FPS
+      provider: starling_bank
   CreateSimulateFundingError:
     type: object
     description: |
