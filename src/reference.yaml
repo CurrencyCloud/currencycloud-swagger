@@ -18448,6 +18448,20 @@ paths:
           type: string
           description: A contact UUID for the sub-account you're acting on behalf of.
           format: uuid
+        - name: payment_rail
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: >
+            The payment rail the simulated inbound payment should appear to arrive on. Defaults to 'FPS' if not supplied.
+        - name: provider
+          in: formData
+          required: false
+          maxLength: 255
+          type: string
+          description: >
+            The provider the simulated inbound payment should appear to arrive via. Defaults to 'starling_bank' if not supplied.
       responses:
         '200':
           description: Success.
@@ -18659,20 +18673,6 @@ paths:
             - suspected_money_laundering_activity
           minLength: 1
           maxLength: 255
-        - name: payment_rail
-          in: formData
-          required: false
-          type: string
-          maxLength: 255
-          description: >
-            The payment rail the simulated inbound payment should appear to arrive on. Defaults to FPS if not supplied.
-        - name: provider
-          in: formData
-          required: false
-          maxLength: 255
-          type: string
-          description: >
-            The provider the simulated inbound payment should appear to arrive via. Defaults to starling_bank if not supplied.
       responses:
         '200':
           description: Success.
@@ -18691,14 +18691,6 @@ paths:
                 description: House Account UUID
                 type: string
                 example: 7a116d7d-6310-40ae-8d54-0ffbe41dc1c9
-              payment_rail:
-                description: The payment rail the simulated inbound payment appears to have arrived on.
-                type: string
-                example: FPS
-              provider:
-                description: The provider the simulated inbound payment appears to have arrived via.
-                type: string
-                example: starling_bank
               result:
                 type: object
                 properties:
@@ -24943,6 +24935,8 @@ definitions:
       - short_reference
       - updated_at
       - created_at
+      - payment_rail
+      - provider
     additionalProperties: false
     properties:
       id:
@@ -25001,6 +24995,14 @@ definitions:
         type: string
         description: The date-time the SSI was last updated on the account.
         format: date-time
+      payment_rail:
+        description: The payment rail the simulated inbound payment appears to have arrived on.
+        type: string
+        example: FPS
+      provider:
+        description: The provider the simulated inbound payment appears to have arrived via.
+        type: string
+        example: starling_bank
     example:
       id: 2090939e-b2f7-3f2b-1363-jfy28d74kc72
       account_id: 2090939e-b2f7-3f2b-1363-4d235b3f58af
@@ -25019,6 +25021,8 @@ definitions:
       short_reference: REF-22122
       created_at: '2018-05-14T14:18:30+00:00'
       updated_at: '2018-05-14T14:18:30+00:00'
+      payment_rail: FPS
+      provider: starling_bank
   CreateSimulateFundingError:
     type: object
     description: |

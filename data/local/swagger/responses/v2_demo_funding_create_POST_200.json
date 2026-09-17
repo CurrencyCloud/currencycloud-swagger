@@ -14,6 +14,9 @@
     "currency": "USD",
     "action": "approve",
     "short_reference": "IF-20210917-17HB4L",
+    "payment_rail": "FPS",
+    "provider": "starling_bank",
     "created_at": "2021-09-17T15:35:17+00:00",
     "updated_at": "2021-09-17T15:35:18+00:00"
+
 }
