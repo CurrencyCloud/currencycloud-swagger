@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   description: >-
     A API Currencycloud é uma API robusta, previsível e fácil de usar para converter dinheiro entre moedas e fazer pagamentos em todo o mundo. Registre dinamicamente subcontas para fornecer serviços de transferência de dinheiro white label (de marca própria) aos seus próprios clientes.<br>
-    <b>Aviso Legal: </b>Este conteúdo pode ter sido traduzido com o auxílio de inteligência artificial. Embora sejam feitos esforços para garantir a precisão, as traduções podem conter erros. Em caso de qualquer inconsistência ou ambiguidade entre a versão traduzida e a versão em inglês, a versão em inglês prevalecerá.
+    Aviso: Este conteúdo pode ter sido traduzido com o uso de inteligência artificial. Embora sejam tomadas medidas para garantir a precisão, as traduções podem conter erros. Em caso de qualquer inconsistência ou ambiguidade entre a versão traduzida e a versão em inglês, a versão em inglês prevalecerá e será determinante.
   version: 2.43.0
   title: API Currencycloud
   termsOfService: 'https://www.currencycloud.com/terms-and-conditions/'
@@ -2627,7 +2627,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Nome do beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 10 de janeiro de 2027.<br>
+            Nome do beneficiário.
+          deprecated: true
         - name: "beneficiary_entity_type"
           in: formData
           required: false
@@ -3158,7 +3162,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Um apelido para o beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 10 de janeiro de 2027.<br>
+            Um apelido para o beneficiário.
+          deprecated: true
         - name: "bank_account_holder_name"
           in: formData
           required: false
@@ -3825,9 +3833,13 @@ paths:
           description: Token de autenticação
         - name: name
           in: formData
-          required: true
+          required: false
           type: string
-          description: Um apelido para o beneficiário.
+          description: >-
+            <span style="color:#FF5000;">OBSOLETO</span>. Este campo está
+            obsoleto e será removido em 10 de janeiro de 2027.<br>
+            Um apelido para o beneficiário.
+          deprecated: true
         - name: "bank_account_holder_name"
           in: formData
           required: true
