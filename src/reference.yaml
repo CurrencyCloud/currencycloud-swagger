@@ -3207,6 +3207,9 @@ paths:
       x-api-group: pay
       summary: Find Beneficiaries
       description: >-
+        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request field <strong>name</strong> is deprecated and should no longer be used.
+        It will be removed on 10 January 2027.<br></p><br>
         Returns beneficiaries attached to the account or any sub-account owned by
         the authenticated user.
       operationId: FindBeneficiariesPost
@@ -3317,7 +3320,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: Beneficiary's name.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 10 January 2027.<br>
+            A nickname for the beneficiary.
+          deprecated: true
           pattern: \S+
           minLength: 1
           maxLength: 100
@@ -3858,10 +3865,10 @@ paths:
       x-api-group: pay
       summary: Update Beneficiary
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        Deprecation Notice: Request fields <strong>email</strong> and <strong>business_nature</strong> are deprecated and should no longer be used.
-        They will be removed on 26 November 2026<br></p><br>
-
+        <div style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request fields <strong>email, business_nature</strong> and <strong>name</strong> are deprecated and should no longer be used.<br><br>
+        <ul><li>email and business_nature will be removed on 26 November 2026</li>
+        <li>name will be removed on 10 January 2027</li></ul></div><br>
         Updates an existing beneficiary. Returns the updated
         beneficiary entity on success. <br>
         Please note that it's not possible to change a beneficiary's entity type (company or individual)
@@ -3888,7 +3895,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: A nickname for the beneficiary.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 10 January 2027.<br>
+            A nickname for the beneficiary.
+          deprecated: true
           pattern: \S+
           minLength: 1
           maxLength: 100
@@ -4607,9 +4618,10 @@ paths:
       x-api-group: pay
       summary: Create Beneficiary
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        Deprecation Notice: Request fields <strong>email</strong> and <strong>business_nature</strong> are deprecated and should no longer be used.
-        They will be removed on 26 November 2026<br></p><br>
+        <div style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
+        Deprecation Notice: Request fields <strong>email, business_nature</strong> and <strong>name</strong> are deprecated and should no longer be used.<br><br>
+        <ul><li>email and business_nature will be removed on 26 November 2026</li>
+        <li>name will be removed on 10 January 2027</li></ul></div><br>
         Creates a new beneficiary. Returns the new beneficiary entity on success.
       operationId: CreateBeneficiary
       consumes:
@@ -4625,9 +4637,13 @@ paths:
           minLength: 32
         - name: name
           in: formData
-          required: true
+          required: false
           type: string
-          description: A nickname for the beneficiary.
+          description: >-
+            <span style="color:#FF5000;">DEPRECATED</span>. This field is
+            deprecated and will be removed on 10 January 2027.<br>
+            A nickname for the beneficiary.
+          deprecated: true
           pattern: \S+
           minLength: 1
           maxLength: 100
