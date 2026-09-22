@@ -2607,7 +2607,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 收款人名称。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2027年1月10日移除<br>
+            收款人名称。
+          deprecated: true
         - name: beneficiary_entity_type
           in: formData
           required: false
@@ -3134,7 +3138,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 收款人昵称。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2027年1月10日移除<br>
+            收款人昵称。
+          deprecated: true
         - name: bank_account_holder_name
           in: formData
           required: false
@@ -3798,9 +3806,13 @@ paths:
           description: 验证令牌
         - name: name
           in: formData
-          required: true
+          required: false
           type: string
-          description: 收款人昵称。
+          description: >-
+            <span style="color:#FF5000;">已弃用</span>。此字段已弃用，将于
+            2027年1月10日移除<br>
+            收款人昵称。
+          deprecated: true
         - name: bank_account_holder_name
           in: formData
           required: true
