@@ -328,8 +328,9 @@ paths:
       description: >-
         <p style="color:#FF5000;"><strong>UPCOMING CHANGES</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        As part of our Future-Ready programme, this endpoint will be updated on 30 October 2026.
-        The changes to field requirements are detailed in the field documentation below. </p> <br><br>
+        As part of our Future-Ready program, this endpoint will be updated on 30 October 2026.
+        The changes to field requirements are detailed in the field documentation below.
+        Please note that additional fields are becoming mandatory.</p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.
       operationId: CreateAccount
       consumes:
@@ -482,7 +483,7 @@ paths:
           description: >-
             A legal document that verifies the identity of the account owner. Required for individual sub-accounts on our outsourced KYC model, optional otherwise.
             <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
-            this field will be mandatory with an expanded list of identification types available.</p>
+            this field will be mandatory, with fewer identification types available.</p>
         - name: identification_value
           in: formData
           required: false
