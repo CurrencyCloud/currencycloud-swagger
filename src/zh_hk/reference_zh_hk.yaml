@@ -285,10 +285,11 @@ paths:
       x-api-group: manage
       summary: 創建賬戶
       description: >-
-        <p style="color:#FF5000;"><strong>即將發生的變更</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        作為我們 Future-Ready 計劃的一部分，此端點將於 2026 年 10 月 30 日更新。
-        欄位要求的變更詳情見下方欄位文檔。</p> <br><br>
+        重要提示：作為我們 Future-Ready 計劃的一部分，此端點將於<strong>2026 年 10 月 30 日</strong>在<strong>生產環境</strong>中更新。<br><br>
+        自<strong>2026 年 10 月 6 日</strong>起，相關變更將於我們的示範環境中提供，Developer Center 亦會反映更新後的欄位要求。<br><br>
+        下方部分顯示為必填的欄位，於2026 年 10 月 30 日前在生產環境中將<strong>不會</strong>成為必填項。<br><br>
+        個別欄位文檔已標明受影響的欄位。</p> <br><br>
         創建一個新的子賬戶。若操作成功，將返回新的賬戶實體。
       operationId: CreateAccount
       consumes:
@@ -382,68 +383,73 @@ paths:
           description: 允許賬戶透過電話進行交易。
         - name: identification_type
           in: formData
-          required: false
+          required: true
           type: string
           enum:
-            - citizenship_papers
-            - credential_de_elector
+            - asylum_registration_card
+            - consular_id
             - drivers_license
-            - drivers_license_canadian
-            - employer_identification_number
-            - existing_credit_card_details
-            - green_card
-            - incorporation_number
-            - matricula_consular
-            - national_id
-            - none
-            - others
+            - immigration_status_document
+            - indigenous_card
+            - international_driving_licence
+            - municipality_identity_card
+            - national_health_insurance_card
+            - national_identity_card
             - passport
-            - registro_federal_de_contribuyentes
-            - social_insurance_number
-            - social_security_number
+            - passport_card
+            - postal_identity_card
+            - private_operators_card
+            - professional_qualification_card
+            - proof_of_citizenship
+            - residence_permit
+            - residence_status_document
+            - service_id_card
+            - social_security_card
+            - tax_id
             - visa
+            - voter_id
+            - work_permit
+            - incorporation_number
           description: >-
-            核實賬戶所有者身份的法律文檔。對於採用我們的外包 KYC 模式的個人子賬戶為必填項，否則為選填項。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項，
-            並提供擴展後的身分識別類型清單。</p>
+            核實賬戶所有者身份的法律文檔。
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
         - name: identification_value
           in: formData
-          required: false
+          required: true
           type: string
           description: >-
-            用於識別文檔的唯一參考代碼，比如護照號碼。若提供了「identification_type」，則此項必填。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+            用於識別文檔的唯一參考代碼，比如護照號碼。
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
         - name: identification_expiration
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            所提供身分識別資料的到期日期。格式為 YYYY-MM-DD。
-            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，除下列身分識別類型外，此欄位將成為必填項：<br>
-            - drivers_license <br>
-            - driving_licence <br>
-            - immigration_status_document <br>
-            - national_health_insurance_card <br>
-            - national_identity_card <br>
-            - private_operators_card <br>
-            - proof_of_citizenship <br>
-            - residence_permit <br>
-            - residence_status_document <br>
-            - service_id_card <br>
-            - social_security_card <br>
-            - tax_id <br>
-            - voter_id</p>
+            所提供身分識別文件的到期日期。格式為 YYYY-MM-DD。<br>
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。<br>
+            以下身分識別類型須提供此欄位：<br>
+            - asylum_registration_card <br>
+            - indigenous_card <br>
+            - international_driving_licence <br>
+            - municipality_identity_card <br>
+            - passport <br>
+            - passport_card <br>
+            - postal_identity_card <br>
+            - professional_qualification_card <br>
+            - visa <br>
+            - work_permit <br>
+            <p style="color:#FF5000;">自2026年10月30日起，上述身分識別類型於生產環境中為必填項<br>
+            </p>
         - name: identification_issuer
           in: formData
           maxLength: 255
           required: false
           type: string
           description: >-
-            表示所提供身分識別資料簽發方的 ISO 國家/地區代碼。
+            表示所提供身分識別資料簽發方的 ISO 國家/地區代碼。個人賬戶為必填項。
             屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對個人賬戶將成為必填項。</p>
+            <p style="color:#FF5000;">自2026年10月30日起，個人賬戶於生產環境中為必填項。</p>
         - name: terms_and_conditions_accepted
           in: formData
           required: false
@@ -455,9 +461,9 @@ paths:
           maxLength: 255
           type: string
           description: >-
-            賬戶所屬的行業。若存在「linked_account_id」，則為必填項。
-            若存在擴展合規欄位，則為必填項。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            賬戶所屬的行業。公司賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。
+            </p>
         - name: business_website_url
           in: formData
           required: false
@@ -465,16 +471,18 @@ paths:
           maxLength: 400
           description: >-
             一個完整的 URL（包括協議），指向市場主頁、與該公司相關的政府頁面，或字面字串
-            'no_website_available'。若存在擴展合規欄位，則為必填項。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            'no_website_available'。公司賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。</p>
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            表示賬戶所屬個人國籍的 ISO 國家/地區代碼。對於擁有多重國籍的個人，請提供持有時間最長的國籍。
-            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對個人賬戶將成為必填項。</p>
+            表示賬戶所屬個人國籍的兩個字母 ISO 國家/地區代碼。對於擁有多重國籍的個人，請提供持有時間最長的國籍。
+            屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。<br>
+            個人賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，個人賬戶於生產環境中為必填項。
+            </p>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -484,7 +492,9 @@ paths:
           description: >-
             表示公司註冊成立所在國家/地區的兩個字母 ISO 國家/地區代碼。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            公司賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。
+            </p>
         - name: date_of_incorporation
           in: formData
           required: false
@@ -493,7 +503,9 @@ paths:
           description: >-
             公司的成立日期。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            公司賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。
+            </p>
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -501,7 +513,9 @@ paths:
           description: >-
             此賬戶所代表的公司類型。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            公司賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。
+            </p>
           enum:
             - sole_trader
             - limited_liability_company
@@ -522,15 +536,17 @@ paths:
           description: >-
             公司經營地址中的街道部分。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項，
-            並將使用 Loqate 進行驗證。</p>
+            <p style="color:#FF5000;">
+            自2026年10月30日起，公司賬戶於生產環境中為必填項。</p>
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
             公司經營地址中的城市部分。屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            公司賬戶為必填項。可與「city」欄位相同。
+            <p style="color:#FF5000;">
+            自2026年10月30日起，公司賬戶於生產環境中為必填項。</p>
         - name: trading_address_state
           in: formData
           required: false
@@ -539,8 +555,9 @@ paths:
           description: >-
             公司經營地址中的州/省部分。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，當 `trading_address_country`
-            為「US」、「CA」或「MX」時，此欄位對公司賬戶將成為必填項。</p>
+            當「trading_address_country」為「US」、「CA」或「MX」時為必填項。可與「state_or_province」欄位相同。
+            <p style="color:#FF5000;">
+            自2026年10月30日起，美國、加拿大及墨西哥公司於生產環境中為必填項。</p>
         - name: trading_address_postalcode
           in: formData
           required: false
@@ -549,7 +566,10 @@ paths:
           description: >-
             公司經營地址中的郵政編碼部分。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            當「trading_address_country」為「US」、「CA」或「MX」時為必填項。
+            可與「postal_code」欄位相同。
+            <p style="color:#FF5000;">
+            自2026年10月30日起，美國、加拿大及墨西哥公司於生產環境中為必填項。</p>
         - name: trading_address_country
           in: formData
           required: false
@@ -559,15 +579,18 @@ paths:
           description: >-
             表示公司經營地址中國家/地區部分的兩個字母 ISO 國家/地區代碼。
             屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對公司賬戶將成為必填項。</p>
+            公司賬戶為必填項。可與「country」欄位相同。
+            <p style="color:#FF5000;">自2026年10月30日起，公司賬戶於生產環境中為必填項。</p>
         - name: tax_identification
           in: formData
           required: false
           type: string
           maxLength: 100
           description: >-
-            公司的稅務識別號碼。屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
-            對於總部位於「US」或「AU」的公司為必填項。
+            公司的稅務識別號碼。美國的 Employer Identification Number 或澳洲的 Australian Business Number。
+            屬於「legal_entity_type: company」賬戶擴展合規要求的一部分。
+            當「country_of_incorporation」為「US」或「AU」時為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，美國及澳洲公司於生產環境中為必填項。</p>
         - name: national_identification
           in: formData
           required: false
@@ -576,8 +599,8 @@ paths:
           description: >-
             國民身分識別號碼（例如美國個人的社會安全號碼）。
             屬於「legal_entity_type: individual」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，當 `country` 或
-            `country_of_citizenship` 為「US」時，此欄位對個人賬戶將成為必填項。</p>
+            當「country_of_citizenship」為「US」時，個人賬戶為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，當「country_of_citizenship」為「US」時，個人賬戶於生產環境中為必填項。</p>
         - name: customer_risk
           in: formData
           required: false
@@ -585,45 +608,52 @@ paths:
           description: >-
             該賬戶預期行為的風險分類。
             屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位對採用
-            Correspondent 或 OKYC 服務模式的個人及公司賬戶將成為必填項。</p>
+            採用 Treasury 服務模式的客戶為選填項，其他則為必填項。
+            <p style="color:#FF5000;">自2026年10月30日起，除採用 Treasury 服務模式的客戶外，所有客戶於生產環境中均為必填項。</p>
           enum:
             - LOW
             - MEDIUM
             - HIGH
         - name: expected_monthly_activity_volume
           in: formData
-          required: false
+          required: true
           type: number
           description: >-
             該賬戶每月預計進行的資金轉移操作次數。
+            若未就個人/企業客戶特別收集此資訊，可按子賬戶使用以下方式計算並提交平均值：
+            該期間內的總交易次數 / 活躍個人或企業客戶數量<br>
             屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
         - name: expected_monthly_activity_value
           in: formData
-          required: false
+          required: true
           type: number
           description: >-
-            該賬戶每月預計進行資金轉移操作的總金額。該金額所對應的貨幣基準透過「expected_transaction_currencies」提交。
+            該賬戶每月預計進行資金轉移操作的金額。該金額所對應的貨幣透過「expected_transaction_currencies」提交。
+            若未特別收集此資訊，可按子賬戶使用以下方式計算並提交平均值：<br>
+            該期間內的總交易金額 / 活躍個人或企業客戶數量。<br>
             屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
         - name: 'expected_transaction_currencies[]'
           in: formData
-          required: false
+          required: true
           description: >-
             一個陣列，包含此賬戶主要交易預期貨幣的單一 ISO 貨幣代碼。
             屬於「legal_entity_type: individual | company」賬戶擴展合規要求的一部分。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
           type: array
           items:
             type: string
         - name: 'expected_transaction_countries[]'
           in: formData
-          required: false
+          required: true
           type: array
           description: >-
-            由兩個字母的 ISO-3166 國家/地區代碼組成的陣列，表示此賬戶預期進行收付交易的國家/地區。
-            <p style="color:#FF5000;"><strong>即將變更：</strong>自2026年10月30日起，此欄位將成為必填項。</p>
+            由兩個字母的 ISO-3166 國家/地區代碼組成的陣列，表示此賬戶預期進行收付交易的國家/地區。<br>
+            若未就個人/企業客戶特別收集此資訊，<br>
+            可按子賬戶使用以下方式計算並提交：<br>
+            按降序排列該客戶收付款最常涉及的首三個國家/地區
+            <p style="color:#FF5000;">自2026年10月30日起於生產環境中為必填項。</p>
           items:
             type: string
             minLength: 2

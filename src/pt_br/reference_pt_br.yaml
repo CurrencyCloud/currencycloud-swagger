@@ -285,10 +285,11 @@ paths:
       x-api-group: manage
       summary: Criar Conta
       description: >-
-        <p style="color:#FF5000;"><strong>PRÓXIMAS ALTERAÇÕES</strong></p><br>
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        Como parte do nosso programa Future-Ready, este endpoint será atualizado em 30 de outubro de 2026.
-        As alterações nos requisitos dos campos estão detalhadas na documentação dos campos abaixo.</p> <br><br>
+        Importante: Como parte do nosso programa Future-Ready, este endpoint será atualizado em <strong>produção</strong> em <strong>30 de outubro de 2026</strong>.<br><br>
+        A partir de <strong>6 de outubro de 2026</strong>, as alterações estarão disponíveis em nosso ambiente de demonstração e o Developer Center refletirá os novos requisitos dos campos.<br><br>
+        Alguns campos exibidos abaixo como obrigatórios <strong>não</strong> se tornarão obrigatórios em produção até 30 de outubro de 2026.<br><br>
+        A documentação de cada campo destaca os campos afetados.</p> <br><br>
         Cria uma nova subconta. Retorna a nova entidade de conta em caso de sucesso.
       operationId: CreateAccount
       consumes:
@@ -382,70 +383,73 @@ paths:
           description: Permitir que a conta faça negociações por telefone.
         - name: "identification_type"
           in: formData
-          required: false
+          required: true
           type: string
           enum:
-            - "citizenship_papers"
-            - "credential_de_elector"
-            - "drivers_license"
-            - "drivers_license_canadian"
-            - "employer_identification_number"
-            - "existing_credit_card_details"
-            - "green_card"
-            - "incorporation_number"
-            - "matricula_consular"
-            - "national_id"
-            - none
-            - others
+            - asylum_registration_card
+            - consular_id
+            - drivers_license
+            - immigration_status_document
+            - indigenous_card
+            - international_driving_licence
+            - municipality_identity_card
+            - national_health_insurance_card
+            - national_identity_card
             - passport
-            - "registro_federal_de_contribuyentes"
-            - "social_insurance_number"
-            - "social_security_number"
+            - passport_card
+            - postal_identity_card
+            - private_operators_card
+            - professional_qualification_card
+            - proof_of_citizenship
+            - residence_permit
+            - residence_status_document
+            - service_id_card
+            - social_security_card
+            - tax_id
             - visa
+            - voter_id
+            - work_permit
+            - incorporation_number
           description: >-
-            Um documento legal que verifica a identidade do proprietário da conta. Obrigatório para subcontas individuais em nosso modelo KYC terceirizado, opcional em outros casos.
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório, com uma lista expandida de tipos de identificação disponíveis.</p>
+            Um documento legal que verifica a identidade do proprietário da conta.
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
         - name: "identification_value"
           in: formData
-          required: false
+          required: true
           type: string
           description: >-
-            Código de referência exclusivo para o documento de identificação, como o número do passaporte. Obrigatório se "identification\_type" for fornecido.
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório.</p>
+            Código de referência exclusivo para o documento de identificação, como o número do passaporte.
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
         - name: identification_expiration
           in: formData
           required: false
           type: string
           format: date
           description: >-
-            A data de validade das informações de identificação fornecidas. Formato AAAA-MM-DD.
-            Parte da conformidade estendida para contas com "legal_entity_type: individual".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026, este campo será obrigatório para todos os tipos de identificação, exceto os seguintes:<br>
-            - drivers_license <br>
-            - driving_licence <br>
-            - immigration_status_document <br>
-            - national_health_insurance_card <br>
-            - national_identity_card <br>
-            - private_operators_card <br>
-            - proof_of_citizenship <br>
-            - residence_permit <br>
-            - residence_status_document <br>
-            - service_id_card <br>
-            - social_security_card <br>
-            - tax_id <br>
-            - voter_id</p>
+            A data de validade do documento de identificação fornecido. Formato AAAA-MM-DD.<br>
+            Parte da conformidade estendida para contas com "legal_entity_type: individual". <br>
+            Obrigatório para os seguintes tipos de identificação:<br>
+            - asylum_registration_card <br>
+            - indigenous_card <br>
+            - international_driving_licence <br>
+            - municipality_identity_card <br>
+            - passport <br>
+            - passport_card <br>
+            - postal_identity_card <br>
+            - professional_qualification_card <br>
+            - visa <br>
+            - work_permit <br>
+            <p style="color:#FF5000;">Obrigatório em produção para os tipos de identificação acima a partir de 30 de outubro de 2026<br>
+            </p>
         - name: identification_issuer
           in: formData
           maxLength: 255
           required: false
           type: string
           description: >-
-            Código de país ISO que indica o emissor das informações de identificação fornecidas.
+            Código de país ISO que indica o emissor das informações de identificação fornecidas. Obrigatório para pessoas físicas.
             Parte da conformidade estendida para contas com "legal_entity_type: individual".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para pessoas físicas.</p>
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026 para pessoas físicas.</p>
         - name: "terms_and_conditions_accepted"
           in: formData
           required: false
@@ -457,10 +461,8 @@ paths:
           maxLength: 255
           type: string
           description: >-
-            O setor em que a conta opera. Obrigatório se "linked_account_id" estiver presente.
-            Obrigatório se os campos de conformidade estendida estiverem presentes.
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            O setor em que a conta opera. Obrigatório para empresas.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.</p>
         - name: business_website_url
           in: formData
           required: false
@@ -469,19 +471,19 @@ paths:
           description: >-
             Uma URL totalmente qualificada (incluindo o esquema) indicando a página inicial de um marketplace,
             um link para uma página governamental referente à empresa, ou a string literal
-            'no_website_available'. Obrigatório se os campos de conformidade estendida estiverem presentes.
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            'no_website_available'. Obrigatório para empresas.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.</p>
         - name: country_of_citizenship
           in: formData
           required: false
           type: string
           description: >-
-            Código de país ISO que indica a cidadania do indivíduo ao qual a conta pertence.
+            Código de país ISO de duas letras que indica a cidadania do indivíduo ao qual a conta pertence.
             Informe a cidadania detida há mais tempo para indivíduos com múltiplas cidadanias.
-            Parte da conformidade estendida para contas com "legal_entity_type: individual".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para pessoas físicas.</p>
+            Parte da conformidade estendida para contas com "legal_entity_type: individual".<br>
+            Obrigatório para pessoas físicas.
+            <p style="color:#FF5000;">Obrigatório em produção para pessoas físicas a partir de 30 de outubro de 2026.
+            </p>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -491,8 +493,9 @@ paths:
           description: >-
             Código de país ISO de duas letras que indica o país em que a empresa foi constituída.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.
+            </p>
         - name: date_of_incorporation
           in: formData
           required: false
@@ -501,8 +504,9 @@ paths:
           description: >-
             Data de constituição da empresa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.
+            </p>
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -510,8 +514,9 @@ paths:
           description: >-
             O tipo de empresa que esta conta representa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.
+            </p>
           enum:
             - sole_trader
             - limited_liability_company
@@ -532,16 +537,17 @@ paths:
           description: >-
             A parte referente à rua do endereço comercial da empresa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas e será validado usando o Loqate.</p>
+            <p style="color:#FF5000;">
+            Obrigatório em produção para empresas a partir de 30 de outubro de 2026.</p>
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
             A parte referente à cidade do endereço comercial da empresa. Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas. Pode ser igual ao campo 'city'.
+            <p style="color:#FF5000;">
+            Obrigatório em produção para empresas a partir de 30 de outubro de 2026.</p>
         - name: trading_address_state
           in: formData
           required: false
@@ -550,8 +556,9 @@ paths:
           description: >-
             A parte referente ao estado do endereço comercial da empresa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas quando `trading_address_country` for "US", "CA" ou "MX".</p>
+            Obrigatório para empresas quando 'trading_address_country' for 'US', 'CA' ou 'MX'. Pode ser igual ao campo 'state_or_province'.
+            <p style="color:#FF5000;">
+            Obrigatório em produção para empresas dos EUA, Canadá e México a partir de 30 de outubro de 2026.</p>
         - name: trading_address_postalcode
           in: formData
           required: false
@@ -560,8 +567,10 @@ paths:
           description: >-
             A parte referente ao código postal do endereço comercial da empresa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas quando 'trading_address_country' for 'US', 'CA' ou 'MX'.
+            Pode ser igual ao campo 'postal_code'.
+            <p style="color:#FF5000;">
+            Obrigatório em produção para empresas dos EUA, Canadá e México a partir de 30 de outubro de 2026.</p>
         - name: trading_address_country
           in: formData
           required: false
@@ -571,16 +580,18 @@ paths:
           description: >-
             Código de país ISO de duas letras que representa a parte referente ao país do endereço comercial da empresa.
             Parte da conformidade estendida para contas com "legal_entity_type: company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para empresas.</p>
+            Obrigatório para empresas. Pode ser igual ao campo 'country'.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas a partir de 30 de outubro de 2026.</p>
         - name: tax_identification
           in: formData
           required: false
           type: string
           maxLength: 100
           description: >-
-            Número de identificação fiscal da empresa. Parte da conformidade estendida para contas com "legal_entity_type: company".
-            Obrigatório para empresas com sede nos "US" ou "AU".
+            Número de identificação fiscal da empresa. Employer Identification Number (EUA) ou Australian Business Number (AU).
+            Parte da conformidade estendida para contas com "legal_entity_type: company".
+            Obrigatório para empresas quando 'country_of_incorporation' for 'US' ou 'AU'.
+            <p style="color:#FF5000;">Obrigatório em produção para empresas dos EUA e da Austrália a partir de 30 de outubro de 2026.</p>
         - name: national_identification
           in: formData
           required: false
@@ -589,8 +600,8 @@ paths:
           description: >-
             Identificação nacional (por exemplo, Número de Seguro Social para indivíduos nos EUA).
             Parte da conformidade estendida para contas com "legal_entity_type: individual".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para pessoas físicas quando `country` ou `country_of_citizenship` for "US".</p>
+            Obrigatório para pessoas físicas quando 'country_of_citizenship' for 'US'.
+            <p style="color:#FF5000;">Obrigatório em produção para pessoas físicas quando 'country_of_citizenship' for 'US' a partir de 30 de outubro de 2026.</p>
         - name: customer_risk
           in: formData
           required: false
@@ -598,52 +609,56 @@ paths:
           description: >-
             A classificação de risco para o comportamento esperado desta conta.
             Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório para pessoas físicas e empresas em nossos modelos de serviço Correspondent ou OKYC.</p>
+            Opcional para clientes no modelo de serviço Treasury, obrigatório nos demais casos.
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026 para todos os clientes, exceto aqueles no modelo de serviço Treasury.</p>
           enum:
             - LOW
             - MEDIUM
             - HIGH
         - name: expected_monthly_activity_volume
           in: formData
-          required: false
+          required: true
           type: number
           description: >-
             O número esperado de ações de movimentação de dinheiro que esta conta realizará mensalmente.
+            Caso essa informação não seja coletada especificamente para clientes pessoa física/jurídica,
+            é possível calcular médias e enviá-las por subconta usando:
+            total de transações no período / número de clientes pessoa física ou jurídica ativos<br>
             Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório.</p>
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
         - name: expected_monthly_activity_value
           in: formData
-          required: false
+          required: true
           type: number
           description: >-
-            O valor total esperado das ações de movimentação de dinheiro que esta conta realizará mensalmente.
-            A moeda de referência do valor é enviada como parte de "expected_transaction_currencies".
+            O valor esperado das ações de movimentação de dinheiro que esta conta realizará mensalmente.
+            A moeda do valor é enviada como parte de 'expected_transaction_currencies'.
+            Caso essa informação não seja coletada especificamente, é possível calcular médias e enviá-las por subconta usando: <br>
+            total do valor transacionado no período / número de clientes pessoa física ou jurídica ativos.<br>
             Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório.</p>
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
         - name: 'expected_transaction_currencies[]'
           in: formData
-          required: false
+          required: true
           description: >-
             Um array contendo um único código de moeda ISO referente à moeda esperada na qual esta
             conta transacionará principalmente.
             Parte da conformidade estendida para contas com "legal_entity_type: individual | company".
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório.</p>
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
           type: array
           items:
             type: string
         - name: 'expected_transaction_countries[]'
           in: formData
-          required: false
+          required: true
           type: array
           description: >-
             Array de códigos de país ISO-3166 de duas letras indicando os países com os quais esta conta
-            deverá transacionar (envio e recebimento).
-            <p style="color:#FF5000;"><strong>Próxima alteração:</strong> A partir de 30 de outubro de 2026,
-            este campo será obrigatório.</p>
+            deverá transacionar (envio e recebimento).<br>
+            Caso essa informação não seja coletada especificamente para os clientes pessoa física/jurídica, <br>
+            ela pode ser calculada e enviada por subconta usando:<br>
+            os três países mais comuns de pagamento ou recebimento para esse cliente, classificados em ordem decrescente
+            <p style="color:#FF5000;">Obrigatório em produção a partir de 30 de outubro de 2026.</p>
           items:
             type: string
             minLength: 2
