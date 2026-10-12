@@ -377,10 +377,10 @@ paths:
           required: false
           type: string
           description: >-
-            Postal code for billing address. Required where country code = "US", "CA" or "MX".
-            If the account will be sending local USD payments, postal code and state/province are needed
+            Postal code for billing address. Required where country code = "US", "CA" or "MX".<br>
+            If the account will be used to send local USD payments, postal code and state/province are needed
             where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
-            for full information of country requirements.
+            for full information of postal address requirements for local USD payments.
           maxLength: 20
         - name: country
           in: formData
@@ -420,9 +420,9 @@ paths:
           type: string
           description: >-
             State or province two-letter ISO 3166 code. Only applicable to some countries,
-            required where country code = "US", "CA" or "MX". If the account will be sending local USD payments, postal code and state/province are needed
+            required where country code = "US", "CA" or "MX". If the account will be used to send local USD payments, postal code and state/province are needed
             where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
-            for full information of country requirements.
+            for full information of postal address requirements for local USD payments.
           maxLength: 100
         - name: spread_table
           in: formData
@@ -1408,12 +1408,18 @@ paths:
         in: formData
         required: false
         type: string
-        description: State or province two-letter ISO 3166 code. Only applicable to some countries.
+        description: >-
+          State or province two-letter ISO 3166 code. Only applicable to some countries. If the account will be used to send local USD payments, postal code and state/province are needed
+          where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+          for full information of postal address requirements for local USD payments.
       - name: postal_code
         in: formData
         required: false
         type: string
-        description: Postal code.
+        description: >-
+          Postal code. If the account will be used to send local USD payments, postal code and state/province are needed
+          where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+          for full information of postal address requirements for local USD payments.
       - name: country
         in: formData
         required: false
@@ -10458,14 +10464,22 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code
+          description: >-
+            Payer postal code. For local USD payments, if payer details are included in the request, you must
+            provide the payer’s postal code and state/province where these fields are part of the payer’s country address format.
+            See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information on postal address requirements for local USD payments.
           minLength: 1
           maxLength: 255
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
-          description: State or province.
+          description: >-
+            State or province. For local USD payments, if payer details are included in the request, you must
+            provide the payer’s postal code and state/province where these fields are part of the payer’s country address format.
+            See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information of postal address requirements for local USD payments.
           minLength: 1
           maxLength: 255
         - name: payer_country
@@ -11548,14 +11562,22 @@ paths:
           in: formData
           required: false
           type: string
-          description: Postal code
+          description: >-
+            Postal code. For local USD payments, if payer details are included in the request, you must
+            provide the payer’s postal code and state/province where these fields are part of the payer’s country address format.
+            See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information on postal address requirements for local USD payments.
           minLength: 1
           maxLength: 255
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
-          description: State or province.
+          description: >-
+            State or province. For local USD payments, if payer details are included in the request, you must
+            provide the payer’s postal code and state/province where these fields are part of the payer’s country address format.
+            See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information on postal address requirements for local USD payments.
           minLength: 1
           maxLength: 255
         - name: payer_country
