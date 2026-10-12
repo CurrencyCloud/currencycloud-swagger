@@ -328,7 +328,7 @@ paths:
       description: >-
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
         Important: As part of our Future-Ready program, this endpoint will be updated in <strong>production</strong> on <strong>30 October 2026</strong>.<br><br>
-        Beginning <strong>6 October 2026</strong>, the changes are available in our demo environment and the <strong>Developer Center will reflect the updated field requirements.</strong><br><br>
+        The changes are now available in our <strong>demo</strong> environment and the Developer Center reflects the updated field requirements.</strong><br><br>
         Some fields shown below as mandatory will <strong>not</strong> become mandatory in production until 30 October 2026.<br><br>
         The individual field documentation highlight the fields affected.</p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.

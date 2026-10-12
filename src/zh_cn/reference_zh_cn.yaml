@@ -287,7 +287,7 @@ paths:
       description: >-
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
         重要提示：作为我们 Future-Ready 计划的一部分，此端点将于 <strong>2026 年 10 月 30 日</strong>在<strong>生产环境</strong>中更新。<br><br>
-        自 <strong>2026 年 10 月 6 日</strong>起，相关变更将在我们的演示环境中生效，开发者中心也将同步更新字段要求。<br><br>
+        相关变更现已在我们的<strong>演示</strong>环境中生效，开发者中心也已同步反映更新后的字段要求。</strong><br><br>
         下方部分标记为必填的字段在生产环境中<strong>暂不会</strong>成为必填项，直至 2026 年 10 月 30 日。<br><br>
         各字段文档中已标明受影响的字段。</p> <br><br>
         创建一个新的子账户。成功后返回新账户实体。
@@ -319,17 +319,21 @@ paths:
           in: formData
           required: true
           type: string
-          description: 地址第一行。
+          description: 账单地址第一行。
         - name: city
           in: formData
           required: true
           type: string
-          description: 城市
+          description: 账单地址所在城市。
         - name: postal_code
           in: formData
           required: false
           type: string
-          description: 邮政编码。我们外包 KYC 模型的子账户为必填，国家/地区代码 =“US”、“CA”或“MX”时也为必填。
+          description: >-
+            账单地址邮政编码。国家/地区代码 ="US"、"CA" 或 "MX" 时为必填。<br>
+            如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: 国家/地区
           in: formData
           required: true
@@ -359,7 +363,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: 州或省两个字母的 ISO 3166 代码。仅适用于某些国家/地区，国家/地区代码 =“US”、“CA”或“MX”时为必填。
+          description: >-
+            州或省两个字母的 ISO 3166 代码。仅适用于某些国家/地区，
+            国家/地区代码 ="US"、"CA" 或 "MX" 时为必填。如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: spread_table
           in: formData
           required: false
@@ -672,118 +680,402 @@ paths:
         '400':
           description: 客户端错误。
           x-errors:
-            - code: account_name_is_too_short
+            - code: account_name_contains_characters_that_require_utf8mb4_encoding
               category: account_name
-              message: account_name 长度不可少于 1 个字符
-              params: '{ "minlength" => 1 }'
-            - code: account_name_is_too_long
-              category: account_name
-              message: account_name 长度不可超过 150 个字符
-              params: '{ "maxlength" => 150 }'
+              message: Account name contains invalid utf8mb4 characters
+              params: ''
             - code: account_name_is_required
               category: account_name
-              message: account_name 为必填
+              message: account_name is required
               params: ''
-            - code: brand_is_too_short
-              category: brand
-              message: brand 不可少于 1 个字符
-              params: '{ "minlength" => 1 }'
-            - code: brand_is_too_long
-              category: brand
-              message: brand 长度不可超过 255 个字符
-              params: '{ "maxlength" => 255 }'
-            - code: brand_not_found
-              category: brand
-              message: 品牌 non_existing_brand 未找到
-              params: '{ "brand" => "non_existing_brand" }'
-            - code: brand_account_not_broker
-              category: brand
-              message: 账户没有经纪商权限
-              params: '{ "brand" => "wrong_brand" }'
-            - code: your_reference_is_too_long
-              category: your_reference
-              message: your_reference 长度不可超过 25 个字符
-              params: '{ "maxlength" => 25 }'
-            - code: status_not_in_range
-              category: status
-              message: 'status 应在此范围内：enabled, disabled'
-              params: '{ "range" => "enabled, disabled" }'
-            - code: legal_entity_type_not_in_range
-              category: legal_entity_type
-              message: 'legal_entity_type 应在此范围内：individual, company'
-              params: '{ "range" => "individual, company" }'
-            - code: legal_entity_type_is_required
-              category: legal_entity_type
-              message: '法人实体类型为必填'
-              params: ''
-            - code: street_is_too_long
-              category: street
-              message: street 长度不可超过 150 个字符
+            - code: account_name_is_too_long
+              category: account_name
+              message: account_name can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
-            - code: street_is_required
-              category: street
-              message: 街道为必填
+            - code: account_name_is_too_short
+              category: account_name
+              message: account_name can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: account_name_should_not_include_any_numbers_for_individual_accounts
+              category: account_name
+              message: Account name should not include any numbers for individual accounts.
               params: ''
-            - code: city_is_too_long
-              category: city
-              message: 城市长度不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
-            - code: city_is_required
-              category: city
-              message: 城市为必填。
+            - code: name_contains_company_signifier
+              category: account_name
+              message: Account name cannot contain company signifiers.
               params: ''
-            - code: postal_code_is_too_long
-              category: postal_code
-              message: postal_code 不可超过 20 个字符
-              params: '{ "maxlength" => 20 }'
-            - code: postal_code_is_required
-              category: postal_code
-              message: 邮政编码为必填。
+            - code: name_contains_initial
+              category: account_name
+              message: Account name must not contain initials.
               params: ''
-            - code: state_or_province_is_too_long
-              category: state_or_province
-              message: state_or_province 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
-            - code: country_is_in_invalid_format
-              category: 国家/地区
-              message: country 不是有效的 ISO 3166-1 Alpha-2 国家/地区代码
-              params: '{ "maxlength" => 2 }'
-            - code: country_is_required
-              category: 国家/地区
-              message: 国家/地区为必填
+            - code: name_contains_invalid_character
+              category: account_name
+              message: A name contains one or more < > characters.
               params: ''
-            - code: spread_table_is_too_long
-              category: spread_table
-              message: spread_table 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
-            - code: identification_type_is_missing
-              category: identification_type
-              message: identification_type 缺失
+            - code: name_contains_numbers
+              category: account_name
+              message: Account name must not contain numbers.
               params: ''
-            - code: identification_type_is_invalid
-              category: identification_type
-              message: identification_type 无效
+            - code: name_contains_only_numbers
+              category: account_name
+              message: Account name must not consist entirely of numbers.
               params: ''
-            - code: identification_value_is_missing
-              category: identification_value
-              message: identification_value 缺失
+            - code: name_invalid_characters
+              category: account_name
+              message: Account name contains invalid characters.
               params: ''
-            - code: identification_value_is_invalid
-              category: identification_value
-              message: identification_value 无效
+            - code: name_invalid_utf8mb4_characters
+              category: account_name
+              message: Account name contains invalid utf8mb4 characters
               params: ''
-            - code: state_or_province_is_required
-              category: state_or_province
-              message: '美国、加拿大和墨西哥需要填写州或省'
-              params: ''
-            - code: terms_and_conditions_accepted_is_required
-              category: terms_and_conditions_accepted
-              message: '需要接受条款和条件'
+            - code: name_on_blocked_names_list
+              category: account_name
+              message: Name is on the blocked list.
               params: ''
             - code: invalid_extra_parameters
               category: base
-              message: 无效的额外参数 extra_parameter
+              message: Invalid extra parameters extra_parameter
               params: '{ "parameters" => "extra_parameter" }'
+            - code: brand_account_not_broker
+              category: brand
+              message: Account doesn't have broker permissions
+              params: '{ "brand" => "wrong_brand" }'
+            - code: brand_is_too_long
+              category: brand
+              message: brand can not be longer than 255 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: brand_is_too_short
+              category: brand
+              message: brand can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: brand_not_found
+              category: brand
+              message: Brand non_existing_brand wasn't found
+              params: '{ "brand" => "non_existing_brand" }'
+            - code: business_website_url_is_not_permitted
+              category: business_website_url
+              message: business_website_url is not permitted
+              params: ''
+            - code: business_website_url_is_required
+              category: business_website_url
+              message: business_website_url is required
+              params: ''
+            - code: billing_address_city_contains_characters_that_require_utf8mb4_encoding
+              category: city
+              message: Billing address city contains invalid utf8mb4 characters
+              params: ''
+            - code: billing_address_city_location_not_accepted
+              category: city
+              message: Billing address city is not an accepted location.
+              params: ''
+            - code: city_contains_only_numbers
+              category: city
+              message: City cannot consist entirely of numbers.
+              params: ''
+            - code: city_is_required
+              category: city
+              message: City is required.
+              params: ''
+            - code: city_is_too_long
+              category: city
+              message: city can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: billing_address_country_contains_characters_that_require_utf8mb4_encoding
+              category: country
+              message: Billing address country contains invalid utf8mb4 characters
+              params: ''
+            - code: billing_address_country_location_not_accepted
+              category: country
+              message: Billing address country is not an accepted location.
+              params: ''
+            - code: country_is_in_invalid_format
+              category: country
+              message: country is not a valid ISO 3166-1 Alpha-2 country code
+              params: '{ "maxlength" => 2 }'
+            - code: country_is_required
+              category: country
+              message: Country is required
+              params: ''
+            - code: unsupported_payer_country_code
+              category: country
+              message: Country is not supported.
+              params: ''
+            - code: country_of_citizenship_is_not_permitted
+              category: country_of_citizenship
+              message: country_of_citizenship is not permitted
+              params: ''
+            - code: country_of_citizenship_is_required
+              category: country_of_citizenship
+              message: country_of_citizenship is required
+              params: ''
+            - code: country_of_incorporation_is_not_permitted
+              category: country_of_incorporation
+              message: country_of_incorporation is not permitted
+              params: ''
+            - code: country_of_incorporation_is_required
+              category: country_of_incorporation
+              message: country_of_incorporation is required
+              params: ''
+            - code: country_of_incorporation_location_not_accepted
+              category: country_of_incorporation
+              message: Country of incorporation is not an accepted location.
+              params: ''
+            - code: customer_risk_invalid_value
+              category: customer_risk
+              message: customer_risk invalid value
+              params: ''
+            - code: customer_risk_is_required
+              category: customer_risk
+              message: customer_risk is required
+              params: ''
+            - code: date_of_incorporation_is_not_permitted
+              category: date_of_incorporation
+              message: date_of_incorporation is not permitted
+              params: ''
+            - code: date_of_incorporation_is_required
+              category: date_of_incorporation
+              message: date_of_incorporation is required
+              params: ''
+            - code: expected_monthly_activity_value_is_required
+              category: expected_monthly_activity_value
+              message: Expected monthly activity value is required.
+              params: ''
+            - code: expected_monthly_activity_value_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_value
+              message: expected_monthly_activity_value must be a number greater than zero
+              params: ''
+            - code: expected_monthly_activity_volume_is_required
+              category: expected_monthly_activity_volume
+              message: Expected monthly activity volume is required.
+              params: ''
+            - code: expected_monthly_activity_volume_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_volume
+              message: expected_monthly_activity_volume must be a number greater than zero
+              params: ''
+            - code: expected_transaction_countries_is_required
+              category: expected_transaction_countries
+              message: expected_transaction_countries is required
+              params: ''
+            - code: expected_transaction_currencies_is_required
+              category: expected_transaction_currencies
+              message: expected_transaction_currencies is required
+              params: ''
+            - code: identification_expiration_is_not_permitted
+              category: identification_expiration
+              message: Identification expiration should not be provided for this account type.
+              params: ''
+            - code: identification_expiration_is_required
+              category: identification_expiration
+              message: Identification expiration is required
+              params: ''
+            - code: identification_issuer_contains_characters_that_require_utf8mb4_encoding
+              category: identification_issuer
+              message: Identification issuer contains invalid utf8mb4 characters
+              params: ''
+            - code: identification_issuer_is_not_permitted
+              category: identification_issuer
+              message: Identification Issuer should not be provided for this account type.
+              params: ''
+            - code: identification_issuer_is_required
+              category: identification_issuer
+              message: Identification issuer is required
+              params: ''
+            - code: identification_type_is_invalid
+              category: identification_type
+              message: identification_type is invalid
+              params: ''
+            - code: identification_type_is_required
+              category: identification_type
+              message: Identification type is required
+              params: ''
+            - code: identification_value_c_contains_characters_that_require_utf8mb4_encoding
+              category: identification_value
+              message: Identification value contains invalid utf8mb4 characters
+              params: ''
+            - code: identification_value_is_invalid
+              category: identification_value
+              message: identification_value is invalid
+              params: ''
+            - code: identification_value_is_required
+              category: identification_value
+              message: Identification value is required
+              params: ''
+            - code: industry_type_is_not_permitted
+              category: industry_type
+              message: industry_type is not permitted
+              params: ''
+            - code: industry_type_is_required
+              category: industry_type
+              message: industry_type is required
+              params: ''
+            - code: legal_entity_sub_type_is_not_permitted
+              category: legal_entity_sub_type
+              message: legal_entity_sub_type is not permitted
+              params: ''
+            - code: legal_entity_sub_type_is_required
+              category: legal_entity_sub_type
+              message: legal_entity_sub_type is required
+              params: ''
+            - code: legal_entity_type_is_required
+              category: legal_entity_type
+              message: 'Legal entity type is required'
+              params: ''
+            - code: legal_entity_type_not_in_range
+              category: legal_entity_type
+              message: 'legal_entity_type should be in range: individual, company'
+              params: '{ "range" => "individual, company" }'
+            - code: national_identification_is_not_permitted
+              category: national_identification
+              message: national_identification is not permitted
+              params: ''
+            - code: national_identification_is_required
+              category: national_identification
+              message: national_identification is required
+              params: ''
+            - code: billing_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+              category: postal_code
+              message: Billing address postalcode contains invalid utf8mb4 characters
+              params: ''
+            - code: postal_code_is_required
+              category: postal_code
+              message: Postal code is required.
+              params: ''
+            - code: postal_code_is_too_long
+              category: postal_code
+              message: postal_code can not be longer than 20 character(s)
+              params: '{ "maxlength" => 20 }'
+            - code: spread_table_is_too_long
+              category: spread_table
+              message: spread_table can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: billing_address_state_contains_characters_that_require_utf8mb4_encoding
+              category: state_or_province
+              message: Billing address state contains invalid utf8mb4 characters
+              params: ''
+            - code: state_or_province_contains_only_numbers
+              category: state_or_province
+              message: State or province cannot consist entirely of numbers.
+              params: ''
+            - code: state_or_province_is_required
+              category: state_or_province
+              message: 'State or province is required for US, CA and MX'
+              params: ''
+            - code: state_or_province_is_too_long
+              category: state_or_province
+              message: state_or_province can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: status_not_in_range
+              category: status
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
+            - code: address_contains_only_numbers
+              category: street
+              message: The first line of the address cannot consist entirely of numbers.
+              params: ''
+            - code: billing_address_street_contains_characters_that_require_utf8mb4_encoding
+              category: street
+              message: Billing address street contains invalid utf8mb4 characters
+              params: ''
+            - code: street_is_required
+              category: street
+              message: Street is required
+              params: ''
+            - code: street_is_too_long
+              category: street
+              message: street can not be longer than 150 character(s)
+              params: '{ "maxlength" => 150 }'
+            - code: tax_identification_is_not_permitted
+              category: tax_identification
+              message: tax_identification is not permitted
+              params: ''
+            - code: tax_identification_is_required
+              category: tax_identification
+              message: tax_identification is required
+              params: ''
+            - code: tax_identification_not_a_valid_australian_business_number
+              category: tax_identification
+              message: Tax identification is not a valid australian business number.
+              params: ''
+            - code: terms_and_conditions_accepted_is_required
+              category: terms_and_conditions_accepted
+              message: 'Terms and conditions accepted is required'
+              params: ''
+            - code: trading_address_city_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_city
+              message: Trading address city contains invalid utf8mb4 characters
+              params: ''
+            - code: trading_address_city_is_not_permitted
+              category: trading_address_city
+              message: trading_address_city is not permitted
+              params: ''
+            - code: trading_address_city_is_required
+              category: trading_address_city
+              message: trading_address_city is required
+              params: ''
+            - code: trading_address_city_location_not_accepted
+              category: trading_address_city
+              message: Trading address city is not an accepted location.
+              params: ''
+            - code: trading_address_country_is_not_permitted
+              category: trading_address_country
+              message: trading_address_country is not permitted
+              params: ''
+            - code: trading_address_country_is_required
+              category: trading_address_country
+              message: trading_address_country is required
+              params: ''
+            - code: trading_address_country_location_not_accepted
+              category: trading_address_country
+              message: Trading address country is not an accepted location.
+              params: ''
+            - code: trading_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_postalcode
+              message: Trading address postalcode contains invalid utf8mb4 characters
+              params: ''
+            - code: trading_address_postalcode_is_not_permitted
+              category: trading_address_postalcode
+              message: trading_address_postalcode is not permitted
+              params: ''
+            - code: trading_address_postalcode_is_required
+              category: trading_address_postalcode
+              message: trading_address_postalcode is required
+              params: ''
+            - code: trading_address_state_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_state
+              message: Trading address state contains invalid utf8mb4 characters
+              params: ''
+            - code: trading_address_state_invalid_state
+              category: trading_address_state
+              message: trading_address_state invalid state
+              params: ''
+            - code: trading_address_state_is_not_permitted
+              category: trading_address_state
+              message: trading_address_state is not permitted
+              params: ''
+            - code: trading_address_state_is_required
+              category: trading_address_state
+              message: trading_address_state is required
+              params: ''
+            - code: trading_address_street_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_street
+              message: Trading address street contains invalid utf8mb4 characters
+              params: ''
+            - code: trading_address_street_is_not_permitted
+              category: trading_address_street
+              message: trading_address_street is not permitted
+              params: ''
+            - code: trading_address_street_is_required
+              category: trading_address_street
+              message: trading_address_street is required
+              params: ''
+            - code: your_account_ref_c_contains_characters_that_require_utf8mb4_encoding
+              category: your_reference
+              message: Your reference contains invalid utf8mb4 characters
+              params: ''
+            - code: your_reference_is_too_long
+              category: your_reference
+              message: your_reference can not be longer than 25 character(s)
+              params: '{ "maxlength" => 25 }'
           schema:
             $ref: '#/definitions/CreateAccountError'
           headers:
@@ -1044,12 +1336,18 @@ paths:
         in: formData
         required: false
         type: string
-        description: 州或省两个字母的 ISO 3166 代码。仅适用于部分国家/地区。
+        description: >-
+          州或省两个字母的 ISO 3166 代码。仅适用于部分国家/地区。如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
+          详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+          了解本地美元付款邮政地址要求的完整信息。
       - name: postal_code
         in: formData
         required: false
         type: string
-        description: 邮政编码。
+        description: >-
+          邮政编码。如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
+          详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+          了解本地美元付款邮政地址要求的完整信息。
       - name: 国家/地区
         in: formData
         required: false
@@ -1159,112 +1457,245 @@ paths:
       '400':
         description: 客户端错误。
         x-errors:
+          - code: account_name_contains_characters_that_require_utf8mb4_encoding
+            category: account_name
+            message: Account name contains invalid utf8mb4 characters
+            params: ''
+          - code: account_name_is_in_invalid_format
+            category: account_name
+            message: account_name is in invalid format
+            params: ''
+          - code: account_name_is_too_long
+            category: account_name
+            message: account_name can not be longer than 150 character(s)
+            params: '{ "maxlength" => 150 }'
+          - code: account_name_is_too_short
+            category: account_name
+            message: account_name can not be shorter than 1 character(s)
+            params: '{ "minlength" => 1}'
+          - code: account_name_should_not_include_any_numbers_for_individual_accounts
+            category: account_name
+            message: Account name should not include any numbers for individual accounts.
+            params: ''
+          - code: name_contains_company_signifier
+            category: account_name
+            message: Account name cannot contain company signifiers.
+            params: ''
+          - code: name_contains_initial
+            category: account_name
+            message: Account name must not contain initials.
+            params: ''
+          - code: name_contains_invalid_character
+            category: account_name
+            message: A name contains one or more < > characters.
+            params: ''
+          - code: name_contains_numbers
+            category: account_name
+            message: Account name must not contain numbers.
+            params: ''
+          - code: name_contains_only_numbers
+            category: account_name
+            message: Account name must not consist entirely of numbers.
+            params: ''
+          - code: name_invalid_characters
+            category: account_name
+            message: Account name contains invalid characters.
+            params: ''
+          - code: name_invalid_utf8mb4_characters
+            category: account_name
+            message: Account name contains invalid utf8mb4 characters
+            params: ''
+          - code: name_on_blocked_names_list
+            category: account_name
+            message: Name is on the blocked list.
+            params: ''
+          - code: editing_address_not_allowed
+            category: address
+            message: You cannot edit address information. Please contact support for additional information
+            params: ''
           - code: at_least_one_parameter
             category: base
             message: >-
-              应至少存在一个参数：account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading or terms_and_conditions_accepted.
+              At least one parameter should be present: account_name, brand,
+              your_reference, status, street, city, state_or_province, postal_code,
+              country, spread_table, legal_entity_type, identification_type,
+              identification_value, api_trading, online_trading, phone_trading
+              or terms_and_conditions_accepted.
             params: '{ account_name, brand, your_reference, status, street, city, state_or_province, postal_code, country, spread_table, legal_entity_type, identification_type, identification_value, api_trading, online_trading, phone_trading, terms_and_conditions_accepted }'
-          - code: id_is_not_valid_uuid
-            category: id
-            message: id 应为 UUID 格式
-            params: ''
-          - code: account_name_is_too_short
-            category: account_name
-            message: account_name 长度不可少于 1 个字符
-            params: '{ "minlength" => 1}'
-          - code: account_name_is_too_long
-            category: account_name
-            message: account_name 长度不可超过 150 个字符
-            params: '{ "maxlength" => 150 }'
-          - code: account_name_is_in_invalid_format
-            category: account_name
-            message: account_name 格式无效
-            params: ''
+          - code: brand_account_not_broker
+            category: brand
+            message: Account doesn't have broker permissions
+            params: '{ "brand" => "wrong_brand" }'
           - code: brand_is_too_long
             category: brand
-            message: brand 长度不可超过 255 个字符
+            message: brand can not be longer than 255 character(s)
             params: '{ "maxlength" => 255 }'
           - code: brand_not_found
             category: brand
-            message: 品牌 non_existing_brand 未找到
+            message: Brand non_existing_brand wasn't found
             params: '{ "brand" => "non_existing_brand" }'
-          - code: brand_account_not_broker
-            category: brand
-            message: 账户没有经纪商权限
-            params: '{ "brand" => "wrong_brand" }'
-          - code: permission_denied
-            category: permissions
-            message: 权限已拒绝
+          - code: billing_address_city_contains_characters_that_require_utf8mb4_encoding
+            category: city
+            message: Billing address city contains invalid utf8mb4 characters
             params: ''
-          - code: your_reference_is_too_long
-            category: your_reference
-            message: your_reference 长度不可超过 25 个字符
-            params: '{ "maxlength" => 25 }'
-          - code: legal_entity_type_not_in_range
-            category: legal_entity_type
-            message: 'legal_entity_type 应在此范围内：individual, company'
-            params: '{ "range" => "individual, company" }'
-          - code: status_not_in_range
-            category: status
-            message: 'status 应在此范围内：enabled, disabled'
-            params: '{ "range" => "enabled, disabled" }'
-          - code: street_is_too_long
-            category: street
-            message: street 长度不可超过 150 个字符
-            params: '{ "maxlength" => 150 }'
+          - code: billing_address_city_location_not_accepted
+            category: city
+            message: Billing address city is not an accepted location.
+            params: ''
+          - code: city_contains_only_numbers
+            category: city
+            message: City cannot consist entirely of numbers.
+            params: ''
           - code: city_is_too_long
             category: city
-            message: 城市长度不可超过 100 个字符
+            message: city can not be longer than 100 character(s)
             params: '{ "maxlength" => 100 }'
-          - code: postal_code_is_too_long
-            category: postal_code
-            message: postal_code 不可超过 20 个字符
-            params: '{ "maxlength" => 20 }'
-          - code: state_or_province_is_too_long
-            category: state_or_province
-            message: state_or_province 不可超过 100 个字符
-            params: '{ "maxlength" => 100 }'
+          - code: billing_address_country_contains_characters_that_require_utf8mb4_encoding
+            category: country
+            message: Billing address country contains invalid utf8mb4 characters
+            params: ''
+          - code: billing_address_country_location_not_accepted
+            category: country
+            message: Billing address country is not an accepted location.
+            params: ''
           - code: country_is_in_invalid_format
-            category: 国家/地区
-            message: country 不是有效的 ISO 3166-1 Alpha-2 国家/地区代码
+            category: country
+            message: country is not a valid ISO 3166-1 Alpha-2 country code
             params: '{ "type" => "country_code" }'
-          - code: spread_table_is_too_long
-            category: spread_table
-            message: spread_table 不可超过 100 个字符
-            params: '{ "maxlength" => 100 }'
+          - code: editing_country_not_allowed
+            category: country
+            message: You cannot edit country. Please contact support for additional information
+            params: ''
+          - code: unsupported_payer_country_code
+            category: country
+            message: Country is not supported.
+            params: ''
+          - code: id_is_not_valid_uuid
+            category: id
+            message: id should be in UUID format
+            params: ''
+          - code: identification_expiration_is_not_permitted
+            category: identification_expiration
+            message: Identification expiration should not be provided for this account type.
+            params: ''
+          - code: identification_expiration_is_required
+            category: identification_expiration
+            message: Identification expiration is required
+            params: ''
+          - code: identification_issuer_contains_characters_that_require_utf8mb4_encoding
+            category: identification_issuer
+            message: Identification issuer contains invalid utf8mb4 characters
+            params: ''
+          - code: identification_issuer_is_not_permitted
+            category: identification_issuer
+            message: Identification Issuer should not be provided for this account type.
+            params: ''
+          - code: identification_issuer_is_required
+            category: identification_issuer
+            message: Identification issuer is required
+            params: ''
+          - code: identification_type_is_invalid
+            category: identification_type
+            message: identification_type is invalid
+            params: ''
           - code: identification_type_is_missing
             category: identification_type
-            message: identification_type 缺失
+            message: identification_type is missing
+            params: ''
+          - code: identification_type_is_required
+            category: identification_type
+            message: Identification type is required
             params: ''
           - code: identification_type_not_in_range
             category: identification_type
             message: >-
-              identification_type 应在此范围内：none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion
+              identification_type should be in range: none, drivers_license,
+              social_security_number, green_card, passport, visa, matricula_consular,
+              registro_federal_de_contribuyentes, credential_de_elector,
+              social_insurance_number, citizenship_papers, drivers_license_canadian,
+              existing_credit_card_details, employer_identification_number, national_id,
+              others, incorporation_number, clave_unica_de_registro_de_poblacion
             params: '{ "range": "none, drivers_license, social_security_number, green_card, passport, visa, matricula_consular, registro_federal_de_contribuyentes, credential_de_elector, social_insurance_number, citizenship_papers, drivers_license_canadian, existing_credit_card_details, employer_identification_number, national_id, others, incorporation_number, clave_unica_de_registro_de_poblacion" }'
-          - code: identification_type_is_invalid
-            category: identification_type
-            message: identification_type 无效
-            params: ''
-          - code: identification_value_is_missing
-            message: identification_value 缺失
+          - code: identification_value_c_contains_characters_that_require_utf8mb4_encoding
             category: identification_value
+            message: Identification value contains invalid utf8mb4 characters
             params: ''
           - code: identification_value_is_invalid
             category: identification_value
-            message: identification_value 无效
+            message: identification_value is invalid
+            params: ''
+          - code: identification_value_is_required
+            category: identification_value
+            message: Identification value is required
             params: ''
           - code: identification_value_is_too_short
             category: identification_value
-            message: identification_value 不可少于 1 个字符
-            params: ' { "minlength":1 }'
-          - code: editing_address_not_allowed
-            category: address
-            message: 您无法编辑地址信息。请联系支持团队获取更多信息
+            message: identification_value can not be shorter than 1 character(s)
+            params: ' { "minlength": 1 }'
+          - code: legal_entity_sub_type_is_not_permitted
+            category: legal_entity_sub_type
+            message: legal_entity_sub_type is not permitted
             params: ''
-          - code: editing_country_not_allowed
-            category: 国家/地区
-            message: 您无法编辑国家/地区。请联系支持团队获取更多信息
+          - code: legal_entity_sub_type_is_required
+            category: legal_entity_sub_type
+            message: legal_entity_sub_type is required
             params: ''
+          - code: legal_entity_type_not_in_range
+            category: legal_entity_type
+            message: 'legal_entity_type should be in range: individual, company'
+            params: '{ "range" => "individual, company" }'
+          - code: permission_denied
+            category: permissions
+            message: Permission denied
+            params: ''
+          - code: billing_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+            category: postal_code
+            message: Billing address postalcode contains invalid utf8mb4 characters
+            params: ''
+          - code: postal_code_is_too_long
+            category: postal_code
+            message: postal_code can not be longer than 20 character(s)
+            params: '{ "maxlength" => 20 }'
+          - code: spread_table_is_too_long
+            category: spread_table
+            message: spread_table can not be longer than 100 character(s)
+            params: '{ "maxlength" => 100 }'
+          - code: billing_address_state_contains_characters_that_require_utf8mb4_encoding
+            category: state_or_province
+            message: Billing address state contains invalid utf8mb4 characters
+            params: ''
+          - code: state_or_province_contains_only_numbers
+            category: state_or_province
+            message: State or province cannot consist entirely of numbers.
+            params: ''
+          - code: state_or_province_is_too_long
+            category: state_or_province
+            message: state_or_province can not be longer than 100 character(s)
+            params: '{ "maxlength" => 100 }'
+          - code: status_not_in_range
+            category: status
+            message: 'status should be in range: enabled, disabled'
+            params: '{ "range" => "enabled, disabled" }'
+          - code: address_contains_only_numbers
+            category: street
+            message: The first line of the address cannot consist entirely of numbers.
+            params: ''
+          - code: billing_address_street_contains_characters_that_require_utf8mb4_encoding
+            category: street
+            message: Billing address street contains invalid utf8mb4 characters
+            params: ''
+          - code: street_is_too_long
+            category: street
+            message: street can not be longer than 150 character(s)
+            params: '{ "maxlength" => 150 }'
+          - code: your_account_ref_c_contains_characters_that_require_utf8mb4_encoding
+            category: your_reference
+            message: Your reference contains invalid utf8mb4 characters
+            params: ''
+          - code: your_reference_is_too_long
+            category: your_reference
+            message: your_reference can not be longer than 25 character(s)
+            params: '{ "maxlength" => 25 }'
         schema:
           $ref: '#/definitions/UpdateAccountError'
         headers:
@@ -1544,66 +1975,66 @@ paths:
         '400':
           description: 客户端错误。
           x-errors:
-            - code: account_name_is_too_short
-              category: account_name
-              message: account_name 长度不可少于 1 个字符
-              params: '{ "minlength" => 1 }'
             - code: account_name_is_too_long
               category: account_name
-              message: account_name 不可超过 150 个字符
+              message: The account_name can not be longer than 150 character(s)
               params: '{ "maxlength" => 150 }'
-            - code: brand_is_too_short
-              category: brand
-              message: brand 不可少于 1 个字符
+            - code: account_name_is_too_short
+              category: account_name
+              message: account_name can not be shorter than 1 character(s)
               params: '{ "minlength" => 1 }'
-            - code: brand_is_too_long
-              category: brand
-              message: brand 不可超过 100 个字符
-              params: '{ "maxlength" => 255 }'
-            - code: your_reference_is_too_short
-              category: your_reference
-              message: your_reference 不可少于 1 个字符
-              params: '{ "minlength" => 1 }'
-            - code: your_reference_is_too_long
-              category: your_reference
-              message: your_reference 长度不可超过 25 个字符
-              params: '{ "maxlength" => 25 }'
-            - code: status_not_in_range
-              category: status
-              message: 'status 应在此范围内：enabled, disabled'
-              params: '{ "range" => "enabled, disabled" }'
-            - code: invalid_extra_parameters
-              category: legal_entity_type
-              message: '无效的额外参数：${legal_entity_type}'
-              params: ''
-            - code: street_is_too_long
-              category: street
-              message:  street 长度不可超过 150 个字符
-              params: '{ "maxlength" => 150 }'
-            - code: city_is_too_long
-              category: city
-              message: 城市长度不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
-            - code: postal_code_is_too_long
-              category: postal_code
-              message: postal_code 不可超过 20 个字符
-              params: '{ "maxlength" => 20 }'
-            - code: country_is_in_invalid_format
-              category: 国家/地区
-              message: country 不是有效的 ISO 3166-1 Alpha-2 国家/地区代码
-              params: '{ "type" => "country_code" }'
-            - code: spread_table_is_too_short
-              category: spread_table
-              message: spread_table 不可少于 1 个字符
-              params: '{ "minlength" => 1 }'
-            - code: spread_table_is_too_long
-              category: spread_table
-              message: spread_table 不可超过 100 个字符
-              params: '{ "maxlength" => 100 }'
             - code: bank_account_verified_not_in_range
               category: bank_account_verified
-              message: 'bank_account_verified 应在此范围内：yes, no, not required'
+              message: 'bank_account_verified should be in range: yes, no, not required'
               params: '{ "range" => "yes, no, not required" }'
+            - code: brand_is_too_long
+              category: brand
+              message: brand can not be longer than 100 character(s)
+              params: '{ "maxlength" => 255 }'
+            - code: brand_is_too_short
+              category: brand
+              message: brand can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: city_is_too_long
+              category: city
+              message: city can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: country_is_in_invalid_format
+              category: country
+              message: country is not a valid ISO 3166-1 Alpha-2 country code
+              params: '{ "type" => "country_code" }'
+            - code: invalid_extra_parameters
+              category: legal_entity_type
+              message: 'Invalid extra parameters: ${legal_entity_type}'
+              params: ''
+            - code: postal_code_is_too_long
+              category: postal_code
+              message: postal_code can not be longer than 20 character(s)
+              params: '{ "maxlength" => 20 }'
+            - code: spread_table_is_too_long
+              category: spread_table
+              message: spread_table can not be longer than 100 character(s)
+              params: '{ "maxlength" => 100 }'
+            - code: spread_table_is_too_short
+              category: spread_table
+              message: spread_table can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
+            - code: status_not_in_range
+              category: status
+              message: 'status should be in range: enabled, disabled'
+              params: '{ "range" => "enabled, disabled" }'
+            - code: street_is_too_long
+              category: street
+              message: street can not be longer than 150 character(s)
+              params: '{ "maxlength" => 150 }'
+            - code: your_reference_is_too_long
+              category: your_reference
+              message: your_reference can not be longer than 25 character(s)
+              params: '{ "maxlength" => 25 }'
+            - code: your_reference_is_too_short
+              category: your_reference
+              message: your_reference can not be shorter than 1 character(s)
+              params: '{ "minlength" => 1 }'
           schema:
             $ref: '#/definitions/FindAccountsError'
           headers:
@@ -1833,46 +2264,46 @@ paths:
         '400':
           description: 客户端错误。
           x-errors:
-          - code: id_is_not_valid_uuid
-            category: account_id
-            message: id 应为 UUID 格式
-            params: ''
-          - code: account_not_found
-            category: account_id
-            message: 此 id 未找到账户
-            params: ''
-          - code: permission_denied
-            category: permissions
-            message: "您没有执行此操作的权限 'payment_charges_management'"
-            params: ''
-          - code: edit_not_allowed
-            category: permission
-            message: "您不可更改 'payment_charges_settings'。若要启用其他类型的支付费用，请联系客户支持"
-            params: ''
-          - code: banking_charges_settings_not_found
-            category: charge_settings_id
-            message: 未找到所提供的 ChargeSettingsId 的银行费用设置
-            params: ''
-          - code: unavailable_charge_type
-            category: permission
-            message: 您无法启用这些类型的费用。若要启用此选项 - 请联系客户支持
-            params: ''
-          - code: disable_and_default_charge_not_allowed
-            category: invalid_value
-            message: 您无法先禁用然后再设为默认设置
-            params: ''
-          - code: default_disabled_charge_not_allowed
-            category: invalid_value
-            message: 您无法将已禁用的设置设为默认设置
-            params: ''
-          - code: disable_default_charge_not_allowed
-            category: invalid_value
-            message: 您无法禁用默认设置
-            params: ''
-          - code: set_default_to_false_not_allowed
-            category: invalid_value
-            message: 您无法禁用默认的费用类型。请将费用类型更新为非默认类型，然后再禁用
-            params: ''
+            - code: account_not_found
+              category: account_id
+              message: Account was not found for this id
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: account_id
+              message: id should be in UUID format
+              params: ''
+            - code: banking_charges_settings_not_found
+              category: charge_settings_id
+              message: Bank Charges Settings were not found for the provided ChargeSettingsId
+              params: ''
+            - code: default_disabled_charge_not_allowed
+              category: invalid_value
+              message: You cannot default disabled setting
+              params: ''
+            - code: disable_and_default_charge_not_allowed
+              category: invalid_value
+              message: You cannot disable and then default setting
+              params: ''
+            - code: disable_default_charge_not_allowed
+              category: invalid_value
+              message: You can not disable default settings
+              params: ''
+            - code: set_default_to_false_not_allowed
+              category: invalid_value
+              message: You cannot disable a default charge type. Please update the charge type not to be default and then disable it
+              params: ''
+            - code: edit_not_allowed
+              category: permission
+              message: You are not allowed to change your 'payment_charges_settings'. In order to be enabled for additional type(s) of payment charges please contact Customer Support
+              params: ''
+            - code: unavailable_charge_type
+              category: permission
+              message: You are not enabled to switch on these type of charges. In order to be enabled for this option - please contact Customer Support
+              params: ''
+            - code: permission_denied
+              category: permissions
+              message: You do not have permission 'payment_charges_management' to perform this operation
+              params: ''
           schema:
             $ref: '#/definitions/ManageAccountPaymentChargesSettingsError'
           headers:
@@ -8638,12 +9069,18 @@ paths:
           in: formData
           required: false
           type: string
-          description: 邮政编码
+          description: >-
+            付款人邮政编码。对于本地美元付款，如果请求中包含付款人详情，当邮政编码和州/省属于付款人所在国家/地区的地址格式组成部分时，您必须提供这些信息。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
-          description: 州或省。
+          description: >-
+            州或省。对于本地美元付款，如果请求中包含付款人详情，当邮政编码和州/省属于付款人所在国家/地区的地址格式组成部分时，您必须提供这些信息。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: payer_country
           in: formData
           required: false
@@ -8862,10 +9299,6 @@ paths:
             - code: payer_date_of_birth_is_after
               category: payer_date_of_birth
               message: payer_date_of_birth 应更早
-              params: ''
-            - code: identification_type_is_missing
-              category: payer_identification_type
-              message: identification_type 缺失
               params: ''
             - code: identification_type_is_invalid
               category: payer_identification_type
@@ -9636,12 +10069,18 @@ paths:
           in: formData
           required: false
           type: string
-          description: 邮政编码
+          description: >-
+            付款人邮政编码。对于本地美元付款，如果请求中包含付款人详情，当邮政编码和州/省属于付款人所在国家/地区的地址格式组成部分时，您必须提供这些信息。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: payer_state_or_province
           in: formData
           required: false
           type: string
-          description: 州或省。
+          description: >-
+            州或省。对于本地美元付款，如果请求中包含付款人详情，当邮政编码和州/省属于付款人所在国家/地区的地址格式组成部分时，您必须提供这些信息。
+            详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
+            了解本地美元付款邮政地址要求的完整信息。
         - name: payer_country
           in: formData
           required: false
