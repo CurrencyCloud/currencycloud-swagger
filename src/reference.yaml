@@ -328,7 +328,7 @@ paths:
       description: >-
         <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
         Important: As part of our Future-Ready program, this endpoint will be updated in <strong>production</strong> on <strong>30 October 2026</strong>.<br><br>
-        From <strong>6 October 2026</strong>, the changes will be available in our demo environment and the Developer Center will reflect the updated field requirements.<br><br>
+        Beginning <strong>6 October 2026</strong>, the changes are available in our demo environment and the <strong>Developer Center will reflect the updated field requirements.</strong><br><br>
         Some fields shown below as mandatory will <strong>not</strong> become mandatory in production until 30 October 2026.<br><br>
         The individual field documentation highlight the fields affected.</p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.
@@ -364,19 +364,23 @@ paths:
           in: formData
           required: true
           type: string
-          description: First line of address.
+          description: First line of billing address.
           maxLength: 150
         - name: city
           in: formData
           required: true
           type: string
-          description: City
+          description: City for billing address.
           maxLength: 100
         - name: postal_code
           in: formData
           required: false
           type: string
-          description: Postal code. Required for sub-accounts on our outsourced KYC model, also required where country code = "US", "CA" or "MX".
+          description: >-
+            Postal code for billing address. Required where country code = "US", "CA" or "MX".
+            If the account will be sending local USD payments, postal code and state/province are needed
+            where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information of country requirements.
           maxLength: 20
         - name: country
           in: formData
@@ -414,7 +418,11 @@ paths:
           in: formData
           required: false
           type: string
-          description: State or province two-letter ISO 3166 code. Only applicable to some countries, required where country code = "US", "CA" or "MX".
+          description: >-
+            State or province two-letter ISO 3166 code. Only applicable to some countries,
+            required where country code = "US", "CA" or "MX". If the account will be sending local USD payments, postal code and state/province are needed
+            where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
+            for full information of country requirements.
           maxLength: 100
         - name: spread_table
           in: formData
