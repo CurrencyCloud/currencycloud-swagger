@@ -287,9 +287,9 @@ This is an opt-in service that allows you to review and decide on inbound transa
 | CAD | EFT |
 | GBP | FPS |
 
- You have 23.5 hours to respond from when the “pending cash manager transaction notification” is triggered (‘pending’ status).  If no response is received in this time, the default action is to accept the transaction. The transaction will then undergo our internal screening.  
+ You have 23.5 hours to respond from when the “pending cash manager transaction notification” is triggered (‘pending’ status).  If no response is received in this time, the default action is to accept the transaction.   
 
- Both your decision and our internal screening result are required before the transaction is processed. If both parties approve, the funds are processed and the “cash manager transaction notification” is triggered when the funds are credited to the beneficiary's account (‘completed’ status). If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned. In the case of a rejection, the “rejected cash manager transaction notification” is triggered (‘deleted’ status).
+ Both your decision and our internal screening result are required before the transaction is processed. The transaction will remain in a 'pending' status until both decisions are available. If both parties approve, the funds are processed and the “cash manager transaction notification” is triggered when the funds are credited to the beneficiary's account (‘completed’ status). If either party rejects the transaction, the funds are automatically returned to the original sender for the payment rails specified above. For other payment rails, the funds should be manually returned. In the case of a rejection, the “rejected cash manager transaction notification” is triggered (‘deleted’ status).
 
 
 ### Push notifications
