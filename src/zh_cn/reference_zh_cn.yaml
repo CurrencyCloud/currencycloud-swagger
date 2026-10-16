@@ -302,6 +302,13 @@ paths:
           required: true
           type: string
           description: 验证令牌
+        - name: Idempotency-Key
+          in: header
+          required: false
+          type: string
+          description: >-
+            成功的请求将存储 IdempotencyKey。30 天内的后续请求如重复使用将触发 IdempotencyKeyConflict 错误。
+          pattern: '^[a-zA-Z0-9_-]{1,255}$'
         - name: account_name
           in: formData
           required: true
@@ -334,7 +341,7 @@ paths:
             如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
             详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
             了解本地美元付款邮政地址要求的完整信息。
-        - name: 国家/地区
+        - name: country
           in: formData
           required: true
           type: string
@@ -1076,6 +1083,10 @@ paths:
               category: your_reference
               message: your_reference can not be longer than 25 character(s)
               params: '{ "maxlength" => 25 }'
+            - code: invalid_idempotency_key
+              category: Idempotency-Key
+              message: Idempotency-Key 与允许的格式不匹配。
+              params: ''
           schema:
             $ref: '#/definitions/CreateAccountError'
           headers:
@@ -1101,6 +1112,14 @@ paths:
             X-Request-Id:
               type: string
               description: 请求的唯一参考。
+        '409':
+          description: 冲突
+          x-errors:
+            - code: idempotency_key_conflict
+              category: Idempotency-Key
+              message: >-
+                Idempotency-Key 已被用于另一个尚未完成的请求，或发生内部错误导致该密钥无法被清除。
+              params: ''
         '429':
           description: 请求次数太多。
           x-errors:
@@ -1348,7 +1367,7 @@ paths:
           邮政编码。如果该账户将用于发送本地美元付款，则在适用情况下需要提供邮政编码和州/省。
           详情请参阅我们的帮助中心<a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> 文章 </a>，
           了解本地美元付款邮政地址要求的完整信息。
-      - name: 国家/地区
+      - name: country
         in: formData
         required: false
         type: string
@@ -1912,7 +1931,7 @@ paths:
           required: false
           type: string
           description: 邮政编码。
-        - name: 国家/地区
+        - name: country
           in: formData
           required: false
           type: string
@@ -6531,6 +6550,13 @@ paths:
           required: true
           type: string
           description: 验证令牌
+        - name: Idempotency-Key
+          in: header
+          required: false
+          type: string
+          description: >-
+            成功的请求将存储 IdempotencyKey。30 天内的后续请求如重复使用将触发 IdempotencyKeyConflict 错误。
+          pattern: '^[a-zA-Z0-9_-]{1,255}$'
         - name: account_id
           in: formData
           required: true
@@ -6723,6 +6749,10 @@ paths:
               message: >-
                 出生日期为必填项。请提供出生日期 (YYYY-MM-DD)
               params: ''
+            - code: invalid_idempotency_key
+              category: Idempotency-Key
+              message: Idempotency-Key 与允许的格式不匹配。
+              params: ''
           schema:
             $ref: '#/definitions/CreateContactError'
           headers:
@@ -6748,6 +6778,14 @@ paths:
             X-Request-Id:
               type: string
               description: 请求的唯一参考。
+        '409':
+          description: 冲突
+          x-errors:
+            - code: idempotency_key_conflict
+              category: Idempotency-Key
+              message: >-
+                Idempotency-Key 已被用于另一个尚未完成的请求，或发生内部错误导致该密钥无法被清除。
+              params: ''
         '429':
           description: 请求次数太多。
           x-errors:

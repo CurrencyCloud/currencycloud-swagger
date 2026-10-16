@@ -344,6 +344,14 @@ paths:
           type: string
           description: Authentication token
           minLength: 32
+        - name: Idempotency-Key
+          in: header
+          required: false
+          type: string
+          description: >-
+            Successful requests will store the IdempotencyKey. Subsequent requests within 30 days will trigger the
+            IdempotencyKeyConflict error upon repeated use.
+          pattern: '^[a-zA-Z0-9_-]{1,255}$'
         - name: account_name
           in: formData
           required: true
@@ -1145,6 +1153,10 @@ paths:
               category: your_reference
               message: your_reference can not be longer than 25 character(s)
               params: '{ "maxlength" => 25 }'
+            - code: invalid_idempotency_key
+              category: Idempotency-Key
+              message: Idempotency-Key does not match the allowed format.
+              params: ''
           schema:
             $ref: '#/definitions/CreateAccountError'
           headers:
@@ -1170,6 +1182,14 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+        '409':
+          description: Conflict
+          x-errors:
+            - code: idempotency_key_conflict
+              category: Idempotency-Key
+              message: >-
+                Idempotency-Key has been provided for another request that is yet to complete or an internal error has occurred and the key could not be pruned.
+              params: ''
         '429':
           description: Too many requests.
           x-errors:
@@ -7588,6 +7608,14 @@ paths:
           type: string
           description: Authentication token
           minLength: 32
+        - name: Idempotency-Key
+          in: header
+          required: false
+          type: string
+          description: >-
+            Successful requests will store the IdempotencyKey. Subsequent requests within 30 days will trigger the
+            IdempotencyKeyConflict error upon repeated use.
+          pattern: '^[a-zA-Z0-9_-]{1,255}$'
         - name: account_id
           in: formData
           required: true
@@ -7802,6 +7830,10 @@ paths:
                 Date of Birth is a required field. Please provide date of birth
                 (YYYY-MM-DD)
               params: ''
+            - code: invalid_idempotency_key
+              category: Idempotency-Key
+              message: Idempotency-Key does not match the allowed format.
+              params: ''
           schema:
             $ref: '#/definitions/CreateContactError'
           headers:
@@ -7827,6 +7859,14 @@ paths:
             X-Request-Id:
               type: string
               description: A unique reference for the request.
+        '409':
+          description: Conflict
+          x-errors:
+            - code: idempotency_key_conflict
+              category: Idempotency-Key
+              message: >-
+                Idempotency-Key has been provided for another request that is yet to complete or an internal error has occurred and the key could not be pruned.
+              params: ''
         '429':
           description: Too many requests.
           x-errors:
