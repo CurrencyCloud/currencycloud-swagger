@@ -15483,17 +15483,6 @@ paths:
           type: string
           format: date-time
           description: '任何有效的 ISO 8601 格式，例如「2023-12-31T23:59:59Z」。'
-        - name: beneficiary_id
-          in: query
-          required: false
-          type: string
-          description: 收款人 UUID。如果「related_entity_type」為「支付」，則為必填項。
-        - name: currency_pair
-          in: query
-          required: false
-          type: string
-          description: >-
-            交易的兩種貨幣的連接字串，例如「USDEUR」。如果「related_entity_type」為「兌換」，則為必填項。
         - name: scope
           in: query
           required: false

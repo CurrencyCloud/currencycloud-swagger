@@ -17352,20 +17352,6 @@ paths:
           type: string
           format: date-time
           description: 'Any valid ISO 8601 format, e.g. "2023-12-31T23:59:59Z".'
-        - name: beneficiary_id
-          in: query
-          required: false
-          type: string
-          description: Beneficiary UUID. Required if "related_entity_type" is "payment".
-          format: uuid
-        - name: currency_pair
-          in: query
-          required: false
-          type: string
-          description: >-
-            Concatenated string of the two currencies traded, e.g. "USDEUR".
-            Required if "related_entity_type" is "conversion".
-          pattern: ^[A-Z]{6}$
         - name: scope
           in: query
           required: false
