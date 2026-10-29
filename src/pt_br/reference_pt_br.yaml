@@ -15653,17 +15653,6 @@ paths:
           type: string
           format: date-time
           description: 'Qualquer formato ISO 8601 válido, por exemplo: "2023-12-31T23:59:59Z".'
-        - name: "beneficiary_id"
-          in: query
-          required: false
-          type: string
-          description: "UUID do beneficiário. Obrigatório se \"related_entity_type\" for \"payment\"."
-        - name: "currency_pair"
-          in: query
-          required: false
-          type: string
-          description: >-
-            String concatenada das duas moedas negociadas, por exemplo: "USDEUR". Obrigatório se "related\_entity\_type" for "conversion".
         - name: scope
           in: query
           required: false
