@@ -285,11 +285,6 @@ paths:
       x-api-group: manage
       summary: 创建账户
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        重要提示：作为我们 Future-Ready 计划的一部分，此端点将于 <strong>2026 年 10 月 30 日</strong>在<strong>生产环境</strong>中更新。<br><br>
-        相关变更现已在我们的<strong>演示</strong>环境中生效，开发者中心也已同步反映更新后的字段要求。</strong><br><br>
-        下方部分标记为必填的字段在生产环境中<strong>暂不会</strong>成为必填项，直至 2026 年 10 月 30 日。<br><br>
-        各字段文档中已标明受影响的字段。</p> <br><br>
         创建一个新的子账户。成功后返回新账户实体。
       operationId: CreateAccount
       consumes:
@@ -427,14 +422,12 @@ paths:
             - incorporation_number
           description: >-
             核实账户所有者身份的法律文件。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
         - name: identification_value
           in: formData
           required: true
           type: string
           description: >-
             身份证明文件的唯一参考号码，例如护照号码。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
         - name: identification_expiration
           in: formData
           required: false
@@ -454,8 +447,6 @@ paths:
             - professional_qualification_card <br>
             - visa <br>
             - work_permit <br>
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，上述身份证明类型在生产环境中为必填项。<br>
-            </p>
         - name: identification_issuer
           in: formData
           maxLength: 255
@@ -464,7 +455,6 @@ paths:
           description: >-
             表示所提供身份识别信息签发方的 ISO 国家/地区代码。个人账户为必填。
             属于“legal_entity_type: individual”账户扩展合规要求的一部分。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，个人账户在生产环境中为必填项。</p>
         - name: terms_and_conditions_accepted
           in: formData
           required: false
@@ -477,8 +467,6 @@ paths:
           type: string
           description: >-
             账户所属的行业。公司账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。
-            </p>
         - name: business_website_url
           in: formData
           required: false
@@ -487,7 +475,6 @@ paths:
           description: >-
             一个完全限定的 URL（包括协议），指向市场主页、与该公司相关的政府页面，或字面字符串
             'no_website_available'。公司账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。</p>
         - name: country_of_citizenship
           in: formData
           required: false
@@ -496,8 +483,6 @@ paths:
             表示账户所属个人国籍的两个字母 ISO 国家/地区代码。对于拥有多重国籍的个人，请提供持有时间最长的国籍。
             属于“legal_entity_type: individual”账户扩展合规要求的一部分。<br>
             个人账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，个人账户在生产环境中为必填项。
-            </p>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -508,8 +493,6 @@ paths:
             表示公司注册成立所在国家/地区的两个字母 ISO 国家/地区代码。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             公司账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。
-            </p>
         - name: date_of_incorporation
           in: formData
           required: false
@@ -519,8 +502,6 @@ paths:
             公司的成立日期。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             公司账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。
-            </p>
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -529,8 +510,6 @@ paths:
             此账户所代表的公司类型。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             公司账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。
-            </p>
           enum:
             - sole_trader
             - limited_liability_company
@@ -551,17 +530,14 @@ paths:
           description: >-
             公司经营地址中的街道部分。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
-            <p style="color:#FF5000;">
-            自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。</p>
+            公司账户为必填。
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
             公司经营地址中的城市部分。属于“legal_entity_type: company”账户扩展合规要求的一部分。
-            公司账户为必填。可与 'city' 字段相同。
-            <p style="color:#FF5000;">
-            自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。</p>
+            公司账户为必填。可与 'city' 字段相同。公司账户为必填。
         - name: trading_address_state
           in: formData
           required: false
@@ -571,8 +547,7 @@ paths:
             公司经营地址中的州/省部分。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             当 'trading_address_country' 为 'US'、'CA' 或 'MX' 时为必填。可与 'state_or_province' 字段相同。
-            <p style="color:#FF5000;">
-            自 2026 年 10 月 30 日起，美国、加拿大和墨西哥公司账户在生产环境中为必填项。</p>
+
         - name: trading_address_postalcode
           in: formData
           required: false
@@ -583,8 +558,6 @@ paths:
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             当 'trading_address_country' 为 'US'、'CA' 或 'MX' 时为必填。
             可与 'postal_code' 字段相同。
-            <p style="color:#FF5000;">
-            自 2026 年 10 月 30 日起，美国、加拿大和墨西哥公司账户在生产环境中为必填项。</p>
         - name: trading_address_country
           in: formData
           required: false
@@ -595,7 +568,6 @@ paths:
             表示公司经营地址中国家/地区部分的两个字母 ISO 国家/地区代码。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             公司账户为必填。可与 'country' 字段相同。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，公司账户在生产环境中为必填项。</p>
         - name: tax_identification
           in: formData
           required: false
@@ -605,7 +577,6 @@ paths:
             公司的税务识别号码。美国的雇主识别号码（Employer Identification Number）或澳大利亚的企业编号（Australian Business Number）。
             属于“legal_entity_type: company”账户扩展合规要求的一部分。
             当 'country_of_incorporation' 为 'US' 或 'AU' 时为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，美国和澳大利亚公司账户在生产环境中为必填项。</p>
         - name: national_identification
           in: formData
           required: false
@@ -615,7 +586,6 @@ paths:
             国民身份识别号码（例如美国个人的社会安全号码）。
             属于“legal_entity_type: individual”账户扩展合规要求的一部分。
             当 'country_of_citizenship' 为 'US' 时，个人账户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，当 'country_of_citizenship' 为 'US' 时，个人账户在生产环境中为必填项。</p>
         - name: customer_risk
           in: formData
           required: false
@@ -624,7 +594,6 @@ paths:
             该账户预期行为的风险分类。
             属于“legal_entity_type: individual | company”账户扩展合规要求的一部分。
             采用 Treasury 服务模式的客户为可选，其他客户为必填。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起，除采用 Treasury 服务模式的客户外，所有客户在生产环境中均为必填项。</p>
           enum:
             - LOW
             - MEDIUM
@@ -639,7 +608,6 @@ paths:
             可按子账户使用以下方式计算并提交平均值：
             该期间的总交易次数 / 活跃个人或企业客户数量<br>
             属于“legal_entity_type: individual | company”账户扩展合规要求的一部分。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
         - name: expected_monthly_activity_value
           in: formData
           required: true
@@ -650,14 +618,12 @@ paths:
             如果未专门收集此信息，可按子账户使用以下方式计算并提交平均值：<br>
             该期间的总交易金额 / 活跃个人或企业客户数量。<br>
             属于“legal_entity_type: individual | company”账户扩展合规要求的一部分。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
         - name: 'expected_transaction_currencies[]'
           in: formData
           required: true
           description: >-
             一个数组，包含此账户主要交易预期货币的单个 ISO 货币代码。
             属于“legal_entity_type: individual | company”账户扩展合规要求的一部分。
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
           type: array
           items:
             type: string
@@ -670,7 +636,6 @@ paths:
             如果未专门针对个人/企业客户收集此信息，<br>
             可按子账户使用以下方式计算并提交：<br>
             按降序排列该客户收付款最常涉及的前三个国家/地区
-            <p style="color:#FF5000;">自 2026 年 10 月 30 日起在生产环境中为必填项。</p>
           items:
             type: string
             minLength: 2
