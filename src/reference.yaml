@@ -326,11 +326,6 @@ paths:
       x-api-group: manage
       summary: Create Account
       description: >-
-        <p style="border-width:3px; border-style:solid; border-color:#FF5000; padding: 1em;">
-        Important: As part of our Future-Ready program, this endpoint will be updated in <strong>production</strong> on <strong>30 October 2026</strong>.<br><br>
-        The changes are now available in our <strong>demo</strong> environment and the Developer Center reflects the updated field requirements.</strong><br><br>
-        Some fields shown below as mandatory will <strong>not</strong> become mandatory in production until 30 October 2026.<br><br>
-        The individual field documentation highlight the fields affected.</p> <br><br>
         Creates a new sub-account. Returns the new account entity on success.
       operationId: CreateAccount
       consumes:
@@ -485,7 +480,7 @@ paths:
             - incorporation_number
           description: >-
             A legal document that verifies the identity of the account owner.
-            <p style="color:#FF5000;">Mandatory in production from 30 October 2026.</p>
+
         - name: identification_value
           in: formData
           required: true
@@ -493,7 +488,6 @@ paths:
           description: >-
             Unique reference code for the identification document, such as a
             passport number.
-            <p style="color:#FF5000;">Mandatory in production from 30 October 2026.</p>
           minLength: 1
           maxLength: 255
         - name: identification_expiration
@@ -515,8 +509,6 @@ paths:
             - professional_qualification_card <br>
             - visa <br>
             - work_permit <br>
-            <p style="color:#FF5000;">Mandatory in production for the identity types above from 30 October 2026<br>
-            </p>
         - name: identification_issuer
           in: formData
           maxLength: 255
@@ -525,7 +517,6 @@ paths:
           description: >-
             ISO country code indicating the issuer of the identification information provided. Required for individuals.
             Part of extended compliance for "legal_entity_type: individual" accounts.
-            <p style="color:#FF5000;">Required in production from 30 October 2026 for individuals.</p>
 
         - name: terms_and_conditions_accepted
           in: formData
@@ -539,8 +530,6 @@ paths:
           type: string
           description: >-
              The industry the account operates in. Required for companies.
-             <p style="color:#FF5000;">Required in production for companies from  30 October 2026.
-             </p>
         - name: business_website_url
           in: formData
           required: false
@@ -550,7 +539,6 @@ paths:
             A fully qualified URL (including scheme) indicating a marketplace homepage,
             a link to a government page concerning the company or the literal string
             'no_website_available'. Required for companies.
-            <p style="color:#FF5000;">Required in production for companies from  30 October 2026.</p>
 
         - name: country_of_citizenship
           in: formData
@@ -561,8 +549,6 @@ paths:
             Provide the longest held citizenship for individuals with multiple.
             Part of extended compliance for "legal_entity_type: individual" accounts.<br>
             Required for individuals.
-            <p style="color:#FF5000;">Required in production for individuals from 30 October 2026.
-            </p>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -573,8 +559,6 @@ paths:
             Two-letter ISO country code indicating the country the company is incorpated in.
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies.
-            <p style="color:#FF5000;">Required in production for companies from 30 October 2026.
-            </p>
         - name: date_of_incorporation
           in: formData
           required: false
@@ -584,8 +568,6 @@ paths:
             Date of the company's incorporation.
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies.
-            <p style="color:#FF5000;">Required in production for companies from 30 October 2026.
-            </p>
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -594,8 +576,6 @@ paths:
             The type of company this account represents.
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies.
-            <p style="color:#FF5000;">Required in production for companies from 30 October 2026.
-            </p>
           enum:
             - sole_trader
             - limited_liability_company
@@ -616,17 +596,14 @@ paths:
           description: >-
             The street portion of the company's trading address.
             Part of extended compliance for "legal_entity_type: company" accounts.
-            <p style="color:#FF5000;">
-            Required in production for companies from 30 October 2026.</p>
+            Required for companies.
         - name: trading_address_city
           in: formData
           required: false
           type: string
           description: >-
             The city portion of the company's trading address. Part of extended compliance for "legal_entity_type: company" accounts.
-            Required for companies. Can be the same as 'city' field.
-            <p style="color:#FF5000;">
-            Required in production for companies from 30 October 2026.</p>
+            Required for companies. Can be the same as 'city' field. Required for companies.
         - name: trading_address_state
           in: formData
           required: false
@@ -635,9 +612,8 @@ paths:
           description: >-
             The state portion of the company's trading address.
             Part of extended compliance for "legal_entity_type: company" accounts.
-            Required for companies where 'trading_address_country' = 'US','CA' or 'MX'. Can be the same as 'state_or_province' field).
-            <p style="color:#FF5000;">
-            Required in production for US, CA and MX companies from 30 October 2026.</p>
+            Required for companies where 'trading_address_country' = 'US','CA' or 'MX'. Can be the same as 'state_or_province' field.
+
         - name: trading_address_postalcode
           in: formData
           required: false
@@ -648,8 +624,6 @@ paths:
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies where 'trading_address_country' = 'US','CA' or 'MX'.
             Can be the same as 'postal_code' field.
-            <p style="color:#FF5000;">
-            Required in production for US, CA and MX companies from 30 October 2026.</p>
         - name: trading_address_country
           in: formData
           required: false
@@ -660,7 +634,6 @@ paths:
             Two-letter ISO country code representing the country portion of the company's trading address.
             Part of extended compliance for accounts with "legal_entity_type: company".
             Required for companies. Can be the same as 'country' field.
-            <p style="color:#FF5000;">Required in production for companies from 30 October 2026.</p>
         - name: tax_identification
           in: formData
           required: false
@@ -670,7 +643,6 @@ paths:
             Tax identification number for the company. Employer Identification Number (US) or Australian Business Number (AU).
             Part of extended compliance for accounts with "legal_entity_type: company".
             Required for companies where 'country_of_incorporation' = 'US' or 'AU'.
-            <p style="color:#FF5000;">Required in production for US and AU companies from 30 October 2026.</p>
 
         - name: national_identification
           in: formData
@@ -680,8 +652,7 @@ paths:
           description: >-
             National identification (e.g Social Security Number for U.S. individuals).
             Part of extended compliance for "legal_entity_type: individual" accounts.
-            Required for individuals where 'country_of_citizenship = 'US'.
-            <p style="color:#FF5000;">Required in production for individuals where 'country_of_citizenship' = 'US' from 30 October 2026.</p>
+            Required for individuals where 'country_of_citizenship' = 'US'.
 
         - name: customer_risk
           in: formData
@@ -691,8 +662,6 @@ paths:
             The risk classification for this account's expected behaviour.
             Part of extended compliance for "legal_entity_type: individual | company" accounts.
             Optional for clients on the Treasury service model, required otherwise.
-            <p style="color:#FF5000;">Required in production from 30 October 2026
-            for all clients other than those on the Treasury service model.</p>
           enum:
             - LOW
             - MEDIUM
@@ -707,7 +676,6 @@ paths:
             averages can be calculated and sent per sub-account using:
             total transaction count over the period / number of active individual or corporate customers<br>
             Part of extended compliance for "legal_entity_type: individual | company" accounts.
-            <p style="color:#FF5000;">Required in production from  30 October 2026.</p>
         - name: expected_monthly_activity_value
           in: formData
           required: true
@@ -718,7 +686,6 @@ paths:
             If not specifically collecting this information, averages can be calculated and sent per sub-account using: <br>
             total transaction value over the period / number of active individual or corporate customers.<br>
             Part of extended compliance for "legal_entity_type: individual | company" accounts.
-            <p style="color:#FF5000;">Required in production from  30 October 2026.</p>
         - name: 'expected_transaction_currencies[]'
           in: formData
           required: true
@@ -726,7 +693,6 @@ paths:
             An array holding a single ISO currency code for the expected currency this
             account will mainly transact in.
             Part of extended compliance for "legal_entity_type: individual | company" accounts.
-            <p style="color:#FF5000;">Required in production from  30 October 2026.</p>
           type: array
           items:
             type: string
@@ -740,7 +706,6 @@ paths:
             If not specifically collecting this for the individual/corporate clients, <br>
             this can be calculated and sent per sub-account using:<br>
             the top three most common countries paid to or received from for that client ranked in decreasing order
-            <p style="color:#FF5000;">Required in production from  30 October 2026.</p>
           items:
             type: string
             minLength: 2
