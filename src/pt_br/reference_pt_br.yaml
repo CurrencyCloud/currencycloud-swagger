@@ -1372,23 +1372,43 @@ paths:
         required: false
         type: string
         enum:
+          - none
+          - others
+          - asylum_registration_card
           - "citizenship_papers"
+          - consular_id
           - "credential_de_elector"
           - "drivers_license"
           - "drivers_license_canadian"
           - "employer_identification_number"
           - "existing_credit_card_details"
           - "green_card"
-          - "incorporation_number"
+          - immigration_status_document
+          - indigenous_card
+          - international_driving_licence
           - "matricula_consular"
+          - municipality_identity_card
+          - national_health_insurance_card
           - "national_id"
-          - none
-          - others
+          - national_identity_card
           - passport
+          - passport_card
+          - postal_identity_card
+          - private_operators_card
+          - professional_qualification_card
+          - proof_of_citizenship
           - "registro_federal_de_contribuyentes"
+          - residence_permit
+          - residence_status_document
+          - service_id_card
           - "social_insurance_number"
+          - social_security_card
           - "social_security_number"
+          - tax_id
           - visa
+          - voter_id
+          - work_permit
+          - "incorporation_number"
         description: Um documento legal que verifica a identidade do proprietário da conta.
       - name: "identification_value"
         in: formData
@@ -1754,6 +1774,528 @@ paths:
           X-Request-Id:
             type: string
             description: Uma referência exclusiva para a requisição.
+  '/accounts/{id}/compliance_settings':
+    get:
+      tags:
+        - Contas
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: Consultar Configurações de Conformidade da Conta
+      description: Obtém as configurações de conformidade da conta com o ID fornecido.
+      operationId: GetAccountComplianceSettings
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Token de autenticação
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: "UUID da conta, retornado pelo endpoint Criar Conta."
+          format: uuid
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: Um UUID de contato para a subconta em nome da qual você está agindo.
+          format: uuid
+      responses:
+        '200':
+          description: Sucesso.
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '400':
+          description: Erro de cliente.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id deve estar no formato UUID
+              params: ''
+            - code: account_not_found
+              category: id
+              message: Não foi encontrada a conta para este id
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: Você não pode agir em nome de seu próprio contato
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: Não foi encontrado o contato para este id
+              params: ''
+          schema:
+            $ref: '#/definitions/GetAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '401':
+          description: Não autorizado
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Falha na autenticação com as credenciais fornecidas
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '404':
+          description: Recurso não encontrado.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '429':
+          description: Muitas requisições.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Foram feitas muitas requisições à API. Consulte o Centro de Desenvolvedores para obter mais informações
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '500':
+          description: Erro interno do servidor
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Erro interno do servidor
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '503':
+          description: O serviço está temporariamente indisponível.
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: O serviço está temporariamente indisponível
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        default:
+          description: Erro inesperado.
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+    post:
+      tags:
+        - Contas
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: Atualizar Configurações de Conformidade da Conta
+      description: >-
+        Atualiza as configurações de conformidade de uma subconta de propriedade do usuário autenticado. Em caso de sucesso, retorna a entidade da conta atualizada.
+      operationId: UpdateAccountComplianceSettings
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Token de autenticação
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: UUID da conta.
+        - name: industry_type
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: Texto que descreve o setor principal da conta. Consulte os códigos de categoria de comerciante (MCC) para ver exemplos.
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            Código de país ISO-3166 de duas letras que indica o país em que a conta foi constituída. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            A data de constituição da conta. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          maxLength: 400
+          description: >-
+            Uma URL completa (incluindo o esquema) que indica a página inicial de um marketplace, um link para uma página governamental sobre a empresa ou a string literal 'no_website_available'.
+        - name: 'expected_transaction_countries[]'
+          in: formData
+          required: false
+          type: array
+          description: Array de códigos de país ISO-3166 de duas letras indicando os países de/para os quais esta conta deverá transacionar.
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: 'expected_transaction_currencies[]'
+          in: formData
+          required: false
+          type: array
+          description: Array de códigos de moeda ISO-4217 com os quais estas contas transacionarão. Limitado a um único item.
+          items:
+            type: string
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: integer
+          format: int32
+          description: O número de transações que se espera que esta conta realize.
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          format: float
+          description: >-
+            O valor das transações que se espera que esta conta realize. A moeda corresponde ao único item em 'expected_transaction_currencies'.
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            Um valor de identificação fiscal para empresas nos Estados Unidos ou na Austrália; determinado por 'accounts.country'. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            Um valor de identificação nacional para um indivíduo nos Estados Unidos; determinado por 'accounts.country'. Deve estar presente apenas para contas com 'legal_entity_type: individual'.
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            Código de país ISO-3166 de duas letras para a cidadania de um indivíduo. Deve ser fornecido apenas para contas com 'legal_entity_type: individual'.
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          maxLength: 150
+          description: >-
+            O endereço da rua do local de atuação comercial da empresa. Deve ser fornecido apenas para contas com 'legal_entity_type: company'.
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+
+          description: >-
+            A cidade do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: trading_address_state
+          in: formData
+          required: false
+          maxLength: 100
+          type: string
+          description: >-
+            O estado do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          maxLength: 20
+          description: >-
+            O código postal do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+        - name: trading_address_country
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            Código de país ISO-3166 de duas letras que representa o país do local de atuação comercial da empresa. Deve ser fornecido apenas para contas com 'legal_entity_type: company'.
+        - name: customer_risk
+          in: formData
+          required: false
+          description: Classificação de risco para o comportamento esperado desta conta, obrigatória para indivíduos e empresas no modelo de serviço Correspondent ou OKYC.
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+      responses:
+        '200':
+          description: Sucesso.
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '400':
+          description: Erro de cliente.
+          x-errors:
+            - code: business_website_url_is_not_permitted
+              category: business_website_url
+              message: business_website_url não é permitido
+              params: ''
+            - code: business_website_url_is_required
+              category: business_website_url
+              message: business_website_url é obrigatório
+              params: ''
+            - code: country_of_citizenship_is_not_permitted
+              category: country_of_citizenship
+              message: country_of_citizenship não é permitido
+              params: ''
+            - code: country_of_citizenship_is_required
+              category: country_of_citizenship
+              message: country_of_citizenship é obrigatório
+              params: ''
+            - code: country_of_incorporation_is_not_permitted
+              category: country_of_incorporation
+              message: country_of_incorporation não é permitido
+              params: ''
+            - code: country_of_incorporation_is_required
+              category: country_of_incorporation
+              message: country_of_incorporation é obrigatório
+              params: ''
+            - code: country_of_incorporation_location_not_accepted
+              category: country_of_incorporation
+              message: O país de constituição não é um local aceito.
+              params: ''
+            - code: customer_risk_invalid_value
+              category: customer_risk
+              message: Valor inválido para customer_risk
+              params: ''
+            - code: customer_risk_is_required
+              category: customer_risk
+              message: customer_risk é obrigatório
+              params: ''
+            - code: date_of_incorporation_is_not_permitted
+              category: date_of_incorporation
+              message: date_of_incorporation não é permitido
+              params: ''
+            - code: date_of_incorporation_is_required
+              category: date_of_incorporation
+              message: date_of_incorporation é obrigatório
+              params: ''
+            - code: expected_monthly_activity_value_is_required
+              category: expected_monthly_activity_value
+              message: O valor de atividade mensal esperado é obrigatório.
+              params: ''
+            - code: expected_monthly_activity_value_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_value
+              message: expected_monthly_activity_value deve ser um número maior que zero
+              params: ''
+            - code: expected_monthly_activity_volume_is_required
+              category: expected_monthly_activity_volume
+              message: O volume de atividade mensal esperado é obrigatório.
+              params: ''
+            - code: expected_monthly_activity_volume_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_volume_
+              message: expected_monthly_activity_volume deve ser um número maior que zero
+              params: ''
+            - code: expected_transaction_countries_is_required
+              category: expected_transaction_countries
+              message: expected_transaction_countries é obrigatório
+              params: ''
+            - code: expected_transaction_currencies_is_required
+              category: expected_transaction_currencies
+              message: expected_transaction_currencies é obrigatório
+              params: ''
+            - code: industry_type_is_not_permitted
+              category: industry_type
+              message: industry_type não é permitido
+              params: ''
+            - code: industry_type_is_required
+              category: industry_type
+              message: industry_type é obrigatório
+              params: ''
+            - code: national_identification_is_not_permitted
+              category: national_identification
+              message: national_identification não é permitido
+              params: ''
+            - code: national_identification_is_required
+              category: national_identification
+              message: national_identification é obrigatório
+              params: ''
+            - code: tax_identification_is_not_permitted
+              category: tax_identification
+              message: tax_identification não é permitido
+              params: ''
+            - code: tax_identification_is_required
+              category: tax_identification
+              message: tax_identification é obrigatório
+              params: ''
+            - code: tax_identification_not_a_valid_australian_business_number
+              category: tax_identification
+              message: A identificação fiscal não é um número de empresa australiano válido.
+              params: ''
+            - code: trading_address_city_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_city
+              message: A cidade do endereço comercial contém caracteres utf8mb4 inválidos
+              params: ''
+            - code: trading_address_city_is_not_permitted
+              category: trading_address_city
+              message: trading_address_city não é permitido
+              params: ''
+            - code: trading_address_city_is_required
+              category: trading_address_city
+              message: trading_address_city é obrigatório
+              params: ''
+            - code: trading_address_city_location_not_accepted
+              category: trading_address_city
+              message: A cidade do endereço comercial não é um local aceito.
+              params: ''
+            - code: trading_address_country_is_not_permitted
+              category: trading_address_country
+              message: trading_address_country não é permitido
+              params: ''
+            - code: trading_address_country_is_required
+              category: trading_address_country
+              message: trading_address_country é obrigatório
+              params: ''
+            - code: trading_address_country_location_not_accepted
+              category: trading_address_country
+              message: O país do endereço comercial não é um local aceito.
+              params: ''
+            - code: trading_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_postalcode
+              message: O código postal do endereço comercial contém caracteres utf8mb4 inválidos
+              params: ''
+            - code: trading_address_postalcode_is_not_permitted
+              category: trading_address_postalcode
+              message: trading_address_postalcode não é permitido
+              params: ''
+            - code: trading_address_postalcode_is_required
+              category: trading_address_postalcode
+              message: trading_address_postalcode é obrigatório
+              params: ''
+            - code: trading_address_state_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_state
+              message: O estado do endereço comercial contém caracteres utf8mb4 inválidos
+              params: ''
+            - code: trading_address_state_invalid_state
+              category: trading_address_state
+              message: Estado inválido para trading_address_state
+              params: ''
+            - code: trading_address_state_is_not_permitted
+              category: trading_address_state
+              message: trading_address_state não é permitido
+              params: ''
+            - code: trading_address_state_is_required
+              category: trading_address_state
+              message: trading_address_state é obrigatório
+              params: ''
+            - code: trading_address_street_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_street
+              message: A rua do endereço comercial contém caracteres utf8mb4 inválidos
+              params: ''
+            - code: trading_address_street_is_not_permitted
+              category: trading_address_street
+              message: trading_address_street não é permitido
+              params: ''
+            - code: trading_address_street_is_required
+              category: trading_address_street
+              message: trading_address_street é obrigatório
+              params: ''
+          schema:
+            $ref: '#/definitions/UpdateAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '401':
+          description: Não autorizado.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Falha na autenticação com as credenciais fornecidas
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '404':
+          description: Recurso não encontrado.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '429':
+          description: Muitas requisições.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Foram feitas muitas requisições à API. Consulte o Centro de Desenvolvedores para obter mais informações
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '500':
+          description: Erro interno do servidor
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Erro interno do servidor
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '503':
+          description: O serviço está temporariamente indisponível
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: O serviço está temporariamente indisponível
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        default:
+          description: Erro inesperado.
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
   /accounts/current:
     get:
       tags:
@@ -3940,10 +4482,6 @@ paths:
               category: "bank_name"
               message: "O bank_name não pode ter menos de 1 caractere(s)"
               params: '{ "minlength" => 1 }'
-            - code: "bank_name_is_too_long"
-              category: "bank_name"
-              message: "O bank_name não pode ter mais de 100 caractere(s)"
-              params: '{ "maxlength" => 100 }'
             - code: "bank_name_is_missing"
               category: "bank_name"
               message: O nome do banco está faltando
@@ -4000,7 +4538,7 @@ paths:
               category: "beneficiary_company_name"
               message: O nome da empresa beneficiária está faltando
               params: ''
-            - code: "company_name_cannot_be_only_digits"
+            - code: "company_name_contains_numbers"
               category: "beneficiary_company_name"
               message: Os nomes dos beneficiários não podem consistir inteiramente de números para uma empresa
               params: ''
@@ -4139,7 +4677,7 @@ paths:
               category: "routing_code"
               message: O código do banco está faltando
               params: ''
-            - code: "código_bancário_é_válido"
+            - code: "bank_code_is_invalid"
               category: "routing_code"
               message: O código do banco não está em um formato válido
               params: ''
@@ -4608,10 +5146,6 @@ paths:
               category: "bank_name"
               message: "O bank_name não pode ter menos de 1 caractere(s)"
               params: '{ "minlength" => 1 }'
-            - code: "bank_name_is_too_long"
-              category: "bank_name"
-              message: "O bank_name não pode ter mais de 100 caractere(s)"
-              params: '{ "maxlength" => 100 }'
             - code: "bank_name_is_missing"
               category: "bank_name"
               message: O nome do banco está faltando
@@ -4668,7 +5202,7 @@ paths:
               category: "beneficiary_company_name"
               message: O nome da empresa beneficiária está faltando
               params: ''
-            - code: "company_name_cannot_be_only_digits"
+            - code: "company_name_contains_numbers"
               category: "beneficiary_company_name"
               message: Os nomes dos beneficiários não podem consistir inteiramente de números para uma empresa
               params: ''
@@ -4826,7 +5360,7 @@ paths:
               category: "routing_code"
               message: O código do banco está faltando
               params: ''
-            - code: "código_bancário_é_válido"
+            - code: "bank_code_is_invalid"
               category: "routing_code"
               message: O código do banco não está em um formato válido
               params: ''
@@ -5291,7 +5825,7 @@ paths:
               category: "beneficiary_company_name"
               message: O nome da empresa beneficiária está faltando
               params: ''
-            - code: "company_name_cannot_be_only_digits"
+            - code: "company_name_contains_numbers"
               category: "beneficiary_company_name"
               message: Os nomes dos beneficiários não podem consistir inteiramente de números para uma empresa
               params: ''
@@ -5407,10 +5941,6 @@ paths:
               category: "bank_name"
               message: "O bank_name não pode ter menos de 1 caractere(s)"
               params: '{ "minlength" => 1 }'
-            - code: "bank_name_is_too_long"
-              category: "bank_name"
-              message: "O bank_name não pode ter mais de 100 caractere(s)"
-              params: '{ "maxlength" => 100 }'
             - code: "bank_name_is_missing"
               category: "bank_name"
               message: O nome do banco está faltando
@@ -5521,7 +6051,7 @@ paths:
               category: "routing_code"
               message: O código do banco está faltando
               params: ''
-            - code: "código_bancário_é_válido"
+            - code: "bank_code_is_invalid"
               category: "routing_code"
               message: O código do banco não está em um formato válido
               params: ''
@@ -5648,18 +6178,18 @@ paths:
         - name: "bank_country"
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             Código de duas letras para o país no qual a conta bancária do beneficiário é mantida.
         - name: currency
           in: formData
           type: string
-          required: false
+          required: true
           description: >-
             Moeda na qual o dinheiro será enviado para a conta bancária do beneficiário. Código de moeda de três dígitos.
         - name: "account_number"
           in: formData
-          required: true
+          required: false
           type: string
           description: Número da conta bancária.
         - name: "beneficiary_entity_type"
@@ -5692,7 +6222,7 @@ paths:
           description: "Sistema de roteamento de pagamento local. O padrão é 'sort_code'."
         - name: "routing_code_value_1"
           in: formData
-          required: true
+          required: false
           type: string
           description: "Valor do sistema de roteamento, ou seja, o sort code (código de identificação) da conta."
         - name: "routing_code_type_2"
@@ -9137,6 +9667,20 @@ paths:
           required: true
           type: string
           description: Token de autenticação
+        - name: x-sca-id
+          in: header
+          required: false
+          type: string
+          description: >-
+            UUID para correlacionar à requisição de SCA gerada quando o Validate Payment (Validar Pagamento) foi chamado.
+          format: uuid
+        - name: x-sca-token
+          in: header
+          required: false
+          type: string
+          description: >-
+            O OTP recebido após a requisição Validate Payment (Validar Pagamento) quando o SCA foi necessário.
+          pattern: ^\d{6}$
         - name: currency
           in: formData
           required: true
@@ -12149,6 +12693,13 @@ paths:
           required: true
           type: string
           description: Token de autenticação
+        - name: x-sca-to-authenticated-user
+          in: header
+          required: false
+          type: boolean
+          description: >-
+            Definir esse valor como true enviará o OTP ao usuário autenticado em vez do cliente em nome de quem a ação está sendo realizada (on-behalf-of).
+            Esta opção está disponível apenas para clientes em modelos de licenciamento específicos.
         - name: id
           in: formData
           required: false
@@ -12597,6 +13148,127 @@ paths:
           description: O serviço está temporariamente indisponível
           x-errors:
             - code: "service_unavailable"
+              category: base
+              message: O serviço está temporariamente indisponível
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        default:
+          description: Erro inesperado.
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+  /payments/{id}/notifications/retry:
+    post:
+      tags:
+        - Pagamentos
+      x-api-group: pay
+      summary: Reenviar Notificação de Pagamento
+      description: Reenvia uma notificação de pagamento para o ID de pagamento especificado.
+      operationId: PaymentsRetryNotifications
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: Token de autenticação
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: UUID do pagamento
+          format: uuid
+        - name: notification_type
+          in: query
+          required: true
+          type: string
+          description: A notificação a ser reenviada.
+          enum:
+            - payment_ready_to_send_notification
+            - payment_released_notification
+            - payment_failed_notification
+      responses:
+        '200':
+          description: Sucesso.
+          schema:
+            type: object
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '400':
+          description: Erro de cliente.
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id deve estar no formato UUID
+              params: ''
+            - code: payment_not_found
+              category: id
+              message: Não foi encontrado o pagamento para este id
+              params: ''
+            - code: notification_type_not_in_range
+              category: notification_type
+              message: "notification_type deve estar no intervalo: payment_ready_to_send_notification, payment_released_notification, payment_failed_notification"
+              params: ''
+          schema:
+            $ref: '#/definitions/RetryNotificationError'
+        '401':
+          description: Não autorizado.
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: Falha na autenticação com as credenciais fornecidas
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '404':
+          description: Recurso não encontrado.
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '429':
+          description: Muitas requisições.
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                Foram feitas muitas requisições à API. Consulte o Centro de Desenvolvedores para obter mais informações
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '500':
+          description: Erro interno do servidor
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: Erro interno do servidor
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: Uma referência exclusiva para a requisição.
+        '503':
+          description: O serviço está temporariamente indisponível
+          x-errors:
+            - code: service_unavailable
               category: base
               message: O serviço está temporariamente indisponível
               params: ''
@@ -13251,6 +13923,46 @@ paths:
             - code: hold_period_is_required
               category: hold_period
               message: hold_period is required
+              params: ''
+            - code: ccy_pair_is_not_tradeable
+              category: currency_pair
+              message: Given currency pair is not tradeable
+              params: ''
+            - code: crossing_cutoff_time
+              category: base
+              message: Hold period extends beyond the cut-off-time for the requested delivery date
+              params: ''
+            - code: held_rate_not_enabled
+              category: base
+              message: Held Rates Product is not enabled for this account
+              params: ''
+            - code: invalid_conversion_date
+              category: base
+              message: Conversion date is not valid for this currency pair
+              params: ''
+            - code: invalid_conversion_date_combination
+              category: base
+              message: One of conversion_date or conversion_date_preference must be specified
+              params: ''
+            - code: invalid_decimals
+              category: base
+              message: amount should be specified with a valid number of decimal places
+              params: ''
+            - code: invalid_delivery_date
+              category: base
+              message: The delivery date you have requested cannot be met for this currency pair
+              params: ''
+            - code: invalid_hold_period
+              category: base
+              message: Requested hold_period is invalid for this account
+              params: ''
+            - code: missing_client_spread_table_data
+              category: base
+              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up - please contact us
+              params: ''
+            - code: quote_could_not_be_created
+              category: base
+              message: Quote could not be created
               params: ''
           schema:
             $ref: '#/definitions/HeldRateQuoteError'
@@ -14952,6 +15664,18 @@ paths:
               category: "with_deleted"
               message: "with_deleted deve ser do tipo booleano"
               params: '{"type": "boolean"}'
+            - code: field_contains_invalid_characters
+              category: base
+              message: O campo contém caracteres inválidos
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: As informações fornecidas para esta requisição excedem nossos limites de tamanho de campo
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: Esta requisição contém campos que não são permitidos para esta rota
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '\#/definitions/GenerateReportError'
           headers:
@@ -15026,7 +15750,7 @@ paths:
       x-api-group: manage
       summary: Localizar requisições de relatórios
       description: Busca por requisições de relatórios feitas. Retorna uma estrutura JSON com detalhes de requisições de relatórios correspondentes.
-      operationId: Localizar requisições de relatórios
+      operationId: Find Report Requests
       produces:
         - application/json
       parameters:
@@ -15247,7 +15971,7 @@ paths:
       x-api-group: manage
       summary: Busca uma requisição de relatório com o ID fornecido
       description: Procura um relatório por ID. Retorna uma estrutura JSON com detalhes da requisição de relatório especificada.
-      operationId: Busca uma requisição de relatório
+      operationId: Retrieve a Report Request
       produces:
         - application/json
       parameters:
@@ -16010,6 +16734,66 @@ paths:
               category: amount
               message: "O valor deve ser inferior a ${limit}"
               params: ''
+            - code: account_not_found
+              category: account_id
+              message: Não foi encontrada a conta para este id
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: Não foi possível recuperar o fluxo de caixa para a conta {account_id}
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: Não foi possível recuperar o fluxo de caixa para a conta {account_id}
+              params: ''
+            - code: currency_is_not_supported
+              category: currency
+              message: 'A moeda {currency} está restrita'
+              params: ''
+            - code: destination_account_disabled
+              category:
+              message: A transferência não foi criada com sucesso porque a conta de destino está desabilitada. Certifique-se de que as contas de origem e destino estejam habilitadas antes de fazer uma transferência.
+              params: ''
+            - code: destination_bank_account_verified_error
+              category: account_id
+              message: A conta bancária de destino não está verificada. Certifique-se de que as contas bancárias de origem e destino estejam verificadas antes de fazer uma transferência.
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} não suporta nenhuma casa decimal'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} suporta apenas até 1 casa decimal'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} suporta apenas até %d casas decimais'
+              params: ''
+            - code: invalid_extra_parameters
+              category: invalid_extra_parameters
+              message: 'Parâmetros extras inválidos:{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: not_allowed_currency
+              category: currency
+              message: 'Você não pode realizar esta operação na moeda {currency}'
+              params: ''
+            - code: same_source_and_destination_accounts
+              category: account_id
+              message: As contas de origem e destino não podem ser iguais
+              params: ''
+            - code: source_account_disabled
+              category: account_id
+              message: A transferência não foi criada com sucesso porque a conta de origem está desabilitada. Certifique-se de que as contas de origem e destino estejam habilitadas antes de fazer uma transferência.
+              params: ''
+            - code: source_bank_account_verified_error
+              category: source_account_id
+              message: A conta bancária de origem não está verificada. Certifique-se de que as contas bancárias de origem e destino estejam verificadas antes de fazer uma transferência.
+              params: ''
+            - code: transfer_not_permitted
+              category: account_id
+              message: A transferência não é permitida entre as contas de origem e destino definidas.
+              params: ''
           schema:
             $ref: '\#/definitions/CreateTransferError'
           headers:
@@ -16119,17 +16903,13 @@ paths:
               category: id
               message: id deve estar no formato UUID
               params: ''
-            - code: "on_behalf_of_self"
-              category: "on_behalf_of"
-              message: Você não pode agir em nome do seu próprio Contato
-              params: ''
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "Parâmetros extras inválidos:'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
             - code: "transfer_not_found"
               category: id
               message: A transferência não foi encontrada para este ID
-              params: ''
-            - code: "contact_not_found"
-              category: "on_behalf_of"
-              message: Não foi encontrado o contato para este id
               params: ''
           schema:
             $ref: '\#/definitions/GetTransferError'
@@ -16410,21 +17190,41 @@ paths:
               category: "completed_at_to"
               message: "completed_at_to deve estar no formato ISO 8601"
               params: '{ "type" => "datetime" }'
-            - code: "creator_contact_id_is_not_valid_uuid"
-              category: "creator_contact_id"
-              message: "creator_contact_id deve estar no formato UUID"
+            - code: completed_at_from_is_too_old
+              category: completed_at_from
+              message: completed_at_from está definido para uma data muito antiga
               params: ''
-            - code: "creator_account_id_is_not_valid_uuid"
-              category: "creator_account_id"
-              message: "creator_account_id deve estar no formato UUID"
+            - code: created_at_from_is_too_old
+              category: created_at_from
+              message: created_at_from está definido para uma data muito antiga
               params: ''
-            - code: "on_behalf_of_self"
-              category: "on_behalf_of"
-              message: Você não pode agir em nome do seu próprio Contato
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "Parâmetros extras inválidos:'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: page_is_too_small
+              category: page
+              message: page não pode ser menor que 1
               params: ''
-            - code: "contact_not_found"
-              category: "on_behalf_of"
-              message: Não foi encontrado o contato para este id
+            - code: page_type_is_wrong
+              category: page
+              message: page deve ser do tipo integer
+              params: ''
+            - code: per_page_is_too_big
+              category: per_page
+              message: per_page não pode ser maior que %i
+              params: ''
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page não pode ser menor que 1
+              params: ''
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page deve ser do tipo integer
+              params: ''
+            - code: updated_at_from_is_too_old
+              category: updated_at_from
+              message: updated_at_from está definido para uma data muito antiga
               params: ''
           schema:
             $ref: '\#/definitions/FindTransfersError'
@@ -16544,13 +17344,9 @@ paths:
               category: status
               message: A transferência já foi concluída (liquidada)
               params: ''
-            - code: "invalid_status"
-              category: status
-              message: A transferência já foi cancelada
-              params: ''
-            - code: "invalid_status"
-              category: status
-              message: "A transferência não pode ser cancelada, pois já foi concluída"
+            - code: transfer_cannot_be_cancelled
+              category: short_reference
+              message: "A transferência {short_reference} não pode ser cancelada"
               params: ''
             - code: "invalid_extra_parameters"
               category: base
@@ -17445,6 +18241,20 @@ definitions:
       legal_entity_type:
         type: string
         description: O tipo de entidade - pessoa física ou jurídica.
+      legal_entity_sub_type:
+        type: string
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
       created_at:
         type: string
         description: A data/hora em que a conta foi criada.
@@ -17478,6 +18288,15 @@ definitions:
         type: string
         description: >-
           O código de referência exclusivo do documento de identificação, como, por exemplo, o número do passaporte.
+      identification_issuer:
+        type: string
+        description: >-
+          Código de país ISO-3116 do emissor do documento de identificação
+      identification_expiration:
+        type: string
+        format: date
+        description: >-
+          Data de validade do documento de identificação
       short_reference:
         description: O número de referência da conta.
         type: string
@@ -17525,10 +18344,13 @@ definitions:
       postal_code: AB12 CD1
       spread_table: "flat_0.5_percent"
       legal_entity_type: company
+      legal_entity_sub_type: limited_liability_company
       created_at: '2023-12-31T23:59:59.000Z'
       updated_at: '2023-12-31T23:59:59.000Z'
       identification_type: "green_card"
       identification_value: 123456789
+      identification_issuer: US
+      identification_expiration: '2020-12-31'
       short_reference: 110104-00004
       api_trading: true
       online_trading: true
@@ -17538,6 +18360,103 @@ definitions:
       terms_and_conditions_accepted: true
       agent_or_reliance: true
       bank_account_verified: no
+  AccountComplianceSettings:
+    type: object
+    description: Configurações de conformidade da conta.
+    properties:
+      account_id:
+        type: string
+        description: UUID da conta.
+      industry_type:
+        type: string
+        description: Texto que descreve o setor principal da conta. Consulte os códigos de categoria de comerciante (MCC) para ver exemplos
+      country_of_incorporation:
+        type: string
+        description: >-
+          Código de país ISO-3166 de duas letras que indica o país em que a conta foi constituída. Deve estar presente apenas para contas com 'legal_entity_type: company'
+      date_of_incorporation:
+        type: string
+        format: date
+        description: >-
+          A data de constituição da conta. Deve estar presente apenas para contas com 'legal_entity_type: company'
+      business_website_url:
+        type: string
+        description: >-
+          Uma URL completa (incluindo o esquema) que indica a página inicial de um marketplace, um link para uma página governamental sobre a empresa ou a string literal 'no_website_available'.
+      expected_transaction_countries:
+        type: array
+        description: Array de códigos de país ISO-3166 com os quais estas contas transacionarão de/para.
+        items:
+          type: string
+      expected_transaction_currencies:
+        type: array
+        description: Array de códigos de moeda ISO-4217 com os quais estas contas transacionarão. Limitado a um único item.
+        items:
+          type: string
+      expected_monthly_activity_volume:
+        type: integer
+        description: O número de transações que se espera que esta conta realize.
+      expected_monthly_activity_value:
+        type: number
+        description: O valor das transações que se espera que esta conta realize. A moeda corresponde ao único item em 'expected_transaction_currencies'.
+      tax_identification:
+        type: string
+        description: >-
+          Um valor de identificação fiscal para empresas nos Estados Unidos ou na Austrália; determinado por 'accounts.country'. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      national_identification:
+        type: string
+        description: >-
+          Um valor de identificação nacional para um indivíduo nos Estados Unidos; determinado por 'accounts.country'. Deve estar presente apenas para contas com 'legal_entity_type: individual'.
+      country_of_citizenship:
+        type: string
+        description: >-
+          Um código de país ISO-3166 para a cidadania de um indivíduo. Deve estar presente apenas para contas com 'legal_entity_type: individual'.
+      trading_address_street:
+        type: string
+        description: >-
+          O endereço da rua do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      trading_address_city:
+        type: string
+        description: >-
+          A cidade do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      trading_address_state:
+        type: string
+        description: >-
+          O estado do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      trading_address_postalcode:
+        type: string
+        description: >-
+          O código postal do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      trading_address_country:
+        type: string
+        description: >-
+          O código de país ISO-3166 do local de atuação comercial da empresa. Deve estar presente apenas para contas com 'legal_entity_type: company'.
+      customer_risk:
+        description: A classificação de risco para o comportamento esperado desta conta.
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+    example:
+      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
+      industry_type: Telecom Services
+      country_of_incorporation: US
+      date_of_incorporation: 2020-01-30
+      business_website_url: https://currencycloud.com
+      expected_transaction_countries: ["US", "GB"]
+      expected_transaction_currencies: ["USD"]
+      expected_monthly_activity_volume: 10
+      expected_monthly_activity_value: 30.00
+      tax_identification: some-tax-id
+      national_identification: some-national-id
+      country_of_citizenship: US
+      trading_address_street: some-street
+      trading_address_city: some-city
+      trading_address_state: NY
+      trading_address_postalcode: 90210
+      trading_address_country: US
+      customer_risk: LOW
   AccountPaymentChargesSetting:
     type: object
     description: Configuração de Cobranças de Pagamento da Conta.
@@ -18989,7 +19908,7 @@ definitions:
       deposit_currency:
         type: string
       deposit_required:
-        type: string
+        type: boolean
       expires_at:
         type: string
       fixed_side:
@@ -19074,6 +19993,86 @@ definitions:
                   minlength: 1
                   maxlength: 255
 
+  GetAccountComplianceSettingsError:
+    type: object
+    description: |
+      Informações de erro do cliente para o endpoint Get Compliance Settings (Obter Configurações de Conformidade).
+    required:
+      - "error_code"
+      - "error_messages"
+    properties:
+      error_code:
+        type: string
+        description: Um código de erro de alto nível para toda a requisição.
+      error_messages:
+        type: object
+        description: >-
+          Informações detalhadas de erro para parâmetros de entrada individuais que falharam na validação. As chaves do objeto são os nomes dos parâmetros de entrada inválidos. Cada parâmetro pode ter um ou mais motivos de falha.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              Um objeto que representa um dos motivos pelos quais o parâmetro de entrada falhou.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  Um código exclusivo que identifica esse erro. Ele pode ser usado para traduções.
+              message:
+                type: string
+                description: Uma explicação do erro em inglês.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Regras de validação relevantes que falharam. Isso pode ser usado para traduções.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  UpdateAccountComplianceSettingsError:
+    type: object
+    description: |
+      Informações de erro do cliente para o endpoint Get Compliance Settings (Obter Configurações de Conformidade).
+    required:
+      - "error_code"
+      - "error_messages"
+    properties:
+      error_code:
+        type: string
+        description: Um código de erro de alto nível para toda a requisição.
+      error_messages:
+        type: object
+        description: >-
+          Informações detalhadas de erro para parâmetros de entrada individuais que falharam na validação. As chaves do objeto são os nomes dos parâmetros de entrada inválidos. Cada parâmetro pode ter um ou mais motivos de falha.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              Um objeto que representa um dos motivos pelos quais o parâmetro de entrada falhou.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  Um código exclusivo que identifica esse erro. Ele pode ser usado para traduções.
+              message:
+                type: string
+                description: Uma explicação do erro em inglês.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Regras de validação relevantes que falharam. Isso pode ser usado para traduções.
+                example:
+                  minlength: 1
+                  maxlength: 255
   DeletePaymentError:
     type: object
     description: |
@@ -21755,6 +22754,7 @@ definitions:
           charge_type: null
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: "ABC123"
           last_update_time: "2019-07-10T14:22:41.273Z"
         - tracker_event_type: "customer_credit_transfer_payment"
           valid: true
@@ -21781,6 +22781,7 @@ definitions:
           charge_type: shared
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: null
           last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
@@ -22279,7 +23280,7 @@ definitions:
           - payment
           - "payment_failure"
           - "payment_fee"
-          - "pyament_unrelease"
+          - "payment_unrelease"
           - transfer
       related_entity_type:
         type: string
@@ -22302,7 +23303,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: Motivo
@@ -22696,6 +23697,45 @@ definitions:
     required:
       - "error_code"
       - "error_messages"
+    properties:
+      error_code:
+        type: string
+        description: Um código de erro de alto nível para toda a requisição.
+      error_messages:
+        type: object
+        description: >-
+          Informações detalhadas de erro para parâmetros de entrada individuais que falharam na validação. As chaves do objeto são os nomes dos parâmetros de entrada inválidos. Cada parâmetro pode ter um ou mais motivos de falha.
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              Um objeto que representa um dos motivos pelos quais o parâmetro de entrada falhou.
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  Um código exclusivo que identifica esse erro. Ele pode ser usado para traduções.
+              message:
+                type: string
+                description: Uma explicação do erro em inglês.
+              params:
+                type: object
+                default: {}
+                description: >-
+                  Regras de validação relevantes que falharam. Isso pode ser usado para traduções.
+                example:
+                  minlength: 1
+                  maxlength: 255
+  RetryNotificationError:
+    type: object
+    description: Informações de erro do cliente para o endpoint de reenvio de notificação de pagamento.
+    required:
+      - error_code
+      - error_messages
     properties:
       error_code:
         type: string

@@ -87,7 +87,7 @@ paths:
         令牌請求限制為每分鐘 60 次調用。<br><br>
 
         出於安全考慮，若在短時間內進行了四次不成功的登入嘗試，Currencycloud 賬戶將被禁用。在這種情況下，賬戶持有人必須<a href="mailto:support@currencycloud.com">聯絡支援部門</a>以重新啟動其賬戶。
-      operationId: 登入
+      operationId: Login
       consumes:
         - multipart/form-data
       produces:
@@ -198,7 +198,7 @@ paths:
       summary: 登出
       description: >-
         身份驗證令牌在 30 分鐘未使用後自動過期。如果不再需要某個會話，從安全角度考慮，較好的做法是提前停用其身份驗證令牌，而非任其自動超時。
-      operationId: 登出
+      operationId: Logout
       consumes:
         - multipart/form-data
       produces:
@@ -1365,23 +1365,43 @@ paths:
         required: false
         type: string
         enum:
+          - none
+          - others
+          - asylum_registration_card
           - citizenship_papers
+          - consular_id
           - credential_de_elector
           - drivers_license
           - drivers_license_canadian
           - employer_identification_number
           - existing_credit_card_details
           - green_card
-          - incorporation_number
+          - immigration_status_document
+          - indigenous_card
+          - international_driving_licence
           - matricula_consular
+          - municipality_identity_card
+          - national_health_insurance_card
           - national_id
-          - none
-          - others
+          - national_identity_card
           - passport
+          - passport_card
+          - postal_identity_card
+          - private_operators_card
+          - professional_qualification_card
+          - proof_of_citizenship
           - registro_federal_de_contribuyentes
+          - residence_permit
+          - residence_status_document
+          - service_id_card
           - social_insurance_number
+          - social_security_card
           - social_security_number
+          - tax_id
           - visa
+          - voter_id
+          - work_permit
+          - incorporation_number
         description: 核實賬戶所有者身份的法律文檔。
       - name: identification_value
         in: formData
@@ -1747,6 +1767,528 @@ paths:
           X-Request-Id:
             type: string
             description: 請求的唯一參考。
+  '/accounts/{id}/compliance_settings':
+    get:
+      tags:
+        - 賬戶
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: 獲取賬戶的合規設定
+      description: 獲取具有給定 ID 的賬戶的合規設定。
+      operationId: GetAccountComplianceSettings
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 身份驗證令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 賬戶 UUID，由創建賬戶端點返回。
+          format: uuid
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子賬戶的聯絡人 UUID。
+          format: uuid
+      responses:
+        '200':
+          description: 成功。
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '400':
+          description: 客戶錯誤。
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 應採用 UUID 格式
+              params: ''
+            - code: account_not_found
+              category: id
+              message: 未找到此 id 對應的賬戶
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: 您不能代表自己的聯絡人操作
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: 未找到此 id 對應的聯絡人
+              params: ''
+          schema:
+            $ref: '#/definitions/GetAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '401':
+          description: 未授權
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 使用提供的憑證進行身份驗證失敗
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '404':
+          description: 未找到資源。
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '429':
+          description: 請求過多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                向該 API 發送的請求數量過多。請參閱開發人員中心以獲取更多資訊
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '500':
+          description: 伺服器內部錯誤
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 伺服器內部錯誤
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '503':
+          description: 服務暫時不可用。
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服務暫時不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        default:
+          description: 意外錯誤。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+    post:
+      tags:
+        - 賬戶
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: 更新賬戶的合規設定
+      description: >-
+        更新經過身份驗證的使用者所擁有的子賬戶的合規設定。成功後將返回更新的賬戶實體。
+      operationId: UpdateAccountComplianceSettings
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 身份驗證令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 賬戶 UUID。
+        - name: industry_type
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: 描述賬戶主要行業的字串。請參閱商戶類別代碼（MCC）以取得範例。
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示賬戶註冊成立所在國家/地區的兩位 ISO-3166 國家代碼。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            賬戶的註冊成立日期。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          maxLength: 400
+          description: >-
+            一個完整的 URL（包括協議），指向市集主頁、與公司相關的政府頁面連結，或字串字面值 'no_website_available'。
+        - name: 'expected_transaction_countries[]'
+          in: formData
+          required: false
+          type: array
+          description: 兩位 ISO-3166 國家代碼陣列，表示該賬戶預期進行交易的往來國家/地區。
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: 'expected_transaction_currencies[]'
+          in: formData
+          required: false
+          type: array
+          description: 該賬戶將用於交易的 ISO-4217 貨幣代碼陣列。僅限單個項目。
+          items:
+            type: string
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: integer
+          format: int32
+          description: 該賬戶預期進行的交易數量。
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          format: float
+          description: >-
+            該賬戶預期進行的交易價值。其貨幣為 'expected_transaction_currencies' 中的單個項目。
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            美國或澳洲公司的稅務識別值；由 'accounts.country' 決定。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            美國個人的國民身份識別值；由 'accounts.country' 決定。僅適用於 'legal_entity_type: individual' 的賬戶。
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示個人國籍的兩位 ISO-3166 國家代碼。僅適用於 'legal_entity_type: individual' 的賬戶。
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          maxLength: 150
+          description: >-
+            公司經營地址的街道地址。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+
+          description: >-
+            公司經營地址的城市。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: trading_address_state
+          in: formData
+          required: false
+          maxLength: 100
+          type: string
+          description: >-
+            公司經營地址的州/省。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          maxLength: 20
+          description: >-
+            公司經營地址的郵政編碼。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: trading_address_country
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示公司經營地址所在國家/地區的兩位 ISO-3166 國家代碼。僅適用於 'legal_entity_type: company' 的賬戶。
+        - name: customer_risk
+          in: formData
+          required: false
+          description: 該賬戶預期行為的風險分類，對於採用 Correspondent 或 OKYC 服務模式的個人和公司為必填項。
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+      responses:
+        '200':
+          description: 成功。
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '400':
+          description: 客戶錯誤。
+          x-errors:
+            - code: business_website_url_is_not_permitted
+              category: business_website_url
+              message: 不允許提供 business_website_url
+              params: ''
+            - code: business_website_url_is_required
+              category: business_website_url
+              message: business_website_url 為必填項
+              params: ''
+            - code: country_of_citizenship_is_not_permitted
+              category: country_of_citizenship
+              message: 不允許提供 country_of_citizenship
+              params: ''
+            - code: country_of_citizenship_is_required
+              category: country_of_citizenship
+              message: country_of_citizenship 為必填項
+              params: ''
+            - code: country_of_incorporation_is_not_permitted
+              category: country_of_incorporation
+              message: 不允許提供 country_of_incorporation
+              params: ''
+            - code: country_of_incorporation_is_required
+              category: country_of_incorporation
+              message: country_of_incorporation 為必填項
+              params: ''
+            - code: country_of_incorporation_location_not_accepted
+              category: country_of_incorporation
+              message: 註冊成立國家/地區不是可接受的地點。
+              params: ''
+            - code: customer_risk_invalid_value
+              category: customer_risk
+              message: customer_risk 的值無效
+              params: ''
+            - code: customer_risk_is_required
+              category: customer_risk
+              message: customer_risk 為必填項
+              params: ''
+            - code: date_of_incorporation_is_not_permitted
+              category: date_of_incorporation
+              message: 不允許提供 date_of_incorporation
+              params: ''
+            - code: date_of_incorporation_is_required
+              category: date_of_incorporation
+              message: date_of_incorporation 為必填項
+              params: ''
+            - code: expected_monthly_activity_value_is_required
+              category: expected_monthly_activity_value
+              message: 預期月活動價值為必填項。
+              params: ''
+            - code: expected_monthly_activity_value_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_value
+              message: expected_monthly_activity_value 必須是大於零的數字
+              params: ''
+            - code: expected_monthly_activity_volume_is_required
+              category: expected_monthly_activity_volume
+              message: 預期月活動量為必填項。
+              params: ''
+            - code: expected_monthly_activity_volume_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_volume_
+              message: expected_monthly_activity_volume 必須是大於零的數字
+              params: ''
+            - code: expected_transaction_countries_is_required
+              category: expected_transaction_countries
+              message: expected_transaction_countries 為必填項
+              params: ''
+            - code: expected_transaction_currencies_is_required
+              category: expected_transaction_currencies
+              message: expected_transaction_currencies 為必填項
+              params: ''
+            - code: industry_type_is_not_permitted
+              category: industry_type
+              message: 不允許提供 industry_type
+              params: ''
+            - code: industry_type_is_required
+              category: industry_type
+              message: industry_type 為必填項
+              params: ''
+            - code: national_identification_is_not_permitted
+              category: national_identification
+              message: 不允許提供 national_identification
+              params: ''
+            - code: national_identification_is_required
+              category: national_identification
+              message: national_identification 為必填項
+              params: ''
+            - code: tax_identification_is_not_permitted
+              category: tax_identification
+              message: 不允許提供 tax_identification
+              params: ''
+            - code: tax_identification_is_required
+              category: tax_identification
+              message: tax_identification 為必填項
+              params: ''
+            - code: tax_identification_not_a_valid_australian_business_number
+              category: tax_identification
+              message: 稅務識別號不是有效的澳洲商業編號。
+              params: ''
+            - code: trading_address_city_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_city
+              message: 經營地址城市包含無效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_city_is_not_permitted
+              category: trading_address_city
+              message: 不允許提供 trading_address_city
+              params: ''
+            - code: trading_address_city_is_required
+              category: trading_address_city
+              message: trading_address_city 為必填項
+              params: ''
+            - code: trading_address_city_location_not_accepted
+              category: trading_address_city
+              message: 經營地址城市不是可接受的地點。
+              params: ''
+            - code: trading_address_country_is_not_permitted
+              category: trading_address_country
+              message: 不允許提供 trading_address_country
+              params: ''
+            - code: trading_address_country_is_required
+              category: trading_address_country
+              message: trading_address_country 為必填項
+              params: ''
+            - code: trading_address_country_location_not_accepted
+              category: trading_address_country
+              message: 經營地址國家/地區不是可接受的地點。
+              params: ''
+            - code: trading_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_postalcode
+              message: 經營地址郵政編碼包含無效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_postalcode_is_not_permitted
+              category: trading_address_postalcode
+              message: 不允許提供 trading_address_postalcode
+              params: ''
+            - code: trading_address_postalcode_is_required
+              category: trading_address_postalcode
+              message: trading_address_postalcode 為必填項
+              params: ''
+            - code: trading_address_state_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_state
+              message: 經營地址州/省包含無效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_state_invalid_state
+              category: trading_address_state
+              message: trading_address_state 的州/省無效
+              params: ''
+            - code: trading_address_state_is_not_permitted
+              category: trading_address_state
+              message: 不允許提供 trading_address_state
+              params: ''
+            - code: trading_address_state_is_required
+              category: trading_address_state
+              message: trading_address_state 為必填項
+              params: ''
+            - code: trading_address_street_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_street
+              message: 經營地址街道包含無效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_street_is_not_permitted
+              category: trading_address_street
+              message: 不允許提供 trading_address_street
+              params: ''
+            - code: trading_address_street_is_required
+              category: trading_address_street
+              message: trading_address_street 為必填項
+              params: ''
+          schema:
+            $ref: '#/definitions/UpdateAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '401':
+          description: 未授權。
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 使用提供的憑證進行身份驗證失敗
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '404':
+          description: 未找到資源。
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '429':
+          description: 請求過多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                向該 API 發送的請求數量過多。請參閱開發人員中心以獲取更多資訊
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '500':
+          description: 伺服器內部錯誤
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 伺服器內部錯誤
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '503':
+          description: 服務暫時不可用
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服務暫時不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        default:
+          description: 意外錯誤。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
   /accounts/current:
     get:
       tags:
@@ -3985,7 +4527,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名稱缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 對於公司，收款人名稱不能完全由數字組成
               params: ''
@@ -4650,7 +5192,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名稱缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 對於公司，收款人名稱不能完全由數字組成
               params: ''
@@ -5273,7 +5815,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名稱缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 對於公司，收款人名稱不能完全由數字組成
               params: ''
@@ -5626,18 +6168,18 @@ paths:
         - name: bank_country
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             收款人銀行賬戶所在國家/地區的兩個字母代碼。
         - name: currency
           in: formData
           type: string
-          required: false
+          required: true
           description: >-
             匯款至收款人銀行賬戶的貨幣。三位數的貨幣代碼。
         - name: account_number
           in: formData
-          required: true
+          required: false
           type: string
           description: 銀行賬戶號碼。
         - name: beneficiary_entity_type
@@ -5669,7 +6211,7 @@ paths:
           description: 本地支付路由系統。預設為「sort_code」。
         - name: routing_code_value_1
           in: formData
-          required: true
+          required: false
           type: string
           description: 路由系統值，即賬戶的分類代碼。
         - name: routing_code_type_2
@@ -8964,6 +9506,133 @@ paths:
             X-Request-Id:
               type: string
               description: 請求的唯一參考。
+  /funding_transactions/{id}:
+    get:
+      tags:
+        - 注資
+      x-api-group: collect
+      summary: 獲取資金交易
+      description: >2-
+
+        獲取具有給定 ID 的已批准資金交易的詳細資訊。
+
+      operationId: GetFundingTransaction
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 身份驗證令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 該交易的相關實體 UUID（related_entity_id）。
+          format: uuid
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子賬戶的聯絡人 UUID。
+          format: uuid
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/FundingTransaction'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '400':
+          description: 客戶錯誤。
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 應採用 UUID 格式
+              params: ''
+            - code: on_behalf_of_self
+              category: contact
+              message: 您不能代表自己的聯絡人操作
+              params: ''
+          schema:
+            $ref: '#/definitions/GetFundingTransactionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '401':
+          description: 未授權。
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 使用提供的憑證進行身份驗證失敗
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '404':
+          description: 未找到交易。
+          x-errors:
+            - code: transaction_not_found
+              category: id
+              message: 未找到交易
+              params: ''
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '429':
+          description: 請求過多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                向該 API 發送的請求數量過多。請參閱開發人員中心以獲取更多資訊
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '500':
+          description: 伺服器內部錯誤
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 伺服器內部錯誤
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        '503':
+          description: 服務暫時不可用。
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服務暫時不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+        default:
+          description: 意外錯誤。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 請求的唯一參考。
+
   /payments/create:
     post:
       tags:
@@ -8982,6 +9651,20 @@ paths:
           required: true
           type: string
           description: 身份驗證令牌
+        - name: x-sca-id
+          in: header
+          required: false
+          type: string
+          description: >-
+            用於關聯呼叫 Validate Payment 時生成的 SCA 請求的 UUID。
+          format: uuid
+        - name: x-sca-token
+          in: header
+          required: false
+          type: string
+          description: >-
+            需要 SCA 時，在 Validate Payment 請求後收到的 OTP。
+          pattern: ^\d{6}$
         - name: currency
           in: formData
           required: true
@@ -11855,6 +12538,13 @@ paths:
           required: true
           type: string
           description: 身份驗證令牌
+        - name: x-sca-to-authenticated-user
+          in: header
+          required: false
+          type: boolean
+          description: >-
+            將此項設定為 true 將把 OTP 發送給已驗證使用者，而不是代表的客戶（on-behalf-of）。
+            此選項僅適用於特定授權模式下的客戶。
         - name: id
           in: formData
           required: false
@@ -13085,6 +13775,46 @@ paths:
             - code: hold_period_is_required
               category: hold_period
               message: hold_period is required
+              params: ''
+            - code: ccy_pair_is_not_tradeable
+              category: currency_pair
+              message: Given currency pair is not tradeable
+              params: ''
+            - code: crossing_cutoff_time
+              category: base
+              message: Hold period extends beyond the cut-off-time for the requested delivery date
+              params: ''
+            - code: held_rate_not_enabled
+              category: base
+              message: Held Rates Product is not enabled for this account
+              params: ''
+            - code: invalid_conversion_date
+              category: base
+              message: Conversion date is not valid for this currency pair
+              params: ''
+            - code: invalid_conversion_date_combination
+              category: base
+              message: One of conversion_date or conversion_date_preference must be specified
+              params: ''
+            - code: invalid_decimals
+              category: base
+              message: amount should be specified with a valid number of decimal places
+              params: ''
+            - code: invalid_delivery_date
+              category: base
+              message: The delivery date you have requested cannot be met for this currency pair
+              params: ''
+            - code: invalid_hold_period
+              category: base
+              message: Requested hold_period is invalid for this account
+              params: ''
+            - code: missing_client_spread_table_data
+              category: base
+              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up - please contact us
+              params: ''
+            - code: quote_could_not_be_created
+              category: base
+              message: Quote could not be created
               params: ''
           schema:
             $ref: '#/definitions/HeldRateQuoteError'
@@ -14785,6 +15515,18 @@ paths:
               category: with_deleted
               message: with_deleted 應為布爾類型
               params: '{"type": "boolean"}'
+            - code: field_contains_invalid_characters
+              category: base
+              message: 欄位包含無效字符
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: 為此請求提供的資訊超出我們的欄位長度限制
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: 此請求包含該路由不允許的欄位
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/GenerateReportError'
           headers:
@@ -14859,7 +15601,7 @@ paths:
       x-api-group: manage
       summary: 查找報告請求
       description: 搜索已提出的報告請求。返回包含匹配的報告請求詳細資訊的 JSON 結構。
-      operationId: 查找報告請求
+      operationId: Find Report Requests
       produces:
         - application/json
       parameters:
@@ -15080,7 +15822,7 @@ paths:
       x-api-group: manage
       summary: 檢索具有指定 ID 的報告請求
       description: 根據 ID 搜索報告。返回包含指定報告請求詳細資訊的 JSON 結構。
-      operationId: 檢索報告請求
+      operationId: Retrieve a Report Request
       produces:
         - application/json
       parameters:
@@ -15114,6 +15856,10 @@ paths:
             - code: account_not_found
               category: id
               message: 未找到此 id 對應的賬戶
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 應採用 UUID 格式
               params: ''
           schema:
             $ref: '#/definitions/GetReportRequestError'
@@ -15839,6 +16585,66 @@ paths:
               category: amount
               message: "金額必須低於 ${limit}"
               params: ''
+            - code: account_not_found
+              category: account_id
+              message: 未找到此 id 對應的賬戶
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: 無法檢索賬戶 {account_id} 的現金工作流程
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: 無法檢索賬戶 {account_id} 的現金工作流程
+              params: ''
+            - code: currency_is_not_supported
+              category: currency
+              message: '{currency} 貨幣受限制'
+              params: ''
+            - code: destination_account_disabled
+              category:
+              message: 由於目標賬戶已停用，轉賬未能成功建立。請確保來源賬戶和目標賬戶在進行轉賬前均已啟用。
+              params: ''
+            - code: destination_bank_account_verified_error
+              category: account_id
+              message: 目標銀行賬戶尚未驗證。請確保來源銀行賬戶和目標銀行賬戶在進行轉賬前均已驗證。
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 不支援任何小數位數'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 最多僅支援 1 位小數'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 最多僅支援 %d 位小數'
+              params: ''
+            - code: invalid_extra_parameters
+              category: invalid_extra_parameters
+              message: '無效的額外參數：{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: not_allowed_currency
+              category: currency
+              message: '您不能以 {currency} 貨幣執行此操作'
+              params: ''
+            - code: same_source_and_destination_accounts
+              category: account_id
+              message: 來源賬戶和目標賬戶不能相同
+              params: ''
+            - code: source_account_disabled
+              category: account_id
+              message: 由於來源賬戶已停用，轉賬未能成功建立。請確保來源賬戶和目標賬戶在進行轉賬前均已啟用。
+              params: ''
+            - code: source_bank_account_verified_error
+              category: source_account_id
+              message: 來源銀行賬戶尚未驗證。請確保來源銀行賬戶和目標銀行賬戶在進行轉賬前均已驗證。
+              params: ''
+            - code: transfer_not_permitted
+              category: account_id
+              message: 不允許在指定的來源賬戶和目標賬戶之間進行轉賬。
+              params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
@@ -15948,17 +16754,13 @@ paths:
               category: id
               message: id 應採用 UUID 格式
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: 您不能代表自己的聯絡人操作
-              params: ''
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "無效的額外參數：'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
             - code: transfer_not_found
               category: id
               message: 未找到此 ID 對應的轉賬
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: 未找到此 id 對應的聯絡人
               params: ''
           schema:
             $ref: '#/definitions/GetTransferError'
@@ -16158,6 +16960,10 @@ paths:
           default: created_at
           description: >-
             用於對排序進行更改的任何欄位名稱。<br>請注意，自 2025 年 5 月 28 日起，僅「created_at」、「updated_at」和「completed_at」欄位支援排序。
+          enum:
+            - created_at
+            - updated_at
+            - completed_at
         - name: order_asc_desc
           in: query
           required: false
@@ -16235,21 +17041,41 @@ paths:
               category: completed_at_to
               message: completed_at_to 應採用 ISO 8601 格式
               params: '{ "type" => "datetime" }'
-            - code: creator_contact_id_is_not_valid_uuid
-              category: creator_contact_id
-              message: creator_contact_id 應採用 UUID 格式
+            - code: completed_at_from_is_too_old
+              category: completed_at_from
+              message: completed_at_from 設定的日期過於久遠
               params: ''
-            - code: creator_account_id_is_not_valid_uuid
-              category: creator_account_id
-              message: creator_account_id 應採用 UUID 格式
+            - code: created_at_from_is_too_old
+              category: created_at_from
+              message: created_at_from 設定的日期過於久遠
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: 您不能代表自己的聯絡人操作
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "無效的額外參數：'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: page_is_too_small
+              category: page
+              message: page 不能小於 1
               params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: 未找到此 id 對應的聯絡人
+            - code: page_type_is_wrong
+              category: page
+              message: page 應為 integer 類型
+              params: ''
+            - code: per_page_is_too_big
+              category: per_page
+              message: per_page 不能大於 %i
+              params: ''
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page 不能小於 1
+              params: ''
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page 應為 integer 類型
+              params: ''
+            - code: updated_at_from_is_too_old
+              category: updated_at_from
+              message: updated_at_from 設定的日期過於久遠
               params: ''
           schema:
             $ref: '#/definitions/FindTransfersError'
@@ -16369,13 +17195,9 @@ paths:
               category: status
               message: 轉賬已完成（已結算）
               params: ''
-            - code: invalid_status
-              category: status
-              message: 轉賬已取消
-              params: ''
-            - code: invalid_status
-              category: status
-              message: 轉賬已完成，無法取消
+            - code: transfer_cannot_be_cancelled
+              category: short_reference
+              message: 轉賬 {short_reference} 無法取消
               params: ''
             - code: invalid_extra_parameters
               category: base
@@ -16782,7 +17604,7 @@ paths:
           in: formData
           required: false
           type: string
-          default: 測試支付方
+          default: Test sender
           description: 支付方姓名。
         - name: sender_address
           in: formData
@@ -17270,6 +18092,20 @@ definitions:
       legal_entity_type:
         type: string
         description: 實體類型 - 個人或公司。
+      legal_entity_sub_type:
+        type: string
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
       created_at:
         type: string
         description: 賬戶創建的日期/時間。
@@ -17303,6 +18139,15 @@ definitions:
         type: string
         description: >-
           用於識別文檔的唯一參考代碼，比如護照號碼。
+      identification_issuer:
+        type: string
+        description: >-
+          身份證明文件簽發機構所在國家/地區的 ISO-3116 代碼
+      identification_expiration:
+        type: string
+        format: date
+        description: >-
+          身份證明文件的到期日期
       short_reference:
         description: 賬戶的參考號碼。
         type: string
@@ -17350,10 +18195,13 @@ definitions:
       postal_code: AB12 CD1
       spread_table: flat_0.5_percent
       legal_entity_type: company
+      legal_entity_sub_type: limited_liability_company
       created_at: '2023-12-31T23:59:59.000Z'
       updated_at: '2023-12-31T23:59:59.000Z'
       identification_type: green_card
       identification_value: 123456789
+      identification_issuer: US
+      identification_expiration: '2020-12-31'
       short_reference: 110104-00004
       api_trading: true
       online_trading: true
@@ -17363,6 +18211,103 @@ definitions:
       terms_and_conditions_accepted: true
       agent_or_reliance: true
       bank_account_verified: no
+  AccountComplianceSettings:
+    type: object
+    description: 賬戶合規設定。
+    properties:
+      account_id:
+        type: string
+        description: 賬戶 UUID。
+      industry_type:
+        type: string
+        description: 描述賬戶主要行業的字串。請參閱商戶類別代碼（MCC）以取得範例
+      country_of_incorporation:
+        type: string
+        description: >-
+          表示賬戶註冊成立所在國家/地區的兩位 ISO-3166 國家代碼。僅適用於 'legal_entity_type: company' 的賬戶
+      date_of_incorporation:
+        type: string
+        format: date
+        description: >-
+          賬戶的註冊成立日期。僅適用於 'legal_entity_type: company' 的賬戶
+      business_website_url:
+        type: string
+        description: >-
+          一個完整的 URL（包括協議），指向市集主頁、與公司相關的政府頁面連結，或字串字面值 'no_website_available'。
+      expected_transaction_countries:
+        type: array
+        description: 這些賬戶將用於交易往來的 ISO-3166 國家代碼陣列。
+        items:
+          type: string
+      expected_transaction_currencies:
+        type: array
+        description: 這些賬戶將用於交易的 ISO-4217 貨幣代碼陣列。僅限單個項目。
+        items:
+          type: string
+      expected_monthly_activity_volume:
+        type: integer
+        description: 該賬戶預期進行的交易數量。
+      expected_monthly_activity_value:
+        type: number
+        description: 該賬戶預期進行的交易價值。其貨幣為 'expected_transaction_currencies' 中的單個項目。
+      tax_identification:
+        type: string
+        description: >-
+          美國或澳洲公司的稅務識別值；由 'accounts.country' 決定。僅適用於 'legal_entity_type: company' 的賬戶。
+      national_identification:
+        type: string
+        description: >-
+          美國個人的國民身份識別值；由 'accounts.country' 決定。僅適用於 'legal_entity_type: individual' 的賬戶。
+      country_of_citizenship:
+        type: string
+        description: >-
+          表示個人國籍的 ISO-3166 國家代碼。僅適用於 'legal_entity_type: individual' 的賬戶。
+      trading_address_street:
+        type: string
+        description: >-
+          公司經營地址的街道地址。僅適用於 'legal_entity_type: company' 的賬戶。
+      trading_address_city:
+        type: string
+        description: >-
+          公司經營地址的城市。僅適用於 'legal_entity_type: company' 的賬戶。
+      trading_address_state:
+        type: string
+        description: >-
+          公司經營地址的州/省。僅適用於 'legal_entity_type: company' 的賬戶。
+      trading_address_postalcode:
+        type: string
+        description: >-
+          公司經營地址的郵政編碼。僅適用於 'legal_entity_type: company' 的賬戶。
+      trading_address_country:
+        type: string
+        description: >-
+          表示公司經營地址所在國家/地區的 ISO-3166 國家代碼。僅適用於 'legal_entity_type: company' 的賬戶。
+      customer_risk:
+        description: 該賬戶預期行為的風險分類。
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+    example:
+      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
+      industry_type: Telecom Services
+      country_of_incorporation: US
+      date_of_incorporation: 2020-01-30
+      business_website_url: https://currencycloud.com
+      expected_transaction_countries: ["US", "GB"]
+      expected_transaction_currencies: ["USD"]
+      expected_monthly_activity_volume: 10
+      expected_monthly_activity_value: 30.00
+      tax_identification: some-tax-id
+      national_identification: some-national-id
+      country_of_citizenship: US
+      trading_address_street: some-street
+      trading_address_city: some-city
+      trading_address_state: NY
+      trading_address_postalcode: 90210
+      trading_address_country: US
+      customer_risk: LOW
   AccountPaymentChargesSetting:
     type: object
     description: 賬戶支付費用設定。
@@ -18404,6 +19349,74 @@ definitions:
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
       created_at: '2023-03-16T23:59:59.000Z'
       updated_at: '2023-03-16T23:59:59.000Z'
+  FundingTransaction:
+    description: 交易資訊。
+    properties:
+      id:
+        description: 該交易的相關實體 UUID（related_entity_id）。
+        type: string
+      amount:
+        description: 交易金額。
+        type: string
+      currency:
+        description: 三個字母的貨幣代碼。
+        type: string
+      rail:
+        description: 交易渠道（rail）。
+        type: string
+      additional_information:
+        description: 任何附加資訊。
+        type: string
+      receiving_account_routing_code:
+        description: 路由代碼。
+        type: string
+      value_date:
+        description: ISO-8601 格式的起息日。
+        format: date-time
+        type: string
+      receiving_account_number:
+        description: 交易收款賬號。
+        type: string
+      receiving_account_iban:
+        description: 交易收款賬戶 IBAN。
+        type: string
+      created_at:
+        description: ISO-8601 格式的建立日期。
+        format: date-time
+        type: string
+      updated_at:
+        description: ISO-8601 格式的交易最後更新時間。
+        format: date-time
+        type: string
+      completed_at:
+        description: ISO-8601 格式的完成日期。
+        format: date-time
+        type: string
+      sender:
+        $ref: '#/definitions/SenderInformation'
+    example:
+      additional_information: ABCD20231016143117
+      amount: 1.11
+      completed_at: 2022-12-03T10:15:30+00:00
+      created_at: 2022-12-03T10:15:30+00:00
+      currency: USD
+      id: 4924919a-6c28-11ee-a3e3-63774946bad2
+      rail: SEPA
+      receiving_account_iban: null
+      receiving_account_number: 32847346
+      receiving_account_routing_code: 123456789
+      updated_at: 2022-12-03T10:15:30+00:00
+      value_date: 2022-12-03T10:00:00+00:00
+      sender:
+        sender_account_number: 8119645406
+        sender_address: Some street
+        sender_bic: null
+        sender_country: GB
+        sender_iban: null
+        sender_id: 5c675fa4-fdf0-4ee6-b5bb-156b36765433
+        sender_name: Test sender
+        sender_routing_code: null
+    type: object
   CreateAccountError:
     type: object
     description: |
@@ -18746,7 +19759,7 @@ definitions:
       deposit_currency:
         type: string
       deposit_required:
-        type: string
+        type: boolean
       expires_at:
         type: string
       fixed_side:
@@ -18831,6 +19844,86 @@ definitions:
                   minlength: 1
                   maxlength: 255
 
+  GetAccountComplianceSettingsError:
+    type: object
+    description: |
+      Get Compliance Settings 端點的客戶錯誤資訊。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整個請求的高級錯誤代碼。
+      error_messages:
+        type: object
+        description: >-
+          驗證失敗的單個輸入參數的詳細錯誤資訊。對象鍵是無效輸入參數的名稱。每個參數可能有一個或多個失敗原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示輸入參數失敗的原因之一的對象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  標識此錯誤的唯一代碼。可用於翻譯。
+              message:
+                type: string
+                description: 錯誤的英文解釋。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失敗的相關驗證規則。可用於翻譯。
+                example:
+                  minlength: 1
+                  maxlength: 255
+  UpdateAccountComplianceSettingsError:
+    type: object
+    description: |
+      Get Compliance Settings 端點的客戶錯誤資訊。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整個請求的高級錯誤代碼。
+      error_messages:
+        type: object
+        description: >-
+          驗證失敗的單個輸入參數的詳細錯誤資訊。對象鍵是無效輸入參數的名稱。每個參數可能有一個或多個失敗原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示輸入參數失敗的原因之一的對象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  標識此錯誤的唯一代碼。可用於翻譯。
+              message:
+                type: string
+                description: 錯誤的英文解釋。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失敗的相關驗證規則。可用於翻譯。
+                example:
+                  minlength: 1
+                  maxlength: 255
   DeletePaymentError:
     type: object
     description: |
@@ -19231,6 +20324,81 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetFundingTransactionError:
+    description: |
+      Get Funding Transaction 端點的客戶錯誤資訊。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整個請求的高級錯誤代碼。
+      error_messages:
+        type: object
+        description: >-
+          驗證失敗的單個輸入參數的詳細錯誤資訊。對象鍵是無效輸入參數的名稱。每個參數可能有一個或多個失敗原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示輸入參數失敗的原因之一的對象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  標識此錯誤的唯一代碼。可用於翻譯。
+              message:
+                type: string
+                description: 錯誤的英文解釋。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失敗的相關驗證規則。可用於翻譯。
+                example:
+                  minlength: 1
+                  maxlength: 255
+  SenderInformation:
+    description: 發送方資訊
+    properties:
+      sender_account_number:
+        description: 發送方賬號
+        type: string
+      sender_address:
+        description: 非結構化的發送方地址
+        type: string
+      sender_bic:
+        description: 發送方 BIC
+        type: string
+      sender_country:
+        description: 兩個字母的發送方國家代碼
+        type: string
+      sender_iban:
+        description: 發送方 IBAN
+        type: string
+      sender_id:
+        description: 發送方 ID
+        type: string
+      sender_name:
+        description: 發送方名稱
+        type: string
+      sender_routing_code:
+        description: 發送方路由代碼
+        type: string
+    example:
+      sender_account_number: 8119645406
+      sender_address: Some street
+      sender_bic: null
+      sender_country: GB
+      sender_iban: null
+      sender_id: 5c675fa4-fdf0-4ee6-b5bb-156b36765433
+      sender_name: Test sender
+    type: object
   FundingAccount:
     type: object
     description: 注資賬戶。
@@ -21356,6 +22524,16 @@ definitions:
       status:
         type: string
         description: The status of the submission.
+        enum:
+          - canceled
+          - closed
+          - completed_manually
+          - duplicated
+          - failed
+          - pending
+          - processing
+          - success
+          - waiting_to_process
       submission_ref:
         type: string
       format:
@@ -21444,6 +22622,7 @@ definitions:
           charge_type: null
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: "ABC123"
           last_update_time: "2019-07-10T14:22:41.273Z"
         - tracker_event_type: customer_credit_transfer_payment
           valid: true
@@ -21470,6 +22649,7 @@ definitions:
           charge_type: shared
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: null
           last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
@@ -21931,7 +23111,7 @@ definitions:
           - payment
           - payment_failure
           - payment_fee
-          - pyament_unrelease
+          - payment_unrelease
           - transfer
       related_entity_type:
         type: string
@@ -21954,7 +23134,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: 原因

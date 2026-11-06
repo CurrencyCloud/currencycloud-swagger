@@ -198,7 +198,7 @@ paths:
       summary: 登出
       description: >-
         验证令牌将在不活跃 30 分钟后自动过期。为了安全起见，如果不再需要某个会话，最好停用其验证令牌，而不是任其超时过期。
-      operationId: 登出
+      operationId: Logout
       consumes:
         - multipart/form-data
       produces:
@@ -1367,23 +1367,43 @@ paths:
         required: false
         type: string
         enum:
+          - none
+          - others
+          - asylum_registration_card
           - citizenship_papers
+          - consular_id
           - credential_de_elector
           - drivers_license
           - drivers_license_canadian
           - employer_identification_number
           - existing_credit_card_details
           - green_card
-          - incorporation_number
+          - immigration_status_document
+          - indigenous_card
+          - international_driving_licence
           - matricula_consular
+          - municipality_identity_card
+          - national_health_insurance_card
           - national_id
-          - none
-          - others
+          - national_identity_card
           - passport
+          - passport_card
+          - postal_identity_card
+          - private_operators_card
+          - professional_qualification_card
+          - proof_of_citizenship
           - registro_federal_de_contribuyentes
+          - residence_permit
+          - residence_status_document
+          - service_id_card
           - social_insurance_number
+          - social_security_card
           - social_security_number
+          - tax_id
           - visa
+          - voter_id
+          - work_permit
+          - incorporation_number
         description: 核实账户所有者身份的法律文件。
       - name: identification_value
         in: formData
@@ -1749,6 +1769,528 @@ paths:
           X-Request-Id:
             type: string
             description: 请求的唯一参考。
+  '/accounts/{id}/compliance_settings':
+    get:
+      tags:
+        - 账户
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: 获取账户的合规设置
+      description: 获取具有给定 ID 的账户的合规设置。
+      operationId: GetAccountComplianceSettings
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 验证令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 账户 UUID，由创建账户端点返回。
+          format: uuid
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子账户的联系人 UUID。
+          format: uuid
+      responses:
+        '200':
+          description: 成功。
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '400':
+          description: 客户端错误。
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 应为 UUID 格式
+              params: ''
+            - code: account_not_found
+              category: id
+              message: 此 id 未找到账户
+              params: ''
+            - code: on_behalf_of_self
+              category: on_behalf_of
+              message: 您不能代表您自己的联系人进行操作
+              params: ''
+            - code: contact_not_found
+              category: on_behalf_of
+              message: 此 id 未找到联系人
+              params: ''
+          schema:
+            $ref: '#/definitions/GetAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '401':
+          description: 未经授权
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 提供的凭据验证失败
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '404':
+          description: 未找到资源。
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '429':
+          description: 请求次数太多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                已向 API 发送过多请求。请参阅开发者中心以获取更多信息
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '500':
+          description: 内部服务器错误
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 内部服务器错误
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '503':
+          description: 服务暂时不可用。
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服务暂时不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        default:
+          description: 意外错误。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+    post:
+      tags:
+        - 账户
+      x-throttling-tier: Unlimited
+      x-api-group: manage
+      summary: 更新账户的合规设置
+      description: >-
+        更新已验证用户拥有的子账户的合规设置。成功后将返回更新的账户实体。
+      operationId: UpdateAccountComplianceSettings
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 验证令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 账户 UUID。
+        - name: industry_type
+          in: formData
+          required: false
+          type: string
+          maxLength: 255
+          description: 描述账户主要行业的字符串。参见商户类别代码（MCC）以获取示例。
+        - name: country_of_incorporation
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示账户注册成立所在国家/地区的两位 ISO-3166 国家代码。仅适用于 'legal_entity_type: company' 的账户。
+        - name: date_of_incorporation
+          in: formData
+          required: false
+          type: string
+          format: date
+          description: >-
+            账户的注册成立日期。仅适用于 'legal_entity_type: company' 的账户。
+        - name: business_website_url
+          in: formData
+          required: false
+          type: string
+          maxLength: 400
+          description: >-
+            一个完整的 URL（包括协议），指向市场主页、与公司相关的政府页面链接，或字符串字面值 'no_website_available'。
+        - name: 'expected_transaction_countries[]'
+          in: formData
+          required: false
+          type: array
+          description: 两位 ISO-3166 国家代码数组，表示该账户预期进行交易的往来国家/地区。
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+        - name: 'expected_transaction_currencies[]'
+          in: formData
+          required: false
+          type: array
+          description: 该账户将用于交易的 ISO-4217 货币代码数组。仅限单个项目。
+          items:
+            type: string
+        - name: expected_monthly_activity_volume
+          in: formData
+          required: false
+          type: integer
+          format: int32
+          description: 该账户预期进行的交易数量。
+        - name: expected_monthly_activity_value
+          in: formData
+          required: false
+          type: number
+          format: float
+          description: >-
+            该账户预期进行的交易价值。其货币为 'expected_transaction_currencies' 中的单个项目。
+        - name: tax_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            美国或澳大利亚公司的税务识别值；由 'accounts.country' 决定。仅适用于 'legal_entity_type: company' 的账户。
+        - name: national_identification
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+          description: >-
+            美国个人的国民身份识别值；由 'accounts.country' 决定。仅适用于 'legal_entity_type: individual' 的账户。
+        - name: country_of_citizenship
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示个人国籍的两位 ISO-3166 国家代码。仅适用于 'legal_entity_type: individual' 的账户。
+        - name: trading_address_street
+          in: formData
+          required: false
+          type: string
+          maxLength: 150
+          description: >-
+            公司经营地址的街道地址。仅适用于 'legal_entity_type: company' 的账户。
+        - name: trading_address_city
+          in: formData
+          required: false
+          type: string
+          maxLength: 100
+
+          description: >-
+            公司经营地址的城市。仅适用于 'legal_entity_type: company' 的账户。
+        - name: trading_address_state
+          in: formData
+          required: false
+          maxLength: 100
+          type: string
+          description: >-
+            公司经营地址的州/省。仅适用于 'legal_entity_type: company' 的账户。
+        - name: trading_address_postalcode
+          in: formData
+          required: false
+          type: string
+          maxLength: 20
+          description: >-
+            公司经营地址的邮政编码。仅适用于 'legal_entity_type: company' 的账户。
+        - name: trading_address_country
+          in: formData
+          required: false
+          type: string
+          maxLength: 2
+          minLength: 2
+          description: >-
+            表示公司经营地址所在国家/地区的两位 ISO-3166 国家代码。仅适用于 'legal_entity_type: company' 的账户。
+        - name: customer_risk
+          in: formData
+          required: false
+          description: 该账户预期行为的风险分类，对于采用 Correspondent 或 OKYC 服务模式的个人和公司为必填项。
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+      responses:
+        '200':
+          description: 成功。
+          schema:
+            $ref: '#/definitions/AccountComplianceSettings'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '400':
+          description: 客户端错误。
+          x-errors:
+            - code: business_website_url_is_not_permitted
+              category: business_website_url
+              message: 不允许提供 business_website_url
+              params: ''
+            - code: business_website_url_is_required
+              category: business_website_url
+              message: business_website_url 为必填项
+              params: ''
+            - code: country_of_citizenship_is_not_permitted
+              category: country_of_citizenship
+              message: 不允许提供 country_of_citizenship
+              params: ''
+            - code: country_of_citizenship_is_required
+              category: country_of_citizenship
+              message: country_of_citizenship 为必填项
+              params: ''
+            - code: country_of_incorporation_is_not_permitted
+              category: country_of_incorporation
+              message: 不允许提供 country_of_incorporation
+              params: ''
+            - code: country_of_incorporation_is_required
+              category: country_of_incorporation
+              message: country_of_incorporation 为必填项
+              params: ''
+            - code: country_of_incorporation_location_not_accepted
+              category: country_of_incorporation
+              message: 注册成立国家/地区不是可接受的地点。
+              params: ''
+            - code: customer_risk_invalid_value
+              category: customer_risk
+              message: customer_risk 的值无效
+              params: ''
+            - code: customer_risk_is_required
+              category: customer_risk
+              message: customer_risk 为必填项
+              params: ''
+            - code: date_of_incorporation_is_not_permitted
+              category: date_of_incorporation
+              message: 不允许提供 date_of_incorporation
+              params: ''
+            - code: date_of_incorporation_is_required
+              category: date_of_incorporation
+              message: date_of_incorporation 为必填项
+              params: ''
+            - code: expected_monthly_activity_value_is_required
+              category: expected_monthly_activity_value
+              message: 预期月活动价值为必填项。
+              params: ''
+            - code: expected_monthly_activity_value_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_value
+              message: expected_monthly_activity_value 必须是大于零的数字
+              params: ''
+            - code: expected_monthly_activity_volume_is_required
+              category: expected_monthly_activity_volume
+              message: 预期月活动量为必填项。
+              params: ''
+            - code: expected_monthly_activity_volume_must_be_a_number_greater_than_zero
+              category: expected_monthly_activity_volume_
+              message: expected_monthly_activity_volume 必须是大于零的数字
+              params: ''
+            - code: expected_transaction_countries_is_required
+              category: expected_transaction_countries
+              message: expected_transaction_countries 为必填项
+              params: ''
+            - code: expected_transaction_currencies_is_required
+              category: expected_transaction_currencies
+              message: expected_transaction_currencies 为必填项
+              params: ''
+            - code: industry_type_is_not_permitted
+              category: industry_type
+              message: 不允许提供 industry_type
+              params: ''
+            - code: industry_type_is_required
+              category: industry_type
+              message: industry_type 为必填项
+              params: ''
+            - code: national_identification_is_not_permitted
+              category: national_identification
+              message: 不允许提供 national_identification
+              params: ''
+            - code: national_identification_is_required
+              category: national_identification
+              message: national_identification 为必填项
+              params: ''
+            - code: tax_identification_is_not_permitted
+              category: tax_identification
+              message: 不允许提供 tax_identification
+              params: ''
+            - code: tax_identification_is_required
+              category: tax_identification
+              message: tax_identification 为必填项
+              params: ''
+            - code: tax_identification_not_a_valid_australian_business_number
+              category: tax_identification
+              message: 税务识别号不是有效的澳大利亚企业编号。
+              params: ''
+            - code: trading_address_city_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_city
+              message: 经营地址城市包含无效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_city_is_not_permitted
+              category: trading_address_city
+              message: 不允许提供 trading_address_city
+              params: ''
+            - code: trading_address_city_is_required
+              category: trading_address_city
+              message: trading_address_city 为必填项
+              params: ''
+            - code: trading_address_city_location_not_accepted
+              category: trading_address_city
+              message: 经营地址城市不是可接受的地点。
+              params: ''
+            - code: trading_address_country_is_not_permitted
+              category: trading_address_country
+              message: 不允许提供 trading_address_country
+              params: ''
+            - code: trading_address_country_is_required
+              category: trading_address_country
+              message: trading_address_country 为必填项
+              params: ''
+            - code: trading_address_country_location_not_accepted
+              category: trading_address_country
+              message: 经营地址国家/地区不是可接受的地点。
+              params: ''
+            - code: trading_address_postalcode_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_postalcode
+              message: 经营地址邮政编码包含无效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_postalcode_is_not_permitted
+              category: trading_address_postalcode
+              message: 不允许提供 trading_address_postalcode
+              params: ''
+            - code: trading_address_postalcode_is_required
+              category: trading_address_postalcode
+              message: trading_address_postalcode 为必填项
+              params: ''
+            - code: trading_address_state_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_state
+              message: 经营地址州/省包含无效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_state_invalid_state
+              category: trading_address_state
+              message: trading_address_state 的州/省无效
+              params: ''
+            - code: trading_address_state_is_not_permitted
+              category: trading_address_state
+              message: 不允许提供 trading_address_state
+              params: ''
+            - code: trading_address_state_is_required
+              category: trading_address_state
+              message: trading_address_state 为必填项
+              params: ''
+            - code: trading_address_street_contains_characters_that_require_utf8mb4_encoding
+              category: trading_address_street
+              message: 经营地址街道包含无效的 utf8mb4 字符
+              params: ''
+            - code: trading_address_street_is_not_permitted
+              category: trading_address_street
+              message: 不允许提供 trading_address_street
+              params: ''
+            - code: trading_address_street_is_required
+              category: trading_address_street
+              message: trading_address_street 为必填项
+              params: ''
+          schema:
+            $ref: '#/definitions/UpdateAccountComplianceSettingsError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '401':
+          description: 未经授权。
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 提供的凭据验证失败
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '404':
+          description: 未找到资源。
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '429':
+          description: 请求次数太多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                已向 API 发送过多请求。请参阅开发者中心以获取更多信息
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '500':
+          description: 内部服务器错误
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 内部服务器错误
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '503':
+          description: 服务暂时不可用
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服务暂时不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        default:
+          description: 意外错误。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
   /accounts/current:
     get:
       tags:
@@ -3988,7 +4530,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名称缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 收款人公司名称不能完全由数字组成
               params: ''
@@ -4652,7 +5194,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名称缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 收款人公司名称不能完全由数字组成
               params: ''
@@ -5276,7 +5818,7 @@ paths:
               category: beneficiary_company_name
               message: 收款人公司名称缺失
               params: ''
-            - code: company_name_cannot_be_only_digits
+            - code: company_name_contains_numbers
               category: beneficiary_company_name
               message: 收款人公司名称不能完全由数字组成
               params: ''
@@ -5629,18 +6171,18 @@ paths:
         - name: bank_country
           in: formData
           type: string
-          required: true
+          required: false
           description: >-
             收款人银行账户所在国家/地区的两个字母的代码。
         - name: currency
           in: formData
           type: string
-          required: false
+          required: true
           description: >-
             汇款至收款人银行账户所用的货币。三位数的货币代码。
         - name: account_number
           in: formData
-          required: true
+          required: false
           type: string
           description: 银行账号。
         - name: beneficiary_entity_type
@@ -5672,7 +6214,7 @@ paths:
           description: "本地支付路由系统。默认为 'sort_code'."
         - name: routing_code_value_1
           in: formData
-          required: true
+          required: false
           type: string
           description: 路由系统值，即账户的银行代码 (sort code) 。
         - name: routing_code_type_2
@@ -8967,6 +9509,133 @@ paths:
             X-Request-Id:
               type: string
               description: 请求的唯一参考。
+  /funding_transactions/{id}:
+    get:
+      tags:
+        - 注资
+      x-api-group: collect
+      summary: 获取资金交易
+      description: >2-
+
+        获取具有给定 ID 的已批准资金交易的详细信息。
+
+      operationId: GetFundingTransaction
+      produces:
+        - application/json
+      parameters:
+        - name: X-Auth-Token
+          in: header
+          required: true
+          type: string
+          description: 验证令牌
+          minLength: 32
+        - name: id
+          in: path
+          required: true
+          type: string
+          description: 该交易的相关实体 UUID（related_entity_id）。
+          format: uuid
+        - name: on_behalf_of
+          in: query
+          required: false
+          type: string
+          description: 您所代表的子账户的联系人 UUID。
+          format: uuid
+      responses:
+        '200':
+          description: 成功
+          schema:
+            $ref: '#/definitions/FundingTransaction'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '400':
+          description: 客户端错误。
+          x-errors:
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 应为 UUID 格式
+              params: ''
+            - code: on_behalf_of_self
+              category: contact
+              message: 您不能代表您自己的联系人进行操作
+              params: ''
+          schema:
+            $ref: '#/definitions/GetFundingTransactionError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '401':
+          description: 未经授权。
+          x-errors:
+            - code: invalid_supplied_credentials
+              category: username
+              message: 提供的凭据验证失败
+              params: ''
+          schema:
+            $ref: '#/definitions/UnauthorizedError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '404':
+          description: 未找到交易。
+          x-errors:
+            - code: transaction_not_found
+              category: id
+              message: 未找到交易
+              params: ''
+          schema:
+            $ref: '#/definitions/NotFoundError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '429':
+          description: 请求次数太多。
+          x-errors:
+            - code: too_many_requests
+              category: base
+              message: >-
+                已向 API 发送过多请求。请参阅开发者中心以获取更多信息
+              params: ''
+          schema:
+            $ref: '#/definitions/RateLimitError'
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '500':
+          description: 内部服务器错误
+          x-errors:
+            - code: internal_server_error
+              category: base
+              message: 内部服务器错误
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        '503':
+          description: 服务暂时不可用。
+          x-errors:
+            - code: service_unavailable
+              category: base
+              message: 服务暂时不可用
+              params: ''
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+        default:
+          description: 意外错误。
+          headers:
+            X-Request-Id:
+              type: string
+              description: 请求的唯一参考。
+
   /payments/create:
     post:
       tags:
@@ -8985,6 +9654,20 @@ paths:
           required: true
           type: string
           description: 验证令牌
+        - name: x-sca-id
+          in: header
+          required: false
+          type: string
+          description: >-
+            用于关联调用 Validate Payment 时生成的 SCA 请求的 UUID。
+          format: uuid
+        - name: x-sca-token
+          in: header
+          required: false
+          type: string
+          description: >-
+            需要 SCA 时，在 Validate Payment 请求后收到的 OTP。
+          pattern: ^\d{6}$
         - name: currency
           in: formData
           required: true
@@ -11858,6 +12541,13 @@ paths:
           required: true
           type: string
           description: 验证令牌
+        - name: x-sca-to-authenticated-user
+          in: header
+          required: false
+          type: boolean
+          description: >-
+            将此项设置为 true 将把 OTP 发送给已验证用户，而不是代表的客户（on-behalf-of）。
+            此选项仅适用于特定许可模式下的客户。
         - name: id
           in: formData
           required: false
@@ -13082,6 +13772,46 @@ paths:
             - code: hold_period_is_required
               category: hold_period
               message: hold_period is required
+              params: ''
+            - code: ccy_pair_is_not_tradeable
+              category: currency_pair
+              message: Given currency pair is not tradeable
+              params: ''
+            - code: crossing_cutoff_time
+              category: base
+              message: Hold period extends beyond the cut-off-time for the requested delivery date
+              params: ''
+            - code: held_rate_not_enabled
+              category: base
+              message: Held Rates Product is not enabled for this account
+              params: ''
+            - code: invalid_conversion_date
+              category: base
+              message: Conversion date is not valid for this currency pair
+              params: ''
+            - code: invalid_conversion_date_combination
+              category: base
+              message: One of conversion_date or conversion_date_preference must be specified
+              params: ''
+            - code: invalid_decimals
+              category: base
+              message: amount should be specified with a valid number of decimal places
+              params: ''
+            - code: invalid_delivery_date
+              category: base
+              message: The delivery date you have requested cannot be met for this currency pair
+              params: ''
+            - code: invalid_hold_period
+              category: base
+              message: Requested hold_period is invalid for this account
+              params: ''
+            - code: missing_client_spread_table_data
+              category: base
+              message: Sorry, the online client pricing for the amount of the currency pair you are trying to trade has not been set up - please contact us
+              params: ''
+            - code: quote_could_not_be_created
+              category: base
+              message: Quote could not be created
               params: ''
           schema:
             $ref: '#/definitions/HeldRateQuoteError'
@@ -14782,6 +15512,18 @@ paths:
               category: with_deleted
               message: with_deleted 类型应为 boolean
               params: '{"type": "boolean"}'
+            - code: field_contains_invalid_characters
+              category: base
+              message: 字段包含无效字符
+              params: '{ ${field_name}: ${character_range} }'
+            - code: field_is_too_long
+              category: base
+              message: 为此请求提供的信息超出了我们的字段长度限制
+              params: '{ ${field_name}: ${max_field_length} }'
+            - code: request_contains_blocked_fields
+              category: base
+              message: 此请求包含该路由不允许的字段
+              params: '{ "blocked fields": [Fields that are not permitted for this route] }'
           schema:
             $ref: '#/definitions/GenerateReportError'
           headers:
@@ -14856,7 +15598,7 @@ paths:
       x-api-group: manage
       summary: 查找报告请求
       description: 搜索发出的报告请求。返回包含匹配报告请求详细信息的 JSON 结构。
-      operationId: 查找报告请求
+      operationId: Find Report Requests
       produces:
         - application/json
       parameters:
@@ -15077,7 +15819,7 @@ paths:
       x-api-group: manage
       summary: 针对给定 ID 检索报告请求
       description: 按 ID 搜索报告。返回包含指定报告请求详细信息的 JSON 结构。
-      operationId: 检索报告请求
+      operationId: Retrieve a Report Request
       produces:
         - application/json
       parameters:
@@ -15111,6 +15853,10 @@ paths:
             - code: account_not_found
               category: id
               message: 此 id 未找到账户
+              params: ''
+            - code: id_is_not_valid_uuid
+              category: id
+              message: id 应为 UUID 格式
               params: ''
           schema:
             $ref: '#/definitions/GetReportRequestError'
@@ -15836,6 +16582,66 @@ paths:
               category: amount
               message: "金额必须低于 ${limit}。"
               params: ''
+            - code: account_not_found
+              category: account_id
+              message: 此 id 未找到账户
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: 无法检索账户 {account_id} 的现金工作流
+              params: ''
+            - code: cash_workflow_unknown
+              category: account_id
+              message: 无法检索账户 {account_id} 的现金工作流
+              params: ''
+            - code: currency_is_not_supported
+              category: currency
+              message: '{currency} 货币受限'
+              params: ''
+            - code: destination_account_disabled
+              category:
+              message: 由于目标账户已停用，转账未成功建立。请确保源账户和目标账户在进行转账前均已启用。
+              params: ''
+            - code: destination_bank_account_verified_error
+              category: account_id
+              message: 目标银行账户尚未核实。请确保源银行账户和目标银行账户在进行转账前均已核实。
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 不支持任何小数位'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 最多只支持 1 位小数'
+              params: ''
+            - code: invalid_amount_format
+              category: amount
+              message: '{currency} 最多只支持 %d 位小数'
+              params: ''
+            - code: invalid_extra_parameters
+              category: invalid_extra_parameters
+              message: '无效的额外参数：{parameter}'
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: not_allowed_currency
+              category: currency
+              message: '您不能以 {currency} 货币执行此操作'
+              params: ''
+            - code: same_source_and_destination_accounts
+              category: account_id
+              message: 源账户和目标账户不能相同
+              params: ''
+            - code: source_account_disabled
+              category: account_id
+              message: 由于源账户已停用，转账未成功建立。请确保源账户和目标账户在进行转账前均已启用。
+              params: ''
+            - code: source_bank_account_verified_error
+              category: source_account_id
+              message: 源银行账户尚未核实。请确保源银行账户和目标银行账户在进行转账前均已核实。
+              params: ''
+            - code: transfer_not_permitted
+              category: account_id
+              message: 不允许在指定的源账户和目标账户之间进行转账。
+              params: ''
           schema:
             $ref: '#/definitions/CreateTransferError'
           headers:
@@ -15945,17 +16751,13 @@ paths:
               category: id
               message: id 应为 UUID 格式
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: 您不能代表您自己的联系人进行操作
-              params: ''
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "无效的额外参数：'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
             - code: transfer_not_found
               category: id
               message: 此 ID 未找到转账
-              params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: 此 id 未找到联系人
               params: ''
           schema:
             $ref: '#/definitions/GetTransferError'
@@ -16155,6 +16957,10 @@ paths:
           default: created_at
           description: >-
             任何字段名称都可以更改排序顺序。<br>请注意，自 2025 年 5 月 28 日 起，仅支持按 'created_at', 'updated_at' 和 'completed_at'进行排序。
+          enum:
+            - created_at
+            - updated_at
+            - completed_at
         - name: order_asc_desc
           in: query
           required: false
@@ -16232,21 +17038,41 @@ paths:
               category: completed_at_to
               message: completed_at_to 应为 ISO 8601 格式
               params: '{ "type" => "datetime" }'
-            - code: creator_contact_id_is_not_valid_uuid
-              category: creator_contact_id
-              message: creator_contact_id 应为 UUID 格式
+            - code: completed_at_from_is_too_old
+              category: completed_at_from
+              message: completed_at_from 设置的日期过于久远
               params: ''
-            - code: creator_account_id_is_not_valid_uuid
-              category: creator_account_id
-              message: creator_account_id 应为 UUID 格式
+            - code: created_at_from_is_too_old
+              category: created_at_from
+              message: created_at_from 设置的日期过于久远
               params: ''
-            - code: on_behalf_of_self
-              category: on_behalf_of
-              message: 您不能代表您自己的联系人进行操作
+            - code: invalid_extra_parameters
+              category: extra_parameter
+              message: "无效的额外参数：'{parameter}'"
+              params: '{ "parameters" => "extra_parameter" }'
+            - code: page_is_too_small
+              category: page
+              message: page 不能小于 1
               params: ''
-            - code: contact_not_found
-              category: on_behalf_of
-              message: 此 id 未找到联系人
+            - code: page_type_is_wrong
+              category: page
+              message: page 应为 integer 类型
+              params: ''
+            - code: per_page_is_too_big
+              category: per_page
+              message: per_page 不能大于 %i
+              params: ''
+            - code: per_page_is_too_small
+              category: per_page
+              message: per_page 不能小于 1
+              params: ''
+            - code: per_page_type_is_wrong
+              category: per_page
+              message: per_page 应为 integer 类型
+              params: ''
+            - code: updated_at_from_is_too_old
+              category: updated_at_from
+              message: updated_at_from 设置的日期过于久远
               params: ''
           schema:
             $ref: '#/definitions/FindTransfersError'
@@ -16366,13 +17192,9 @@ paths:
               category: status
               message: 转账已完成（已结算）
               params: ''
-            - code: invalid_status
-              category: status
-              message: 转账已取消
-              params: ''
-            - code: invalid_status
-              category: status
-              message: 转账已完成，因此无法取消
+            - code: transfer_cannot_be_cancelled
+              category: short_reference
+              message: 转账 {short_reference} 无法取消
               params: ''
             - code: invalid_extra_parameters
               category: base
@@ -16759,7 +17581,7 @@ paths:
       summary: 模拟入账资金
       description: >-
         触发与真实环境类似的流程，以处理资金、充值 CM 余额或不充值 CM 余额而拒绝交易。该资源仅在 Currencycloud 演示环境中可用；无法在真实环境中实现。
-      operationId: 模拟资金
+      operationId: SimulateFunding
       consumes:
         - multipart/form-data
       produces:
@@ -16931,6 +17753,10 @@ paths:
             - code: on_behalf_of_self
               category: on_behalf_of
               message: 您不能代表您自己的联系人进行操作
+              params: ''
+            - code: id_has_already_been_taken
+              category: id
+              message: "该 ID 已在先前的请求中使用"
               params: ''
 
           schema:
@@ -17263,6 +18089,20 @@ definitions:
       legal_entity_type:
         type: string
         description: 实体类型 - 个人或公司。
+      legal_entity_sub_type:
+        type: string
+        enum:
+          - sole_trader
+          - limited_liability_company
+          - public_limited_company
+          - limited_liability_partnership
+          - unincorporated_partnership
+          - unregistered_charity
+          - registered_charity
+          - trust
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - scottish_limited_partnership
+          - other
       created_at:
         type: string
         description: 创建账户的日期/时间。
@@ -17296,6 +18136,15 @@ definitions:
         type: string
         description: >-
           身份证明文件的唯一参考号码，如护照号码。
+      identification_issuer:
+        type: string
+        description: >-
+          身份证明文件签发机构所在国家/地区的 ISO-3116 代码
+      identification_expiration:
+        type: string
+        format: date
+        description: >-
+          身份证明文件的到期日期
       short_reference:
         description: 账户的参考号码。
         type: string
@@ -17343,10 +18192,13 @@ definitions:
       postal_code: AB12 CD1
       spread_table: flat_0.5_percent
       legal_entity_type: company
+      legal_entity_sub_type: limited_liability_company
       created_at: '2023-12-31T23:59:59.000Z'
       updated_at: '2023-12-31T23:59:59.000Z'
       identification_type: green_card
       identification_value: 123456789
+      identification_issuer: US
+      identification_expiration: '2020-12-31'
       short_reference: 110104-00004
       api_trading: true
       online_trading: true
@@ -17356,6 +18208,103 @@ definitions:
       terms_and_conditions_accepted: true
       agent_or_reliance: true
       bank_account_verified: no
+  AccountComplianceSettings:
+    type: object
+    description: 账户合规设置。
+    properties:
+      account_id:
+        type: string
+        description: 账户 UUID。
+      industry_type:
+        type: string
+        description: 描述账户主要行业的字符串。参见商户类别代码（MCC）以获取示例
+      country_of_incorporation:
+        type: string
+        description: >-
+          表示账户注册成立所在国家/地区的两位 ISO-3166 国家代码。仅适用于 'legal_entity_type: company' 的账户
+      date_of_incorporation:
+        type: string
+        format: date
+        description: >-
+          账户的注册成立日期。仅适用于 'legal_entity_type: company' 的账户
+      business_website_url:
+        type: string
+        description: >-
+          一个完整的 URL（包括协议），指向市场主页、与公司相关的政府页面链接，或字符串字面值 'no_website_available'。
+      expected_transaction_countries:
+        type: array
+        description: 这些账户将用于交易往来的 ISO-3166 国家代码数组。
+        items:
+          type: string
+      expected_transaction_currencies:
+        type: array
+        description: 这些账户将用于交易的 ISO-4217 货币代码数组。仅限单个项目。
+        items:
+          type: string
+      expected_monthly_activity_volume:
+        type: integer
+        description: 该账户预期进行的交易数量。
+      expected_monthly_activity_value:
+        type: number
+        description: 该账户预期进行的交易价值。其货币为 'expected_transaction_currencies' 中的单个项目。
+      tax_identification:
+        type: string
+        description: >-
+          美国或澳大利亚公司的税务识别值；由 'accounts.country' 决定。仅适用于 'legal_entity_type: company' 的账户。
+      national_identification:
+        type: string
+        description: >-
+          美国个人的国民身份识别值；由 'accounts.country' 决定。仅适用于 'legal_entity_type: individual' 的账户。
+      country_of_citizenship:
+        type: string
+        description: >-
+          表示个人国籍的 ISO-3166 国家代码。仅适用于 'legal_entity_type: individual' 的账户。
+      trading_address_street:
+        type: string
+        description: >-
+          公司经营地址的街道地址。仅适用于 'legal_entity_type: company' 的账户。
+      trading_address_city:
+        type: string
+        description: >-
+          公司经营地址的城市。仅适用于 'legal_entity_type: company' 的账户。
+      trading_address_state:
+        type: string
+        description: >-
+          公司经营地址的州/省。仅适用于 'legal_entity_type: company' 的账户。
+      trading_address_postalcode:
+        type: string
+        description: >-
+          公司经营地址的邮政编码。仅适用于 'legal_entity_type: company' 的账户。
+      trading_address_country:
+        type: string
+        description: >-
+          表示公司经营地址所在国家/地区的 ISO-3166 国家代码。仅适用于 'legal_entity_type: company' 的账户。
+      customer_risk:
+        description: 该账户预期行为的风险分类。
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+    example:
+      account_id: B7DE235A-FF5D-4252-83C2-06A605267FEA
+      industry_type: Telecom Services
+      country_of_incorporation: US
+      date_of_incorporation: 2020-01-30
+      business_website_url: https://currencycloud.com
+      expected_transaction_countries: ["US", "GB"]
+      expected_transaction_currencies: ["USD"]
+      expected_monthly_activity_volume: 10
+      expected_monthly_activity_value: 30.00
+      tax_identification: some-tax-id
+      national_identification: some-national-id
+      country_of_citizenship: US
+      trading_address_street: some-street
+      trading_address_city: some-city
+      trading_address_state: NY
+      trading_address_postalcode: 90210
+      trading_address_country: US
+      customer_risk: LOW
   AccountPaymentChargesSetting:
     type: object
     description: 账户支付手续费设置。
@@ -18397,6 +19346,74 @@ definitions:
       contact_id: 543477161-91de-012f-e284-1e0030c7f352
       created_at: '2023-03-16T23:59:59.000Z'
       updated_at: '2023-03-16T23:59:59.000Z'
+  FundingTransaction:
+    description: 交易信息。
+    properties:
+      id:
+        description: 该交易的相关实体 UUID（related_entity_id）。
+        type: string
+      amount:
+        description: 交易金额。
+        type: string
+      currency:
+        description: 三位字母的货币代码。
+        type: string
+      rail:
+        description: 交易渠道（rail）。
+        type: string
+      additional_information:
+        description: 任何附加信息。
+        type: string
+      receiving_account_routing_code:
+        description: 路由代码。
+        type: string
+      value_date:
+        description: ISO-8601 格式的起息日。
+        format: date-time
+        type: string
+      receiving_account_number:
+        description: 交易收款账号。
+        type: string
+      receiving_account_iban:
+        description: 交易收款账户 IBAN。
+        type: string
+      created_at:
+        description: ISO-8601 格式的创建日期。
+        format: date-time
+        type: string
+      updated_at:
+        description: ISO-8601 格式的交易最后更新时间。
+        format: date-time
+        type: string
+      completed_at:
+        description: ISO-8601 格式的完成日期。
+        format: date-time
+        type: string
+      sender:
+        $ref: '#/definitions/SenderInformation'
+    example:
+      additional_information: ABCD20231016143117
+      amount: 1.11
+      completed_at: 2022-12-03T10:15:30+00:00
+      created_at: 2022-12-03T10:15:30+00:00
+      currency: USD
+      id: 4924919a-6c28-11ee-a3e3-63774946bad2
+      rail: SEPA
+      receiving_account_iban: null
+      receiving_account_number: 32847346
+      receiving_account_routing_code: 123456789
+      updated_at: 2022-12-03T10:15:30+00:00
+      value_date: 2022-12-03T10:00:00+00:00
+      sender:
+        sender_account_number: 8119645406
+        sender_address: Some street
+        sender_bic: null
+        sender_country: GB
+        sender_iban: null
+        sender_id: 5c675fa4-fdf0-4ee6-b5bb-156b36765433
+        sender_name: Test sender
+        sender_routing_code: null
+    type: object
   CreateAccountError:
     type: object
     description: |
@@ -18739,7 +19756,7 @@ definitions:
       deposit_currency:
         type: string
       deposit_required:
-        type: string
+        type: boolean
       expires_at:
         type: string
       fixed_side:
@@ -18824,6 +19841,86 @@ definitions:
                   minlength: 1
                   maxlength: 255
 
+  GetAccountComplianceSettingsError:
+    type: object
+    description: |
+      Get Compliance Settings 端点的客户端错误信息。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整个请求的高级错误代码。
+      error_messages:
+        type: object
+        description: >-
+          验证失败的各个输入参数的详细错误信息。对象键是无效输入参数的名称。每个参数可能有一个或多个失败的原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示输入参数失败的原因之一的对象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  标识此错误的唯一代码。可以用于翻译。
+              message:
+                type: string
+                description: 错误的英文解释。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失败的相关验证规则。这可以用于翻译。
+                example:
+                  minlength: 1
+                  maxlength: 255
+  UpdateAccountComplianceSettingsError:
+    type: object
+    description: |
+      Get Compliance Settings 端点的客户端错误信息。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整个请求的高级错误代码。
+      error_messages:
+        type: object
+        description: >-
+          验证失败的各个输入参数的详细错误信息。对象键是无效输入参数的名称。每个参数可能有一个或多个失败的原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示输入参数失败的原因之一的对象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  标识此错误的唯一代码。可以用于翻译。
+              message:
+                type: string
+                description: 错误的英文解释。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失败的相关验证规则。这可以用于翻译。
+                example:
+                  minlength: 1
+                  maxlength: 255
   DeletePaymentError:
     type: object
     description: |
@@ -19224,6 +20321,81 @@ definitions:
                 example:
                   minlength: 1
                   maxlength: 255
+  GetFundingTransactionError:
+    description: |
+      Get Funding Transaction 端点的客户端错误信息。
+    required:
+      - error_code
+      - error_messages
+    properties:
+      error_code:
+        type: string
+        description: 整个请求的高级错误代码。
+      error_messages:
+        type: object
+        description: >-
+          验证失败的各个输入参数的详细错误信息。对象键是无效输入参数的名称。每个参数可能有一个或多个失败的原因。
+        additionalProperties:
+          type: array
+          items:
+            type: object
+            description: >-
+              表示输入参数失败的原因之一的对象。
+            required:
+              - code
+              - message
+            properties:
+              code:
+                type: string
+                description: >-
+                  标识此错误的唯一代码。可以用于翻译。
+              message:
+                type: string
+                description: 错误的英文解释。
+              params:
+                type: object
+                default: {}
+                description: >-
+                  失败的相关验证规则。这可以用于翻译。
+                example:
+                  minlength: 1
+                  maxlength: 255
+  SenderInformation:
+    description: 发送方信息
+    properties:
+      sender_account_number:
+        description: 发送方账号
+        type: string
+      sender_address:
+        description: 非结构化的发送方地址
+        type: string
+      sender_bic:
+        description: 发送方 BIC
+        type: string
+      sender_country:
+        description: 两位字母的发送方国家代码
+        type: string
+      sender_iban:
+        description: 发送方 IBAN
+        type: string
+      sender_id:
+        description: 发送方 ID
+        type: string
+      sender_name:
+        description: 发送方名称
+        type: string
+      sender_routing_code:
+        description: 发送方路由代码
+        type: string
+    example:
+      sender_account_number: 8119645406
+      sender_address: Some street
+      sender_bic: null
+      sender_country: GB
+      sender_iban: null
+      sender_id: 5c675fa4-fdf0-4ee6-b5bb-156b36765433
+      sender_name: Test sender
+    type: object
   FundingAccount:
     type: object
     description: 为账户注资。
@@ -21349,6 +22521,16 @@ definitions:
       status:
         type: string
         description: The status of the submission.
+        enum:
+          - canceled
+          - closed
+          - completed_manually
+          - duplicated
+          - failed
+          - pending
+          - processing
+          - success
+          - waiting_to_process
       submission_ref:
         type: string
       format:
@@ -21438,6 +22620,7 @@ definitions:
           charge_type: null
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: "ABC123"
           last_update_time: "2019-07-10T14:22:41.273Z"
         - tracker_event_type: customer_credit_transfer_payment
           valid: true
@@ -21464,6 +22647,7 @@ definitions:
           charge_type: shared
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: null
           last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
@@ -21925,7 +23109,7 @@ definitions:
           - payment
           - payment_failure
           - payment_fee
-          - pyament_unrelease
+          - payment_unrelease
           - transfer
       related_entity_type:
         type: string
@@ -21948,7 +23132,7 @@ definitions:
         enum:
           - completed
           - deleted
-          - depending
+          - pending
 
       reason:
         description: 原因
