@@ -24151,6 +24151,7 @@ definitions:
           charge_type: null
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: "ABC123"
           last_update_time: "2019-07-10T14:22:41.273Z"
         - tracker_event_type: customer_credit_transfer_payment
           valid: true
@@ -24177,6 +24178,7 @@ definitions:
           charge_type: shared
           charge_amount: null
           foreign_exchange_details: null
+          instruction_identification: null
           last_update_time: "2019-07-09T13:20:50.633Z"
   QuotePaymentFee:
     type: object
