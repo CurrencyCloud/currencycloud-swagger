@@ -26,7 +26,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T15:39:08+00:00"
+            "last_update_time": "2019-07-10T15:39:08+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "customer_credit_transfer_payment_cancellation_request",
@@ -46,7 +47,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T14:22:41+00:00"
+            "last_update_time": "2019-07-10T14:22:41+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "credit_transfer_payment_cancellation_request",
@@ -69,7 +71,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T14:22:41+00:00"
+            "last_update_time": "2019-07-10T14:22:41+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "customer_credit_transfer_payment_cancellation_request",
@@ -89,7 +92,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T14:22:41+00:00"
+            "last_update_time": "2019-07-10T14:22:41+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "customer_credit_transfer_payment_cancellation_request",
@@ -109,7 +113,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T14:22:41+00:00"
+            "last_update_time": "2019-07-10T14:22:41+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "credit_transfer_payment_cancellation_request",
@@ -129,7 +134,8 @@
             "charge_amount": null,
             "charge_type": null,
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-10T14:22:41+00:00"
+            "last_update_time": "2019-07-10T14:22:41+00:00",
+            "instruction_identification": null
         },
         {
             "tracker_event_type": "customer_credit_transfer_payment",
@@ -165,7 +171,8 @@
             "charge_amount": null,
             "charge_type": "shared",
             "foreign_exchange_details": null,
-            "last_update_time": "2019-07-09T13:20:50+00:00"
+            "last_update_time": "2019-07-09T13:20:50+00:00",
+            "instruction_identification": "ABC123"
         }
     ]
 }
