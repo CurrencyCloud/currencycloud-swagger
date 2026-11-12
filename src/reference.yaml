@@ -417,6 +417,7 @@ paths:
             - enabled
           default: enabled
           description: Account status.
+
         - name: state_or_province
           in: formData
           required: false
@@ -427,6 +428,7 @@ paths:
             where they apply. See our Help Center <a href="https://support.currencycloud.com/hc/en-gb/articles/30980980932508-Payer-address-requirements-for-local-USD-payments"> article </a>
             for full information of postal address requirements for local USD payments.
           maxLength: 100
+
         - name: spread_table
           in: formData
           required: false
@@ -434,21 +436,25 @@ paths:
           default: flat_0.00
           description: The name of the spread table assigned to the account. This is needed if they intend to apply markup.
           maxLength: 100
+
         - name: api_trading
           in: formData
           required: false
           type: boolean
           description: Allow the account to make trades via the Currencycloud API.
+
         - name: online_trading
           in: formData
           required: false
           type: boolean
           description: Allow the account to make trades via Currencycloud Direct.
+
         - name: phone_trading
           in: formData
           required: false
           type: boolean
           description: Allow the account to make trades via phone.
+
         - name: identification_type
           in: formData
           required: true
@@ -487,7 +493,9 @@ paths:
           type: string
           description: >-
             Unique reference code for the identification document, such as a
-            passport number.
+            passport number.<br>
+            Australia-based sub-accounts that intend to use local AUD collections should use
+            their ACN (Australian Company Number).
           minLength: 1
           maxLength: 255
         - name: identification_expiration
@@ -529,8 +537,10 @@ paths:
           maxLength: 255
           type: string
           description: >-
-             The industry the account operates in. Required for companies.
-        - name: business_website_url
+             The industry the account operates in. Required for companies. Sub-accounts that intend to use local
+             AUD collections should use an entry from the <a href="https://support.currencycloud.com/hc/en-gb/articles/31770650262940-Industry-Type-Codes"> approved list. </a>
+        -
+          name: business_website_url
           in: formData
           required: false
           type: string
@@ -538,7 +548,8 @@ paths:
           description: >-
             A fully qualified URL (including scheme) indicating a marketplace homepage,
             a link to a government page concerning the company or the literal string
-            'no_website_available'. Required for companies.
+            'no_website_available'. Required for companies. Australia-based sub-accounts that intend to use local
+            AUD collections must supply a valid URL, placeholders or internal URLs are not allowed.
 
         - name: country_of_citizenship
           in: formData
@@ -549,6 +560,7 @@ paths:
             Provide the longest held citizenship for individuals with multiple.
             Part of extended compliance for "legal_entity_type: individual" accounts.<br>
             Required for individuals.
+
         - name: country_of_incorporation
           in: formData
           required: false
@@ -559,6 +571,7 @@ paths:
             Two-letter ISO country code indicating the country the company is incorpated in.
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies.
+
         - name: date_of_incorporation
           in: formData
           required: false
@@ -567,7 +580,8 @@ paths:
           description: >-
             Date of the company's incorporation.
             Part of extended compliance for "legal_entity_type: company" accounts.
-            Required for companies.
+            Required for companies. Must match the ASIC registration record for Australian sub-accounts.
+
         - name: legal_entity_sub_type
           in: formData
           required: false
@@ -612,7 +626,8 @@ paths:
           description: >-
             The state portion of the company's trading address.
             Part of extended compliance for "legal_entity_type: company" accounts.
-            Required for companies where 'trading_address_country' = 'US','CA' or 'MX'. Can be the same as 'state_or_province' field.
+            Required for companies where 'trading_address_country' = 'US','CA' or 'MX'. Can be the same as 'state_or_province' field.<br>
+            Required for Australia-based sub-accounts intending to use local AUD collections.
 
         - name: trading_address_postalcode
           in: formData
@@ -623,7 +638,8 @@ paths:
             The postal code portion of the company's trading address.
             Part of extended compliance for "legal_entity_type: company" accounts.
             Required for companies where 'trading_address_country' = 'US','CA' or 'MX'.
-            Can be the same as 'postal_code' field.
+            Can be the same as 'postal_code' field.<br>
+            Required for Australia-based sub-accounts intending to use local AUD collections.
         - name: trading_address_country
           in: formData
           required: false
@@ -633,7 +649,9 @@ paths:
           description: >-
             Two-letter ISO country code representing the country portion of the company's trading address.
             Part of extended compliance for accounts with "legal_entity_type: company".
-            Required for companies. Can be the same as 'country' field.
+            Required for companies. Can be the same as 'country' field.<br>
+            Required for Australia-based sub-accounts intending to use local AUD collections.
+
         - name: tax_identification
           in: formData
           required: false
@@ -1480,8 +1498,7 @@ paths:
           - incorporation_number
         description: >-
           A legal document that verifies the identity of the account owner.
-          <p style="color:#FF5000;"><strong>Upcoming change:</strong> From 30 October 2026,
-          the list of identification types will be expanded.</p>
+
       - name: identification_value
         in: formData
         required: false
@@ -2009,7 +2026,10 @@ paths:
           required: false
           type: string
           maxLength: 255
-          description: String describing the account's main industry. See merchant category codes for examples.
+          description: >-
+            String describing the account's main industry. See merchant category codes for examples.<br>
+            AU companies that use local
+            AUD collections should use an entry from the <a href="https://support.currencycloud.com/hc/en-gb/articles/31770650262940-Industry-Type-Codes"> approved list. </a>
         - name: country_of_incorporation
           in: formData
           required: false
@@ -7006,7 +7026,11 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
+          description: >-
+            Indicates whether the contact can conduct activity on the sub-account.
+            Set to "enabled" to allow activity or "not_enabled" to disable it.
+            For contacts of Australian companies using local AUD collections, this
+            is required and must be set to "enabled".
         - name: locale
           in: formData
           required: false
@@ -7613,7 +7637,10 @@ paths:
           in: formData
           required: true
           type: string
-          description: The contact's phone number.
+          description: >-
+            The contact's phone number.<br>
+            Contact's of AU companies must provide an Australian phone number. Country code must be +61.
+
           minLength: 1
           maxLength: 100
         - name: your_reference
@@ -7644,7 +7671,9 @@ paths:
           enum:
             - enabled
             - not_enabled
-          description: Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
+          description: >-
+            Contact status - "enabled" allows the contact to conduct activity on the sub-account, "not_enabled" disables the contact.
+            Required for contacts of Australian companies who use local AUD collections - status must be "enabled".
         - name: locale
           in: formData
           required: false
