@@ -1,0 +1,4715 @@
+---
+openapi: 3.0.3
+info:
+  title: Onboarding API
+  version: v2
+  description: Name fields (first_name, middle_name, last_name, contact_name)
+    accept Latin-1 letters, apostrophes, hyphens, periods and single spaces.
+    Anything else is rejected with a 422 naming the properties that carried it.
+    Address fields have no character rule.
+tags:
+- name: Applications
+  description: 'Create, update, find and submit onboarding applications. Creating
+    an application also creates its workflow: the fixed sequence of steps you send
+    its data in.'
+- name: Steps
+  description: "Move an application through its workflow: complete the step you're
+    on, check where the workflow is, and go back to a step you've already completed."
+- name: Account Usage
+  description: Record how the applicant intends to use their account.
+- name: Business Information
+  description: Record the company's details on a corporate application.
+- name: People
+  description: 'Add and manage the people on an application: the applicant and, on
+    a corporate application, its directors and ultimate business owners.'
+- name: Documents
+  description: Add the documents an application needs, then attach each one to
+    the person, business information or account usage it's evidence for.
+- name: Document Files
+  description: Upload and manage the files that make up a document, such as the
+    front and back of a driving licence.
+- name: Identity Verification
+  description: Start identity verification for a person on a submitted
+    application.
+paths:
+  "/v2/applications":
+    get:
+      summary: Find Applications
+      description: Returns a paginated list of the applications created by the
+        authenticated account. Filter them by status or entity type, and sort
+        them by creation or submission date.
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: order
+        in: query
+        required: false
+        description: 'Sort field. Accepts "created_at" or "submitted_at". Default:
+          "created_at".'
+        schema:
+          type: string
+      - name: order_asc_desc
+        in: query
+        required: false
+        description: 'Sort direction. Accepts "asc" or "desc". Default: "asc".'
+        schema:
+          type: string
+      - name: application_status
+        in: query
+        required: false
+        description: Filter by application status.
+        schema:
+          type: string
+      - name: entity_type
+        in: query
+        required: false
+        description: Filter by entity type (individual or corporate).
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        description: Page number.
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        required: false
+        description: Number of results per page (1–50).
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Returns list of applications
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/application_response"
+                  pagination:
+                    "$ref": "#/components/schemas/pagination"
+        '400':
+          description: Invalid query parameter
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    post:
+      summary: Create Application
+      description: Creates an onboarding application and its workflow. The
+        response returns the application_id and workflow_id you need for every
+        later call, and the first step to complete. See <a
+        href="/guides/onboarding/overview">the Onboarding guide</a> for the flow
+        to follow.
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters: []
+      responses:
+        '201':
+          description: Application created successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/application_create_response"
+        '502':
+          description: A temporary failure on our side, not a fault in the
+            request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_gateway_response_v2"
+        '422':
+          description: Invalid parameter in request params
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_application_request"
+  "/v2/applications/{application_id}":
+    get:
+      summary: Get Application
+      description: Gets an onboarding application, including its state.
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Application found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/application_response"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    put:
+      summary: Update Application
+      description: Updates an onboarding application. PUT replaces the
+        application, so send the full body every time you update it.
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates application when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/application_response"
+        '422':
+          description: Returns validation error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/update_application_request"
+    delete:
+      summary: Delete Application
+      description: Deletes an onboarding application.
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Application deleted successfully
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: Application is immutable
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/applications/{application_id}/submit":
+    post:
+      summary: Submit Application
+      description: 'Submits the onboarding application for review. Every workflow
+        step before form_submit (form_submit_corp for a corporate) must be completed
+        first. Submitting is final: the application is locked once it has been submitted.'
+      tags:
+      - Applications
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/application_response"
+        '422':
+          description: Application already submitted, or its workflow steps not
+            completed
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/workflows/{workflow_id}/steps/{step_id}/completion":
+    put:
+      summary: Complete Step
+      description: Completes the step the workflow is on, and returns the next
+        step. steps is empty once the workflow is finished. See <a
+        href="/guides/onboarding/workflows">Workflows</a> for the steps in each
+        flow.
+      tags:
+      - Steps
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: workflow_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        description: The workflow identifier.
+        required: true
+      - name: step_id
+        in: path
+        schema:
+          type: string
+        description: The step identifier.
+        required: true
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The application that owns the workflow. Must belong to the
+          caller.
+      responses:
+        '200':
+          description: Step completed successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/step_completion_response"
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '409':
+          description: Workflow step transition rejected by the onboarding
+            workflow service (conflict)
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '400':
+          description: The onboarding workflow service rejects the request as
+            invalid
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '500':
+          description: Internal error in the onboarding workflow service
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/internal_server_error_response_v2"
+        '502':
+          description: A temporary failure on our side, not a fault in the
+            request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_gateway_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/step_completion_request"
+  "/v2/workflows/{workflow_id}/steps/current":
+    get:
+      summary: Get Current Steps
+      description: Returns the IDs of the steps the workflow is on.
+      tags:
+      - Steps
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: workflow_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        description: The workflow identifier.
+        required: true
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The application that owns the workflow. Must belong to the
+          caller.
+      responses:
+        '200':
+          description: Current steps retrieved successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/current_steps_response"
+        '404':
+          description: The onboarding workflow service could not find the
+            workflow
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '409':
+          description: Workflow entity type mismatch
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '502':
+          description: A temporary failure on our side, not a fault in the
+            request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_gateway_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    put:
+      summary: Update Current Step
+      description: Moves the workflow back to a step you've already completed,
+        so you can correct its data and complete it again.
+      tags:
+      - Steps
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: workflow_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        description: The workflow identifier.
+        required: true
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The application that owns the workflow. Must belong to the
+          caller.
+      responses:
+        '200':
+          description: Current step set successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/step_current_response"
+        '404':
+          description: The onboarding workflow service could not find the
+            workflow
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '409':
+          description: Step not actionable
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '502':
+          description: A temporary failure on our side, not a fault in the
+            request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_gateway_response_v2"
+        '422':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/step_current_request"
+  "/v2/workflows/{workflow_id}/steps/previous":
+    get:
+      summary: Get Previous Step
+      description: Returns the nearest completed step before the one the
+        workflow is on, or an empty list when there is none.
+      tags:
+      - Steps
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: workflow_id
+        in: path
+        schema:
+          type: string
+          format: uuid
+        description: The workflow identifier.
+        required: true
+      - name: application_id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The application that owns the workflow. Must belong to the
+          caller.
+      responses:
+        '200':
+          description: Previous step retrieved successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/previous_step_response"
+        '404':
+          description: The onboarding workflow service could not find the
+            workflow
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '409':
+          description: No previous step (at first step)
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
+        '502':
+          description: A temporary failure on our side, not a fault in the
+            request
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/bad_gateway_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/applications/{application_id}/account_usage":
+    get:
+      summary: Get Account Usage
+      description: Gets an application's associated account usage. The account
+        usage outlines how the applicant intends to use their account.
+      tags:
+      - Account Usage
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account usage found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/account_usage_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    put:
+      summary: Update Account Usage
+      description: Updates an application's associated account usage. The
+        account usage outlines how the applicant intends to use their account.
+        PUT replaces the account usage, so send the full body every time you
+        update it.
+      tags:
+      - Account Usage
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account usage updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/account_usage_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: Account usage params are invalid
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/account_usage_request"
+    delete:
+      summary: Delete Account Usage
+      description: Deletes the account usage for the specified application.
+      tags:
+      - Account Usage
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Account usage deleted successfully
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: Application is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/applications/{application_id}/business_information":
+    get:
+      summary: Get Business Information
+      description: Gets the business information for the specified application.
+        Business information is only relevant to corporate applications.
+      tags:
+      - Business Information
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Business information found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/business_information_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    put:
+      summary: Update Business Information
+      description: Updates the business information for the specified
+        application. Business information is only relevant to corporate
+        applications. PUT replaces the business information, so send the full
+        body every time you update it.
+      tags:
+      - Business Information
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Business information updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/business_information_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: Validation error on request body
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/business_information_request"
+    delete:
+      summary: Delete Business Information
+      description: Deletes the business information for the specified
+        application. Business information is only relevant to corporate
+        applications.
+      tags:
+      - Business Information
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Business information deleted successfully
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: Application is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/applications/{application_id}/people":
+    get:
+      summary: Get People
+      description: Returns all people associated with the specified application.
+      tags:
+      - People
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves all people for the application
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/person_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    post:
+      summary: Create Person
+      description: Records a person's details on the specified application. Add
+        each person once, with all of their roles.
+      tags:
+      - People
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Creates a person when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '422':
+          description: A field was rejected, or the person already exists on
+            this application
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+              examples:
+                field_rejected:
+                  value:
+                    status: failed
+                    error_code: record_invalid
+                    reason: Record invalid
+                    error_messages:
+                      email:
+                      - error_code: invalid
+                        reason: Email is invalid
+                  summary: A field was rejected
+                duplicate_person:
+                  value:
+                    status: failed
+                    error_code: record_invalid
+                    reason: Record invalid
+                    error_messages:
+                      person:
+                      - error_code: duplicate_person
+                        reason: 'A person with the same name and roles already exists
+                          on this application (id: 3f1c2b9e-5d4a-4e7b-9c1a-2b6d8e0f4a71)'
+                  summary: A person with the same name and roles is already on
+                    this application
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_person_request_v2"
+  "/v2/applications/{application_id}/people/{person_id}":
+    get:
+      summary: Get Person
+      description: Returns the details of the person with the specified UUID on
+        the application.
+      tags:
+      - People
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        description: Person UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the person
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person_v2"
+        '404':
+          description: Application or person not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    delete:
+      summary: Delete Person
+      description: Deletes the details of the person with the specified UUID
+        from the application.
+      tags:
+      - People
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        description: Person UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deletes the person
+        '422':
+          description: Application is already submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application or person not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    put:
+      summary: Update Person
+      description: Updates a person's details on the specified application. PUT
+        replaces the person, so send the full body every time you update it.
+      tags:
+      - People
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: person_id
+        description: Person UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Updates a person when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/person_v2"
+        '422':
+          description: Invalid person parameters, application already submitted,
+            or the person already exists
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+              examples:
+                field_rejected:
+                  value:
+                    status: failed
+                    error_code: record_invalid
+                    reason: Record invalid
+                    error_messages:
+                      email:
+                      - error_code: invalid
+                        reason: Email is invalid
+                  summary: A field was rejected
+                duplicate_person:
+                  value:
+                    status: failed
+                    error_code: record_invalid
+                    reason: Record invalid
+                    error_messages:
+                      person:
+                      - error_code: duplicate_person
+                        reason: 'A person with the same name and roles already exists
+                          on this application (id: 3f1c2b9e-5d4a-4e7b-9c1a-2b6d8e0f4a71)'
+                  summary: The new name and roles match a person already on this
+                    application
+        '404':
+          description: Application or person not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_person_request_v2"
+  "/v2/applications/{application_id}/documents/{id}":
+    get:
+      summary: Get Document
+      description: Returns the specified document on the application.
+      tags:
+      - Documents
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        description: Document UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the document
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/document"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    delete:
+      summary: Delete Document
+      description: Deletes the document with the specified UUID from the
+        application.
+      tags:
+      - Documents
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        description: Document UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deletes the document
+        '422':
+          description: Application has already been submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application or document not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/applications/{application_id}/documents":
+    get:
+      summary: Get Documents
+      description: Returns the uploaded documents for the specified application.
+      tags:
+      - Documents
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves all application documents
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/document"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    post:
+      summary: Create Document
+      description: Adds a document to the specified application. Upload its
+        files with Create Document File, then attach it to the person, business
+        information or account usage it's evidence for by sending its ID in
+        document_ids. See <a
+        href="/guides/onboarding/corporate#documents">Onboard a business</a> for
+        the documents a company needs.
+      tags:
+      - Documents
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Creates a document when correct params are provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/document"
+        '422':
+          description: Returns validation error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_document_request"
+  "/v2/applications/{application_id}/documents/{document_id}/document_files":
+    get:
+      summary: Get Document Files
+      description: Returns metadata (id, side, timestamps) for each file
+        uploaded to the specified document on the application. The file content
+        itself is not returned.
+      tags:
+      - Document Files
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        description: Document UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Retrieves all document files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/document_file"
+        '404':
+          description: Application or document not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+    post:
+      summary: Create Document File
+      description: 'Uploads a file to the specified document on the application, as
+        a base64 string without a data: prefix. A two-sided document needs both sides
+        uploaded before you can attach it.'
+      tags:
+      - Document Files
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        description: Document UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Document file attached
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/document_file"
+        '422':
+          description: Returns validation error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '413':
+          description: File payload too large
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/payload_too_large_response_v2"
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_document_file_request"
+  "/v2/applications/{application_id}/documents/{document_id}/document_files/{id}":
+    delete:
+      summary: Delete Document File
+      description: Deletes the document file with the specified UUID from a
+        document on the application.
+      tags:
+      - Document Files
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters:
+      - name: application_id
+        description: Application UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: document_id
+        description: Document UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: id
+        description: Document file UUID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Deletes the document file
+        '422':
+          description: Application has already been submitted
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Application, document or document file not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+  "/v2/identity_verifications":
+    post:
+      summary: Create Identity Verification
+      description: Starts identity verification for a person on a submitted
+        application, and returns the whitelabel_url of the hosted page to send
+        them to. On a corporate application, only a person with the director
+        role can be verified. Calling it again for the same person returns the
+        same verification.
+      tags:
+      - Identity Verification
+      x-api-group: Onboard
+      security:
+      - AuthToken: []
+      parameters: []
+      responses:
+        '200':
+          description: Applicant created successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/identity_verification_response"
+        '422':
+          description: Request could not be processed
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '400':
+          description: Identity-verification applicant could not be created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/validation_error_response_v2"
+        '404':
+          description: Form not found, or person does not exist on the form
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found_response_v2"
+        '401':
+          "$ref": "#/components/responses/unauthorized"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/create_identity_verification_request"
+security:
+- AuthToken: []
+servers:
+- url: /onboarding
+  description: Relative URL
+- url: https://api.currencycloud.com/onboarding
+  description: Production server (uses live data)
+- url: https://devapi.currencycloud.com/onboarding
+  description: Demo server (uses test data)
+components:
+  securitySchemes:
+    AuthToken:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: The authentication token returned by the Login endpoint.
+  schemas:
+    create_application_request:
+      type: object
+      properties:
+        entity_type:
+          type: string
+          enum:
+          - individual
+          - corporate
+          description: Type of applicant - individual or corporate.
+        brand_name:
+          type: string
+          maxLength: 255
+          description: Brand the application is being made under. Resolved to
+            the introducing account, so it determines the application's
+            attribution. Required for web-sourced requests.
+        brand_key:
+          type: string
+          maxLength: 255
+          description: House account key identifier. Resolved together with
+            brand_name, and needed whenever a brand has more than one house
+            account — without it the lookup finds several and resolves none.
+        email:
+          type: string
+          maxLength: 255
+          description: 'The applicant''s email address. Set here only: the update
+            endpoint does not accept it.'
+        agreed_to_terms_and_conditions:
+          type: boolean
+          description: 'Agreed to the terms and conditions. Consent is gated here
+            rather than at update, so no data is captured before it is given. Set
+            here only: the update endpoint does not accept it.'
+        business_role:
+          type: string
+          enum:
+          - director_controller
+          - sole_trader_business_role
+          - authorised_person
+          -
+          description: 'Business role of the applicant — who is filing the application.
+            Required for a corporate application and rejected on an individual one.
+            Set here only: the update endpoint does not accept it.'
+      required:
+      - entity_type
+      - email
+      - agreed_to_terms_and_conditions
+    create_person_request_v2:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+            enum:
+            - director
+            - ultimate_business_owner
+            - user
+          description: The person's role(s).
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: 'List of IDs for any uploaded supporting documents. These types
+            carry data on the reverse and need both a front and a back image uploaded
+            before they can be listed here: biometric_state_id, driving_licence, residence_id,
+            state_id.'
+        first_name:
+          type: string
+          maxLength: 255
+          description: First name. Cannot be a single initial.
+        middle_name:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Middle name
+        last_name:
+          type: string
+          maxLength: 255
+          description: Surname. Cannot be a single initial, or end with a
+            company signifier.
+        dob:
+          type: string
+          format: date
+          nullable: true
+          description: Date of Birth. Must give an age between 18 and 100 years.
+        phone_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Phone number. Required when roles includes user.
+        email:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: 'Email address. Ignored on an individual or sole trader application,
+            where the one person is the applicant: their email is always the application''s,
+            so neither create nor update can set it.'
+        ownership_percentage:
+          type: number
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Percentage of company owned. Required for an
+            ultimate_business_owner, who must hold at least 25%. The combined
+            holding of all ultimate business owners on an application cannot
+            exceed 100%.
+        id_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Social security number. Required when roles includes user
+            and home_country is US.
+        home_country:
+          type: string
+          description: Country of residence. On an individual application this
+            must match personal_address_attributes.country, and — for the
+            applicant — the country on the application.
+        citizenship:
+          type: string
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - ST
+          - SV
+          - SX
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XK
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+          - CU
+          - IR
+          - LY
+          - KP
+          - SS
+          - SD
+          - SY
+          description: Citizenship country code.
+        passport_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Passport number
+        passport_country_of_issue:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Country code for where the passport was issued.
+        personal_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+              maxLength: 255
+              description: City
+            street:
+              type: string
+              maxLength: 255
+              description: Street
+            country:
+              type: string
+              enum:
+              - AD
+              - AE
+              - AF
+              - AG
+              - AI
+              - AL
+              - AM
+              - AO
+              - AQ
+              - AR
+              - AS
+              - AT
+              - AU
+              - AW
+              - AX
+              - AZ
+              - BA
+              - BB
+              - BD
+              - BE
+              - BF
+              - BG
+              - BH
+              - BI
+              - BJ
+              - BL
+              - BM
+              - BN
+              - BO
+              - BQ
+              - BR
+              - BS
+              - BT
+              - BV
+              - BW
+              - BY
+              - BZ
+              - CA
+              - CC
+              - CD
+              - CF
+              - CG
+              - CH
+              - CI
+              - CK
+              - CL
+              - CM
+              - CN
+              - CO
+              - CR
+              - CV
+              - CW
+              - CX
+              - CY
+              - CZ
+              - DE
+              - DJ
+              - DK
+              - DM
+              - DO
+              - DZ
+              - EC
+              - EE
+              - EG
+              - EH
+              - ER
+              - ES
+              - ET
+              - FI
+              - FJ
+              - FK
+              - FM
+              - FO
+              - FR
+              - GA
+              - GB
+              - GD
+              - GE
+              - GF
+              - GG
+              - GH
+              - GI
+              - GL
+              - GM
+              - GN
+              - GP
+              - GQ
+              - GR
+              - GS
+              - GT
+              - GU
+              - GW
+              - GY
+              - HK
+              - HM
+              - HN
+              - HR
+              - HT
+              - HU
+              - ID
+              - IE
+              - IL
+              - IM
+              - IN
+              - IO
+              - IQ
+              - IS
+              - IT
+              - JE
+              - JM
+              - JO
+              - JP
+              - KE
+              - KG
+              - KH
+              - KI
+              - KM
+              - KN
+              - KR
+              - KW
+              - KY
+              - KZ
+              - LA
+              - LB
+              - LC
+              - LI
+              - LK
+              - LR
+              - LS
+              - LT
+              - LU
+              - LV
+              - MA
+              - MC
+              - MD
+              - ME
+              - MF
+              - MG
+              - MH
+              - MK
+              - ML
+              - MM
+              - MN
+              - MO
+              - MP
+              - MQ
+              - MR
+              - MS
+              - MT
+              - MU
+              - MV
+              - MW
+              - MX
+              - MY
+              - MZ
+              - NA
+              - NC
+              - NE
+              - NF
+              - NG
+              - NI
+              - NL
+              - 'NO'
+              - NP
+              - NR
+              - NU
+              - NZ
+              - OM
+              - PA
+              - PE
+              - PF
+              - PG
+              - PH
+              - PK
+              - PL
+              - PM
+              - PN
+              - PR
+              - PS
+              - PT
+              - PW
+              - PY
+              - QA
+              - RE
+              - RO
+              - RS
+              - RU
+              - RW
+              - SA
+              - SB
+              - SC
+              - SE
+              - SG
+              - SH
+              - SI
+              - SJ
+              - SK
+              - SL
+              - SM
+              - SN
+              - SO
+              - SR
+              - ST
+              - SV
+              - SX
+              - SZ
+              - TC
+              - TD
+              - TF
+              - TG
+              - TH
+              - TJ
+              - TK
+              - TL
+              - TM
+              - TN
+              - TO
+              - TR
+              - TT
+              - TV
+              - TW
+              - TZ
+              - UA
+              - UG
+              - UM
+              - US
+              - UY
+              - UZ
+              - VA
+              - VC
+              - VE
+              - VG
+              - VI
+              - VN
+              - VU
+              - WF
+              - WS
+              - XK
+              - YE
+              - YT
+              - ZA
+              - ZM
+              - ZW
+              - CU
+              - IR
+              - LY
+              - KP
+              - SS
+              - SD
+              - SY
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              maxLength: 10
+              description: Building number. At most 10 characters.
+            state_or_province:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: State or province
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+      required:
+      - roles
+      - first_name
+      - last_name
+      - home_country
+      - citizenship
+    account_usage_request:
+      type: object
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: 'List of IDs for any uploaded supporting documents. These types
+            carry data on the reverse and need both a front and a back image uploaded
+            before they can be listed here: biometric_state_id, driving_licence, residence_id,
+            state_id.'
+        collections_account:
+          type: boolean
+          description: Does the account receive funds from third parties.
+        collection_currencies:
+          type: array
+          items:
+            type: string
+            enum:
+            - AED
+            - AFN
+            - ALL
+            - AMD
+            - ANG
+            - AOA
+            - ARS
+            - AUD
+            - AWG
+            - AZN
+            - BAM
+            - BBD
+            - BDT
+            - BGN
+            - BHD
+            - BIF
+            - BMD
+            - BND
+            - BOB
+            - BRL
+            - BSD
+            - BTN
+            - BWP
+            - BYR
+            - BZD
+            - CAD
+            - CDF
+            - CHF
+            - CLP
+            - CNH
+            - CNY
+            - COP
+            - COU
+            - CRC
+            - CUP
+            - CVE
+            - CZK
+            - DJF
+            - DKK
+            - DOP
+            - DZD
+            - EEK
+            - EGP
+            - ERN
+            - ETB
+            - EUR
+            - FJD
+            - FKP
+            - GBP
+            - GEL
+            - GHS
+            - GIP
+            - GMD
+            - GNF
+            - GTQ
+            - GYD
+            - HKD
+            - HNL
+            - HRK
+            - HTG
+            - HUF
+            - IDR
+            - ILS
+            - INR
+            - IQD
+            - IRR
+            - ISK
+            - JMD
+            - JOD
+            - JPY
+            - KES
+            - KGS
+            - KHR
+            - KMF
+            - KPW
+            - KRW
+            - KWD
+            - KYD
+            - KZT
+            - LAK
+            - LBP
+            - LKR
+            - LRD
+            - LSL
+            - LVL
+            - LYD
+            - MAD
+            - MDL
+            - MGA
+            - MKD
+            - MMK
+            - MNT
+            - MOP
+            - MRO
+            - MUR
+            - MVR
+            - MWK
+            - MXN
+            - MYR
+            - MZN
+            - NAD
+            - NGN
+            - NIO
+            - NOK
+            - NPR
+            - NZD
+            - OMR
+            - PAB
+            - PEN
+            - PGK
+            - PHP
+            - PKR
+            - PLN
+            - PYG
+            - QAR
+            - RON
+            - RSD
+            - RUB
+            - RWF
+            - SAR
+            - SBD
+            - SCR
+            - SDG
+            - SEK
+            - SGD
+            - SHP
+            - SLL
+            - SOS
+            - SRD
+            - SSP
+            - STD
+            - SYP
+            - SZL
+            - THB
+            - TJS
+            - TMT
+            - TND
+            - TOP
+            - TRY
+            - TTD
+            - TWD
+            - TZS
+            - UAH
+            - UGX
+            - USD
+            - UYU
+            - UZS
+            - VEF
+            - VND
+            - VUV
+            - WST
+            - XAF
+            - XCD
+            - XOF
+            - XPF
+            - YER
+            - ZAR
+            - ZMK
+            - ZWL
+          description: List of currencies to fund account with. Three character
+            ISO currency codes.
+        payment_currencies:
+          type: array
+          items:
+            type: string
+            enum:
+            - AED
+            - AFN
+            - ALL
+            - AMD
+            - ANG
+            - AOA
+            - ARS
+            - AUD
+            - AWG
+            - AZN
+            - BAM
+            - BBD
+            - BDT
+            - BGN
+            - BHD
+            - BIF
+            - BMD
+            - BND
+            - BOB
+            - BRL
+            - BSD
+            - BTN
+            - BWP
+            - BYR
+            - BZD
+            - CAD
+            - CDF
+            - CHF
+            - CLP
+            - CNH
+            - CNY
+            - COP
+            - COU
+            - CRC
+            - CUP
+            - CVE
+            - CZK
+            - DJF
+            - DKK
+            - DOP
+            - DZD
+            - EEK
+            - EGP
+            - ERN
+            - ETB
+            - EUR
+            - FJD
+            - FKP
+            - GBP
+            - GEL
+            - GHS
+            - GIP
+            - GMD
+            - GNF
+            - GTQ
+            - GYD
+            - HKD
+            - HNL
+            - HRK
+            - HTG
+            - HUF
+            - IDR
+            - ILS
+            - INR
+            - IQD
+            - IRR
+            - ISK
+            - JMD
+            - JOD
+            - JPY
+            - KES
+            - KGS
+            - KHR
+            - KMF
+            - KPW
+            - KRW
+            - KWD
+            - KYD
+            - KZT
+            - LAK
+            - LBP
+            - LKR
+            - LRD
+            - LSL
+            - LVL
+            - LYD
+            - MAD
+            - MDL
+            - MGA
+            - MKD
+            - MMK
+            - MNT
+            - MOP
+            - MRO
+            - MUR
+            - MVR
+            - MWK
+            - MXN
+            - MYR
+            - MZN
+            - NAD
+            - NGN
+            - NIO
+            - NOK
+            - NPR
+            - NZD
+            - OMR
+            - PAB
+            - PEN
+            - PGK
+            - PHP
+            - PKR
+            - PLN
+            - PYG
+            - QAR
+            - RON
+            - RSD
+            - RUB
+            - RWF
+            - SAR
+            - SBD
+            - SCR
+            - SDG
+            - SEK
+            - SGD
+            - SHP
+            - SLL
+            - SOS
+            - SRD
+            - SSP
+            - STD
+            - SYP
+            - SZL
+            - THB
+            - TJS
+            - TMT
+            - TND
+            - TOP
+            - TRY
+            - TTD
+            - TWD
+            - TZS
+            - UAH
+            - UGX
+            - USD
+            - UYU
+            - UZS
+            - VEF
+            - VND
+            - VUV
+            - WST
+            - XAF
+            - XCD
+            - XOF
+            - XPF
+            - YER
+            - ZAR
+            - ZMK
+            - ZWL
+          description: List of payout currencies. Three character ISO currency
+            codes.
+        transaction_countries:
+          type: array
+          items:
+            type: string
+            nullable: true
+            enum:
+            - AD
+            - AE
+            - AF
+            - AG
+            - AI
+            - AL
+            - AM
+            - AO
+            - AQ
+            - AR
+            - AS
+            - AT
+            - AU
+            - AW
+            - AX
+            - AZ
+            - BA
+            - BB
+            - BD
+            - BE
+            - BF
+            - BG
+            - BH
+            - BI
+            - BJ
+            - BL
+            - BM
+            - BN
+            - BO
+            - BQ
+            - BR
+            - BS
+            - BT
+            - BV
+            - BW
+            - BY
+            - BZ
+            - CA
+            - CC
+            - CD
+            - CF
+            - CG
+            - CH
+            - CI
+            - CK
+            - CL
+            - CM
+            - CN
+            - CO
+            - CR
+            - CV
+            - CW
+            - CX
+            - CY
+            - CZ
+            - DE
+            - DJ
+            - DK
+            - DM
+            - DO
+            - DZ
+            - EC
+            - EE
+            - EG
+            - EH
+            - ER
+            - ES
+            - ET
+            - FI
+            - FJ
+            - FK
+            - FM
+            - FO
+            - FR
+            - GA
+            - GB
+            - GD
+            - GE
+            - GF
+            - GG
+            - GH
+            - GI
+            - GL
+            - GM
+            - GN
+            - GP
+            - GQ
+            - GR
+            - GS
+            - GT
+            - GU
+            - GW
+            - GY
+            - HK
+            - HM
+            - HN
+            - HR
+            - HT
+            - HU
+            - ID
+            - IE
+            - IL
+            - IM
+            - IN
+            - IO
+            - IQ
+            - IS
+            - IT
+            - JE
+            - JM
+            - JO
+            - JP
+            - KE
+            - KG
+            - KH
+            - KI
+            - KM
+            - KN
+            - KR
+            - KW
+            - KY
+            - KZ
+            - LA
+            - LB
+            - LC
+            - LI
+            - LK
+            - LR
+            - LS
+            - LT
+            - LU
+            - LV
+            - MA
+            - MC
+            - MD
+            - ME
+            - MF
+            - MG
+            - MH
+            - MK
+            - ML
+            - MM
+            - MN
+            - MO
+            - MP
+            - MQ
+            - MR
+            - MS
+            - MT
+            - MU
+            - MV
+            - MW
+            - MX
+            - MY
+            - MZ
+            - NA
+            - NC
+            - NE
+            - NF
+            - NG
+            - NI
+            - NL
+            - 'NO'
+            - NP
+            - NR
+            - NU
+            - NZ
+            - OM
+            - PA
+            - PE
+            - PF
+            - PG
+            - PH
+            - PK
+            - PL
+            - PM
+            - PN
+            - PR
+            - PS
+            - PT
+            - PW
+            - PY
+            - QA
+            - RE
+            - RO
+            - RS
+            - RU
+            - RW
+            - SA
+            - SB
+            - SC
+            - SE
+            - SG
+            - SH
+            - SI
+            - SJ
+            - SK
+            - SL
+            - SM
+            - SN
+            - SO
+            - SR
+            - ST
+            - SV
+            - SX
+            - SZ
+            - TC
+            - TD
+            - TF
+            - TG
+            - TH
+            - TJ
+            - TK
+            - TL
+            - TM
+            - TN
+            - TO
+            - TR
+            - TT
+            - TV
+            - TW
+            - TZ
+            - UA
+            - UG
+            - UM
+            - US
+            - UY
+            - UZ
+            - VA
+            - VC
+            - VE
+            - VG
+            - VI
+            - VN
+            - VU
+            - WF
+            - WS
+            - XK
+            - YE
+            - YT
+            - ZA
+            - ZM
+            - ZW
+            - CU
+            - IR
+            - LY
+            - KP
+            - SS
+            - SD
+            - SY
+            description: List of countries that corporate accounts want to
+              send/receive money to/from. Required on a corporate application.
+        one_off_transaction:
+          type: boolean
+          description: Do corporate accounts just want to send a single one-off
+            transaction.
+        estimated_monthly_transaction_currency:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Currency of the estimated monthly transaction value.
+            Required.
+        estimated_monthly_transaction_value:
+          type: integer
+          nullable: true
+          description: Estimated monthly value the account will transact on the
+            platform. Required.
+        estimated_monthly_transaction_volume:
+          type: integer
+          nullable: true
+          description: How often the account expects to send or receive funds
+            each month. Required on a corporate application.
+        source_of_funds:
+          type: string
+          nullable: true
+          enum:
+          - business_revenue
+          - donations_or_grants
+          - external_investment
+          - gift
+          - inheritance
+          - inter_company_transfers
+          - loan
+          - other
+          - property_sale
+          - rental_income
+          - salary
+          - sale_of_assets
+          - sale_of_investment_dividends
+          description: The source of the funds that will be sent through the
+            platform.
+        other_source_of_funds_text:
+          type: string
+          maxLength: 21845
+          nullable: true
+          description: Additional details if source_of_funds is other.
+        initial_capital:
+          type: string
+          nullable: true
+          description: The initial capital that will be used to fund the
+            account.
+        primary_purpose:
+          type: string
+          enum:
+          - intercompany_transfers
+          - liquidity_or_fx
+          - payment_to_an_individual
+          - paying_suppliers_or_bills
+          - investment_activity
+          - repatriating_overseas_earnings
+          - collecting_funds_from_clients
+          - property_purchase_or_sale
+          - other
+          description: The reason for opening an account with Currencycloud.
+        purpose_details:
+          type: string
+          maxLength: 20000
+          nullable: true
+          description: Additional details. Required when primary_purpose is
+            'other'.
+      required:
+      - collections_account
+      - primary_purpose
+      - source_of_funds
+      - collection_currencies
+      - payment_currencies
+    business_information_request:
+      type: object
+      properties:
+        document_ids:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: 'List of IDs for any uploaded supporting documents. These types
+            carry data on the reverse and need both a front and a back image uploaded
+            before they can be listed here: biometric_state_id, driving_licence, residence_id,
+            state_id.'
+        business_country:
+          type: string
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - ST
+          - SV
+          - SX
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XK
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+          - CU
+          - IR
+          - LY
+          - KP
+          - SS
+          - SD
+          - SY
+          description: ISO2 country code for the country the business is
+            registered in.
+        company_name:
+          type: string
+          description: The company name.
+        trading_name:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: The company's trading name.
+        legal_entity_type:
+          type: string
+          enum:
+          - limited_liability_company
+          - limited_liability_partnership
+          - company_with_nominee_shareholders_or_shares_in_bearer_form
+          - other
+          - public_limited_company
+          - registered_charity
+          - scottish_limited_partnership
+          - sole_trader
+          - trust
+          - unincorporated_partnership
+          - unregistered_charity
+          description: Company's legal entity type.
+        sector:
+          type: string
+          enum:
+          - registered_charity
+          - unregistered_charity
+          - aerospace
+          - weapons_and_military_equipment
+          - advertising_or_public_relations_or_marketing
+          - multi_level_marketing
+          - telecoms
+          - call_centres
+          - schools_and_universities
+          - hospitals_and_care_facilities
+          - adult_entertainment
+          - books_or_magazines_and_newspapers
+          - casinos_or_gambling
+          - forestry_and_forest_products
+          - Gaming
+          - music_production
+          - radio_or_tv_broadcaster
+          - speculative_trading
+          - sporting_or_professional_club
+          - banking
+          - broker_dealer
+          - building_materials_and_equipment
+          - broker
+          - cryptoassets
+          - fund
+          - insurance_or_insure_tech
+          - loan_company
+          - money_services_business
+          - payroll_company_or_pay_tech
+          - private_equity_or_investment_firm_or_venture_capital
+          - trust_company
+          - asset_or_wealth_management_or_wealth_tech
+          - regulated_online_marketplace_or_platform
+          - accountancy
+          - architecture
+          - interior_design
+          - solicitors_or_law_firm
+          - other_consultancy
+          - political_group_or_lobbying
+          - recruitment
+          - hospitality_or_events_or_conferences
+          - tax_advisers
+          - construction
+          - engineering
+          - estate_or_letting_agency
+          - property_development
+          - real_estate_investment
+          - waste_management_or_recycling
+          - adult_products
+          - agricultural
+          - automobile_or_car_parts
+          - bio_sciences_or_beauty_products
+          - chemical_and_related_manufacturing
+          - clothing_or_textiles
+          - electronic_equipment_or_mobile_phones
+          - fitness_equipment
+          - food_and_beverage
+          - furniture_and_flooring
+          - high_value_goods
+          - machinery_and_tools_or_industrial_equipment
+          - pawn_brokers
+          - pharmaceuticals_or_medical_devices
+          - tobacco_or_alcohol
+          - etailor_or_ecommerce
+          - nutritional_or_dietary_supplements
+          - online_marketing_or_branding
+          - historical_or_cultural_artefacts
+          - bars_or_restaurants
+          - courier_or_express_or_parcel
+          - freight_or_logistics
+          - packaging
+          - transportation
+          - taxi_or_private_transport
+          - security
+          - travel_agent_or_travel_website
+          - hotels
+          - computer_software
+          - it_managed_services
+          - data_storage_or_processing
+          - website_or_app_development
+          - computer_or_cyber_security
+          - utilities
+          - logging_timber_and_paper_mills
+          - oil_and_gas
+          - precious_metals
+          - trust_and_company_formation_providers
+          - hedge_fund_or_family_office
+          - mining_or_extractive_industries
+          description: The primary sector the company operates in.
+        company_registration_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: An official number that identifies the company.
+        vat_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: The company's VAT number, or its Tax ID — an EIN where
+            business_country is US. Whether it is required depends on
+            business_country and legal_entity_type. Where business_country is US
+            it must be 9 digits, written either as 123456789 or 12-3456789.
+        incorporation_date:
+          type: string
+          format: date
+          description: The date the company was incorporated.
+        business_website:
+          type: string
+          maxLength: 21845
+          description: The company's website URL or other online presence. Must
+            be a valid URL. The scheme is optional — example.com and
+            https://example.com are both accepted.
+        business_activity_description:
+          type: string
+          maxLength: 21845
+          nullable: true
+          description: Description of the company's activities.
+        registered_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+              maxLength: 255
+              description: City
+            street:
+              type: string
+              maxLength: 255
+              description: Street
+            country:
+              type: string
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              maxLength: 10
+              description: Building number. At most 10 characters.
+            state_or_province:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: State or province
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+        trading_address_attributes:
+          type: object
+          properties:
+            city:
+              type: string
+              maxLength: 255
+              description: City
+            street:
+              type: string
+              maxLength: 255
+              description: Street
+            country:
+              type: string
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              maxLength: 10
+              description: Building number. At most 10 characters.
+            state_or_province:
+              type: string
+              nullable: true
+              maxLength: 255
+              description: State or province
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+          nullable: true
+      required:
+      - business_country
+      - company_name
+      - legal_entity_type
+      - sector
+      - incorporation_date
+      - business_website
+      - registered_address_attributes
+    step_completion_request:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - completed
+          description: The status to set for the step.
+      required:
+      - status
+    step_current_request:
+      type: object
+      properties:
+        step_id:
+          type: string
+          description: The step identifier to navigate to.
+      required:
+      - step_id
+    create_document_request:
+      type: object
+      properties:
+        document_type:
+          type: string
+          enum:
+          - bank_statement
+          - biometric_state_id
+          - driving_licence
+          - mortgage
+          - passport
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - residence_id
+          - state_id
+          - supporting
+          - unknown
+          - utility_bill
+          - visa
+          description: The type of document.
+        category:
+          type: string
+          enum:
+          - proof_of_address
+          - proof_of_business_activity
+          - proof_of_business_identity
+          - proof_of_directors
+          - proof_of_identity
+          - proof_of_owners
+          - proof_of_source_of_funds
+          - supporting
+          description: What the document is being supplied as evidence of.
+      required:
+      - document_type
+      - category
+    create_document_file_request:
+      type: object
+      properties:
+        file:
+          type: string
+          format: byte
+          description: Base64 encoded file content. A document accepts at most 3
+            files.
+        side:
+          type: string
+          enum:
+          - front
+          - back
+          - face
+          description: Which image this is. front and back are sides of the
+            document; face is the liveness selfie.
+      required:
+      - file
+      - side
+    update_application_request:
+      type: object
+      properties:
+        affiliate_code:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Client's own use, e.g. to track lead source.
+        agreed_to_marketing_emails:
+          type: boolean
+          description: Agreed to marketing emails.
+        agreed_to_corporate_authority:
+          type: boolean
+          description: Confirmed authority to act on behalf of company.
+        country:
+          type: string
+          nullable: true
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - ST
+          - SV
+          - SX
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XK
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+          - CU
+          - IR
+          - LY
+          - KP
+          - SS
+          - SD
+          - SY
+          -
+          description: Home country for individual applicant or country of
+            registered address for corporate applicant.
+        brand_name:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: Form's brand name
+        brand_key:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: House account key identifier
+        referred_by:
+          type: string
+          nullable: true
+          description: How did the applicant hear about us.
+        phone_number:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: The applicant's phone number.
+        contact_name:
+          type: string
+          maxLength: 255
+          nullable: true
+          description: The applicant's name (corporate applicants only). Must be
+            at least 2 characters if provided.
+    create_identity_verification_request:
+      type: object
+      properties:
+        application_id:
+          type: string
+          format: uuid
+          description: Application UUID
+        person_id:
+          type: string
+          format: uuid
+          description: Person UUID
+      required:
+      - application_id
+      - person_id
+    application_create_response:
+      type: object
+      properties:
+        application_id:
+          type: string
+          format: uuid
+          description: The application identifier.
+        workflow_id:
+          type: string
+          format: uuid
+          description: The workflow identifier.
+        steps:
+          type: array
+          items:
+            type: string
+          description: The workflow steps for this application.
+      required:
+      - application_id
+      - workflow_id
+      - steps
+    application_response:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Application UUID.
+        detached_document_ids:
+          type: array
+          items:
+            type: string
+          description: IDs of documents uploaded against the application itself
+            rather than against a person, account usage or business information.
+        affiliate_code:
+          type: string
+          nullable: true
+          description: Client's own use, e.g. to track lead source.
+        agreed_to_marketing_emails:
+          type: boolean
+          description: Agreed to marketing emails.
+        agreed_to_terms_and_conditions:
+          type: boolean
+          description: Agreed to terms and conditions.
+        agreed_to_corporate_authority:
+          type: boolean
+          description: Confirmed authority to act on behalf of company.
+        business_role:
+          type: string
+          nullable: true
+          description: Business role of the applicant.
+        country:
+          type: string
+          description: Country code
+        email:
+          type: string
+          description: Email address
+        entity_type:
+          type: string
+          description: Type of applicant - individual or corporate.
+        brand_name:
+          type: string
+          description: Brand the application was made under. Resolved to the
+            introducing account, so it determines the application's attribution.
+        brand_key:
+          type: string
+          description: House account key identifier. Resolved together with
+            brand_name, and needed whenever a brand has more than one house
+            account.
+        referred_by:
+          type: string
+          nullable: true
+          description: How did the applicant hear about us.
+        products_required:
+          type: array
+          items:
+            type: string
+          description: Required product to be applied to this form
+        state:
+          type: string
+          description: 'Where the application has reached: new, submitted, approved,
+            rejected. Set by the service, not the client.'
+        phone_number:
+          type: string
+          description: The applicant's phone number.
+        contact_name:
+          type: string
+          description: The applicant's name (corporate applicants only).
+        created_at:
+          type: string
+          format: date-time
+          description: When the application was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the application was last changed.
+        email_verification_status:
+          type: string
+          description: 'Whether the applicant has confirmed their email address: pending,
+            verified.'
+        email_verified_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the email address was confirmed. Null until it is.
+      required:
+      - id
+      - agreed_to_marketing_emails
+      - agreed_to_terms_and_conditions
+      - brand_name
+      - country
+      - entity_type
+      - products_required
+      - created_at
+      - updated_at
+    pagination:
+      type: object
+      properties:
+        total_entries:
+          type: integer
+          minimum: 0
+        total_pages:
+          type: integer
+          minimum: 0
+        current_page:
+          type: integer
+          minimum: 1
+        per_page:
+          type: integer
+          minimum: 1
+        previous_page:
+          type: integer
+          minimum: 1
+          nullable: true
+        next_page:
+          type: integer
+          minimum: 1
+          nullable: true
+        order:
+          type: string
+        order_asc_desc:
+          type: string
+      required:
+      - total_entries
+      - total_pages
+      - current_page
+      - per_page
+      - previous_page
+      - next_page
+      - order
+      - order_asc_desc
+    current_steps_response:
+      type: object
+      properties:
+        step_ids:
+          type: array
+          items:
+            type: string
+          description: The current steps for the workflow — the steps that can
+            be completed next, or an empty list when the workflow is complete.
+      required:
+      - step_ids
+    step_completion_response:
+      type: object
+      properties:
+        application_id:
+          type: string
+          description: The application the workflow belongs to.
+        workflow_id:
+          type: string
+          description: The workflow the completed step belongs to.
+        steps:
+          type: array
+          items:
+            type: string
+          description: The steps to take next, after the completed one.
+      required:
+      - application_id
+      - workflow_id
+      - steps
+    step_current_response:
+      type: object
+      properties:
+        application_id:
+          type: string
+          description: The application the workflow belongs to.
+        workflow_id:
+          type: string
+          description: The workflow the step belongs to.
+        steps:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 1
+          description: The step navigated to, lower-cased, which is now the
+            current step.
+      required:
+      - application_id
+      - workflow_id
+      - steps
+    previous_step_response:
+      type: object
+      properties:
+        step_ids:
+          type: array
+          items:
+            type: string
+          description: The nearest completed step before the current one, or an
+            empty list when there is none.
+      required:
+      - step_ids
+    document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document UUID.
+        document_type:
+          type: string
+          description: The type of document.
+        category:
+          type: string
+          description: What the document is being supplied as evidence of.
+        created_at:
+          type: string
+          format: date-time
+          description: When the document was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the document was last changed.
+      required:
+      - document_type
+      - category
+    document_file:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document file UUID.
+        side:
+          type: string
+          description: Which image this is. front and back are sides of the
+            document; face is the liveness selfie.
+        created_at:
+          type: string
+          format: date-time
+          description: When the file was uploaded.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the file was last changed.
+    person_v2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Person UUID.
+        application_id:
+          type: string
+          description: UUID of the application this person is on.
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: IDs of any uploaded supporting documents.
+        roles:
+          type: array
+          items:
+            type: string
+          description: The person's role(s).
+        first_name:
+          type: string
+          description: First name.
+        middle_name:
+          type: string
+          nullable: true
+          description: Middle name
+        last_name:
+          type: string
+          description: Surname.
+        dob:
+          type: string
+          format: date
+          nullable: true
+          description: Date of Birth.
+        phone_number:
+          type: string
+          nullable: true
+          description: Phone number
+        email:
+          type: string
+          nullable: true
+          description: Email address
+        ownership_percentage:
+          type: number
+          minimum: 0
+          maximum: 100
+          description: Percentage of the company owned. Only meaningful where
+            roles includes ultimate_business_owner.
+        id_number:
+          type: string
+          nullable: true
+          description: Social security number. Required where roles includes
+            user and home_country is US.
+        impersonation_check_required:
+          type: boolean
+          nullable: true
+          description: Whether this is the person who must pass the
+            impersonation check.
+        home_country:
+          type: string
+          description: Country of residence.
+        citizenship:
+          type: string
+          nullable: true
+          description: Citizenship country code.
+        passport_number:
+          type: string
+          nullable: true
+          description: Passport number
+        passport_country_of_issue:
+          type: string
+          nullable: true
+          description: Country code for where the passport was issued.
+        personal_address:
+          type: object
+          properties:
+            city:
+              type: string
+              description: City
+            street:
+              type: string
+              description: Street
+            country:
+              type: string
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              description: Building number
+            state_or_province:
+              type: string
+              nullable: true
+              description: State or province
+          description: The person's home address.
+        created_at:
+          type: string
+          format: date-time
+          description: When the person was added.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the person was last changed.
+      required:
+      - id
+      - roles
+      - first_name
+      - last_name
+      - home_country
+    account_usage_v2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account usage UUID.
+        application_id:
+          type: string
+          description: UUID of the application this belongs to.
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: IDs of any uploaded supporting documents.
+        collections_account:
+          type: boolean
+          description: Does the account receive funds from third parties.
+        collection_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+          description: Currencies the account will be funded with. Three
+            character ISO codes.
+        payment_currencies:
+          type: array
+          items:
+            type: string
+            nullable: true
+          description: Payout currencies. Three character ISO codes.
+        transaction_countries:
+          type: array
+          items:
+            type: string
+            nullable: true
+          description: Countries the account will send money to or receive it
+            from. Corporate applications only.
+        one_off_transaction:
+          type: boolean
+          description: Does the applicant want a single one-off transaction
+            rather than ongoing use. Corporate applications only.
+        estimated_monthly_transaction_currency:
+          type: string
+          nullable: true
+          description: Currency of the estimated monthly transaction value.
+        estimated_monthly_transaction_value:
+          type: integer
+          nullable: true
+          description: Estimated monthly value the account will transact on the
+            platform.
+        estimated_monthly_transaction_volume:
+          type: integer
+          nullable: true
+          description: How often the applicant expects to send or receive funds.
+        source_of_funds:
+          type: string
+          nullable: true
+          description: The source of the funds that will be sent through the
+            platform.
+        other_source_of_funds_text:
+          type: string
+          nullable: true
+          description: Additional details if source_of_funds is other.
+        initial_capital:
+          type: string
+          nullable: true
+          description: The initial capital that will be used to fund the
+            account.
+        primary_purpose:
+          type: string
+          nullable: true
+          description: The reason for opening an account with Currencycloud.
+        purpose_details:
+          type: string
+          nullable: true
+          description: Additional details. Required when primary_purpose is
+            'other'.
+        created_at:
+          type: string
+          format: date-time
+          description: When the account usage was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the account usage was last changed.
+      required:
+      - collections_account
+      - one_off_transaction
+      nullable: true
+    business_information_v2:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Business information UUID.
+        application_id:
+          type: string
+          description: UUID of the application this belongs to.
+        document_ids:
+          type: array
+          items:
+            type: string
+          description: IDs of any uploaded supporting documents.
+        business_country:
+          type: string
+          description: ISO2 country code for the country the business is
+            registered in.
+        company_name:
+          type: string
+          description: The company name.
+        trading_name:
+          type: string
+          nullable: true
+          description: The company's trading name.
+        legal_entity_type:
+          type: string
+          description: Company's legal entity type.
+        sector:
+          type: string
+          description: The primary sector the company operates in.
+        company_registration_number:
+          type: string
+          nullable: true
+          description: An official number that identifies the company.
+        vat_number:
+          type: string
+          nullable: true
+          description: The company's VAT number, or its Tax ID — an EIN where
+            business_country is US.
+        incorporation_date:
+          type: string
+          format: date
+          description: The date the company was incorporated.
+        business_website:
+          type: string
+          nullable: true
+          description: The company's website URL or other online presence.
+        business_activity_description:
+          type: string
+          description: Description of the company's activities.
+        registered_address:
+          type: object
+          properties:
+            city:
+              type: string
+              description: City
+            street:
+              type: string
+              description: Street
+            country:
+              type: string
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              description: Building number
+            state_or_province:
+              type: string
+              nullable: true
+              description: State or province
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+          description: The company's registered address.
+        trading_address:
+          type: object
+          properties:
+            city:
+              type: string
+              description: City
+            street:
+              type: string
+              description: Street
+            country:
+              type: string
+              description: Country code
+            postal_code:
+              type: string
+              description: Post Code
+            apartment_number:
+              type: string
+              nullable: true
+              description: Apartment number
+            building_name:
+              type: string
+              nullable: true
+              description: Building name
+            building_number:
+              type: string
+              nullable: true
+              description: Building number
+            state_or_province:
+              type: string
+              nullable: true
+              description: State or province
+          required:
+          - city
+          - street
+          - country
+          - postal_code
+          description: Where the company trades from, if it differs from the
+            registered address.
+        created_at:
+          type: string
+          format: date-time
+          description: When the business information was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: When the business information was last changed.
+      required:
+      - business_country
+      - company_name
+      - legal_entity_type
+      - sector
+      - incorporation_date
+      - business_activity_description
+      - registered_address
+      nullable: true
+    identity_verification_response:
+      type: object
+      properties:
+        whitelabel_url:
+          type: string
+          description: Whitelabel deep-link URL for the verification journey.
+      required:
+      - whitelabel_url
+    validation_error_response_v2:
+      type: object
+      description: A field-level rejection. Returned as 422 for a body that
+        parsed but failed validation, and as 400 where the request could not be
+        read at all. A write that collided with an existing record is also a
+        422, keyed on `record` with `not_unique` rather than on a field, because
+        a uniqueness failure names a database index rather than anything the
+        caller sent.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          - failed
+          description: "`failed` when the caller can correct the request, `error`
+            when they cannot."
+        error_code:
+          type: string
+          enum:
+          - bad_request
+          - forbidden
+          - impersonation_check_failed
+          - internal_server_error
+          - payload_too_large
+          - record_invalid
+          - record_not_found
+          - request_invalid
+          - too_many_requests
+          - unauthorized
+          description: Machine-readable classification of the failure.
+        reason:
+          type: string
+          description: Human-readable summary of the failure.
+        error_messages:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  description: 'What is wrong with this field. `missing` when it was
+                    not supplied, for a field whose presence rule is version-aware;
+                    `blank` is the v1 equivalent, and also what v2 gets from a field
+                    not yet converted off plain `presence: true`. `invalid` when the
+                    value was rejected by a type or format rule, `inclusion` when
+                    it is outside the permitted set, `too_long` or `too_short` when
+                    it breaches a length or size limit, `greater_than_or_equal_to`
+                    or `less_than_or_equal_to` when it breaches a numeric bound, `taken`
+                    when it collides with an existing record, and `unknown` when the
+                    field is not part of the request at all. `accepted` appears where
+                    a consent was supplied but refused, which is distinct from never
+                    having been supplied. `not_unique` appears where a database uniqueness
+                    constraint rejected the write rather than a validation. `validation`
+                    and `bad_request` appear where the request could not be read at
+                    all. Rule-specific codes such as `person_limit_exceeded` or `ubo_total_exceeded`
+                    name a business rule the value broke. Treat this as an open set:
+                    new rules add codes, and errors on a document image still carry
+                    a sentence rather than a code.'
+                reason:
+                  type: string
+                  description: What the caller needs to change.
+              required:
+              - error_code
+              - reason
+          description: Errors keyed by the field they apply to, or by the
+            condition or resource at fault where no single field is responsible.
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: failed
+        error_code: record_invalid
+        reason: Record invalid
+        error_messages:
+          entity_type:
+          - error_code: missing
+            reason: Entity type is required
+          personal_address.country:
+          - error_code: inclusion
+            reason: Personal address country is not one of the permitted values
+    not_found_response_v2:
+      type: object
+      description: The addressed resource does not exist, or the caller is not
+        entitled to see it.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          - failed
+          description: "`failed` when the caller can correct the request, `error`
+            when they cannot."
+        error_code:
+          type: string
+          enum:
+          - bad_request
+          - forbidden
+          - impersonation_check_failed
+          - internal_server_error
+          - payload_too_large
+          - record_invalid
+          - record_not_found
+          - request_invalid
+          - too_many_requests
+          - unauthorized
+          description: Machine-readable classification of the failure.
+        reason:
+          type: string
+          description: Human-readable summary of the failure.
+        error_messages:
+          type: object
+          nullable: true
+          description: 'Always null: no failure is attributable to a field.'
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: failed
+        error_code: record_not_found
+        reason: Record not found
+        error_messages:
+    unauthorized_response_v2:
+      type: object
+      description: Authentication failed. Identical for every cause — absent,
+        malformed, expired or unverifiable credentials all produce this body, so
+        it cannot be used to probe which tokens get further.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          - failed
+          description: "`failed` when the caller can correct the request, `error`
+            when they cannot."
+        error_code:
+          type: string
+          enum:
+          - bad_request
+          - forbidden
+          - impersonation_check_failed
+          - internal_server_error
+          - payload_too_large
+          - record_invalid
+          - record_not_found
+          - request_invalid
+          - too_many_requests
+          - unauthorized
+          description: Machine-readable classification of the failure.
+        reason:
+          type: string
+          description: Human-readable summary of the failure.
+        error_messages:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  description: 'What is wrong with this field. `missing` when it was
+                    not supplied, for a field whose presence rule is version-aware;
+                    `blank` is the v1 equivalent, and also what v2 gets from a field
+                    not yet converted off plain `presence: true`. `invalid` when the
+                    value was rejected by a type or format rule, `inclusion` when
+                    it is outside the permitted set, `too_long` or `too_short` when
+                    it breaches a length or size limit, `greater_than_or_equal_to`
+                    or `less_than_or_equal_to` when it breaches a numeric bound, `taken`
+                    when it collides with an existing record, and `unknown` when the
+                    field is not part of the request at all. `accepted` appears where
+                    a consent was supplied but refused, which is distinct from never
+                    having been supplied. `not_unique` appears where a database uniqueness
+                    constraint rejected the write rather than a validation. `validation`
+                    and `bad_request` appear where the request could not be read at
+                    all. Rule-specific codes such as `person_limit_exceeded` or `ubo_total_exceeded`
+                    name a business rule the value broke. Treat this as an open set:
+                    new rules add codes, and errors on a document image still carry
+                    a sentence rather than a code.'
+                reason:
+                  type: string
+                  description: What the caller needs to change.
+              required:
+              - error_code
+              - reason
+          description: Errors keyed by the field they apply to, or by the
+            condition or resource at fault where no single field is responsible.
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: failed
+        error_code: unauthorized
+        reason: Request unauthorized
+        error_messages:
+          unauthorized:
+          - error_code: unauthorized
+            reason: Request unauthorized
+    payload_too_large_response_v2:
+      type: object
+      description: The uploaded file exceeds the permitted size.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          - failed
+          description: "`failed` when the caller can correct the request, `error`
+            when they cannot."
+        error_code:
+          type: string
+          enum:
+          - bad_request
+          - forbidden
+          - impersonation_check_failed
+          - internal_server_error
+          - payload_too_large
+          - record_invalid
+          - record_not_found
+          - request_invalid
+          - too_many_requests
+          - unauthorized
+          description: Machine-readable classification of the failure.
+        reason:
+          type: string
+          description: Human-readable summary of the failure.
+        error_messages:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: object
+              properties:
+                error_code:
+                  type: string
+                  description: 'What is wrong with this field. `missing` when it was
+                    not supplied, for a field whose presence rule is version-aware;
+                    `blank` is the v1 equivalent, and also what v2 gets from a field
+                    not yet converted off plain `presence: true`. `invalid` when the
+                    value was rejected by a type or format rule, `inclusion` when
+                    it is outside the permitted set, `too_long` or `too_short` when
+                    it breaches a length or size limit, `greater_than_or_equal_to`
+                    or `less_than_or_equal_to` when it breaches a numeric bound, `taken`
+                    when it collides with an existing record, and `unknown` when the
+                    field is not part of the request at all. `accepted` appears where
+                    a consent was supplied but refused, which is distinct from never
+                    having been supplied. `not_unique` appears where a database uniqueness
+                    constraint rejected the write rather than a validation. `validation`
+                    and `bad_request` appear where the request could not be read at
+                    all. Rule-specific codes such as `person_limit_exceeded` or `ubo_total_exceeded`
+                    name a business rule the value broke. Treat this as an open set:
+                    new rules add codes, and errors on a document image still carry
+                    a sentence rather than a code.'
+                reason:
+                  type: string
+                  description: What the caller needs to change.
+              required:
+              - error_code
+              - reason
+          description: Errors keyed by the field they apply to, or by the
+            condition or resource at fault where no single field is responsible.
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: failed
+        error_code: payload_too_large
+        reason: Request payload too large
+        error_messages:
+          file:
+          - error_code: payload_too_large
+            reason: File exceeds maximum allowed size
+    internal_server_error_response_v2:
+      type: object
+      description: An unhandled failure. Deliberately opaque.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          - failed
+          description: "`failed` when the caller can correct the request, `error`
+            when they cannot."
+        error_code:
+          type: string
+          enum:
+          - bad_request
+          - forbidden
+          - impersonation_check_failed
+          - internal_server_error
+          - payload_too_large
+          - record_invalid
+          - record_not_found
+          - request_invalid
+          - too_many_requests
+          - unauthorized
+          description: Machine-readable classification of the failure.
+        reason:
+          type: string
+          description: Human-readable summary of the failure.
+        error_messages:
+          type: object
+          nullable: true
+          description: 'Always null: no failure is attributable to a field.'
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: error
+        error_code: internal_server_error
+        reason: Internal Server Error
+        error_messages:
+    eco_relayed_error_response_v2:
+      type: object
+      description: An error raised by the onboarding workflow service and
+        relayed unchanged. Carries the same four fields as our own errors, but
+        the vocabulary is theirs.
+      properties:
+        status:
+          type: string
+          description: As set by the workflow service.
+        error_code:
+          type: string
+          description: 'Machine-readable classification, set by the onboarding workflow
+            service rather than by this one. Known values at the time of writing:
+            application_id_mismatch, invalid_step, no_previous_step, step_navigation_not_allowed,
+            step_not_actionable, step_not_started, unsupported_step_status, workflow_already_completed,
+            workflow_entity_type_mismatch, workflow_not_found, plus request_invalid
+            and internal_server_error, which both services spell alike. Not exhaustive
+            and not an enum — that service owns this vocabulary and can extend it
+            without a change here.'
+        reason:
+          type: string
+          description: Human-readable summary, as set by the workflow service.
+        error_messages:
+          oneOf:
+          - type: object
+            additionalProperties:
+              type: array
+              items:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                    description: 'What is wrong with this field. `missing` when it
+                      was not supplied, for a field whose presence rule is version-aware;
+                      `blank` is the v1 equivalent, and also what v2 gets from a field
+                      not yet converted off plain `presence: true`. `invalid` when
+                      the value was rejected by a type or format rule, `inclusion`
+                      when it is outside the permitted set, `too_long` or `too_short`
+                      when it breaches a length or size limit, `greater_than_or_equal_to`
+                      or `less_than_or_equal_to` when it breaches a numeric bound,
+                      `taken` when it collides with an existing record, and `unknown`
+                      when the field is not part of the request at all. `accepted`
+                      appears where a consent was supplied but refused, which is distinct
+                      from never having been supplied. `not_unique` appears where
+                      a database uniqueness constraint rejected the write rather than
+                      a validation. `validation` and `bad_request` appear where the
+                      request could not be read at all. Rule-specific codes such as
+                      `person_limit_exceeded` or `ubo_total_exceeded` name a business
+                      rule the value broke. Treat this as an open set: new rules add
+                      codes, and errors on a document image still carry a sentence
+                      rather than a code.'
+                  reason:
+                    type: string
+                    description: What the caller needs to change.
+                required:
+                - error_code
+                - reason
+            description: Errors keyed by the field they apply to, or by the
+              condition or resource at fault where no single field is
+              responsible.
+          - type: object
+            nullable: true
+            description: 'Always null: no failure is attributable to a field.'
+          description: Field errors where the workflow service attributed the
+            failure, otherwise null.
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: failed
+        error_code: step_not_started
+        reason: 'Step ''basic_info'' cannot be completed: current status is NOT_STARTED,
+          expected STARTED'
+        error_messages:
+    bad_gateway_response_v2:
+      type: object
+      description: A temporary failure on our side, not a fault in the request.
+      properties:
+        status:
+          type: string
+          enum:
+          - error
+          description: 'Always `error`: nothing the caller sent caused this.'
+        error_code:
+          type: string
+          enum:
+          - workflow_service_request_failed
+          description: Always `workflow_service_request_failed`.
+        reason:
+          type: string
+          description: Fixed summary. Never varies and never echoes the workflow
+            service.
+        error_messages:
+          type: object
+          nullable: true
+          description: 'Always null: no failure is attributable to a field.'
+      required:
+      - status
+      - error_code
+      - reason
+      - error_messages
+      example:
+        status: error
+        error_code: workflow_service_request_failed
+        reason: Onboarding workflow service request failed
+        error_messages:
+  responses:
+    unauthorized:
+      description: Authentication failed. The credential was absent, malformed,
+        expired or could not be verified.
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/unauthorized_response_v2"

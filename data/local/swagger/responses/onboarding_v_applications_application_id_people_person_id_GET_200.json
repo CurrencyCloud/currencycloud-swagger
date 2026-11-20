@@ -1,0 +1,38 @@
+{
+    "data": {
+        "id": "7a4b9c21-3e5f-4d80-a6b1-2c9e8f0d4a73",
+        "application_id": "3f1c2a8e-6b0d-4e7a-9c35-1d2f8a6b4e90",
+        "document_ids": [
+            "5d2e8f61-9a4c-4b3e-8d72-1f6a0c5e9b27"
+        ],
+        "roles": [
+            "user",
+            "director"
+        ],
+        "first_name": "Jane",
+        "middle_name": null,
+        "last_name": "Smith",
+        "dob": "1985-06-15",
+        "phone_number": "+447700900123",
+        "email": "jane.smith@example.com",
+        "ownership_percentage": null,
+        "id_number": null,
+        "impersonation_check_required": null,
+        "home_country": "GB",
+        "citizenship": "GB",
+        "passport_number": null,
+        "passport_country_of_issue": null,
+        "personal_address": {
+            "apartment_number": null,
+            "building_name": null,
+            "building_number": "10",
+            "city": "London",
+            "country": "GB",
+            "postal_code": "NW1 4SA",
+            "state_or_province": null,
+            "street": "Park Road"
+        },
+        "created_at": "2026-11-16T09:39:18Z",
+        "updated_at": "2026-11-16T09:47:51Z"
+    }
+}

@@ -6,7 +6,9 @@ The Currencycloud API documentation is maintained in two document formats:
 - Markdown
 - OpenAPI Specification (v2) written in YAML
 
-There are three categories of documentation on our developer centre: getting started guides, integration guides and API reference documentation. The getting started guides can be found at `data/local/pages/getting-started`, the integration guides can be found at `data/local/pages/integration-guides` and the OpenApi specification for the API reference docs is at `data/local/swagger`.
+There are four categories of documentation on our developer centre: getting started guides, onboarding guides, integration guides and API reference documentation. The getting started guides can be found at `data/local/pages/getting-started`, the onboarding guides can be found at `data/local/pages/onboarding`, the integration guides can be found at `data/local/pages/integration-guides` and the OpenApi specification for the API reference docs is at `data/local/swagger`.
+
+The Onboarding API reference is the OpenAPI 3 file `src/onboarding-api.yaml`. Every top-level `.yaml` file in `src` is published in the API reference, grouped by each endpoint's `x-api-group`.
 
 
 Most of the source documentation is written in Markdown. The only exception is the file ``reference.yaml``, which is a [YAML](http://yaml.org/) file that conforms to the [OpenAPI Specification (OAS) v2](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md), a popular API definition language previously known as "Swagger".
