@@ -434,8 +434,9 @@ paths:
           "$ref": "#/components/responses/unauthorized"
     put:
       summary: Update Current Step
-      description: Moves the workflow back to a step you've already completed,
-        so you can correct its data and complete it again.
+      description: Moves the workflow to a step you've completed, or to any step
+        before the one it's on, so you can correct its data and complete it
+        again.
       tags:
       - Steps
       x-api-group: Onboard
@@ -500,8 +501,8 @@ paths:
   "/v2/workflows/{workflow_id}/steps/previous":
     get:
       summary: Get Previous Step
-      description: Returns the nearest completed step before the one the
-        workflow is on, or an empty list when there is none.
+      description: Returns the step before the one the workflow is on, whatever
+        its status, or an empty list on the first step.
       tags:
       - Steps
       x-api-group: Onboard
@@ -3870,8 +3871,8 @@ components:
           type: array
           items:
             type: string
-          description: The nearest completed step before the current one, or an
-            empty list when there is none.
+          description: The step before the current one, whatever its status, or
+            an empty list on the first step.
       required:
       - step_ids
     document:

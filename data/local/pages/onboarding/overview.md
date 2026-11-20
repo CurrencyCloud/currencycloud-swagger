@@ -6,6 +6,13 @@ The Onboarding API lets you open Currencycloud accounts for your own customers, 
 
 This section covers version 2 of the API. In v2, each application follows a **workflow**: a fixed sequence of steps that you fill in and complete in order, so you always know what to send next and nothing reaches review half-finished.
 
+Every application goes through the same four stages:
+
+1. Create the application, which also creates its workflow.
+2. For each step, send its data, then complete the step.
+3. Submit the application.
+4. Verify the identity of the applicant, or of a director on a corporate application.
+
 ## Before you start
 
 - [Base URLs](#base-urls): where to send requests.
@@ -13,6 +20,7 @@ This section covers version 2 of the API. In v2, each application follows a **wo
 - [Accepted format](#accepted-format): how to send request bodies, country codes and files.
 - [Terms & conditions](#terms-conditions): what you must show the applicant, and the consent you must record.
 - [Key concepts](#key-concepts): five things that shape every integration.
+- [Endpoints](#endpoints): every call the API offers.
 - [Choose your flow](#choose-your-flow): the page to follow for your applicant.
 
 ## Base URLs
@@ -35,6 +43,7 @@ To use the Onboarding API, you first [authenticate](/api-reference/#authenticate
 - Country codes are uppercase ISO 3166-1 alpha-2 codes, such as `GB`.
 - Uploaded files must be JPG, PNG or PDF, up to 10MB each.
 - Send file content as a plain base64 string, without a `data:` prefix.
+- Send addresses as `personal_address_attributes`, `registered_address_attributes` and `trading_address_attributes`. They come back as `personal_address`, `registered_address` and `trading_address`.
 
 ## Terms & conditions
 
@@ -69,6 +78,56 @@ On a corporate application, both `agreed_to_corporate_authority` and `contact_na
 
 **Most responses are wrapped in `data`.** The application and its resources, such as people and documents, are returned under `data`. The create response, the workflow endpoints and identity verification return their fields at the top level instead.
 
+## Endpoints
+
+The application and its resources:
+
+```
+POST   /v2/applications
+GET    /v2/applications
+GET    /v2/applications/{application_id}
+PUT    /v2/applications/{application_id}
+DELETE /v2/applications/{application_id}
+POST   /v2/applications/{application_id}/submit
+
+GET    /v2/applications/{application_id}/account_usage
+PUT    /v2/applications/{application_id}/account_usage
+DELETE /v2/applications/{application_id}/account_usage
+
+GET    /v2/applications/{application_id}/business_information
+PUT    /v2/applications/{application_id}/business_information
+DELETE /v2/applications/{application_id}/business_information
+
+GET    /v2/applications/{application_id}/people
+POST   /v2/applications/{application_id}/people
+GET    /v2/applications/{application_id}/people/{person_id}
+PUT    /v2/applications/{application_id}/people/{person_id}
+DELETE /v2/applications/{application_id}/people/{person_id}
+
+GET    /v2/applications/{application_id}/documents
+POST   /v2/applications/{application_id}/documents
+GET    /v2/applications/{application_id}/documents/{id}
+DELETE /v2/applications/{application_id}/documents/{id}
+GET    /v2/applications/{application_id}/documents/{document_id}/document_files
+POST   /v2/applications/{application_id}/documents/{document_id}/document_files
+DELETE /v2/applications/{application_id}/documents/{document_id}/document_files/{id}
+
+POST   /v2/identity_verifications
+```
+
+The workflow, which needs `application_id` as a query parameter on every call:
+
+```
+PUT    /v2/workflows/{workflow_id}/steps/{step_id}/completion?application_id={application_id}
+GET    /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
+PUT    /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
+GET    /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
+```
+
+`GET /v2/applications` takes `order`, `order_asc_desc`, `application_status`, `entity_type`, `page` and `per_page`. `per_page` is from 1 to 50.
+
+The reference data, such as permitted jurisdictions, supported currencies and the photo ID types each country accepts, comes from three v1 endpoints. They take the same token. Each flow page lists them under Reference data.
+
 ## Choose your flow
 
 | **Your applicant** | **Follow** |
@@ -82,6 +141,5 @@ For a company or a sole trader, read [Onboard a business](/guides/onboarding/cor
 
 ## More help
 
-- [Common errors](/guides/onboarding/errors): every error code and what to do about it.
 - [Troubleshooting & FAQ](/guides/onboarding/faq): what happens after submission, and fixes for common problems.
 - [Migrating from v1](/guides/onboarding/migrating-from-v1): what changes if you already use `/v1/forms`.

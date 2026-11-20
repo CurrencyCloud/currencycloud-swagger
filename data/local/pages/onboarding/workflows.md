@@ -69,8 +69,8 @@ Step IDs are exact. A step ID that isn't in your application's workflow, or a `w
 |---|---|
 | `PUT /v2/workflows/{workflow_id}/steps/{step_id}/completion` | Completes a step |
 | `GET /v2/workflows/{workflow_id}/steps/current` | Tells you which step you're on |
-| `GET /v2/workflows/{workflow_id}/steps/previous` | Tells you the nearest completed step before the one you're on |
-| `PUT /v2/workflows/{workflow_id}/steps/current` | Moves you to a step you've already completed |
+| `GET /v2/workflows/{workflow_id}/steps/previous` | Tells you the step before the one you're on |
+| `PUT /v2/workflows/{workflow_id}/steps/current` | Moves you to a step you've completed, or to any step before the one you're on |
 
 All four need `?application_id={application_id}`. None of their responses are wrapped in `data`.
 
@@ -141,7 +141,7 @@ Mind the field name: the completion response calls it `steps`, while this call a
 
 ### Go back a step
 
-Going back takes two calls. First, find the nearest completed step before the one you're on:
+Going back takes two calls. First, find the step before the one you're on:
 
 ```
 GET /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
@@ -154,7 +154,7 @@ GET /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
 }
 ```
 
-`step_ids` holds at most one step. Here, an empty `step_ids` means there's no completed step before the one you're on, which is what a new workflow returns. It doesn't mean the workflow is finished: only `GET .../steps/current` tells you that.
+`step_ids` holds at most one step. Here, an empty `step_ids` means you're on the first step. It doesn't mean the workflow is finished: only `GET .../steps/current` tells you that.
 
 Then move to that step:
 
@@ -177,20 +177,7 @@ Going back resets the step you were on, so you'll need to complete it again. The
 
 Make corrections before you submit. Once `POST .../submit` succeeds, the application and its resources are locked. Until you complete `form_submit` or `form_submit_corp` you can still move between steps, but any update to the data is refused with a `422`.
 
-You can only move to a step you've completed, and the step you leave is reset, even if you'd completed it. So after going back, don't move forward again: complete the step you went back to, and the workflow takes you to the earliest step that isn't completed, usually the one you left. Moving to a step that isn't completed is refused with a `409`.
-
-### After the workflow is finished
-
-The workflow is finished once you complete `form_submit` or `form_submit_corp`. From then on, you can still read it, but you can't change it:
-
-| **Call** | **Result** |
-|---|---|
-| `GET .../steps/current` | `200` with an empty `step_ids` |
-| `GET .../steps/previous` | `200` with `["form_submit"]` or `["form_submit_corp"]` |
-| `PUT .../steps/{step_id}/completion` | `409` |
-| `PUT .../steps/current` | `409` |
-
-This is the normal end of a journey, not an error. The application itself was already locked when you submitted it.
+You can move to a step you've completed, or to any step before the one you're on. The step you leave is reset, even if you'd completed it. So after going back, don't move forward again: complete the step you went back to, and the workflow takes you to the earliest step that isn't completed, usually the one you left. Moving to a step ahead of the one you're on that isn't completed is refused with a `409`.
 
 ## What each step checks before it will complete
 
@@ -215,8 +202,8 @@ When the workflow itself refuses a call, you get a `409` with an `error_code` th
 | **Situation** | **`error_code`** |
 |---|---|
 | You completed a step that isn't the current one: one you haven't reached, or one you've already completed. If the step's data fails its checks, you get a `422` instead | `step_not_started` |
-| You moved to a step that isn't completed, including the one you just left | `step_navigation_not_allowed` |
+| You moved to a step ahead of the one you're on that isn't completed, including the one you just left | `step_navigation_not_allowed` |
 | You tried to complete or move to `id_verification` | `step_not_actionable` |
 | The workflow is finished | `workflow_already_completed` |
 
-Treat `error_code` as an open set: new codes can be added. See [Common errors](/guides/onboarding/errors) for every error code and what to do about it.
+Treat `error_code` as an open set: new codes can be added.
