@@ -13,20 +13,6 @@ Two people take part:
 
 The application also lists the company's other directors and its ultimate business owners.
 
-## Before you start
-
-- **Use the Onboarding API base URL.** Every path on this page is relative to it, and `/onboarding` is part of the base:
-
-  | **Environment** | **Base URL** |
-  |---|---|
-  | Demo | `https://devapi.currencycloud.com/onboarding` |
-  | Production | `https://api.currencycloud.com/onboarding` |
-
-- **Authenticate** and pass the token as `X-Auth-Token` on every request. See [Authentication](/guides/integration-guides/authentication).
-- **Show the terms and conditions** to the applicant and get their consent before you create the application. See [Terms & conditions](/guides/onboarding/overview#terms-conditions).
-- **Read [Onboard a business](/guides/onboarding/corporate) first.** It explains how the people on a company application fit together, and which documents a company needs.
-- **Know how the workflow works.** Every step is two calls: send the data, then complete the step. See [Workflows](/guides/onboarding/workflows).
-
 ## The steps at a glance
 
 | **Step** | **You send** | **Then complete** |
@@ -59,7 +45,7 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-In the field tables, **Required** means the field must be set before you complete that step.
+The [API reference](/api-reference/) lists every field and its format.
 
 ## Step 1: Create the application
 
@@ -85,16 +71,9 @@ Creates the application and its workflow, and records the applicant's email, con
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `entity_type` | `corporate`. Fixed once created |
-| `email` | The applicant's own email address. It's set once, here |
-| `agreed_to_terms_and_conditions` | `true`, recording the applicant's consent. It's set once, here |
-| `business_role` | `authorised_person`: someone who isn't a director is filling in the application. It's set once, here |
+These four fields are the complete create request for this flow. `email`, `agreed_to_terms_and_conditions` and `business_role` can't be changed afterward.
 
-These four fields are the complete create request for this flow.
-
-**Store both IDs.** You need `application_id` on every call, and `workflow_id` to complete each step, so save both now.
+**Store both IDs.** You need `application_id` on every call, and `workflow_id` on every workflow call, so save both now.
 
 There's nothing to complete for this step. The workflow starts at `basic_info_corp`.
 
@@ -115,14 +94,6 @@ Records how to reach the applicant, and their confirmation that they can act for
   "agreed_to_corporate_authority": true
 }
 ```
-
-| **Field** | **Rule** |
-|---|---|
-| `country` | Required. The country of the company's registered address, as an ISO 3166-1 alpha-2 code. Must be a [permitted jurisdiction](#reference-data) |
-| `phone_number` | Required. The applicant's phone number, in E.164 format, such as `+447700900456`. A `+44` or `+1` number has 10 digits after the country code |
-| `contact_name` | Required. The applicant's full name, not initials, between 2 and 100 characters, using only the letters `A`–`Z`, accented letters from Western European languages, such as `é`, `ñ` or `ü`, spaces, apostrophes, hyphens and periods |
-| `agreed_to_marketing_emails` | Required. `true` or `false` |
-| `agreed_to_corporate_authority` | Required. `true`, confirming the applicant can act for the company |
 
 `PUT` replaces the application, so send the full body every time you update it.
 
@@ -164,17 +135,7 @@ Describes the company: what it is, where it's registered and what it does.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `company_name` | Required. The company's registered name, up to 150 characters |
-| `business_country` | Required. The country the company is registered in, as an ISO 3166-1 alpha-2 code |
-| `legal_entity_type` | Required. One of the values in the [API reference](/api-reference/). `sole_trader` belongs to the [sole trader flow](/guides/onboarding/corporate-sole-trader) |
-| `sector` | Required. One of the values in the [API reference](/api-reference/) |
-| `company_registration_number`, `vat_number` | Required for some countries and legal entity types. See the table below |
-| `incorporation_date` | Required, `YYYY-MM-DD`. Today or earlier |
-| `business_website` | Required. The company's website or other online presence, as a URL. The scheme is optional, so `example.com` works |
-| `registered_address_attributes` | Required. `street`, `city`, `postal_code` (at most 12 characters) and `country`, plus a `building_number` (at most 10 characters) or a `building_name`. The country must be a [permitted jurisdiction](#reference-data) |
-| `trading_address_attributes` | Optional. The address the company trades from, if it's different. Same fields as the registered address |
+Use any `legal_entity_type` except `sole_trader`, which belongs to the [sole trader flow](/guides/onboarding/corporate-sole-trader).
 
 Whether the registration and VAT numbers are required depends on where the company is registered and its legal entity type:
 
@@ -222,17 +183,7 @@ Describes how the company intends to use the account.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `collections_account` | Required. `true` if the account will receive funds from third parties |
-| `collection_currencies`, `payment_currencies` | Required. ISO 4217 currency codes, such as `GBP`. [Reference data](#reference-data) lists the currencies we support |
-| `transaction_countries` | Required. The countries the company will send money to or receive it from, as ISO 3166-1 alpha-2 codes |
-| `source_of_funds` | Required. One of the values in the [API reference](/api-reference/) |
-| `primary_purpose` | Required. One of the values in the [API reference](/api-reference/) |
-| `estimated_monthly_transaction_currency`, `estimated_monthly_transaction_value` | Required. The value is a whole number, zero or more |
-| `estimated_monthly_transaction_volume` | Required. How many transactions the company expects each month, as a whole number, zero or more |
-| `purpose_details` | Required when `primary_purpose` is `other` |
-| `initial_capital` | Required when the company was incorporated in the last 12 months. How the account will first be funded, in 15 to 240 characters |
+`purpose_details` is required when `primary_purpose` is `other`, and `initial_capital` when the company was incorporated in the last 12 months.
 
 `PUT` replaces the account usage, so send the full body every time you update it.
 
@@ -284,16 +235,7 @@ Add each person once, with all of their roles. In this flow the authorised perso
 
 The response returns the person under `data`. Keep `data.id`: it's the `person_id` you need in step 6.
 
-| **Field** | **Rule** |
-|---|---|
-| `roles` | `["user"]`. Add `ultimate_business_owner` too if the authorised person owns 25% or more, with their `ownership_percentage` |
-| `first_name`, `last_name` | Required. The authorised person's full names, not initials, up to 100 characters each, using only the letters `A`–`Z`, accented letters from Western European languages, such as `é`, `ñ` or `ü`, spaces, apostrophes, hyphens and periods |
-| `dob` | Required, `YYYY-MM-DD`. Must give an age between 18 and 100 |
-| `email` | Required. The authorised person's email address |
-| `phone_number` | Required. E.164 format |
-| `home_country` | Required. ISO 3166-1 alpha-2 code |
-| `citizenship` | Required. ISO 3166-1 alpha-2 code |
-| `personal_address_attributes` | Required. `street`, `city`, `postal_code` (at most 12 characters) and `country`, plus a `building_number` (at most 10 characters) or a `building_name`. The country must be a [permitted jurisdiction](#reference-data) |
+The authorised person holds `user`. Add `ultimate_business_owner` too if they own 25% or more, with their `ownership_percentage`.
 
 Some fields depend on where the authorised person lives:
 
@@ -320,12 +262,7 @@ Add the director who will be verified with the same call, including their own em
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `roles` | `["director"]`. Add `ultimate_business_owner` too if the director owns 25% or more, with their `ownership_percentage` |
-| `email` | Required in this flow, though nothing checks it until step 8. The director's own email address, which they verify on the hosted page in step 8 |
-| `first_name`, `last_name`, `home_country`, `citizenship` | Required, with the same rules as for the authorised person |
-| `dob` | Required in this flow, though nothing checks it until step 8. `YYYY-MM-DD`. Must give an age between 18 and 100 |
+The director holds `director`. Add `ultimate_business_owner` too if they own 25% or more, with their `ownership_percentage`.
 
 Send both `email` and `dob` now: the identity check in step 8 needs them, and people can't be changed once the application is submitted.
 
@@ -346,11 +283,7 @@ Add every other director, and every ultimate business owner, with the same call.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `roles` | `["director"]`, `["ultimate_business_owner"]`, or both |
-| `first_name`, `last_name`, `home_country`, `citizenship` | Required, with the same rules as for the authorised person |
-| `ownership_percentage` | Required for an `ultimate_business_owner`. At least 25, and all owners together can't exceed 100 |
+Give each person `director`, `ultimate_business_owner` or both. An owner needs an `ownership_percentage` of at least 25, and all owners together can't exceed 100.
 
 An application holds at most 50 people. To correct someone's details, update them with `PUT .../people/{person_id}` and the full body, including `document_ids` once you've attached documents.
 
@@ -501,12 +434,13 @@ The director proves they are who they say they are, using their photo ID and a s
 
 We email `whitelabel_url` to the director's `email` when you start the verification. Send it to them yourself as well, for example by email.
 
-The director opens the link in their own browser. The hosted page has them verify their email address, the one you gave in [5.b](#5b-add-the-director), with a one-time code. It then takes them through the terms and biometric consent, and the identity check itself.
+The director opens the link in their own browser. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
 
-This part is the director's alone:
+### 8.c Email verification
 
-- **The director verifies their own email address, on the hosted page.** There's no API call for this step.
-- **Send the link to the director only.** Only the address you gave for them in [5.b](#5b-add-the-director) lets them through to the identity check.
+The hosted page asks the director for their email address, then emails a one-time code to it. It must be the email address you gave for them in [5.b](#5b-add-the-director): an address that isn't on the application is refused. They enter the code on the page to verify the address.
+
+**Only the director can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it. Send the link to the director only: only the address you gave for them lets them through to the identity check.
 
 There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7.b](#7b-complete-form_submit_corp).
 
@@ -514,7 +448,7 @@ There's no step to complete here: `id_verification` completes on its own when yo
 
 The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
 
-See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls, and [Common errors](/guides/onboarding/errors) for every error code.
+See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.
 
 ## Reference data
 

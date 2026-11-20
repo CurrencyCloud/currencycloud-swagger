@@ -40,7 +40,7 @@ Who you add depends on the flow:
 
 ## Business information
 
-Every corporate application sends its business information with `PUT /v2/applications/{application_id}/business_information`. The flow pages list every field. These are the rules that are easiest to get wrong.
+Every corporate application sends its business information with `PUT /v2/applications/{application_id}/business_information`. The [API reference](/api-reference/) lists every field. These are the rules that are easiest to get wrong.
 
 **`business_website` is always required.** It's the business's website or other online presence, as a URL, and the scheme is optional, so `example.com` works. A business with no online presence can't be onboarded through the API.
 
