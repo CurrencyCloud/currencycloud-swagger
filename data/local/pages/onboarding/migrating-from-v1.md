@@ -37,14 +37,7 @@ Some endpoints are new on v2:
 | `PUT /v2/workflows/{workflow_id}/steps/current` | Moves you to a step you've completed, or to any step before the one you're on |
 | `POST /v2/identity_verifications` | Starts identity verification, once the application is submitted |
 
-These stay on v1. They take the same token and work for v2 applications too:
-
-| **Endpoint** | **Returns** |
-|---|---|
-| `GET /v1/countries` | Every country, with its `permitted_jurisdiction` flag |
-| `GET /v1/countries/{country_code}/document_types` | The photo ID types a country accepts |
-| `GET /v1/currencies/supported` | The supported currency codes |
-| `POST /v1/validations` | The result of each pre-flight validation you ask for, before you create an application |
+`POST /v1/validations`, which runs the pre-flight validations you ask for before you create an application, stays on v1. It takes the same token and works for v2 applications too.
 
 ## Create the application
 
@@ -54,7 +47,6 @@ These stay on v1. They take the same token and work for v2 applications too:
 |---|---|
 | `entity_type`, `email`, `agreed_to_terms_and_conditions` | Required at create, as on v1 |
 | `business_role` | Required at create on a corporate application |
-| `brand_name`, `brand_key` | Optional at create, as on v1. An update ignores them, so keep them in the create request |
 | `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails`, `agreed_to_corporate_authority`, `affiliate_code`, `referred_by` | Send with `PUT /v2/applications/{application_id}`, before you complete the first step |
 
 Create only takes the fields in the first three rows, so move the fields in the last row from your v1 create body into that update.

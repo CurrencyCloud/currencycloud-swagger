@@ -1428,18 +1428,6 @@ components:
           - corporate
           description: 'Type of applicant - individual or corporate. Set here only:
             the update endpoint does not accept it.'
-        brand_name:
-          type: string
-          maxLength: 255
-          description: Brand the application is being made under. Resolved to
-            the introducing account, so it determines the application's
-            attribution. Required for web-sourced requests.
-        brand_key:
-          type: string
-          maxLength: 255
-          description: House account key identifier. Resolved together with
-            brand_name, and needed whenever a brand has more than one house
-            account — without it the lookup finds several and resolves none.
         email:
           type: string
           maxLength: 255
@@ -2107,7 +2095,12 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -3251,7 +3244,12 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -3296,7 +3294,12 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -3659,16 +3662,6 @@ components:
           description: >-
             Home country for individual applicant or country of registered address for corporate
             applicant, as an ISO 3166-1 alpha-2 code. Must be a permitted jurisdiction.
-        brand_name:
-          type: string
-          maxLength: 255
-          nullable: true
-          description: Form's brand name
-        brand_key:
-          type: string
-          maxLength: 255
-          nullable: true
-          description: House account key identifier
         referred_by:
           type: string
           nullable: true
@@ -3762,15 +3755,6 @@ components:
         entity_type:
           type: string
           description: Type of applicant - individual or corporate.
-        brand_name:
-          type: string
-          description: Brand the application was made under. Resolved to the
-            introducing account, so it determines the application's attribution.
-        brand_key:
-          type: string
-          description: House account key identifier. Resolved together with
-            brand_name, and needed whenever a brand has more than one house
-            account.
         referred_by:
           type: string
           nullable: true
@@ -3811,7 +3795,6 @@ components:
       - id
       - agreed_to_marketing_emails
       - agreed_to_terms_and_conditions
-      - brand_name
       - country
       - entity_type
       - products_required

@@ -44,7 +44,7 @@ Every corporate application sends its business information with `PUT /v2/applica
 
 **`business_website` is always required.** It's the business's website or other online presence, as a URL, and the scheme is optional, so `example.com` works. A business with no online presence can't be onboarded through the API.
 
-**The registered address must be in a [permitted jurisdiction](#reference-data).** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
+**The registered address must be in a permitted jurisdiction.** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
 
 **Registration and VAT numbers depend on where the business is registered and its legal entity type:**
 
@@ -87,13 +87,3 @@ You create each document with `POST /v2/applications/{application_id}/documents`
 - **A two-sided document needs both sides first.** `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need a `front` and a `back` uploaded before you can attach them.
 
 Each flow page's documents step shows the calls in full. Every `document_type` and `category` value is listed in the [API reference](/api-reference/).
-
-## Reference data
-
-These endpoints list the values the rules above check against. They're on v1, take the same token, and work for any application.
-
-| **Endpoint** | **Returns** |
-|---|---|
-| `GET /v1/countries` | Every country, with its `permitted_jurisdiction` flag |
-| `GET /v1/countries/{country_code}/document_types` | The photo ID types a country accepts, such as `passport` or `driving_licence` |
-| `GET /v1/currencies/supported` | The supported currency codes |
