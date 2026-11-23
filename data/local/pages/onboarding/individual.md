@@ -262,7 +262,12 @@ PUT /v2/workflows/{workflow_id}/steps/documents/completion?application_id={appli
 
 ## Step 6: Submit
 
-Sends the application for compliance review.
+Sends the application for compliance review. It takes two calls, in this order:
+
+- **6a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
+- **6b completes `form_submit`.** It moves the workflow on, and starts nothing else.
+
+Completing `form_submit` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit`.
 
 ### 6a. Submit the application
 
