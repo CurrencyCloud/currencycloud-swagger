@@ -1492,7 +1492,7 @@ components:
             state_id.'
         first_name:
           type: string
-          maxLength: 255
+          maxLength: 100
           description: First name. Cannot be a single initial. Up to 100 characters,
             using only the letters A to Z, accented letters from Western European
             languages such as é, ñ or ü, apostrophes, hyphens, periods, and single
@@ -1504,7 +1504,7 @@ components:
           description: Middle name
         last_name:
           type: string
-          maxLength: 255
+          maxLength: 100
           description: >-
             Surname. Cannot be a single initial, or end with a company signifier. Up to 100
             characters, using only the letters A to Z, accented letters from Western European
@@ -3683,7 +3683,7 @@ components:
             application.
         contact_name:
           type: string
-          maxLength: 255
+          maxLength: 100
           nullable: true
           description: >-
             The applicant's full name, not initials (corporate applicants only). Between 2 and
