@@ -264,7 +264,7 @@ Uploads the documents for the business and the sole trader, and attaches each on
 | Registration documents, such as a business registration certificate | `proof_of_business_identity` | The business information |
 | Source of funds, such as financial statements or business bank statements | `proof_of_source_of_funds` | The account usage |
 
-Every `document_type` and `category` value is listed in the [API reference](/api-reference/), and the [document types endpoint](#reference-data) returns the photo ID types a country accepts.
+Every `document_type` and `category` value is listed in the [API reference](/api-reference/).
 
 Keep `data.id` from the response: it's the `document_id`.
 
@@ -390,13 +390,3 @@ There's no step to complete here: `id_verification` completes on its own when yo
 The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from [Get Application](/api-reference/#get-application).
 
 See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.
-
-## Reference data
-
-These endpoints list the values the rules above check against. They're on v1, take the same token, and work for any application.
-
-| **Endpoint** | **Returns** |
-|---|---|
-| `GET /v1/countries` | Every country, with its `permitted_jurisdiction` flag |
-| `GET /v1/countries/{country_code}/document_types` | The photo ID types a country accepts, such as `passport` or `driving_licence` |
-| `GET /v1/currencies/supported` | The supported currency codes |

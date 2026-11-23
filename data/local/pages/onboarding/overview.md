@@ -116,8 +116,6 @@ GET    /v2/workflows/{workflow_id}/steps/previous?application_id={application_id
 
 [Find Applications](/api-reference/#find-applications) takes `order`, `order_asc_desc`, `application_status`, `entity_type`, `page` and `per_page`. `per_page` is from 1 to 50.
 
-The reference data, such as permitted jurisdictions, supported currencies and the photo ID types each country accepts, comes from three v1 endpoints. They take the same token. Each flow page lists them under Reference data.
-
 ## Choose your flow
 
 | **Your applicant** | **Follow** |

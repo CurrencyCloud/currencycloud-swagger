@@ -11,8 +11,6 @@
             "country": "GB",
             "email": "jane.smith@example.com",
             "entity_type": "corporate",
-            "brand_name": "currency_cloud_dev_centre",
-            "brand_key": null,
             "referred_by": null,
             "products_required": null,
             "state": "submitted",
