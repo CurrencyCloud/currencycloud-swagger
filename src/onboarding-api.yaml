@@ -1478,7 +1478,9 @@ components:
             - director
             - ultimate_business_owner
             - user
-          description: The person's role(s).
+          description: >-
+            The person's role(s). On an individual application, user is the only role. A sole
+            trader holds all three.
         document_ids:
           type: array
           items:
@@ -1512,7 +1514,9 @@ components:
           type: string
           format: date
           nullable: true
-          description: Date of Birth. Must give an age between 18 and 100 years.
+          description: >-
+            Date of Birth. Must give an age between 18 and 100 years. Needed for every person
+            with the user role before the people step completes.
         phone_number:
           type: string
           maxLength: 255
@@ -1814,6 +1818,9 @@ components:
           description: Country code for where the passport was issued.
         personal_address_attributes:
           type: object
+          description: >-
+            The person's home address. Needed for every person with the user role before the
+            people step completes.
           properties:
             city:
               type: string
