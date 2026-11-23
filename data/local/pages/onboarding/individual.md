@@ -260,6 +260,8 @@ PUT /v2/workflows/{workflow_id}/steps/documents/completion?application_id={appli
 { "status": "completed" }
 ```
 
+Completing `documents` checks nothing, so it completes even if no documents were uploaded or attached: do both first. A document you don't attach with `document_ids` is submitted as a general file, not as the applicant's document.
+
 ## Step 6: Submit
 
 Sends the application for compliance review. It takes two calls, in this order:
