@@ -2726,8 +2726,7 @@ components:
           type: string
           maxLength: 255
           nullable: true
-          description: Currency of the estimated monthly transaction value.
-            A whole number, zero or more. Required.
+          description: Currency of the estimated monthly transaction value. Required.
         estimated_monthly_transaction_value:
           type: integer
           nullable: true
