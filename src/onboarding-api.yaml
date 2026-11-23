@@ -97,6 +97,17 @@ paths:
                     "$ref": "#/components/schemas/pagination"
         '400':
           description: Invalid query parameter
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: A query parameter is missing or isn't one of its permitted
+              values.
+            params: ''
+          - code: validation
+            category: query
+            message: The named query parameter, such as order or entity_type, is
+              outside its permitted values.
+            params: ''
           content:
             application/json:
               schema:
@@ -124,14 +135,47 @@ paths:
               schema:
                 "$ref": "#/components/schemas/application_create_response"
         '502':
-          description: A temporary failure on our side, not a fault in the
-            request
+          description: Temporary failure on our side
+          x-errors:
+          - code: workflow_service_request_failed
+            category: base
+            message: The workflow service refused our call, but the application
+              may have been saved. Look for it with GET /v2/applications before
+              you create another one.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/bad_gateway_response_v2"
         '422':
           description: Invalid parameter in request params
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: missing
+            category: agreed_to_terms_and_conditions
+            message: agreed_to_terms_and_conditions wasn't sent.
+            params: ''
+          - code: accepted
+            category: agreed_to_terms_and_conditions
+            message: agreed_to_terms_and_conditions was false. Get the
+              applicant's consent before you create the application, then send
+              true.
+            params: ''
+          - code: present
+            category: business_role
+            message: business_role was sent on an individual application. It's
+              for corporate applications only.
+            params: ''
+          - code: not_eligible_to_create_individual_accounts
+            category: account_eligibility
+            message: Returned as request_invalid. Your account can't create
+              individual applications. Ask your Solutions Manager to enable it.
+            params: ''
           content:
             application/json:
               schema:
@@ -171,6 +215,12 @@ paths:
                     "$ref": "#/components/schemas/application_response"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -205,12 +255,95 @@ paths:
                     "$ref": "#/components/schemas/application_response"
         '422':
           description: Returns validation error
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: cannot_be_cleared
+            category: country
+            message: null or an empty string was sent for country, phone_number,
+              contact_name, agreed_to_marketing_emails or
+              agreed_to_corporate_authority when it already has a value. Leave
+              the field out to keep it.
+            params: ''
+          - code: jurisdiction_not_permitted
+            category: country
+            message: We can't onboard applications from this country. Check
+              permitted_jurisdiction in GET /v1/countries.
+            params: ''
+          - code: country_mismatch
+            category: country
+            message: Individual applications only. The country doesn't match the
+              applicant's home_country.
+            params: ''
+          - code: missing
+            category: phone_number
+            message: Corporate applications only. The application has no phone
+              number yet.
+            params: ''
+          - code: invalid
+            category: phone_number
+            message: The number isn't in E.164 format, or its country code isn't
+              recognized.
+            params: ''
+          - code: wrong_length
+            category: phone_number
+            message: A +1 or +44 number doesn't have 10 digits after the country
+              code.
+            params: ''
+          - code: present
+            category: agreed_to_corporate_authority
+            message: agreed_to_corporate_authority was sent as true on an
+              individual application.
+            params: ''
+          - code: too_short
+            category: contact_name
+            message: contact_name is under 2 characters.
+            params: ''
+          - code: initial
+            category: contact_name
+            message: contact_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: contact_name
+            message: contact_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: contact_name
+            message: contact_name has a character we don't accept, such as a
+              line break.
+            params: ''
+          - code: too_long
+            category: contact_name
+            message: contact_name is over 100 characters.
+            params: ''
+          - code: validation
+            category: request_body_json
+            message: Returned as request_invalid. A name field has characters we
+              don't accept, and reason names the field. We accept A to Z,
+              accented Latin-1 letters, apostrophes, hyphens, periods and single
+              spaces.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -242,12 +375,28 @@ paths:
           description: Application deleted successfully
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
           description: Application is immutable
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -283,14 +432,66 @@ paths:
                   data:
                     "$ref": "#/components/schemas/application_response"
         '422':
-          description: Application already submitted, or its workflow steps not
-            completed
+          description: Already submitted, or steps not complete
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: Submit checks the whole application again, so any field
+              code from the earlier steps can also come back here. You get one
+              part's errors per response.
+            params: ''
+          - code: validation
+            category: workflow
+            message: Returned as request_invalid. Earlier workflow steps aren't
+              complete yet.
+            params: ''
+          - code: already_submitted
+            category: base
+            message: The application has already been submitted.
+            params: ''
+          - code: missing
+            category: people
+            message: The application has no people.
+            params: ''
+          - code: missing_user_role
+            category: people
+            message: No one on the application has the user role.
+            params: ''
+          - code: missing_director_role
+            category: people
+            message: Corporate applications only. No one has the director role.
+            params: ''
+          - code: missing_initial_capital
+            category: form
+            message: Corporate applications only. A company incorporated in the
+              last 12 months needs initial_capital.
+            params: ''
+          - code: jurisdiction_not_permitted
+            category: country
+            message: The application's country isn't one we can onboard from.
+            params: ''
+          - code: jurisdiction_not_permitted
+            category: personal_address
+            message: Individual applications only. The applicant's address is in
+              a country we can't onboard from.
+            params: ''
+          - code: jurisdiction_not_permitted
+            category: registered_address
+            message: Corporate applications only. The company's registered
+              address is in a country we can't onboard from.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -338,35 +539,106 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/step_completion_response"
+        '404':
+          description: Workflow or step not found
+          x-errors:
+          - code: workflow_not_found
+            category: base
+            message: The workflow doesn't exist.
+            params: ''
+          - code: application_id_mismatch
+            category: base
+            message: The workflow doesn't belong to this application_id. Pair
+              the workflow_id with the application_id it was created with.
+            params: ''
+          - code: invalid_step
+            category: base
+            message: The step ID isn't in this application's workflow, for
+              example a corporate step on an individual application.
+            params: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '422':
           description: Invalid request
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The step can't complete yet. error_messages names what's
+              missing, with validation as its error_code.
+            params: ''
+          - code: validation
+            category: field
+            message: The named field is missing or isn't valid yet, such as
+              country on basic_info. See What each step checks in the Workflows
+              guide.
+            params: ''
+          - code: validation
+            category: state
+            message: form_submit or form_submit_corp was completed before the
+              application was submitted.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '409':
-          description: Workflow step transition rejected by the onboarding
-            workflow service (conflict)
+          description: Step transition rejected
+          x-errors:
+          - code: step_not_started
+            category: base
+            message: The step isn't the current one. Call GET
+              /v2/workflows/{workflow_id}/steps/current and complete the step it
+              returns.
+            params: ''
+          - code: step_not_actionable
+            category: base
+            message: id_verification can't be completed directly. It completes
+              on its own when you complete form_submit or form_submit_corp.
+            params: ''
+          - code: workflow_already_completed
+            category: base
+            message: The workflow is finished. This is the normal end of the
+              journey.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '400':
-          description: The onboarding workflow service rejects the request as
-            invalid
+          description: Rejected by the workflow
+          x-errors:
+          - code: unsupported_step_status
+            category: base
+            message: The status sent isn't one this endpoint accepts. Send
+              completed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '500':
-          description: Internal error in the onboarding workflow service
+          description: Internal server error
+          x-errors:
+          - code: internal_server_error
+            category: base
+            message: Something went wrong on our side, or the workflow couldn't
+              be reached. Check whether the call landed before you retry.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/internal_server_error_response_v2"
         '502':
-          description: A temporary failure on our side, not a fault in the
-            request
+          description: Temporary failure on our side
+          x-errors:
+          - code: workflow_service_request_failed
+            category: base
+            message: The workflow service refused our call. There's nothing to
+              fix in your request. Retry, and contact support if it keeps
+              happening.
+            params: ''
           content:
             application/json:
               schema:
@@ -411,21 +683,30 @@ paths:
               schema:
                 "$ref": "#/components/schemas/current_steps_response"
         '404':
-          description: The onboarding workflow service could not find the
-            workflow
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
-        '409':
-          description: Workflow entity type mismatch
+          description: Workflow not found
+          x-errors:
+          - code: workflow_not_found
+            category: base
+            message: The workflow doesn't exist.
+            params: ''
+          - code: application_id_mismatch
+            category: base
+            message: The workflow doesn't belong to this application_id. Pair
+              the workflow_id with the application_id it was created with.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '502':
-          description: A temporary failure on our side, not a fault in the
-            request
+          description: Temporary failure on our side
+          x-errors:
+          - code: workflow_service_request_failed
+            category: base
+            message: The workflow service refused our call. There's nothing to
+              fix in your request. Retry, and contact support if it keeps
+              happening.
+            params: ''
           content:
             application/json:
               schema:
@@ -433,7 +714,7 @@ paths:
         '401':
           "$ref": "#/components/responses/unauthorized"
     put:
-      summary: Update Current Step
+      summary: Navigate To Step
       description: Moves the workflow to a step you've completed, or to any step
         before the one it's on, so you can correct its data and complete it
         again.
@@ -466,27 +747,71 @@ paths:
               schema:
                 "$ref": "#/components/schemas/step_current_response"
         '404':
-          description: The onboarding workflow service could not find the
-            workflow
+          description: Workflow or step not found
+          x-errors:
+          - code: workflow_not_found
+            category: base
+            message: The workflow doesn't exist.
+            params: ''
+          - code: application_id_mismatch
+            category: base
+            message: The workflow doesn't belong to this application_id. Pair
+              the workflow_id with the application_id it was created with.
+            params: ''
+          - code: invalid_step
+            category: base
+            message: The step ID isn't in this application's workflow, for
+              example a corporate step on an individual application.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '409':
           description: Step not actionable
+          x-errors:
+          - code: step_navigation_not_allowed
+            category: base
+            message: The step hasn't been started and comes after the one the
+              workflow is on. You can move to any step before the current one,
+              or to a step that's already completed.
+            params: ''
+          - code: step_not_actionable
+            category: base
+            message: id_verification can't be navigated to.
+            params: ''
+          - code: workflow_already_completed
+            category: base
+            message: The workflow is finished, so there's no step to move to.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '502':
-          description: A temporary failure on our side, not a fault in the
-            request
+          description: Temporary failure on our side
+          x-errors:
+          - code: workflow_service_request_failed
+            category: base
+            message: The workflow service refused our call. There's nothing to
+              fix in your request. Retry, and contact support if it keeps
+              happening.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/bad_gateway_response_v2"
         '422':
           description: Invalid request
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The body is invalid. error_messages names the field.
+            params: ''
+          - code: missing
+            category: step_id
+            message: step_id wasn't sent.
+            params: ''
           content:
             application/json:
               schema:
@@ -532,21 +857,30 @@ paths:
               schema:
                 "$ref": "#/components/schemas/previous_step_response"
         '404':
-          description: The onboarding workflow service could not find the
-            workflow
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
-        '409':
-          description: No previous step (at first step)
+          description: Workflow not found
+          x-errors:
+          - code: workflow_not_found
+            category: base
+            message: The workflow doesn't exist.
+            params: ''
+          - code: application_id_mismatch
+            category: base
+            message: The workflow doesn't belong to this application_id. Pair
+              the workflow_id with the application_id it was created with.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '502':
-          description: A temporary failure on our side, not a fault in the
-            request
+          description: Temporary failure on our side
+          x-errors:
+          - code: workflow_service_request_failed
+            category: base
+            message: The workflow service refused our call. There's nothing to
+              fix in your request. Retry, and contact support if it keeps
+              happening.
+            params: ''
           content:
             application/json:
               schema:
@@ -582,6 +916,12 @@ paths:
                     "$ref": "#/components/schemas/account_usage_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -618,12 +958,61 @@ paths:
                     "$ref": "#/components/schemas/account_usage_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
           description: Account usage params are invalid
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: missing
+            category: collections_account
+            message: collections_account, primary_purpose, source_of_funds,
+              collection_currencies, payment_currencies,
+              estimated_monthly_transaction_currency and
+              estimated_monthly_transaction_value are required on every PUT.
+            params: ''
+          - code: missing
+            category: estimated_monthly_transaction_volume
+            message: Corporate applications only.
+              estimated_monthly_transaction_volume and transaction_countries are
+              required on every PUT. An empty transaction_countries counts as
+              missing.
+            params: ''
+          - code: missing
+            category: purpose_details
+            message: primary_purpose is other, so purpose_details is required.
+            params: ''
+          - code: not_found
+            category: document_ids
+            message: A listed document isn't on this application, or is already
+              attached to someone or something else.
+            params: ''
+          - code: missing_sides
+            category: document_ids
+            message: A listed two-sided document is missing its front or back.
+            params: ''
+          - code: limit_exceeded
+            category: document_ids
+            message: More than 20 documents were listed.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -655,12 +1044,28 @@ paths:
           description: Account usage deleted successfully
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
           description: Application is already submitted
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -696,6 +1101,12 @@ paths:
                     "$ref": "#/components/schemas/business_information_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -732,12 +1143,103 @@ paths:
                     "$ref": "#/components/schemas/business_information_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
           description: Validation error on request body
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: entity_type_mismatch
+            category: form
+            message: Business information was sent on an individual application.
+            params: ''
+          - code: not_past_or_current
+            category: incorporation_date
+            message: incorporation_date is in the future.
+            params: ''
+          - code: required_for_legal_entity_type
+            category: company_registration_number
+            message: The business_country and legal_entity_type sent need
+              company_registration_number.
+            params: ''
+          - code: required_for_legal_entity_type
+            category: vat_number
+            message: The business_country and legal_entity_type sent need
+              vat_number.
+            params: ''
+          - code: invalid
+            category: vat_number
+            message: For a US business, the EIN isn't 9 digits.
+            params: ''
+          - code: invalid
+            category: business_website
+            message: The website isn't a valid web address with a domain.
+            params: ''
+          - code: sole_trader_mismatch
+            category: legal_entity_type
+            message: legal_entity_type and the business_role given at create
+              disagree about whether this is a sole trader.
+            params: ''
+          - code: user_role_limit_exceeded
+            category: legal_entity_type
+            message: sole_trader was sent, but more than one person holds the
+              user role.
+            params: ''
+          - code: person_limit_exceeded
+            category: people
+            message: sole_trader was sent, but the application has more than one
+              person.
+            params: ''
+          - code: sole_trader_roles_required
+            category: people
+            message: sole_trader was sent, but the person doesn't hold user,
+              director and ultimate_business_owner.
+            params: ''
+          - code: either_building_number_or_name
+            category: registered_address
+            message: registered_address or trading_address has neither a
+              building_number nor a building_name.
+            params: ''
+          - code: required_for_country
+            category: registered_address.state_or_province
+            message: US and Canadian addresses need a state_or_province.
+            params: ''
+          - code: inclusion
+            category: registered_address.state_or_province
+            message: The state or province isn't a valid one for the country.
+              Send its two-letter uppercase code, such as NY or ON.
+            params: ''
+          - code: not_found
+            category: document_ids
+            message: A listed document isn't on this application, or is already
+              attached to someone or something else.
+            params: ''
+          - code: missing_sides
+            category: document_ids
+            message: A listed two-sided document is missing its front or back.
+            params: ''
+          - code: limit_exceeded
+            category: document_ids
+            message: More than 20 documents were listed.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -771,12 +1273,28 @@ paths:
           description: Business information deleted successfully
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
           description: Application is already submitted
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -813,6 +1331,12 @@ paths:
                       "$ref": "#/components/schemas/person_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -847,13 +1371,158 @@ paths:
                     "$ref": "#/components/schemas/person_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/not_found_response_v2"
         '422':
-          description: A field was rejected, or the person already exists on
-            this application
+          description: Validation error
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: not_valid_for_individual
+            category: roles
+            message: director or ultimate_business_owner was given on an
+              individual application. Use user only.
+            params: ''
+          - code: person_limit_exceeded
+            category: person
+            message: A second person was added to an individual or sole trader
+              application.
+            params: ''
+          - code: limit_exceeded
+            category: person
+            message: The application already has 50 people.
+            params: ''
+          - code: duplicate_person
+            category: person
+            message: Corporate applications that aren't sole traders only. A
+              person with the same first and last name and the same roles is
+              already on the application. Update that person instead.
+            params: ''
+          - code: sole_trader_roles_required
+            category: roles
+            message: A sole trader's person must hold user, director and
+              ultimate_business_owner.
+            params: ''
+          - code: required_for_ultimate_business_owner
+            category: ownership_percentage
+            message: An ultimate_business_owner needs an ownership_percentage.
+            params: ''
+          - code: greater_than_or_equal_to
+            category: ownership_percentage
+            message: An ultimate_business_owner must own at least 25%.
+            params: ''
+          - code: ubo_total_exceeded
+            category: ownership_percentage
+            message: The owners' percentages would add up to more than 100%.
+            params: ''
+          - code: country_mismatch
+            category: home_country
+            message: Individual applications only. home_country doesn't match
+              the person's address country, or the application's country.
+            params: ''
+          - code: wrong_length
+            category: id_number
+            message: A US user's Social Security number must be 9 digits.
+            params: ''
+          - code: invalid
+            category: phone_number
+            message: The number isn't in E.164 format.
+            params: ''
+          - code: wrong_length
+            category: phone_number
+            message: A +1 or +44 number doesn't have 10 digits after the country
+              code.
+            params: ''
+          - code: company_signifier
+            category: last_name
+            message: Individual applications only. For some countries, the
+              surname ends in a company word such as Ltd.
+            params: ''
+          - code: initial
+            category: first_name
+            message: first_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: first_name
+            message: first_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: first_name
+            message: first_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: first_name
+            message: first_name is over 100 characters.
+            params: ''
+          - code: initial
+            category: last_name
+            message: last_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: last_name
+            message: last_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: last_name
+            message: last_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: last_name
+            message: last_name is over 100 characters.
+            params: ''
+          - code: validation
+            category: request_body_json
+            message: Returned as request_invalid. A name field has characters we
+              don't accept, and reason names the field. We accept A to Z,
+              accented Latin-1 letters, apostrophes, hyphens, periods and single
+              spaces.
+            params: ''
+          - code: either_building_number_or_name
+            category: personal_address
+            message: personal_address has neither a building_number nor a
+              building_name.
+            params: ''
+          - code: required_for_country
+            category: personal_address.state_or_province
+            message: US and Canadian addresses need a state_or_province.
+            params: ''
+          - code: inclusion
+            category: personal_address.state_or_province
+            message: The state or province isn't a valid one for the country.
+              Send its two-letter uppercase code, such as NY or ON.
+            params: ''
+          - code: not_found
+            category: document_ids
+            message: A listed document isn't on this application, or is already
+              attached to someone or something else.
+            params: ''
+          - code: missing_sides
+            category: document_ids
+            message: A listed two-sided document is missing its front or back.
+            params: ''
+          - code: limit_exceeded
+            category: document_ids
+            message: More than 20 documents were listed.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -923,6 +1592,12 @@ paths:
                     "$ref": "#/components/schemas/person_v2"
         '404':
           description: Application or person not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or person doesn't exist, or the application
+              wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -956,12 +1631,28 @@ paths:
           description: Deletes the person
         '422':
           description: Application is already submitted
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
           description: Application or person not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or person doesn't exist, or the application
+              wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1001,8 +1692,138 @@ paths:
                   data:
                     "$ref": "#/components/schemas/person_v2"
         '422':
-          description: Invalid person parameters, application already submitted,
-            or the person already exists
+          description: Validation error
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: not_valid_for_individual
+            category: roles
+            message: director or ultimate_business_owner was given on an
+              individual application. Use user only.
+            params: ''
+          - code: duplicate_person
+            category: person
+            message: Corporate applications that aren't sole traders only. A
+              person with the same first and last name and the same roles is
+              already on the application. Update that person instead.
+            params: ''
+          - code: sole_trader_roles_required
+            category: roles
+            message: A sole trader's person must hold user, director and
+              ultimate_business_owner.
+            params: ''
+          - code: required_for_ultimate_business_owner
+            category: ownership_percentage
+            message: An ultimate_business_owner needs an ownership_percentage.
+            params: ''
+          - code: greater_than_or_equal_to
+            category: ownership_percentage
+            message: An ultimate_business_owner must own at least 25%.
+            params: ''
+          - code: ubo_total_exceeded
+            category: ownership_percentage
+            message: The owners' percentages would add up to more than 100%.
+            params: ''
+          - code: country_mismatch
+            category: home_country
+            message: Individual applications only. home_country doesn't match
+              the person's address country, or the application's country.
+            params: ''
+          - code: wrong_length
+            category: id_number
+            message: A US user's Social Security number must be 9 digits.
+            params: ''
+          - code: invalid
+            category: phone_number
+            message: The number isn't in E.164 format.
+            params: ''
+          - code: wrong_length
+            category: phone_number
+            message: A +1 or +44 number doesn't have 10 digits after the country
+              code.
+            params: ''
+          - code: company_signifier
+            category: last_name
+            message: Individual applications only. For some countries, the
+              surname ends in a company word such as Ltd.
+            params: ''
+          - code: initial
+            category: first_name
+            message: first_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: first_name
+            message: first_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: first_name
+            message: first_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: first_name
+            message: first_name is over 100 characters.
+            params: ''
+          - code: initial
+            category: last_name
+            message: last_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: last_name
+            message: last_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: last_name
+            message: last_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: last_name
+            message: last_name is over 100 characters.
+            params: ''
+          - code: validation
+            category: request_body_json
+            message: Returned as request_invalid. A name field has characters we
+              don't accept, and reason names the field. We accept A to Z,
+              accented Latin-1 letters, apostrophes, hyphens, periods and single
+              spaces.
+            params: ''
+          - code: either_building_number_or_name
+            category: personal_address
+            message: personal_address has neither a building_number nor a
+              building_name.
+            params: ''
+          - code: required_for_country
+            category: personal_address.state_or_province
+            message: US and Canadian addresses need a state_or_province.
+            params: ''
+          - code: inclusion
+            category: personal_address.state_or_province
+            message: The state or province isn't a valid one for the country.
+              Send its two-letter uppercase code, such as NY or ON.
+            params: ''
+          - code: not_found
+            category: document_ids
+            message: A listed document isn't on this application, or is already
+              attached to someone or something else.
+            params: ''
+          - code: missing_sides
+            category: document_ids
+            message: A listed two-sided document is missing its front or back.
+            params: ''
+          - code: limit_exceeded
+            category: document_ids
+            message: More than 20 documents were listed.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
@@ -1032,6 +1853,12 @@ paths:
                     application
         '404':
           description: Application or person not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or person doesn't exist, or the application
+              wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1076,7 +1903,13 @@ paths:
                   data:
                     "$ref": "#/components/schemas/document"
         '404':
-          description: Application not found
+          description: Application or document not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or document doesn't exist, or the
+              application wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1110,12 +1943,28 @@ paths:
           description: Deletes the document
         '422':
           description: Application has already been submitted
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
           description: Application or document not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or document doesn't exist, or the
+              application wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1152,6 +2001,12 @@ paths:
                       "$ref": "#/components/schemas/document"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1190,12 +2045,30 @@ paths:
                     "$ref": "#/components/schemas/document"
         '422':
           description: Returns validation error
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The data broke a rule. error_messages names each field with
+              its own error_code. Besides the codes below, any field can return
+              missing, invalid, inclusion, too_long or too_short.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
           description: Application not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application doesn't exist, or the application wasn't
+              created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1245,6 +2118,12 @@ paths:
                       "$ref": "#/components/schemas/document_file"
         '404':
           description: Application or document not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or document doesn't exist, or the
+              application wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1286,18 +2165,67 @@ paths:
                     "$ref": "#/components/schemas/document_file"
         '422':
           description: Returns validation error
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The file broke a rule. A file that isn't a JPEG, PNG or
+              PDF, or a document that already has 3 files, returns a readable
+              message as the error_code on image.
+            params: ''
+          - code: missing
+            category: file
+            message: file wasn't sent. Send it base64-encoded.
+            params: ''
+          - code: duplicate_side
+            category: side
+            message: That side of a two-sided document already has a file.
+            params: ''
+          - code: detect_blur
+            category: image
+            message: Returned as request_invalid. A photo ID image failed the
+              quality check. Take a new, clear photo of the whole document. The
+              check runs only on proof_of_identity documents.
+            params: ''
+          - code: detect_cutoff
+            category: image
+            message: Returned as request_invalid. A photo ID image failed the
+              quality check. Take a new, clear photo of the whole document. The
+              check runs only on proof_of_identity documents.
+            params: ''
+          - code: document_detection
+            category: image
+            message: Returned as request_invalid. A photo ID image failed the
+              quality check. Take a new, clear photo of the whole document. The
+              check runs only on proof_of_identity documents.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '413':
           description: File payload too large
+          x-errors:
+          - code: payload_too_large
+            category: file
+            message: The file is over 10MB once decoded.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/payload_too_large_response_v2"
         '404':
-          description: Application not found
+          description: Application or document not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or document doesn't exist, or the
+              application wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1343,12 +2271,28 @@ paths:
           description: Deletes the document file
         '422':
           description: Application has already been submitted
+          x-errors:
+          - code: request_invalid
+            category: base
+            message: The request failed a check. error_messages names the field.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application has already
+              been submitted, so it can't be changed.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
-          description: Application, document or document file not found
+          description: Application, document or file not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application, document or document file doesn't exist,
+              or the application wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1378,18 +2322,61 @@ paths:
                 "$ref": "#/components/schemas/identity_verification_response"
         '422':
           description: Request could not be processed
+          x-errors:
+          - code: record_invalid
+            category: base
+            message: The body is invalid. error_messages names the field.
+            params: ''
+          - code: missing
+            category: application_id
+            message: application_id wasn't sent.
+            params: ''
+          - code: missing
+            category: person_id
+            message: person_id wasn't sent.
+            params: ''
+          - code: invalid
+            category: application_id
+            message: application_id isn't a UUID.
+            params: ''
+          - code: invalid
+            category: person_id
+            message: person_id isn't a UUID.
+            params: ''
+          - code: validation
+            category: form
+            message: Returned as request_invalid. The application isn't
+              submitted yet.
+            params: ''
+          - code: validation
+            category: person_id
+            message: Returned as request_invalid. On a corporate application,
+              only a person with the director role can be verified.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '400':
-          description: Identity-verification applicant could not be created
+          description: Verification could not be started
+          x-errors:
+          - code: bad_request
+            category: identity_verification
+            message: The verification couldn't be started. Retry, and contact
+              support with the application_id and person_id if it keeps failing.
+            params: ''
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/validation_error_response_v2"
         '404':
-          description: Form not found, or person does not exist on the form
+          description: Application or person not found
+          x-errors:
+          - code: record_not_found
+            category: base
+            message: The application or person doesn't exist, or the application
+              wasn't created with your account.
+            params: ''
           content:
             application/json:
               schema:
@@ -1551,7 +2538,7 @@ components:
           description: >-
             Country of residence, as an ISO 3166-1 alpha-2 code. On an individual application
             this must match personal_address_attributes.country, and — for the applicant — the
-            country on the application.
+            <a href="/api-reference/#update-application">country on the application</a>.
         citizenship:
           type: string
           enum:
@@ -2732,15 +3719,12 @@ components:
         estimated_monthly_transaction_currency:
           type: string
           maxLength: 255
-          nullable: true
           description: Currency of the estimated monthly transaction value.
-            A whole number, zero or more. Required.
         estimated_monthly_transaction_value:
           type: integer
-          nullable: true
           description: >-
             Estimated monthly value the account will transact on the platform. A whole number,
-            zero or more. Required.
+            zero or more.
         estimated_monthly_transaction_volume:
           type: integer
           nullable: true
@@ -2803,6 +3787,8 @@ components:
       - source_of_funds
       - collection_currencies
       - payment_currencies
+      - estimated_monthly_transaction_currency
+      - estimated_monthly_transaction_value
     business_information_request:
       type: object
       properties:
@@ -4747,8 +5733,14 @@ components:
         error_messages:
   responses:
     unauthorized:
-      description: Authentication failed. The credential was absent, malformed,
-        expired or could not be verified.
+      description: Authentication failed
+      x-errors:
+      - code: —
+        category: base
+        message: The token is missing, malformed, expired or couldn't be
+          verified. Authenticate again and retry with the new token. This
+          response comes from the gateway, so its body may be empty.
+        params: ''
       content:
         application/json:
           schema:

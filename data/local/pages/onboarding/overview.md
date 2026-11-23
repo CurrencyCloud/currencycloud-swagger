@@ -56,6 +56,8 @@ You **must** present the following wording to users signing up for Currencycloud
 
 _Payment and foreign currency exchange service are provided by The Currency Cloud Ltd. The Currency Cloud Ltd is authorised by the Financial Conduct Authority for issuing of electronic money and the provision of payment services with FCA registration number 900199. If you are located in the European Economic Area, payment services are provided by Currencycloud B.V. Currencycloud B.V. is authorised by De Nederlandsche Bank N.V. for issuing of electronic money and the provision of payment services with DNB registration number R142701._
 
+_Payment services in the United States are provided by Visa Global Services Inc. (VGSI), a licensed money transmitter (NMLS ID 181032) in the states listed [here](https://www.visa.com/en-us/legal/visa-global-services-licenses). VGSI is licensed as a money transmitter by the New York Department of Financial Services. Mailing address: 900 Metro Center Blvd, Mailstop 1Z, Foster City, CA 94404. VGSI is also a registered Money Services Business (“MSB”) with FinCEN and a registered Foreign MSB with FINTRAC._
+
 Your build must also show users Currencycloud's terms and conditions, get their consent, and record it on the application:
 
 | **Field** | **When** | **Rule** |
