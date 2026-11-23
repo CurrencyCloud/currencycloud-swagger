@@ -20,7 +20,6 @@ Every application goes through the same four stages:
 - [Accepted format](#accepted-format): how to send request bodies, country codes and files.
 - [Terms & conditions](#terms-conditions): what you must show the applicant, and the consent you must record.
 - [Key concepts](#key-concepts): five things that shape every integration.
-- [Endpoints](#endpoints): every call the API offers.
 - [Choose your flow](#choose-your-flow): the page to follow for your applicant.
 
 ## Base URLs
@@ -78,53 +77,6 @@ On a corporate application, both `agreed_to_corporate_authority` and `contact_na
 
 **Most responses are wrapped in `data`.** The application and its resources, such as people and documents, are returned under `data`. The create response, the workflow endpoints and identity verification return their fields at the top level instead.
 
-## Endpoints
-
-The application and its resources:
-
-```
-POST   /v2/applications
-GET    /v2/applications
-GET    /v2/applications/{application_id}
-PUT    /v2/applications/{application_id}
-DELETE /v2/applications/{application_id}
-POST   /v2/applications/{application_id}/submit
-
-GET    /v2/applications/{application_id}/account_usage
-PUT    /v2/applications/{application_id}/account_usage
-DELETE /v2/applications/{application_id}/account_usage
-
-GET    /v2/applications/{application_id}/business_information
-PUT    /v2/applications/{application_id}/business_information
-DELETE /v2/applications/{application_id}/business_information
-
-GET    /v2/applications/{application_id}/people
-POST   /v2/applications/{application_id}/people
-GET    /v2/applications/{application_id}/people/{person_id}
-PUT    /v2/applications/{application_id}/people/{person_id}
-DELETE /v2/applications/{application_id}/people/{person_id}
-
-GET    /v2/applications/{application_id}/documents
-POST   /v2/applications/{application_id}/documents
-GET    /v2/applications/{application_id}/documents/{id}
-DELETE /v2/applications/{application_id}/documents/{id}
-GET    /v2/applications/{application_id}/documents/{document_id}/document_files
-POST   /v2/applications/{application_id}/documents/{document_id}/document_files
-DELETE /v2/applications/{application_id}/documents/{document_id}/document_files/{id}
-
-POST   /v2/identity_verifications
-```
-
-The workflow, which needs `application_id` as a query parameter on every call:
-
-```
-PUT    /v2/workflows/{workflow_id}/steps/{step_id}/completion?application_id={application_id}
-GET    /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
-PUT    /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
-GET    /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
-```
-
-`GET /v2/applications` takes `order`, `order_asc_desc`, `application_status`, `entity_type`, `page` and `per_page`. `per_page` is from 1 to 50.
 
 ## Choose your flow
 
