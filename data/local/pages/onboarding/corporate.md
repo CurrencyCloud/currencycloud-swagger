@@ -40,21 +40,18 @@ Who you add depends on the flow:
 
 ## Business information
 
-Every corporate application sends its business information with `PUT /v2/applications/{application_id}/business_information`. The [API reference](/api-reference/) lists every field. These are the rules that are easiest to get wrong.
+Every corporate application sends its business information with [Update Business Information](/api-reference/#update-business-information). The [API reference](/api-reference/) lists every field. These are the rules that are easiest to get wrong.
 
-**`business_website` is always required.** It's the business's website or other online presence, as a URL, and the scheme is optional, so `example.com` works. A business with no online presence can't be onboarded through the API.
-
-**The registered address must be in a [permitted jurisdiction](#reference-data).** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
-
-**Registration and VAT numbers depend on where the business is registered and its legal entity type:**
+- **`business_website` is always required.** It's the business's website or other online presence, as a URL, and the scheme is optional, so `example.com` works. A business with no online presence can't be onboarded through the API.
+- **The registered address must be in a [permitted jurisdiction](#reference-data).** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
+- **For a business registered in the US, `vat_number` holds its EIN:** 9 digits, written as `123456789` or `12-3456789`. VAT numbers for other countries aren't format-checked.
+- **Registration and VAT numbers depend on where the business is registered and its legal entity type:**
 
 | **If `business_country` is** | **`company_registration_number` is required for** | **`vat_number` is required for** |
 |---|---|---|
 | `GB` | `limited_liability_company`, `limited_liability_partnership`, `public_limited_company`, `registered_charity`, `scottish_limited_partnership` | `limited_liability_company`, `limited_liability_partnership`, `public_limited_company`, `scottish_limited_partnership` |
 | `US` | `sole_trader`, `limited_liability_company`, `limited_liability_partnership`, `public_limited_company`, `registered_charity`, `trust` | `sole_trader`, `limited_liability_company`, `limited_liability_partnership`, `public_limited_company`, `registered_charity`, `trust`, `unincorporated_partnership`, `other` |
 | Any other country | `limited_liability_company`, `limited_liability_partnership`, `public_limited_company`, `registered_charity` | `limited_liability_company`, `limited_liability_partnership`, `public_limited_company` |
-
-**For a business registered in the US, `vat_number` holds its EIN:** 9 digits, written as `123456789` or `12-3456789`. VAT numbers for other countries aren't format-checked.
 
 ## Documents
 
@@ -70,7 +67,7 @@ Upload everything you have: our compliance review decides what's finally needed.
 
 ### Where to attach them
 
-You create each document with `POST /v2/applications/{application_id}/documents` and upload its files with `POST .../documents/{document_id}/document_files`. Then you attach it by listing its ID in `document_ids` on the resource it's evidence for. Its `category` says which resource that is:
+You create each document with [Create Document](/api-reference/#create-document) and upload its files with [Create Document File](/api-reference/#create-document-file). Then you attach it by listing its ID in `document_ids` on the resource it's evidence for. Its `category` says which resource that is:
 
 | **Document** | **`category`** | **Attach it to** |
 |---|---|---|
@@ -81,7 +78,7 @@ You create each document with `POST /v2/applications/{application_id}/documents`
 | Source of funds, such as financial statements or corporate bank statements | `proof_of_source_of_funds` | The account usage |
 
 - **Attach each photo ID to the person it identifies.**
-- **`document_ids` is the complete list.** An ID you leave out is detached, not deleted, and `PUT` replaces the resource, so send its full body.
+- **`document_ids` is the complete list.** An ID you leave out is detached, not deleted, and PUT replaces the resource, so send its full body.
 - **Each resource holds up to 20 documents.**
 - **To move a document to another resource, take its ID out of the first resource's `document_ids`.**
 - **A two-sided document needs both sides first.** `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need a `front` and a `back` uploaded before you can attach them.

@@ -72,7 +72,7 @@ On a corporate application, both `agreed_to_corporate_authority` and `contact_na
 
 **Every step is two calls.** You send the data, then complete the step it belongs to. Sending the data on its own doesn't move the workflow on. See [Workflows](/guides/onboarding/workflows) for the steps and how to navigate them.
 
-**`PUT` replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared. The one exception is on `PUT /v2/applications/{application_id}`, for `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` and `agreed_to_corporate_authority`: once one of these has a value, leaving it out keeps that value, and sending it as `null` is refused. A person has two of its own exceptions: leaving out `personal_address_attributes` keeps the stored address, and on an individual or sole-trader application the email always comes from the application. Everything else is cleared. Leave out a person's `dob` and it's cleared; leave out `document_ids` and their documents are detached.
+**PUT replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared. The one exception is on [Update Application](/api-reference/#update-application), for `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` and `agreed_to_corporate_authority`: once one of these has a value, leaving it out keeps that value, and sending it as `null` is refused. A person has two of its own exceptions: leaving out `personal_address_attributes` keeps the stored address, and on an individual or sole-trader application the email always comes from the application. Everything else is cleared. Leave out a person's `dob` and it's cleared; leave out `document_ids` and their documents are detached.
 
 **Store `workflow_id` when you create the application.** The create response returns both `application_id` and `workflow_id`. You need `application_id` on every call and `workflow_id` on every workflow call, so save both straight away.
 
@@ -126,7 +126,7 @@ PUT    /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
 GET    /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
 ```
 
-`GET /v2/applications` takes `order`, `order_asc_desc`, `application_status`, `entity_type`, `page` and `per_page`. `per_page` is from 1 to 50.
+[Find Applications](/api-reference/#find-applications) takes `order`, `order_asc_desc`, `application_status`, `entity_type`, `page` and `per_page`. `per_page` is from 1 to 50.
 
 The reference data, such as permitted jurisdictions, supported currencies and the photo ID types each country accepts, comes from three v1 endpoints. They take the same token. Each flow page lists them under Reference data.
 

@@ -14,7 +14,7 @@ An individual application holds exactly **one person**: the applicant. They fill
 | [2. Applicant details](#step-2-applicant-details) | `PUT /v2/applications/{application_id}` | `basic_info` |
 | [3. Personal details](#step-3-personal-details) | `POST /v2/applications/{application_id}/people` | `personal_details` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage` |
-| [5. Documents](#step-5-documents) | `POST .../documents`, then `POST .../document_files` | `documents` |
+| [5. Documents](#step-5-documents) | `POST .../documents` then `POST .../document_files` | `documents` |
 | [6. Submit](#step-6-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit` |
 | [7. Verify the applicant's identity](#step-7-verify-the-applicants-identity) | `POST /v2/identity_verifications` | — |
 
@@ -72,7 +72,7 @@ There's nothing to complete for this step. The workflow starts at `basic_info`.
 
 Records where the applicant lives and how to reach them.
 
-### 2.a Send the applicant details
+### 2a. Send the applicant details
 
 `PUT /v2/applications/{application_id}`
 
@@ -86,9 +86,9 @@ Records where the applicant lives and how to reach them.
 
 `country` must be a [permitted jurisdiction](#reference-data), and must match the `home_country` and address country you send in [step 3](#step-3-personal-details). `phone_number` is optional here, but the applicant's own `phone_number` is required in step 3.
 
-`PUT` replaces the application, so send the full body every time you update it.
+PUT replaces the application, so send the full body every time you update it.
 
-### 2.b Complete `basic_info`
+### 2b. Complete `basic_info`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/basic_info/completion?application_id={application_id}
@@ -102,7 +102,7 @@ The step needs `country` and `agreed_to_marketing_emails` on the application, pl
 
 Adds the applicant as the application's one person.
 
-### 3.a Add the applicant
+### 3a. Add the applicant
 
 `POST /v2/applications/{application_id}/people`
 
@@ -138,9 +138,9 @@ Some fields depend on where the applicant lives:
 | The United States | `id_number`: their 9-digit Social Security number. `personal_address_attributes.state_or_province`: the two-letter state code, such as `NY` |
 | Canada | `personal_address_attributes.state_or_province`: the two-letter province code, such as `ON` |
 
-An individual application holds exactly one person. To correct the applicant's details, update them with `PUT .../people/{person_id}` and the full body, including `document_ids` once you've attached documents.
+An individual application holds exactly one person. To correct the applicant's details, update them with [Update Person](/api-reference/#update-person) and the full body, including `document_ids` once you've attached documents.
 
-### 3.b Complete `personal_details`
+### 3b. Complete `personal_details`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/personal_details/completion?application_id={application_id}
@@ -154,7 +154,7 @@ The step needs the person's `dob`, `personal_address` and email, and the address
 
 Describes how the applicant intends to use the account.
 
-### 4.a Send the account usage
+### 4a. Send the account usage
 
 `PUT /v2/applications/{application_id}/account_usage`
 
@@ -174,9 +174,9 @@ Describes how the applicant intends to use the account.
 
 `estimated_monthly_transaction_volume` and `transaction_countries` are optional for an individual.
 
-`PUT` replaces the account usage, so send the full body every time you update it.
+PUT replaces the account usage, so send the full body every time you update it.
 
-### 4.b Complete `account_usage`
+### 4b. Complete `account_usage`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/account_usage/completion?application_id={application_id}
@@ -184,7 +184,7 @@ PUT /v2/workflows/{workflow_id}/steps/account_usage/completion?application_id={a
 { "status": "completed" }
 ```
 
-The step needs the account usage from 4.a.
+The step needs the account usage from 4a.
 
 ## Step 5: Documents
 
@@ -200,7 +200,7 @@ Uploads the applicant's documents and attaches them to the applicant.
 
 Upload everything the applicant has: our compliance review decides what's finally needed.
 
-### 5.a Create the document
+### 5a. Create the document
 
 `POST /v2/applications/{application_id}/documents`
 
@@ -211,11 +211,11 @@ Upload everything the applicant has: our compliance review decides what's finall
 }
 ```
 
-`category` says what the document is evidence of. For the checklist above, use `proof_of_identity` for photo ID, `proof_of_address` for proof of address, and `proof_of_source_of_funds` for source of funds. Every `document_type` and `category` value is listed in the [API reference](/api-reference/), and [`GET /v1/countries/{country_code}/document_types`](#reference-data) returns the photo ID types a country accepts.
+`category` says what the document is evidence of. For the checklist above, use `proof_of_identity` for photo ID, `proof_of_address` for proof of address, and `proof_of_source_of_funds` for source of funds. Every `document_type` and `category` value is listed in the [API reference](/api-reference/), and the [document types endpoint](#reference-data) returns the photo ID types a country accepts.
 
 Keep `data.id` from the response: it's the `document_id`.
 
-### 5.b Upload its files
+### 5b. Upload its files
 
 `POST /v2/applications/{application_id}/documents/{document_id}/document_files`
 
@@ -233,9 +233,9 @@ Keep `data.id` from the response: it's the `document_id`.
 | Two-sided documents | `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need both `front` and `back`, one image each. To replace either side, delete its image and upload again |
 | Image quality | Files on a `proof_of_identity` document are quality-checked on upload. Use a clear photo that shows the whole document |
 
-### 5.c Attach the documents to the applicant
+### 5c. Attach the documents to the applicant
 
-Send the applicant again with the document IDs in `document_ids`. `PUT` replaces the person, so send the full body from step 3:
+Send the applicant again with the document IDs in `document_ids`. PUT replaces the person, so send the full body from step 3:
 
 `PUT /v2/applications/{application_id}/people/{person_id}`
 
@@ -252,7 +252,7 @@ Send the applicant again with the document IDs in `document_ids`. `PUT` replaces
 
 You can also upload documents before step 3 and send `document_ids` when you first add the applicant.
 
-### 5.d Complete `documents`
+### 5d. Complete `documents`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/documents/completion?application_id={application_id}
@@ -264,7 +264,7 @@ PUT /v2/workflows/{workflow_id}/steps/documents/completion?application_id={appli
 
 Sends the application for compliance review.
 
-### 6.a Submit the application
+### 6a. Submit the application
 
 `POST /v2/applications/{application_id}/submit`
 
@@ -274,7 +274,7 @@ Complete steps 2 to 5 first: submit checks every earlier step is complete, then 
 
 <span id="6b-complete-form_submit"></span>
 
-### 6.b Complete `form_submit`
+### 6b. Complete `form_submit`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/form_submit/completion?application_id={application_id}
@@ -288,7 +288,7 @@ Submit first: this step checks the application has already been submitted. Once 
 
 The applicant proves they are who they say they are, using their photo ID and a selfie. This only works once the application is submitted.
 
-### 7.a Start the verification
+### 7a. Start the verification
 
 `POST /v2/identity_verifications`
 
@@ -308,21 +308,21 @@ The applicant proves they are who they say they are, using their photo ID and a 
 
 `person_id` is the applicant's, from step 3. Calling this again returns the same verification, so it's safe to retry.
 
-### 7.b Send the applicant to the hosted page
+### 7b. Send the applicant to the hosted page
 
 Send the applicant to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
 
-### 7.c Email verification
+### 7c. Email verification
 
 The hosted page asks the applicant for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
 
 **Only the applicant can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
 
-There's no step to complete here: `id_verification` completes on its own when you complete `form_submit` in [6.b](#6b-complete-form_submit).
+There's no step to complete here: `id_verification` completes on its own when you complete `form_submit` in [6b](#6b-complete-form_submit).
 
 ## After submission
 
-The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
+The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from [Get Application](/api-reference/#get-application).
 
 See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.
 

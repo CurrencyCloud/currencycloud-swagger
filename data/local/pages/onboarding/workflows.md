@@ -13,7 +13,7 @@ Every path on this page is relative to the Onboarding API base URL. See [Onboard
 
 ## How a step works
 
-**Every step is two calls.** First you send the step's data, such as `PUT /v2/applications/{application_id}/account_usage`. Then you complete the step. Sending the data doesn't move the workflow on: nothing advances until you complete the step.
+**Every step is two calls.** First you send the step's data, such as [Update Account Usage](/api-reference/#update-account-usage). Then you complete the step. Sending the data doesn't move the workflow on: nothing advances until you complete the step.
 
 **Every workflow call needs both IDs.** The workflow endpoints take `workflow_id` in the path and `application_id` as a query parameter. Leave out `application_id` and you get a `400` keyed `application_id`.
 
@@ -41,7 +41,7 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `basic_info` | The applicant's country, phone number and marketing preference | `PUT /v2/applications/{application_id}` |
 | `personal_details` | The applicant: name, date of birth, address and citizenship | `POST /v2/applications/{application_id}/people` |
 | `account_usage` | How the applicant will use the account | `PUT /v2/applications/{application_id}/account_usage` |
-| `documents` | The applicant's documents | `POST .../documents`, then `POST .../document_files`, then attach them to the applicant with `document_ids` |
+| `documents` | The applicant's documents | `POST .../documents` then `POST .../document_files` then attach them to the applicant with `document_ids` |
 | `form_submit` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
 | `id_verification` | Completes on its own. See below | — |
 
@@ -52,8 +52,8 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `basic_info_corp` | The contact details of the person filling in the application, and their consents | `PUT /v2/applications/{application_id}` |
 | `business_information_corp` | The company: name, registration, sector and addresses | `PUT /v2/applications/{application_id}/business_information` |
 | `account_usage_corp` | How the company will use the account | `PUT /v2/applications/{application_id}/account_usage` |
-| `people_corp` | Every user, director and owner on the application | `POST /v2/applications/{application_id}/people`, once per person |
-| `documents_corp` | The company's and its people's documents | `POST .../documents`, then `POST .../document_files`, then attach them to the person or business with `document_ids` |
+| `people_corp` | Every user, director and owner on the application | `POST /v2/applications/{application_id}/people` once per person |
+| `documents_corp` | The company's and its people's documents | `POST .../documents` then `POST .../document_files` then attach them to the person or business with `document_ids` |
 | `form_submit_corp` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
 | `id_verification` | Completes on its own. See below | — |
 
@@ -116,7 +116,7 @@ Before the step completes, its data is checked. If something is missing, you get
 
 See [What each step checks](#what-each-step-checks-before-it-will-complete) for what each step needs. Send the missing data, then complete the step again.
 
-**Completion isn't idempotent.** Completing a step you've already completed is refused with a `409`. If a completion call times out or you're not sure it landed, call `GET .../steps/current` before you retry.
+**Completion isn't idempotent.** Completing a step you've already completed is refused with a `409`. If a completion call times out or you're not sure it landed, call [Get Current Steps](/api-reference/#get-current-steps) before you retry.
 
 **The step's checks run before the workflow is called.** So a completion can return a `422` before any `409`, even for a step you've already completed or haven't reached yet. Handle both.
 
@@ -154,7 +154,7 @@ GET /v2/workflows/{workflow_id}/steps/previous?application_id={application_id}
 }
 ```
 
-`step_ids` holds at most one step. Here, an empty `step_ids` means you're on the first step. It doesn't mean the workflow is finished: only `GET .../steps/current` tells you that.
+`step_ids` holds at most one step. Here, an empty `step_ids` means you're on the first step. It doesn't mean the workflow is finished: only [Get Current Steps](/api-reference/#get-current-steps) tells you that.
 
 Then move to that step:
 
@@ -173,9 +173,9 @@ PUT /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
 }
 ```
 
-Going back resets the step you were on, so you'll need to complete it again. The step you moved to is open again: send its data with the full body, since `PUT` replaces it, then complete it and carry on from there.
+Going back resets the step you were on, so you'll need to complete it again. The step you moved to is open again: send its data with the full body, since PUT replaces it, then complete it and carry on from there.
 
-Make corrections before you submit. Once `POST .../submit` succeeds, the application and its resources are locked. Until you complete `form_submit` or `form_submit_corp` you can still move between steps, but any update to the data is refused with a `422`.
+Make corrections before you submit. Once [Submit Application](/api-reference/#submit-application) succeeds, the application and its resources are locked. Until you complete `form_submit` or `form_submit_corp` you can still move between steps, but any update to the data is refused with a `422`.
 
 You can move to a step you've completed, or to any step before the one you're on. The step you leave is reset, even if you'd completed it. So after going back, don't move forward again: complete the step you went back to, and the workflow takes you to the earliest step that isn't completed, usually the one you left. Moving to a step ahead of the one you're on that isn't completed is refused with a `409`.
 
@@ -192,7 +192,7 @@ Completing a step checks the data behind it, so send the data first. If a comple
 | `account_usage`, `account_usage_corp` | The account usage. Its required figures are checked when you send it. For a company incorporated within the last 12 months, `account_usage_corp` also needs `initial_capital` |
 | `people_corp` | At least one person with the `user` role and at least one with the `director` role. One person can hold both. Every user needs a `dob`, an `email` and a `personal_address` in a permitted jurisdiction. A sole trader has exactly one person, who holds all three roles, `user`, `director` and `ultimate_business_owner`, with an `ownership_percentage` |
 | `documents`, `documents_corp` | Nothing is checked. The step completes whether or not you've uploaded and attached documents, so do both first. A document you don't attach with `document_ids` is submitted as a general file, not as the person's or business's document. See your flow page for what to upload |
-| `form_submit`, `form_submit_corp` | The application must already be submitted with `POST .../submit`. Submitting only works once every earlier step is complete |
+| `form_submit`, `form_submit_corp` | The application must already be submitted with [Submit Application](/api-reference/#submit-application). Submitting only works once every earlier step is complete |
 | `id_verification` | Nothing. It completes on its own |
 
 ## When the workflow refuses a call

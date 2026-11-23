@@ -9,7 +9,7 @@ If you onboard applicants with `/v1/forms` today, this page tells you what chang
 - **Forms become applications.** Every `/v1/forms` path has a `/v2/applications` equivalent, and `form_id` becomes `application_id`. Your token and the base URL stay the same.
 - **You move through a workflow.** On v1 you send the data, then submit. On v2 every application has a [workflow](/guides/onboarding/workflows): you send each step's data, then complete the step, one step at a time.
 - **Some rules are stricter.** v2 refuses some values that v1 accepts. See [New validation rules](#new-validation-rules).
-- **You can verify identity through the API.** After you submit, `POST /v2/identity_verifications` gives you a link to a hosted page where the person verifies their identity.
+- **You can verify identity through the API.** After you submit, [Create Identity Verification](/api-reference/#create-identity-verification) gives you a link to a hosted page where the person verifies their identity.
 - **Responses are more consistent.** Lists are wrapped in `data`, deletes return `204`, and each error names the field it's about.
 
 ## Endpoint map
@@ -48,14 +48,14 @@ These stay on v1. They take the same token and work for v2 applications too:
 
 ## Create the application
 
-`POST /v2/applications` takes fewer fields than `POST /v1/forms`. Send the rest with your first update:
+[Create Application](/api-reference/#create-application) takes fewer fields than POST `/v1/forms`. Send the rest with your first update:
 
 | **Field** | **On v2** |
 |---|---|
 | `entity_type`, `email`, `agreed_to_terms_and_conditions` | Required at create, as on v1 |
 | `business_role` | Required at create on a corporate application |
 | `brand_name`, `brand_key` | Optional at create, as on v1. An update ignores them, so keep them in the create request |
-| `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails`, `agreed_to_corporate_authority`, `affiliate_code`, `referred_by` | Send with `PUT /v2/applications/{application_id}`, before you complete the first step |
+| `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails`, `agreed_to_corporate_authority`, `affiliate_code`, `referred_by` | Send with [Update Application](/api-reference/#update-application), before you complete the first step |
 
 Create only takes the fields in the first three rows, so move the fields in the last row from your v1 create body into that update.
 
@@ -92,8 +92,8 @@ These are the steps, in order:
 | — | `business_information_corp` | `PUT .../business_information` |
 | `personal_details` | — | `POST .../people` |
 | `account_usage` | `account_usage_corp` | `PUT .../account_usage` |
-| — | `people_corp` | `POST .../people`, once per person |
-| `documents` | `documents_corp` | `POST .../documents`, then `POST .../document_files`, then attach them with `document_ids` |
+| — | `people_corp` | `POST .../people` once per person |
+| `documents` | `documents_corp` | `POST .../documents` then `POST .../document_files` then attach them with `document_ids` |
 | `form_submit` | `form_submit_corp` | `POST .../submit` |
 
 **Submitting only works once every earlier step is complete.** Then complete `form_submit` or `form_submit_corp`, and the workflow is finished.
@@ -102,7 +102,7 @@ Before a step will complete, the data behind it is checked. See [What each step 
 
 ## Update a resource
 
-**`PUT` replaces, as on v1.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
+**PUT replaces, as on v1.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
 
 One thing is new on the application. Once `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` or `agreed_to_corporate_authority` has a value, leaving it out keeps that value, and sending it as `null` is refused. See [Key concepts](/guides/onboarding/overview#key-concepts) for every exception.
 
@@ -110,14 +110,14 @@ One thing is new on the application. Once `country`, `phone_number`, `contact_na
 
 You attach documents by listing their IDs in `document_ids` on the person, account usage or business information, as on v1. What's different:
 
-- **Files are `document_files`.** Upload them with `POST .../documents/{document_id}/document_files`, and send the content as `file`, where v1 used `image`.
+- **Files are `document_files`.** Upload them with [Create Document File](/api-reference/#create-document-file), and send the content as `file`, where v1 used `image`.
 - **A document takes up to 3 files**, where v1 allowed 19.
 - **A two-sided document needs both sides first.** `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` take one `front` and one `back`, and you can only list them in `document_ids` once both are uploaded.
-- **A document in a list doesn't include its files.** Call `GET .../documents/{document_id}/document_files` to list them. `document_image_ids`, `form_section_type` and `form_section_id` are gone.
+- **A document in a list doesn't include its files.** Call [Get Document Files](/api-reference/#get-document-files) to list them. `document_image_ids`, `form_section_type` and `form_section_id` are gone.
 
 ## Verify identity
 
-Identity verification is a call of its own on v2. Once the application is submitted, call `POST /v2/identity_verifications` with its `application_id` and the `person_id` of the person to verify. It returns a `whitelabel_url`, a hosted page where that person proves who they are.
+Identity verification is a call of its own on v2. Once the application is submitted, call [Create Identity Verification](/api-reference/#create-identity-verification) with its `application_id` and the `person_id` of the person to verify. It returns a `whitelabel_url`, a hosted page where that person proves who they are.
 
 - On an individual application, you verify the applicant.
 - On a corporate application, you verify a director. Only a person with the `director` role can be verified.
@@ -189,7 +189,7 @@ These rules are new on v2, so a request that v1 accepted can be refused with a `
 | A list | Under `forms`, `people`, `documents` or `document_images` | Under `data` |
 | A single resource | Under `data` | Under `data`, as on v1 |
 | Create the application | The application, under `data` | `application_id`, `workflow_id` and `steps`, at the top level |
-| Read the application | Includes its `people`, `account_usage` and `business_information` | The application only. Read each of those with its own `GET` |
+| Read the application | Includes its `people`, `account_usage` and `business_information` | The application only. Read each of those with its own GET |
 | A person, account usage or business information | Carries `form_id` | Carries `application_id` |
 | A delete | `200`, with a message | `204`, with no body |
 | Deleting account usage or business information that doesn't exist | `200` | `404` |
