@@ -37,7 +37,7 @@ If you'd rather poll, read `state` from [Get Application](/api-reference/#get-ap
 | Submitting returns a `422` with `validation` on `workflow` | Earlier steps aren't complete | Call [Get Current Steps](/api-reference/#get-current-steps), complete each step from there, then submit again |
 | Completing `form_submit` or `form_submit_corp` returns a `422` with `validation` on `state` | The application isn't submitted yet | Call [Submit Application](/api-reference/#submit-application) first, then complete the step |
 | A photo ID upload returns a `422` with a code on `image`, such as `detect_blur` or `detect_cutoff` | The image failed the quality check, which runs on `proof_of_identity` documents | Take a new, clear photo of the whole document and upload it again |
-| Fields you set earlier come back empty | PUT replaces the resource, so any field you left out was cleared | Send the full body every time: read the resource, change it, and send all of it back |
+| Fields you set earlier come back empty | PUT replaces the resource, so fields you left out were cleared | Send the full body every time: read the resource, change it, and send all of it back |
 | A person's documents are no longer attached | An update to the person left out `document_ids` | Send `document_ids` every time you update the person |
 | Starting identity verification returns a `422` with `validation` on `form` | The application isn't submitted yet | Submit it first |
 

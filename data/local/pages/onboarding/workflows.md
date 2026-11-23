@@ -15,7 +15,7 @@ Every path on this page is relative to the Onboarding API base URL. See [Onboard
 
 **Every step is two calls.** First you send the step's data, for example with [Update Account Usage](/api-reference/#update-account-usage). Then you complete the step with [Complete Step](/api-reference/#complete-step). Sending the data doesn't move the workflow on: nothing advances until you complete the step.
 
-**PUT replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
+**PUT replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. Most fields you leave out are cleared.
 
 **Save `workflow_id` when you create the application.** The create response gives you `application_id`, `workflow_id` and the first step:
 

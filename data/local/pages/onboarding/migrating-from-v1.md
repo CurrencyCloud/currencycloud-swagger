@@ -94,7 +94,7 @@ Before a step will complete, the data behind it is checked. Each [flow page](/gu
 
 ## Update a resource
 
-**PUT replaces, as on v1.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
+**PUT replaces, as on v1.** Send the full body every time, not just the fields you're changing. Most fields you leave out are cleared.
 
 One thing is new on the application. Once `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` or `agreed_to_corporate_authority` has a value, leaving it out keeps that value, and sending it as `null` is refused.
 
