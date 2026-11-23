@@ -6,6 +6,13 @@ The Onboarding API lets you open Currencycloud accounts for your own customers, 
 
 This section covers version 2 of the API. In v2, each application follows a **workflow**: a fixed sequence of steps that you fill in and complete in order, so you always know what to send next and nothing reaches review half-finished.
 
+Every application goes through the same four stages:
+
+1. Create the application, which also creates its workflow.
+2. For each step, send its data, then complete the step.
+3. Submit the application.
+4. Verify the identity of the applicant, or of a director on a corporate application.
+
 ## Before you start
 
 - [Base URLs](#base-urls): where to send requests.
@@ -35,6 +42,7 @@ To use the Onboarding API, you first [authenticate](/api-reference/#authenticate
 - Country codes are uppercase ISO 3166-1 alpha-2 codes, such as `GB`.
 - Uploaded files must be JPG, PNG or PDF, up to 10MB each.
 - Send file content as a plain base64 string, without a `data:` prefix.
+- Send addresses as `personal_address_attributes`, `registered_address_attributes` and `trading_address_attributes`. They come back as `personal_address`, `registered_address` and `trading_address`.
 
 ## Terms & conditions
 
@@ -71,6 +79,7 @@ On a corporate application, both `agreed_to_corporate_authority` and `contact_na
 
 **Most responses are wrapped in `data`.** The application and its resources, such as people and documents, are returned under `data`. The create response, the workflow endpoints and identity verification return their fields at the top level instead.
 
+
 ## Choose your flow
 
 | **Your applicant** | **Follow** |
@@ -84,6 +93,5 @@ For a company or a sole trader, read [Onboard a business](/guides/onboarding/cor
 
 ## More help
 
-- [Common errors](/guides/onboarding/errors): every error code and what to do about it.
 - [Troubleshooting & FAQ](/guides/onboarding/faq): what happens after submission, and fixes for common problems.
 - [Migrating from v1](/guides/onboarding/migrating-from-v1): what changes if you already use `/v1/forms`.

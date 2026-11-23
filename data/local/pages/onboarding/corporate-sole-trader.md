@@ -6,20 +6,6 @@ Use this flow when a sole trader applies: someone who runs a business on their o
 
 A sole trader application holds exactly **one person**: the sole trader. They're the applicant, the director and the owner. They fill in the application, confirm they can act for the business, and are the person whose identity is verified at the end.
 
-## Before you start
-
-- **Use the Onboarding API base URL.** Every path on this page is relative to it, and `/onboarding` is part of the base:
-
-  | **Environment** | **Base URL** |
-  |---|---|
-  | Demo | `https://devapi.currencycloud.com/onboarding` |
-  | Production | `https://api.currencycloud.com/onboarding` |
-
-- **Authenticate** and pass the token as `X-Auth-Token` on every request. See [Authentication](/guides/integration-guides/authentication).
-- **Show the terms and conditions** to the applicant and get their consent before you create the application. See [Terms & conditions](/guides/onboarding/overview#terms-conditions).
-- **Read [Onboard a business](/guides/onboarding/corporate) first.** It explains the rules a sole trader shares with companies, and which documents a business needs.
-- **Know how the workflow works.** Every step is two calls: send the data, then complete the step. See [Workflows](/guides/onboarding/workflows).
-
 ## The steps at a glance
 
 | **Step** | **You send** | **Then complete** |
@@ -52,7 +38,7 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-In the field tables, **Required** means the field must be set before you complete that step.
+The [API reference](/api-reference/) lists every field and its format.
 
 ## Step 1: Create the application
 
@@ -78,16 +64,9 @@ Creates the application and its workflow, and records the applicant's email, con
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `entity_type` | `corporate`. Fixed once created |
-| `email` | The applicant's email address. It's set once, here |
-| `agreed_to_terms_and_conditions` | `true`, recording the applicant's consent. It's set once, here |
-| `business_role` | `sole_trader_business_role`: a sole trader is applying. It's set once, here, and the `legal_entity_type` you send in [step 3](#step-3-business-information) must then be `sole_trader` |
+These four fields are the complete create request for this flow. `email`, `agreed_to_terms_and_conditions` and `business_role` can't be changed afterward, and with this `business_role`, the `legal_entity_type` you send in [step 3](#step-3-business-information) must be `sole_trader`.
 
-These four fields are the complete create request for this flow.
-
-**Store both IDs.** You need `application_id` on every call, and `workflow_id` to complete each step, so save both now.
+**Store both IDs.** You need `application_id` on every call, and `workflow_id` on every workflow call, so save both now.
 
 There's nothing to complete for this step. The workflow starts at `basic_info_corp`.
 
@@ -108,14 +87,6 @@ Records how to reach the applicant, and their confirmation that they can act for
   "agreed_to_corporate_authority": true
 }
 ```
-
-| **Field** | **Rule** |
-|---|---|
-| `country` | Required. The country of the business's registered address, as an ISO 3166-1 alpha-2 code. Must be a [permitted jurisdiction](#reference-data) |
-| `phone_number` | Required. The applicant's phone number, in E.164 format, such as `+447700900123`. A `+44` or `+1` number has 10 digits after the country code |
-| `contact_name` | Required. The applicant's full name, not initials, between 2 and 100 characters, using only the letters `A`–`Z`, accented letters from Western European languages, such as `é`, `ñ` or `ü`, spaces, apostrophes, hyphens and periods |
-| `agreed_to_marketing_emails` | Required. `true` or `false` |
-| `agreed_to_corporate_authority` | Required. `true`, confirming the applicant can act for the business |
 
 `PUT` replaces the application, so send the full body every time you update it.
 
@@ -155,17 +126,7 @@ Describes the business: what it is, where it's registered and what it does.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `company_name` | Required. The business's name, up to 150 characters |
-| `business_country` | Required. The country the business is registered in, as an ISO 3166-1 alpha-2 code |
-| `legal_entity_type` | Required. `sole_trader` |
-| `sector` | Required. One of the values in the [API reference](/api-reference/) |
-| `company_registration_number`, `vat_number` | Required only for a business registered in the United States. See the table below |
-| `incorporation_date` | Required, `YYYY-MM-DD`. The date the business started. Today or earlier |
-| `business_website` | Required. The business's website or other online presence, as a URL. The scheme is optional, so `example.com` works |
-| `registered_address_attributes` | Required. `street`, `city`, `postal_code` (at most 12 characters) and `country`, plus a `building_number` (at most 10 characters) or a `building_name`. The country must be a [permitted jurisdiction](#reference-data) |
-| `trading_address_attributes` | Optional. The address the business trades from, if it's different. Same fields as the registered address |
+Send `sole_trader` as the `legal_entity_type`.
 
 Some fields depend on where the business is:
 
@@ -208,17 +169,7 @@ Describes how the business intends to use the account.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `collections_account` | Required. `true` if the account will receive funds from third parties |
-| `collection_currencies`, `payment_currencies` | Required. ISO 4217 currency codes, such as `GBP`. [Reference data](#reference-data) lists the currencies we support |
-| `transaction_countries` | Required. The countries the business will send money to or receive it from, as ISO 3166-1 alpha-2 codes |
-| `source_of_funds` | Required. One of the values in the [API reference](/api-reference/) |
-| `primary_purpose` | Required. One of the values in the [API reference](/api-reference/) |
-| `estimated_monthly_transaction_currency`, `estimated_monthly_transaction_value` | Required. The value is a whole number, zero or more |
-| `estimated_monthly_transaction_volume` | Required. How many transactions the business expects each month, as a whole number, zero or more |
-| `purpose_details` | Required when `primary_purpose` is `other` |
-| `initial_capital` | Required when the business's `incorporation_date` is in the last 12 months. How the account will first be funded, in 15 to 240 characters |
+`purpose_details` is required when `primary_purpose` is `other`, and `initial_capital` when the business's `incorporation_date` is in the last 12 months.
 
 `PUT` replaces the account usage, so send the full body every time you update it.
 
@@ -262,16 +213,7 @@ Adds the sole trader as the application's one person.
 
 The response returns the person under `data`. Keep `data.id`: it's the `person_id` you need in steps 6 and 8.
 
-| **Field** | **Rule** |
-|---|---|
-| `roles` | `["user", "director", "ultimate_business_owner"]`. The sole trader holds all three |
-| `first_name`, `last_name` | Required. The sole trader's full names, not initials, up to 100 characters each, using only the letters `A`–`Z`, accented letters from Western European languages, such as `é`, `ñ` or `ü`, spaces, apostrophes, hyphens and periods |
-| `dob` | Required, `YYYY-MM-DD`. Must give an age between 18 and 100 |
-| `phone_number` | Required. E.164 format |
-| `home_country` | Required. ISO 3166-1 alpha-2 code |
-| `citizenship` | Required. ISO 3166-1 alpha-2 code |
-| `ownership_percentage` | Required. At least 25, and at most 100 |
-| `personal_address_attributes` | Required. `street`, `city`, `postal_code` (at most 12 characters) and `country`, plus a `building_number` (at most 10 characters) or a `building_name`. The country must be a [permitted jurisdiction](#reference-data) |
+The sole trader holds all three roles, `user`, `director` and `ultimate_business_owner`, with an `ownership_percentage` between 25 and 100.
 
 The sole trader's email comes from the application, set at create.
 
@@ -322,7 +264,7 @@ Uploads the documents for the business and the sole trader, and attaches each on
 | Registration documents, such as a business registration certificate | `proof_of_business_identity` | The business information |
 | Source of funds, such as financial statements or business bank statements | `proof_of_source_of_funds` | The account usage |
 
-Every `document_type` and `category` value is listed in the [API reference](/api-reference/), and [`GET /v1/countries/{country_code}/document_types`](#reference-data) returns the photo ID types a country accepts.
+Every `document_type` and `category` value is listed in the [API reference](/api-reference/).
 
 Keep `data.id` from the response: it's the `document_id`.
 
@@ -428,7 +370,13 @@ The sole trader proves they are who they say they are, using their photo ID and 
 
 ### 8.b Send the sole trader to the hosted page
 
-Send the sole trader to `whitelabel_url`. The hosted page has them verify their email address, the one on the application, with a one-time code. It then takes them through the terms and biometric consent, and the identity check itself.
+Send the sole trader to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+
+### 8.c Email verification
+
+The hosted page asks the sole trader for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
+
+**Only the sole trader can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
 
 There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7.b](#7b-complete-form_submit_corp).
 
@@ -436,14 +384,4 @@ There's no step to complete here: `id_verification` completes on its own when yo
 
 The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
 
-See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls, and [Common errors](/guides/onboarding/errors) for every error code.
-
-## Reference data
-
-These endpoints list the values the rules above check against. They're on v1, take the same token, and work for any application.
-
-| **Endpoint** | **Returns** |
-|---|---|
-| `GET /v1/countries` | Every country, with its `permitted_jurisdiction` flag |
-| `GET /v1/countries/{country_code}/document_types` | The photo ID types a country accepts, such as `passport` or `driving_licence` |
-| `GET /v1/currencies/supported` | The supported currency codes |
+See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.

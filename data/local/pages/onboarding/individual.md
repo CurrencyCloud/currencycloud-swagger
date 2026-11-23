@@ -6,20 +6,6 @@ Use this flow to open an account for a single person applying on their own behal
 
 An individual application holds exactly **one person**: the applicant. They fill in the application, accept the terms, and are the person whose identity is verified at the end.
 
-## Before you start
-
-- **Use the Onboarding API base URL.** Every path on this page is relative to it, and `/onboarding` is part of the base:
-
-  | **Environment** | **Base URL** |
-  |---|---|
-  | Demo | `https://devapi.currencycloud.com/onboarding` |
-  | Production | `https://api.currencycloud.com/onboarding` |
-
-- **Authenticate** and pass the token as `X-Auth-Token` on every request. See [Authentication](/guides/integration-guides/authentication).
-- **Show the terms and conditions** to the applicant and get their consent before you create the application. See [Terms & conditions](/guides/onboarding/overview#terms-conditions).
-- **Confirm your account is enabled for individual onboarding.** Your Solutions Manager can enable it.
-- **Know how the workflow works.** Every step is two calls: send the data, then complete the step. See [Workflows](/guides/onboarding/workflows).
-
 ## The steps at a glance
 
 | **Step** | **You send** | **Then complete** |
@@ -51,7 +37,7 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-In the field tables, **Required** means the field must be set before you complete that step.
+The [API reference](/api-reference/) lists every field and its format.
 
 ## Step 1: Create the application
 
@@ -76,15 +62,9 @@ Creates the application and its workflow, and records the applicant's email and 
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `entity_type` | `individual`. Fixed once created |
-| `email` | The applicant's email address. It's set once, here |
-| `agreed_to_terms_and_conditions` | `true`, recording the applicant's consent. It's set once, here |
+These three fields are the complete create request for an individual. `email` and `agreed_to_terms_and_conditions` can't be changed afterward.
 
-These three fields are the complete create request for an individual.
-
-**Store both IDs.** You need `application_id` on every call, and `workflow_id` to complete each step, so save both now.
+**Store both IDs.** You need `application_id` on every call, and `workflow_id` on every workflow call, so save both now.
 
 There's nothing to complete for this step. The workflow starts at `basic_info`.
 
@@ -104,11 +84,7 @@ Records where the applicant lives and how to reach them.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `country` | Required. The applicant's home country, as an ISO 3166-1 alpha-2 code. Must be a [permitted jurisdiction](#reference-data), and must match the `home_country` and address country you send in [step 3](#step-3-personal-details) |
-| `phone_number` | Optional here, but the applicant's own `phone_number` is required in step 3. E.164 format, such as `+447700900123`. A `+44` or `+1` number has 10 digits after the country code |
-| `agreed_to_marketing_emails` | Required. `true` or `false` |
+`country` must be a permitted jurisdiction, and must match the `home_country` and address country you send in [step 3](#step-3-personal-details). `phone_number` is optional here, but the applicant's own `phone_number` is required in step 3.
 
 `PUT` replaces the application, so send the full body every time you update it.
 
@@ -151,15 +127,7 @@ Adds the applicant as the application's one person.
 
 The response returns the person under `data`. Keep `data.id`: it's the `person_id` you need in steps 5 and 7.
 
-| **Field** | **Rule** |
-|---|---|
-| `roles` | `["user"]`, the applicant's only role |
-| `first_name`, `last_name` | Required. The applicant's full names, not initials, up to 100 characters each, using only the letters `A`–`Z`, accented letters from Western European languages, such as `é`, `ñ` or `ü`, spaces, apostrophes, hyphens and periods. `last_name` can't end in a company signifier such as `Ltd` |
-| `dob` | Required, `YYYY-MM-DD`. Must give an age between 18 and 100 |
-| `phone_number` | Required. E.164 format |
-| `home_country` | Required. Must match `personal_address_attributes.country` and the application's `country` |
-| `citizenship` | Required. ISO 3166-1 alpha-2 code |
-| `personal_address_attributes` | Required. `street`, `city`, `postal_code` (at most 12 characters) and `country`, plus a `building_number` (at most 10 characters) or a `building_name`. The country must be a [permitted jurisdiction](#reference-data) |
+`roles` is `["user"]`, the applicant's only role. `home_country` must match the country of `personal_address_attributes` and the application's `country`, and that address must be in a permitted jurisdiction.
 
 The applicant's email comes from the application, set at create.
 
@@ -202,14 +170,7 @@ Describes how the applicant intends to use the account.
 }
 ```
 
-| **Field** | **Rule** |
-|---|---|
-| `collections_account` | Required. `true` if the account will receive funds from third parties |
-| `collection_currencies`, `payment_currencies` | Required. ISO 4217 currency codes, such as `GBP`. [Reference data](#reference-data) lists the currencies we support |
-| `source_of_funds` | Required. One of the values in the [API reference](/api-reference/) |
-| `primary_purpose` | Required. One of the values in the [API reference](/api-reference/) |
-| `estimated_monthly_transaction_currency`, `estimated_monthly_transaction_value` | Required. The value is a whole number, zero or more |
-| `purpose_details` | Required when `primary_purpose` is `other` |
+`purpose_details` is required when `primary_purpose` is `other`.
 
 `estimated_monthly_transaction_volume` and `transaction_countries` are optional for an individual.
 
@@ -250,7 +211,7 @@ Upload everything the applicant has: our compliance review decides what's finall
 }
 ```
 
-`category` says what the document is evidence of. For the checklist above, use `proof_of_identity` for photo ID, `proof_of_address` for proof of address, and `proof_of_source_of_funds` for source of funds. Every `document_type` and `category` value is listed in the [API reference](/api-reference/), and [`GET /v1/countries/{country_code}/document_types`](#reference-data) returns the photo ID types a country accepts.
+`category` says what the document is evidence of. For the checklist above, use `proof_of_identity` for photo ID, `proof_of_address` for proof of address, and `proof_of_source_of_funds` for source of funds. Every `document_type` and `category` value is listed in the [API reference](/api-reference/).
 
 Keep `data.id` from the response: it's the `document_id`.
 
@@ -349,7 +310,13 @@ The applicant proves they are who they say they are, using their photo ID and a 
 
 ### 7.b Send the applicant to the hosted page
 
-Send the applicant to `whitelabel_url`. The hosted page has them verify their email address, the one on the application, with a one-time code. It then takes them through the terms and biometric consent, and the identity check itself.
+Send the applicant to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+
+### 7.c Email verification
+
+The hosted page asks the applicant for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
+
+**Only the applicant can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
 
 There's no step to complete here: `id_verification` completes on its own when you complete `form_submit` in [6.b](#6b-complete-form_submit).
 
@@ -357,14 +324,4 @@ There's no step to complete here: `id_verification` completes on its own when yo
 
 The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
 
-See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls, and [Common errors](/guides/onboarding/errors) for every error code.
-
-## Reference data
-
-These endpoints list the values the rules above check against. They're on v1, take the same token, and work for any application.
-
-| **Endpoint** | **Returns** |
-|---|---|
-| `GET /v1/countries` | Every country, with its `permitted_jurisdiction` flag |
-| `GET /v1/countries/{country_code}/document_types` | The photo ID types a country accepts, such as `passport` or `driving_licence` |
-| `GET /v1/currencies/supported` | The supported currency codes |
+See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.

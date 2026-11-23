@@ -714,9 +714,10 @@ paths:
         '401':
           "$ref": "#/components/responses/unauthorized"
     put:
-      summary: Navigate To Step
-      description: Moves the workflow back to a step you've already completed,
-        so you can correct its data and complete it again.
+      summary: Update Current Step
+      description: Moves the workflow to a step you've completed, or to any step
+        before the one it's on, so you can correct its data and complete it
+        again.
       tags:
       - Steps
       x-api-group: Onboard
@@ -825,8 +826,8 @@ paths:
   "/v2/workflows/{workflow_id}/steps/previous":
     get:
       summary: Get Previous Step
-      description: Returns the nearest completed step before the one the
-        workflow is on, or an empty list when there is none.
+      description: Returns the step before the one the workflow is on, whatever
+        its status, or an empty list on the first step.
       tags:
       - Steps
       x-api-group: Onboard
@@ -2412,19 +2413,8 @@ components:
           enum:
           - individual
           - corporate
-          description: Type of applicant - individual or corporate.
-        brand_name:
-          type: string
-          maxLength: 255
-          description: Brand the application is being made under. Resolved to
-            the introducing account, so it determines the application's
-            attribution. Required for web-sourced requests.
-        brand_key:
-          type: string
-          maxLength: 255
-          description: House account key identifier. Resolved together with
-            brand_name, and needed whenever a brand has more than one house
-            account — without it the lookup finds several and resolves none.
+          description: 'Type of applicant - individual or corporate. Set here only:
+            the update endpoint does not accept it.'
         email:
           type: string
           maxLength: 255
@@ -2432,9 +2422,9 @@ components:
             endpoint does not accept it.'
         agreed_to_terms_and_conditions:
           type: boolean
-          description: 'Agreed to the terms and conditions. Consent is gated here
-            rather than at update, so no data is captured before it is given. Set
-            here only: the update endpoint does not accept it.'
+          description: 'Agreed to the terms and conditions. Must be true. Consent
+            is gated here rather than at update, so no data is captured before it
+            is given. Set here only: the update endpoint does not accept it.'
         business_role:
           type: string
           enum:
@@ -2444,7 +2434,10 @@ components:
           -
           description: 'Business role of the applicant — who is filing the application.
             Required for a corporate application and rejected on an individual one.
-            Set here only: the update endpoint does not accept it.'
+            Set here only: the update endpoint does not accept it. director_controller:
+            a director is filling in the application. authorised_person: someone who
+            isn''t a director is. sole_trader_business_role: a sole trader is applying,
+            and the business information''s legal_entity_type must then be sole_trader.'
       required:
       - entity_type
       - email
@@ -2460,7 +2453,9 @@ components:
             - director
             - ultimate_business_owner
             - user
-          description: The person's role(s).
+          description: >-
+            The person's role(s). On an individual application, user is the only role. A sole
+            trader holds all three.
         document_ids:
           type: array
           items:
@@ -2472,8 +2467,11 @@ components:
             state_id.'
         first_name:
           type: string
-          maxLength: 255
-          description: First name. Cannot be a single initial.
+          maxLength: 100
+          description: First name. Cannot be a single initial. Up to 100 characters,
+            using only the letters A to Z, accented letters from Western European
+            languages such as é, ñ or ü, apostrophes, hyphens, periods, and single
+            spaces between words.
         middle_name:
           type: string
           maxLength: 255
@@ -2481,19 +2479,26 @@ components:
           description: Middle name
         last_name:
           type: string
-          maxLength: 255
-          description: Surname. Cannot be a single initial, or end with a
-            company signifier.
+          maxLength: 100
+          description: >-
+            Surname. Cannot be a single initial, or end with a company signifier. Up to 100
+            characters, using only the letters A to Z, accented letters from Western European
+            languages such as é, ñ or ü, apostrophes, hyphens, periods, and single spaces between
+            words.
         dob:
           type: string
           format: date
           nullable: true
-          description: Date of Birth. Must give an age between 18 and 100 years.
+          description: >-
+            Date of Birth. Must give an age between 18 and 100 years. Needed for every person
+            with the user role before the people step completes.
         phone_number:
           type: string
           maxLength: 255
           nullable: true
-          description: Phone number. Required when roles includes user.
+          description: Phone number, in E.164 format, such as +447700900123. A +44
+            or +1 number has 10 digits after the country code. Required when roles
+            includes user.
         email:
           type: string
           maxLength: 255
@@ -2518,10 +2523,10 @@ components:
             and home_country is US.
         home_country:
           type: string
-          description: Country of residence. On an individual application this
-            must match personal_address_attributes.country, and — for the
-            applicant — the <a href="/api-reference/#update-application">country
-            on the application</a>.
+          description: >-
+            Country of residence, as an ISO 3166-1 alpha-2 code. On an individual application
+            this must match personal_address_attributes.country, and — for the applicant — the
+            country on the application.
         citizenship:
           type: string
           x-enumDescriptions:
@@ -3026,7 +3031,7 @@ components:
           - SS
           - SD
           - SY
-          description: Citizenship country code.
+          description: Citizenship, as an ISO 3166-1 alpha-2 country code.
         passport_number:
           type: string
           maxLength: 255
@@ -3039,6 +3044,9 @@ components:
           description: Country code for where the passport was issued.
         personal_address_attributes:
           type: object
+          description: >-
+            The person's home address. Needed for every person with the user role before the
+            people step completes.
           properties:
             city:
               type: string
@@ -3552,10 +3560,10 @@ components:
               - SS
               - SD
               - SY
-              description: Country code
+              description: ISO 3166-1 alpha-2 country code. Must be a permitted jurisdiction.
             postal_code:
               type: string
-              description: Post Code
+              description: Post code. At most 12 characters.
             apartment_number:
               type: string
               nullable: true
@@ -3565,17 +3573,23 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: Building name
+              description: Building name. Required unless building_number is given.
             building_number:
               type: string
               nullable: true
               maxLength: 10
-              description: Building number. At most 10 characters.
+              description: Building number. At most 10 characters. Required unless
+                building_name is given.
             state_or_province:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -4441,8 +4455,9 @@ components:
             - SS
             - SD
             - SY
-            description: List of countries that corporate accounts want to
-              send/receive money to/from. Required on a corporate application.
+          description: >-
+            The countries the account will send money to or receive it from, as ISO 3166-1 alpha-2
+            codes. Required on a corporate application, where an empty list counts as missing.
         one_off_transaction:
           type: boolean
           description: Do corporate accounts just want to send a single one-off
@@ -4458,8 +4473,9 @@ components:
         estimated_monthly_transaction_volume:
           type: integer
           nullable: true
-          description: How often the account expects to send or receive funds
-            each month. Required on a corporate application.
+          description: >-
+            How often the account expects to send or receive funds each month. A whole number,
+            zero or more. Required on a corporate application.
         source_of_funds:
           type: string
           nullable: true
@@ -4487,8 +4503,10 @@ components:
         initial_capital:
           type: string
           nullable: true
-          description: The initial capital that will be used to fund the
-            account.
+          description: >-
+            The initial capital that will be used to fund the account, in 15 to 240 characters.
+            Required on a corporate application when the company was incorporated in the last
+            12 months.
         primary_purpose:
           type: string
           enum:
@@ -5036,7 +5054,7 @@ components:
             registered in.
         company_name:
           type: string
-          description: The company name.
+          description: The company name. At most 150 characters.
         trading_name:
           type: string
           maxLength: 255
@@ -5056,7 +5074,8 @@ components:
           - trust
           - unincorporated_partnership
           - unregistered_charity
-          description: Company's legal entity type.
+          description: Company's legal entity type. sole_trader if, and only if, the
+            application's business_role is sole_trader_business_role.
         sector:
           type: string
           enum:
@@ -5165,7 +5184,7 @@ components:
         incorporation_date:
           type: string
           format: date
-          description: The date the company was incorporated.
+          description: The date the company was incorporated. Today or earlier.
         business_website:
           type: string
           maxLength: 21845
@@ -5190,10 +5209,10 @@ components:
               description: Street
             country:
               type: string
-              description: Country code
+              description: ISO 3166-1 alpha-2 country code. Must be a permitted jurisdiction.
             postal_code:
               type: string
-              description: Post Code
+              description: Post code. At most 12 characters.
             apartment_number:
               type: string
               nullable: true
@@ -5203,17 +5222,23 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: Building name
+              description: Building name. Required unless building_number is given.
             building_number:
               type: string
               nullable: true
               maxLength: 10
-              description: Building number. At most 10 characters.
+              description: Building number. At most 10 characters. Required unless
+                building_name is given.
             state_or_province:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -5221,6 +5246,8 @@ components:
           - postal_code
         trading_address_attributes:
           type: object
+          description: The address the company trades from, if it's different from
+            the registered address.
           properties:
             city:
               type: string
@@ -5232,10 +5259,10 @@ components:
               description: Street
             country:
               type: string
-              description: Country code
+              description: ISO 3166-1 alpha-2 country code.
             postal_code:
               type: string
-              description: Post Code
+              description: Post code. At most 12 characters.
             apartment_number:
               type: string
               nullable: true
@@ -5245,17 +5272,23 @@ components:
               type: string
               nullable: true
               maxLength: 255
-              description: Building name
+              description: Building name. Required unless building_number is given.
             building_number:
               type: string
               nullable: true
               maxLength: 10
-              description: Building number. At most 10 characters.
+              description: Building number. At most 10 characters. Required unless
+                building_name is given.
             state_or_province:
               type: string
               nullable: true
               maxLength: 255
-              description: State or province
+              description: >-
+                State or province. Required when country is US or CA, and must then be one of that
+                country's codes. US: AA, AE, AP, AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID,
+                IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY,
+                NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, DC, AS,
+                GU, MP, PR, UM, VI. CA: AB, BC, MB, NB, NL, NS, ON, PE, QC, SK, NT, NU, YT.
           required:
           - city
           - street
@@ -5358,7 +5391,8 @@ components:
           description: Agreed to marketing emails.
         agreed_to_corporate_authority:
           type: boolean
-          description: Confirmed authority to act on behalf of company.
+          description: Confirmed authority to act on behalf of company. Corporate
+            applications only, and must be true before the application is submitted.
         country:
           type: string
           nullable: true
@@ -5865,18 +5899,9 @@ components:
           - SD
           - SY
           -
-          description: Home country for individual applicant or country of
-            registered address for corporate applicant.
-        brand_name:
-          type: string
-          maxLength: 255
-          nullable: true
-          description: Form's brand name
-        brand_key:
-          type: string
-          maxLength: 255
-          nullable: true
-          description: House account key identifier
+          description: >-
+            Home country for individual applicant or country of registered address for corporate
+            applicant, as an ISO 3166-1 alpha-2 code. Must be a permitted jurisdiction.
         referred_by:
           type: string
           nullable: true
@@ -5885,13 +5910,19 @@ components:
           type: string
           maxLength: 255
           nullable: true
-          description: The applicant's phone number.
+          description: >-
+            The applicant's phone number, in E.164 format, such as +447700900123. A +44 or +1
+            number has 10 digits after the country code. Required on every update to a corporate
+            application.
         contact_name:
           type: string
-          maxLength: 255
+          maxLength: 100
           nullable: true
-          description: The applicant's name (corporate applicants only). Must be
-            at least 2 characters if provided.
+          description: >-
+            The applicant's full name, not initials (corporate applicants only). Between 2 and
+            100 characters, using only the letters A to Z, accented letters from Western European
+            languages such as é, ñ or ü, apostrophes, hyphens, periods, and single spaces between
+            words.
     create_identity_verification_request:
       type: object
       properties:
@@ -5964,15 +5995,6 @@ components:
         entity_type:
           type: string
           description: Type of applicant - individual or corporate.
-        brand_name:
-          type: string
-          description: Brand the application was made under. Resolved to the
-            introducing account, so it determines the application's attribution.
-        brand_key:
-          type: string
-          description: House account key identifier. Resolved together with
-            brand_name, and needed whenever a brand has more than one house
-            account.
         referred_by:
           type: string
           nullable: true
@@ -6013,7 +6035,6 @@ components:
       - id
       - agreed_to_marketing_emails
       - agreed_to_terms_and_conditions
-      - brand_name
       - country
       - entity_type
       - products_required
@@ -6112,8 +6133,8 @@ components:
           type: array
           items:
             type: string
-          description: The nearest completed step before the current one, or an
-            empty list when there is none.
+          description: The step before the current one, whatever its status, or
+            an empty list on the first step.
       required:
       - step_ids
     document:
