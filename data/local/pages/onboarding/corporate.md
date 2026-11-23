@@ -26,7 +26,7 @@ A corporate application lists the people behind the business. Each person holds 
 | `director` | A director of the company | At least one person must hold it. Only a director's identity can be verified |
 | `ultimate_business_owner` | Someone who owns 25% or more of the business | Needs an `ownership_percentage` of at least 25. All owners together can't exceed 100 |
 
-- **Add each person once, with all of their roles.** A director who owns 30% of the company is one person holding `director` and `ultimate_business_owner`.
+- **Add each person once, with all of their roles.** A director who owns 25% or more of the company is one person holding `director` and `ultimate_business_owner`.
 - **Add owners of 25% or more.** If we need details of anyone who owns less, we'll contact you.
 - **An application holds at most 50 people.**
 
