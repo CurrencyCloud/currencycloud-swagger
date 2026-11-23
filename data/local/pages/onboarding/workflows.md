@@ -11,11 +11,11 @@ This page explains the steps and the rules every onboarding flow shares. For a s
 
 Every path on this page is relative to the Onboarding API base URL. See [Onboarding API](/guides/onboarding/overview) for the base URLs and how to authenticate.
 
-## How a step works
+## Key concepts
 
-**Every step is two calls.** First you send the step's data, such as [Update Account Usage](/api-reference/#update-account-usage). Then you complete the step. Sending the data doesn't move the workflow on: nothing advances until you complete the step.
+**Every step is two calls.** First you send the step's data, for example with [Update Account Usage](/api-reference/#update-account-usage). Then you complete the step with [Complete Step](/api-reference/#complete-step). Sending the data doesn't move the workflow on: nothing advances until you complete the step.
 
-**Every workflow call needs both IDs.** The workflow endpoints take `workflow_id` in the path and `application_id` as a query parameter. Leave out `application_id` and you get a `400` keyed `application_id`.
+**PUT replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
 
 **Save `workflow_id` when you create the application.** The create response gives you `application_id`, `workflow_id` and the first step:
 
@@ -30,9 +30,21 @@ Every path on this page is relative to the Onboarding API base URL. See [Onboard
 
 Store both IDs together. You need `application_id` for every call, and `workflow_id` for every workflow call.
 
+**Every workflow call needs both IDs.** The workflow endpoints take `workflow_id` in the path and `application_id` as a query parameter. Leave out `application_id` and you get a `400` keyed `application_id`.
+
 **Steps come one at a time.** You can only complete the step the workflow is on. Completing a later one early is refused.
 
-## The steps
+**Step IDs are exact.** A step ID that isn't in your application's workflow, or a `workflow_id` that doesn't belong to the `application_id`, returns a `404`.
+
+**Completion isn't idempotent.** Completing a step you've already completed is refused with a `409`. If a completion call times out or you're not sure it landed, call [Get Current Steps](/api-reference/#get-current-steps) before you retry.
+
+**You never complete `id_verification`.** It completes on its own when you complete `form_submit` or `form_submit_corp`, so the workflow is finished at that point and the step never appears in a response. Verifying identity is still a separate call, which you make after submitting. On an individual application you verify the applicant. On a corporate application you verify a director, and only a person with the `director` role can be verified, which may not be the person filling in the application. Each flow page covers it.
+
+**Submission is one-shot.** Submitting locks the application, and a second submission is refused. Review the application before you submit it.
+
+**Most responses are wrapped in `data`.** The application and its resources, such as people and documents, are returned under `data`. The create response, the workflow endpoints and identity verification return their fields at the top level instead.
+
+## Workflow steps
 
 ### Individual
 
@@ -43,7 +55,7 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `account_usage` | How the applicant will use the account | `PUT /v2/applications/{application_id}/account_usage` |
 | `documents` | The applicant's documents | `POST .../documents` then `POST .../document_files` then attach them to the applicant with `document_ids` |
 | `form_submit` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
-| `id_verification` | Completes on its own. See below | — |
+| `id_verification` | Completes on its own. See [Key concepts](#key-concepts) | — |
 
 ### Corporate
 
@@ -55,15 +67,9 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `people_corp` | Every user, director and owner on the application | `POST /v2/applications/{application_id}/people` once per person |
 | `documents_corp` | The company's and its people's documents | `POST .../documents` then `POST .../document_files` then attach them to the person or business with `document_ids` |
 | `form_submit_corp` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
-| `id_verification` | Completes on its own. See below | — |
+| `id_verification` | Completes on its own. See [Key concepts](#key-concepts) | — |
 
-The two flows don't map one-to-one. A corporate application has an extra step for the business, and puts its people in a step of their own after account usage. An individual application covers the applicant in `personal_details`, before account usage.
-
-Step IDs are exact. A step ID that isn't in your application's workflow, or a `workflow_id` that doesn't belong to the `application_id`, returns a `404`.
-
-**You never complete `id_verification`.** It completes on its own when you complete `form_submit` or `form_submit_corp`, so the workflow is finished at that point and the step never appears in a response. Verifying identity is still a separate call, which you make after submitting. On an individual application you verify the applicant. On a corporate application you verify a director, and only a person with the `director` role can be verified, which may not be the person filling in the application. Each flow page covers it.
-
-## Moving through the workflow
+## Navigating the workflow
 
 | **Call** | **What it does** |
 |---|---|
@@ -74,7 +80,7 @@ Step IDs are exact. A step ID that isn't in your application's workflow, or a `w
 
 All four need `?application_id={application_id}`. None of their responses are wrapped in `data`.
 
-### Complete a step
+### 1. Complete a step
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/basic_info/completion?application_id={application_id}
@@ -114,13 +120,9 @@ Before the step completes, its data is checked. If something is missing, you get
 }
 ```
 
-See [What each step checks](#what-each-step-checks-before-it-will-complete) for what each step needs. Send the missing data, then complete the step again.
+Send the missing data, then complete the step again.
 
-**Completion isn't idempotent.** Completing a step you've already completed is refused with a `409`. If a completion call times out or you're not sure it landed, call [Get Current Steps](/api-reference/#get-current-steps) before you retry.
-
-**The step's checks run before the workflow is called.** So a completion can return a `422` before any `409`, even for a step you've already completed or haven't reached yet. Handle both.
-
-### Check where you are
+### 2. Check where you are
 
 ```
 GET /v2/workflows/{workflow_id}/steps/current?application_id={application_id}
@@ -139,7 +141,7 @@ This call only reads, so it's safe at any point. Use it to confirm a completion 
 
 Mind the field name: the completion response calls it `steps`, while this call and the previous-step call call it `step_ids`. Both are lists of step IDs.
 
-### Go back a step
+### 3. Go back a step
 
 Going back takes two calls. First, find the step before the one you're on:
 
@@ -179,23 +181,7 @@ Make corrections before you submit. Once [Submit Application](/api-reference/#su
 
 You can move to a step you've completed, or to any step before the one you're on. The step you leave is reset, even if you'd completed it. So after going back, don't move forward again: complete the step you went back to, and the workflow takes you to the earliest step that isn't completed, usually the one you left. Moving to a step ahead of the one you're on that isn't completed is refused with a `409`.
 
-## What each step checks before it will complete
-
-Completing a step checks the data behind it, so send the data first. If a completion is refused with a `422`, this table tells you what's missing.
-
-| **Step** | **Needs, before it will complete** |
-|---|---|
-| `basic_info` | `country` and `agreed_to_marketing_emails` on the application, plus the `email` and `agreed_to_terms_and_conditions` you gave at create |
-| `basic_info_corp` | Everything `basic_info` needs, plus `contact_name` and `agreed_to_corporate_authority` on the application, and the `business_role` you gave at create. `phone_number` is required when you update the application |
-| `personal_details` | The applicant, with their `dob` and `personal_address`. The address must be in a permitted jurisdiction. Their email is taken from the application, so you don't send it here |
-| `business_information_corp` | The business information, with a registered address in a permitted jurisdiction. `business_website` is required when you send it |
-| `account_usage`, `account_usage_corp` | The account usage. Its required figures are checked when you send it. For a company incorporated within the last 12 months, `account_usage_corp` also needs `initial_capital` |
-| `people_corp` | At least one person with the `user` role and at least one with the `director` role. One person can hold both. Every user needs a `dob`, an `email` and a `personal_address` in a permitted jurisdiction. A sole trader has exactly one person, who holds all three roles, `user`, `director` and `ultimate_business_owner`, with an `ownership_percentage` |
-| `documents`, `documents_corp` | Nothing is checked. The step completes whether or not you've uploaded and attached documents, so do both first. A document you don't attach with `document_ids` is submitted as a general file, not as the person's or business's document. See your flow page for what to upload |
-| `form_submit`, `form_submit_corp` | The application must already be submitted with [Submit Application](/api-reference/#submit-application). Submitting only works once every earlier step is complete |
-| `id_verification` | Nothing. It completes on its own |
-
-## When the workflow refuses a call
+## Workflow-specific errors
 
 When the workflow itself refuses a call, you get a `409` with an `error_code` that says why:
 

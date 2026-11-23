@@ -98,13 +98,13 @@ These are the steps, in order:
 
 **Submitting only works once every earlier step is complete.** Then complete `form_submit` or `form_submit_corp`, and the workflow is finished.
 
-Before a step will complete, the data behind it is checked. See [What each step checks](/guides/onboarding/workflows#what-each-step-checks-before-it-will-complete) for what each step needs, and [Workflows](/guides/onboarding/workflows) for how to go back a step.
+Before a step will complete, the data behind it is checked. Each [flow page](/guides/onboarding/overview#choose-your-flow) says what its steps need, and [Workflows](/guides/onboarding/workflows) covers how to go back a step.
 
 ## Update a resource
 
 **PUT replaces, as on v1.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared.
 
-One thing is new on the application. Once `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` or `agreed_to_corporate_authority` has a value, leaving it out keeps that value, and sending it as `null` is refused. See [Key concepts](/guides/onboarding/overview#key-concepts) for every exception.
+One thing is new on the application. Once `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` or `agreed_to_corporate_authority` has a value, leaving it out keeps that value, and sending it as `null` is refused.
 
 ## Documents
 

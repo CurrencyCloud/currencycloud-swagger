@@ -571,8 +571,8 @@ paths:
           - code: validation
             category: field
             message: The named field is missing or isn't valid yet, such as
-              country on basic_info. See What each step checks in the Workflows
-              guide.
+              country on basic_info. Each step in your flow guide says what it
+              needs.
             params: ''
           - code: validation
             category: state
