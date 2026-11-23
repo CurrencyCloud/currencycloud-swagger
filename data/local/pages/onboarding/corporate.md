@@ -6,7 +6,7 @@ Companies and sole traders both apply as corporate applications, through one of 
 
 ## Choose a flow
 
-`business_role` says who is filling in the application, and decides which flow you follow. You set it when you [create the application](/guides/onboarding/corporate-director#step-1-create-the-application), and it can't be changed afterwards.
+`business_role` says who is filling in the application, and decides which flow you follow. You set it when you create the application, and it can't be changed afterwards.
 
 | **Who fills in the application** | **`business_role`** | **Flow** |
 |---|---|---|
