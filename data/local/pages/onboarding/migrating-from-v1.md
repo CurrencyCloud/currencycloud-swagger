@@ -37,7 +37,7 @@ Some endpoints are new on v2:
 | `PUT /v2/workflows/{workflow_id}/steps/current` | Moves you to a step you've completed, or to any step before the one you're on |
 | `POST /v2/identity_verifications` | Starts identity verification, once the application is submitted |
 
-`POST /v1/validations`, which runs the pre-flight validations you ask for before you create an application, stays on v1. It takes the same token and works for v2 applications too.
+POST `/v1/validations`, which runs the pre-flight validations you ask for before you create an application, stays on v1. It takes the same token and works for v2 applications too.
 
 ## Create the application
 
@@ -85,7 +85,7 @@ These are the steps, in order:
 | `personal_details` | — | `POST .../people` |
 | `account_usage` | `account_usage_corp` | `PUT .../account_usage` |
 | — | `people_corp` | `POST .../people` once per person |
-| `documents` | `documents_corp` | `POST .../documents` then `POST .../document_files` then attach them with `document_ids` |
+| `documents` | `documents_corp` | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file), then attach them with `document_ids` |
 | `form_submit` | `form_submit_corp` | `POST .../submit` |
 
 **Submitting only works once every earlier step is complete.** Then complete `form_submit` or `form_submit_corp`, and the workflow is finished.

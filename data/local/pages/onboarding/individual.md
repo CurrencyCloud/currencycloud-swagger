@@ -14,7 +14,7 @@ An individual application holds exactly **one person**: the applicant. They fill
 | [2. Applicant details](#step-2-applicant-details) | `PUT /v2/applications/{application_id}` | `basic_info` |
 | [3. Personal details](#step-3-personal-details) | `POST /v2/applications/{application_id}/people` | `personal_details` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage` |
-| [5. Documents](#step-5-documents) | `POST .../documents` then `POST .../document_files` | `documents` |
+| [5. Documents](#step-5-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents` |
 | [6. Submit](#step-6-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit` |
 | [7. Verify the applicant's identity](#step-7-verify-the-applicants-identity) | `POST /v2/identity_verifications` | — |
 

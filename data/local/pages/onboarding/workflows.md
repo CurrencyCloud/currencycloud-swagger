@@ -53,7 +53,7 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `basic_info` | The applicant's country, phone number and marketing preference | `PUT /v2/applications/{application_id}` |
 | `personal_details` | The applicant: name, date of birth, address and citizenship | `POST /v2/applications/{application_id}/people` |
 | `account_usage` | How the applicant will use the account | `PUT /v2/applications/{application_id}/account_usage` |
-| `documents` | The applicant's documents | `POST .../documents` then `POST .../document_files` then attach them to the applicant with `document_ids` |
+| `documents` | The applicant's documents | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file), then attach them to the applicant with `document_ids` |
 | `form_submit` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
 | `id_verification` | Completes on its own. See [Key concepts](#key-concepts) | — |
 
@@ -65,7 +65,7 @@ Store both IDs together. You need `application_id` for every call, and `workflow
 | `business_information_corp` | The company: name, registration, sector and addresses | `PUT /v2/applications/{application_id}/business_information` |
 | `account_usage_corp` | How the company will use the account | `PUT /v2/applications/{application_id}/account_usage` |
 | `people_corp` | Every user, director and owner on the application | `POST /v2/applications/{application_id}/people` once per person |
-| `documents_corp` | The company's and its people's documents | `POST .../documents` then `POST .../document_files` then attach them to the person or business with `document_ids` |
+| `documents_corp` | The company's and its people's documents | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file), then attach them to the person or business with `document_ids` |
 | `form_submit_corp` | Confirms the application has been submitted | `POST /v2/applications/{application_id}/submit` |
 | `id_verification` | Completes on its own. See [Key concepts](#key-concepts) | — |
 

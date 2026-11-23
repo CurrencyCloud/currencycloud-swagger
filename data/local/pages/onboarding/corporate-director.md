@@ -15,7 +15,7 @@ The applicant is a director of the company. They fill in the application, confir
 | [3. Business information](#step-3-business-information) | `PUT /v2/applications/{application_id}/business_information` | `business_information_corp` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage_corp` |
 | [5. People](#step-5-people) | `POST /v2/applications/{application_id}/people` once per person | `people_corp` |
-| [6. Documents](#step-6-documents) | `POST .../documents` then `POST .../document_files` | `documents_corp` |
+| [6. Documents](#step-6-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents_corp` |
 | [7. Submit](#step-7-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit_corp` |
 | [8. Verify the director's identity](#step-8-verify-the-directors-identity) | `POST /v2/identity_verifications` | — |
 
