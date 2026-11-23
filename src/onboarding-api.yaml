@@ -443,7 +443,7 @@ paths:
           - code: validation
             category: workflow
             message: Returned as request_invalid. Earlier workflow steps aren't
-              complete yet, and reason lists them.
+              complete yet.
             params: ''
           - code: already_submitted
             category: base
@@ -539,6 +539,27 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/step_completion_response"
+        '404':
+          description: Workflow or step not found
+          x-errors:
+          - code: workflow_not_found
+            category: base
+            message: The workflow doesn't exist.
+            params: ''
+          - code: application_id_mismatch
+            category: base
+            message: The workflow doesn't belong to this application_id. Pair
+              the workflow_id with the application_id it was created with.
+            params: ''
+          - code: invalid_step
+            category: base
+            message: The step ID isn't in this application's workflow, for
+              example a corporate step on an individual application.
+            params: ''
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '422':
           description: Invalid request
           x-errors:
@@ -677,18 +698,6 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/eco_relayed_error_response_v2"
-        '409':
-          description: Workflow entity type mismatch
-          x-errors:
-          - code: workflow_entity_type_mismatch
-            category: base
-            message: The application already has a workflow for the other entity
-              type.
-            params: ''
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
         '502':
           description: Temporary failure on our side
           x-errors:
@@ -762,12 +771,17 @@ paths:
           x-errors:
           - code: step_navigation_not_allowed
             category: base
-            message: The step is after the one the workflow is on. You can only
-              move back.
+            message: The step hasn't been started and comes after the one the
+              workflow is on. You can move to any step before the current one,
+              or to a step that's already completed.
             params: ''
           - code: step_not_actionable
             category: base
             message: id_verification can't be navigated to.
+            params: ''
+          - code: workflow_already_completed
+            category: base
+            message: The workflow is finished, so there's no step to move to.
             params: ''
           content:
             application/json:
@@ -852,18 +866,6 @@ paths:
             category: base
             message: The workflow doesn't belong to this application_id. Pair
               the workflow_id with the application_id it was created with.
-            params: ''
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/eco_relayed_error_response_v2"
-        '409':
-          description: No previous step (at first step)
-          x-errors:
-          - code: no_previous_step
-            category: base
-            message: There's no earlier step to go back to. Carry on from the
-              current step.
             params: ''
           content:
             application/json:
@@ -1170,7 +1172,12 @@ paths:
           - code: required_for_legal_entity_type
             category: company_registration_number
             message: The business_country and legal_entity_type sent need
-              company_registration_number or vat_number.
+              company_registration_number.
+            params: ''
+          - code: required_for_legal_entity_type
+            category: vat_number
+            message: The business_country and legal_entity_type sent need
+              vat_number.
             params: ''
           - code: invalid
             category: vat_number
@@ -1187,18 +1194,18 @@ paths:
             params: ''
           - code: user_role_limit_exceeded
             category: legal_entity_type
-            message: sole_trader was sent, but the application's people don't
-              fit a sole trader. Comes with sole_trader_mismatch.
+            message: sole_trader was sent, but more than one person holds the
+              user role.
             params: ''
           - code: person_limit_exceeded
-            category: legal_entity_type
-            message: sole_trader was sent, but the application's people don't
-              fit a sole trader. Comes with sole_trader_mismatch.
+            category: people
+            message: sole_trader was sent, but the application has more than one
+              person.
             params: ''
           - code: sole_trader_roles_required
-            category: legal_entity_type
-            message: sole_trader was sent, but the application's people don't
-              fit a sole trader. Comes with sole_trader_mismatch.
+            category: people
+            message: sole_trader was sent, but the person doesn't hold user,
+              director and ultimate_business_owner.
             params: ''
           - code: either_building_number_or_name
             category: registered_address
@@ -1398,8 +1405,9 @@ paths:
             params: ''
           - code: duplicate_person
             category: person
-            message: A person with the same first and last name and the same
-              roles is already on the application. Update that person instead.
+            message: Corporate applications that aren't sole traders only. A
+              person with the same first and last name and the same roles is
+              already on the application. Update that person instead.
             params: ''
           - code: sole_trader_roles_required
             category: roles
@@ -1443,20 +1451,37 @@ paths:
             params: ''
           - code: initial
             category: first_name
-            message: first_name or last_name is a single initial.
+            message: first_name is a single initial.
             params: ''
           - code: no_letters
             category: first_name
-            message: first_name or last_name has no letters at all.
+            message: first_name has no letters at all.
             params: ''
           - code: invalid_characters
             category: first_name
-            message: first_name or last_name has a character we don't accept,
-              such as a line break.
+            message: first_name has a character we don't accept, such as a line
+              break.
             params: ''
           - code: too_long
             category: first_name
-            message: first_name or last_name is over 100 characters.
+            message: first_name is over 100 characters.
+            params: ''
+          - code: initial
+            category: last_name
+            message: last_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: last_name
+            message: last_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: last_name
+            message: last_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: last_name
+            message: last_name is over 100 characters.
             params: ''
           - code: validation
             category: request_body_json
@@ -1679,19 +1704,11 @@ paths:
             message: director or ultimate_business_owner was given on an
               individual application. Use user only.
             params: ''
-          - code: person_limit_exceeded
-            category: person
-            message: A second person was added to an individual or sole trader
-              application.
-            params: ''
-          - code: limit_exceeded
-            category: person
-            message: The application already has 50 people.
-            params: ''
           - code: duplicate_person
             category: person
-            message: A person with the same first and last name and the same
-              roles is already on the application. Update that person instead.
+            message: Corporate applications that aren't sole traders only. A
+              person with the same first and last name and the same roles is
+              already on the application. Update that person instead.
             params: ''
           - code: sole_trader_roles_required
             category: roles
@@ -1735,20 +1752,37 @@ paths:
             params: ''
           - code: initial
             category: first_name
-            message: first_name or last_name is a single initial.
+            message: first_name is a single initial.
             params: ''
           - code: no_letters
             category: first_name
-            message: first_name or last_name has no letters at all.
+            message: first_name has no letters at all.
             params: ''
           - code: invalid_characters
             category: first_name
-            message: first_name or last_name has a character we don't accept,
-              such as a line break.
+            message: first_name has a character we don't accept, such as a line
+              break.
             params: ''
           - code: too_long
             category: first_name
-            message: first_name or last_name is over 100 characters.
+            message: first_name is over 100 characters.
+            params: ''
+          - code: initial
+            category: last_name
+            message: last_name is a single initial.
+            params: ''
+          - code: no_letters
+            category: last_name
+            message: last_name has no letters at all.
+            params: ''
+          - code: invalid_characters
+            category: last_name
+            message: last_name has a character we don't accept, such as a line
+              break.
+            params: ''
+          - code: too_long
+            category: last_name
+            message: last_name is over 100 characters.
             params: ''
           - code: validation
             category: request_body_json
@@ -2294,11 +2328,19 @@ paths:
             params: ''
           - code: missing
             category: application_id
-            message: application_id or person_id wasn't sent.
+            message: application_id wasn't sent.
+            params: ''
+          - code: missing
+            category: person_id
+            message: person_id wasn't sent.
             params: ''
           - code: invalid
             category: application_id
-            message: application_id or person_id isn't a UUID.
+            message: application_id isn't a UUID.
+            params: ''
+          - code: invalid
+            category: person_id
+            message: person_id isn't a UUID.
             params: ''
           - code: validation
             category: form
@@ -3655,11 +3697,9 @@ components:
         estimated_monthly_transaction_currency:
           type: string
           maxLength: 255
-          nullable: true
           description: Currency of the estimated monthly transaction value.
         estimated_monthly_transaction_value:
           type: integer
-          nullable: true
           description: Estimated monthly value the account will transact on the
             platform.
         estimated_monthly_transaction_volume:
