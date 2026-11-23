@@ -15,7 +15,7 @@ A sole trader application holds exactly **one person**: the sole trader. They're
 | [3. Business information](#step-3-business-information) | `PUT /v2/applications/{application_id}/business_information` | `business_information_corp` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage_corp` |
 | [5. The sole trader](#step-5-the-sole-trader) | `POST /v2/applications/{application_id}/people` | `people_corp` |
-| [6. Documents](#step-6-documents) | `POST .../documents`, then `POST .../document_files` | `documents_corp` |
+| [6. Documents](#step-6-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents_corp` |
 | [7. Submit](#step-7-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit_corp` |
 | [8. Verify the sole trader's identity](#step-8-verify-the-sole-traders-identity) | `POST /v2/identity_verifications` | — |
 
@@ -74,7 +74,7 @@ There's nothing to complete for this step. The workflow starts at `basic_info_co
 
 Records how to reach the applicant, and their confirmation that they can act for the business.
 
-### 2.a Send the applicant details
+### 2a. Send the applicant details
 
 `PUT /v2/applications/{application_id}`
 
@@ -88,9 +88,9 @@ Records how to reach the applicant, and their confirmation that they can act for
 }
 ```
 
-`PUT` replaces the application, so send the full body every time you update it.
+PUT replaces the application, so send the full body every time you update it.
 
-### 2.b Complete `basic_info_corp`
+### 2b. Complete `basic_info_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/basic_info_corp/completion?application_id={application_id}
@@ -104,7 +104,7 @@ The step needs `country`, `contact_name`, `agreed_to_marketing_emails` and `agre
 
 Describes the business: what it is, where it's registered and what it does.
 
-### 3.a Send the business information
+### 3a. Send the business information
 
 `PUT /v2/applications/{application_id}/business_information`
 
@@ -135,9 +135,9 @@ Some fields depend on where the business is:
 | `business_country` is the United States | `company_registration_number`, and `vat_number` holding the business's EIN: 9 digits, written as `123456789` or `12-3456789` |
 | An address is in the United States or Canada | That address's `state_or_province`: the two-letter state or province code, such as `NY` or `ON` |
 
-`PUT` replaces the business information, so send the full body every time you update it.
+PUT replaces the business information, so send the full body every time you update it.
 
-### 3.b Complete `business_information_corp`
+### 3b. Complete `business_information_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/business_information_corp/completion?application_id={application_id}
@@ -145,13 +145,13 @@ PUT /v2/workflows/{workflow_id}/steps/business_information_corp/completion?appli
 { "status": "completed" }
 ```
 
-The step needs the business information from 3.a, with its registered address in a permitted jurisdiction.
+The step needs the business information from 3a, with its registered address in a permitted jurisdiction.
 
 ## Step 4: Account usage
 
 Describes how the business intends to use the account.
 
-### 4.a Send the account usage
+### 4a. Send the account usage
 
 `PUT /v2/applications/{application_id}/account_usage`
 
@@ -171,9 +171,9 @@ Describes how the business intends to use the account.
 
 `purpose_details` is required when `primary_purpose` is `other`, and `initial_capital` when the business's `incorporation_date` is in the last 12 months.
 
-`PUT` replaces the account usage, so send the full body every time you update it.
+PUT replaces the account usage, so send the full body every time you update it.
 
-### 4.b Complete `account_usage_corp`
+### 4b. Complete `account_usage_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/account_usage_corp/completion?application_id={application_id}
@@ -181,13 +181,13 @@ PUT /v2/workflows/{workflow_id}/steps/account_usage_corp/completion?application_
 { "status": "completed" }
 ```
 
-The step needs the account usage from 4.a, with `initial_capital` if the business's `incorporation_date` is in the last 12 months.
+The step needs the account usage from 4a, with `initial_capital` if the business's `incorporation_date` is in the last 12 months.
 
 ## Step 5: The sole trader
 
 Adds the sole trader as the application's one person.
 
-### 5.a Add the sole trader
+### 5a. Add the sole trader
 
 `POST /v2/applications/{application_id}/people`
 
@@ -224,9 +224,9 @@ Some fields depend on where the sole trader lives:
 | `home_country` is the United States | `id_number`: their 9-digit Social Security number |
 | The address is in the United States or Canada | `personal_address_attributes.state_or_province`: the two-letter state or province code, such as `NY` or `ON` |
 
-A sole trader application holds exactly one person. To correct the sole trader's details, update them with `PUT .../people/{person_id}` and the full body, including `document_ids` once you've attached documents.
+A sole trader application holds exactly one person. To correct the sole trader's details, update them with [Update Person](/api-reference/#update-person) and the full body, including `document_ids` once you've attached documents.
 
-### 5.b Complete `people_corp`
+### 5b. Complete `people_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/people_corp/completion?application_id={application_id}
@@ -244,7 +244,7 @@ Uploads the documents for the business and the sole trader, and attaches each on
 
 [Onboard a business](/guides/onboarding/corporate#documents) lists the documents a business needs. Upload everything you have: our compliance review decides what's finally needed.
 
-### 6.a Create the document
+### 6a. Create the document
 
 `POST /v2/applications/{application_id}/documents`
 
@@ -255,7 +255,7 @@ Uploads the documents for the business and the sole trader, and attaches each on
 }
 ```
 
-`category` says what the document is evidence of, and decides where you attach it in 6.c:
+`category` says what the document is evidence of, and decides where you attach it in 6c:
 
 | **Document** | **`category`** | **Attach it to** |
 |---|---|---|
@@ -268,7 +268,7 @@ Every `document_type` and `category` value is listed in the [API reference](/api
 
 Keep `data.id` from the response: it's the `document_id`.
 
-### 6.b Upload its files
+### 6b. Upload its files
 
 `POST /v2/applications/{application_id}/documents/{document_id}/document_files`
 
@@ -286,9 +286,9 @@ Keep `data.id` from the response: it's the `document_id`.
 | Two-sided documents | `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need both `front` and `back`, one image each. To replace either side, delete its image and upload again |
 | Image quality | Files on a `proof_of_identity` document are quality-checked on upload. Use a clear photo that shows the whole document |
 
-### 6.c Attach the documents
+### 6c. Attach the documents
 
-Send each resource again with its document IDs in `document_ids`. `PUT` replaces the resource, so send its full body:
+Send each resource again with its document IDs in `document_ids`. PUT replaces the resource, so send its full body:
 
 | **Attach to** | **Call** |
 |---|---|
@@ -312,7 +312,7 @@ For example, the sole trader's photo ID:
 
 You can also upload documents earlier and send `document_ids` when you first send the sole trader, business information or account usage.
 
-### 6.d Complete `documents_corp`
+### 6d. Complete `documents_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/documents_corp/completion?application_id={application_id}
@@ -320,11 +320,18 @@ PUT /v2/workflows/{workflow_id}/steps/documents_corp/completion?application_id={
 { "status": "completed" }
 ```
 
+Completing `documents_corp` checks nothing, so it completes even if no documents were uploaded or attached: do both first. A document you don't attach with `document_ids` is submitted as a general file, not as a person's or the business's document.
+
 ## Step 7: Submit
 
-Sends the application for compliance review.
+Sends the application for compliance review. It takes two calls, in this order:
 
-### 7.a Submit the application
+- **7a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
+- **7b completes `form_submit_corp`.** It moves the workflow on, and starts nothing else.
+
+Completing `form_submit_corp` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit_corp`.
+
+### 7a. Submit the application
 
 `POST /v2/applications/{application_id}/submit`
 
@@ -334,7 +341,7 @@ Complete steps 2 to 6 first: submit checks every earlier step is complete, then 
 
 <span id="7b-complete-form_submit_corp"></span>
 
-### 7.b Complete `form_submit_corp`
+### 7b. Complete `form_submit_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/form_submit_corp/completion?application_id={application_id}
@@ -348,7 +355,7 @@ Submit first: this step checks the application has already been submitted. Once 
 
 The sole trader proves they are who they say they are, using their photo ID and a selfie. They hold the `director` role, so they can be verified once the application is submitted.
 
-### 8.a Start the verification
+### 8a. Start the verification
 
 `POST /v2/identity_verifications`
 
@@ -368,20 +375,20 @@ The sole trader proves they are who they say they are, using their photo ID and 
 
 `person_id` is the sole trader's, from step 5. Calling this again returns the same verification, so it's safe to retry.
 
-### 8.b Send the sole trader to the hosted page
+### 8b. Send the sole trader to the hosted page
 
 Send the sole trader to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
 
-### 8.c Email verification
+### 8c. Email verification
 
 The hosted page asks the sole trader for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
 
 **Only the sole trader can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
 
-There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7.b](#7b-complete-form_submit_corp).
+There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7b](#7b-complete-form_submit_corp).
 
 ## After submission
 
-The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
+The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from [Get Application](/api-reference/#get-application).
 
 See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.

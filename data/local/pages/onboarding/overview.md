@@ -19,7 +19,8 @@ Every application goes through the same four stages:
 - [Authentication](#authentication): how to get the token every request needs.
 - [Accepted format](#accepted-format): how to send request bodies, country codes and files.
 - [Terms & conditions](#terms-conditions): what you must show the applicant, and the consent you must record.
-- [Key concepts](#key-concepts): five things that shape every integration.
+- [Key concepts](/guides/onboarding/workflows#key-concepts): the rules that shape every integration, on the Workflows page.
+- [API reference](/api-reference/): every call the API offers, with its fields and errors.
 - [Choose your flow](#choose-your-flow): the page to follow for your applicant.
 
 ## Base URLs
@@ -65,20 +66,7 @@ Your build must also show users Currencycloud's terms and conditions, get their 
 | `agreed_to_corporate_authority` | `PUT /v2/applications/{application_id}` | Corporate applications only. Set it to `true` to confirm the person filling in the application has the right to apply on behalf of the company |
 | `contact_name` | `PUT /v2/applications/{application_id}` | Corporate applications only. The name of the person who agreed to the terms and confirmed corporate authority, meaning the person filling in the application |
 
-On a corporate application, both `agreed_to_corporate_authority` and `contact_name` are needed before you can complete the first step. See [What each step checks](/guides/onboarding/workflows#what-each-step-checks-before-it-will-complete) for everything that step needs.
-
-## Key concepts
-
-**Every step is two calls.** You send the data, then complete the step it belongs to. Sending the data on its own doesn't move the workflow on. See [Workflows](/guides/onboarding/workflows) for the steps and how to navigate them.
-
-**`PUT` replaces, it doesn't patch.** Send the full body every time, not just the fields you're changing. A field you leave out is cleared. The one exception is on `PUT /v2/applications/{application_id}`, for `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` and `agreed_to_corporate_authority`: once one of these has a value, leaving it out keeps that value, and sending it as `null` is refused. A person has two of its own exceptions: leaving out `personal_address_attributes` keeps the stored address, and on an individual or sole-trader application the email always comes from the application. Everything else is cleared. Leave out a person's `dob` and it's cleared; leave out `document_ids` and their documents are detached.
-
-**Store `workflow_id` when you create the application.** The create response returns both `application_id` and `workflow_id`. You need `application_id` on every call and `workflow_id` on every workflow call, so save both straight away.
-
-**Submission is one-shot.** Submitting locks the application, and a second submission is refused. Review the application before you submit it.
-
-**Most responses are wrapped in `data`.** The application and its resources, such as people and documents, are returned under `data`. The create response, the workflow endpoints and identity verification return their fields at the top level instead.
-
+On a corporate application, both `agreed_to_corporate_authority` and `contact_name` are needed before you can complete the first step. Your [flow page](#choose-your-flow) lists everything that step needs.
 
 ## Choose your flow
 

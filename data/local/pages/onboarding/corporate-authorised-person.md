@@ -21,10 +21,10 @@ The application also lists the company's other directors and its ultimate busine
 | [2. Applicant details](#step-2-applicant-details) | `PUT /v2/applications/{application_id}` | `basic_info_corp` |
 | [3. Business information](#step-3-business-information) | `PUT /v2/applications/{application_id}/business_information` | `business_information_corp` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage_corp` |
-| [5. People](#step-5-people) | `POST /v2/applications/{application_id}/people`, once per person | `people_corp` |
-| [6. Documents](#step-6-documents) | `POST .../documents`, then `POST .../document_files` | `documents_corp` |
+| [5. People](#step-5-people) | `POST /v2/applications/{application_id}/people` once per person | `people_corp` |
+| [6. Documents](#step-6-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents_corp` |
 | [7. Submit](#step-7-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit_corp` |
-| [8. Verify the director's identity](#step-8-verify-the-directors-identity) | `POST /v2/identity_verifications`, then send the link to the director | — |
+| [8. Verify the director's identity](#step-8-verify-the-directors-identity) | `POST /v2/identity_verifications` then send the link to the director | — |
 
 Every completion call has the same shape. Only the `step_id` changes:
 
@@ -81,7 +81,7 @@ There's nothing to complete for this step. The workflow starts at `basic_info_co
 
 Records how to reach the applicant, and their confirmation that they can act for the company.
 
-### 2.a Send the applicant details
+### 2a. Send the applicant details
 
 `PUT /v2/applications/{application_id}`
 
@@ -95,9 +95,9 @@ Records how to reach the applicant, and their confirmation that they can act for
 }
 ```
 
-`PUT` replaces the application, so send the full body every time you update it.
+PUT replaces the application, so send the full body every time you update it.
 
-### 2.b Complete `basic_info_corp`
+### 2b. Complete `basic_info_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/basic_info_corp/completion?application_id={application_id}
@@ -111,7 +111,7 @@ The step needs `country`, `contact_name`, `agreed_to_marketing_emails` and `agre
 
 Describes the company: what it is, where it's registered and what it does.
 
-### 3.a Send the business information
+### 3a. Send the business information
 
 `PUT /v2/applications/{application_id}/business_information`
 
@@ -149,9 +149,9 @@ For a company registered in the US, `vat_number` holds its EIN: 9 digits, writte
 
 An address in the United States or Canada also needs its `state_or_province`: the two-letter state or province code, such as `NY` or `ON`.
 
-`PUT` replaces the business information, so send the full body every time you update it.
+PUT replaces the business information, so send the full body every time you update it.
 
-### 3.b Complete `business_information_corp`
+### 3b. Complete `business_information_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/business_information_corp/completion?application_id={application_id}
@@ -159,13 +159,13 @@ PUT /v2/workflows/{workflow_id}/steps/business_information_corp/completion?appli
 { "status": "completed" }
 ```
 
-The step needs the business information from 3.a, with its registered address in a permitted jurisdiction.
+The step needs the business information from 3a, with its registered address in a permitted jurisdiction.
 
 ## Step 4: Account usage
 
 Describes how the company intends to use the account.
 
-### 4.a Send the account usage
+### 4a. Send the account usage
 
 `PUT /v2/applications/{application_id}/account_usage`
 
@@ -185,9 +185,9 @@ Describes how the company intends to use the account.
 
 `purpose_details` is required when `primary_purpose` is `other`, and `initial_capital` when the company was incorporated in the last 12 months.
 
-`PUT` replaces the account usage, so send the full body every time you update it.
+PUT replaces the account usage, so send the full body every time you update it.
 
-### 4.b Complete `account_usage_corp`
+### 4b. Complete `account_usage_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/account_usage_corp/completion?application_id={application_id}
@@ -195,7 +195,7 @@ PUT /v2/workflows/{workflow_id}/steps/account_usage_corp/completion?application_
 { "status": "completed" }
 ```
 
-The step needs the account usage from 4.a, with `initial_capital` if the company was incorporated in the last 12 months.
+The step needs the account usage from 4a, with `initial_capital` if the company was incorporated in the last 12 months.
 
 ## Step 5: People
 
@@ -209,7 +209,7 @@ Adds everyone the application needs: the authorised person, the director who wil
 
 Add each person once, with all of their roles. In this flow the authorised person isn't a director, so they hold `user` but not `director`.
 
-### 5.a Add the authorised person
+### 5a. Add the authorised person
 
 `POST /v2/applications/{application_id}/people`
 
@@ -246,7 +246,7 @@ Some fields depend on where the authorised person lives:
 
 <span id="5b-add-the-director"></span>
 
-### 5.b Add the director
+### 5b. Add the director
 
 Add the director who will be verified with the same call, including their own email address and date of birth:
 
@@ -268,7 +268,7 @@ Send both `email` and `dob` now: the identity check in step 8 needs them, and pe
 
 Keep `data.id` from the response: it's the director's `person_id`, which you need in steps 6 and 8.
 
-### 5.c Add the other directors and owners
+### 5c. Add the other directors and owners
 
 Add every other director, and every ultimate business owner, with the same call. A person who isn't a `user` needs only their names, countries and roles, plus `ownership_percentage` for an owner:
 
@@ -285,9 +285,9 @@ Add every other director, and every ultimate business owner, with the same call.
 
 Give each person `director`, `ultimate_business_owner` or both. An owner needs an `ownership_percentage` of at least 25, and all owners together can't exceed 100.
 
-An application holds at most 50 people. To correct someone's details, update them with `PUT .../people/{person_id}` and the full body, including `document_ids` once you've attached documents.
+An application holds at most 50 people. To correct someone's details, update them with [Update Person](/api-reference/#update-person) and the full body, including `document_ids` once you've attached documents.
 
-### 5.d Complete `people_corp`
+### 5d. Complete `people_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/people_corp/completion?application_id={application_id}
@@ -305,7 +305,7 @@ Uploads the documents for the company and its people, and attaches each one to w
 
 [Onboard a business](/guides/onboarding/corporate#documents) lists the documents a company needs. Upload everything you have: our compliance review decides what's finally needed.
 
-### 6.a Create the document
+### 6a. Create the document
 
 `POST /v2/applications/{application_id}/documents`
 
@@ -316,7 +316,7 @@ Uploads the documents for the company and its people, and attaches each one to w
 }
 ```
 
-`category` says what the document is evidence of, and decides where you attach it in 6.c:
+`category` says what the document is evidence of, and decides where you attach it in 6c:
 
 | **Document** | **`category`** | **Attach it to** |
 |---|---|---|
@@ -330,7 +330,7 @@ Every `document_type` and `category` value is listed in the [API reference](/api
 
 Keep `data.id` from the response: it's the `document_id`.
 
-### 6.b Upload its files
+### 6b. Upload its files
 
 `POST /v2/applications/{application_id}/documents/{document_id}/document_files`
 
@@ -348,9 +348,9 @@ Keep `data.id` from the response: it's the `document_id`.
 | Two-sided documents | `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need both `front` and `back`, one image each. To replace either side, delete its image and upload again |
 | Image quality | Files on a `proof_of_identity` document are quality-checked on upload. Use a clear photo that shows the whole document |
 
-### 6.c Attach the documents
+### 6c. Attach the documents
 
-Send each resource again with its document IDs in `document_ids`. `PUT` replaces the resource, so send its full body:
+Send each resource again with its document IDs in `document_ids`. PUT replaces the resource, so send its full body:
 
 | **Attach to** | **Call** |
 |---|---|
@@ -374,7 +374,7 @@ For example, the director's photo ID:
 
 You can also upload documents earlier and send `document_ids` when you first send the person, business information or account usage.
 
-### 6.d Complete `documents_corp`
+### 6d. Complete `documents_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/documents_corp/completion?application_id={application_id}
@@ -382,11 +382,18 @@ PUT /v2/workflows/{workflow_id}/steps/documents_corp/completion?application_id={
 { "status": "completed" }
 ```
 
+Completing `documents_corp` checks nothing, so it completes even if no documents were uploaded or attached: do both first. A document you don't attach with `document_ids` is submitted as a general file, not as a person's or the business's document.
+
 ## Step 7: Submit
 
-Sends the application for compliance review.
+Sends the application for compliance review. It takes two calls, in this order:
 
-### 7.a Submit the application
+- **7a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
+- **7b completes `form_submit_corp`.** It moves the workflow on, and starts nothing else.
+
+Completing `form_submit_corp` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit_corp`.
+
+### 7a. Submit the application
 
 `POST /v2/applications/{application_id}/submit`
 
@@ -396,7 +403,7 @@ Complete steps 2 to 6 first: submit checks every earlier step is complete, then 
 
 <span id="7b-complete-form_submit_corp"></span>
 
-### 7.b Complete `form_submit_corp`
+### 7b. Complete `form_submit_corp`
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/form_submit_corp/completion?application_id={application_id}
@@ -410,7 +417,7 @@ Submit first: this step checks the application has already been submitted. Once 
 
 The director proves they are who they say they are, using their photo ID and a selfie. You start the verification and send the director its link, and the director completes it. Only a person with the `director` role can be verified, and only once the application is submitted.
 
-### 8.a Start the director's verification
+### 8a. Start the director's verification
 
 `POST /v2/identity_verifications`
 
@@ -428,24 +435,24 @@ The director proves they are who they say they are, using their photo ID and a s
 }
 ```
 
-`person_id` is the director's, from [5.b](#5b-add-the-director). Calling this again returns the same verification, so it's safe to retry. Each call also emails the link to the director again.
+`person_id` is the director's, from [5b](#5b-add-the-director). Calling this again returns the same verification, so it's safe to retry. Each call also emails the link to the director again.
 
-### 8.b Send the link to the director
+### 8b. Send the link to the director
 
 We email `whitelabel_url` to the director's `email` when you start the verification. Send it to them yourself as well, for example by email.
 
 The director opens the link in their own browser. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
 
-### 8.c Email verification
+### 8c. Email verification
 
-The hosted page asks the director for their email address, then emails a one-time code to it. It must be the email address you gave for them in [5.b](#5b-add-the-director): an address that isn't on the application is refused. They enter the code on the page to verify the address.
+The hosted page asks the director for their email address, then emails a one-time code to it. It must be the email address you gave for them in [5b](#5b-add-the-director): an address that isn't on the application is refused. They enter the code on the page to verify the address.
 
 **Only the director can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it. Send the link to the director only: only the address you gave for them lets them through to the identity check.
 
-There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7.b](#7b-complete-form_submit_corp).
+There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7b](#7b-complete-form_submit_corp).
 
 ## After submission
 
-The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from `GET /v2/applications/{application_id}`.
+The application's `state` moves from `submitted` to `approved` or `rejected` once our review is done. To be told when that happens, subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/), or read `state` from [Get Application](/api-reference/#get-application).
 
 See [Troubleshooting & FAQ](/guides/onboarding/faq) for what to do if an application stalls.
