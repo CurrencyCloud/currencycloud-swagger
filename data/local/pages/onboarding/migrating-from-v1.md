@@ -1,6 +1,6 @@
 [_metadata_:menu_title]:- "Migrate from v1"
 [_metadata_:order]:- "9"
-# Migrate from v1
+# Migrating from v1
 
 If you onboard applicants with `/v1/forms` today, this page tells you what changes when you move to v2: the endpoints, the workflow, the new validation rules, and the response format. For the full journey, follow the page for [your flow](/guides/onboarding/overview#choose-your-flow).
 
@@ -53,7 +53,7 @@ Create only takes the fields in the first three rows, so move the fields in the 
 
 **`email`, `agreed_to_terms_and_conditions` and `business_role` are fixed at create.** On v1 you could change them with an update. On v2 you can't, so collect them, and the applicant's consent, before you create the application.
 
-**The create response is new.** It returns the application's ID, its workflow's ID and the first step, at the top level:
+**The create response is new.** It returns the application's ID, its workflow's ID and the first step, at the top level: <br><br>
 
 ```
 201 Created
@@ -68,7 +68,7 @@ You need `application_id` on every call and `workflow_id` on every workflow call
 
 ## Complete the workflow
 
-**Every step is two calls.** You send the step's data with the same kind of call you use on v1, then complete the step:
+**Every step is two calls.** You send the step's data with the same kind of call you use on v1, then complete the step: <br><br>
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/{step_id}/completion?application_id={application_id}
@@ -190,7 +190,8 @@ The workflow endpoints and identity verification also return their fields at the
 
 ## Errors
 
-**Each error names its field.** v1 reported a request it couldn't accept as one block of text. v2 reports each field under its own key, with a stable `error_code`. Here's the same business information, sent without `company_name`. On v1:
+**Each error names its field.** v1 reported a request it couldn't accept as one block of text. v2 reports each field under its own key, with a stable `error_code`. Here's the same business information, sent without `company_name`. <br><br>
+On v1: <br><br>
 
 ```
 422 Unprocessable Content
@@ -232,4 +233,4 @@ On v2:
 - **A nested field has a dotted key**, such as `personal_address.country`.
 - **Treat `error_code` as an open set**: new codes can be added.
 
-Two status codes are new. A `409` means the workflow refused the call, such as completing a step that isn't the current one. A `502` means a temporary failure on our side. Before you retry it, check whether the first call landed: see [Is it safe to retry a call?](/guides/onboarding/faq#is-it-safe-to-retry-a-call).
+Two status codes are new. Two status codes are new. A `409` means the call conflicts with the current workflow state, such as when you try to complete a step that isn't the current one. A `502` means a temporary failure on our side. Before you retry, check whether the first call was processed: [Is it safe to retry a call?](/guides/onboarding/faq#is-it-safe-to-retry-a-call).

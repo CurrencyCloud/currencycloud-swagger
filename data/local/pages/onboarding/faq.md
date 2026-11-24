@@ -2,11 +2,9 @@
 [_metadata_:order]:- "8"
 # Troubleshooting & FAQ
 
-Answers to the questions integrators ask once they're live: what happens after you submit, how you hear about the decision, and how to fix the problems that come up most often.
-
 ## What happens after I submit?
 
-Submitting hands the application to our compliance review. Its `state`, returned by [Get Application](/api-reference/#get-application), then moves on:
+Submitting hands the application to our compliance review. Its `state`, returned by [Get Application](/api-reference/#get-application), then changes as follows:
 
 | **`state`** | **Meaning** |
 |---|---|
@@ -15,7 +13,7 @@ Submitting hands the application to our compliance review. Its `state`, returned
 | `approved` | Approved |
 | `rejected` | Rejected |
 
-**A submitted application can't be changed.** Every update or delete, on the application or any of its resources, is refused with a `422`, and that stays true after the decision. You can still read the application, and you can still start identity verification with [Create Identity Verification](/api-reference/#create-identity-verification). See your flow page for that step:
+**A submitted application can't be changed.** Any attempt to update or delete the application or its resources returns a 422 error. This remains the case after a decision has been made. You can still read the application and start identity verification with [Create Identity Verification](/api-reference/#create-identity-verification). See the relevant flow page for this step:
 
 - [Onboard an individual](/guides/onboarding/individual#step-7-verify-the-applicants-identity)
 - [Onboard a business: director](/guides/onboarding/corporate-director#step-8-verify-the-directors-identity)
@@ -26,24 +24,24 @@ Submitting hands the application to our compliance review. Its `state`, returned
 
 Subscribe to the `end_client_application_decisioned_notification` [push notification](/guides/platform-specifics/push-notifications/#notifications-and-events). Your Solutions Manager can set it up. Its `decision` field carries the new `state`, `approved` or `rejected`, and its `form_id` is the `application_id`.
 
-If you'd rather poll, read `state` from [Get Application](/api-reference/#get-application), at a modest interval rather than in a tight loop.
+If you'd rather poll, read `state` from [Get Application](/api-reference/#get-application), at modest intervals rather than in a tight loop.
 
 ## Common issues
 
 | **What you see** | **Why** | **What to do** |
 |---|---|---|
 | You no longer have the application's `workflow_id` | Only the create response returns it | Delete the application with [Delete Application](/api-reference/#delete-application) and create it again. Save both IDs from the create response straight away. If you've already submitted it, contact support with the `application_id` |
-| Completing a step returns a `409` with `step_not_started` | You've already completed that step, or it isn't the current one | Call [Get Current Steps](/api-reference/#get-current-steps) and complete the step it returns |
-| Submitting returns a `422` with `validation` on `workflow` | Earlier steps aren't complete | Call [Get Current Steps](/api-reference/#get-current-steps), complete each step from there, then submit again |
+| Completing a step returns a `409` error with `step_not_started` | You've already completed that step, or it isn't the current one | Call [Get Current Steps](/api-reference/#get-current-steps) and complete the step it returns |
+| Submitting returns a `422` error with `validation` on `workflow` | Earlier steps aren't complete | Call [Get Current Steps](/api-reference/#get-current-steps), complete each step from there, then submit again |
 | Completing `form_submit` or `form_submit_corp` returns a `422` with `validation` on `state` | The application isn't submitted yet | Call [Submit Application](/api-reference/#submit-application) first, then complete the step |
-| A photo ID upload returns a `422` with a code on `image`, such as `detect_blur` or `detect_cutoff` | The image failed the quality check, which runs on `proof_of_identity` documents | Take a new, clear photo of the whole document and upload it again |
+| A photo ID upload returns a `422` error with a code on `image`, such as `detect_blur` or `detect_cutoff` | The image failed the quality check, which runs on `proof_of_identity` documents | Take a new, clear photo of the whole document and upload it again |
 | Fields you set earlier come back empty | PUT replaces the resource, so fields you left out were cleared | Send the full body every time: read the resource, change it, and send all of it back |
 | A person's documents are no longer attached | An update to the person left out `document_ids` | Send `document_ids` every time you update the person |
-| Starting identity verification returns a `422` with `validation` on `form` | The application isn't submitted yet | Submit it first |
+| Starting identity verification returns a `422` error with `validation` on `form` | The application isn't submitted yet | Submit it first |
 
 ## Is it safe to retry a call?
 
-Not always. If a call times out or returns a `500` or `502`, check whether it landed before you send it again:
+Not always. If a call times out or returns a `500` or `502`, check whether it succeeded before you send it again:
 
 | **Call** | **Safe to retry?** |
 |---|---|
