@@ -6,8 +6,8 @@ Every application has a workflow: a fixed sequence of steps that you complete on
 
 This page explains the steps and the rules every onboarding flow shares. For a step-by-step walkthrough, see the page for your flow:
 
-- [Onboard an individual](/guides/onboarding/individual)
-- [Onboard a business](/guides/onboarding/corporate) - as a [director](/guides/onboarding/corporate-director), an [authorised person](/guides/onboarding/corporate-authorised-person) or a [sole trader](/guides/onboarding/corporate-sole-trader)
+- [Onboarding an individual](/guides/onboarding/individual)
+- [Onboarding a business](/guides/onboarding/corporate) - as a [director](/guides/onboarding/corporate-director), an [authorised person](/guides/onboarding/corporate-authorised-person) or a [sole trader](/guides/onboarding/corporate-sole-trader)
 
 Every path on this page is relative to the Onboarding API base URL. See the [Overview guide](/guides/onboarding/overview) for the base URLs and how to authenticate.
 

@@ -15,10 +15,10 @@ Submitting hands the application to our compliance review. Its `state`, returned
 
 **A submitted application can't be changed.** Any attempt to update or delete the application or its resources returns a 422 error. This remains the case after a decision has been made. You can still read the application and start identity verification with [Create Identity Verification](/api-reference/#create-identity-verification). See the relevant flow page for this step:
 
-- [Onboard an individual](/guides/onboarding/individual#step-7-verify-the-applicants-identity)
-- [Onboard a business: director](/guides/onboarding/corporate-director#step-8-verify-the-directors-identity)
-- [Onboard a business: authorised person](/guides/onboarding/corporate-authorised-person#step-8-verify-the-directors-identity)
-- [Onboard a business: sole trader](/guides/onboarding/corporate-sole-trader#step-8-verify-the-sole-traders-identity)
+- [Onboarding an individual](/guides/onboarding/individual#step-7-verify-the-applicants-identity)
+- [Onboarding a business: director](/guides/onboarding/corporate-director#step-8-verify-the-directors-identity)
+- [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person#step-8-verify-the-directors-identity)
+- [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader#step-8-verify-the-sole-traders-identity)
 
 ## How do I find out the decision?
 

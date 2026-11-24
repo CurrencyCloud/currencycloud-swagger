@@ -72,12 +72,12 @@ On a corporate application, both `agreed_to_corporate_authority` and `contact_na
 
 | **Your applicant** | **Follow** |
 |---|---|
-| A person applying on their own behalf | [Onboard an individual](/guides/onboarding/individual). Your account must be enabled for individual onboarding; your Solutions Manager can enable it |
-| A company, with a director filling in the application | [Onboard a business: director](/guides/onboarding/corporate-director) |
-| A company, with someone other than a director filling in the application, and a director verified later | [Onboard a business: authorised person](/guides/onboarding/corporate-authorised-person) |
-| A sole trader | [Onboard a business: sole trader](/guides/onboarding/corporate-sole-trader) |
+| A person applying on their own behalf | [Onboarding an individual](/guides/onboarding/individual). Your account must be enabled for individual onboarding; your Solutions Manager can enable it |
+| A company, with a director filling in the application | [Onboarding a business: director](/guides/onboarding/corporate-director) |
+| A company, with someone other than a director filling in the application, and a director verified later | [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person) |
+| A sole trader | [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader) |
 
-For a company or a sole trader, read [Onboard a business](/guides/onboarding/corporate) first. It covers the rules all three corporate flows share: business information, the people on the application, and documents.
+For a company or a sole trader, read [Onboarding a business](/guides/onboarding/corporate) first. It covers the rules all three corporate flows share: business information, the people on the application, and documents.
 
 ## More help
 
