@@ -325,7 +325,7 @@ The hosted page asks the applicant for their email address, then sends a one-tim
 
 **Only the applicant can do this.** There is no API call to send, enter, or skip the code, so you can't complete or automate this step for them.
 
-There's no workflow step to complete here, `id_verification` isi completed automatically when you complete `form_submit` in step [6b](#6b-complete-form_submit).
+There's no workflow step to complete here, `id_verification` is completed automatically when you complete `form_submit` in step [6b](#6b-complete-form_submit).
 
 ## After submission
 

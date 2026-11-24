@@ -94,7 +94,7 @@ Before a step can be completed, its data is checked. Each [flow page](/guides/on
 
 ## Update a resource
 
-**PUT replaces the resource, as in v1.** Send the full body each time, not just the fields you want to  change. Most omitted fields are cleared.
+**PUT replaces the resource, as in v1.** Send the full body each time, not just the fields you want to change. Most omitted fields are cleared.
 
 One thing is new on the application. Once `country`, `phone_number`, `contact_name`, `agreed_to_marketing_emails` or `agreed_to_corporate_authority` has a value, omitting it keeps that value, and sending it as `null` is refused.
 
@@ -114,7 +114,7 @@ Identity verification is a separate call in v2. Once the application is submitte
 - For an individual application, you verify the applicant.
 - For a corporate application, you verify a director. Only a person with the `director` role can be verified.
 
-People in v2 don't take `impersonation_check_required`. Identity verification is handled  through Create Identify Verification. Your flow page shows the call in full.
+People in v2 don't take `impersonation_check_required`. Identity verification is handled through Create Identity Verification. Your flow page shows the call in full.
 
 ## New validation rules
 

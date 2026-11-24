@@ -40,7 +40,7 @@ Who you add depends on the flow:
 
 ## Business information
 
-Every corporate application sends its business information with [Update Business Information](/api-reference/#update-business-information). The [API reference](/api-reference//#onboard) lists every field. These are the rules that are easiest to get wrong.
+Every corporate application sends its business information with [Update Business Information](/api-reference/#update-business-information). The [API reference](/api-reference/#onboard) lists every field. These are the rules that are easiest to get wrong.
 
 - **`business_website` is always required.** It's the business's website or other online presence as a URL. The scheme is optional, so `example.com` is accepted. A business with no online presence can't be onboarded through the API.
 - **The registered address must be in a permitted jurisdiction.** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
