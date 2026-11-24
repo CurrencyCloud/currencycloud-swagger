@@ -9,7 +9,7 @@ If you onboard applicants with `/v1/forms` today, this page tells you what chang
 - **Forms become applications.** Every `/v1/forms` path has a `/v2/applications` equivalent, and `form_id` becomes `application_id`. Your token and the base URL stay the same.
 - **You move through a workflow.** On v1 you send the data, then submit. On v2 every application has a [workflow](/guides/onboarding/workflows): you send each step's data, then complete the step, one step at a time.
 - **Some rules are stricter.** v2 refuses some values that v1 accepts. See [New validation rules](#new-validation-rules).
-- **You can verify identity through the API.** After you submit, [Create Identity Verification](/api-reference/#create-identity-verification) gives you a link to a hosted page where the person verifies their identity.
+- **You can verify identity through the API.** Before you submit, [Create Identity Verification](/api-reference/#create-identity-verification) gives you a link to a hosted page where the person verifies their identity after you submit.
 - **Responses are more consistent.** Lists are wrapped in `data`, deletes return `204`, and each error names the field it's about.
 
 ## Endpoint map
@@ -35,7 +35,7 @@ Some endpoints are new on v2:
 | `GET /v2/workflows/{workflow_id}/steps/current` | Tells you which step you're on |
 | `GET /v2/workflows/{workflow_id}/steps/previous` | Tells you the step before the one you're on |
 | `PUT /v2/workflows/{workflow_id}/steps/current` | Moves you to a step you've completed, or to any step before the one you're on |
-| `POST /v2/identity_verifications` | Starts identity verification, once the application is submitted |
+| `POST /v2/identity_verifications` | Requests identity verification for a person, before the application is submitted |
 
 POST `/v1/validations`, which runs the pre-flight validations you ask for before you create an application, stays on v1. It takes the same token and works for v2 applications too.
 
@@ -109,7 +109,7 @@ As in v1, attach documents by adding their IDs to `document_ids` on the person, 
 
 ## Verify identity
 
-Identity verification is a separate call in v2. Once the application is submitted, call [Create Identity Verification](/api-reference/#create-identity-verification) with the `application_id` and the `person_id` of the person to verify. The response returns a `whitelabel_url`, a hosted page where that person verifies their identity.
+Identity verification is a separate call in v2. Before you submit, call [Create Identity Verification](/api-reference/#create-identity-verification) with the `application_id` and the `person_id` of the person to verify. Submission requires it. The response returns a `whitelabel_url`, a hosted page where that person verifies their identity once the application is submitted.
 
 - For an individual application, you verify the applicant.
 - For a corporate application, you verify a director. Only a person with the `director` role can be verified.
