@@ -45,7 +45,7 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-The [API reference](/api-reference/) lists every field and its format.
+The [API reference](/api-reference/#onboard) lists every field and its format.
 
 ## Step 1: Create the application
 
@@ -303,7 +303,7 @@ Uploads the documents for the company and its people, and attaches each one to w
 
 ### What to upload
 
-[Onboard a business](/guides/onboarding/corporate#documents) lists the documents a company needs. Upload everything you have: our compliance review decides what's finally needed.
+[Onboarding a business](/guides/onboarding/corporate#documents) lists the documents a company needs. Upload everything you have: our compliance review decides what's finally needed.
 
 ### 6a. Create the document
 

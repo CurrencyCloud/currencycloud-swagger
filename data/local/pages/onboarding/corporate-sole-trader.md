@@ -242,7 +242,7 @@ Uploads the documents for the business and the sole trader, and attaches each on
 
 ### What to upload
 
-[Onboard a business](/guides/onboarding/corporate#documents) lists the documents a business needs. Upload everything you have: our compliance review decides what's finally needed.
+[Onboarding a business](/guides/onboarding/corporate#documents) lists the documents a business needs. Upload everything you have: our compliance review decides what's finally needed.
 
 ### 6a. Create the document
 

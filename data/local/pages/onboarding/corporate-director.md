@@ -274,7 +274,7 @@ Uploads the documents for the company and its people, and attaches each one to w
 
 ### What to upload
 
-[Onboard a business](/guides/onboarding/corporate#documents) lists the documents a company needs. Upload everything you have: our compliance review decides what's finally needed.
+[Onboarding a business](/guides/onboarding/corporate#documents) lists the documents a company needs. Upload everything you have: our compliance review decides what's finally needed.
 
 ### 6a. Create the document
 

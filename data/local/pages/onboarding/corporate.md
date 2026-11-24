@@ -10,9 +10,9 @@ Companies and sole traders both apply as corporate applications, through one of 
 
 | **Who fills in the application** | **`business_role`** | **Flow** |
 |---|---|---|
-| A director of the company | `director_controller` | [Onboard a business: director](/guides/onboarding/corporate-director) |
-| Someone who isn't a director, such as an employee. A director is verified later | `authorised_person` | [Onboard a business: authorised person](/guides/onboarding/corporate-authorised-person) |
-| A sole trader | `sole_trader_business_role` | [Onboard a business: sole trader](/guides/onboarding/corporate-sole-trader) |
+| A director of the company | `director_controller` | [Onboarding a business: director](/guides/onboarding/corporate-director) |
+| Someone who isn't a director, such as an employee. A director is verified later | `authorised_person` | [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person) |
+| A sole trader | `sole_trader_business_role` | [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader) |
 
 A `sole_trader_business_role` application must use the legal entity type `sole_trader`, and only that business role can use it.
 

@@ -1,6 +1,6 @@
-[_metadata_:menu_title]:- "Onboard an individual"
+[_metadata_:menu_title]:- "Onboarding an individual"
 [_metadata_:order]:- "3"
-# Onboard an individual
+# Onboarding an individual
 
 Use this flow to open an account for a single person applying on their own behalf, rather than for a company.
 
