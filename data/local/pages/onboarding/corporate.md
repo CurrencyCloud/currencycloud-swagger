@@ -1,12 +1,12 @@
-[_metadata_:menu_title]:- "Onboard a business"
+[_metadata_:menu_title]:- "Onboarding a business"
 [_metadata_:order]:- "4"
-# Onboard a business
+# Onboarding a business
 
 Companies and sole traders both apply as corporate applications, through one of three corporate flows. This page covers what those flows share: choosing a flow, the people on the application, the business information rules, and the documents a business needs. Each flow page then takes you through the calls step by step.
 
 ## Choose a flow
 
-`business_role` says who is filling in the application, and decides which flow you follow. You set it when you create the application, and it can't be changed afterwards.
+`business_role` says who is filling in the application and determines which flow you follow. You set it when you create the application, and you can't change it afterwards.<br><br>
 
 | **Who fills in the application** | **`business_role`** | **Flow** |
 |---|---|---|
@@ -26,13 +26,13 @@ A corporate application lists the people behind the business. Each person holds 
 | `director` | A director of the company | At least one person must hold it. Only a director's identity can be verified |
 | `ultimate_business_owner` | Someone who owns 25% or more of the business | Needs an `ownership_percentage` of at least 25. All owners together can't exceed 100 |
 
-- **Add each person once, with all of their roles.** A director who owns 25% or more of the company is one person holding `director` and `ultimate_business_owner`.
+- **Add each person once, with all of their roles.** For example, a director who owns 25% or more of the company is one person with both the `director` and `ultimate_business_owner` roles.
 - **Add owners of 25% or more.** If we need details of anyone who owns less, we'll contact you.
 - **An application holds at most 50 people.**
 
 Who you add depends on the flow:
 
-| **Flow** | **The applicant holds** | **Also add** |
+| **Flow** | **Roles** | **Also add** |
 |---|---|---|
 | Director | `user` and `director` | The company's other directors, and its owners |
 | Authorised person | `user` | The director who will be verified, with their own `email` and `dob`, plus the company's other directors and its owners |
@@ -40,11 +40,11 @@ Who you add depends on the flow:
 
 ## Business information
 
-Every corporate application sends its business information with [Update Business Information](/api-reference/#update-business-information). The [API reference](/api-reference/) lists every field. These are the rules that are easiest to get wrong.
+Every corporate application sends its business information with [Update Business Information](/api-reference/#update-business-information). The [API reference](/api-reference//#onboard) lists every field. These are the rules that are easiest to get wrong.
 
-- **`business_website` is always required.** It's the business's website or other online presence, as a URL, and the scheme is optional, so `example.com` works. A business with no online presence can't be onboarded through the API.
+- **`business_website` is always required.** It's the business's website or other online presence as a URL. The scheme is optional, so `example.com` is accepted. A business with no online presence can't be onboarded through the API.
 - **The registered address must be in a permitted jurisdiction.** The country the business is registered in, `business_country`, can be any ISO 3166-1 alpha-2 code.
-- **For a business registered in the US, `vat_number` holds its EIN:** 9 digits, written as `123456789` or `12-3456789`. VAT numbers for other countries aren't format-checked.
+- **For a business registered in the US, `vat_number` contains its EIN.** It must be nine digits and can be provided as `123456789` or `12-3456789`. VAT numbers for other countries aren't format-checked.
 - **Registration and VAT numbers depend on where the business is registered and its legal entity type:**
 
 | **If `business_country` is** | **`company_registration_number` is required for** | **`vat_number` is required for** |
@@ -83,4 +83,4 @@ You create each document with [Create Document](/api-reference/#create-document)
 - **To move a document to another resource, take its ID out of the first resource's `document_ids`.**
 - **A two-sided document needs both sides first.** `driving_licence`, `residence_id`, `state_id` and `biometric_state_id` need a `front` and a `back` uploaded before you can attach them.
 
-Each flow page's documents step shows the calls in full. Every `document_type` and `category` value is listed in the [API reference](/api-reference/).
+Each flow page's documents step shows the calls in full. Every `document_type` and `category` value is listed in the [API reference](/api-reference/#onboard).

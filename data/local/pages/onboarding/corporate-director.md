@@ -1,10 +1,10 @@
-[_metadata_:menu_title]:- "Onboard a business: director"
+[_metadata_:menu_title]:- "Onboarding a business: director"
 [_metadata_:order]:- "5"
-# Onboard a business: director
+# Onboarding a business: director
 
-Use this flow when a director of the company fills in the application themselves. It's the usual corporate flow. If someone who isn't a director fills it in, use [Onboard a business: authorised person](/guides/onboarding/corporate-authorised-person). If a sole trader is applying, use [Onboard a business: sole trader](/guides/onboarding/corporate-sole-trader).
+Use this flow when a director of the company is completing the application themselves. This is the usual corporate flow. If the applicant isn't a director, use [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person). If the applicant is a sole trader, use [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader).
 
-The applicant is a director of the company. They fill in the application, confirm they can act for the company, and are the person whose identity is verified at the end. The application also lists the company's other directors and its ultimate business owners.
+The applicant is a director of the company. They provide the application details, confirm they are authorised to act for the company, and are the person whose identity is verified at the end. The application also lists the company's other directors and its ultimate business owners.
 
 ## The steps at a glance
 
@@ -38,7 +38,7 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-The [API reference](/api-reference/) lists every field and its format.
+The [API reference](/api-reference/#onboard) lists every field and its format.
 
 ## Step 1: Create the application
 

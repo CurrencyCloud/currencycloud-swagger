@@ -4,7 +4,7 @@
 
 Use this flow to open an account for a single person applying on their own behalf, rather than for a company.
 
-An individual application holds exactly **one person**: the applicant. They fill in the application, accept the terms, and are the person whose identity is verified at the end.
+An individual application has exactly **one person**: the applicant. The applicant completes the application, accept the terms, and are the person whose identity is verified at the end.
 
 ## The steps at a glance
 
@@ -18,7 +18,7 @@ An individual application holds exactly **one person**: the applicant. They fill
 | [6. Submit](#step-6-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit` |
 | [7. Verify the applicant's identity](#step-7-verify-the-applicants-identity) | `POST /v2/identity_verifications` | — |
 
-Every completion call has the same shape. Only the `step_id` changes:
+Every completion request uses the same endpoint and request body. Only the `step_id` changes:
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/{step_id}/completion?application_id={application_id}
@@ -37,11 +37,11 @@ It returns the next step, and an empty `steps` array once the workflow is finish
 }
 ```
 
-The [API reference](/api-reference/) lists every field and its format.
+The [API reference](/api-reference//#onboard) lists every field and its format.
 
 ## Step 1: Create the application
 
-Creates the application and its workflow, and records the applicant's email and consent.
+Creates the application and its workflow, and records the applicant's email address and consent.
 
 `POST /v2/applications`
 
@@ -84,11 +84,11 @@ Records where the applicant lives and how to reach them.
 }
 ```
 
-`country` must be a permitted jurisdiction, and must match the `home_country` and address country you send in [step 3](#step-3-personal-details). `phone_number` is optional here, but the applicant's own `phone_number` is required in step 3.
+Note that `country` must be a permitted jurisdiction and must match the `home_country` and address country you provide in [step 3](#step-3-personal-details). `phone_number` is optional at this point, but the applicant's `phone_number` is required in step 3.
 
 PUT replaces the application, so send the full body every time you update it.
 
-### 2b. Complete `basic_info`
+### 2b. Complete basic_info
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/basic_info/completion?application_id={application_id}
@@ -100,7 +100,7 @@ The step needs `country` and `agreed_to_marketing_emails` on the application, pl
 
 ## Step 3: Personal details
 
-Adds the applicant as the application's one person.
+Adds the applicant as the only person on the application.
 
 ### 3a. Add the applicant
 
@@ -125,22 +125,22 @@ Adds the applicant as the application's one person.
 }
 ```
 
-The response returns the person under `data`. Keep `data.id`: it's the `person_id` you need in steps 5 and 7.
+The response returns the person under `data`. Keep `data.id`, this is the `person_id` you need in steps 5 and 7.
 
-`roles` is `["user"]`, the applicant's only role. `home_country` must match the country of `personal_address_attributes` and the application's `country`, and that address must be in a permitted jurisdiction.
+The `roles` is `["user"]`, the applicant's only role. The `home_country` must match the country in `personal_address_attributes` and the application's `country`. The address must also be in a permitted jurisdiction.
 
-The applicant's email comes from the application, set at create.
+The applicant's email comes from the application and is set when you create it.
 
 Some fields depend on where the applicant lives:
 
-| **If the applicant's `home_country` is** | **Also required** |
+| **If the applicant's home_country is** | **Also required** |
 |---|---|
-| The United States | `id_number`: their 9-digit Social Security number. `personal_address_attributes.state_or_province`: the two-letter state code, such as `NY` |
-| Canada | `personal_address_attributes.state_or_province`: the two-letter province code, such as `ON` |
+| The United States | `id_number`: their 9-digit Social Security number. `personal_address_attributes.state_or_province`: the two-letter state code, such as 'NY' |
+| Canada | `personal_address_attributes.state_or_province`: the two-letter province code, such as 'ON' |
 
-An individual application holds exactly one person. To correct the applicant's details, update them with [Update Person](/api-reference/#update-person) and the full body, including `document_ids` once you've attached documents.
+An individual application has exactly one person. To correct the applicant's details, update them with [Update Person](/api-reference/#update-person) and the full body, including `document_ids` once you've attached documents.
 
-### 3b. Complete `personal_details`
+### 3b. Complete personal_details
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/personal_details/completion?application_id={application_id}
@@ -148,7 +148,7 @@ PUT /v2/workflows/{workflow_id}/steps/personal_details/completion?application_id
 { "status": "completed" }
 ```
 
-The step needs the person's `dob`, `personal_address` and email, and the address must be in a permitted jurisdiction.
+This step needs the person's `dob`, `personal_address` and email, and the address must be in a permitted jurisdiction.
 
 ## Step 4: Account usage
 
@@ -172,7 +172,7 @@ Describes how the applicant intends to use the account.
 
 `purpose_details` is required when `primary_purpose` is `other`.
 
-`estimated_monthly_transaction_volume` and `transaction_countries` are optional for an individual.
+`estimated_monthly_transaction_volume` and `transaction_countries` are optional for an individual.<br><br>
 
 PUT replaces the account usage, so send the full body every time you update it.
 
@@ -184,7 +184,7 @@ PUT /v2/workflows/{workflow_id}/steps/account_usage/completion?application_id={a
 { "status": "completed" }
 ```
 
-The step needs the account usage from 4a.
+This step needs the account usage from 4a.
 
 ## Step 5: Documents
 
@@ -198,7 +198,7 @@ Uploads the applicant's documents and attaches them to the applicant.
 | Often | Proof of address, dated within the last 3 months |
 | Can speed up approval | Source of funds, such as payslips, proof of investment or inheritance, a bank statement or a tax return |
 
-Upload everything the applicant has: our compliance review decides what's finally needed.
+Upload everything the applicant has, our compliance review decides what's finally needed.
 
 ### 5a. Create the document
 
@@ -264,24 +264,24 @@ Completing `documents` checks nothing, so it completes even if no documents were
 
 ## Step 6: Submit
 
-Sends the application for compliance review. It takes two calls, in this order:
+Sends the application for compliance review. This takes two calls, in this order:
 
-- **6a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
-- **6b completes `form_submit`.** It moves the workflow on, and starts nothing else.
+- **6a submits the application.** It locks the application and starts our compliance review. It does not advance the workflow.
+- **6b completes `form_submit`.** This advances the workflow, and does not trigger anything else.
 
-Completing `form_submit` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit`.
+Completing `form_submit` before you've submitted is refused with a `422` response on `state`. If you stop after submitting, the workflow stays on `form_submit`.
 
 ### 6a. Submit the application
 
 `POST /v2/applications/{application_id}/submit`
 
-Complete steps 2 to 5 first: submit checks every earlier step is complete, then validates the whole application.
+Complete steps 2 to 5 first. Submission checks that every earlier step is complete, then validates the whole application.
 
-**Submitting is final.** The application is locked once submitted, so review it before you make this call.
+**Submitting is final.** The application is locked once submitted, so review it before you making this call.
 
 <span id="6b-complete-form_submit"></span>
 
-### 6b. Complete `form_submit`
+### 6b. Complete form_submit
 
 ```
 PUT /v2/workflows/{workflow_id}/steps/form_submit/completion?application_id={application_id}
@@ -289,7 +289,7 @@ PUT /v2/workflows/{workflow_id}/steps/form_submit/completion?application_id={app
 { "status": "completed" }
 ```
 
-Submit first: this step checks the application has already been submitted. Once it completes, `steps` comes back empty and the workflow is finished. Then verify the applicant's identity in [step 7](#step-7-verify-the-applicants-identity).
+Submit the application first. This step checks the application has already been submitted. Once it completes, `steps` is empty and the workflow is finished. Then verify the applicant's identity in [step 7](#step-7-verify-the-applicants-identity).
 
 ## Step 7: Verify the applicant's identity
 
@@ -313,19 +313,19 @@ The applicant proves they are who they say they are, using their photo ID and a 
 }
 ```
 
-`person_id` is the applicant's, from step 3. Calling this again returns the same verification, so it's safe to retry.
+Use the applicant's `person_id` from step 3. Calling this endpoint again returns the same verification, so it's safe to retry.
 
 ### 7b. Send the applicant to the hosted page
 
-Send the applicant to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+Send the applicant to the `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
 
 ### 7c. Email verification
 
-The hosted page asks the applicant for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
+The hosted page asks the applicant for their email address, then sends a one-time code to that address. It must be the email address on the application, any other address is refused. The applicant enters the code on the page to verify the address.
 
-**Only the applicant can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
+**Only the applicant can do this.** There is no API call to send, enter, or skip the code, so you can't complete or automate this step for them.
 
-There's no step to complete here: `id_verification` completes on its own when you complete `form_submit` in [6b](#6b-complete-form_submit).
+There's no workflow step to complete here, `id_verification` isi completed automatically when you complete `form_submit` in step [6b](#6b-complete-form_submit).
 
 ## After submission
 

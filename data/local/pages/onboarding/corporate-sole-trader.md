@@ -1,8 +1,8 @@
-[_metadata_:menu_title]:- "Onboard a business: sole trader"
+[_metadata_:menu_title]:- "Onboarding a business: sole trader"
 [_metadata_:order]:- "7"
-# Onboard a business: sole trader
+# Onboarding a business: sole trader
 
-Use this flow when a sole trader applies: someone who runs a business on their own, rather than through a company. It follows the corporate steps. For a company, use [Onboard a business: director](/guides/onboarding/corporate-director) or [Onboard a business: authorised person](/guides/onboarding/corporate-authorised-person).
+Use this flow when a sole trader applies: someone who runs a business on their own, rather than through a company. It follows the corporate steps. For a company, use [Onboarding a business: director](/guides/onboarding/corporate-director) or [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person).
 
 A sole trader application holds exactly **one person**: the sole trader. They're the applicant, the director and the owner. They fill in the application, confirm they can act for the business, and are the person whose identity is verified at the end.
 

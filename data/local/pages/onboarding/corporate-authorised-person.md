@@ -1,8 +1,8 @@
-[_metadata_:menu_title]:- "Onboard a business: authorised person"
+[_metadata_:menu_title]:- "Onboarding a business: authorised person"
 [_metadata_:order]:- "6"
-# Onboard a business: authorised person
+# Onboarding a business: authorised person
 
-Use this flow when someone who isn't a director fills in the application on the company's behalf. If a director fills it in themselves, use [Onboard a business: director](/guides/onboarding/corporate-director). If a sole trader is applying, use [Onboard a business: sole trader](/guides/onboarding/corporate-sole-trader).
+Use this flow when someone who isn't a director fills in the application on the company's behalf. If a director fills it in themselves, use [Onboarding a business: director](/guides/onboarding/corporate-director). If a sole trader is applying, use [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader).
 
 Two people take part:
 
