@@ -46,7 +46,7 @@ A step ID that isn't in your application's workflow, or a `workflow_id` that doe
 Completing a step you've already completed is refused with a `409` error. If a completion call times out or you're not sure it succeeded, call [Get Current Steps](/api-reference/#get-current-steps) before you retry.<br><br>
 
 **You never complete the `id_verification` step.** <br>
-It completes on its own when you complete `form_submit` or `form_submit_corp`, so the workflow is finished at that point and the step never appears in a response. Verifying identity is still a separate call, which you make after submitting. On an individual application you verify the applicant. On a corporate application you verify a director, and only a person with the `director` role can be verified, which may not be the person filling in the application. Each flow page covers it.<br><br>
+It completes on its own when you complete `form_submit` or `form_submit_corp`, so the workflow is finished at that point and the step never appears in a response. Requesting identity verification is still a separate call, which you make before submitting. On an individual application you verify the applicant. On a corporate application you verify a director, and only a person with the `director` role can be verified, which may not be the person filling in the application. Each flow page covers it.<br><br>
 
 **Submission can only happen once.** <br>
 Submitting locks the application, any further attempts to submit it fail. Review the application before you submit it.<br><br>

@@ -29,8 +29,8 @@ tags:
   description: Upload and manage the files that make up a document, such as the
     front and back of a driving licence.
 - name: Identity Verification
-  description: Start identity verification for a person on a submitted
-    application.
+  description: Request identity verification for a person before an
+    application is submitted.
 paths:
   "/v2/applications":
     get:
@@ -408,7 +408,9 @@ paths:
       summary: Submit Application
       description: 'Submits the onboarding application for review. Every workflow
         step before form_submit (form_submit_corp for a corporate) must be completed
-        first. Submitting is final: the application is locked once it has been submitted.'
+        first, and identity verification must have been requested with Create
+        Identity Verification. Submitting is final: the application is locked once
+        it has been submitted.'
       tags:
       - Applications
       x-api-group: Onboard
@@ -460,6 +462,11 @@ paths:
           - code: missing_director_role
             category: people
             message: Corporate applications only. No one has the director role.
+            params: ''
+          - code: missing_identity_verification
+            category: people
+            message: Identity verification hasn't been requested for anyone on the
+              application. Call Create Identity Verification first.
             params: ''
           - code: missing_initial_capital
             category: form
@@ -2302,11 +2309,12 @@ paths:
   "/v2/identity_verifications":
     post:
       summary: Create Identity Verification
-      description: Starts identity verification for a person on a submitted
-        application, and returns the whitelabel_url of the hosted page to send
-        them to. On a corporate application, only a person with the director
-        role can be verified. Calling it again for the same person returns the
-        same verification.
+      description: Requests identity verification for a person, and returns the
+        whitelabel_url of the hosted page where they verify their identity once
+        the application is submitted. It must be called before the application
+        is submitted, and submission requires it. On a corporate application,
+        only a person with the director role can be verified. Calling it again
+        for the same person returns the same verification.
       tags:
       - Identity Verification
       x-api-group: Onboard
@@ -2345,8 +2353,8 @@ paths:
             params: ''
           - code: validation
             category: form
-            message: Returned as request_invalid. The application isn't
-              submitted yet.
+            message: Returned as request_invalid. The application is already
+              submitted.
             params: ''
           - code: validation
             category: person_id

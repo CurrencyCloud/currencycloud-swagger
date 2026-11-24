@@ -16,8 +16,9 @@ A sole trader application holds exactly **one person**: the sole trader. They're
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage_corp` |
 | [5. The sole trader](#step-5-the-sole-trader) | `POST /v2/applications/{application_id}/people` | `people_corp` |
 | [6. Documents](#step-6-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents_corp` |
-| [7. Submit](#step-7-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit_corp` |
-| [8. Verify the sole trader's identity](#step-8-verify-the-sole-traders-identity) | `POST /v2/identity_verifications` | — |
+| [7. Request identity verification](#step-7-request-identity-verification) | `POST /v2/identity_verifications` | — |
+| [8. Submit](#step-8-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit_corp` |
+| [9. Verify the sole trader's identity](#step-9-verify-the-sole-traders-identity) | Send the sole trader to the `whitelabel_url` | — |
 
 Every completion call has the same shape. Only the `step_id` changes:
 
@@ -322,40 +323,7 @@ PUT /v2/workflows/{workflow_id}/steps/documents_corp/completion?application_id={
 
 Completing `documents_corp` checks nothing, so it completes even if no documents were uploaded or attached: do both first. A document you don't attach with `document_ids` is submitted as a general file, not as a person's or the business's document.
 
-## Step 7: Submit
-
-Sends the application for compliance review. It takes two calls, in this order:
-
-- **7a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
-- **7b completes `form_submit_corp`.** It moves the workflow on, and starts nothing else.
-
-Completing `form_submit_corp` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit_corp`.
-
-### 7a. Submit the application
-
-`POST /v2/applications/{application_id}/submit`
-
-Complete steps 2 to 6 first: submit checks every earlier step is complete, then validates the whole application.
-
-**Submitting is final.** The application is locked once submitted, so review it before you make this call.
-
-<span id="7b-complete-form_submit_corp"></span>
-
-### 7b. Complete `form_submit_corp`
-
-```
-PUT /v2/workflows/{workflow_id}/steps/form_submit_corp/completion?application_id={application_id}
-
-{ "status": "completed" }
-```
-
-Submit first: this step checks the application has already been submitted. Once it completes, `steps` comes back empty and the workflow is finished. Then verify the sole trader's identity in [step 8](#step-8-verify-the-sole-traders-identity).
-
-## Step 8: Verify the sole trader's identity
-
-The sole trader proves they are who they say they are, using their photo ID and a selfie. They hold the `director` role, so they can be verified once the application is submitted.
-
-### 8a. Start the verification
+## Step 7: Request identity verification
 
 `POST /v2/identity_verifications`
 
@@ -373,19 +341,50 @@ The sole trader proves they are who they say they are, using their photo ID and 
 }
 ```
 
-`person_id` is the sole trader's, from step 5. Calling this again returns the same verification, so it's safe to retry.
+`person_id` is the sole trader's, from step 5. They hold the `director` role, so they can be verified. This names them as the person whose identity is verified, and returns the `whitelabel_url` of the hosted page they verify on. Call it before you submit: submission requires it. Calling it again returns the same verification, so it's safe to retry.
 
-### 8b. Send the sole trader to the hosted page
+## Step 8: Submit
 
-Send the sole trader to `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+Sends the application for compliance review. It takes two calls, in this order:
 
-### 8c. Email verification
+- **8a submits the application.** It locks the application and starts our compliance review. It doesn't move the workflow on.
+- **8b completes `form_submit_corp`.** It moves the workflow on, and starts nothing else.
+
+Completing `form_submit_corp` before you've submitted is refused with a `422` on `state`. If you stop after submitting, the workflow stays on `form_submit_corp`.
+
+### 8a. Submit the application
+
+`POST /v2/applications/{application_id}/submit`
+
+Complete steps 2 to 7 first: submit checks every earlier step is complete and that identity verification has been requested, then validates the whole application.
+
+**Submitting is final.** The application is locked once submitted, so review it before you make this call.
+
+<span id="8b-complete-form_submit_corp"></span>
+
+### 8b. Complete `form_submit_corp`
+
+```
+PUT /v2/workflows/{workflow_id}/steps/form_submit_corp/completion?application_id={application_id}
+
+{ "status": "completed" }
+```
+
+Submit first: this step checks the application has already been submitted. Once it completes, `steps` comes back empty and the workflow is finished. Then the sole trader verifies their identity in [step 9](#step-9-verify-the-sole-traders-identity).
+
+## Step 9: Verify the sole trader's identity
+
+The sole trader proves they are who they say they are, using their photo ID and a selfie. This happens once the application is submitted.
+
+### 9a. Send the sole trader to the hosted page
+
+Send the sole trader to the `whitelabel_url` from [step 7](#step-7-request-identity-verification). The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+
+### 9b. Email verification
 
 The hosted page asks the sole trader for their email address, then emails a one-time code to it. It must be the email address on the application: any other address is refused. They enter the code on the page to verify the address.
 
 **Only the sole trader can do this.** The API has no call to send, enter or skip the code, so you can't complete this step for them or automate it.
-
-There's no step to complete here: `id_verification` completes on its own when you complete `form_submit_corp` in [7b](#7b-complete-form_submit_corp).
 
 ## After submission
 

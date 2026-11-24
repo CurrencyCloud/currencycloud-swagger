@@ -15,8 +15,9 @@ An individual application has exactly **one person**: the applicant. The applica
 | [3. Personal details](#step-3-personal-details) | `POST /v2/applications/{application_id}/people` | `personal_details` |
 | [4. Account usage](#step-4-account-usage) | `PUT /v2/applications/{application_id}/account_usage` | `account_usage` |
 | [5. Documents](#step-5-documents) | [Create Document](/api-reference/#create-document), then [Create Document File](/api-reference/#create-document-file) | `documents` |
-| [6. Submit](#step-6-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit` |
-| [7. Verify the applicant's identity](#step-7-verify-the-applicants-identity) | `POST /v2/identity_verifications` | — |
+| [6. Request identity verification](#step-6-request-identity-verification) | `POST /v2/identity_verifications` | — |
+| [7. Submit](#step-7-submit) | `POST /v2/applications/{application_id}/submit` | `form_submit` |
+| [8. Verify the applicant's identity](#step-8-verify-the-applicants-identity) | Send the applicant to the `whitelabel_url` | — |
 
 Every completion request uses the same endpoint and request body. Only the `step_id` changes:
 
@@ -262,40 +263,7 @@ PUT /v2/workflows/{workflow_id}/steps/documents/completion?application_id={appli
 
 Completing `documents` checks nothing, so it completes even if no documents were uploaded or attached: do both first. A document you don't attach with `document_ids` is submitted as a general file, not as the applicant's document.
 
-## Step 6: Submit
-
-Sends the application for compliance review. This takes two calls, in this order:
-
-- **6a submits the application.** It locks the application and starts our compliance review. It does not advance the workflow.
-- **6b completes `form_submit`.** This advances the workflow, and does not trigger anything else.
-
-Completing `form_submit` before you've submitted is refused with a `422` response on `state`. If you stop after submitting, the workflow stays on `form_submit`.
-
-### 6a. Submit the application
-
-`POST /v2/applications/{application_id}/submit`
-
-Complete steps 2 to 5 first. Submission checks that every earlier step is complete, then validates the whole application.
-
-**Submitting is final.** The application is locked once submitted, so review it before you making this call.
-
-<span id="6b-complete-form_submit"></span>
-
-### 6b. Complete form_submit
-
-```
-PUT /v2/workflows/{workflow_id}/steps/form_submit/completion?application_id={application_id}
-
-{ "status": "completed" }
-```
-
-Submit the application first. This step checks the application has already been submitted. Once it completes, `steps` is empty and the workflow is finished. Then verify the applicant's identity in [step 7](#step-7-verify-the-applicants-identity).
-
-## Step 7: Verify the applicant's identity
-
-The applicant proves they are who they say they are, using their photo ID and a selfie. This only works once the application is submitted.
-
-### 7a. Start the verification
+## Step 6: Request identity verification
 
 `POST /v2/identity_verifications`
 
@@ -313,19 +281,50 @@ The applicant proves they are who they say they are, using their photo ID and a 
 }
 ```
 
-Use the applicant's `person_id` from step 3. Calling this endpoint again returns the same verification, so it's safe to retry.
+Use the applicant's `person_id` from step 3. This names the applicant as the person whose identity is verified, and returns the `whitelabel_url` of the hosted page they verify on. Call it before you submit: submission requires it. Calling it again returns the same verification, so it's safe to retry.
 
-### 7b. Send the applicant to the hosted page
+## Step 7: Submit
 
-Send the applicant to the `whitelabel_url`. The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+Sends the application for compliance review. This takes two calls, in this order:
 
-### 7c. Email verification
+- **7a submits the application.** It locks the application and starts our compliance review. It does not advance the workflow.
+- **7b completes `form_submit`.** This advances the workflow, and does not trigger anything else.
+
+Completing `form_submit` before you've submitted is refused with a `422` response on `state`. If you stop after submitting, the workflow stays on `form_submit`.
+
+### 7a. Submit the application
+
+`POST /v2/applications/{application_id}/submit`
+
+Complete steps 2 to 6 first. Submission checks that every earlier step is complete and that identity verification has been requested, then validates the whole application.
+
+**Submitting is final.** The application is locked once submitted, so review it before you make this call.
+
+<span id="7b-complete-form_submit"></span>
+
+### 7b. Complete form_submit
+
+```
+PUT /v2/workflows/{workflow_id}/steps/form_submit/completion?application_id={application_id}
+
+{ "status": "completed" }
+```
+
+Submit the application first. This step checks the application has already been submitted. Once it completes, `steps` is empty and the workflow is finished. Then the applicant verifies their identity in [step 8](#step-8-verify-the-applicants-identity).
+
+## Step 8: Verify the applicant's identity
+
+The applicant proves they are who they say they are, using their photo ID and a selfie. This happens once the application is submitted.
+
+### 8a. Send the applicant to the hosted page
+
+Send the applicant to the `whitelabel_url` from [step 6](#step-6-request-identity-verification). The hosted page verifies their email address, then takes them through the terms and biometric consent, and the identity check itself.
+
+### 8b. Email verification
 
 The hosted page asks the applicant for their email address, then sends a one-time code to that address. It must be the email address on the application, any other address is refused. The applicant enters the code on the page to verify the address.
 
 **Only the applicant can do this.** There is no API call to send, enter, or skip the code, so you can't complete or automate this step for them.
-
-There's no workflow step to complete here, `id_verification` is completed automatically when you complete `form_submit` in step [6b](#6b-complete-form_submit).
 
 ## After submission
 

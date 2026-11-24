@@ -13,12 +13,12 @@ Submitting hands the application to our compliance review. Its `state`, returned
 | `approved` | Approved |
 | `rejected` | Rejected |
 
-**A submitted application can't be changed.** Any attempt to update or delete the application or its resources returns a 422 error. This remains the case after a decision has been made. You can still read the application and start identity verification with [Create Identity Verification](/api-reference/#create-identity-verification). See the relevant flow page for this step:
+**A submitted application can't be changed.** Any attempt to update or delete the application or its resources returns a 422 error. This remains the case after a decision has been made. You can still read the application. Request identity verification with [Create Identity Verification](/api-reference/#create-identity-verification) before you submit. See the relevant flow page for this step:
 
-- [Onboarding an individual](/guides/onboarding/individual#step-7-verify-the-applicants-identity)
-- [Onboarding a business: director](/guides/onboarding/corporate-director#step-8-verify-the-directors-identity)
-- [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person#step-8-verify-the-directors-identity)
-- [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader#step-8-verify-the-sole-traders-identity)
+- [Onboarding an individual](/guides/onboarding/individual#step-6-request-identity-verification)
+- [Onboarding a business: director](/guides/onboarding/corporate-director#step-7-request-identity-verification)
+- [Onboarding a business: authorised person](/guides/onboarding/corporate-authorised-person#step-7-request-the-directors-identity-verification)
+- [Onboarding a business: sole trader](/guides/onboarding/corporate-sole-trader#step-7-request-identity-verification)
 
 ## How do I find out the decision?
 
@@ -37,7 +37,8 @@ If you'd rather poll, read `state` from [Get Application](/api-reference/#get-ap
 | A photo ID upload returns a `422` error with a code on `image`, such as `detect_blur` or `detect_cutoff` | The image failed the quality check, which runs on `proof_of_identity` documents | Take a new, clear photo of the whole document and upload it again |
 | Fields you set earlier come back empty | PUT replaces the resource, so fields you left out were cleared | Send the full body every time: read the resource, change it, and send all of it back |
 | A person's documents are no longer attached | An update to the person left out `document_ids` | Send `document_ids` every time you update the person |
-| Starting identity verification returns a `422` error with `validation` on `form` | The application isn't submitted yet | Submit it first |
+| Submitting returns a `422` error with `missing_identity_verification` on `people` | Identity verification hasn't been requested | Call [Create Identity Verification](/api-reference/#create-identity-verification) for the person to verify, then submit |
+| Requesting identity verification returns a `422` error with `validation` on `form` | The application is already submitted | Request identity verification before you submit |
 
 ## Is it safe to retry a call?
 
@@ -50,4 +51,4 @@ Not always. If a call times out or returns a `500` or `502`, check whether it su
 | [Create Person](/api-reference/#create-person), [Create Document](/api-reference/#create-document), [Create Document File](/api-reference/#create-document-file) | No. Each call creates a new record, so list the collection first to see whether the first call landed. A repeated person is refused: with `duplicate_person` on a company application, or `person_limit_exceeded` on an individual or sole trader one |
 | `PUT .../steps/{step_id}/completion` | No. Repeating it returns a `409`: `step_not_started`, or `workflow_already_completed` after the last step. Call [Get Current Steps](/api-reference/#get-current-steps) first: if the step has moved on, the first call landed |
 | `POST .../submit` | No, but a second call is refused with `already_submitted` and changes nothing. If the first call returned a `500` or `502`, contact support with the `application_id` before you complete `form_submit` or `form_submit_corp` |
-| `POST /v2/identity_verifications` | Yes. It returns the same verification. On an authorised person application, each call also emails the link to the director again |
+| `POST /v2/identity_verifications` | Yes, before you submit. It returns the same verification. On an authorised person application, the link is emailed to the director once, when you submit |
